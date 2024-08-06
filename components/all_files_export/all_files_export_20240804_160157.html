@@ -1,0 +1,98 @@
+Project File Structure:
+./
+│ ├── CompanyQuestions.tsx
+│ ├── StudentQuestions.tsx
+│ ├── PersonenTypeSelector.tsx
+│ ├── export_project.py
+│ ├── LanguageSelector.tsx
+│ ├── LesFormulier.tsx
+│ ├── EndMessage.tsx
+│ ├── CommonQuestions.tsx
+│ ├── GuardianQuestions.tsx
+
+Content:
+
+<!-- export_project.py -->
+import os
+import mimetypes
+from datetime import datetime
+
+def get_file_structure(dir_path, exclude_dirs=None, exclude_files=None):
+    file_structure = []
+    for root, dirs, files in os.walk(dir_path):
+        # Filter directories to exclude
+        dirs[:] = [d for d in dirs if d not in exclude_dirs and not d.startswith('.')]
+        
+        level = root.replace(dir_path, '').count(os.sep)
+        indent = '│ ' * level + '├── ' if level else ''
+        file_structure.append(f"{indent}{os.path.basename(root)}/")
+        subindent = '│ ' * (level + 1) + '├── '
+        for filename in files:
+            if not any(filename.endswith(ext) for ext in exclude_files) and not filename.startswith('.'):
+                file_structure.append(f"{subindent}{filename}")
+    return file_structure
+
+def write_file_content(outfile, file_path):
+    mime_type, _ = mimetypes.guess_type(file_path)
+    if mime_type and mime_type.startswith('text'):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as infile:
+                outfile.write(f"<!-- {os.path.basename(file_path)} -->\n")
+                outfile.write(infile.read())
+                outfile.write("\n\n")
+        except Exception as e:
+            print(f"Error reading file {file_path}: {e}")
+    else:
+        print(f"Skipping binary file {file_path}")
+
+def export_project_to_file(dir_path='.', exclude_dirs=None, exclude_files=None):
+    if exclude_dirs is None:
+        exclude_dirs = [
+            'venv', '__pycache__', '.git', 'node_modules', 'all_files_export',
+            'tests', 'test', '.pytest_cache', '.tox', 'coverage', '.venv',
+            'build', 'dist', 'egg-info', '.idea', '.vscode', '.github',
+            'migrations', 'logs', 'tmp', 'temp', 'cache', '.cache',
+            'vendor', 'bower_components', '.sass-cache', '.svn',
+            '.hg', 'CVS', '.DS_Store', 'Thumbs.db', 'htmlcov',
+            '.mypy_cache', '.ipynb_checkpoints', '.eggs', '.dockerignore',
+            'instance'
+        ]
+    if exclude_files is None:
+        exclude_files = [
+            '*.log', '*.pyc', '*.pyo', '.DS_Store', 'Thumbs.db',
+            'test_*.py', '*_test.py', '*.test.js', '*.spec.js', '*.test.ts', '*.spec.ts',
+            '*.min.js', '*.min.css', '*.map', '*.swp', '*.bak', '*.tmp',
+            '*.pid', '*.seed', '*.pid.lock', '*.yml', '*.yaml', '*.toml',
+            '*.ini', '*.cfg', '*.conf', '*.config', '*.lock', '*.md',
+            'LICENSE', 'README*', 'CHANGELOG*', 'CONTRIBUTING*', 'HISTORY*',
+            '.gitignore', '.gitattributes', '.editorconfig', '.env*',
+            'Dockerfile*', 'docker-compose*', 'Makefile', 'requirements.txt',
+            'setup.py', 'setup.cfg', 'pyproject.toml', 'tox.ini', '.coveragerc'
+        ]
+
+    # Set the output directory to be parallel to the project folder
+    parent_dir = os.path.abspath(os.path.join(dir_path, os.pardir))
+    output_dir = os.path.join(parent_dir, 'all_files_export')
+    os.makedirs(output_dir, exist_ok=True)
+    
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    output_file = os.path.join(output_dir, f'all_files_export_{timestamp}.html')
+    
+    file_structure = get_file_structure(dir_path, exclude_dirs, exclude_files)
+    
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        outfile.write("Project File Structure:\n")
+        outfile.write("\n".join(file_structure))
+        outfile.write("\n\nContent:\n\n")
+        
+        for root, dirs, files in os.walk(dir_path):
+            dirs[:] = [d for d in dirs if d not in exclude_dirs and not d.startswith('.')]
+            for filename in files:
+                if not any(filename.endswith(ext) for ext in exclude_files) and not filename.startswith('.'):
+                    file_path = os.path.join(root, filename)
+                    write_file_content(outfile, file_path)
+
+if __name__ == "__main__":
+    export_project_to_file(dir_path='.')
+
+

@@ -1,0 +1,27 @@
+// components/TextBlock.tsx
+'use client';
+
+import React, { ReactNode } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
+import { TranslationFunction, hero2 } from '../../data';
+
+const TextBlock = ({t}: {t: TranslationFunction}): ReactNode => {
+//   const { t } = useTranslation();
+const { title, subtitle, subtitle2 } = hero2
+
+  return (
+    <>
+      <p className="text-sm sm:text-base font-semibold tracking-wider text-blue-600 uppercase">
+        {t(title)}
+      </p>
+      <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black lg:mt-8">
+        {t(subtitle)}
+      </h1>
+      <p className="mt-4 text-sm sm:text-base md:text-lg text-black lg:mt-8">
+        {t(subtitle2)}
+      </p>
+    </>
+  );
+};
+
+export default TextBlock;

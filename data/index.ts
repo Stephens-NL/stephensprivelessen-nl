@@ -1,0 +1,10 @@
+export * from './about';
+export * from './footer';
+export * from './hero';
+export * from './navigation';
+export * from './services';
+// export * from './siteData';
+export * from './testimonials';
+export * from './types';
+export * from './blog';
+export * from './questionsData';
