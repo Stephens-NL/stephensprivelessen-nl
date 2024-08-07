@@ -1,22 +1,8 @@
 import { Bilingual } from "./types";
 
-export const hero = {
-    title: {
-        EN: "Excel in Mathematics and Programming",
-        NL: "Excelleer in Wiskunde en Programmeren"
-    },
-    subtitle: {
-        EN: "Professional tailored guidance for students and professionals",
-        NL: "Professionele begeleiding op maat voor studenten en professionals"
-    },
-    ctaText: {
-        EN: "Start Your Learning Journey Now",
-        NL: "Start Nu Jouw Leertraject"
-    },
-    ctaLink: "/booking"
-};
 
-export const hero2 = {
+
+export const hero = {
     title: {
         NL: "Ontgrendel Je Potentieel",
         EN: "Unlock Your Potential"
@@ -44,6 +30,10 @@ export const hero2 = {
         EN: "Schedule a Free Trial Session",
         NL: "Plan een Gratis Proefles",
     },
+    img: {
+        imageSrc: "/images/jpeg/portrait2.jpeg",
+        altern: { EN: "Illustration of personalized lessons", NL: "Illustratie van gepersonaliseerde lessen" }
+    }
     // Add more translation keys and their corresponding translations here
 
 };

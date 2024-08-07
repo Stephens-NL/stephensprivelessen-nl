@@ -9,9 +9,13 @@ import ButtonTrial from '../ButtonTrial';
 import SignInHere from './SignInHere';
 import SecondaryImage from './SecondaryImage';
 import { useTranslation } from '../../hooks/useTranslation';
+import { hero } from '../../data';
+
+const { img } = hero
+const { imageSrc, altern } = img
 
 const Hero = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
 
 
@@ -36,21 +40,20 @@ const Hero = () => {
             className="relative w-full max-w-lg mx-auto"
           >
             <Image
-              src="/images/portrait2.jpeg" // Vervang dit door het pad naar je eigen afbeelding
-              alt="Illustration of personalized lessons"
+              src={imageSrc}
+              alt={t(altern)}
               width={600}
               height={400}
-              layout="responsive"
               className="rounded-xl shadow-lg"
             />
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="absolute bottom-0 left-0 w-1/3 p-2 sm:p-4 bg-white bg-opacity-80 rounded-tr-lg shadow-md"
             >
-              {/* <SecondaryImage isEnglish /> */}
-            </motion.div>
+              {/* <SecondaryImage isEnglish /> 
+            </motion.div> */}
           </motion.div>
         </div>
       </div>

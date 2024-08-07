@@ -1,9 +1,9 @@
 import { Bilingual, TranslationFunction } from '@/data'
 import React from 'react'
-import { hero2 } from '../../data'
+import { hero } from '../../data'
 
 const SignInHere = ({ translation }: { translation: TranslationFunction }) => {
-    const {already_enrolled, sign_in_here} = hero2
+    const {already_enrolled, sign_in_here} = hero
 
     return (
         <>

@@ -11,5 +11,5 @@ export const navigation: NavItem[] = [
     { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
     { href: '/blog', label: { EN: 'Blog', NL: 'Blog' } },
     { href: '/contact', label: { EN: 'Contact', NL: 'Contact' } },
-    { href: '/kalender', label: { EN: 'cal', NL: 'kal' } },
+    // { href: '/kalender', label: { EN: 'cal', NL: 'kal' } },
 ];

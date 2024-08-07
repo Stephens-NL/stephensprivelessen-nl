@@ -2,14 +2,14 @@
 
 import React from 'react'
 
-import CompleteForm from '@/components/contact2/CompleteForm';
-
 import ContactPage from '@/components/contact/ContactPage';
+import Placeholder from '../../components/contact/Placeholder';
 
 const Contact = () => {
   return (
     // <Placeholder pagename = "Contact"/>
-    <ContactPage />
+    // <ContactPage />
+    <Placeholder />
   )
 
 }

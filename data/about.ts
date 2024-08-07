@@ -20,7 +20,7 @@ export const about = {
           "Door op deze manier door te gaan, behaalde Stephen consistent hoge cijfers en handhaafde uiteindelijk een gemiddelde van een 10 in het vierde en vijfde jaar. Echter, in het zesde jaar bracht een uitdagende toets over bewijzen zijn gemiddelde naar beneden, met als eindresultaat een 8,45. Ondanks dat hij net geen negen behaalde, inspireerde deze reis hem om bijles te gaan geven, eerst aan zijn medeleerlingen en later als een professionele dienst. Wij, als team, delen deze passie en streven ernaar om studenten te ondersteunen bij het overwinnen van academische uitdagingen. Voor ons is dit niet alleen een baan, maar een kans om een positieve impact te hebben op het leven van onze studenten.",
         ],
       },
-      imageSrc: "/images/portrait.jpeg",
+      imageSrc: "/images/jpeg/portrait.jpeg",
       altText: {
         EN: "Stephen's portrait",
         NL: "Stephen's portret",

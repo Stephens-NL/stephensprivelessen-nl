@@ -1,10 +1,10 @@
-import { hero2, TranslationFunction } from '@/data'
+import { hero, TranslationFunction } from '@/data'
 import { motion } from 'framer-motion'
 import path from 'path'
 import React from 'react'
 
 const ButtonTrial = ({translation}: {translation : TranslationFunction}) => {
-    const {schedulefreetrial} = hero2
+    const {schedulefreetrial} = hero
     return (
         <>
             <motion.a

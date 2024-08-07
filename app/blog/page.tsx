@@ -1,14 +1,11 @@
+import { BlogList } from '../../components/Blog'
 import React from 'react'
-import {BlogList} from '@/components/Blog'
-import {blogPosts as posts} from '../../data'
+import { blogPosts } from '../../data'
 
-
-
-
-const Blog = () => {
+const page = () => {
   return (
-    <BlogList posts={posts}/>
+    <BlogList posts={blogPosts}/>
   )
 }
 
-export default Blog
+export default page

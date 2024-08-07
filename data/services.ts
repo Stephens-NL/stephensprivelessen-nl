@@ -2,7 +2,7 @@ import { Bilingual, Service } from './types';
 
 export const services: Service[] = [
   {
-    icon: "/images/math-icon.png",
+    icon: "/images/svg/math-icon.svg",
     title: { EN: "Mathematics Tutoring", NL: "Wiskunde Bijles" },
     shortDescription: { 
       EN: "From elementary to university level.", 
@@ -14,7 +14,7 @@ export const services: Service[] = [
     }
   },
   {
-    icon: "/images/programming-icon.png",
+    icon: "/images/png/programming-icon.png",
     title: { EN: "Programming Lessons", NL: "Programmeer Lessen" },
     shortDescription: { 
       EN: "Learn coding in Python, Java, and more.", 
@@ -26,7 +26,7 @@ export const services: Service[] = [
     }
   },
   {
-    icon: "/images/exam-icon.svg",
+    icon: "/images/svg/exam-icon.svg",
     title: { EN: "Exam Preparation", NL: "Examentraining" },
     shortDescription: { 
       EN: "Prepare optimally for your exams.", 
@@ -38,7 +38,7 @@ export const services: Service[] = [
     }
   },
   {
-    icon: "/images/adult-icon.png",
+    icon: "/images/png/adult-icon.png",
     title: { EN: "Adult Education", NL: "Volwassenenonderwijs" },
     shortDescription: { 
       EN: "Courses tailored for adult learners.", 
@@ -50,7 +50,7 @@ export const services: Service[] = [
     }
   },
   {
-    icon: "/images/ccvx-icon.png",
+    icon: "/images/png/ccvx-icon.png",
     title: { EN: "CCVX Exam Preparation", NL: "CCVX-examen Voorbereiding" },
     shortDescription: { 
       EN: "Specialized training for the CCVX exam.", 

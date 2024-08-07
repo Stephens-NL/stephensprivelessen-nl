@@ -1,9 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import { Bilingual, BlogPostsType, BlogPostType } from '../data';
+import { BlogPostsType, BlogPostType } from '../data';
 import { useTranslation } from '../hooks/useTranslation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal'; // Zorg ervoor dat je een Modal component hebt
+
+
 
 
 const BlogPostSummary: React.FC<{ post: BlogPostType; onClick: () => void }> = ({ post, onClick }) => {
@@ -42,6 +44,11 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
   const { t } = useTranslation();
   const [selectedPost, setSelectedPost] = useState<BlogPostType | null>(null);
 
+  // Definieer de onClose functie
+  const onClose = () => {
+    setSelectedPost(null);
+  };
+
   if (!posts || !Array.isArray(posts)) {
     return <p className="text-gray-300">No posts available.</p>;
   }
@@ -62,8 +69,8 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
   };
 
   return (
-    <>
-    <div className="container mx-auto px-4 py-8 bg-gray-950">
+    
+    <div className="mx-auto px-4 py-8 bg-gradient-to-br from-blue-100 to-gray-950">
       <motion.h1
         className="text-4xl font-bold text-center text-white mb-8"
         initial={{ opacity: 0, y: -50 }}
@@ -87,12 +94,12 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
       <AnimatePresence>
         {selectedPost && (
           <Modal isOpen={!!selectedPost} onClose={() => setSelectedPost(null)}>
-            <FullBlogPost post={selectedPost} onClose={() => setSelectedPost(null)} />
+            <FullBlogPost post={selectedPost} onClose={onClose} />
           </Modal>
         )}
       </AnimatePresence>
     </div>
-    </>
+    
   );
 };
 
@@ -100,6 +107,7 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
 
 const FullBlogPost: React.FC<{ post: BlogPostType; onClose: () => void }> = ({ post, onClose }) => {
   const { t } = useTranslation();
+
 
   return (
     <motion.div

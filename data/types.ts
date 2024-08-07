@@ -28,6 +28,12 @@ export type BlogPostType = {
     tags: string[];
 };
 
+export interface ModalProps {
+    service: Service | null;
+    isOpen: boolean;
+    onClose: () => void;
+  }
+
 // Definieer het type voor de collectie van blogposts
 export type BlogPostsType = BlogPostType[];
 

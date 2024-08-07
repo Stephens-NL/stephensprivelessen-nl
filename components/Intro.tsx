@@ -45,7 +45,7 @@ const Introductie = () => {
 
   return (
     <motion.section
-      className="py-10 bg-gray-200"
+      className="py-10 bg-blue-100 "
       variants={sectionVariants}
       initial="hidden"
       animate="visible"

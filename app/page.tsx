@@ -1,7 +1,7 @@
-// app/page.tsx
-import Hero3 from "../components/Hero";
+'use client';
 
-import Services from "@/components/Services";
+// app/page.tsx
+import Hero from "../components/Hero";
 import ServicesShort from "@/components/ServicesShort";
 import Testimonials from "@/components/Testimonials";
 // import { useState } from "react";
@@ -11,7 +11,7 @@ import Testimonials from "@/components/Testimonials";
 export default function Home() {
   return (
     <>
-      <Hero3 />
+      <Hero />
       <ServicesShort />
 
       <Testimonials /> 
