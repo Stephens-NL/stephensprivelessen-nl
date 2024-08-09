@@ -5,9 +5,6 @@ import { useTranslation } from '../hooks/useTranslation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal'; // Zorg ervoor dat je een Modal component hebt
 
-
-
-
 const BlogPostSummary: React.FC<{ post: BlogPostType; onClick: () => void }> = ({ post, onClick }) => {
   const { t } = useTranslation();
   return (
@@ -17,7 +14,9 @@ const BlogPostSummary: React.FC<{ post: BlogPostType; onClick: () => void }> = (
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
     >
-      <h2 className="text-2xl font-bold text-gray-100 mb-4 hover:text-cyan-400 transition-colors duration-300">{t(post.title)}</h2>
+      <h2 className="text-2xl font-bold text-gray-100 mb-4 hover:text-cyan-400 transition-colors duration-300">
+        {t(post.title)}
+      </h2>
       <p className="text-sm text-gray-400 mb-2">
         by {post.author} on {new Date(post.date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
       </p>
@@ -69,7 +68,6 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
   };
 
   return (
-    
     <div className="mx-auto px-4 py-8 bg-gradient-to-br from-blue-100 to-gray-950">
       <motion.h1
         className="text-4xl font-bold text-center text-white mb-8"
@@ -94,20 +92,28 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
       <AnimatePresence>
         {selectedPost && (
           <Modal isOpen={!!selectedPost} onClose={() => setSelectedPost(null)}>
-            <FullBlogPost post={selectedPost} onClose={onClose} />
+            <FullBlogPost post={selectedPost} />
           </Modal>
         )}
       </AnimatePresence>
     </div>
-    
   );
 };
 
-
-
-const FullBlogPost: React.FC<{ post: BlogPostType; onClose: () => void }> = ({ post, onClose }) => {
+const FullBlogPost: React.FC<{ post: BlogPostType }> = ({ post }) => {
   const { t } = useTranslation();
 
+  // Gebruik de useState hook om de post state te beheren
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  // Definieer de onClose functie
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
+
+  if (!isModalOpen) {
+    return null; // Verberg de component wanneer de modal gesloten is
+  }
 
   return (
     <motion.div
@@ -162,7 +168,7 @@ const FullBlogPost: React.FC<{ post: BlogPostType; onClose: () => void }> = ({ p
         transition={{ delay: 0.5, duration: 0.3 }}
       >
         <button
-          onClick={onClose}
+          onClick={handleClose}
           className="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-cyan-400 transition-colors duration-300"
         >
           Terug naar alle blogs
@@ -171,6 +177,5 @@ const FullBlogPost: React.FC<{ post: BlogPostType; onClose: () => void }> = ({ p
     </motion.div>
   );
 };
-
 
 export { BlogList, FullBlogPost };

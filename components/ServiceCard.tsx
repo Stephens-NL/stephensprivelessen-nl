@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import Image from 'next/image';
 // import { ServiceCardProps } from '@/data/siteData';
-import { ServiceCardProps } from '@/data/types';
-import { LanguageContext } from '@/contexts/LanguageContext';
+import { ServiceCardProps } from '../data';
+import { useTranslation } from '../hooks/useTranslation';
 
 
 const ServiceCard = ({ icon, title, description }: ServiceCardProps) => {
-  const { language } = useContext(LanguageContext);
-  const displayedTitle = language === 'EN' ? title.EN : title.NL;
-  const displayedDescription = language === 'EN' ? description.EN : description.NL;
-
+  const { t } = useTranslation()
+  const displayedTitle = t(title);
+  const displayedDescription = t(description);
   return (
     <div className="bg-white p-6 rounded-lg shadow-md transition duration-300 hover:shadow-xl">
       <Image 

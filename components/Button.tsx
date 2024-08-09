@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps } from '@/data/siteData';
+import { ButtonProps } from '../data';
 
 
 

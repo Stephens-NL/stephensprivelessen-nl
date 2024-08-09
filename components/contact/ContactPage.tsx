@@ -110,7 +110,7 @@ const ContactPage: React.FC = () => {
             />
           ) : (
             <form className="mt-4">
-              {renderQuestion(currentQuestion)}
+              {/* {renderQuestion(currentQuestion)} */}
             </form>
           )}
           <div className="flex justify-between mt-4">

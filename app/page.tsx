@@ -1,12 +1,10 @@
 'use client';
+// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-// app/page.tsx
 import Hero from "../components/Hero";
 import ServicesShort from "@/components/ServicesShort";
 import Testimonials from "@/components/Testimonials";
-// import { useState } from "react";
 
-// const [language, setLanguage] = useState<'EN' | 'NL'>('NL');
 
 export default function Home() {
   return (
