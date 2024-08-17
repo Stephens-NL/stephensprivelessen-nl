@@ -1,21 +1,21 @@
 import { Search } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react';
+import { vakkenData } from '../../data'; // Importeer de vakkenData
+
 
 const VakkenSelector: React.FC<{ onChange: (vakken: string[]) => void; initialValue?: string[] }> = ({ onChange, initialValue = [] }) => {
     const { t } = useTranslation();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedVakken, setSelectedVakken] = useState<string[]>(initialValue);
     const [customVak, setCustomVak] = useState('');
-    const vakken = [
-        "Rekenen", "Taal", "Wiskunde A/B/C/D", "Natuurkunde", "Scheikunde", "Engels",
-        "Bedrijfsstatistiek", "Calculus", "Economie", "Statistiek", "Kansberekening",
-        "Lineaire Algebra", "Verzamelingenleer", "C", "C#", "C++", "CSS", "HTML",
-        "Java", "JavaScript", "MATLAB", "Python", "R", "React", "SPSS", "SQL"
-    ].sort((a, b) => a.localeCompare(b));
+
+
+
+    const vakken = vakkenData; // Gebruik de vakkenData
 
     const filteredVakken = vakken.filter(vak =>
-        vak.toLowerCase().includes(searchTerm.toLowerCase())
+        t(vak).toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const handleToggleVak = (vak: string) => {
@@ -31,9 +31,14 @@ const VakkenSelector: React.FC<{ onChange: (vakken: string[]) => void; initialVa
         }
     };
 
-    useEffect(() => {
+    // useCallback to ensure onChange doesn't cause re-renders unnecessarily
+    const stableOnChange = useCallback(() => {
         onChange(selectedVakken);
     }, [selectedVakken, onChange]);
+
+    useEffect(() => {
+        stableOnChange();
+    }, [selectedVakken]);
 
     return (
         <div className="flex flex-col items-center justify-center space-y-6">
@@ -51,11 +56,11 @@ const VakkenSelector: React.FC<{ onChange: (vakken: string[]) => void; initialVa
             <div className="grid grid-cols-3 gap-4">
                 {filteredVakken.map((vak) => (
                     <button
-                        key={vak}
-                        onClick={() => handleToggleVak(vak)}
-                        className={`px-4 py-2 rounded-md transition-colors duration-300 ${selectedVakken.includes(vak) ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-900 hover:bg-yellow-300'}`}
+                        key={t(vak)}
+                        onClick={() => handleToggleVak(t(vak))}
+                        className={`px-4 py-2 rounded-md transition-colors duration-300 ${selectedVakken.includes(t(vak)) ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-900 hover:bg-yellow-300'}`}
                     >
-                        {vak}
+                        {t(vak)}
                     </button>
                 ))}
             </div>
@@ -88,4 +93,4 @@ const VakkenSelector: React.FC<{ onChange: (vakken: string[]) => void; initialVa
     );
 };
 
-export default VakkenSelector
+export default VakkenSelector;

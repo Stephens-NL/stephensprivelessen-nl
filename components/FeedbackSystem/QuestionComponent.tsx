@@ -4,10 +4,9 @@ import { useTranslation } from "../../hooks/useTranslation";
 import VakkenSelector from './VakkenSelector';
 import CustomRadio from "./CustomRadio";
 import RatingComponent from "./RatingComponent";
-import { GraduationCap } from 'lucide-react';
 
 interface QuestionComponentProps {
-    question: Question;
+    question: Question;  // Handles all possible question types
     onChange: (id: string, value: any) => void;
     value: any;
     onNext: () => void;
@@ -36,7 +35,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
         } else if (question.type === 'textarea') {
             textAreaRef.current?.focus();
         }
-    }, [value, setIsQuestionAnswered, question.type]);
+    }, [value, question.type]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const newValue = e.target.type === 'number' ? (e.target as HTMLInputElement).valueAsNumber : e.target.value;
@@ -45,9 +44,13 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
 
     const handleOptionChange = (id: string, optionValue: any) => {
         onChange(id, optionValue);
-        if (question.type === 'multipleChoice') {
-            setTimeout(onNext, 300);
-        }
+        setTimeout(onNext, 1000); // Automatically proceed after selecting an option
+        // if (question.type === 'multipleChoice') {
+        //     value = optionValue;
+        //     console.log('optionValue', optionValue)
+        //     console.log('CHANGED')
+        //     setTimeout(onNext, 300); // Automatically proceed after selecting an option
+        // }
     };
 
     const shouldShowQuestion = () => {
@@ -93,6 +96,14 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                     />
                 );
             case 'number':
+            case 'rating':
+                return (
+                    <RatingComponent
+                        value={value || 0}
+                        onChange={(rating) => handleOptionChange(question.id, rating)}
+                        max={question.max || 5}  // Assuming a default max of 5 if not specified
+                    />
+                );
                 return (
                     <input
                         ref={inputRef}
@@ -105,25 +116,15 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
             case 'multipleChoice':
                 return (
                     <div className="mb-4">
-                        <label className="block text-xl font-medium text-white mb-2">{t(question.label)}</label>
                         {question.options?.map((option) => (
-                            <div key={option.value} className="flex items-center mb-2">
-                                <CustomRadio
-                                    checked={value === option.value}
-                                    onChange={() => handleOptionChange(question.id, option.value)}
-                                />
-                                <label className="text-white ml-2">{t(option.label)}</label>
-                            </div>
+                            <CustomRadio
+                                key={option.value}
+                                checked={value === option.value}
+                                onChange={() => handleOptionChange(question.id, option.value)}
+                                label={t(option.label)}  // Pass the translated label
+                            />
                         ))}
                     </div>
-                );
-            case 'rating':
-                return (
-                    <RatingComponent
-                        value={value || 0}
-                        onChange={(rating) => onChange(question.id, rating)}
-                        max={question.max || 5}  // Assuming a default max of 5 if not specified
-                    />
                 );
             default:
                 return null;
@@ -132,7 +133,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
 
     return (
         <div>
-            <label className="block text-lg font-medium text-white">{t(question.text)}</label>
+            <label className="block text-lg font-medium text-white">{t(question.question)}</label>
             {renderInput()}
         </div>
     );

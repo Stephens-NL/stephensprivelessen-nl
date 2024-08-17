@@ -1,5 +1,5 @@
-import { FeedbackForm, QuestionGroup, PersonalIntermezzo, VakkenSelectorQuestion } from './types';
-import { shortVersionIntermezzi } from './intermezzo';
+import { FeedbackForm, QuestionGroup, VakkenSelectorQuestion } from './types';
+import { shortVersionIntermezzi, longVersionIntermezzi } from './intermezzo';
 
 export const shortVersion: FeedbackForm = {
   id: 'shortFeedbackForm',
@@ -23,7 +23,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'learnerName',
           type: 'text',
-          label: {
+          question: {
             EN: "Learner's Name",
             NL: 'Naam van de leerling',
           },
@@ -32,7 +32,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'subject',
           type: 'vakkenSelector',
-          label: {
+          question: {
             EN: 'Subject or Topic',
             NL: 'Vak of onderwerp',
           },
@@ -41,14 +41,14 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'userType',
           type: 'multipleChoice',
-          label: {
+          question: {
             EN: 'Who is filling out this form?',
             NL: 'Wie vult dit formulier in?',
           },
           options: [
-            { value: 'student', label: { EN: 'Student', NL: 'Student' } },
-            { value: 'guardian', label: { EN: 'Guardian', NL: 'Voogd' } },
-            { value: 'company', label: { EN: 'Company', NL: 'Bedrijf' } },
+            { value: 'student', question: { EN: 'Student', NL: 'Student' } },
+            { value: 'guardian', question: { EN: 'Guardian', NL: 'Voogd' } },
+            { value: 'company', question: { EN: 'Company', NL: 'Bedrijf' } },
           ],
           required: true,
         },
@@ -64,7 +64,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'overallRating',
           type: 'number',
-          label: {
+          question: {
             EN: 'Overall rating of the lesson (1-5)',
             NL: 'Algemene beoordeling van de les (1-5)',
           },
@@ -75,7 +75,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'mostValuable',
           type: 'textarea',
-          label: {
+          question: {
             EN: 'What was the most valuable aspect of our session?',
             NL: 'Wat was het meest waardevolle aspect van onze sessie?',
           },
@@ -94,7 +94,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'quickImprovement',
           type: 'textarea',
-          label: {
+          question: {
             EN: 'Any quick suggestion for improvement?',
             NL: 'Heb je een snelle suggestie voor verbetering?',
           },
@@ -112,27 +112,27 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'quoteConsent',
           type: 'multipleChoice',
-          label: {
+          question: {
             EN: "Would you like to provide a quick quote about your experience?",
             NL: "Wil je een korte quote geven over je ervaring?",
           },
           options: [
-            { value: 'yes', label: { EN: 'Yes', NL: 'Ja' } },
-            { value: 'no', label: { EN: 'No', NL: 'Nee' } },
+            { value: 'yes', question: { EN: 'Yes', NL: 'Ja' } },
+            { value: 'no', question: { EN: 'No', NL: 'Nee' } },
           ],
           required: true,
         },
         {
           id: 'quoteText',
           type: 'textarea',
-          label: {
+          question: {
             EN: 'If yes, please write your quote here:',
             NL: 'Zo ja, schrijf hier je quote:',
           },
           required: false,
           conditional: {
             dependsOn: 'quoteConsent',
-            showIf: 'value === "yes"',  // Changed to a string
+            showIf: 'value === "yes"',
           },
         },
       ],
@@ -141,5 +141,270 @@ export const shortVersion: FeedbackForm = {
   conclusion: {
     EN: "Thanks for your quick feedback! It's invaluable in helping me improve our sessions. I look forward to our next meeting!",
     NL: "Bedankt voor je snelle feedback! Het is onmisbaar om onze sessies te verbeteren. Ik kijk uit naar onze volgende ontmoeting!",
+  },
+};
+
+export const longVersion: FeedbackForm = {
+  id: 'longFeedbackForm',
+  title: {
+    EN: "Stephen's Detailed Feedback Form",
+    NL: "Stephen's Uitgebreid Feedbackformulier",
+  },
+  description: {
+    EN: "Welcome to my detailed feedback form. Your insights are invaluable in helping me improve and tailor my teaching methods. Thank you for taking the time to share your thoughts!",
+    NL: "Welkom bij mijn uitgebreide feedbackformulier. Jouw inzichten zijn onmisbaar om mijn onderwijsmethoden te verbeteren en aan te passen. Bedankt dat je de tijd neemt om je gedachten te delen!",
+  },
+  sections: [
+    longVersionIntermezzi[0], // Intro
+    {
+      id: 'general',
+      title: {
+        EN: 'General Information',
+        NL: 'Algemene Informatie',
+      },
+      questions: [
+        {
+          id: 'learnerName',
+          type: 'text',
+          question: {
+            EN: "Learner's Name",
+            NL: 'Naam van de leerling',
+          },
+          required: true,
+        },
+        {
+          id: 'subject',
+          type: 'vakkenSelector',
+          question: {
+            EN: 'Subject or Topic',
+            NL: 'Vak of onderwerp',
+          },
+          required: true,
+        } as VakkenSelectorQuestion,
+        {
+          id: 'userType',
+          type: 'multipleChoice',
+          question: {
+            EN: 'Who is filling out this form?',
+            NL: 'Wie vult dit formulier in?',
+          },
+          options: [
+            { value: 'student', label: { EN: 'Student', NL: 'Student' } },
+            { value: 'guardian', label: { EN: 'Guardian', NL: 'Voogd' } },
+            { value: 'company', label: { EN: 'Company', NL: 'Bedrijf' } },
+          ],
+          required: true,
+        },
+      ],
+    } as QuestionGroup,
+    longVersionIntermezzi[1], // Hobbies
+    {
+      id: 'experience',
+      title: {
+        EN: 'Lesson Experience',
+        NL: 'Leservaring',
+      },
+      questions: [
+        {
+          id: 'overallQuality',
+          type: 'number',
+          question: {
+            EN: 'Overall quality of the lessons/guidance',
+            NL: 'Algehele kwaliteit van de lessen/begeleiding',
+          },
+          min: 1,
+          max: 5,
+          required: true,
+        },
+        {
+          id: 'expectationsMet',
+          type: 'number',
+          question: {
+            EN: 'How well did the content meet your expectations?',
+            NL: 'In hoeverre voldeed de inhoud aan je verwachtingen?',
+          },
+          min: 1,
+          max: 5,
+          required: true,
+        },
+        {
+          id: 'clarity',
+          type: 'number',
+          question: {
+            EN: 'Clarity of explanation',
+            NL: 'Duidelijkheid van de uitleg',
+          },
+          min: 1,
+          max: 5,
+          required: true,
+        },
+        {
+          id: 'effectiveness',
+          type: 'number',
+          question: {
+            EN: 'Effectiveness in improving your skills/knowledge',
+            NL: 'Effectiviteit in het verbeteren van je vaardigheden/kennis',
+          },
+          min: 1,
+          max: 5,
+          required: true,
+        },
+        {
+          id: 'interaction',
+          type: 'number',
+          question: {
+            EN: 'Interaction and communication during lessons',
+            NL: 'Interactie en communicatie tijdens de lessen',
+          },
+          min: 1,
+          max: 5,
+          required: true,
+        },
+        {
+          id: 'accessibility',
+          type: 'number',
+          question: {
+            EN: 'Accessibility and helpfulness of the tutor',
+            NL: 'Toegankelijkheid en behulpzaamheid van de docent',
+          },
+          min: 1,
+          max: 5,
+          required: true,
+        },
+      ],
+    } as QuestionGroup,
+    longVersionIntermezzi[2], // Photos
+    {
+      id: 'specificFeedback',
+      title: {
+        EN: 'Specific Feedback and Suggestions',
+        NL: 'Specifieke Feedback en Suggesties',
+      },
+      questions: [
+        {
+          id: 'mostValuable',
+          type: 'textarea',
+          question: {
+            EN: 'What did you find most valuable about the lessons/guidance?',
+            NL: 'Wat vond je het meest waardevol aan de lessen/begeleiding?',
+          },
+          required: false,
+        },
+        {
+          id: 'improvements',
+          type: 'textarea',
+          question: {
+            EN: 'Are there any areas that you think could be improved?',
+            NL: 'Zijn er specifieke onderdelen die volgens jou verbeterd kunnen worden?',
+          },
+          required: false,
+        },
+        {
+          id: 'suggestions',
+          type: 'textarea',
+          question: {
+            EN: 'Do you have any suggestions for future topics or methods?',
+            NL: 'Heb je suggesties voor nieuwe onderwerpen of methodes in de toekomst?',
+          },
+          required: false,
+        },
+        {
+          id: 'dataApproach',
+          type: 'textarea',
+          question: {
+            EN: 'How do you feel about incorporating more data-driven approaches in our lessons?',
+            NL: 'Hoe sta je tegenover het integreren van meer datagedreven benaderingen in onze lessen?',
+          },
+          required: false,
+        },
+      ],
+    } as QuestionGroup,
+    {
+      id: 'personalQuote',
+      title: {
+        EN: 'Personal Quote and Permission',
+        NL: 'Persoonlijke Quote en Toestemming',
+      },
+      questions: [
+        {
+          id: 'quoteConsent',
+          type: 'multipleChoice',
+          question: {
+            EN: "Would you like to provide a quote about your experience for my website?",
+            NL: "Zou je een quote willen geven over je ervaring voor mijn website?",
+          },
+          options: [
+            { value: 'text', label: { EN: 'Yes, written quote', NL: 'Ja, geschreven quote' } },
+            { value: 'audio', label: { EN: 'Yes, audio quote', NL: 'Ja, ingesproken quote' } },
+            { value: 'no', label: { EN: 'No', NL: 'Nee' } },
+          ],
+          required: true,
+        },
+        {
+          id: 'quoteText',
+          type: 'textarea',
+          question: {
+            EN: 'If yes, please write your quote here:',
+            NL: 'Als ja, schrijf hier je quote:',
+          },
+          required: false,
+        },
+        {
+          id: 'quoteAudio',
+          type: 'text',
+          question: {
+            EN: 'If you prefer to give an audio quote, please send your audio recording to feedback@example.com or use this link https://example.com/audio-upload to record directly.',
+            NL: 'Als je liever een audio quote geeft, stuur je audio-opname dan naar feedback@example.com of gebruik deze link https://example.com/audio-upload om direct op te nemen.',
+          },
+          required: false,
+        },
+        {
+          id: 'nameConsent',
+          type: 'multipleChoice',
+          question: {
+            EN: 'Can this quote be used with your name?',
+            NL: 'Mag deze quote gebruikt worden met je naam?',
+          },
+          options: [
+            { value: 'yes', label: { EN: 'Yes', NL: 'Ja' } },
+            { value: 'initials', label: { EN: 'Initials only', NL: 'Alleen initialen' } },
+            { value: 'no', label: { EN: 'No', NL: 'Nee' } },
+          ],
+          required: true,
+        },
+        {
+          id: 'photoConsent',
+          type: 'multipleChoice',
+          question: {
+            EN: "Would you like your quote to be posted with a photo on the website or social media?",
+            NL: "Zou je je quote willen posten met een foto op de website of sociale media?",
+          },
+          options: [
+            { value: 'yesWithPhoto', label: { EN: 'Yes, with photo', NL: 'Ja, met foto' } },
+            { value: 'yesWithoutPhoto', label: { EN: 'Yes, without photo', NL: 'Ja, zonder foto' } },
+            { value: 'no', label: { EN: 'No', NL: 'Nee' } },
+          ],
+          required: true,
+        },
+        {
+          id: 'photoChoice',
+          type: 'multipleChoice',
+          question: {
+            EN: 'If yes, would you prefer to provide your own photo or use one from our session?',
+            NL: 'Zo ja, wil je zelf een foto aanleveren of mag er een foto van onze sessie gebruikt worden?',
+          },
+          options: [
+            { value: 'selfUpload', label: { EN: 'I will provide my own photo', NL: 'Ik stuur zelf een foto op' } },
+            { value: 'sessionPhoto', label: { EN: 'Use a photo from our session', NL: 'Gebruik een foto van onze sessie' } },
+          ],
+          required: false,
+        },
+      ],
+    } as QuestionGroup,
+    longVersionIntermezzi[3], // Conclusion
+  ],
+  conclusion: {
+    EN: "Thank you for taking the time to provide this valuable feedback. Your insights will help me improve and tailor my teaching methods. I look forward to our continued collaboration!",
+    NL: "Bedankt dat je de tijd hebt genomen om deze waardevolle feedback te geven. Jouw inzichten zullen me helpen mijn onderwijsmethoden te verbeteren en aan te passen. Ik kijk uit naar onze voortgezette samenwerking!",
   },
 };

@@ -299,11 +299,11 @@ export type Bilingual = {
 export type QuestionResponse = string | number | string[] | Record<string, string | number>;
 
 // Assuming you define QuestionType as follows:
-export type QuestionType = 'text' | 'textarea' | 'email' | 'number' | 'vakkenSelector' | 'multipleChoice' | 'otherTypesYouHave';
+export type QuestionType = 'text' | 'textarea' | 'email' | 'number' | 'vakkenSelector' | 'multipleChoice' | 'rating';
 export interface BaseQuestion {
   id: string;
   type: QuestionType;
-  label: Bilingual;
+  question: Bilingual;
   required: boolean;
   conditional?: Conditional;
 }
@@ -330,8 +330,18 @@ export interface MultipleChoiceQuestion extends BaseQuestion {
   }[];
 }
 
-// Union type for all question types
-export type Question = TextQuestion | NumberQuestion | MultipleChoiceQuestion | VakkenSelectorQuestion; ;
+export interface RatingQuestion extends BaseQuestion {
+  type: 'rating';
+  max?: number;
+}
+
+// Union of all possible questions
+export type Question = 
+  | TextQuestion 
+  | NumberQuestion 
+  | MultipleChoiceQuestion 
+  | VakkenSelectorQuestion 
+  | RatingQuestion;
 
 // Interface for question groups
 export interface QuestionGroup {

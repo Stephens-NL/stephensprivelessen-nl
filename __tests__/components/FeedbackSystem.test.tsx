@@ -5,11 +5,11 @@ import { FeedbackSystem } from '../../components/FeedbackSystem';
 import { LanguageProvider, LanguageContext } from '../../contexts/LanguageContext';
 import { longVersion, shortVersion } from '../../data';
 import { Question, QuestionGroup, Language, Bilingual } from '../../data';
-import {LanguageSelector, FormTypeSelector} from '../../components/FeedbackSystem';
-import  from '../../components/FormTypeSelector';
-import QuestionComponent from '../../components/QuestionComponent';
+import LanguageSelector from '../../components/FeedbackSystem';
+import FormTypeSelector from '../../components/FeedbackSystem';
+import QuestionComponent from '../../components/FeedbackSystem';
 import VakkenSelector from '../../components/VakkenSelector';
-import FarewellScreen from '../../components/FarewellScreen';
+import FarewellScreen from '../../components/FeedbackSystem';
 import { useTranslation } from '../../hooks/useTranslation';
 
 jest.mock('framer-motion', () => ({

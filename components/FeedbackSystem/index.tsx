@@ -22,7 +22,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [direction, setDirection] = useState(0);
     const [selectedVak, setSelectedVak] = useState<string | null>(null);
-    const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
+    const [isQuestionAnswered, setIsQuestionAnswered] = useState<boolean>(false);
 
     const contentRef = useRef<HTMLDivElement>(null);
     const [contentHeight, setContentHeight] = useState<number | "auto">("auto");
@@ -33,12 +33,12 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
         }
     }, [currentStep, currentQuestionIndex, selectedForm]);
 
-    
+
 
     const handleChange = (id: string, value: any) => {
         setFormData((prev) => {
             const newFormData = { ...prev, [id]: value };
-            setIsQuestionAnswered(value !== '' && value !== undefined);
+            setIsQuestionAnswered(Array.isArray(value) ? value.length > 0 : value !== '' && value !== undefined);
             return newFormData;
         });
     };
@@ -99,7 +99,10 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
     const currentQuestion = currentSection && 'questions' in currentSection ? currentSection.questions[currentQuestionIndex] : null;
 
     const nextStep = () => {
+
+        console.log('----isQuestionAnswered', isQuestionAnswered);
         if (!isQuestionAnswered && currentQuestion) {
+            console.log('isnt this later?');
             alert(t('Please answer the current question before proceeding.'));
             return;
         }
@@ -171,7 +174,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
                                         key={currentQuestion.id}
                                         question={currentQuestion}
                                         onChange={handleChange}
-                                        value={formData[currentQuestion.id]}
+                                        value={formData[currentQuestion.id] || []}  // Zorg ervoor dat de vakken correct worden doorgegeven
                                         onNext={nextStep}
                                         formData={formData}
                                         setIsQuestionAnswered={setIsQuestionAnswered}

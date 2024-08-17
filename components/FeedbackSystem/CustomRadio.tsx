@@ -1,15 +1,28 @@
 import { GraduationCap } from 'lucide-react';
-import React from 'react'
+import React from 'react';
 
-const CustomRadio: React.FC<{ checked: boolean; onChange: () => void }> = ({ checked, onChange }) => {
+interface CustomRadioProps {
+    checked: boolean;
+    onChange: () => void;
+    label: string;
+}
+
+const CustomRadio: React.FC<CustomRadioProps> = ({ checked, onChange, label }) => {
     return (
         <div
-            className={`w-8 h-8 flex items-center justify-center border-2 rounded-full cursor-pointer transition-colors duration-300 ${checked ? 'bg-yellow-400 border-yellow-400' : 'bg-white border-gray-400'}`}
+            className="flex items-center cursor-pointer"
             onClick={onChange}
         >
-            {checked && <GraduationCap size={24} color={checked ? "#1e3a8a" : "#ffffff"} />}
+            <div
+                className={`w-8 h-8 flex items-center justify-center border-2 rounded-full transition-colors duration-300 ${
+                    checked ? 'bg-yellow-400 border-yellow-400' : 'bg-white border-gray-400'
+                }`}
+            >
+                <GraduationCap size={24} color={checked ? "#1e3a8a" : "#ffffff"} />
+            </div>
+            <label className="text-white ml-2 cursor-pointer">{label}</label>
         </div>
     );
 };
 
-export default CustomRadio
+export default CustomRadio;
