@@ -3,14 +3,14 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import { about } from '../data';
 import { PhilosophyCardProps } from '../data';
 import { motion } from 'framer-motion';
-// import { IntroSectionProps } from '../data';
+import { useTranslation } from '../hooks/useTranslation';
 
 const PhilosophyCard = ({ title, description }: PhilosophyCardProps) => (
-  <motion.div 
+  <motion.div
     className="bg-white bg-opacity-80 backdrop-blur-lg rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300"
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
@@ -24,7 +24,7 @@ const DetailedInfoAccordion = ({ question, answer }: { question: string; answer:
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       className="border-b border-blue-200 py-4"
       initial={false}
       animate={{ backgroundColor: isOpen ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0)" }}
@@ -37,7 +37,7 @@ const DetailedInfoAccordion = ({ question, answer }: { question: string; answer:
         <h3 className="text-lg font-semibold">{question}</h3>
         <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>▼</motion.span>
       </button>
-      <motion.div 
+      <motion.div
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}
@@ -47,7 +47,6 @@ const DetailedInfoAccordion = ({ question, answer }: { question: string; answer:
     </motion.div>
   );
 };
-
 
 interface IntroSectionProps {
   title: string;
@@ -59,7 +58,7 @@ interface IntroSectionProps {
 
 const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSectionProps) => (
   <div className="container mx-auto px-4">
-    <motion.h1 
+    <motion.h1
       className="text-4xl font-bold text-center text-blue-900 mb-12"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
@@ -68,7 +67,7 @@ const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSe
       {title}
     </motion.h1>
     <div className="flex flex-col md:flex-row items-center">
-      <motion.div 
+      <motion.div
         className="md:w-1/2 mb-8 md:mb-0"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -76,7 +75,7 @@ const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSe
       >
         <Image src={imageSrc} alt={altText} width={400} height={400} className="rounded-full shadow-lg" />
       </motion.div>
-      <motion.div 
+      <motion.div
         className="md:w-1/2 md:pl-8"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -92,19 +91,17 @@ const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSe
 );
 
 const About = () => {
-  const { language } = useLanguage();
-  const isEnglish = language === 'EN';
+  const { t } = useTranslation();
 
   const content = {
-    pageTitle: isEnglish ? about.title.EN : about.title.NL,
-    introHeading: isEnglish ? about.introduction.heading.EN : about.introduction.heading.NL,
-    introParagraphs: isEnglish ? about.introduction.paragraphs.EN : about.introduction.paragraphs.NL,
-    philosophyTitle: isEnglish ? about.philosophyTitle.EN : about.philosophyTitle.NL,
-    ctaTitle: isEnglish ? about.cta.title.EN : about.cta.title.NL,
-    ctaDescription: isEnglish ? about.cta.description.EN : about.cta.description.NL,
-    ctaButtonText: isEnglish ? about.cta.buttonText.EN : about.cta.buttonText.NL,
-    detailedInfo: isEnglish ? about.detailedInfo.EN : about.detailedInfo.NL,
-
+    pageTitle: t(about.title),
+    introHeading: t(about.introduction.heading),
+    introParagraphs: t(about.introduction.paragraphs) as string[],
+    philosophyTitle: t(about.philosophyTitle),
+    ctaTitle: t(about.cta.title),
+    ctaDescription: t(about.cta.description),
+    ctaButtonText: t(about.cta.buttonText),
+    detailedInfo: t(about.detailedInfo) as { question: string; answer: string }[],
   };
 
   return (
@@ -115,13 +112,13 @@ const About = () => {
           heading={content.introHeading}
           paragraphs={content.introParagraphs}
           imageSrc={about.introduction.imageSrc}
-          altText={isEnglish ? about.introduction.altText.EN : about.introduction.altText.NL}
+          altText={t(about.introduction.altText)}
         />
       </section>
 
       <section className="py-20 bg-blue-50 bg-opacity-50">
         <div className="container mx-auto px-4">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-semibold text-center text-blue-900 mb-12"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -133,8 +130,8 @@ const About = () => {
             {about.philosophyPoints.map((point, index) => (
               <PhilosophyCard
                 key={index}
-                title={isEnglish ? point.title.EN : point.title.NL}
-                description={isEnglish ? point.description.EN : point.description.NL}
+                title={t(point.title)}
+                description={t(point.description)}
               />
             ))}
           </div>
@@ -143,13 +140,13 @@ const About = () => {
 
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-semibold text-center text-blue-900 mb-12"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {isEnglish ? "Detailed Information" : "Gedetailleerde Informatie"}
+            {t({ EN: "Detailed Information", NL: "Gedetailleerde Informatie" })}
           </motion.h2>
           {content.detailedInfo.map((info, index) => (
             <DetailedInfoAccordion key={index} question={info.question} answer={info.answer} />
@@ -159,7 +156,7 @@ const About = () => {
 
       <section className="py-20 bg-blue-900 text-white">
         <div className="container mx-auto px-4 text-center">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-semibold mb-4"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}

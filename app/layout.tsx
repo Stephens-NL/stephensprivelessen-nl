@@ -7,42 +7,46 @@ import Footer from "../components/Footer";
 import { LanguageProvider, useLanguage } from "../contexts/LanguageContext";
 import type { ReactNode } from "react";
 import Head from "next/head";
+import { usePathname } from 'next/navigation'; // Import usePathname hook
+import { metadata as defaultMetadata } from "../data/";
 
 const inter = Inter({ subsets: ["latin"] });
 
-function MetadataManager() {
+function MetadataManager({ metadataOverride }: { metadataOverride?: Partial<typeof defaultMetadata> }) {
   const { language } = useLanguage();
 
-  const metaTitle = language === 'EN' ? "Stephen's Elite Private Tutoring" : "Stephen's Excellente Privélessen";
-  const metaDescription = language === 'EN' 
-    ? "Exclusive one-on-one tutoring in mathematics and programming, tailored to your needs." 
-    : "Exclusieve één-op-één bijles in wiskunde en programmeren, op maat gemaakt voor jouw behoeften.";
+  const metadata = { ...defaultMetadata, ...metadataOverride };
 
   return (
     <Head>
-      <title>{metaTitle}</title>
-      <meta name="description" content={metaDescription} />
-      <meta property="og:title" content={metaTitle} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content="/images/luxury-banner.jpg" />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={metaTitle} />
-      <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content="/images/luxury-banner.jpg" />
+      <title>{metadata.title ?? ''}</title> {/* Ensure title is a string */}
+      <meta name="description" content={metadata.description ?? ''} />
+      <meta property="og:title" content={metadata.openGraph?.title ?? ''} />
+      <meta property="og:description" content={metadata.openGraph?.description ?? ''} />
+      <meta property="og:url" content={metadata.openGraph?.url ?? ''} />
+      <meta property="og:image" content={metadata.openGraph?.images?.[0].url ?? ''} />
+      <meta name="twitter:card" content={metadata.twitter?.card ?? ''} />
+      <meta name="twitter:title" content={metadata.twitter?.title ?? ''} />
+      <meta name="twitter:description" content={metadata.twitter?.description ?? ''} />
+      <meta name="twitter:image" content={metadata.twitter?.images?.[0] ?? ''} />
+      {/* Add other metadata as needed */}
     </Head>
   );
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname(); // Use usePathname to get the current path
+
+  const showHeader = !pathname.includes('feedback');
   return (
     <html lang="nl">
       <LanguageProvider>
         <MetadataManager />
         <body className={inter.className}>
-          <Header />
+          {showHeader && <Header />}
+          {/* <FloatingNav navItems={navItems}/> */}
           <main className="flex-grow">{children}</main>
-          <Footer />
+          {showHeader && <Footer />}
         </body>
       </LanguageProvider>
     </html>

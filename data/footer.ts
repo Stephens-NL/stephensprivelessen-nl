@@ -15,7 +15,7 @@ export const footer = {
         { href: "/contact", label: { EN: "Contact", NL: "Contact" } },
     ],
     contactLabel: { EN: "Contact", NL: "Contact" },
-    email: "info@stephensprivelessen.nl",
+    email: "s.adei@outlook.com",
     phone: "+31 6 12345678",
     copyright: {
         EN: "All rights reserved.",

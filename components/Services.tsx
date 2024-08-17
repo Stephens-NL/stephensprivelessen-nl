@@ -104,7 +104,7 @@ const Services = () => {
               <p className="text-gray-700 mb-6">
                 {t(selectedService.longDescription)}
               </p>
-              <ButtonTrial translation={t} />
+              <ButtonTrial />
             </div>
           </div>
         </div>

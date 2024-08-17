@@ -1,10 +1,13 @@
-import { Bilingual, TranslationFunction } from '@/data'
+'use client';
+
+
 import React from 'react'
 import { hero } from '../../data'
+import { useTranslation } from '../../hooks/useTranslation'
 
-const SignInHere = ({ translation }: { translation: TranslationFunction }) => {
+const SignInHere = () => {
     const {already_enrolled, sign_in_here} = hero
-
+    const {t : translation} = useTranslation();
     return (
         <>
 

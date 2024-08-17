@@ -1,6 +1,6 @@
-import { Bilingual } from ".";
+import { AboutData, Bilingual } from ".";
 
-export const about = {
+export const about: AboutData = {
     title: {
       EN: "About Us",
       NL: "Over Ons",
@@ -127,8 +127,8 @@ export const about = {
 
   export const introductionContent: { title: Bilingual; description: Bilingual } = {
     title: {
-      EN: "About Our Approach",
-      NL: "Over Onze Aanpak",
+      EN: "Our Approach",
+      NL: "Onze Aanpak",
     },
     description: {
       EN: "Welcome to our tutoring and courses! We believe in a personalized and flexible approach, tailored to the unique needs of each student. Our experienced teachers provide customized support, from basic skills to advanced topics, in a friendly and stimulating learning environment. Whether you're studying for an exam, looking to improve your skills, or wanting to learn a new language, we're here to help you succeed.",

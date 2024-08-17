@@ -1,16 +1,12 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 import { generalContent, services, Service } from '../data';
-import ButtonTrial from './ButtonTrial';
-import { ModalProps } from '../data';
+import Image from 'next/image';
 
-
-
-
-
-const Modal: React.FC<ModalProps> = ({ service, isOpen, onClose }) => {
+const Modal: React.FC<{ service: Service | null, isOpen: boolean, onClose: () => void }> = ({ service, isOpen, onClose }) => {
   const { t } = useTranslation();
   if (!service) return null;
 
@@ -27,24 +23,23 @@ const Modal: React.FC<ModalProps> = ({ service, isOpen, onClose }) => {
           <motion.div
             initial={{ scale: 0, opacity: 0, y: 50 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 3, opacity: 0, y: -50 }}
-            transition={{ 
-              type: "spring", 
-              damping: 25, 
-              stiffness: 200,
-              exit: { duration: .8 }
-            }}
+            exit={{ scale: 0.5, opacity: 0, y: -50 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200, exit: { duration: 0.8 } }}
             className="bg-white p-8 rounded-lg w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto"
             onClick={(e: React.MouseEvent) => e.stopPropagation()}
           >
             <h2 className="text-3xl font-bold mb-6">{t(service.title)}</h2>
             <div className="flex items-center mb-6">
-              <img src={service.icon} alt={t(service.title)} className="h-20 w-20 mr-4" />
+              <Image 
+                src={service.icon} 
+                alt={t(service.title)} 
+                width={80} // Specify the width
+                height={80} // Specify the height
+                className="h-20 w-20 mr-4" 
+              />
               <p className="text-xl text-gray-600">{t(service.shortDescription)}</p>
             </div>
-            <div className="flex flex-col justify-center"></div>
             <p className="text-gray-700 mb-6 text-lg leading-relaxed">{t(service.longDescription)}</p>
-            {/* <ButtonTrial translation={t} /> */}
             <button
               className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition-colors"
               onClick={onClose}
@@ -63,11 +58,8 @@ const ServicesShort: React.FC = () => {
   const { ourServices, learnMore } = generalContent;
   const [modalService, setModalService] = useState<Service | null>(null);
 
-  // Gebruik useMemo om de randomServices slechts één keer te berekenen
-  // const randomServices = useMemo(() => {
-  //   return services.sort(() => 0.5 - Math.random()).slice(0, 3);
-  // }, []); // Lege afhankelijkheidsarray zorgt ervoor dat dit alleen bij initiële render wordt uitgevoerd
-const randomServices = services.slice(0, 3);
+  const randomServices = services.slice(0, 3);
+  
   const openModal = (service: Service) => {
     setModalService(service);
   };
@@ -93,7 +85,13 @@ const randomServices = services.slice(0, 3);
               onClick={() => openModal(service)}
             >
               <div className="flex justify-center mb-4">
-                <img src={service.icon} alt={t(service.title)} className="h-12 w-12" />
+                <Image 
+                  src={service.icon} 
+                  alt={t(service.title)} 
+                  width={48} // Specify the width
+                  height={48} // Specify the height
+                  className="h-12 w-12" 
+                />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
                 {t(service.title)}

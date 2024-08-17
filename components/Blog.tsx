@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { BlogPostsType, BlogPostType } from '../data';
+import { BlogPostsType, BlogPostType, blogInfo } from '../data';
 import { useTranslation } from '../hooks/useTranslation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal'; // Zorg ervoor dat je een Modal component hebt
@@ -8,7 +8,7 @@ import Modal from './Modal'; // Zorg ervoor dat je een Modal component hebt
 const BlogPostSummary: React.FC<{ post: BlogPostType; onClick: () => void }> = ({ post, onClick }) => {
   const { t } = useTranslation();
   return (
-    <motion.div 
+    <motion.div
       className="bg-gray-900 shadow-md rounded-lg p-6 mb-6 border border-gray-800 hover:border-gray-700 cursor-pointer"
       whileHover={{ scale: 1.03, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
       whileTap={{ scale: 0.98 }}
@@ -26,8 +26,8 @@ const BlogPostSummary: React.FC<{ post: BlogPostType; onClick: () => void }> = (
       <span className="text-primary hover:text-cyan-400 transition-colors duration-300">Lees meer</span>
       <div className="mt-4">
         {post.tags.map(tag => (
-          <motion.span 
-            key={tag} 
+          <motion.span
+            key={tag}
             className="inline-block bg-gray-800 rounded-full px-3 py-1 text-xs font-semibold text-gray-300 mr-2 mb-2"
             whileHover={{ backgroundColor: "#374151", scale: 1.05 }}
           >
@@ -43,8 +43,10 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
   const { t } = useTranslation();
   const [selectedPost, setSelectedPost] = useState<BlogPostType | null>(null);
 
-  // Definieer de onClose functie
-  const onClose = () => {
+  const title = t(blogInfo.title)
+  const description = t(blogInfo.description)
+
+  const handleClose = () => {
     setSelectedPost(null);
   };
 
@@ -75,7 +77,7 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        Onze Blog
+        {title}
       </motion.h1>
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -91,8 +93,8 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
       </motion.div>
       <AnimatePresence>
         {selectedPost && (
-          <Modal isOpen={!!selectedPost} onClose={() => setSelectedPost(null)}>
-            <FullBlogPost post={selectedPost} />
+          <Modal isOpen={!!selectedPost} onClose={handleClose}>
+            <FullBlogPost post={selectedPost} onClose={handleClose} />
           </Modal>
         )}
       </AnimatePresence>
@@ -100,20 +102,24 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
   );
 };
 
-const FullBlogPost: React.FC<{ post: BlogPostType }> = ({ post }) => {
-  const { t } = useTranslation();
-
-  // Gebruik de useState hook om de post state te beheren
-  const [isModalOpen, setIsModalOpen] = useState(true);
-
-  // Definieer de onClose functie
-  const handleClose = () => {
-    setIsModalOpen(false);
-  };
-
-  if (!isModalOpen) {
-    return null; // Verberg de component wanneer de modal gesloten is
+const modalVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 50 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 30 }
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    y: 50,
+    transition: { duration: 0.2 }
   }
+};
+
+const FullBlogPost: React.FC<{ post: BlogPostType; onClose?: () => void }> = ({ post, onClose }) => {
+  const { t } = useTranslation();
 
   return (
     <motion.div
@@ -161,21 +167,24 @@ const FullBlogPost: React.FC<{ post: BlogPostType }> = ({ post }) => {
           ))}
         </motion.div>
       </div>
-      <motion.div
-        className="mt-8 text-center pb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.3 }}
-      >
-        <button
-          onClick={handleClose}
-          className="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-cyan-400 transition-colors duration-300"
+      {onClose && (
+        <motion.div
+          className="mt-8 text-center pb-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.3 }}
         >
-          Terug naar alle blogs
-        </button>
-      </motion.div>
+          <button
+            onClick={onClose}
+            className="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-cyan-400 transition-colors duration-300"
+          >
+            Terug naar alle blogs
+          </button>
+        </motion.div>
+      )}
     </motion.div>
   );
 };
+
 
 export { BlogList, FullBlogPost };

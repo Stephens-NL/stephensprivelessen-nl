@@ -2,12 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 import TextBlock from './TextBlock';
 import ButtonTrial from '../ButtonTrial';
 import SignInHere from './SignInHere';
-import SecondaryImage from './SecondaryImage';
 import { useTranslation } from '../../hooks/useTranslation';
 import { hero } from '../../data';
 
@@ -28,9 +26,9 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <TextBlock t={t} />
-            <ButtonTrial translation={t} />
-            <SignInHere translation={t} />
+            <TextBlock />
+            <ButtonTrial  />
+            <SignInHere  />
           </motion.div>
 
           <motion.div

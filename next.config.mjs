@@ -2,7 +2,7 @@ import { withSentryConfig } from '@sentry/nextjs';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // basePath: '/privelessen',
-    // output: 'export',
+    output: 'export',
     images: { unoptimized: true },
     // typescript: {
     //     ignoreBuildErrors: true,

@@ -1,10 +1,14 @@
+'use client';
+
 import { hero, TranslationFunction } from '@/data'
+import { useTranslation } from '../hooks/useTranslation'
 import { motion } from 'framer-motion'
 import path from 'path'
-import React from 'react'
+import React, { use } from 'react'
 
-const ButtonTrial = ({translation}: {translation : TranslationFunction}) => {
+const ButtonTrial = () => {
     const {schedulefreetrial} = hero
+    const {t : translation} = useTranslation()
     return (
         <>
             <motion.a
