@@ -1,6 +1,6 @@
 // src/data/contactData.ts
 
-import { Bilingual } from "./types";
+import { Bilingual } from "./types2";
 
   
   interface ContactInfo {

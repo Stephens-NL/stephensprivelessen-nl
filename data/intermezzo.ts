@@ -1,4 +1,4 @@
-import { PersonalIntermezzo } from './types';
+import { PersonalIntermezzo } from './types2';
 
 export const longVersionIntermezzi: PersonalIntermezzo[] = [
   {

@@ -1,4 +1,4 @@
-import { AboutData, Bilingual } from ".";
+import { AboutData, Bilingual } from "./types";
 
 export const about: AboutData = {
     title: {

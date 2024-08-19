@@ -1,11 +1,8 @@
 import { GraduationCap } from 'lucide-react';
 import React from 'react';
+import { CustomRadioProps } from '../../data';
 
-interface CustomRadioProps {
-    checked: boolean;
-    onChange: () => void;
-    label: string;
-}
+
 
 const CustomRadio: React.FC<CustomRadioProps> = ({ checked, onChange, label }) => {
     return (

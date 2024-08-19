@@ -1,11 +1,22 @@
-import React from 'react'
-import { FeedbackSystem } from '../../components/Feedback10'
-import { longVersion, shortVersion } from '../../data'
+'use client';
 
-const Tussen = () => {
+import { longVersion, shortVersion } from "../../data";
+import { FeedbackSystem } from "../../components/FeedbackSystem"; 
+
+const page = () => {
+
+  // Placeholder onSubmit function
+  const handleSubmit = (formData: any) => {
+    // Log the form data or display a placeholder message
+    console.log("Form submitted with data:", formData);
+    alert("Form submitted!"); // You can replace this with more advanced logic
+  };
+
   return (
-    <FeedbackSystem longVersion={longVersion} shortVersion={shortVersion}/>
-  )
-}
+    <>
+      <FeedbackSystem longVersion={longVersion} shortVersion={shortVersion}/>
+    </>
+  );
+};
 
-export default Tussen
+export default page;

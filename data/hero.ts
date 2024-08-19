@@ -1,4 +1,4 @@
-import { Bilingual } from "./types";
+import { Bilingual } from "./types2";
 
 
 

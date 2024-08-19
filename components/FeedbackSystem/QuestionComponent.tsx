@@ -1,12 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Question } from "../../data";
 import { useTranslation } from "../../hooks/useTranslation";
 import VakkenSelector from './VakkenSelector';
 import CustomRadio from "./CustomRadio";
 import RatingComponent from "./RatingComponent";
+import CommentCloud from "./CommentCloud";
 
 interface QuestionComponentProps {
-    question: Question;  // Handles all possible question types
+    question: Question;
     onChange: (id: string, value: any) => void;
     value: any;
     onNext: () => void;
@@ -18,8 +19,6 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     question,
     onChange,
     value,
-    onNext,
-    formData,
     setIsQuestionAnswered
 }) => {
     const { t } = useTranslation();
@@ -35,7 +34,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
         } else if (question.type === 'textarea') {
             textAreaRef.current?.focus();
         }
-    }, [value, question.type]);
+    }, [value, question.type, setIsQuestionAnswered]);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const newValue = e.target.type === 'number' ? (e.target as HTMLInputElement).valueAsNumber : e.target.value;
@@ -44,35 +43,20 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
 
     const handleOptionChange = (id: string, optionValue: any) => {
         onChange(id, optionValue);
-        setTimeout(onNext, 1000); // Automatically proceed after selecting an option
-        // if (question.type === 'multipleChoice') {
-        //     value = optionValue;
-        //     console.log('optionValue', optionValue)
-        //     console.log('CHANGED')
-        //     setTimeout(onNext, 300); // Automatically proceed after selecting an option
-        // }
     };
 
-    const shouldShowQuestion = () => {
-        if (question.conditional) {
-            const { dependsOn, showIf } = question.conditional;
-            const dependentValue = formData[dependsOn];
-            return eval(showIf.replace('value', JSON.stringify(dependentValue)));
-        }
-        return true;
-    };
-
-    if (!shouldShowQuestion()) {
-        return null;
-    }
+    const handleVakkenChange = useCallback((vakken: string[]) => {
+        onChange(question.id, vakken);
+    }, [onChange, question.id]);
 
     const renderInput = () => {
         switch (question.type) {
             case 'vakkenSelector':
                 return (
                     <VakkenSelector
-                        onChange={(vakken) => onChange(question.id, vakken)}
+                        onChange={handleVakkenChange}
                         initialValue={value}
+                        setIsQuestionAnswered={setIsQuestionAnswered}
                     />
                 );
             case 'text':
@@ -101,16 +85,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                     <RatingComponent
                         value={value || 0}
                         onChange={(rating) => handleOptionChange(question.id, rating)}
-                        max={question.max || 5}  // Assuming a default max of 5 if not specified
-                    />
-                );
-                return (
-                    <input
-                        ref={inputRef}
-                        type="number"
-                        value={value || ''}
-                        onChange={handleInputChange}
-                        className="mt-2 p-2 w-full border rounded"
+                        max={question.max || 5}
                     />
                 );
             case 'multipleChoice':
@@ -121,7 +96,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                                 key={option.value}
                                 checked={value === option.value}
                                 onChange={() => handleOptionChange(question.id, option.value)}
-                                label={t(option.label)}  // Pass the translated label
+                                label={t(option.label)}
                             />
                         ))}
                     </div>
@@ -132,9 +107,32 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     };
 
     return (
-        <div>
-            <label className="block text-lg font-medium text-white">{t(question.question)}</label>
+        <div className="mb-6 relative">
+            {(question.comment || (question.type === 'rating' || question.type === 'number')) && (
+                <div className="absolute -top-4 right-0 z-10">
+                    <CommentCloud>
+                        <p className="text-sm">
+                            {question.comment
+                                ? t(question.comment)
+                                : t('You can also type to vote!')}
+                        </p>
+                    </CommentCloud>
+                </div>
+            )}
+            <label className="text-lg font-medium text-white mb-2 flex items-center">
+                {t(question.question)}
+                {question.required && (
+                    <span className="text-yellow-400 ml-2 text-sm font-bold animate-pulse" title="This field is required">
+                        *
+                    </span>
+                )}
+            </label>
             {renderInput()}
+            {question.required && (
+                <p className="text-yellow-400 text-xs mt-1 italic">
+                    {t('This field is required')}
+                </p>
+            )}
         </div>
     );
 };

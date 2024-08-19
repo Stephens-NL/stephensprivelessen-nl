@@ -96,12 +96,12 @@ const About = () => {
   const content = {
     pageTitle: t(about.title),
     introHeading: t(about.introduction.heading),
-    introParagraphs: t(about.introduction.paragraphs) as string[],
+    introParagraphs: t(about.introduction.paragraphs),
     philosophyTitle: t(about.philosophyTitle),
     ctaTitle: t(about.cta.title),
     ctaDescription: t(about.cta.description),
     ctaButtonText: t(about.cta.buttonText),
-    detailedInfo: t(about.detailedInfo) as { question: string; answer: string }[],
+    detailedInfo: t(about.detailedInfo),
   };
 
   return (
@@ -148,7 +148,7 @@ const About = () => {
           >
             {t({ EN: "Detailed Information", NL: "Gedetailleerde Informatie" })}
           </motion.h2>
-          {content.detailedInfo.map((info, index) => (
+          {Array.isArray(content.detailedInfo) && content.detailedInfo.map((info, index) => (
             <DetailedInfoAccordion key={index} question={info.question} answer={info.answer} />
           ))}
         </div>

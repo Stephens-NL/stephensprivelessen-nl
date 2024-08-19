@@ -1,4 +1,4 @@
-import { BlogInfoType, BlogPostsType } from "./types";
+import { BlogInfoType, BlogPostsType } from "./types2";
 
 export const blogInfo: BlogInfoType = {
   title: {

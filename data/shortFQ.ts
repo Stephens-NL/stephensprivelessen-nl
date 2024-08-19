@@ -1,4 +1,4 @@
-import { FeedbackForm, QuestionGroup, VakkenSelectorQuestion } from './types';
+import { FeedbackForm, QuestionGroup, VakkenSelectorQuestion } from './types2';
 import { shortVersionIntermezzi, longVersionIntermezzi } from './intermezzo';
 
 export const shortVersion: FeedbackForm = {
@@ -46,9 +46,9 @@ export const shortVersion: FeedbackForm = {
             NL: 'Wie vult dit formulier in?',
           },
           options: [
-            { value: 'student', question: { EN: 'Student', NL: 'Student' } },
-            { value: 'guardian', question: { EN: 'Guardian', NL: 'Voogd' } },
-            { value: 'company', question: { EN: 'Company', NL: 'Bedrijf' } },
+            { value: 'student', label: { EN: 'Student', NL: 'Student' } },
+            { value: 'guardian', label: { EN: 'Guardian', NL: 'Voogd' } },
+            { value: 'company', label: { EN: 'Company', NL: 'Bedrijf' } },
           ],
           required: true,
         },
@@ -117,8 +117,8 @@ export const shortVersion: FeedbackForm = {
             NL: "Wil je een korte quote geven over je ervaring?",
           },
           options: [
-            { value: 'yes', question: { EN: 'Yes', NL: 'Ja' } },
-            { value: 'no', question: { EN: 'No', NL: 'Nee' } },
+            { value: 'yes', label: { EN: 'Yes', NL: 'Ja' } },
+            { value: 'no', label: { EN: 'No', NL: 'Nee' } },
           ],
           required: true,
         },
@@ -348,6 +348,10 @@ export const longVersion: FeedbackForm = {
             NL: 'Als ja, schrijf hier je quote:',
           },
           required: false,
+          conditional: {
+            dependsOn: 'quoteConsent',
+            showIf: 'value === "text"',
+          },
         },
         {
           id: 'quoteAudio',
@@ -397,7 +401,11 @@ export const longVersion: FeedbackForm = {
             { value: 'selfUpload', label: { EN: 'I will provide my own photo', NL: 'Ik stuur zelf een foto op' } },
             { value: 'sessionPhoto', label: { EN: 'Use a photo from our session', NL: 'Gebruik een foto van onze sessie' } },
           ],
-          required: false,
+          required: true,
+          conditional: {
+            dependsOn: 'photoConsent',
+            showIf: 'value === "yes"',
+          },
         },
       ],
     } as QuestionGroup,

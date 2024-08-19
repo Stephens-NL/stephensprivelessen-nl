@@ -94,7 +94,7 @@ const BlogList: React.FC<{ posts: BlogPostsType }> = ({ posts }) => {
       <AnimatePresence>
         {selectedPost && (
           <Modal isOpen={!!selectedPost} onClose={handleClose}>
-            <FullBlogPost post={selectedPost} onClose={handleClose} />
+            <FullBlogPostModal post={selectedPost} onClose={handleClose} />
           </Modal>
         )}
       </AnimatePresence>
@@ -118,7 +118,26 @@ const modalVariants = {
   }
 };
 
-const FullBlogPost: React.FC<{ post: BlogPostType; onClose?: () => void }> = ({ post, onClose }) => {
+
+
+export const FullPageBlogPost: React.FC<BlogPostType> = ({ post }) => {
+  return (
+    <article className="max-w-4xl mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <p className="text-gray-600 mb-4">Published on {post.date}</p>
+      <img 
+        src={post.imageUrl} 
+        alt={post.title} 
+        className="w-full h-64 object-cover rounded-lg mb-6"
+      />
+      <div className="prose lg:prose-xl"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
+    </article>
+  );
+};
+
+const FullBlogPostModal: React.FC<{ post: BlogPostType; onClose?: () => void }> = ({ post, onClose }) => {
   const { t } = useTranslation();
 
   return (
@@ -187,4 +206,4 @@ const FullBlogPost: React.FC<{ post: BlogPostType; onClose?: () => void }> = ({ 
 };
 
 
-export { BlogList, FullBlogPost };
+export { BlogList, FullBlogPostModal };

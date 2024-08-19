@@ -1,4 +1,4 @@
-import { FAQInfoType, FAQItemsType } from "./types";
+import { FAQInfoType, FAQItemsType } from "./types2";
 
 export const faqInfo: FAQInfoType = {
   title: {

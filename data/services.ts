@@ -1,4 +1,4 @@
-import { Bilingual, Service } from './types';
+import { Bilingual, Service } from './types2';
 
 export const services: Service[] = [
   {

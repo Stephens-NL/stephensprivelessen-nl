@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { useTranslation } from '../../hooks/useTranslation';
-import { FeedbackForm, Language, welcomeScreenData } from '../../data';
+import { FeedbackForm, Language, Question, welcomeScreenData } from '../../data';
 import { useLanguage } from '@/contexts/LanguageContext';
 import FadeInText from './FadeInText';
 import LanguageSelector from './LanguageSelector';
@@ -11,6 +11,7 @@ import SubmitCTA from './SubmitCTA';
 import PersonalIntermezzoComponent from './PersonalIntermezzo';
 import FarewellScreen from './FarewellScreen';
 import NavigationButtons from './NavigationButtons';
+import FeedbackSummary from '../FeedbackSummary';
 
 export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion: FeedbackForm }> = ({ longVersion, shortVersion }) => {
     const [currentStep, setCurrentStep] = useState(-2);
@@ -23,6 +24,8 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
     const [direction, setDirection] = useState(0);
     const [selectedVak, setSelectedVak] = useState<string | null>(null);
     const [isQuestionAnswered, setIsQuestionAnswered] = useState<boolean>(false);
+    const [showSummary, setShowSummary] = useState(false);
+
 
     const contentRef = useRef<HTMLDivElement>(null);
     const [contentHeight, setContentHeight] = useState<number | "auto">("auto");
@@ -54,70 +57,125 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
     };
 
     const handleSubmit = () => {
+        const ratingFields = selectedForm === longVersion
+          ? ['overallQuality', 'expectationsMet', 'clarity', 'effectiveness', 'interaction', 'accessibility']
+          : ['overallRating'];
+      
+        const ratings = {};
+        ratingFields.forEach(field => {
+          if (formData[field] !== undefined) {
+            ratings[field] = formData[field];
+          }
+        });
+      
         const feedbackData = {
-            id: `feedback_${Date.now()}`,
-            timestamp: new Date().toISOString(),
-            language: language,
-            formType: selectedForm === longVersion ? 'long' : 'short',
-            generalInfo: {
-                learnerName: formData.learnerName,
-                subjects: formData.subject
-            },
-            ratings: {
-                overallQuality: formData.overallQuality,
-                expectationsMet: formData.expectationsMet,
-                clarity: formData.clarity,
-                effectiveness: formData.effectiveness,
-                interaction: formData.interaction,
-                accessibility: formData.accessibility
-            },
-            openFeedback: {
-                mostValuable: formData.mostValuable,
-                improvements: formData.improvements,
-                suggestions: formData.suggestions
-            },
-            quote: {
-                text: formData.quoteText,
-                consentGiven: formData.quoteConsent === 'yes',
-                nameUsage: formData.nameConsent
-            }
+          id: `feedback_${Date.now()}`,
+          timestamp: new Date().toISOString(),
+          language: language,
+          formType: selectedForm === longVersion ? 'long' : 'short',
+          generalInfo: {
+            learnerName: formData.learnerName,
+            subjects: formData.subject
+          },
+          ratings: ratings,
+          openFeedback: {
+            mostValuable: formData.mostValuable,
+            improvements: selectedForm === longVersion ? formData.improvements : undefined,
+            suggestions: selectedForm === longVersion ? formData.suggestions : undefined,
+            quickImprovement: selectedForm === shortVersion ? formData.quickImprovement : undefined
+          },
+          quote: {
+            text: formData.quoteText,
+            consentGiven: formData.quoteConsent === 'yes' || formData.quoteConsent === 'text' || formData.quoteConsent === 'audio',
+            nameUsage: formData.nameConsent
+          }
         };
-
+      
+        // Verwijder undefined velden
+        Object.keys(feedbackData).forEach(key => 
+          (feedbackData[key] && typeof feedbackData[key] === 'object') && Object.keys(feedbackData[key]).forEach(subKey => 
+            feedbackData[key][subKey] === undefined && delete feedbackData[key][subKey]
+          )
+        );
+      
         try {
-            const existingData = localStorage.getItem('feedbackData');
-            let allFeedback = existingData ? JSON.parse(existingData) : [];
-            allFeedback.push(feedbackData);
-            localStorage.setItem('feedbackData', JSON.stringify(allFeedback));
-            console.log(`Feedback saved to localStorage. Total entries: ${allFeedback.length}`);
-            setIsSubmitted(true);
+          const existingData = localStorage.getItem('feedbackData');
+          let allFeedback = existingData ? JSON.parse(existingData) : [];
+          allFeedback.push(feedbackData);
+          localStorage.setItem('feedbackData', JSON.stringify(allFeedback));
+          console.log(`Feedback saved to localStorage. Total entries: ${allFeedback.length}`);
+          setIsSubmitted(true);
         } catch (error) {
-            console.error('Error saving feedback:', error);
+          console.error('Error saving feedback:', error);
         }
-    };
+      };
+
+      const shouldShowQuestion = (question: Question): boolean => {
+        if (!question.conditional) {
+          return true;
+        }
+      
+        const { dependsOn, showIf } = question.conditional;
+        const dependentValue = formData[dependsOn];
+      
+        // Gebruik een veiligere methode dan eval
+        try {
+          return new Function('value', `return ${showIf}`)(dependentValue);
+        } catch (error) {
+          console.error('Error in conditional logic:', error);
+          return false;
+        }
+      };
 
     const currentSection = selectedForm?.sections[currentStep];
     const currentQuestion = currentSection && 'questions' in currentSection ? currentSection.questions[currentQuestionIndex] : null;
 
     const nextStep = () => {
-
-        console.log('----isQuestionAnswered', isQuestionAnswered);
-        if (!isQuestionAnswered && currentQuestion) {
-            console.log('isnt this later?');
-            alert(t('Please answer the current question before proceeding.'));
-            return;
-        }
-
         setDirection(1);
-        if (currentSection && 'questions' in currentSection && currentQuestionIndex < currentSection.questions.length - 1) {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
-        } else if (currentStep < (selectedForm?.sections.length || 0) - 1) {
+        
+        const moveToNextQuestion = () => {
+          if (currentSection && 'questions' in currentSection) {
+            let nextQuestionIndex = currentQuestionIndex + 1;
+            while (
+              nextQuestionIndex < currentSection.questions.length &&
+              !shouldShowQuestion(currentSection.questions[nextQuestionIndex])
+            ) {
+              nextQuestionIndex++;
+            }
+            
+            if (nextQuestionIndex < currentSection.questions.length) {
+              setCurrentQuestionIndex(nextQuestionIndex);
+            } else {
+              moveToNextSection();
+            }
+          } else {
+            moveToNextSection();
+          }
+        };
+      
+        const moveToNextSection = () => {
+          if (currentStep < (selectedForm?.sections.length || 0) - 1) {
             setCurrentStep(currentStep + 1);
             setCurrentQuestionIndex(0);
-        } else {
+          } else {
             handleSubmit();
+          }
+        };
+      
+        if (currentQuestion) {
+          if (currentQuestion.required) {
+            const currentValue = formData[currentQuestion.id];
+            const isAnswered = currentValue !== '' && currentValue !== undefined && currentValue !== null;
+            if (!isAnswered) {
+              alert(t('This question is required. Please answer before proceeding.'));
+              return;
+            }
+          }
         }
+      
+        moveToNextQuestion();
         setIsQuestionAnswered(false);
-    };
+      };
 
     const previousStep = () => {
         setDirection(-1);
@@ -157,43 +215,44 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
     const isLastStep = selectedForm && currentStep === selectedForm.sections.length - 1 &&
         (!currentSection || !('questions' in currentSection) || currentQuestionIndex === currentSection.questions.length - 1);
 
-    const renderContent = () => {
-        switch (currentStep) {
-            case -2:
-                return <LanguageSelector onSelectLanguage={handleLanguageSelect} />
-            case -1:
+        const renderContent = () => {
+            switch (currentStep) {
+              case -2:
+                return <LanguageSelector onSelectLanguage={handleLanguageSelect} />;
+              case -1:
                 return <FormTypeSelector onSelectFormType={handleFormTypeSelect} />;
-            default:
+              default:
                 if (selectedForm) {
-                    if (currentSection && 'questions' in currentSection) {
-                        return (
-                            <>
-                                <h2 className="text-2xl font-semibold mb-4 text-white">{t(currentSection.title)}</h2>
-                                {currentQuestion && (
-                                    <QuestionComponent
-                                        key={currentQuestion.id}
-                                        question={currentQuestion}
-                                        onChange={handleChange}
-                                        value={formData[currentQuestion.id] || []}  // Zorg ervoor dat de vakken correct worden doorgegeven
-                                        onNext={nextStep}
-                                        formData={formData}
-                                        setIsQuestionAnswered={setIsQuestionAnswered}
-                                    />
-                                )}
-                            </>
-                        );
-                    } else if (currentSection && 'content' in currentSection) {
-                        return <PersonalIntermezzoComponent intermezzo={currentSection} />;
-                    }
+                  if (currentSection && 'questions' in currentSection) {
+                    return (
+                      <>
+                        <h2 className="text-2xl font-semibold mb-4 text-white">{t(currentSection.title)}</h2>
+                        {currentQuestion && shouldShowQuestion(currentQuestion) && (
+                          <QuestionComponent
+                            key={currentQuestion.id}
+                            question={currentQuestion}
+                            onChange={handleChange}
+                            value={formData[currentQuestion.id] || []}
+                            onNext={nextStep}
+                            formData={formData}
+                            setIsQuestionAnswered={setIsQuestionAnswered}
+                          />
+                        )}
+                      </>
+                    );
+                  } else if (currentSection && 'content' in currentSection) {
+                    return <PersonalIntermezzoComponent intermezzo={currentSection} />;
+                  }
                 }
                 return null;
-        }
-    };
+            }
+          };
 
     // Handle Enter key to move to the next step
     useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Enter') {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Enter' && isQuestionAnswered && currentStep >= 0) {
+                e.preventDefault();
                 nextStep();
             }
         };
@@ -240,7 +299,17 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
                             {currentStep != -2 && <FadeInText text={t(selectedForm ? selectedForm.title : welcomeScreenData.lengthSelection.title)} />}
                         </h1>
                         {renderContent()}
-                        {isLastStep && <SubmitCTA onSubmit={handleSubmit} />}
+                        {isLastStep && (
+                            showSummary ? (
+                                <FeedbackSummary
+                                    formData={formData}
+                                    onSubmit={handleSubmit}
+                                    onEdit={() => setShowSummary(false)}
+                                />
+                            ) : (
+                                <SubmitCTA onSubmit={() => setShowSummary(true)} />
+                            )
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

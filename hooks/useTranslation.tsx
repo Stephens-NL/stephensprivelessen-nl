@@ -1,30 +1,31 @@
 import { useLanguage } from '../contexts/LanguageContext';
-import { Bilingual } from '../data';
+import { Language, Bilingual } from '../data';
+
+type TranslationContent = Bilingual<string | string[] | { [key: string]: any }> | string;
 
 export function useTranslation() {
   const { language } = useLanguage();
-  const isEnglish = language === 'EN';
 
-  const t = (content: Bilingual | string): string => {
-    try {
-      if (typeof content === 'string') {
-        return content;
-      }
-      if (typeof content !== 'object' || content === null) {
-        console.error('Content is not an object:', content);
-        return '';
-      }
-      if (!('EN' in content) || !('NL' in content)) {
-        console.error('Content does not have EN or NL properties:', content);
-        return '';
-      }
-      const translatedContent = isEnglish ? content.EN : content.NL;
-      return Array.isArray(translatedContent) ? translatedContent.join(' ') : String(translatedContent);
-    } catch (error) {
-      console.error('Error in translation function:', error);
-      return '';
+  const t = <T extends string | string[] | { [key: string]: any }>(
+    content: TranslationContent
+  ): T => {
+    if (typeof content === 'string') {
+      return content as T;
     }
+
+    if (!('EN' in content) || !('NL' in content)) {
+      console.error('Content does not have EN or NL properties:', content);
+      return '' as T;
+    }
+
+    const translatedContent = content[language];
+
+    if (Array.isArray(translatedContent) || typeof translatedContent === 'object') {
+      return translatedContent as T;
+    }
+
+    return String(translatedContent) as T;
   };
 
-  return { t, isEnglish };
+  return { t, language };
 }

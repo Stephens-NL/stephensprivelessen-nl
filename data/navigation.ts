@@ -1,4 +1,4 @@
-import { NavItem, Bilingual } from './types';
+import { NavItem, Bilingual } from './types2';
 
 export const siteTitle: Bilingual = {
     EN: "Stephen's Private Lessons",
