@@ -4,27 +4,39 @@ import { Bilingual, TranslationFunction } from '../data';
 export function useTranslation() {
   const { language } = useLanguage();
 
-  const t: TranslationFunction = (content: Bilingual) => {
+  const t: TranslationFunction = (content: Bilingual): any => {
+    if (content === null || content === undefined) {
+      console.error('Content is null or undefined');
+      return '';
+    }
+
     if (typeof content === 'string') {
       return content;
     }
 
-    if (!('EN' in content) || !('NL' in content)) {
-      console.error('Content does not have EN or NL properties:', content);
-      return '';
+    if (Array.isArray(content)) {
+      return content.map(item => t(item));
     }
 
-    const translatedContent = content[language];
+    if (typeof content === 'object') {
+      if ('EN' in content && 'NL' in content) {
+        const translatedContent = content[language];
+        if (Array.isArray(translatedContent)) {
+          return translatedContent.map(item => t(item));
+        }
+        return translatedContent !== undefined ? String(translatedContent) : '';
+      }
 
-    if (Array.isArray(translatedContent)) {
-      return translatedContent;
+      // Handle nested objects
+      const translatedObject: any = {};
+      for (const key in content) {
+        translatedObject[key] = t(content[key]);
+      }
+      return translatedObject;
     }
 
-    if (typeof translatedContent === 'object') {
-      return translatedContent;
-    }
-
-    return String(translatedContent);
+    console.error('Unsupported content type:', content);
+    return '';
   };
 
   return { t, language };

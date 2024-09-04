@@ -2,13 +2,13 @@
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { faqItems, faqInfo, TranslationFunction, Bilingual } from '../data';
 import { useTranslation } from '@/hooks/useTranslation';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
 import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useLanguage } from '@/contexts/LanguageContext';
 import FloatingShapes from './FloatingShapes';
 import FadeInText from './FadeInText';
+import { FAQData } from '@/data';
 
 
 
@@ -44,18 +44,43 @@ const TypewriterText = ({ text}: { text: string}) => {
     }, 60);
     return () => clearInterval(timer);
     
-  }, []);
+  }, [text]);
   // console.log('Translated:', displayedText.charAt(1));
   
   return <span className="inline-block">{displayedText}</span>;
 };
 
-const FAQPage = () => {
+
+
+
+const FAQPage: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const { t } = useTranslation();
   const { language } = useLanguage();
+  const [faqData, setFaqData] = useState<FAQData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const showBackToTop = useScrollPosition(300);
+
+  useEffect(() => {
+    const fetchFaqData = async () => {
+      try {
+        const response = await fetch('/FAQ/api');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data: FAQData = await response.json();
+        setFaqData(data);
+        setLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchFaqData();
+  }, []);
 
   const toggleQuestion = useCallback((index: number) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
@@ -64,20 +89,24 @@ const FAQPage = () => {
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+  
 
   const filteredItems = useMemo(() => {
-    return faqItems.filter((item) => {
-      const questionText = t(item.question);
-      const answerText = t(item.answer);
+    if (!faqData) return [];
+    return faqData.faqItems.filter((item) => {
+      const questionText = String(t(item.question));
+      const answerText = String(t(item.answer));
 
       return (
-        (typeof questionText === 'string' && questionText.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (typeof answerText === 'string' && answerText.toLowerCase().includes(searchTerm.toLowerCase()))
+        questionText.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        answerText.toLowerCase().includes(searchTerm.toLowerCase())
       );
     });
-  }, [searchTerm, t]);
+  }, [faqData, searchTerm, t]);
 
-  // const { t } = useTranslation();
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!faqData) return null;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
@@ -88,7 +117,7 @@ const FAQPage = () => {
         transition={{ duration: 0.5 }}
         className="text-4xl font-bold text-center mb-8"
       >
-        <FadeInText text={t(faqInfo.title)}/>
+        <FadeInText text={String(t(faqData.faqInfo.title))} />
       </motion.h1>
 
       <motion.div
@@ -100,7 +129,7 @@ const FAQPage = () => {
         <div className="relative">
           <input
             type="text"
-            placeholder={'Search...'}
+            placeholder={String(t(faqData.faqInfo.searchPlaceholder))}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-4 pl-12 rounded-full bg-white bg-opacity-20 backdrop-blur-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-yellow-300"
@@ -129,7 +158,7 @@ const FAQPage = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <ZoomInText text={t(item.question)} />
+              <span>{String(t(item.question))}</span>
               {activeIndex === index ? <ChevronUp /> : <ChevronDown />}
             </motion.button>
             <AnimatePresence>
@@ -141,7 +170,7 @@ const FAQPage = () => {
                   transition={{ duration: 0.3 }}
                   className="mt-2 p-4 bg-white bg-opacity-5 backdrop-blur-lg rounded-lg"
                 >
-                  <FadeInText text={t(item.answer)} />
+                  <p>{String(t(item.answer))}</p>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Stephen's Elite Private Tutoring",
     description: "Experience personalized education with Stephen's elite tutoring services in mathematics and programming. Tailored to unlock your full potential.",
-    url: "https://www.yourwebsite.com",
+    url: "https://www.stephenadei.nl",
     images: [
       {
         url: "/images/luxury-banner.jpg",

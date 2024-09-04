@@ -11,7 +11,7 @@ import SubmitCTA from './SubmitCTA';
 import PersonalIntermezzoComponent from './PersonalIntermezzo';
 import FarewellScreen from './FarewellScreen';
 import NavigationButtons from './NavigationButtons';
-import FeedbackSummary from '../FeedbackSummary';
+import FeedbackSummary from './FeedbackSummary';
 
 export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion: FeedbackForm }> = ({ longVersion, shortVersion }) => {
     const [currentStep, setCurrentStep] = useState(-2);
@@ -301,7 +301,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [nextStep, isQuestionAnswered, currentQuestion]);
+    }, [currentStep, isQuestionAnswered]);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 flex flex-col justify-center items-center p-8">

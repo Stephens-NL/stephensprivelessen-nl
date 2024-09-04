@@ -1,15 +1,13 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Text } from '@react-three/drei';
 import Modal from './Modal'; // Zorg ervoor dat je een Modal component hebt
 import { TextureLoader } from 'three';
 import { Canvas, useLoader } from '@react-three/fiber';
-import * as THREE from 'three';
 import { BlogInfo, BlogPost, BlogPosts } from '@/data';
+
 
 
 const BlogPostSummary: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onClick }) => {
@@ -22,13 +20,13 @@ const BlogPostSummary: React.FC<{ post: BlogPost; onClick: () => void }> = ({ po
       onClick={onClick}
     >
       <h2 className="text-2xl font-bold text-gray-100 mb-4 hover:text-cyan-400 transition-colors duration-300">
-        {t(post.title)}
+        {String(t(post.title))}
       </h2>
       <p className="text-sm text-gray-400 mb-2">
         by {post.author} on {new Date(post.date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
       </p>
       <div className="text-balance text-gray-300 mb-4">
-        {t(post.content).substring(0, 150)}...
+        {String(t(post.content)).substring(0, 150)}...
       </div>
       <span className="text-primary hover:text-cyan-400 transition-colors duration-300">Lees meer</span>
       <div className="mt-4">
@@ -113,7 +111,7 @@ export const BlogList: React.FC<{ posts: BlogPosts }> = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        {blogInfo?.title || 'Blog'}
+        {blogInfo ? String(t(blogInfo.title)) : 'Blog'} 
       </motion.h1>
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -139,42 +137,7 @@ export const BlogList: React.FC<{ posts: BlogPosts }> = () => {
 };
 
 
-const ChalkText = ({ content, position, fontSize = 0.2 }) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const fullText = useRef(content);
-  const index = useRef(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDisplayedText((prev) => {
-        if (index.current < fullText.current.length) {
-          index.current += 1;
-          return fullText.current.slice(0, index.current);
-        }
-        clearInterval(timer);
-        return prev;
-      });
-    }, 50);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const chalkboardTexture = useLoader(TextureLoader, './chalk-texture.png'); // You'll need to provide this texture
-
-  return (
-    <Text
-      position={position}
-      fontSize={fontSize}
-      color="#ffffff"
-      anchorX="center"
-      anchorY="middle"
-      font="/chalk-font.ttf" // You'll need to provide a suitable font
-      material={new THREE.MeshBasicMaterial({ map: chalkboardTexture, transparent: true })}
-    >
-      {displayedText}
-    </Text>
-  );
-};
 
 const ChalkboardBackground = () => {
   const chalkboardTexture = useLoader(TextureLoader, './chalk-texture.png'); // You'll need to provide this texture
@@ -187,52 +150,6 @@ const ChalkboardBackground = () => {
   );
 };
 
-const ThreeDContent = ({ post }: { post: BlogPost }) => {
-  const { t } = useTranslation();
-
-  return (
-    <group>
-      <ChalkboardBackground />
-      <ChalkText content={t(post.title)} position={[0, 4, 0]} fontSize={0.5} />
-      <ChalkText content={t(post.content).substring(0, 200) + '...'} position={[0, 2, 0]} fontSize={0.2} />
-    </group>
-  );
-};
-
-// export const FullPageBlogPost = ({ post }: { post: BlogPost }) => {
-//   const { t } = useTranslation();
-
-//   return (
-//     <div className="h-screen w-full bg-gray-900">
-//       {/* <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-//         <ambientLight intensity={0.5} />
-//         <pointLight position={[10, 10, 10]} />
-//         <ThreeDContent post={post} />
-//       </Canvas> */}
-//       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
-//         <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg max-w-2xl max-h-[80vh] overflow-auto pointer-events-auto">
-//           <h1 className="text-4xl font-bold mb-4 text-gray-900">{t(post.title)}</h1>
-//           <p className="text-gray-600 mb-4">{t('Published on')} {post.date}</p>
-//           <div className="prose lg:prose-xl text-gray-800">
-//             {t(post.content).split('\n').map((paragraph, index) => (
-//               <p key={index} className="mb-4">{paragraph.trim()}</p>
-//             ))}
-//           </div>
-//           <div className="mt-4">
-//             <h3 className="text-xl font-semibold mb-2 text-gray-900">{t('Tags')}:</h3>
-//             <div className="flex flex-wrap gap-2">
-//               {post.tags.map((tag, index) => (
-//                 <span key={index} className="bg-gray-200 text-gray-800 px-2 py-1 rounded">
-//                   {tag}
-//                 </span>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
 const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({ post, onClose }) => {
   const { t } = useTranslation();
@@ -252,7 +169,7 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1, duration: 0.3 }}
         >
-          {t(post.title)}
+          {String(t(post.title))}
         </motion.h1>
         <motion.p
           className="text-sm text-gray-400 mb-6"
@@ -268,7 +185,7 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.3 }}
         >
-          {t(post.content).split('\n').map((paragraph, index) => (
+          {String(t(post.content)).split('\n').map((paragraph, index) => (
             <p key={index} className="mb-4 text-gray-300">{paragraph}</p>
           ))}
         </motion.div>
@@ -302,60 +219,123 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
   );
 };
 
-
-
 interface FullPageBlogPostProps {
   post: BlogPost | null;
-  isLoading: boolean;
-  error: string | null;
+  loadingErrorState: {
+    isLoading: boolean;
+    error: string | null;
+  };
 }
 
-export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, isLoading, error }) => {
+export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadingErrorState }) => {
   const { t } = useTranslation();
 
-
-  if (isLoading) {
-    return <div className="h-screen w-full flex items-center justify-center">Loading...</div>;
+  if (loadingErrorState.isLoading) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-gray-900 text-white">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl font-semibold"
+        >
+          Loading...
+        </motion.div>
+      </div>
+    );
   }
 
-  if (error) {
-    return <div className="h-screen w-full flex items-center justify-center">Error: {error}</div>;
+  if (loadingErrorState.error) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-gray-900 text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-xl text-red-400"
+        >
+          Error: {loadingErrorState.error}
+        </motion.div>
+      </div>
+    );
   }
 
   if (!post) {
-    return <div className="h-screen w-full flex items-center justify-center">No post data available.</div>;
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-gray-900 text-white">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-xl"
+        >
+          No post data available.
+        </motion.div>
+      </div>
+    );
   }
 
   return (
-    <div className="h-screen w-full bg-gray-900">
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
-        {/* <ThreeDContent post={post}/> */}
-      </Canvas>
-      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center pointer-events-none">
-        <div className="bg-white bg-opacity-90 p-8 rounded-lg shadow-lg max-w-2xl max-h-[80vh] overflow-auto pointer-events-auto">
-          <h1 className="text-4xl font-bold mb-4 text-gray-900">{t(post.title)}</h1>
-          <p className="text-gray-600 mb-4">{t('Published on')} {post.date}</p>
-          <div className="prose lg:prose-xl text-gray-800">
-            {t(post.content).split('\n').map((paragraph, index) => (
-              <p key={index} className="mb-4">{paragraph.trim()}</p>
+    <div className="min-h-screen bg-gray-900 text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <motion.article
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-3xl mx-auto"
+      >
+        <header className="mb-8">
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-4xl sm:text-5xl font-bold text-white mb-4"
+          >
+            {String(t(post.title))}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            className="text-lg text-gray-400"
+          >
+            {String(t({EN: 'By', NL: 'Door'}))} {post.author} • {new Date(post.date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </motion.p>
+        </header>
+        
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          className="prose prose-lg prose-invert max-w-none"
+        >
+          {String(t(post.content)).split('\n').map((paragraph, index) => (
+            <p key={index} className="mb-6">{paragraph.trim()}</p>
+          ))}
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          className="mt-12"
+        >
+          <h3 className="text-xl font-semibold mb-4 text-cyan-400">{'Tags'}:</h3>
+          <div className="flex flex-wrap gap-2">
+            {post.tags.map((tag, index) => (
+              <span
+                key={index}
+                className="bg-gray-800 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-700 transition-colors duration-300"
+              >
+                {tag}
+              </span>
             ))}
           </div>
-          <div className="mt-4">
-            <h3 className="text-xl font-semibold mb-2 text-gray-900">{t('Tags')}:</h3>
-            <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag, index) => (
-                <span key={index} className="bg-gray-200 text-gray-800 px-2 py-1 rounded">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.article>
     </div>
   );
 };
+
+
 
 export default BlogList;

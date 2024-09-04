@@ -3,9 +3,9 @@
 
 import React, { ReactNode } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
-import { TranslationFunction, hero } from '../../data';
 
-const TextBlock = () => {
+
+const TextBlock = ({ hero }) => {
   const { t } = useTranslation();
   const { title, subtitle, subtitle2 } = hero
 

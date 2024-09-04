@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from '../hooks/useTranslation';
+import { useTranslation } from '../../hooks/useTranslation';
 import { Send, Edit2 } from 'lucide-react';
-import { welcomeScreenData } from '../data';
+import { welcomeScreenData } from '../../data';
 
 const FeedbackSummary = ({ formData, onSubmit, onEdit }) => {
   const { t } = useTranslation();

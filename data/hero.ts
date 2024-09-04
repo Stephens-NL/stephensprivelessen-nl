@@ -1,8 +1,7 @@
-import { Bilingual } from "./types";
+import { Hero } from "./types";
 
 
-
-export const hero = {
+export const hero: Hero = {
     title: {
         NL: "Ontgrendel Je Potentieel",
         EN: "Unlock Your Potential"
@@ -38,10 +37,3 @@ export const hero = {
 
 };
 
-// data/translationData.ts
-
-export const translations = {
-
-};
-
-// export type TranslationKey = (key: Bilingual) => string;

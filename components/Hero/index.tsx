@@ -1,20 +1,49 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import TextBlock from './TextBlock';
 import ButtonTrial from '../ButtonTrial';
 import SignInHere from './SignInHere';
 import { useTranslation } from '../../hooks/useTranslation';
-import { hero } from '../../data';
 
-const { img } = hero
-const { imageSrc, altern } = img
+
 
 const Hero = () => {
   const { t } = useTranslation();
+  const [heroData, setHeroData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        const response = await fetch('/api/hero');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setHeroData(data);
+
+        setLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchHeroData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!heroData) return null;
+
+  const { hero } = heroData;
+
+  const { img } = hero
+  const { imageSrc, altern } = img
 
 
   return (
@@ -26,9 +55,9 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <TextBlock />
-            <ButtonTrial  />
-            <SignInHere  />
+            <TextBlock hero={hero}/>
+            <ButtonTrial hero={hero}/>
+            <SignInHere hero={hero} />
           </motion.div>
 
           <motion.div

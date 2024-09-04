@@ -1,19 +1,32 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { FullPageBlogPost } from '../../../components/Blog';
-import { blogPosts } from '../../../data';
+import { BlogPost, blogPosts } from '../../../data';
+
 
 
 
 export default function BlogPostPage({ params }: { params: { id: string } }) {
-  const post = blogPosts.find(post => post.id === Number(params.id));
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [loadingErrorState, setLoadingErrorState] = useState<{ isLoading: boolean; error: string | null }>({
+    isLoading: true,
+    error: null,
+  });
 
-  if (!post) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold text-red-600">Post not found</h1>
-        <p className="mt-4">Sorry, the blog post you're looking for doesn't exist.</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    // Simulate a data fetch
+    setTimeout(() => {
+      const foundPost = blogPosts.find(post => post.id === Number(params.id));
 
-  return <FullPageBlogPost post={post} />;
+      if (foundPost) {
+        setPost(foundPost);
+        setLoadingErrorState({ isLoading: false, error: null });
+      } else {
+        setLoadingErrorState({ isLoading: false, error: "Post not found" });
+      }
+    }, 1000); // Simulated delay
+  }, [params.id]);
+
+  return <FullPageBlogPost post={post} loadingErrorState={loadingErrorState} />;
 }

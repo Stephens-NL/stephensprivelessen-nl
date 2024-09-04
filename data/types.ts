@@ -6,23 +6,15 @@ import { LucideIcon } from "lucide-react";
 export type Language = 'EN' | 'NL';
 
 // Bilingual type for handling multilingual content
-export type Bilingual<T = string | string[] | { [key: string]: any }[]> = {
+export type Bilingual<T = string | string[] | Record<string, any>> = {
   [key in Language]: T;
 };
 
 // Translation function type
-export type TranslationFunction = (key: Bilingual) => string | string[] | { [key: string]: any }[];
+export type TranslationFunction = (key: Bilingual) => string | string[] | Record<string, any>;
 
-// Define the types of questions available
-export type QuestionType =
-  | 'text'
-  | 'textarea'
-  | 'email'
-  | 'number'
-  | 'vakkenSelector'
-  | 'multipleChoice'
-  | 'rating';
-
+// Define question types
+export type QuestionType = 'text' | 'textarea' | 'email' | 'number' | 'vakkenSelector' | 'multipleChoice' | 'rating';
 
 // Blog-related types
 export interface BlogPost {
@@ -49,11 +41,19 @@ export interface NavItem {
   label: Bilingual;
 }
 
+export interface GeneralContentProps {
+  ourServices: Bilingual;
+  serviceDetails: Bilingual;
+  learnMore: Bilingual;
+}
+
 export interface Service {
   icon: string;
   title: Bilingual;
   longDescription: Bilingual;
   shortDescription: Bilingual;
+  subjectsList?: string[];
+  categories?: string[];
 }
 
 export interface ServiceTopic {
@@ -77,8 +77,8 @@ export interface ButtonProps {
 }
 
 export interface PhilosophyCardProps {
-  title: string;
-  description: string;
+  title: Bilingual;
+  description: Bilingual;
 }
 
 export interface Testimonial {
@@ -88,11 +88,6 @@ export interface Testimonial {
 
 export interface ServiceCardProps {
   icon: string;
-  title: Bilingual;
-  description: Bilingual;
-}
-
-export interface PhilosophyPoint {
   title: Bilingual;
   description: Bilingual;
 }
@@ -107,8 +102,6 @@ export interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
 }
-
-
 
 // Feedback Form and Questions Types
 export interface Conditional {
@@ -138,15 +131,11 @@ export interface NumberQuestion extends BaseQuestion {
 
 export interface MultipleChoiceQuestion extends BaseQuestion {
   type: 'multipleChoice';
-  options: {
-    value: string;
-    label: Bilingual;
-  }[];
+  options: { value: string; label: Bilingual }[];
 }
 
 export interface VakkenSelectorQuestion extends BaseQuestion {
   type: 'vakkenSelector';
-  // Add any additional properties specific to this question type
 }
 
 export interface RatingQuestion extends BaseQuestion {
@@ -154,32 +143,22 @@ export interface RatingQuestion extends BaseQuestion {
   max?: number;
 }
 
-// Union of all possible questions
-export type Question =
-  | TextQuestion
-  | NumberQuestion
-  | MultipleChoiceQuestion
-  | VakkenSelectorQuestion
-  | RatingQuestion;
+export type Question = TextQuestion | NumberQuestion | MultipleChoiceQuestion | VakkenSelectorQuestion | RatingQuestion;
 
-// Interface for question groups
 export interface QuestionGroup {
   id: string;
   title: Bilingual;
   questions: Question[];
 }
 
-// New interface for personal intermezzi
 export interface PersonalIntermezzo {
   id: string;
   title: Bilingual;
   content: Bilingual;
 }
 
-// Union type for form sections
 export type FormSection = QuestionGroup | PersonalIntermezzo;
 
-// Main feedback form structure
 export interface FeedbackForm {
   id: string;
   title: Bilingual;
@@ -188,24 +167,24 @@ export interface FeedbackForm {
   conclusion: Bilingual;
 }
 
-// Interface for form responses
+// Form Response Types
 export interface FormResponse {
   formId: string;
   respondentId: string;
-  responses: {
-    [questionId: string]: QuestionResponse;
-  };
+  responses: Record<string, QuestionResponse>;
   timestamp: Date;
 }
 
 export type QuestionResponse = string | number | string[] | Record<string, string | number>;
 
-// Specific types for FAQ
+// FAQ Types
 export interface FAQItem {
   id: number;
   question: Bilingual;
   answer: Bilingual;
 }
+
+export type FAQItems = FAQItem[];
 
 export interface FAQInfo {
   title: Bilingual;
@@ -215,49 +194,16 @@ export interface FAQInfo {
   scrollToTopLabel: Bilingual;
 }
 
-export type FAQItems = FAQItem[];
-
 export interface FAQData {
   faqInfo: FAQInfo;
   faqItems: FAQItems;
 }
 
-export type QuestionAnswer = {
-  question: string;
-  answer: string;
-};
-
-
-// About Page Data Structure
-export interface AboutData {
-  title: Bilingual;
-  introduction: {
-    heading: Bilingual;
-    paragraphs: Bilingual<string[]>;
-    imageSrc: string;
-    altText: Bilingual;
-  };
-  philosophyTitle: Bilingual;
-  philosophyPoints: Array<{
-    title: Bilingual;
-    description: Bilingual;
-  }>;
-  cta: {
-    title: Bilingual;
-    description: Bilingual;
-    buttonText: Bilingual;
-    buttonLink: string;
-  };
-  detailedInfo: Bilingual;
-}
-
-// Welcome Screen Data Structure
+// Welcome Screen Types
 export interface WelcomeScreenData {
   languageSelection: {
     title: Bilingual;
-    languages: {
-      [key: string]: string;
-    };
+    languages: Record<string, string>;
   };
   welcome: {
     title: Bilingual;
@@ -286,6 +232,22 @@ export interface WelcomeScreenData {
   };
 }
 
+export interface QuickLink {
+  href: string;
+  label: Bilingual;
+}
+
+export interface Footer {
+  title: Bilingual;
+  description: Bilingual;
+  quickLinksLabel: Bilingual;
+  quickLinks: QuickLink[];
+  contactLabel: Bilingual;
+  email: string;
+  phone: string;
+  copyright: Bilingual;
+}
+
 // Form Descriptions
 export interface FormDescription {
   title: string;
@@ -293,11 +255,7 @@ export interface FormDescription {
   icon: LucideIcon;
 }
 
-export interface FormDescriptions {
-  [key: string]: {
-    [key in 'short' | 'long']: FormDescription;
-  };
-}
+export type FormDescriptions = Record<string, Record<'short' | 'long', FormDescription>>;
 
 // Custom Radio Button Props
 export interface CustomRadioProps {
@@ -343,6 +301,17 @@ export interface PriceInfo {
   price: string;
 }
 
+export interface Hero {
+  title: Bilingual;
+  subtitle: Bilingual;
+  subtitle2: Bilingual;
+  already_enrolled: Bilingual;
+  sign_in_here: Bilingual;
+  sign_in_link: string;
+  schedulefreetrial: Bilingual;
+  img: { imageSrc: string; altern: Bilingual };
+}
+
 export interface ContactPageContent {
   title: Bilingual;
   aboutMe: Bilingual;
@@ -379,4 +348,58 @@ export interface IntroSectionProps {
   paragraphs: string[];
   imageSrc: string;
   altText: string;
+}
+
+export type VakkenData = Bilingual[];
+
+export type SiteTitle = Bilingual;
+
+export type QuestionAnswer = {
+  question: string;
+  answer: string;
+};
+
+export interface IntroductionContent {
+  title: Bilingual;
+  description: Bilingual;
+}
+
+interface PhilosophyPoint {
+  title: Bilingual;
+  description: Bilingual;
+}
+
+interface CTA {
+  title: Bilingual;
+  description: Bilingual;
+  buttonText: Bilingual;
+  buttonLink: string;
+}
+
+interface DetailedInfo {
+  question: string;
+  answer: string;
+}
+
+export interface About {
+  title: Bilingual;
+  introduction: {
+    heading: Bilingual;
+    paragraphs: Bilingual;
+    altText: Bilingual;
+    imageSrc: string;
+  };
+  philosophyTitle: Bilingual;
+  philosophyPoints: PhilosophyPoint[];
+  cta: CTA;
+  detailedTitle: Bilingual;
+  detailedInfo: {
+    EN: DetailedInfo[];
+    NL: DetailedInfo[];
+  };
+}
+
+export interface AboutData {
+  about: About;
+  introductionContent: IntroductionContent;
 }

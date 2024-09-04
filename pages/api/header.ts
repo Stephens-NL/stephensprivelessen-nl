@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { about, introductionContent } from '../../data'
+import { navigation, siteTitle } from '../../data'
 
 type ResponseData = {
-  about: typeof about
-  introductionContent: typeof introductionContent
+  navigation: typeof navigation
+  siteTitle: typeof siteTitle
   error?: string
 }
 
@@ -13,15 +13,15 @@ export default function handler(
 ) {
   if (req.method === 'GET') {
     try {
-      if (!about || !introductionContent) {
-        throw new Error('About data or introduction content is undefined')
+      if (!navigation|| !siteTitle) {
+        throw new Error('HEADER data or introduction content is undefined')
       }
-      res.status(200).json({ about, introductionContent })
+      res.status(200).json({ navigation, siteTitle })
     } catch (error) {
       console.error('Error fetching about data:', error)
       res.status(500).json({ 
-        about: {} as typeof about, 
-        introductionContent: {} as typeof introductionContent,
+        navigation: {} as typeof navigation, 
+        siteTitle: {} as typeof siteTitle,
         error: 'Failed to fetch about data' 
       })
     }

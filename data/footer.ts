@@ -1,4 +1,6 @@
-export const footer = {
+import { Footer } from "./types";
+
+export const footer: Footer = {
     title: {
         EN: "Stephen's Private Lessons",
         NL: "Stephen's Privélessen"

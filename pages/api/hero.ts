@@ -1,46 +1,30 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { hero, introductionContent } from '../../data'
 
-const prisma = new PrismaClient();
+type ResponseData = {
+  hero: typeof hero
+  error?: string
+}
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch (req.method) {
-    case 'GET':
-      try {
-        const hero = await prisma.hero.findMany();
-        res.status(200).json(hero);
-      } catch (error) {
-        res.status(500).json({ message: 'Error fetching data' });
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
+  if (req.method === 'GET') {
+    try {
+      if (!hero) {
+        throw new Error('Hero data or introduction content is undefined')
       }
-      break;
-    case 'POST':
-      try {
-        const hero = await prisma.hero.create({ data: req.body });
-        res.status(201).json(hero);
-      } catch (error) {
-        res.status(500).json({ message: 'Error creating data' });
-      }
-      break;
-    case 'PUT':
-      try {
-        const hero = await prisma.hero.update({
-          where: { id: req.body.id },
-          data: req.body,
-        });
-        res.status(200).json(hero);
-      } catch (error) {
-        res.status(500).json({ message: 'Error updating data' });
-      }
-      break;
-    case 'DELETE':
-      try {
-        await prisma.hero.delete({ where: { id: req.body.id } });
-        res.status(204).end();
-      } catch (error) {
-        res.status(500).json({ message: 'Error deleting data' });
-      }
-      break;
-    default:
-      res.status(405).json({ message: 'Method not allowed' });
+      res.status(200).json({ hero })
+    } catch (error) {
+      console.error('Error fetching hero data:', error)
+      res.status(500).json({ 
+        hero: {} as typeof hero, 
+        error: 'Failed to fetch Hero data' 
+      })
+    }
+  } else {
+    res.setHeader('Allow', ['GET'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 }

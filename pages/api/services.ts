@@ -1,46 +1,32 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { generalContent, services } from '../../data'
 
-const prisma = new PrismaClient();
+type ResponseData = {
+  services: typeof services
+  generalContent: typeof generalContent
+  error?: string
+}
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch (req.method) {
-    case 'GET':
-      try {
-        const services = await prisma.service.findMany();
-        res.status(200).json(services);
-      } catch (error) {
-        res.status(500).json({ message: 'Error fetching data' });
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
+  if (req.method === 'GET') {
+    try {
+      if (!services || !generalContent) {
+        throw new Error('DData or introduction content is undefined')
       }
-      break;
-    case 'POST':
-      try {
-        const service = await prisma.service.create({ data: req.body });
-        res.status(201).json(service);
-      } catch (error) {
-        res.status(500).json({ message: 'Error creating data' });
-      }
-      break;
-    case 'PUT':
-      try {
-        const service = await prisma.service.update({
-          where: { id: req.body.id },
-          data: req.body,
-        });
-        res.status(200).json(service);
-      } catch (error) {
-        res.status(500).json({ message: 'Error updating data' });
-      }
-      break;
-    case 'DELETE':
-      try {
-        await prisma.service.delete({ where: { id: req.body.id } });
-        res.status(204).end();
-      } catch (error) {
-        res.status(500).json({ message: 'Error deleting data' });
-      }
-      break;
-    default:
-      res.status(405).json({ message: 'Method not allowed' });
+      res.status(200).json({ services, generalContent })
+    } catch (error) {
+      console.error('Error fetching hero data:', error)
+      res.status(500).json({ 
+        services: {} as typeof services, 
+        generalContent: {} as typeof generalContent,
+        error: 'Failed to fetch Hero data' 
+      })
+    }
+  } else {
+    res.setHeader('Allow', ['GET'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 }

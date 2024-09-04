@@ -1,5 +1,4 @@
-import FeedbackDataViewer from '@/components/FeedbackDataViewer'
-import React from 'react'
+import FeedbackDataViewer from '../../components/FeedbackSystem/FeedbackDataViewer'
 
 const page = () => {
   return (

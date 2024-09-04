@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp, Trash2, RefreshCw, AlertCircle, Search, Filter, BarChart2, PieChart, Star } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart as RePieChart, Pie, Cell } from 'recharts';
-import { ChartDataPoint, ChartType, ExpandedEntries, FeedbackData, FilterOption, PieChartDataPoint } from '../data';
+import { ChartDataPoint, ChartType, ExpandedEntries, FeedbackData, FilterOption, PieChartDataPoint } from '../../data';
 
 
 

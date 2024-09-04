@@ -1,16 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useLanguage } from '../contexts/LanguageContext';
-import { about } from '../data';
-import { PhilosophyCardProps, QuestionAnswer, IntroSectionProps} from '../data';
+import { PhilosophyCardProps, QuestionAnswer, IntroSectionProps, AboutData } from '../data';
 import { motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 
 
-const PhilosophyCard = ({ title, description }: PhilosophyCardProps) => (
+const PhilosophyCard = ({ title, description }: {title: string, description: string}) => (
   <motion.div
     className="bg-white bg-opacity-80 backdrop-blur-lg rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300"
     whileHover={{ scale: 1.05 }}
@@ -23,7 +21,7 @@ const PhilosophyCard = ({ title, description }: PhilosophyCardProps) => (
 
 const DetailedInfoAccordion = ({ question, answer }: QuestionAnswer) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log('isOpen', isOpen)
   return (
     <motion.div
       className="border-b border-blue-200 py-4"
@@ -87,16 +85,68 @@ const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSe
 
 const About = () => {
   const { t } = useTranslation();
+  const [aboutData, setAboutData] = useState<AboutData|null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const content = {
-    pageTitle: t(about.title),
-    introHeading: t(about.introduction.heading),
-    introParagraphs: t(about.introduction.paragraphs),
-    philosophyTitle: t(about.philosophyTitle),
-    ctaTitle: t(about.cta.title),
-    ctaDescription: t(about.cta.description),
-    ctaButtonText: t(about.cta.buttonText),
-    detailedInfo: t(about.detailedInfo),
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const response = await fetch('/api/about');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setAboutData(data);
+        setLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchAboutData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!aboutData) return null;
+
+  // Destructure 'about' first
+  const {
+    title,
+    introduction: { heading, paragraphs, altText, imageSrc },
+    philosophyTitle,
+    cta: { title: ctaTitle, description: ctaDescription, buttonText, buttonLink },
+    detailedTitle,
+    detailedInfo,
+    philosophyPoints
+  } = aboutData.about;
+
+  interface ContentType {
+    pageTitle: string;
+    introHeading: string;
+    introParagraphs: string[];
+    philosophyTitle: string;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButtonText: string;
+    detailedTitle: string;
+    detailedInfo: QuestionAnswer[];
+    altText: string;
+  }
+
+  const content: ContentType = {
+    pageTitle: String(t(title)),
+    introHeading: String(t(heading)),
+    introParagraphs: Array.isArray(t(paragraphs)) ? (t(paragraphs) as string[]) : [],
+    philosophyTitle: String(t(philosophyTitle)),
+    ctaTitle: String(t(ctaTitle)),
+    ctaDescription: String(t(ctaDescription)),
+    ctaButtonText: String(t(buttonText)),
+    detailedTitle: String(t(detailedTitle)),
+    detailedInfo: Array.isArray(t(detailedInfo)) ? (t(detailedInfo) as QuestionAnswer[]) : [],
+    altText: String(t(altText)),
   };
 
   return (
@@ -106,8 +156,8 @@ const About = () => {
           title={content.pageTitle}
           heading={content.introHeading}
           paragraphs={content.introParagraphs}
-          imageSrc={about.introduction.imageSrc}
-          altText={t(about.introduction.altText)}
+          imageSrc={imageSrc}
+          altText={content.altText}
         />
       </section>
 
@@ -122,12 +172,8 @@ const About = () => {
             {content.philosophyTitle}
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {about.philosophyPoints.map((point, index) => (
-              <PhilosophyCard
-                key={index}
-                title={t(point.title)}
-                description={t(point.description)}
-              />
+            {philosophyPoints.map((point, index) => (
+              <PhilosophyCard key={index} title={String(t(point.title))} description={String(t(point.description))} />
             ))}
           </div>
         </div>
@@ -141,11 +187,12 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {t({ EN: "Detailed Information", NL: "Gedetailleerde Informatie" })}
+            {String(t(detailedTitle))}
           </motion.h2>
-          {Array.isArray(content.detailedInfo) && content.detailedInfo.map((info, index) => (
-            <DetailedInfoAccordion key={index} question={info.question} answer={info.answer} />
-          ))}
+          {Array.isArray(content.detailedInfo) &&
+            content.detailedInfo.map((info, index) => (
+              <DetailedInfoAccordion key={index} question={info.question} answer={info.answer} />
+            ))}
         </div>
       </section>
 
@@ -160,12 +207,9 @@ const About = () => {
             {content.ctaTitle}
           </motion.h2>
           <p className="mb-8">{content.ctaDescription}</p>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
-              href={about.cta.buttonLink}
+              href={buttonLink}
               className="inline-block bg-white text-blue-900 font-semibold py-3 px-8 rounded-full hover:bg-yellow-100 transition-colors duration-300"
             >
               {content.ctaButtonText}
