@@ -1,4 +1,4 @@
-import { FeedbackForm, QuestionGroup, VakkenSelectorQuestion } from './types2';
+import { FeedbackForm, LabelGroup, VakkenSelectorLabel } from './types';
 import { shortVersionIntermezzi, longVersionIntermezzi } from './intermezzo';
 
 export const shortVersion: FeedbackForm = {
@@ -23,7 +23,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'learnerName',
           type: 'text',
-          question: {
+          label: {
             EN: "Learner's Name",
             NL: 'Naam van de leerling',
           },
@@ -32,16 +32,16 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'subject',
           type: 'vakkenSelector',
-          question: {
+          label: {
             EN: 'Subject or Topic',
             NL: 'Vak of onderwerp',
           },
           required: true,
-        } as VakkenSelectorQuestion,
+        } as VakkenSelectorLabel,
         {
           id: 'userType',
           type: 'multipleChoice',
-          question: {
+          label: {
             EN: 'Who is filling out this form?',
             NL: 'Wie vult dit formulier in?',
           },
@@ -53,7 +53,7 @@ export const shortVersion: FeedbackForm = {
           required: true,
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
     {
       id: 'quickExperience',
       title: {
@@ -64,7 +64,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'overallRating',
           type: 'number',
-          question: {
+          label: {
             EN: 'Overall rating of the lesson (1-5)',
             NL: 'Algemene beoordeling van de les (1-5)',
           },
@@ -75,14 +75,14 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'mostValuable',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'What was the most valuable aspect of our session?',
             NL: 'Wat was het meest waardevolle aspect van onze sessie?',
           },
           required: false,
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
     shortVersionIntermezzi[1], // Fun Fact
     {
       id: 'quickSuggestion',
@@ -94,14 +94,14 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'quickImprovement',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'Any quick suggestion for improvement?',
             NL: 'Heb je een snelle suggestie voor verbetering?',
           },
           required: false,
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
     {
       id: 'quickQuote',
       title: {
@@ -112,7 +112,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'quoteConsent',
           type: 'multipleChoice',
-          question: {
+          label: {
             EN: "Would you like to provide a quick quote about your experience?",
             NL: "Wil je een korte quote geven over je ervaring?",
           },
@@ -125,7 +125,7 @@ export const shortVersion: FeedbackForm = {
         {
           id: 'quoteText',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'If yes, please write your quote here:',
             NL: 'Zo ja, schrijf hier je quote:',
           },
@@ -136,7 +136,7 @@ export const shortVersion: FeedbackForm = {
           },
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
   ],
   conclusion: {
     EN: "Thanks for your quick feedback! It's invaluable in helping me improve our sessions. I look forward to our next meeting!",
@@ -166,7 +166,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'learnerName',
           type: 'text',
-          question: {
+          label: {
             EN: "Learner's Name",
             NL: 'Naam van de leerling',
           },
@@ -175,16 +175,16 @@ export const longVersion: FeedbackForm = {
         {
           id: 'subject',
           type: 'vakkenSelector',
-          question: {
+          label: {
             EN: 'Subject or Topic',
             NL: 'Vak of onderwerp',
           },
           required: true,
-        } as VakkenSelectorQuestion,
+        } as VakkenSelectorLabel,
         {
           id: 'userType',
           type: 'multipleChoice',
-          question: {
+          label: {
             EN: 'Who is filling out this form?',
             NL: 'Wie vult dit formulier in?',
           },
@@ -196,7 +196,7 @@ export const longVersion: FeedbackForm = {
           required: true,
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
     longVersionIntermezzi[1], // Hobbies
     {
       id: 'experience',
@@ -208,7 +208,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'overallQuality',
           type: 'number',
-          question: {
+          label: {
             EN: 'Overall quality of the lessons/guidance',
             NL: 'Algehele kwaliteit van de lessen/begeleiding',
           },
@@ -219,7 +219,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'expectationsMet',
           type: 'number',
-          question: {
+          label: {
             EN: 'How well did the content meet your expectations?',
             NL: 'In hoeverre voldeed de inhoud aan je verwachtingen?',
           },
@@ -230,7 +230,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'clarity',
           type: 'number',
-          question: {
+          label: {
             EN: 'Clarity of explanation',
             NL: 'Duidelijkheid van de uitleg',
           },
@@ -241,7 +241,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'effectiveness',
           type: 'number',
-          question: {
+          label: {
             EN: 'Effectiveness in improving your skills/knowledge',
             NL: 'Effectiviteit in het verbeteren van je vaardigheden/kennis',
           },
@@ -252,7 +252,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'interaction',
           type: 'number',
-          question: {
+          label: {
             EN: 'Interaction and communication during lessons',
             NL: 'Interactie en communicatie tijdens de lessen',
           },
@@ -263,7 +263,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'accessibility',
           type: 'number',
-          question: {
+          label: {
             EN: 'Accessibility and helpfulness of the tutor',
             NL: 'Toegankelijkheid en behulpzaamheid van de docent',
           },
@@ -272,7 +272,7 @@ export const longVersion: FeedbackForm = {
           required: true,
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
     longVersionIntermezzi[2], // Photos
     {
       id: 'specificFeedback',
@@ -284,7 +284,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'mostValuable',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'What did you find most valuable about the lessons/guidance?',
             NL: 'Wat vond je het meest waardevol aan de lessen/begeleiding?',
           },
@@ -293,7 +293,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'improvements',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'Are there any areas that you think could be improved?',
             NL: 'Zijn er specifieke onderdelen die volgens jou verbeterd kunnen worden?',
           },
@@ -302,7 +302,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'suggestions',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'Do you have any suggestions for future topics or methods?',
             NL: 'Heb je suggesties voor nieuwe onderwerpen of methodes in de toekomst?',
           },
@@ -311,14 +311,14 @@ export const longVersion: FeedbackForm = {
         {
           id: 'dataApproach',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'How do you feel about incorporating more data-driven approaches in our lessons?',
             NL: 'Hoe sta je tegenover het integreren van meer datagedreven benaderingen in onze lessen?',
           },
           required: false,
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
     {
       id: 'personalQuote',
       title: {
@@ -329,7 +329,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'quoteConsent',
           type: 'multipleChoice',
-          question: {
+          label: {
             EN: "Would you like to provide a quote about your experience for my website?",
             NL: "Zou je een quote willen geven over je ervaring voor mijn website?",
           },
@@ -343,7 +343,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'quoteText',
           type: 'textarea',
-          question: {
+          label: {
             EN: 'If yes, please write your quote here:',
             NL: 'Als ja, schrijf hier je quote:',
           },
@@ -356,7 +356,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'quoteAudio',
           type: 'text',
-          question: {
+          label: {
             EN: 'If you prefer to give an audio quote, please send your audio recording to feedback@example.com or use this link https://example.com/audio-upload to record directly.',
             NL: 'Als je liever een audio quote geeft, stuur je audio-opname dan naar feedback@example.com of gebruik deze link https://example.com/audio-upload om direct op te nemen.',
           },
@@ -365,7 +365,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'nameConsent',
           type: 'multipleChoice',
-          question: {
+          label: {
             EN: 'Can this quote be used with your name?',
             NL: 'Mag deze quote gebruikt worden met je naam?',
           },
@@ -379,7 +379,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'photoConsent',
           type: 'multipleChoice',
-          question: {
+          label: {
             EN: "Would you like your quote to be posted with a photo on the website or social media?",
             NL: "Zou je je quote willen posten met een foto op de website of sociale media?",
           },
@@ -393,7 +393,7 @@ export const longVersion: FeedbackForm = {
         {
           id: 'photoChoice',
           type: 'multipleChoice',
-          question: {
+          label: {
             EN: 'If yes, would you prefer to provide your own photo or use one from our session?',
             NL: 'Zo ja, wil je zelf een foto aanleveren of mag er een foto van onze sessie gebruikt worden?',
           },
@@ -408,7 +408,7 @@ export const longVersion: FeedbackForm = {
           },
         },
       ],
-    } as QuestionGroup,
+    } as LabelGroup,
     longVersionIntermezzi[3], // Conclusion
   ],
   conclusion: {

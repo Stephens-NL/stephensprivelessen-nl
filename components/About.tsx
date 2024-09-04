@@ -5,9 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '../contexts/LanguageContext';
 import { about } from '../data';
-import { PhilosophyCardProps } from '../data';
+import { PhilosophyCardProps, QuestionAnswer, IntroSectionProps} from '../data';
 import { motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
+
 
 const PhilosophyCard = ({ title, description }: PhilosophyCardProps) => (
   <motion.div
@@ -20,7 +21,7 @@ const PhilosophyCard = ({ title, description }: PhilosophyCardProps) => (
   </motion.div>
 );
 
-const DetailedInfoAccordion = ({ question, answer }: { question: string; answer: string }) => {
+const DetailedInfoAccordion = ({ question, answer }: QuestionAnswer) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -48,13 +49,7 @@ const DetailedInfoAccordion = ({ question, answer }: { question: string; answer:
   );
 };
 
-interface IntroSectionProps {
-  title: string;
-  heading: string;
-  paragraphs: string[];
-  imageSrc: string;
-  altText: string;
-}
+
 
 const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSectionProps) => (
   <div className="container mx-auto px-4">

@@ -81,47 +81,47 @@ export const about: AboutData = {
       EN: [
         {
           question: "What inspired us to offer tutoring and education?",
-          answer: "Stephen's journey in education began with challenges in high school, but through perseverance and a strategic approach, he excelled. This experience ignited a passion for helping others overcome similar obstacles.",
+          answer: "Stephen's journey in education began with challenges in high school, but through perseverance and a strategic approach, he excelled. This experience ignited a passion for helping others overcome similar obstacles."
         },
         {
           question: "How do we describe our teaching approach and methods?",
-          answer: "Our approach is personal and adaptive, focusing on the individual needs of each student. We utilize technology, such as iPad notes and WhatsApp support, to enhance learning and provide ongoing assistance.",
+          answer: "Our approach is personal and adaptive, focusing on the individual needs of each student. We utilize technology, such as iPad notes and WhatsApp support, to enhance learning and provide ongoing assistance."
         },
         {
           question: "What makes our tutoring unique compared to other providers?",
-          answer: "Our diverse background in mathematics, programming, music, and photography allows us to offer a broad perspective. We create a relatable and engaging learning environment, making complex subjects approachable.",
+          answer: "Our diverse background in mathematics, programming, music, and photography allows us to offer a broad perspective. We create a relatable and engaging learning environment, making complex subjects approachable."
         },
         {
           question: "How do we handle different learning styles and levels of students?",
-          answer: "We employ various differentiation techniques, including scaffolding, to support students at different levels. Our flexible and interactive lessons cater to visual, auditory, and kinesthetic learners.",
+          answer: "We employ various differentiation techniques, including scaffolding, to support students at different levels. Our flexible and interactive lessons cater to visual, auditory, and kinesthetic learners."
         },
         {
           question: "What results and successes have we seen with our students?",
-          answer: "We've helped many students improve their grades and confidence, from overcoming academic challenges to excelling in exams. Our focus is on providing efficient and valuable assistance, even in just a few sessions.",
-        },
+          answer: "We've helped many students improve their grades and confidence, from overcoming academic challenges to excelling in exams. Our focus is on providing efficient and valuable assistance, even in just a few sessions."
+        }
       ],
       NL: [
         {
           question: "Wat inspireerde ons om bijles en onderwijs aan te bieden?",
-          answer: "Stephen's reis in het onderwijs begon met uitdagingen op de middelbare school, maar door doorzettingsvermogen en een strategische aanpak excelleerde hij. Deze ervaring wakkerde een passie aan om anderen te helpen soortgelijke obstakels te overwinnen.",
+          answer: "Stephen's reis in het onderwijs begon met uitdagingen op de middelbare school, maar door doorzettingsvermogen en een strategische aanpak excelleerde hij. Deze ervaring wakkerde een passie aan om anderen te helpen soortgelijke obstakels te overwinnen."
         },
         {
           question: "Hoe omschrijven wij onze onderwijsaanpak en -methoden?",
-          answer: "Onze aanpak is persoonlijk en adaptief, gericht op de individuele behoeften van elke student. We maken gebruik van technologie, zoals iPad-aantekeningen en WhatsApp-ondersteuning, om het leren te verbeteren en voortdurende ondersteuning te bieden.",
+          answer: "Onze aanpak is persoonlijk en adaptief, gericht op de individuele behoeften van elke student. We maken gebruik van technologie, zoals iPad-aantekeningen en WhatsApp-ondersteuning, om het leren te verbeteren en voortdurende ondersteuning te bieden."
         },
         {
           question: "Wat maakt onze bijlessen uniek in vergelijking met andere aanbieders?",
-          answer: "Onze diverse achtergrond in wiskunde, programmeren, muziek en fotografie stelt ons in staat een breed perspectief te bieden. We creëren een relatable en boeiende leeromgeving, waardoor complexe onderwerpen toegankelijk worden.",
+          answer: "Onze diverse achtergrond in wiskunde, programmeren, muziek en fotografie stelt ons in staat een breed perspectief te bieden. We creëren een relatable en boeiende leeromgeving, waardoor complexe onderwerpen toegankelijk worden."
         },
         {
           question: "Hoe gaan wij om met verschillende leerstijlen en niveaus van studenten?",
-          answer: "We gebruiken verschillende differentiatie technieken, waaronder scaffolding, om studenten op verschillende niveaus te ondersteunen. Onze flexibele en interactieve lessen zijn afgestemd op visuele, auditieve en kinesthetische leerlingen.",
+          answer: "We gebruiken verschillende differentiatie technieken, waaronder scaffolding, om studenten op verschillende niveaus te ondersteunen. Onze flexibele en interactieve lessen zijn afgestemd op visuele, auditieve en kinesthetische leerlingen."
         },
         {
           question: "Welke resultaten en successen hebben wij gezien bij onze studenten?",
-          answer: "We hebben veel studenten geholpen hun cijfers en zelfvertrouwen te verbeteren, van het overwinnen van academische uitdagingen tot het excelleren in examens. Onze focus ligt op het bieden van efficiënte en waardevolle hulp, zelfs in slechts een paar sessies.",
-        },
-      ],
+          answer: "We hebben veel studenten geholpen hun cijfers en zelfvertrouwen te verbeteren, van het overwinnen van academische uitdagingen tot het excelleren in examens. Onze focus ligt op het bieden van efficiënte en waardevolle hulp, zelfs in slechts een paar sessies."
+        }
+      ]
     },
   };
 

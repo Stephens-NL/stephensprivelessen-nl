@@ -1,4 +1,4 @@
-import { WelcomeScreenData } from "./types2";
+import { WelcomeScreenData } from "./types";
 
 export const welcomeScreenData: WelcomeScreenData = {
   languageSelection: {

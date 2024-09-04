@@ -1,31 +1,159 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
-model Feedback {
-  id           Int      @id @default(autoincrement())
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model About {
+  id              String @id @default(cuid())
+  title           Json
+  introduction    Json
+  philosophyTitle Json
+  philosophyPoints Json
+  cta             Json
+  detailedInfo    Json
+}
+
+model Service {
+  id               String @id @default(cuid())
+  icon             String
+  title            Json
+  shortDescription Json
+  longDescription  Json
+}
+
+model BlogPost {
+  id        Int      @id @default(autoincrement())
+  title     Json     // Changed from String to Json
+  content   Json     // Changed from String to Json
+  author    String
+  createdAt DateTime @default(now())
+  date      DateTime // Add this line
+  tags      String[] // Add this line
+}
+
+model BlogInfo {
+  id          String @id @default(cuid())
+  title       Json
+  description Json
+}
+
+model Testimonial {
+  id     String @id @default(cuid())
+  text   Json
+  author String
+}
+
+model FeedbackForm {
+  id          String @id @default(cuid())
+  title       Json
+  description Json
+  sections    Json
+  conclusion  Json
+}
+
+model Vak {
+  id   String @id @default(cuid())
+  name Json
+}
+
+model FeedbackResponse {
+  id           String   @id @default(cuid())
+  formId       String
+  respondentId String
+  responses    Json
   timestamp    DateTime @default(now())
-  language     String
-  formType     String
-  learnerName  String
-  subject      String
-  userType     String
-  ratings      String   // Changed from Json to String
-  mostValuable String?
-  quickImprovement String?
-  quoteConsent String?
-  quoteText    String?
-  nameConsent  String?
-  photoConsent String?
+}
+
+model FAQ {
+  id       Int  @id @default(autoincrement())
+  question Json
+  answer   Json
+}
+
+model FAQInfo {
+  id                  String @id @default(cuid())
+  title               Json
+  description         Json
+  searchPlaceholder   Json
+  languageToggle      Json
+  scrollToTopLabel    Json
+}
+
+model Navigation {
+  id    String @id @default(cuid())
+  href  String
+  label Json
+}
+
+model Hero {
+  id               String @id @default(cuid())
+  title            Json
+  subtitle         Json
+  subtitle2        Json
+  alreadyEnrolled  Json
+  signInHere       Json
+  signInLink       String
+  scheduleFreeTrial Json
+  img              Json
+}
+
+model Footer {
+  id               String @id @default(cuid())
+  title            Json
+  description      Json
+  quickLinksLabel  Json
+  quickLinks       Json   // Add this line
+  contactLabel     Json
+  email            String
+  phone            String
+  copyright        Json
+}
+
+model ContactInfo {
+  id      String @id @default(cuid())
+  icon    String
+  title   Json
+  content String
+  link    String
+}
+
+model PriceInfo {
+  id       String @id @default(cuid())
+  duration String
+  price    String
+}
+
+model ContactPageContent {
+  id             String @id @default(cuid())
+  title          Json
+  aboutMe        Json
+  aboutLessons   Json
+  subjects       Json
+  pricing        Json
+  groupLessons   Json
+  examTraining   Json
+  contactItems   Json
+}
+
+model WelcomeScreenData {
+  id                 String @id @default(cuid())
+  languageSelection  Json
+  welcome            Json
+  lengthSelection    Json
+  navigation         Json
+  submitCTA          Json
+  farewell           Json
+}
+
+model PersonalIntermezzo {
+  id      String @id @default(cuid())
+  title   Json
+  content Json
 }

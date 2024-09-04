@@ -14,8 +14,8 @@ const Header = () => {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [scrollY, setScrollY] = useState(0);
-    const { setLanguage } = useLanguage();
-    const { t, isEnglish } = useTranslation();
+    const { setLanguage, language } = useLanguage();
+    const { t } = useTranslation();
 
     useEffect(() => {
         const handleScroll = () => setScrollY(window.scrollY);
@@ -28,7 +28,7 @@ const Header = () => {
 
     const toggleLanguage = () => {
         if (isClickable) {
-            const newLanguage = isEnglish ? 'NL' : 'EN';
+            const newLanguage = language == 'EN' ? 'NL' : 'EN';
             setLanguage(newLanguage);
         }
     };
@@ -57,7 +57,7 @@ const Header = () => {
                         : 'text-gray-800 hover:bg-blue-500 hover:text-white'
                 } ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
             >
-                {isEnglish ? label.EN : label.NL}
+                {t(label)}  
             </Link>
         </motion.div>
     );
@@ -76,7 +76,7 @@ const Header = () => {
                             onClick={(e) => !isClickable && e.preventDefault()}
                             className={`text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
                         >
-                            {isEnglish ? siteTitle.EN : siteTitle.NL}
+                            {t(siteTitle)}
                         </Link>
                     </motion.div>
                     <motion.button
@@ -106,7 +106,7 @@ const Header = () => {
                                 whileHover={{ scale: isClickable ? 1.05 : 1 }}
                                 whileTap={{ scale: isClickable ? 0.95 : 1 }}
                             >
-                                {isEnglish ? 'NL' : 'EN'}
+                                {language == 'EN' ? 'NL' : 'EN'}
                             </motion.button>
                         </motion.li>
                     </motion.ul>
@@ -123,7 +123,7 @@ const Header = () => {
                             <div className="flex flex-col h-full">
                                 <div className="flex justify-between items-center p-4 border-b">
                                     <span className="text-2xl font-bold text-blue-600">
-                                        {isEnglish ? siteTitle.EN : siteTitle.NL}
+                                        {t(siteTitle)}
                                     </span>
                                     <button
                                         onClick={toggleMenu}
@@ -160,7 +160,7 @@ const Header = () => {
                                                 }}
                                                 className={`w-full text-left px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-blue-500 hover:text-white transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
                                             >
-                                                {isEnglish ? 'Prefer Dutch' : 'Prefer English?'}
+                                                {language == 'EN' ? 'Prefer Dutch' : 'Prefer English?'}
                                             </button>
                                         </motion.li>
                                     </ul>

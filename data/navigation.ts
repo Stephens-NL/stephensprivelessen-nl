@@ -1,4 +1,4 @@
-import { NavItem, Bilingual } from './types2';
+import { NavItem, Bilingual } from './types';
 
 export const siteTitle: Bilingual = {
     EN: "Stephen's Private Lessons",
@@ -11,5 +11,5 @@ export const navigation: NavItem[] = [
     { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
     { href: '/blog', label: { EN: 'Blog', NL: 'Blog' } },
     { href: '/contact', label: { EN: 'Contact', NL: 'Contact' } },
-{ href: '/FAQ2', label: { EN: 'FAQ', NL: 'Vragen' } },
+    { href: '/FAQ', label: { EN: 'FAQ', NL: 'Vragen' } },
 ];

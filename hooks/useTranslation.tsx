@@ -1,30 +1,30 @@
 import { useLanguage } from '../contexts/LanguageContext';
-import { Language, Bilingual } from '../data';
-
-type TranslationContent = Bilingual<string | string[] | { [key: string]: any }> | string;
+import { Bilingual, TranslationFunction } from '../data';
 
 export function useTranslation() {
   const { language } = useLanguage();
 
-  const t = <T extends string | string[] | { [key: string]: any }>(
-    content: TranslationContent
-  ): T => {
+  const t: TranslationFunction = (content: Bilingual) => {
     if (typeof content === 'string') {
-      return content as T;
+      return content;
     }
 
     if (!('EN' in content) || !('NL' in content)) {
       console.error('Content does not have EN or NL properties:', content);
-      return '' as T;
+      return '';
     }
 
     const translatedContent = content[language];
 
-    if (Array.isArray(translatedContent) || typeof translatedContent === 'object') {
-      return translatedContent as T;
+    if (Array.isArray(translatedContent)) {
+      return translatedContent;
     }
 
-    return String(translatedContent) as T;
+    if (typeof translatedContent === 'object') {
+      return translatedContent;
+    }
+
+    return String(translatedContent);
   };
 
   return { t, language };

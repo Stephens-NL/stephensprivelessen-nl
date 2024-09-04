@@ -1,84 +1,94 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { faqItems, faqInfo } from '../data';
+import { faqItems, faqInfo, TranslationFunction, Bilingual } from '../data';
 import { useTranslation } from '@/hooks/useTranslation';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
+import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useLanguage } from '@/contexts/LanguageContext';
+import FloatingShapes from './FloatingShapes';
+import FadeInText from './FadeInText';
 
-const TypewriterText = ({ text, delay = 0 }: { text: string, delay: number}) => {
-  const [displayedText, setDisplayedText] = useState('');
 
-  useEffect(() => {
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        setDisplayedText(prev => prev + text.charAt(i));
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 30);
 
-    return () => clearInterval(timer);
-  }, [text]);
-
+const ZoomInText: React.FC<{ text: string; delay?: number }> = ({ text, delay = 0 }) => {
   return (
-    <motion.span
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay }}
+    <motion.div
+      initial={{ scale: 0.5, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay, duration: 0.5 }}
     >
-      {displayedText}
-    </motion.span>
+      {text}
+    </motion.div>
   );
 };
 
-const FAQPage = () => {
-  const [activeIndex, setActiveIndex] = useState<number|null>(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredItems, setFilteredItems] = useState(faqItems);
-  // const [language, setLanguage] = useState('NL');
-  const {language, setLanguage} = useLanguage();
-  const [showBackToTop, setShowBackToTop] = useState(false);
+const TypewriterText = ({ text}: { text: string}) => {
 
-  const { t } = useTranslation();
+  const [displayedText, setDisplayedText] = useState('');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    console.log('Translated:', text.length);
+    let i = 0;
+    const timer = setInterval(() => {
+      // if (typeof text === 'string') {
+        if (i < text.length) {
+          setDisplayedText((prev) => prev.concat(text.charAt(i)));
+          i++;
+        } else {
+          clearInterval(timer);
+        }
+
+      // }
+    }, 60);
+    return () => clearInterval(timer);
+    
+  }, []);
+  // console.log('Translated:', displayedText.charAt(1));
+  
+  return <span className="inline-block">{displayedText}</span>;
+};
+
+const FAQPage = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const { t } = useTranslation();
+  const { language } = useLanguage();
+  const showBackToTop = useScrollPosition(300);
+
+  const toggleQuestion = useCallback((index: number) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   }, []);
 
-  useEffect(() => {
-    setFilteredItems(
-      faqItems.filter((item) =>
-        t(item.question).toLowerCase().includes(searchTerm.toLowerCase()) ||
-        t(item.answer).toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  }, [searchTerm, language]);
-
-  const toggleQuestion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
-
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
+
+  const filteredItems = useMemo(() => {
+    return faqItems.filter((item) => {
+      const questionText = t(item.question);
+      const answerText = t(item.answer);
+
+      return (
+        (typeof questionText === 'string' && questionText.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (typeof answerText === 'string' && answerText.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    });
+  }, [searchTerm, t]);
+
+  // const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
       <motion.h1
+        key={language}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="text-4xl font-bold text-center mb-8"
       >
-        <TypewriterText text={t(faqInfo.title)}  delay={10}/>
+        <FadeInText text={t(faqInfo.title)}/>
       </motion.h1>
 
       <motion.div
@@ -90,7 +100,7 @@ const FAQPage = () => {
         <div className="relative">
           <input
             type="text"
-            placeholder={language === 'NL' ? 'Zoeken...' : 'Search...'}
+            placeholder={'Search...'}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-4 pl-12 rounded-full bg-white bg-opacity-20 backdrop-blur-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-yellow-300"
@@ -107,7 +117,7 @@ const FAQPage = () => {
       >
         {filteredItems.map((item, index) => (
           <motion.div
-            key={item.id}
+            key={`${item.id}-${language}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
@@ -119,7 +129,7 @@ const FAQPage = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <TypewriterText text={t(item.question)} delay={index * 0.1} />
+              <ZoomInText text={t(item.question)} />
               {activeIndex === index ? <ChevronUp /> : <ChevronDown />}
             </motion.button>
             <AnimatePresence>
@@ -131,7 +141,7 @@ const FAQPage = () => {
                   transition={{ duration: 0.3 }}
                   className="mt-2 p-4 bg-white bg-opacity-5 backdrop-blur-lg rounded-lg"
                 >
-                  <TypewriterText text={t(item.answer)} delay={10} />
+                  <FadeInText text={t(item.answer)} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -146,14 +156,6 @@ const FAQPage = () => {
         transition={{ duration: 0.3 }}
       >
         <motion.button
-          onClick={() => setLanguage(language === 'NL' ? 'EN' : 'NL')}
-          className="bg-white text-blue-900 rounded-full p-4 shadow-lg hover:bg-yellow-300 transition-colors duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          {language === 'NL' ? 'EN' : 'NL'}
-        </motion.button>
-        <motion.button
           onClick={scrollToTop}
           className="bg-white text-blue-900 rounded-full p-4 shadow-lg hover:bg-yellow-300 transition-colors duration-300"
           whileHover={{ scale: 1.1 }}
@@ -163,37 +165,7 @@ const FAQPage = () => {
         </motion.button>
       </motion.div>
 
-      {/* Floating shapes */}
-      <motion.div
-        className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 1 }}
-      >
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-white bg-opacity-10 rounded-full"
-            style={{
-              width: Math.random() * 100 + 50,
-              height: Math.random() * 100 + 50,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: Math.random() * 100 - 50,
-              y: Math.random() * 100 - 50,
-              rotate: 360,
-            }}
-            transition={{
-              duration: Math.random() * 20 + 10,
-              repeat: Infinity,
-              repeatType: 'reverse',
-              ease: 'linear',
-            }}
-          />
-        ))}
-      </motion.div>
+      <FloatingShapes />
     </div>
   );
 };

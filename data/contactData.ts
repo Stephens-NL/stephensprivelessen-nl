@@ -1,50 +1,9 @@
 // src/data/contactData.ts
 
-import { Bilingual } from "./types2";
+import {  ContactPageContent } from "./types";
 
   
-  interface ContactInfo {
-    icon: string;
-    title: Bilingual;
-    content: string;
-    link: string;
-  }
   
-  interface Subject {
-    EN: string;
-    NL: string;
-  }
-  
-  interface PriceInfo {
-    duration: string;
-    price: string;
-  }
-  
-  interface ContactPageContent {
-    title: Bilingual;
-    aboutMe: Bilingual;
-    aboutLessons: Bilingual;
-    subjects: {
-      primary: Subject[];
-      secondary: Subject[];
-      higher: Subject[];
-    };
-    pricing: {
-      primary: PriceInfo[];
-      secondary: PriceInfo[];
-      higher: PriceInfo[];
-    };
-    groupLessons: {
-      secondary: PriceInfo[];
-      higher: PriceInfo[];
-    };
-    examTraining: {
-      description: Bilingual;
-      mathA_C: PriceInfo[];
-      mathB: PriceInfo[];
-    };
-    contactItems: ContactInfo[];
-  }
   
   export const contactData: ContactPageContent = {
     title: {

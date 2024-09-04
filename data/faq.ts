@@ -1,6 +1,6 @@
-import { FAQInfoType, FAQItemsType } from "./types2";
+import { FAQInfo, FAQItems } from "./types";
 
-export const faqInfo: FAQInfoType = {
+export const faqInfo: FAQInfo = {
   title: {
     EN: "Frequently Asked Questions",
     NL: "Veelgestelde Vragen"
@@ -23,7 +23,7 @@ export const faqInfo: FAQInfoType = {
   }
 };
 
-export const faqItems: FAQItemsType = [
+export const faqItems: FAQItems = [
   {
     id: 1,
     question: {

@@ -56,7 +56,46 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm; shortVersion:
         setCurrentStep(-1);
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
+      const feedbackData = {
+          language: language,
+          formType: selectedForm === longVersion ? 'long' : 'short',
+          learnerName: formData.learnerName,
+          subject: formData.subject,
+          userType: formData.userType,
+          ratings: {
+              overallQuality: formData.overallQuality,
+              expectationsMet: formData.expectationsMet,
+              clarity: formData.clarity,
+              effectiveness: formData.effectiveness,
+              interaction: formData.interaction,
+              accessibility: formData.accessibility,
+          },
+          mostValuable: formData.mostValuable,
+          quickImprovement: formData.quickImprovement,
+          quoteConsent: formData.quoteConsent,
+          quoteText: formData.quoteText,
+          nameConsent: formData.nameConsent,
+          photoConsent: formData.photoConsent,
+      };
+  
+      try {
+          const response = await fetch('/api/feedback', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(feedbackData),
+          });
+          const result = await response.json();
+          console.log('Feedback saved:', result);
+          setIsSubmitted(true);
+      } catch (error) {
+          console.error('Error submitting feedback:', error);
+      }
+  };
+
+    const handleSubmit2 = () => {
         const ratingFields = selectedForm === longVersion
           ? ['overallQuality', 'expectationsMet', 'clarity', 'effectiveness', 'interaction', 'accessibility']
           : ['overallRating'];

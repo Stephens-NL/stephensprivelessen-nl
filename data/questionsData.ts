@@ -1,4 +1,4 @@
-import { FeedbackForm, QuestionGroup } from "./types2";
+import { QuestionGroup } from "./types";
 
 export const generalQuestions: QuestionGroup = {
   id: 'general',

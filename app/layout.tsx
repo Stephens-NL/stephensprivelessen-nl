@@ -9,8 +9,16 @@ import type { ReactNode } from "react";
 import Head from "next/head";
 import { usePathname } from 'next/navigation'; // Import usePathname hook
 import { metadata as defaultMetadata } from "../data/";
+import { Inter as FontSans } from "next/font/google"
+import { cn } from "@/lib/utils";
+
 
 const inter = Inter({ subsets: ["latin"] });
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
 
 function MetadataManager({ metadataOverride }: { metadataOverride?: Partial<typeof defaultMetadata> }) {
   const { language } = useLanguage();
@@ -37,12 +45,18 @@ function MetadataManager({ metadataOverride }: { metadataOverride?: Partial<type
 export default function RootLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname(); // Use usePathname to get the current path
 
-  const showHeader = !pathname.includes('feedback');
+  const showHeader = !pathname!.includes('feedback');
   return (
     <html lang="nl">
       <LanguageProvider>
         <MetadataManager />
-        <body className={inter.className}>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        // className={inter.className}
+        >
           {showHeader && <Header />}
           {/* <FloatingNav navItems={navItems}/> */}
           <main className="flex-grow">{children}</main>

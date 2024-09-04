@@ -10,7 +10,7 @@ const FadeInText: React.FC<{ text: string; delay?: number }> = ({ text, delay = 
             key={index}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: delay + index * 0.2 }}
+            transition={{ delay: delay + index * .075 }}
             style={{ display: 'inline-block', marginRight: '5px' }}
           >
             {word}
