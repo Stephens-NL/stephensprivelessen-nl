@@ -198,7 +198,7 @@ const FeedbackDashboard: React.FC = () => {
                     {entry.quote.text && (
                         <div className="mt-4 bg-blue-50 p-3 rounded-lg">
                             <h4 className="font-semibold text-blue-700 mb-2">Quote</h4>
-                            <p className="italic">"{entry.quote.text}"</p>
+                            <p className="italic">&quot;{entry.quote.text}&quot;</p>
                         </div>
                     )}
                 </motion.div>

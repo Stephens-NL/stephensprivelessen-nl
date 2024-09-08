@@ -10,49 +10,6 @@ import FloatingShapes from './FloatingShapes';
 import FadeInText from './FadeInText';
 import { FAQData } from '@/data';
 
-
-
-const ZoomInText: React.FC<{ text: string; delay?: number }> = ({ text, delay = 0 }) => {
-  return (
-    <motion.div
-      initial={{ scale: 0.5, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay, duration: 0.5 }}
-    >
-      {text}
-    </motion.div>
-  );
-};
-
-const TypewriterText = ({ text}: { text: string}) => {
-
-  const [displayedText, setDisplayedText] = useState('');
-
-  useEffect(() => {
-    console.log('Translated:', text.length);
-    let i = 0;
-    const timer = setInterval(() => {
-      // if (typeof text === 'string') {
-        if (i < text.length) {
-          setDisplayedText((prev) => prev.concat(text.charAt(i)));
-          i++;
-        } else {
-          clearInterval(timer);
-        }
-
-      // }
-    }, 60);
-    return () => clearInterval(timer);
-    
-  }, [text]);
-  // console.log('Translated:', displayedText.charAt(1));
-  
-  return <span className="inline-block">{displayedText}</span>;
-};
-
-
-
-
 const FAQPage: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -60,13 +17,13 @@ const FAQPage: React.FC = () => {
   const { language } = useLanguage();
   const [faqData, setFaqData] = useState<FAQData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const showBackToTop = useScrollPosition(300);
 
   useEffect(() => {
     const fetchFaqData = async () => {
       try {
-        const response = await fetch('/FAQ/api');
+        const response = await fetch('/api/faq');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -89,10 +46,10 @@ const FAQPage: React.FC = () => {
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
-  
 
   const filteredItems = useMemo(() => {
-    if (!faqData) return [];
+    if (!faqData || !faqData.faqItems) return [];
+
     return faqData.faqItems.filter((item) => {
       const questionText = String(t(item.question));
       const answerText = String(t(item.answer));
@@ -105,8 +62,11 @@ const FAQPage: React.FC = () => {
   }, [faqData, searchTerm, t]);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div>Error: {error.message}</div>;
   if (!faqData) return null;
+
+  const { faqInfo } = faqData;
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
@@ -117,7 +77,7 @@ const FAQPage: React.FC = () => {
         transition={{ duration: 0.5 }}
         className="text-4xl font-bold text-center mb-8"
       >
-        <FadeInText text={String(t(faqData.faqInfo.title))} />
+        <FadeInText text={String(t(faqInfo.title))} />
       </motion.h1>
 
       <motion.div
@@ -129,7 +89,7 @@ const FAQPage: React.FC = () => {
         <div className="relative">
           <input
             type="text"
-            placeholder={String(t(faqData.faqInfo.searchPlaceholder))}
+            placeholder={String(t(faqInfo.searchPlaceholder))}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-4 pl-12 rounded-full bg-white bg-opacity-20 backdrop-blur-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-yellow-300"

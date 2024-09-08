@@ -2,14 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '../../hooks/useTranslation';
 import { Send, Edit2 } from 'lucide-react';
-import { welcomeScreenData } from '../../data';
+import { feedbackFormData, FeedbackSummaryProps, RenderSummaryItemProps } from '../../data';
 
-const FeedbackSummary = ({ formData, onSubmit, onEdit }) => {
+const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) => {
   const { t } = useTranslation();
 
-  const renderSummaryItem = (label, value) => (
-    <div className="mb-2 last:mb-0">
-      <span className="font-semibold">{label}:</span> {value}
+  const renderSummaryItem = ({ label, value }: RenderSummaryItemProps) => (
+    <div className="mb-4 bg-white bg-opacity-10 rounded-lg p-4">
+      <span className="font-semibold text-yellow-300">{label}:</span>
+      <p className="mt-1 text-white">{value}</p>
     </div>
   );
 
@@ -18,49 +19,48 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
-      className="w-full max-w-2xl mx-auto bg-white bg-opacity-20 backdrop-blur-lg rounded-lg p-6 overflow-hidden"
+      className="w-full max-w-2xl mx-auto bg-blue-800 bg-opacity-70 backdrop-blur-lg rounded-lg p-8 shadow-lg"
     >
-      <h2 className="text-2xl font-bold text-white mb-4">{t('Feedback Summary')}</h2>
-      
-      <div className="space-y-4 mb-6 max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-blue-900">
-        <div className="bg-white bg-opacity-10 rounded p-3">
-          <h3 className="font-semibold text-lg text-white mb-2">{t('General Information')}</h3>
-          {renderSummaryItem(t('Name'), formData.learnerName)}
-          {renderSummaryItem(t('Subjects'), formData.subject?.join(', '))}
+      <h2 className="text-3xl font-bold text-yellow-300 mb-6">{String(t({ EN: 'Feedback Summary', NL: 'Feedback Samenvatting' }))}</h2>
+
+      <div className="space-y-6 mb-8 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-blue-900 pr-4">
+        <div>
+          <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'General Information', NL: 'Algemene Informatie' }))}</h3>
+          {renderSummaryItem({ label: String(t({ EN: 'Name', NL: 'Naam' })), value: formData.learnerName })}
+          {renderSummaryItem({ label: String(t({ EN: 'Subjects', NL: 'Onderwerpen' })), value: formData.subject?.join(', ') })}
         </div>
 
         {formData.overallRating && (
-          <div className="bg-white bg-opacity-10 rounded p-3">
-            <h3 className="font-semibold text-lg text-white mb-2">{t('Ratings')}</h3>
-            {renderSummaryItem(t('Overall Rating'), formData.overallRating)}
-            {/* Add other ratings here if available */}
+          <div>
+            <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'Ratings', NL: 'Beoordelingen' }))}</h3>
+            {renderSummaryItem({ label: String(t({ EN: 'Overall Rating', NL: 'Algemene Beoordeling' })), value: formData.overallRating })}
           </div>
         )}
 
         {(formData.mostValuable || formData.quickImprovement) && (
-          <div className="bg-white bg-opacity-10 rounded p-3">
-            <h3 className="font-semibold text-lg text-white mb-2">{t('Open Feedback')}</h3>
-            {formData.mostValuable && renderSummaryItem(t('Most Valuable Aspect'), formData.mostValuable)}
-            {formData.quickImprovement && renderSummaryItem(t('Suggestion for Improvement'), formData.quickImprovement)}
+          <div>
+            <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'Open Feedback', NL: 'Open Feedback' }))}</h3>
+            {formData.mostValuable && renderSummaryItem({ label: String(t({ EN: 'Most Valuable Aspect', NL: 'Meest Waardevolle Aspect' })), value: formData.mostValuable })}
+            {formData.quickImprovement && renderSummaryItem({ label: String(t({ EN: 'Suggestion for Improvement', NL: 'Verbeteringsvoorstel' })), value: formData.quickImprovement })}
           </div>
         )}
 
         {formData.quoteConsent === 'yes' && (
-          <div className="bg-white bg-opacity-10 rounded p-3">
-            <h3 className="font-semibold text-lg text-white mb-2">{t('Quote')}</h3>
-            {renderSummaryItem(t('Quote Text'), formData.quoteText)}
+          <div>
+            <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'Quote', NL: 'Citaat' }))}</h3>
+            {renderSummaryItem({ label: String(t({ EN: 'Quote Text', NL: 'Citaattekst' })), value: formData.quoteText })}
           </div>
         )}
       </div>
 
-      <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+      <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
         <motion.button
           onClick={onEdit}
-          className="px-6 py-3 bg-blue-500 text-white rounded-full text-lg font-bold hover:bg-blue-400 transition-colors duration-300 flex items-center"
+          className="px-6 py-3 bg-blue-600 text-white rounded-full text-lg font-bold hover:bg-blue-500 transition-colors duration-300 flex items-center"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {t('Edit Feedback')}
+          {String(t({ EN: 'Edit Feedback', NL: 'Feedback Bewerken' }))}
           <Edit2 className="ml-2" size={20} />
         </motion.button>
         <motion.button
@@ -69,7 +69,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }) => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {t(welcomeScreenData.submitCTA.buttonText)}
+          {String(t({ EN: feedbackFormData.submitCTA.buttonText, NL: feedbackFormData.submitCTA.buttonText }))}
           <Send className="ml-2" size={20} />
         </motion.button>
       </div>

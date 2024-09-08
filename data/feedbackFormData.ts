@@ -1,11 +1,8 @@
-import { WelcomeScreenData } from "./types";
+import { FeedbackFormData } from "./types";
 
-export const welcomeScreenData: WelcomeScreenData = {
+export const feedbackFormData: FeedbackFormData = {
   languageSelection: {
-    title: {
-      EN: "Select Your Language",
-      NL: "Kies Je Taal",
-    },
+    title: "Select Your Language / Kies Je Taal",
     languages: {
       EN: "English",
       NL: "Nederlands",

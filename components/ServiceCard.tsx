@@ -18,8 +18,8 @@ const ServiceCard = ({ icon, title, description }: ServiceCardProps) => {
         height={80} 
         className="mb-4 mx-auto" 
       />
-      <h3 className="text-xl font-semibold mb-2 text-gray-800">{displayedTitle}</h3>
-      <p className="text-gray-600">{displayedDescription}</p>
+      <h3 className="text-xl font-semibold mb-2 text-gray-800">{String(displayedTitle)}</h3>
+      <p className="text-gray-600">{String(displayedDescription)}</p>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextQuestion } from '../../../data';
-
+import { useTranslation } from '../../../hooks/useTranslation';
 type Props = {
   question: TextQuestion;
   value: string;
@@ -10,16 +10,17 @@ type Props = {
 };
 
 const TextInput: React.FC<Props> = ({ question, value, onChange, language, isDarkMode }) => {
+  const { t } = useTranslation();
   return (
     <div className={`mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-      <label htmlFor={question.id} className="block mb-2">{question.label[language]}</label>
+      <label htmlFor={question.id} className="block mb-2">{String(t(question.label))}</label>
       <input
         type={question.type}
         id={question.id}
         name={question.id}
         value={value}
         onChange={onChange}
-        placeholder={question.placeholder ? question.placeholder[language] : undefined}
+        placeholder={question.placeholder ? String(t(question.placeholder)) : undefined}
         className={`w-full p-2 rounded ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'} border ${isDarkMode ? 'border-gray-600' : 'border-gray-300'}`}
       />
     </div>

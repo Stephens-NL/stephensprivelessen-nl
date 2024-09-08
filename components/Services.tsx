@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Service, services, generalContent } from '../data';
+import { Hero, HeroData, Service, ServiceData, generalContent } from '../data';
 import { useTranslation } from '@/hooks/useTranslation';
 import ButtonTrial from './ButtonTrial';
 import ButtonLearnMore from './ButtonLearnMore';
@@ -12,18 +12,34 @@ import { X } from 'lucide-react';
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const { t } = useTranslation();
-  const [serviceData, setServiceData] = useState(null);
+  const [serviceData, setServiceData] = useState<ServiceData | null>(null);
+  const [heroData, setHeroData] = useState<HeroData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchHeroData = async () => {
       try {
+        const response = await fetch('/api/hero');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data: HeroData = await response.json();
+        setHeroData(data);
+
+        setLoading(false);
+      } catch (err: any) {
+        setError(err.message);
+        setLoading(false);
+      }
+    }
+    const fetchServiceData = async () => {
+      try {
         const response = await fetch('/api/services');
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
-        const data = await response.json();
+        const data: ServiceData = await response.json();
         setServiceData(data);
 
         setLoading(false);
@@ -33,14 +49,17 @@ const Services = () => {
       }
     };
 
+    fetchServiceData();
     fetchHeroData();
   }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (!serviceData) return null;
+  if (!heroData) return null;
 
-  const { ser } = serviceData;
+  const { services } = serviceData;
+  const { hero } = heroData;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -82,7 +101,7 @@ const Services = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {t(ourServices)}
+          {String(t(ourServices))}
         </motion.h2>
 
         <motion.div
@@ -100,24 +119,24 @@ const Services = () => {
               <div className="flex justify-center mb-4 sm:mb-6">
                 <Image
                   src={icon}
-                  alt={t(title)}
+                  alt={String(t(title))}
                   width={60}
                   height={60}
                   className="text-blue-500 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
                 />
               </div>
               <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-center text-blue-900">
-                {t(title)}
+                {String(t(title))}
               </h3>
               <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 text-center flex-grow">
-                {t(shortDescription)}
+                {String(t(shortDescription))}
               </p>
               <motion.div
                 className="text-center mt-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ButtonLearnMore t={t} onButtonClick={() => setSelectedService(services[index])} />
+                <ButtonLearnMore t={t} onButtonClick={() => setSelectedService(services[index])} index={index} />
               </motion.div>
             </motion.div>
           ))}
@@ -148,16 +167,16 @@ const Services = () => {
               <div className="text-center">
                 <Image
                   src={selectedService.icon}
-                  alt={t(selectedService.title)}
+                  alt={String(t(selectedService.title))}
                   width={80}
                   height={80}
                   className="mx-auto mb-4 sm:mb-6 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
                 />
                 <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-blue-900">
-                  {t(selectedService.title)}
+                  {String(t(selectedService.title))}
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6">
-                  {t(selectedService.longDescription)}
+                  {String(t(selectedService.longDescription))}
                 </p>
                 {selectedService.subjectsList && (
                   <div className="mb-4 sm:mb-6">
@@ -171,7 +190,7 @@ const Services = () => {
                     </div>
                   </div>
                 )}
-                <ButtonTrial />
+                <ButtonTrial hero={hero} />
               </div>
             </motion.div>
           </motion.div>

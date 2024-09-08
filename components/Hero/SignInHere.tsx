@@ -4,18 +4,19 @@
 import React from 'react'
 // import { hero } from '../../data'
 import { useTranslation } from '../../hooks/useTranslation'
+import { Hero } from '@/data';
 
-const SignInHere = ({hero}) => {
- 
+const SignInHere = ({ hero }: { hero: Hero }) => {
+
     const { already_enrolled, sign_in_here } = hero
     const { t } = useTranslation();
     return (
         <>
 
             <p className="mt-5 text-gray-600 text-sm sm:text-base">
-                {t(already_enrolled)}
+                {String(t(already_enrolled))}
                 <a href="#login" className="text-black transition-all duration-200 hover:underline">
-                    {t(sign_in_here)}
+                    {String(t(sign_in_here))}
                 </a>
             </p>
         </>)

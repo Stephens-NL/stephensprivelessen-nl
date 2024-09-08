@@ -2,7 +2,6 @@
 
 import { ContactPageContent } from "./types";
 
-
 export const contactData: ContactPageContent = {
   title: {
     EN: "Stephen's Private Lessons",
@@ -39,34 +38,46 @@ export const contactData: ContactPageContent = {
     ],
   },
   pricing: {
-    primary: [
-      { duration: "Eenmalig (60 min)", price: "€40" },
-      { duration: "Pakket (4 * 60 min)", price: "€130" },
-      { duration: "Online (4 * 60 min)", price: "€110" },
-    ],
-    secondary: [
-      { duration: "Eenmalig (60 min)", price: "€50" },
-      { duration: "Pakket (4 * 60 min)", price: "€180" },
-      { duration: "Online (4 * 60 min)", price: "€160" },
-    ],
     higher: [
-      { duration: "Eenmalig (60 min)", price: "€60" },
-      { duration: "Pakket (4 * 60 min)", price: "€200" },
-      { duration: "Online (4 * 60 min)", price: "€180" },
+      { duration: "Enkel uur", price: "€80,00" },
+      { duration: "Twee uren", price: "€135,00" },
+      { duration: "Vier uren", price: "€250,00" },
+    ],
+    secondary20Plus: [
+      { duration: "Enkel uur", price: "€75,00" },
+      { duration: "Twee uren", price: "€130,00" },
+      { duration: "Vier uren", price: "€230,00" },
+    ],
+    secondary20Minus: [
+      { duration: "Enkel uur", price: "€60,00" },
+      { duration: "Twee uren", price: "€100,00" },
+      { duration: "Vier uren", price: "€200,00" },
     ],
   },
   groupLessons: {
-    secondary: [
-      { duration: "1 leerling", price: "€50/u" },
-      { duration: "2 leerlingen", price: "€40/u p.p." },
-      { duration: "3 leerlingen", price: "€30/u p.p." },
-      { duration: "4 leerlingen", price: "€25/u p.p." },
-    ],
     higher: [
-      { duration: "1 leerling", price: "€60/u" },
-      { duration: "2 leerlingen", price: "€45/u p.p." },
-      { duration: "3 leerlingen", price: "€40/u p.p." },
-      { duration: "4 leerlingen", price: "€35/u p.p." },
+      { duration: "2 Personen (1 uur)", price: "€65,00" },
+      { duration: "2 Personen (2 uren)", price: "€110,00" },
+      { duration: "2 Personen (4 uren)", price: "€220,00" },
+      { duration: "3-4 Personen (1 uur)", price: "€65,00" },
+      { duration: "3-4 Personen (2 uren)", price: "€110,00" },
+      { duration: "3-4 Personen (4 uren)", price: "€200,00" },
+    ],
+    secondary20Plus: [
+      { duration: "2 Personen (1 uur)", price: "€60,00" },
+      { duration: "2 Personen (2 uren)", price: "€115,00" },
+      { duration: "2 Personen (4 uren)", price: "€210,00" },
+      { duration: "3-4 Personen (1 uur)", price: "€60,00" },
+      { duration: "3-4 Personen (2 uren)", price: "€105,00" },
+      { duration: "3-4 Personen (4 uren)", price: "€190,00" },
+    ],
+    secondary20Minus: [
+      { duration: "2 Personen (1 uur)", price: "€50,00" },
+      { duration: "2 Personen (2 uren)", price: "€90,00" },
+      { duration: "2 Personen (4 uren)", price: "€180,00" },
+      { duration: "3-4 Personen (1 uur)", price: "€45,00" },
+      { duration: "3-4 Personen (2 uren)", price: "€85,00" },
+      { duration: "3-4 Personen (4 uren)", price: "€160,00" },
     ],
   },
   examTraining: {
@@ -85,24 +96,94 @@ export const contactData: ContactPageContent = {
       { duration: "Euler (4 dagen, 5 uur/dag)", price: "€700,-" },
     ],
   },
+  flexibilityPremium: [
+    { duration: "Pakket van 2 lessen", price: "€15" },
+    { duration: "Pakket van 4 lessen", price: "€30" },
+    { duration: "Pakket van 6 lessen of meer", price: "€50" },
+  ],
+  travelCosts: [
+    { duration: "VU/UvA (niet Sciencepark)", price: "€15" },
+    { duration: "Thuis (Amsterdam e.o.)", price: "€40" },
+    { duration: "Sciencepark", price: "€0" },
+  ],
+  lastMinuteSurcharges: [
+    { timeFrame: "Minder dan 24 uur van tevoren gepland", percentage: 20 },
+    { timeFrame: "Minder dan 12 uur van tevoren gepland", percentage: 50 },
+  ],
+  // terms: [
+  //   {
+  //     title: "Vooraf Betalen",
+  //     items: [
+  //       "Alle lessen en lespakketten dienen volledig vooraf te worden betaald.",
+  //       "Betaling moet zijn voldaan binnen 48 uur na boeking en uiterlijk 72 uur vóór aanvang van de (eerste) les.",
+  //       "Bij niet-tijdige betaling vervalt de reservering automatisch en kan de lestijd aan een andere leerling worden toegewezen.",
+  //     ],
+  //   },
+  //   {
+  //     title: "Annulering en Verplaatsing",
+  //     items: [
+  //       "Verplaatsing van een les is kosteloos mogelijk tot 72 uur voor de geplande lestijd, maximaal één keer per geboekte les.",
+  //       "Annulering tot 72 uur voor de geplande les: 25% van het lestarief wordt in rekening gebracht.",
+  //       "Annulering binnen 72 uur voor de geplande les: 75% van het lestarief wordt in rekening gebracht.",
+  //       "No-show of annulering binnen 24 uur voor de geplande les: 100% van het lestarief wordt in rekening gebracht.",
+  //     ],
+  //   },
+  //   {
+  //     title: "Lespakketten",
+  //     items: [
+  //       "Lespakketten zijn geldig tot het einde van het schooljaar waarin ze zijn aangeschaft.",
+  //       "Ongebruikte lessen uit een pakket vervallen aan het einde van de geldigheidsperiode zonder restitutie.",
+  //       "De annuleringsvoorwaarden voor individuele lessen binnen een pakket blijven hetzelfde als hierboven beschreven.",
+  //     ],
+  //   },
+  //   {
+  //     title: "Terugbetaling",
+  //     items: [
+  //       "Er geldt een no-refund beleid voor alle betaalde lessen en pakketten.",
+  //       "In uitzonderlijke gevallen kan een tegoed worden verstrekt voor toekomstige lessen, ter beoordeling van de docent.",
+  //     ],
+  //   },
+  //   {
+  //     title: "Inplannen van Lessen",
+  //     items: [
+  //       "Bij directe inplanning van alle lesdata bij aankoop van het pakket, vervalt de flexibiliteitspremium.",
+  //       "Niet ingeplande lessen uit een pakket dienen minimaal 2 weken voor het einde van de geldigheidsperiode te worden ingepland.",
+  //     ],
+  //   },
+  //   {
+  //     title: "Aanvullende Voorwaarden",
+  //     items: [
+  //       "Kosten voor lesmateriaal zijn niet inbegrepen in het lestarief en worden apart in rekening gebracht.",
+  //       "Leerlingen dienen volledig voorbereid op les te komen. Bij onvoldoende voorbereiding kan de docent besluiten de les te beëindigen zonder restitutie.",
+  //       "De docent spant zich in voor optimale begeleiding maar garandeert geen specifieke resultaten.",
+  //       "De leerling blijft volledig verantwoordelijk voor zijn/haar studievoortgang en resultaten.",
+  //       "Persoonlijke informatie wordt vertrouwelijk behandeld conform de geldende privacywetgeving.",
+  //       "De docent behoudt zich het recht voor om geanonimiseerde studiegegevens te gebruiken voor kwaliteitsverbetering.",
+  //       "Tarieven en voorwaarden kunnen op elk moment worden aangepast.",
+  //       "Wijzigingen gelden direct voor nieuwe boekingen en vanaf de eerstvolgende verlenging voor bestaande pakketten.",
+  //       "Bij overmachtssituaties wordt de les verplaatst naar een ander tijdstip in overleg met de leerling.",
+  //       "Als verplaatsing niet mogelijk is, wordt de les als tegoed bewaard met een geldigheid van 3 maanden.",
+  //     ],
+  //   },
+  // ],
   contactItems: [
     {
       icon: "FaPhone",
       title: { EN: "Phone", NL: "Telefoon" },
       content: "+31 6 47357426",
-      link: "tel:+31647357426",
+      href: "tel:+31647357426",
     },
     {
       icon: "FaEnvelope",
       title: { EN: "Email", NL: "E-mail" },
       content: "s.adei@outlook.com",
-      link: "mailto:s.adei@outlook.com",
+      href: "mailto:s.adei@outlook.com",
     },
     {
       icon: "FaMapMarkerAlt",
       title: { EN: "Location", NL: "Locatie" },
       content: "Science Park 904, 1098 XH Amsterdam",
-      link: "https://maps.google.com/?q=Science Park 904, 1098 XH Amsterdam",
+      href: "https://maps.google.com/?q=Science Park 904, 1098 XH Amsterdam",
     },
   ],
 };

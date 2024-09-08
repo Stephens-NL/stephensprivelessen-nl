@@ -1,46 +1,40 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { faqInfo, faqItems } from '../../data';
 
-const prisma = new PrismaClient();
+// Define the structure of the response data
+type ResponseData = {
+  faqInfo: typeof faqInfo,
+  faqItems: typeof faqItems,
+  error?: string
+};
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  switch (req.method) {
-    case 'GET':
-      try {
-        const faqs = await prisma.faq.findMany();
-        res.status(200).json(faqs);
-      } catch (error) {
-        res.status(500).json({ message: 'Error fetching data' });
-      }
-      break;
-    case 'POST':
-      try {
-        const faq = await prisma.faq.create({ data: req.body });
-        res.status(201).json(faq);
-      } catch (error) {
-        res.status(500).json({ message: 'Error creating data' });
-      }
-      break;
-    case 'PUT':
-      try {
-        const faq = await prisma.faq.update({
-          where: { id: req.body.id },
-          data: req.body,
-        });
-        res.status(200).json(faq);
-      } catch (error) {
-        res.status(500).json({ message: 'Error updating data' });
-      }
-      break;
-    case 'DELETE':
-      try {
-        await prisma.faq.delete({ where: { id: req.body.id } });
-        res.status(204).end();
-      } catch (error) {
-        res.status(500).json({ message: 'Error deleting data' });
-      }
-      break;
-    default:
-      res.status(405).json({ message: 'Method not allowed' });
+// API handler function
+export default function handler(
+  req: NextApiRequest, // Incoming request object
+  res: NextApiResponse<ResponseData> // Outgoing response object
+) {
+  if (req.method === 'GET') { // Handle GET requests
+    try {
+      // Prepare the FAQ data
+      const faqData = {
+        faqInfo: faqInfo,
+        faqItems: faqItems
+      };
+
+      // Send a successful response with the FAQ data
+      res.status(200).json(faqData);
+    } catch (error) {
+      // Log and send an error response in case of failure
+      console.error('Error fetching FAQ data:', error);
+      res.status(500).json({
+        faqInfo: {} as typeof faqInfo,
+        faqItems: [] as typeof faqItems,
+        error: 'Failed to fetch FAQ data',
+      });
+    }
+  } else {
+    // Handle non-GET methods
+    res.setHeader('Allow', ['GET']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from '../../hooks/useTranslation';
 import { Clock, ClipboardList } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { FormTypeSelectorProps, welcomeScreenData } from '../../data';
+import { FormTypeSelectorProps, feedbackFormData } from '../../data';
 
 export const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType }) => {
   const { t } = useTranslation();
@@ -11,7 +11,7 @@ export const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectForm
   
   const formTypes = {
     short: {
-      title: t(welcomeScreenData.lengthSelection.shortOption),
+      title: t(feedbackFormData.lengthSelection.shortOption),
       description: t({
         EN: "Perfect if you're short on time. Just a few quick questions to give me an idea of how I'm doing.",
         NL: "Perfect als je weinig tijd hebt. Slechts een paar korte vragen om mij een idee te geven van hoe het gaat.",
@@ -19,7 +19,7 @@ export const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectForm
       icon: Clock,
     },
     long: {
-      title: t(welcomeScreenData.lengthSelection.longOption),
+      title: t(feedbackFormData.lengthSelection.longOption),
       description: t({
         EN: "Ideal if you have more time. This version includes additional questions where I share more about myself, allowing for more in-depth feedback.",
         NL: "Ideaal als je meer tijd hebt. Deze versie bevat extra vragen waarin ik meer over mezelf vertel, waardoor je dieper kunt ingaan op de feedback.",
@@ -43,9 +43,9 @@ export const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectForm
             >
               <div className="flex items-center mb-2">
                 <Icon className="mr-2 text-blue-900" size={24} />
-                <h3 className="text-xl font-bold text-blue-900">{title}</h3>
+                <h3 className="text-xl font-bold text-blue-900">{String(title)}</h3>
               </div>
-              <p className="text-gray-600">{description}</p>
+              <p className="text-gray-600">{String(description)}</p>
             </motion.button>
           );
         })}

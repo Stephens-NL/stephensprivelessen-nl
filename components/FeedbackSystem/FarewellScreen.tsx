@@ -1,7 +1,7 @@
 import { useTranslation } from '../../hooks/useTranslation';
 import { motion } from 'framer-motion';
 import React from 'react'
-import { welcomeScreenData } from '../../data';
+import { feedbackFormData } from '../../data';
 
 const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const { t } = useTranslation();
@@ -20,7 +20,7 @@ const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
             >
-                {t(welcomeScreenData.farewell.title)}
+                {String(t(feedbackFormData.farewell.title))}
             </motion.h1>
             <motion.p
                 className="text-xl text-white mb-8"
@@ -28,7 +28,7 @@ const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                {t(welcomeScreenData.farewell.message)}
+                {String(t(feedbackFormData.farewell.message))}
             </motion.p>
             <motion.button
                 onClick={onClose}
@@ -36,7 +36,7 @@ const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                {t(welcomeScreenData.farewell.closeButtonText)}
+                {String(t(feedbackFormData.farewell.closeButtonText))}
             </motion.button>
         </motion.div>
     );

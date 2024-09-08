@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { footer } from '../../data'
+import { feedbackFormData } from '../../../data'
 
 type ResponseData = {
-  footer: typeof footer
+  feedbackFormData: typeof feedbackFormData
   error?: string
 }
 
@@ -11,15 +11,16 @@ export default function handler(
   res: NextApiResponse<ResponseData>
 ) {
   if (req.method === 'GET') {
+    console.log('GOT')
     try {
-      if (!footer) {
+      if (!feedbackFormData) {
         throw new Error('HEADER data or introduction content is undefined')
       }
-      res.status(200).json({ footer })
+      res.status(200).json({ feedbackFormData: feedbackFormData })
     } catch (error) {
       console.error('Error fetching about data:', error)
       res.status(500).json({ 
-        footer: {} as typeof footer, 
+        feedbackFormData: {} as typeof feedbackFormData, 
         error: 'Failed to fetch about data' 
       })
     }

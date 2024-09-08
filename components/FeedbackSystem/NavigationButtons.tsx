@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
-import { welcomeScreenData } from '../../data';
+import { feedbackFormData } from '../../data';
 
 interface NavigationButtonsProps {
   onPrevious: () => void;
@@ -25,14 +25,14 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onPrevious, onNex
         className="px-6 py-3 bg-white text-blue-900 rounded-full text-lg font-semibold hover:bg-gray-300 transition-colors duration-300 flex items-center"
       >
         <ChevronLeft className="mr-2" size={24} />
-        {t(welcomeScreenData.navigation.back)}
+        {String(t(feedbackFormData.navigation.back))}
       </button>
       <button
         onClick={onNext}
         className={`px-8 py-4 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300 flex items-center ${isNextDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         disabled={isNextDisabled}
       >
-        {t(welcomeScreenData.navigation.next)}
+        {String(t(feedbackFormData.navigation.next))}
         <ChevronRight className="ml-2" size={24} />
       </button>
     </motion.div>

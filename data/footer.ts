@@ -1,5 +1,6 @@
 import { Footer } from "./types";
 
+
 export const footer: Footer = {
     title: {
         EN: "Stephen's Private Lessons",
@@ -17,8 +18,10 @@ export const footer: Footer = {
         { href: "/contact", label: { EN: "Contact", NL: "Contact" } },
     ],
     contactLabel: { EN: "Contact", NL: "Contact" },
-    email: "s.adei@outlook.com",
-    phone: "+31 6 12345678",
+    contact: {
+        email: "s.adei@outlook.com",
+        phone: "+31 6 12345678",
+    },
     copyright: {
         EN: "All rights reserved.",
         NL: "Alle rechten voorbehouden."

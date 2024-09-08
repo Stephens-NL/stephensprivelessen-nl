@@ -37,7 +37,7 @@ export const shortVersion: FeedbackForm = {
             NL: 'Vak of onderwerp',
           },
           required: true,
-        } as VakkenSelectorLabel,
+        },
         {
           id: 'userType',
           type: 'multipleChoice',

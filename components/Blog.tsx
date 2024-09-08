@@ -5,7 +5,7 @@ import { useTranslation } from '../hooks/useTranslation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal'; // Zorg ervoor dat je een Modal component hebt
 import { TextureLoader } from 'three';
-import { Canvas, useLoader } from '@react-three/fiber';
+import { useLoader } from '@react-three/fiber';
 import { BlogInfo, BlogPost, BlogPosts } from '@/data';
 
 

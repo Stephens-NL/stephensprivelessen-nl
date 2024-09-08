@@ -1,5 +1,6 @@
 import React from 'react';
 import { MultipleChoiceQuestion } from '../../../data';
+import { useTranslation } from '../../../hooks/useTranslation';
 
 type Props = {
   question: MultipleChoiceQuestion;
@@ -10,9 +11,10 @@ type Props = {
 };
 
 const MultipleChoice: React.FC<Props> = ({ question, value, onChange, language, isDarkMode }) => {
+  const { t } = useTranslation();
   return (
     <div className={`mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-      <label htmlFor={question.id} className="block mb-2">{question.label[language]}</label>
+      <label htmlFor={question.id} className="block mb-2">{String(t(question.label))}</label>
       <select
         id={question.id}
         name={question.id}
@@ -22,7 +24,7 @@ const MultipleChoice: React.FC<Props> = ({ question, value, onChange, language, 
       >
         {question.options.map((option) => (
           <option key={option.value} value={option.value}>
-            {option.label[language]}
+            {String(t(option.label))}
           </option>
         ))}
       </select>

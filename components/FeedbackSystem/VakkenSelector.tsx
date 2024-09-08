@@ -1,21 +1,23 @@
+import React, { useEffect, useState, useCallback, KeyboardEvent } from 'react';
 import { Search } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
-import React, { useEffect, useState, useCallback, KeyboardEvent } from 'react';
 import { vakkenData } from '../../data';
 
-const VakkenSelector: React.FC<{ 
-  onChange: (vakken: string[]) => void; 
+interface VakkenSelectorProps {
+  onChange: (vakken: string[]) => void;
   initialValue?: string[];
   setIsQuestionAnswered: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ onChange, initialValue = [], setIsQuestionAnswered }) => {
+}
+
+const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue = [], setIsQuestionAnswered }) => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedVakken, setSelectedVakken] = useState<string[]>(initialValue);
+  const [selectedVakken, setSelectedVakken] = useState<string[]>(Array.isArray(initialValue) ? initialValue : []);
   const [customVak, setCustomVak] = useState('');
   const vakken = vakkenData;
 
   const filteredVakken = vakken.filter(vak =>
-    t(vak).toLowerCase().includes(searchTerm.toLowerCase())
+    String(String(t(vak))).toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleToggleVak = useCallback((vak: string) => {
@@ -40,7 +42,6 @@ const VakkenSelector: React.FC<{
     }
   };
 
-
   useEffect(() => {
     onChange(selectedVakken);
     setIsQuestionAnswered(selectedVakken.length > 0);
@@ -48,11 +49,11 @@ const VakkenSelector: React.FC<{
 
   return (
     <div className="flex flex-col items-center justify-center space-y-6">
-      <h2 className="text-3xl font-bold text-white mb-4">{t('Kies een of meerdere vakken')}</h2>
+      <h2 className="text-3xl font-bold text-white mb-4">{String(t({ EN: 'Choose one or more subjects', NL: 'Kies een of meerdere vakken' }))}</h2>
       <div className="relative w-full max-w-md mb-4">
         <input
           type="text"
-          placeholder={t('Zoek een vak')}
+          placeholder={String(t({ EN: 'Search a subject', NL: 'Zoek een vak' }))}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-4 py-2 bg-white text-blue-900 rounded-md pl-10"
@@ -62,20 +63,20 @@ const VakkenSelector: React.FC<{
       <div className="grid grid-cols-3 gap-4">
         {filteredVakken.map((vak) => (
           <button
-            key={t(vak)}
-            onClick={() => handleToggleVak(t(vak))}
+            key={String(t(vak))}
+            onClick={() => handleToggleVak(String(t(vak)))}
             className={`px-4 py-2 rounded-md transition-colors duration-300 ${
-              selectedVakken.includes(t(vak)) ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-900 hover:bg-yellow-300'
+              selectedVakken.includes(String(t(vak))) ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-900 hover:bg-yellow-300'
             }`}
           >
-            {t(vak)}
+            {String(t(vak))}
           </button>
         ))}
       </div>
       <div className="flex w-full max-w-md">
         <input
           type="text"
-          placeholder={t('Anders, namelijk...')}
+          placeholder={String(t({ EN: 'Other, namely...', NL: 'Anders, namelijk...' }))}
           value={customVak}
           onChange={(e) => setCustomVak(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -85,7 +86,7 @@ const VakkenSelector: React.FC<{
           onClick={handleAddCustomVak}
           className="px-4 py-2 bg-yellow-400 text-blue-900 rounded-r-md hover:bg-yellow-300 transition-colors duration-300"
         >
-          {t('Toevoegen')}
+          {String(t({ EN: 'Add', NL: 'Toevoegen' }))}
         </button>
       </div>
       <div className="flex flex-wrap justify-center gap-2">

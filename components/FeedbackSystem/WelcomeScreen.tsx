@@ -20,7 +20,7 @@ const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void 
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
             >
-                {t(data.title)}
+                {String(t(data.title))}
             </motion.h1>
             <motion.p
                 className="text-xl text-white mb-8"
@@ -28,7 +28,7 @@ const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void 
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                {t(data.description)}
+                {String(t(data.description))}
             </motion.p>
             <motion.button
                 onClick={onContinue}
@@ -36,7 +36,7 @@ const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                {t(data.startButtonText)}
+                {String(t(data.startButtonText))}
             </motion.button>
         </motion.div>
     );

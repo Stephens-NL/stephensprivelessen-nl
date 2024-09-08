@@ -1,17 +1,21 @@
 'use client';
 
 import { LucideIcon } from "lucide-react";
+import { IconType } from 'react-icons/lib';
+
 
 // Language type
 export type Language = 'EN' | 'NL';
 
 // Bilingual type for handling multilingual content
-export type Bilingual<T = string | string[] | Record<string, any>> = {
+type Bilingual<T = string | string[] | Record<string, any>> = {
   [key in Language]: T;
 };
 
 // Translation function type
 export type TranslationFunction = (key: Bilingual) => string | string[] | Record<string, any>;
+
+export type TranslatedObject = Bilingual;
 
 // Define question types
 export type QuestionType = 'text' | 'textarea' | 'email' | 'number' | 'vakkenSelector' | 'multipleChoice' | 'rating';
@@ -199,37 +203,74 @@ export interface FAQData {
   faqItems: FAQItems;
 }
 
-// Welcome Screen Types
+export interface CollapsibleSectionProps {
+  title: Bilingual;  // Assuming title is a string
+  children: React.ReactNode;
+}
+
+export interface SubjectListProps {
+  subjects: Subject[],
+  title: Bilingual
+
+}
+
+interface Pricing {
+  duration: string;
+  price: string;
+}
+
+export interface PricingTableProps {
+  pricing: Pricing[];
+  title: string;
+}
+
+export interface LanguageSelectionData {
+  title: string;
+  languages: Bilingual;
+}
+
 export interface WelcomeScreenData {
-  languageSelection: {
-    title: Bilingual;
-    languages: Record<string, string>;
-  };
-  welcome: {
-    title: Bilingual;
-    description: Bilingual;
-    startButtonText: Bilingual;
-  };
-  lengthSelection: {
-    title: Bilingual;
-    shortOption: Bilingual;
-    longOption: Bilingual;
-  };
-  navigation: {
-    back: Bilingual;
-    next: Bilingual;
-    submit: Bilingual;
-  };
-  submitCTA: {
-    title: Bilingual;
-    description: Bilingual;
-    buttonText: Bilingual;
-  };
-  farewell: {
-    title: Bilingual;
-    message: Bilingual;
-    closeButtonText: Bilingual;
-  };
+  title: Bilingual;
+  description: Bilingual;
+  startButtonText: Bilingual;
+}
+
+interface NavigationData {
+  back: Bilingual;
+  next: Bilingual;
+  submit: Bilingual;
+}
+
+interface SubmitCTAData {
+  title: Bilingual;
+  description: Bilingual;
+  buttonText: Bilingual;
+}
+
+interface FarewellData {
+  title: Bilingual;
+  message: Bilingual;
+  closeButtonText: Bilingual;
+}
+
+interface LengthSelectionData {
+  title: Bilingual;
+  shortOption: Bilingual;
+  longOption: Bilingual;
+}
+
+export interface FeedbackFormDataImportProps {
+  feedbackFormData: FeedbackFormData;
+}
+
+// Welcome Screen Types
+export interface FeedbackFormData {
+  languageSelection: LanguageSelectionData;
+  welcome: WelcomeScreenData;
+  lengthSelection: LengthSelectionData;
+  navigation: NavigationData;
+  submitCTA: SubmitCTAData;
+  farewell: FarewellData;
 }
 
 export interface QuickLink {
@@ -237,16 +278,28 @@ export interface QuickLink {
   label: Bilingual;
 }
 
+export interface FooterData {
+  footer: Footer;
+}
 export interface Footer {
   title: Bilingual;
   description: Bilingual;
   quickLinksLabel: Bilingual;
   quickLinks: QuickLink[];
   contactLabel: Bilingual;
-  email: string;
-  phone: string;
+  contact: {
+    email: string;
+    phone: string;
+  }
   copyright: Bilingual;
 }
+
+export interface ServiceData {
+  generalContent: GeneralContentProps;
+  services: Service[];
+  categories: ServiceCategory[];
+}
+
 
 // Form Descriptions
 export interface FormDescription {
@@ -283,23 +336,25 @@ export interface ExpandedEntries {
   [key: number]: boolean;
 }
 
-// Contact Page Content Structure
-export interface ContactInfo {
+export type IconMap = {
+  [K in 'FaPhone' | 'FaEnvelope' | 'FaMapMarkerAlt' | 'FaWhatsapp']: IconType;
+};
+
+export interface ContactInfoProps {
   icon: string;
   title: Bilingual;
   content: string;
-  link: string;
+  href?: string;
+
 }
 
-export interface Subject {
-  EN: string;
-  NL: string;
+export interface ContactData {
+  title: Bilingual
+  subtitle: Bilingual
+  contactInfo: ContactInfoProps[];
+
 }
 
-export interface PriceInfo {
-  duration: string;
-  price: string;
-}
 
 export interface Hero {
   title: Bilingual;
@@ -312,6 +367,17 @@ export interface Hero {
   img: { imageSrc: string; altern: Bilingual };
 }
 
+export interface HeroData {
+  hero: Hero;
+}
+
+export type Subject = Bilingual;
+
+export type PriceInfo = {
+  duration: string;
+  price: string;
+};
+
 export interface ContactPageContent {
   title: Bilingual;
   aboutMe: Bilingual;
@@ -322,23 +388,35 @@ export interface ContactPageContent {
     higher: Subject[];
   };
   pricing: {
-    primary: PriceInfo[];
-    secondary: PriceInfo[];
     higher: PriceInfo[];
+    secondary20Plus: PriceInfo[];
+    secondary20Minus: PriceInfo[];
   };
   groupLessons: {
-    secondary: PriceInfo[];
     higher: PriceInfo[];
+    secondary20Plus: PriceInfo[];
+    secondary20Minus: PriceInfo[];
   };
   examTraining: {
     description: Bilingual;
     mathA_C: PriceInfo[];
     mathB: PriceInfo[];
   };
-  contactItems: ContactInfo[];
+  flexibilityPremium: {
+    duration: string;
+    price: string;
+  }[];
+  travelCosts: {
+    duration: string;
+    price: string;
+  }[];
+  lastMinuteSurcharges: {
+    timeFrame: string;
+    percentage: number;
+  }[];
+  contactItems: ContactInfoProps[];
 }
 
-// Backwards Compatibility Types
 export type LabelGroup = QuestionGroup;
 export type VakkenSelectorLabel = VakkenSelectorQuestion;
 
@@ -402,4 +480,82 @@ export interface About {
 export interface AboutData {
   about: About;
   introductionContent: IntroductionContent;
+}
+
+export interface FeedbackData {
+  id: string;
+  timestamp: string;
+  generalInfo: {
+    learnerName: string;
+    subjects: string[];
+  };
+  formType: string;
+  ratings: {
+    overallQuality: number;
+    [key: string]: number;
+  };
+  openFeedback: {
+    mostValuable?: string;
+    improvements?: string;
+    suggestions?: string;
+    [key: string]: string | undefined;
+  };
+  quote: {
+    text?: string;
+    consent?: string;
+  };
+}
+// interface formData {
+//   learnerName: string;
+//   subjects: string[];
+//   overallRating: number;
+//   mostValuable: string;
+//   quickImprovement?: string;
+//   quoteConsent?: 'yes' | 'no';
+//   quoteText?: string;
+// }
+export interface FeedbackSummaryProps {
+  formData: {
+    learnerName?: string;
+    subject?: string[];
+    overallRating?: number;
+    mostValuable?: string;
+    quickImprovement?: string;
+    quoteConsent?: 'yes' | 'no';
+    quoteText?: string;
+  };
+  onSubmit: () => void;
+  onEdit: () => void;
+}
+
+export interface RenderSummaryItemProps {
+  label: string;
+  value?: string | number; // Value can be optional and either a string or a number.
+}
+
+// feedbackData.ts
+export interface FeedbackSummaryData {
+  headings: {
+    feedbackSummary: Bilingual,
+    generalInformation: Bilingual,
+    ratings: Bilingual,
+    openFeedback: Bilingual,
+    quote: Bilingual,
+  },
+  labels: {
+    name: Bilingual,
+    subjects: Bilingual,
+    overallRating: Bilingual,
+    mostValuableAspect: Bilingual,
+    suggestionForImprovement: Bilingual,
+    quoteText: Bilingual,
+  },
+  buttons: {
+    editFeedback: Bilingual,
+    submitCTA: Bilingual,
+  },
+};
+
+export interface FormTypeSelectorProps {
+  onSelectFormType: (formType: 'short' | 'long') => void;
 }

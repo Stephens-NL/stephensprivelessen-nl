@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Language } from "@/data";
+import { Language, LanguageSelectionData } from "@/data";
 
 interface LanguageSelectorProps {
   onSelectLanguage: (lang: Language) => void;
+  data: LanguageSelectionData
 }
 
 const variants = {
@@ -22,41 +23,44 @@ const variants = {
     opacity: 0
   })
 };
+console.log('lnagselect geladen')
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, data }) => {
   return (
-    <motion.div
-      key="language-selector"
-      variants={variants}
-      initial="enter"
-      animate="center"
-      exit="exit"
-      transition={{
-        x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 }
-      }}
-      className="flex flex-col items-center justify-center h-full"
-    >
-      <h2 className="text-3xl font-bold text-white mb-6">Select Your Language / Kies Je Taal</h2>
-      <div className="flex justify-center space-x-4">
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => onSelectLanguage('NL')}
-          className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
-        >
-          Nederlands
-        </motion.button>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => onSelectLanguage('EN')}
-          className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
-        >
-          English
-        </motion.button>
-      </div>
-    </motion.div>
+    <>
+      <motion.div
+        key="language-selector"
+        variants={variants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        transition={{
+          x: { type: "spring", stiffness: 300, damping: 30 },
+          opacity: { duration: 0.2 }
+        }}
+        className="flex flex-col items-center justify-center h-full"
+      >
+        <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
+        <div className="flex justify-center space-x-4">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => onSelectLanguage('NL')}
+            className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
+          >
+            Nederlands
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => onSelectLanguage('EN')}
+            className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
+          >
+            English
+          </motion.button>
+        </div>
+      </motion.div>
+    </>
   );
 };
 

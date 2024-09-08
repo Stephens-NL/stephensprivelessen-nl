@@ -55,13 +55,13 @@ const Introductie = () => {
           className="text-3xl font-bold mb-6 text-center"
           variants={textItemVariants}
         >
-          {t(introductionContent.title)}
+          {String(t(introductionContent.title))}
         </motion.h2>
         <motion.p
           className="text-lg text-gray-700 leading-relaxed text-center"
           variants={textItemVariants}
         >
-          {t(introductionContent.description)}
+          {String(t(introductionContent.description))}
         </motion.p>
       </motion.div>
     </motion.section>

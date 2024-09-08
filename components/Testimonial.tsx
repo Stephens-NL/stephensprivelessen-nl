@@ -10,7 +10,7 @@ const Testimonial = ({ text, author }: TestimonialType) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      <p className="text-gray-600 italic mb-4">{t(text)}</p>
+      <p className="text-gray-600 italic mb-4">{String(t(text))}</p>
       <p className="font-semibold">- {author}</p>
     </div>
   )

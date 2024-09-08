@@ -7,12 +7,13 @@ import TextBlock from './TextBlock';
 import ButtonTrial from '../ButtonTrial';
 import SignInHere from './SignInHere';
 import { useTranslation } from '../../hooks/useTranslation';
+import { HeroData } from '@/data';
 
 
 
 const Hero = () => {
   const { t } = useTranslation();
-  const [heroData, setHeroData] = useState(null);
+  const [heroData, setHeroData] = useState<HeroData|null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -23,7 +24,7 @@ const Hero = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
-        const data = await response.json();
+        const data: HeroData = await response.json();
         setHeroData(data);
 
         setLoading(false);
@@ -68,7 +69,7 @@ const Hero = () => {
           >
             <Image
               src={imageSrc}
-              alt={t(altern)}
+              alt={String(t(altern))}
               width={600}
               height={400}
               className="rounded-xl shadow-lg"

@@ -28,18 +28,18 @@ const Modal: React.FC<{ service: Service | null, isOpen: boolean, onClose: () =>
             className="bg-white p-8 rounded-lg w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto"
             onClick={(e: React.MouseEvent) => e.stopPropagation()}
           >
-            <h2 className="text-3xl font-bold mb-6">{t(service.title)}</h2>
+            <h2 className="text-3xl font-bold mb-6">{String(t(service.title))}</h2>
             <div className="flex items-center mb-6">
               <Image 
                 src={service.icon} 
-                alt={t(service.title)} 
+                alt={String(t(service.title))} 
                 width={80} // Specify the width
                 height={80} // Specify the height
                 className="h-20 w-20 mr-4" 
               />
-              <p className="text-xl text-gray-600">{t(service.shortDescription)}</p>
+              <p className="text-xl text-gray-600">{String(t(service.shortDescription))}</p>
             </div>
-            <p className="text-gray-700 mb-6 text-lg leading-relaxed">{t(service.longDescription)}</p>
+            <p className="text-gray-700 mb-6 text-lg leading-relaxed">{String(t(service.longDescription))}</p>
             <button
               className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition-colors"
               onClick={onClose}
@@ -72,7 +72,7 @@ const ServicesShort: React.FC = () => {
     <section className="bg-[#FCF8F1] bg-opacity-30 py-10 sm:py-16 lg:py-24">
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-3xl font-bold mb-6 text-center">
-          {t(ourServices)}
+          {String(t(ourServices))}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {randomServices.map((service, index) => (
@@ -87,21 +87,21 @@ const ServicesShort: React.FC = () => {
               <div className="flex justify-center mb-4">
                 <Image 
                   src={service.icon} 
-                  alt={t(service.title)} 
+                  alt={String(t(service.title))} 
                   width={48} // Specify the width
                   height={48} // Specify the height
                   className="h-12 w-12" 
                 />
               </div>
               <h3 className="text-xl font-semibold mb-2 text-center">
-                {t(service.title)}
+                {String(t(service.title))}
               </h3>
               <p className="text-gray-700 mb-4 text-justify">
-                {t(service.shortDescription)}
+                {String(t(service.shortDescription))}
               </p>
               <div className="text-center mt-4">
                 <span className="text-blue-500 hover:text-blue-700 font-bold">
-                  {t(learnMore)} &rarr;
+                  {String(t(learnMore))} &rarr;
                 </span>
               </div>
             </motion.div>

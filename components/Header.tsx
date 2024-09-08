@@ -57,7 +57,7 @@ const Header = () => {
                         : 'text-gray-800 hover:bg-blue-500 hover:text-white'
                 } ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
             >
-                {t(label)}  
+                {String(t(label))}  
             </Link>
         </motion.div>
     );
@@ -76,7 +76,7 @@ const Header = () => {
                             onClick={(e) => !isClickable && e.preventDefault()}
                             className={`text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
                         >
-                            {t(siteTitle)}
+                            {String(t(siteTitle))}
                         </Link>
                     </motion.div>
                     <motion.button
@@ -123,7 +123,7 @@ const Header = () => {
                             <div className="flex flex-col h-full">
                                 <div className="flex justify-between items-center p-4 border-b">
                                     <span className="text-2xl font-bold text-blue-600">
-                                        {t(siteTitle)}
+                                        {String(t(siteTitle))}
                                     </span>
                                     <button
                                         onClick={toggleMenu}

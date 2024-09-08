@@ -1,13 +1,15 @@
 import { blogInfo, blogPosts } from "@/data";
 import { BlogPost } from "../../data";
 import { NextRequest, NextResponse } from "next/server";
+import { useTranslation } from "@/hooks/useTranslation";
 // import { t } from "../../../hooks/useTranslation";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const search = searchParams.get('search');
+  const { t } = useTranslation();
   const filterdPosts = search
-    ? blogPosts.filter(post => post.title.NL.toLowerCase().includes(search.toLowerCase()))
+    ? blogPosts.filter(post => String(t(post.title)).toLowerCase().includes(search.toLowerCase()))
     : blogPosts;
 
   // Combine blogInfo and blogPosts into a single object

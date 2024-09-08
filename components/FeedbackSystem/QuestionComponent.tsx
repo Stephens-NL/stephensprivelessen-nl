@@ -52,6 +52,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     const renderInput = () => {
         switch (question.type) {
             case 'vakkenSelector':
+
                 return (
                     <VakkenSelector
                         onChange={handleVakkenChange}
@@ -96,7 +97,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                                 key={option.value}
                                 checked={value === option.value}
                                 onChange={() => handleOptionChange(question.id, option.value)}
-                                label={t(option.label)}
+                                label={String(t(option.label))}
                             />
                         ))}
                     </div>
@@ -112,15 +113,15 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                 <div className="absolute -top-4 right-0 z-10">
                     <CommentCloud>
                         <p className="text-sm">
-                            {question.comment
+                            {String(question.comment
                                 ? t(question.comment)
-                                : t('You can also type to vote!')}
+                                : t({EN: 'You can also type to vote!', NL: 'Je kan ook typen om te stemmen!'}))}
                         </p>
                     </CommentCloud>
                 </div>
             )}
             <label className="text-lg font-medium text-white mb-2 flex items-center">
-                {t(question.question)}
+                {String(t(question.label))}
                 {question.required && (
                     <span className="text-yellow-400 ml-2 text-sm font-bold animate-pulse" title="This field is required">
                         *
@@ -130,7 +131,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
             {renderInput()}
             {question.required && (
                 <p className="text-yellow-400 text-xs mt-1 italic">
-                    {t('This field is required')}
+                    {String(t({EN: 'This field is required', NL: 'Dit veld is verplicht'}))}
                 </p>
             )}
         </div>

@@ -21,7 +21,7 @@ const PhilosophyCard = ({ title, description }: {title: string, description: str
 
 const DetailedInfoAccordion = ({ question, answer }: QuestionAnswer) => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log('isOpen', isOpen)
+
   return (
     <motion.div
       className="border-b border-blue-200 py-4"

@@ -19,7 +19,7 @@ export const services: Service[] = [
     ]
   },
   {
-    icon: "/images/png/programming-icon.png",
+    icon: "/images/svg/programming-icon.svg",
     title: { EN: "Programming Lessons", NL: "Programmeerlessen" },
     shortDescription: { 
       EN: "Learn coding in Python, Java, and more.", 
@@ -35,7 +35,7 @@ export const services: Service[] = [
     ]
   },
   {
-    icon: "/images/png/workshop-icon.png",
+    icon: "/images/svg/creative-workshop-icon.svg",
     title: { EN: "Creative Workshops", NL: "Creatieve Workshops" },
     shortDescription: { 
       EN: "Explore creativity through music, photography, and more.", 
@@ -47,7 +47,7 @@ export const services: Service[] = [
     }
   },
   {
-    icon: "/images/png/workshop-icon.png",
+    icon: "/images/svg/workshop-icon.svg",
     title: { EN: "Non-Creative Workshops", NL: "Niet-Creatieve Workshops" },
     shortDescription: { 
       EN: "Practical, skill-based workshops for various fields.", 
@@ -59,7 +59,7 @@ export const services: Service[] = [
     }
   },
   {
-    icon: "/images/png/consultancy-icon.png",
+    icon: "/images/svg/consultancy-icon.svg",
     title: { EN: "Consultancy & Advisory", NL: "Consultancy & Advies" },
     shortDescription: { 
       EN: "Expert guidance for businesses and individuals.", 
@@ -71,7 +71,7 @@ export const services: Service[] = [
     }
   },
   {
-    icon: "/images/png/custom-icon.png",
+    icon: "/images/svg/custom-icon.svg",
     title: { EN: "Custom Solutions", NL: "Maatwerkoplossingen" },
     shortDescription: { 
       EN: "Tailored solutions for unique challenges.", 
