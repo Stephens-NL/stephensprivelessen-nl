@@ -224,10 +224,6 @@ export interface PricingTableProps {
   title: string;
 }
 
-export interface LanguageSelectionData {
-  title: string;
-  languages: Bilingual;
-}
 
 export interface WelcomeScreenData {
   title: Bilingual;
@@ -558,4 +554,23 @@ export interface FeedbackSummaryData {
 
 export interface FormTypeSelectorProps {
   onSelectFormType: (formType: 'short' | 'long') => void;
+}
+
+export interface QuestionComponentProps {
+  question: Question;
+  onChange: (id: string, value: any, skipToNext?: boolean) => void;
+  value: any;
+  onNext: () => void;
+  formData: Record<string, any>;
+  setIsQuestionAnswered: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface LanguageSelectorProps {
+  onSelectLanguage: (lang: Language) => void;
+  data: LanguageSelectionData;
+}
+
+interface LanguageSelectionData {
+  title: string;
+  languages: Bilingual;
 }

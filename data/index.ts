@@ -8,7 +8,7 @@ export * from './testimonials';
 export * from './types';
 export * from './blog';
 export * from './questionsData';
-export * from './intermezzo';
+
 export * from './contactData';
 export * from './feedbackQuestions';
 export * from './feedbackFormData';

@@ -11,7 +11,6 @@ export default function handler(
   res: NextApiResponse<ResponseData>
 ) {
   if (req.method === 'GET') {
-    console.log('GOT')
     try {
       if (!feedbackFormData) {
         throw new Error('HEADER data or introduction content is undefined')

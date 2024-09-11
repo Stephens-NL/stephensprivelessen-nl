@@ -3,12 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { motion, AnimatePresence } from 'framer-motion';
-import Modal from './Modal'; // Zorg ervoor dat je een Modal component hebt
+import Modal from './Modal';
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { BlogInfo, BlogPost, BlogPosts } from '@/data';
-
-
 
 const BlogPostSummary: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onClick }) => {
   const { t } = useTranslation();
@@ -44,7 +42,7 @@ const BlogPostSummary: React.FC<{ post: BlogPost; onClick: () => void }> = ({ po
   );
 };
 
-export const BlogList: React.FC<{ posts: BlogPosts }> = () => {
+export const BlogList: React.FC = () => {
   const { t } = useTranslation();
   const [posts, setPosts] = useState<BlogPosts>([]);
   const [blogInfo, setBlogInfo] = useState<BlogInfo | null>(null);
@@ -55,20 +53,15 @@ export const BlogList: React.FC<{ posts: BlogPosts }> = () => {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const [postsResponse, infoResponse] = await Promise.all([
-          fetch('/blog/api'),
-          fetch('/blog/api')
-        ]);
+        const response = await fetch('/api/blog');
 
-        if (!postsResponse.ok || !infoResponse.ok) {
+        if (!response.ok) {
           throw new Error('Failed to fetch blog data');
         }
 
-        const postsData: BlogPosts = await postsResponse.json();
-        const infoData: BlogInfo = await infoResponse.json();
-
-        setPosts(postsData);
-        setBlogInfo(infoData);
+        const data = await response.json();
+        setPosts(data.blogPosts);
+        setBlogInfo(data.blogInfo);
         setIsLoading(false);
       } catch (err) {
         console.error('Error fetching blog data:', err);
@@ -84,7 +77,15 @@ export const BlogList: React.FC<{ posts: BlogPosts }> = () => {
     setSelectedPost(null);
   };
 
-  if (!posts || !Array.isArray(posts)) {
+  if (isLoading) {
+    return <p className="text-gray-300">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-500">{error}</p>;
+  }
+
+  if (!posts || posts.length === 0) {
     return <p className="text-gray-300">No posts available.</p>;
   }
 
@@ -135,21 +136,6 @@ export const BlogList: React.FC<{ posts: BlogPosts }> = () => {
     </div>
   );
 };
-
-
-
-
-const ChalkboardBackground = () => {
-  const chalkboardTexture = useLoader(TextureLoader, './chalk-texture.png'); // You'll need to provide this texture
-
-  return (
-    <mesh position={[0, 0, -1]}>
-      <planeGeometry args={[20, 12]} />
-      <meshBasicMaterial map={chalkboardTexture} />
-    </mesh>
-  );
-};
-
 
 const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({ post, onClose }) => {
   const { t } = useTranslation();
@@ -319,7 +305,7 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
           transition={{ delay: 0.8, duration: 0.5 }}
           className="mt-12"
         >
-          <h3 className="text-xl font-semibold mb-4 text-cyan-400">{'Tags'}:</h3>
+          <h3 className="text-xl font-semibold mb-4 text-cyan-400">Tags:</h3>
           <div className="flex flex-wrap gap-2">
             {post.tags.map((tag, index) => (
               <span
@@ -335,7 +321,5 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
     </div>
   );
 };
-
-
 
 export default BlogList;

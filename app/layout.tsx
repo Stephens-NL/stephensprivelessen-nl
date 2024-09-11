@@ -31,7 +31,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           {showHeader && <Header />}
           <main className="flex-grow">{children}</main>
-          {<Footer />}
+          {showHeader && <Footer />}
         </body>
       </LanguageProvider>
     </html>

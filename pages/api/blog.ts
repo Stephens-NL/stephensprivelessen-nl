@@ -1,62 +1,32 @@
-import { blogInfo, blogPosts } from "@/data";
-import { BlogPost } from "../../data";
-import { NextRequest, NextResponse } from "next/server";
-import { useTranslation } from "@/hooks/useTranslation";
-// import { t } from "../../../hooks/useTranslation";
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { blogInfo, blogPosts } from '../../data'
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const search = searchParams.get('search');
-  const { t } = useTranslation();
-  const filterdPosts = search
-    ? blogPosts.filter(post => String(t(post.title)).toLowerCase().includes(search.toLowerCase()))
-    : blogPosts;
-
-  // Combine blogInfo and blogPosts into a single object
-  const blogData = {
-    info: blogInfo,
-    posts: blogPosts
-  };
-
-  // No need to manually stringify the data
-  return NextResponse.json(filterdPosts, {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+type ResponseData = {
+  blogInfo: typeof blogInfo
+  blogPosts: typeof blogPosts
+  error?: string
 }
 
-
-
-export async function POST(request: NextRequest) {
-  try {
-    const posts = blogPosts;
-    const post = await request.json();
-    // Process the body data here
-
-    const newPost: BlogPost = {
-      id: posts.length + 1,
-      title: post.title,
-      content: post.content,
-      date: post.date,
-      author: post.author,
-      tags: post.tags
-
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
+  if (req.method === 'GET') {
+    try {
+      if (!blogInfo || !blogPosts) {
+        throw new Error('Blog info or posts are undefined')
+      }
+      res.status(200).json({ blogInfo: blogInfo, blogPosts: blogPosts })
+    } catch (error) {
+      console.error('Error fetching blog data:', error)
+      res.status(500).json({
+        blogInfo: {} as typeof blogInfo,
+        blogPosts: [] as typeof blogPosts,
+        error: 'Failed to fetch blog data'
+      })
     }
-
-    blogPosts.push(newPost);
-
-    return new Response(JSON.stringify(newPost), {
-      status: 201,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-  } catch (error) {
-    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  } else {
+    res.setHeader('Allow', ['GET'])
+    res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 }
-
-

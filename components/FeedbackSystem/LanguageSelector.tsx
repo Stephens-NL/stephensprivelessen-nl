@@ -1,11 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Language, LanguageSelectionData } from "@/data";
+import { Language, LanguageSelectorProps } from "@/data";
 
-interface LanguageSelectorProps {
-  onSelectLanguage: (lang: Language) => void;
-  data: LanguageSelectionData
-}
+
 
 const variants = {
   enter: (direction: number) => ({
@@ -23,44 +20,39 @@ const variants = {
     opacity: 0
   })
 };
-console.log('lnagselect geladen')
+
+// Consider removing this console.log in production
+console.log('LanguageSelector loaded');
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, data }) => {
   return (
-    <>
-      <motion.div
-        key="language-selector"
-        variants={variants}
-        initial="enter"
-        animate="center"
-        exit="exit"
-        transition={{
-          x: { type: "spring", stiffness: 300, damping: 30 },
-          opacity: { duration: 0.2 }
-        }}
-        className="flex flex-col items-center justify-center h-full"
-      >
-        <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
-        <div className="flex justify-center space-x-4">
+    <motion.div
+      key="language-selector"
+      variants={variants}
+      initial="enter"
+      animate="center"
+      exit="exit"
+      transition={{
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 }
+      }}
+      className="flex flex-col items-center justify-center h-full"
+    >
+      <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
+      <div className="flex justify-center space-x-4">
+        {['NL', 'EN'].map((lang) => (
           <motion.button
+            key={lang}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => onSelectLanguage('NL')}
+            onClick={() => onSelectLanguage(lang as Language)}
             className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
           >
-            Nederlands
+            {lang === 'NL' ? 'Nederlands' : 'English'}
           </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => onSelectLanguage('EN')}
-            className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
-          >
-            English
-          </motion.button>
-        </div>
-      </motion.div>
-    </>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 

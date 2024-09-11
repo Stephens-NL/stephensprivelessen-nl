@@ -4,15 +4,18 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PhilosophyCardProps, QuestionAnswer, IntroSectionProps, AboutData } from '../data';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 
 
 const PhilosophyCard = ({ title, description }: {title: string, description: string}) => (
   <motion.div
     className="bg-white bg-opacity-80 backdrop-blur-lg rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
+    whileHover={{ scale: 1.03, transition: { duration: 0.2, ease: "easeInOut" } }}
+    whileTap={{ scale: 0.98 }}
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
   >
     <h3 className="text-xl font-semibold text-blue-900 mb-3">{title}</h3>
     <p className="text-blue-800">{description}</p>
@@ -27,56 +30,70 @@ const DetailedInfoAccordion = ({ question, answer }: QuestionAnswer) => {
       className="border-b border-blue-200 py-4"
       initial={false}
       animate={{ backgroundColor: isOpen ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0)" }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <button
         className="flex justify-between items-center w-full text-left text-blue-900"
         onClick={() => setIsOpen(!isOpen)}
       >
         <h3 className="text-lg font-semibold">{question}</h3>
-        <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>▼</motion.span>
+        <motion.span
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >▼</motion.span>
       </button>
-      <motion.div
-        initial={{ height: 0, opacity: 0 }}
-        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <p className="mt-2 text-blue-800">{answer}</p>
-      </motion.div>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
+            <p className="mt-2 text-blue-800">{answer}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
-
-
 
 const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSectionProps) => (
   <div className="container mx-auto px-4">
     <motion.h1
       className="text-4xl font-bold text-center text-blue-900 mb-12"
-      initial={{ opacity: 0, y: -50 }}
+      initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
       {title}
     </motion.h1>
     <div className="flex flex-col md:flex-row items-center">
       <motion.div
         className="md:w-1/2 mb-8 md:mb-0"
-        initial={{ opacity: 0, x: -50 }}
+        initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
         <Image src={imageSrc} alt={altText} width={400} height={400} className="rounded-full shadow-lg" />
       </motion.div>
       <motion.div
         className="md:w-1/2 md:pl-8"
-        initial={{ opacity: 0, x: 50 }}
+        initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
       >
         <h2 className="text-3xl font-semibold text-blue-900 mb-4">{heading}</h2>
         {paragraphs.map((paragraph, index) => (
-          <p key={index} className="mb-4 text-blue-800">{paragraph}</p>
+          <motion.p
+            key={index}
+            className="mb-4 text-blue-800"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 + index * 0.1 }}
+          >
+            {paragraph}
+          </motion.p>
         ))}
       </motion.div>
     </div>
