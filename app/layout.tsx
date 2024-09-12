@@ -1,5 +1,4 @@
 'use client';
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
@@ -9,6 +8,7 @@ import type { ReactNode } from "react";
 import { usePathname } from 'next/navigation';
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils";
+
 
 const inter = Inter({ subsets: ["latin"] });
 const fontSans = FontSans({
