@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
-import { TextureLoader } from 'three';
-import { useLoader } from '@react-three/fiber';
 import { BlogInfo, BlogPost, BlogPosts } from '@/data';
 
 const BlogPostSummary: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onClick }) => {
