@@ -12,5 +12,5 @@ export * from './questionsData';
 export * from './contactData';
 export * from './feedbackQuestions';
 export * from './feedbackFormData';
-export * from './metadata';
+
 export * from './vakkenData';
