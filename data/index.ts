@@ -8,9 +8,9 @@ export * from './testimonials';
 export * from './types';
 export * from './blog';
 export * from './questionsData';
-
+export * from './pricingData';
 export * from './contactData';
 export * from './feedbackQuestions';
 export * from './feedbackFormData';
-
+export * from './termsData';
 export * from './vakkenData';

@@ -574,3 +574,45 @@ interface LanguageSelectionData {
   title: string;
   languages: Bilingual;
 }
+
+// src/data/types.ts
+
+export type PricingItem = {
+  duration: number;   // Duration in hours
+  price: number;      // Price in Euros
+};
+
+export type GroupPricingItem = {
+  duration: number;        // Duration in hours
+  numberOfPeople: number;  // Number of people for group lessons
+  price: number;           // Price in Euros
+};
+
+export type SurchargeItem = {
+  timeFrame: string;    // Time window for surcharge (e.g., "Minder dan 24 uur")
+  percentage: number;   // Percentage surcharge
+};
+
+export interface Prices {
+  higher: PricingItem[];              // Pricing for higher education
+  secondary20Plus: PricingItem[];     // Pricing for secondary education (20+)
+  secondary20Minus: PricingItem[];    // Pricing for secondary education (20-)
+  groupLessons: {
+    higher: GroupPricingItem[];       // Group lesson pricing for higher education
+    secondary20Plus: GroupPricingItem[];  // Group lessons for secondary (20+)
+    secondary20Minus: GroupPricingItem[]; // Group lessons for secondary (20-)
+  };
+  flexibilityPremium: PricingItem[];  // Flexibility premium pricing
+  travelCosts: LocationPricingItem[]; // Travel costs
+  lastMinuteSurcharges: SurchargeItem[]; // Last-minute surcharge rules
+}
+
+type LocationPricingItem = {
+  location: string;  // Location description
+  price: number;     // Price in Euros
+};
+
+export type LocationPricingTableProps = {
+  pricing: LocationPricingItem[];
+  title: string;
+};
