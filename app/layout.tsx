@@ -19,7 +19,7 @@ export const metadata = {
     description: "Stephen provides expert tutoring in mathematics and programming, tailored to each student's needs.",
     images: [
       {
-        url: "https://www.stephenadei.nl/images/tutoring-banner.jpg", // Default image for openGraph
+        url: "https://www.stephenadei.nl/images/jpg/banner.jpg", // Default image for openGraph
         width: 1200,
         height: 630,
         alt: "Stephen's Private Tutoring Services",
@@ -33,7 +33,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Stephen's Private Lessons - Tutoring Services",
     description: "Get personalized tutoring in mathematics and programming with Stephen's Private Lessons.",
-    images: ["https://www.stephenadei.nl/images/tutoring-banner.jpg"], // Default image for Twitter
+    images: ["https://www.stephenadei.nl/images/jpg/banner.jpg"], // Default image for Twitter
   },
 };
 
