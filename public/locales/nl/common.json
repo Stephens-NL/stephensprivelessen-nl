@@ -1,0 +1,15 @@
+
+{
+  "siteName": "Stephen's Privélessen",
+  "nav": {
+    "home": "Home",
+    "about": "Over",
+    "services": "Diensten",
+    "booking": "Boeken",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "feedback": "Feedback",
+    "terms": "Voorwaarden"
+  }
+}

@@ -1,0 +1,26 @@
+
+{
+  "title": "Neem contact op",
+  "aboutMe": "Ik ben Stephen, een masterstudent uit Amsterdam die negatief advies heeft omgezet in hoge cijfers. Met tien jaar programmeerervaring weet ik hoe ik je kan helpen. Boek een gratis proefles en herontdek het plezier in wiskunde en programmeren. Tot snel!",
+  "aboutLessons": "Met een gemiddelde score van 8,5 voor examentrainingen weet ik hoe ik anderen kan helpen leren, inclusief programmeren dankzij mijn minor tijdens mijn Master Wiskunde. Moeite met programmeren of theorie? We focussen op wat je wel en niet weet en maken een plan voor je opdracht. Met slechts een uur beschikbaar, zorgen we dat het telt, en ik bied een week ondersteuning via WhatsApp of Berichten na onze les. Laten we snel beginnen!",
+  "subjects": {
+    "title": "Vakken",
+    "primary": "Basisonderwijs",
+    "secondary": "Voortgezet Onderwijs",
+    "higher": "Hoger Onderwijs"
+  },
+  "pricing": {
+    "title": "Tarieven",
+    "singleHour": "Enkel uur",
+    "twoHours": "Twee uren",
+    "fourHours": "Vier uren"
+  },
+  "contactInfo": {
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "location": "Locatie"
+  },
+  "cta": {
+    "whatsapp": "Contact via WhatsApp"
+  }
+}

@@ -1,0 +1,26 @@
+
+{
+  "title": "Contact Us",
+  "aboutMe": "I'm Stephen, a master's student from Amsterdam who turned negative advice into top grades. With a decade of programming experience, I know how to help you. Book a free trial lesson and rediscover the joy in mathematics and programming. See you soon!",
+  "aboutLessons": "With an average score of 8.5 for exam trainings, I know how to help others learn, including programming thanks to my minor during my Master's in Mathematics. Struggling with programming or theory? We focus on what you know and don't know, and make a plan for your assignment. With only one hour available, we make it count, and I offer a week of support via WhatsApp or Messages after our lesson. Let's start soon!",
+  "subjects": {
+    "title": "Subjects",
+    "primary": "Primary Education",
+    "secondary": "Secondary Education",
+    "higher": "Higher Education"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "singleHour": "Single hour",
+    "twoHours": "Two hours",
+    "fourHours": "Four hours"
+  },
+  "contactInfo": {
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location"
+  },
+  "cta": {
+    "whatsapp": "Contact via WhatsApp"
+  }
+}
