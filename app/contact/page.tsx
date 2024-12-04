@@ -2,6 +2,7 @@
 import { Metadata } from 'next';
 import React from 'react';
 import Placeholder from '@/components/contact/Placeholder';
+import Contact from '@/components/contact/Contact';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -30,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const ContactPage = () => {
-  return <Placeholder />;
+  return <Contact />;
 };
 
 export default ContactPage;
