@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '../../../../hooks/useTranslation';
-import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight } from 'react-icons/fa';
+import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaBook } from 'react-icons/fa';
 
 interface InfoSectionProps {
     onBack: () => void;
@@ -12,6 +12,32 @@ interface InfoSectionProps {
 
 const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
     const { t } = useTranslation();
+
+    const courses = {
+        primary: [
+            'Rekenen',
+            'Taal',
+        ],
+        secondary: [
+            'Wiskunde A/B/C/D',
+            'Natuurkunde',
+            'Scheikunde',
+            'Engels',
+        ],
+        higher: [
+            'Bedrijfsstatistiek',
+            'Calculus',
+            'Economie',
+            'Statistiek',
+            'Kansberekening',
+            'Lineaire Algebra',
+            'Verzamelingenleer',
+        ],
+        programming: [
+            'C', 'C#', 'C++', 'CSS', 'HTML', 'Java', 'Javascript', 
+            'MATLAB', 'Python', 'R', 'React', 'SPSS', 'SQL'
+        ]
+    };
 
     return (
         <motion.div
@@ -25,6 +51,60 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
+                    className="bg-blue-700 p-6 rounded-lg"
+                >
+                    <div className="flex items-center text-yellow-300 mb-3">
+                        <FaBook className="text-2xl mr-3" />
+                        <h3 className="text-lg font-semibold">
+                            {String(t({ EN: "Available Subjects", NL: "Beschikbare Vakken" }))}
+                        </h3>
+                    </div>
+                    <div className="text-yellow-100 space-y-4">
+                        <div>
+                            <h4 className="font-semibold mb-2">{String(t({ EN: "Primary Education", NL: "Basisonderwijs" }))}</h4>
+                            <ul className="list-disc list-inside pl-4">
+                                {courses.primary.map((course, index) => (
+                                    <li key={index}>{course}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-semibold mb-2">{String(t({ EN: "Secondary Education", NL: "Voortgezet Onderwijs" }))}</h4>
+                            <ul className="list-disc list-inside pl-4">
+                                {courses.secondary.map((course, index) => (
+                                    <li key={index}>{course}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-semibold mb-2">{String(t({ EN: "Higher Education", NL: "Hoger Onderwijs" }))}</h4>
+                            <ul className="list-disc list-inside pl-4">
+                                {courses.higher.map((course, index) => (
+                                    <li key={index}>{course}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 className="font-semibold mb-2">{String(t({ EN: "Programming", NL: "Programmeren" }))}</h4>
+                            <p className="mb-2">{String(t({ 
+                                EN: "Various programming languages and technologies including:", 
+                                NL: "Verschillende programmeertalen en technologieën waaronder:" 
+                            }))}</p>
+                            <div className="flex flex-wrap gap-2">
+                                {courses.programming.map((lang, index) => (
+                                    <span key={index} className="bg-blue-600 px-2 py-1 rounded text-sm">
+                                        {lang}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ x: -20, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
                     className="bg-blue-700 p-6 rounded-lg"
                 >
                     <div className="flex items-center text-yellow-300 mb-3">
@@ -44,7 +124,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 <motion.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.2 }}
+                    transition={{ delay: 0.3 }}
                     className="bg-blue-700 p-6 rounded-lg"
                 >
                     <div className="flex items-center text-yellow-300 mb-3">
@@ -64,7 +144,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 <motion.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.3 }}
+                    transition={{ delay: 0.4 }}
                     className="bg-blue-700 p-6 rounded-lg"
                 >
                     <div className="flex items-center text-yellow-300 mb-3">

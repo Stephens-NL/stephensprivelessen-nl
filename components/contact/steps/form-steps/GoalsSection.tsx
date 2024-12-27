@@ -1,87 +1,96 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FormData } from '../../Contact';
 import { useTranslation } from '../../../../hooks/useTranslation';
-import { FaBookOpen, FaCalendarAlt } from 'react-icons/fa';
 
 interface GoalsSectionProps {
     formData: FormData;
     onUpdate: (updates: Partial<FormData>) => void;
 }
 
+const MIN_GOALS_LENGTH = 10;
+const MAX_GOALS_LENGTH = 500;
+
 const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
     const { t } = useTranslation();
+    const [error, setError] = useState<string | null>(null);
+
+    const handleGoalsChange = (value: string) => {
+        if (value.length < MIN_GOALS_LENGTH) {
+            setError(String(t({
+                EN: `Please provide at least ${MIN_GOALS_LENGTH} characters describing your goals`,
+                NL: `Geef minimaal ${MIN_GOALS_LENGTH} tekens op om je doelen te beschrijven`
+            })));
+        } else if (value.length > MAX_GOALS_LENGTH) {
+            setError(String(t({
+                EN: `Goals description cannot exceed ${MAX_GOALS_LENGTH} characters`,
+                NL: `Doelomschrijving mag niet langer zijn dan ${MAX_GOALS_LENGTH} tekens`
+            })));
+        } else {
+            setError(null);
+        }
+        onUpdate({ goals: value });
+    };
+
+    const remainingChars = MAX_GOALS_LENGTH - (formData.goals?.length || 0);
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="space-y-6"
-        >
-            <h2 className="text-2xl font-semibold text-yellow-300 mb-4">
-                {String(t({ EN: "Your Goals", NL: "Je Doelen" }))}
+        <div className="space-y-6">
+            <h2 className="text-2xl font-semibold text-white text-center">
+                {String(t({
+                    EN: "What are your learning goals?",
+                    NL: "Wat zijn je leerdoelen?"
+                }))}
             </h2>
+            
+            <p className="text-yellow-300 text-center">
+                {String(t({
+                    EN: "Please describe what you would like to achieve",
+                    NL: "Beschrijf wat je wilt bereiken"
+                }))}
+            </p>
 
-            <div className="space-y-4">
-                <div className="bg-blue-700 p-4 rounded-lg">
-                    <div className="flex items-center text-yellow-300 mb-3">
-                        <FaBookOpen className="text-xl mr-2" />
-                        <h3 className="font-semibold">
-                            {String(t({
-                                EN: "Learning Goals",
-                                NL: "Leerdoelen"
-                            }))}
-                        </h3>
-                    </div>
-                    <p className="text-yellow-100 text-sm mb-4">
-                        {String(t({
-                            EN: "What would you like to achieve? For example: better grades, understanding specific topics, or exam preparation.",
-                            NL: "Wat wil je bereiken? Bijvoorbeeld: betere cijfers, begrip van specifieke onderwerpen, of examenvoorbereiding."
-                        }))}
-                    </p>
-                </div>
-
-                <div className="bg-blue-700 p-4 rounded-lg">
-                    <div className="flex items-center text-yellow-300 mb-3">
-                        <FaCalendarAlt className="text-xl mr-2" />
-                        <h3 className="font-semibold">
-                            {String(t({
-                                EN: "Important Dates",
-                                NL: "Belangrijke Data"
-                            }))}
-                        </h3>
-                    </div>
-                    <p className="text-yellow-100 text-sm mb-4">
-                        {String(t({
-                            EN: "Do you have any upcoming tests, exams, or deadlines?",
-                            NL: "Heb je binnenkort toetsen, examens of deadlines?"
-                        }))}
-                    </p>
-                </div>
-
+            <div className="space-y-2">
                 <textarea
                     value={formData.goals}
-                    onChange={(e) => onUpdate({ goals: e.target.value })}
-                    className="w-full h-40 px-4 py-2 rounded-lg bg-blue-700 text-yellow-100 border border-blue-600 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400 focus:outline-none transition-colors"
+                    onChange={(e) => handleGoalsChange(e.target.value)}
+                    className={`w-full h-48 p-4 rounded-lg bg-blue-700 text-white border ${
+                        error ? 'border-red-500' : 'border-blue-600'
+                    } focus:border-yellow-400 focus:outline-none resize-none`}
                     placeholder={String(t({
-                        EN: "Describe your goals and any important dates...",
-                        NL: "Beschrijf je doelen en belangrijke data..."
+                        EN: "Example: I want to improve my understanding of calculus, especially derivatives and integrals...",
+                        NL: "Bijvoorbeeld: Ik wil mijn begrip van calculus verbeteren, vooral afgeleiden en integralen..."
                     }))}
+                    maxLength={MAX_GOALS_LENGTH}
                 />
-
-                {formData.goals.trim() === '' && (
-                    <p className="text-red-400 text-sm">
-                        {String(t({
-                            EN: "Please describe your goals to continue",
-                            NL: "Beschrijf je doelen om door te gaan"
+                <div className="flex justify-between items-center">
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className={`text-sm ${error ? 'text-red-500' : 'text-yellow-300'}`}
+                    >
+                        {error || String(t({
+                            EN: `${remainingChars} characters remaining`,
+                            NL: `Nog ${remainingChars} tekens beschikbaar`
                         }))}
-                    </p>
-                )}
+                    </motion.p>
+                    {formData.goals?.length >= MIN_GOALS_LENGTH && (
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-sm text-green-400"
+                        >
+                            {String(t({
+                                EN: "✓ Minimum length reached",
+                                NL: "✓ Minimale lengte bereikt"
+                            }))}
+                        </motion.p>
+                    )}
+                </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 

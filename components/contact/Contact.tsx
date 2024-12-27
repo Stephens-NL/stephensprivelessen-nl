@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import InitialChoice from './steps/InitialChoice';
 import { useTranslation } from '../../hooks/useTranslation';
 import LessonForm from './steps/LessonForm';
+import { sendContactForm } from '../../lib/api';
 
 export type FormStep =
     | 'initial' 
@@ -31,6 +32,13 @@ export interface FormData {
     parentName?: string;
     parentEmail?: string;
     parentPhone?: string;
+    submitted: boolean;
+    error?: string;
+    requestType: 'self' | 'other' | null;
+    requesterName?: string;
+    requesterEmail?: string;
+    relationship?: string;
+    programmingLanguage?: string;
 }
 
 const initialFormData: FormData = {
@@ -47,17 +55,71 @@ const initialFormData: FormData = {
     contactPreference: null,
     parentName: '',
     parentEmail: '',
-    parentPhone: ''
+    parentPhone: '',
+    submitted: false,
+    error: undefined,
+    requestType: null,
+    requesterName: '',
+    requesterEmail: '',
+    relationship: '',
+    programmingLanguage: undefined,
 };
 
 const Contact = () => {
     const [currentStep, setCurrentStep] = useState<FormStep>('initial');
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const { t } = useTranslation();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleUpdateFormData = (updates: Partial<FormData>) => {
         setFormData(prev => ({ ...prev, ...updates }));
     };
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        try {
+            if (!formData.email || !formData.name) {
+                throw new Error(String(t({ 
+                    EN: 'Please fill in all required fields', 
+                    NL: 'Vul alle verplichte velden in' 
+                })));
+            }
+
+            if (formData.age < 18 && !formData.parentEmail) {
+                throw new Error(String(t({ 
+                    EN: 'Parent contact information is required for students under 18', 
+                    NL: 'Contactgegevens van ouders zijn verplicht voor studenten onder de 18' 
+                })));
+            }
+
+            const response = await fetch('/api/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit form');
+            }
+
+            handleUpdateFormData({ 
+                submitted: true,
+                error: undefined 
+            });
+            setCurrentStep('confirmation');
+        } catch (error) {
+            console.error('Form submission error:', error);
+            handleUpdateFormData({ 
+                error: error instanceof Error ? error.message : 'Er is iets misgegaan' 
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    console.log('Current step:', currentStep);
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
@@ -77,6 +139,16 @@ const Contact = () => {
                         {String(t({ EN: "Let's Get Started!", NL: "Laten We Beginnen!" }))}
                     </motion.h1>
 
+                    {formData.error && (
+                        <motion.div 
+                            className="mb-4 p-4 bg-red-500 text-white rounded"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                        >
+                            {formData.error}
+                        </motion.div>
+                    )}
+
                     <AnimatePresence mode="wait">
                         {currentStep === 'initial' && (
                             <InitialChoice 
@@ -84,7 +156,7 @@ const Contact = () => {
                                 onChooseLesson={() => setCurrentStep('personal-details')}
                             />
                         )}
-                        {currentStep !== 'initial' && (
+                        {currentStep !== 'initial' && !formData.submitted && (
                             <LessonForm 
                                 step={currentStep}
                                 formData={formData}
@@ -92,8 +164,32 @@ const Contact = () => {
                                 onBack={currentStep === 'personal-details' 
                                     ? () => setCurrentStep('initial')
                                     : () => setCurrentStep(prev => getPreviousStep(prev))}
-                                onNext={() => setCurrentStep(prev => getNextStep(prev))}
+                                onNext={currentStep === 'confirmation' 
+                                    ? handleSubmit
+                                    : () => setCurrentStep(prev => getNextStep(prev))}
+                                isSubmitting={isSubmitting}
                             />
+                        )}
+                        {formData.submitted && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="text-center text-white"
+                            >
+                                <h2 className="text-2xl font-bold mb-4">
+                                    {String(t({
+                                        EN: "Thank you for your submission!",
+                                        NL: "Bedankt voor je aanmelding!"
+                                    }))}
+                                </h2>
+                                <p>
+                                    {String(t({
+                                        EN: "We'll contact you soon.",
+                                        NL: "We nemen binnenkort contact met je op."
+                                    }))}
+                                </p>
+                            </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
@@ -105,6 +201,7 @@ const Contact = () => {
 const getPreviousStep = (currentStep: FormStep): FormStep => {
     const steps: FormStep[] = [
         'initial',
+        'info',
         'personal-details',
         'subject-selection',
         'goals',
@@ -119,6 +216,7 @@ const getPreviousStep = (currentStep: FormStep): FormStep => {
 const getNextStep = (currentStep: FormStep): FormStep => {
     const steps: FormStep[] = [
         'initial',
+        'info',
         'personal-details',
         'subject-selection',
         'goals',

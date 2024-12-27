@@ -13,21 +13,27 @@ import NavigationButtons from './form-steps/NavigationButtons';
 import InfoSection from './InfoSection';
 import { useTranslation } from '../../../hooks/useTranslation';
 import BackConfirmationDialog from '../components/BackConfirmationDialog';
+import { isValidEmail, isValidPhoneNumber } from '../../../lib/validation';
 
-interface LessonFormProps {
+export interface LessonFormProps {
     step: FormStep;
     formData: FormData;
     onUpdateFormData: (updates: Partial<FormData>) => void;
     onBack: () => void;
     onNext: () => void;
+    isSubmitting: boolean;
 }
+
+const MIN_SUBJECT_LENGTH = 2;
+const MIN_GOALS_LENGTH = 10;
 
 const LessonForm = ({ 
     step, 
     formData, 
     onUpdateFormData, 
     onBack, 
-    onNext 
+    onNext, 
+    isSubmitting 
 }: LessonFormProps) => {
     const { t } = useTranslation();
     const [showBackConfirmation, setShowBackConfirmation] = useState(false);
@@ -35,22 +41,75 @@ const LessonForm = ({
     const canProceed = () => {
         switch (step) {
             case 'personal-details':
-                return formData.name.trim() !== '' && formData.level !== '';
+                if (!formData.requestType) return false;
+                
+                const hasBasicFields = formData.name.trim() !== '' && 
+                    formData.email.trim() !== '' && 
+                    formData.age > 0 && 
+                    formData.level !== '';
+
+                const isEmailValid = isValidEmail(formData.email);
+                
+                if (formData.age < 18) {
+                    const hasParentFields = formData.parentName?.trim() !== '' &&
+                        formData.parentEmail?.trim() !== '' &&
+                        formData.parentPhone?.trim() !== '';
+                    
+                    const isParentEmailValid = formData.parentEmail ? isValidEmail(formData.parentEmail) : false;
+                    const isParentPhoneValid = formData.parentPhone ? isValidPhoneNumber(formData.parentPhone) : false;
+                    
+                    return hasBasicFields && isEmailValid && hasParentFields && isParentEmailValid && isParentPhoneValid;
+                }
+                
+                if (formData.requestType === 'other') {
+                    const hasRequesterFields = formData.requesterName?.trim() !== '' &&
+                        formData.requesterEmail?.trim() !== '' &&
+                        formData.relationship?.trim() !== '';
+                    
+                    const isRequesterEmailValid = formData.requesterEmail ? isValidEmail(formData.requesterEmail) : false;
+                    
+                    return hasBasicFields && isEmailValid && hasRequesterFields && isRequesterEmailValid;
+                }
+                
+                return hasBasicFields && isEmailValid;
+
             case 'subject-selection':
+                if (formData.subject === 'Programming' || formData.subject === 'Programmeren') {
+                    // For programming subjects, require a programming language
+                    if (!formData.programmingLanguage) return false;
+                    if (formData.programmingLanguage === 'other') {
+                        return formData.programmingLanguage.length >= MIN_SUBJECT_LENGTH;
+                    }
+                    return true;
+                }
+                
+                if (formData.subject === 'other') {
+                    return formData.subject.length >= MIN_SUBJECT_LENGTH;
+                }
+                
                 return formData.subject.trim() !== '';
+
             case 'goals':
-                return formData.goals.trim() !== '';
+                return formData.goals.trim().length >= MIN_GOALS_LENGTH;
+
             case 'schedule':
-                return formData.preferredDays.length > 0 && formData.preferredTimes.length > 0;
+                const hasPreferredTimes = formData.preferredDays.length > 0 && formData.preferredTimes.length > 0;
+                const noConflicts = formData.preferredDays.every(day => !formData.unavailableDays.includes(day));
+                return hasPreferredTimes && noConflicts;
+
             case 'location':
-                return true; // Altijd een keuze geselecteerd
+                return formData.isOnline !== undefined;
+
+            case 'confirmation':
+                return true;
+
             default:
                 return true;
         }
     };
 
     const handleBackClick = () => {
-        if (step === 'info' || step === 'personal-details') {
+        if (step === 'personal-details') {
             setShowBackConfirmation(true);
         } else {
             onBack();
@@ -58,19 +117,16 @@ const LessonForm = ({
     };
 
     const handleNext = () => {
-        if (step === 'confirmation') {
-            // Formulier afronden
-            handleSubmitForm();
-        } else if (canProceed()) {
+        if (canProceed()) {
             onNext();
         }
     };
 
     const handleSubmitForm = async () => {
         try {
-            // Hier komt de logica voor het versturen van het formulier
-            // Na succesvol versturen:
-            onBack(); // Terug naar initiële keuze
+            if (step === 'confirmation') {
+                onNext();
+            }
         } catch (error) {
             console.error('Error submitting form:', error);
         }
@@ -80,7 +136,7 @@ const LessonForm = ({
         switch (step) {
             case 'info':
                 return <InfoSection 
-                    onBack={onBack}
+                    onBack={handleBackClick}
                     onRequestLesson={onNext}
                 />;
             case 'personal-details':
