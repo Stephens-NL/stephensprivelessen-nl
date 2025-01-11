@@ -6,6 +6,7 @@ import InitialChoice from './steps/InitialChoice';
 import { useTranslation } from '../../hooks/useTranslation';
 import LessonForm from './steps/LessonForm';
 import { sendContactForm } from '../../lib/api';
+import GoogleCalendarAppointment from './components/GoogleCalendarAppointment';
 
 export type FormStep =
     | 'initial' 
@@ -70,9 +71,16 @@ const Contact = () => {
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [showCalendar, setShowCalendar] = useState(false);
+    const [appointmentType, setAppointmentType] = useState<'trial' | 'regular'>('trial');
 
     const handleUpdateFormData = (updates: Partial<FormData>) => {
         setFormData(prev => ({ ...prev, ...updates }));
+    };
+
+    const handleScheduleAppointment = (type: 'trial' | 'regular') => {
+        setAppointmentType(type);
+        setShowCalendar(true);
     };
 
     const handleSubmit = async () => {
@@ -108,7 +116,8 @@ const Contact = () => {
                 submitted: true,
                 error: undefined 
             });
-            setCurrentStep('confirmation');
+            
+            handleScheduleAppointment('trial');
         } catch (error) {
             console.error('Form submission error:', error);
             handleUpdateFormData({ 
@@ -194,6 +203,14 @@ const Contact = () => {
                     </AnimatePresence>
                 </div>
             </motion.div>
+            
+            <GoogleCalendarAppointment
+                isOpen={showCalendar}
+                onClose={() => setShowCalendar(false)}
+                appointmentType={appointmentType}
+                studentName={formData.name}
+                studentEmail={formData.email}
+            />
         </div>
     );
 };
