@@ -81,15 +81,37 @@ const Header = () => {
                             {String(t(siteTitle))}
                         </Link>
                     </motion.div>
+
                     <motion.button
-                        className={`lg:hidden p-2 rounded-md bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-                        onClick={toggleMenu}
-                        aria-label="Toggle menu"
+                        onClick={toggleLanguage}
+                        className={`hidden sm:flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
                         whileHover={{ scale: isClickable ? 1.05 : 1 }}
                         whileTap={{ scale: isClickable ? 0.95 : 1 }}
                     >
-                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {language === 'EN' ? 'Liever Nederlands?' : 'Prefer English?'}
                     </motion.button>
+
+                    <div className="flex items-center gap-4">
+                        <motion.button
+                            className={`sm:hidden p-2 px-3 rounded-md bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
+                            onClick={toggleLanguage}
+                            whileHover={{ scale: isClickable ? 1.05 : 1 }}
+                            whileTap={{ scale: isClickable ? 0.95 : 1 }}
+                        >
+                            {language === 'EN' ? 'Nederlands?' : 'English?'}
+                        </motion.button>
+
+                        <motion.button
+                            className={`lg:hidden p-2 rounded-md bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
+                            onClick={toggleMenu}
+                            aria-label="Toggle menu"
+                            whileHover={{ scale: isClickable ? 1.05 : 1 }}
+                            whileTap={{ scale: isClickable ? 0.95 : 1 }}
+                        >
+                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </motion.button>
+                    </div>
+
                     <motion.ul
                         className="hidden lg:flex space-x-4 items-center"
                         initial={{ opacity: 1, y: 0 }}
@@ -101,18 +123,9 @@ const Header = () => {
                                 <NavLink href={item.href} label={item.label} />
                             </motion.li>
                         ))}
-                        <motion.li initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                            <motion.button
-                                onClick={toggleLanguage}
-                                className={`px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-blue-500 hover:text-white transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-                                whileHover={{ scale: isClickable ? 1.05 : 1 }}
-                                whileTap={{ scale: isClickable ? 0.95 : 1 }}
-                            >
-                                {language == 'EN' ? 'NL' : 'EN'}
-                            </motion.button>
-                        </motion.li>
                     </motion.ul>
                 </nav>
+
                 <AnimatePresence>
                     {isMenuOpen && (
                         <motion.div
@@ -147,24 +160,6 @@ const Header = () => {
                                                 <NavLink href={item.href} label={item.label} />
                                             </motion.li>
                                         ))}
-                                        <motion.li
-                                            initial={{ opacity: 0, x: -20 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            exit={{ opacity: 0, x: -20 }}
-                                            transition={{ duration: 0.2 }}
-                                        >
-                                            <button
-                                                onClick={() => {
-                                                    if (isClickable) {
-                                                        toggleLanguage();
-                                                        setIsMenuOpen(false);
-                                                    }
-                                                }}
-                                                className={`w-full text-left px-4 py-2 rounded-md text-sm font-medium text-gray-800 hover:bg-blue-500 hover:text-white transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-                                            >
-                                                {language == 'EN' ? 'Prefer Dutch' : 'Prefer English?'}
-                                            </button>
-                                        </motion.li>
                                     </ul>
                                 </nav>
                             </div>

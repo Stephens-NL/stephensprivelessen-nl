@@ -41,10 +41,24 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                     className="bg-blue-800 rounded-lg w-full max-w-5xl flex flex-col h-[90vh]"
                     onClick={e => e.stopPropagation()}
                 >
-                    <div className="p-6 pb-4 flex-shrink-0">
+                    <div className="p-6 pb-4 flex-shrink-0 flex items-center justify-between border-b border-blue-700">
+                        <div>
+                            <h3 className="text-xl font-semibold text-yellow-300">
+                                {String(t({
+                                    EN: `Example Notes: ${subject}`,
+                                    NL: `Voorbeeldnotities: ${subject}`
+                                }))}
+                            </h3>
+                            <p className="text-white/80 text-sm mt-1">
+                                {String(t({
+                                    EN: "These are example notes to demonstrate teaching style and methodology",
+                                    NL: "Dit zijn voorbeeldnotities om de lesstijl en methodologie te demonstreren"
+                                }))}
+                            </p>
+                        </div>
                         <button
                             onClick={onClose}
-                            className="absolute top-4 right-4 p-2 bg-blue-700 hover:bg-blue-600 text-yellow-300 hover:text-yellow-400 rounded-full transition-colors"
+                            className="p-2 hover:bg-blue-700/50 text-yellow-300 hover:text-yellow-400 rounded-lg transition-all duration-200 ml-4"
                             title={String(t({
                                 EN: "Close",
                                 NL: "Sluiten"
@@ -52,51 +66,42 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                         >
                             <FaTimes className="w-5 h-5" />
                         </button>
-
-                        <h3 className="text-xl font-semibold text-yellow-300 pr-12">
-                            {String(t({
-                                EN: `Example Notes: ${subject}`,
-                                NL: `Voorbeeldnotities: ${subject}`
-                            }))}
-                        </h3>
-                        <p className="text-white/80 text-sm mt-1">
-                            {String(t({
-                                EN: "These are example notes to demonstrate teaching style and methodology",
-                                NL: "Dit zijn voorbeeldnotities om de lesstijl en methodologie te demonstreren"
-                            }))}
-                        </p>
                     </div>
 
                     <div className="flex-grow overflow-hidden p-6 pt-0">
-                        <div className="w-full h-full bg-white rounded-lg">
+                        <div className="w-full h-full bg-white rounded-lg relative">
                             <iframe
                                 src={noteUrl}
                                 className="w-full h-full rounded-lg"
                                 title={`Notes preview for ${subject}`}
                                 onError={(e) => console.error('Error loading PDF:', e)}
                             />
+                            <div className="absolute inset-0 pointer-events-none select-none">
+                                <div className="absolute inset-0 grid grid-cols-3 gap-4 p-8">
+                                    {[...Array(12)].map((_, i) => (
+                                        <div
+                                            key={i}
+                                            className="flex items-center justify-center"
+                                        >
+                                            <div className="text-2xl font-bold text-black/[0.07] whitespace-nowrap transform -rotate-[20deg] text-center">
+                                                <div>Eigendom van Stephen's</div>
+                                                <div className="text-lg mt-1">Kopiëren niet toegestaan</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="p-6 pt-4 flex justify-between items-center border-t border-blue-700 flex-shrink-0">
+                    <div className="p-6 pt-4 flex justify-end border-t border-blue-700 flex-shrink-0">
                         <button
                             onClick={onClose}
-                            className="px-4 py-2 text-white hover:text-yellow-300 transition-colors"
+                            className="px-6 py-3 bg-blue-700 text-yellow-300 rounded-lg hover:bg-blue-600 transition-colors"
                         >
                             {String(t({
                                 EN: "Close Preview",
                                 NL: "Sluit Voorbeeld"
-                            }))}
-                        </button>
-                        
-                        <button
-                            onClick={onScheduleTrial}
-                            className="flex items-center gap-2 px-6 py-3 bg-yellow-400 text-blue-900 rounded-lg hover:bg-yellow-300 transition-colors font-semibold"
-                        >
-                            <FaCalendarAlt />
-                            {String(t({
-                                EN: "Schedule Trial Lesson",
-                                NL: "Plan Proefles"
                             }))}
                         </button>
                     </div>
