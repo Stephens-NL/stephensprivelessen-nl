@@ -842,8 +842,8 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 </div>
                 <p className="text-yellow-100">
                     {String(t({
-                        EN: "Professional support for your bachelor's or master's thesis. First consultation includes preparation time.",
-                        NL: "Professionele ondersteuning voor je bachelor- of masterscriptie. Eerste consult inclusief voorbereidingstijd."
+                        EN: "Professional support for your thesis. First consultation includes preparation time.",
+                        NL: "Professionele ondersteuning voor je scriptie. Eerste consult inclusief voorbereidingstijd."
                     }))}
                 </p>
 
@@ -885,24 +885,20 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                                     <thead>
                                         <tr className="border-b border-blue-600/50">
                                             <th className="text-left py-2 text-yellow-100 font-medium">Type</th>
-                                            <th className="text-right py-2 text-yellow-100 font-medium">Bachelor</th>
-                                            <th className="text-right py-2 text-yellow-100 font-medium">Master</th>
+                                            <th className="text-right py-2 text-yellow-100 font-medium">Tarief</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr className="border-b border-blue-600/50">
                                             <td className="py-2 text-yellow-100">Eenmalig consult</td>
-                                            <td className="py-2 text-yellow-300 font-semibold text-right">€75</td>
                                             <td className="py-2 text-yellow-300 font-semibold text-right">€80</td>
                                         </tr>
                                         <tr className="border-b border-blue-600/50">
                                             <td className="py-2 text-yellow-100">4 sessies</td>
-                                            <td className="py-2 text-yellow-300 font-semibold text-right">€230</td>
                                             <td className="py-2 text-yellow-300 font-semibold text-right">€250</td>
                                         </tr>
                                         <tr>
                                             <td className="py-2 text-yellow-100">10 sessies</td>
-                                            <td className="py-2 text-yellow-300 font-semibold text-right">€500</td>
                                             <td className="py-2 text-yellow-300 font-semibold text-right">€550</td>
                                         </tr>
                                     </tbody>
