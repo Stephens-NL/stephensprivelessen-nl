@@ -3,12 +3,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../../../hooks/useTranslation';
-import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaWhatsapp, FaChevronDown, FaChevronUp, FaEye } from 'react-icons/fa';
+import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaWhatsapp, FaChevronDown, FaChevronUp, FaEye, FaEnvelope } from 'react-icons/fa';
 import NotesPreviewModal from '../components/NotesPreviewModal';
 
 interface InfoSectionProps {
     onBack: () => void;
-    onRequestLesson: () => void;
 }
 
 interface PricingTier {
@@ -137,12 +136,56 @@ const subjectNotes: SubjectNote[] = [
     }
 ];
 
-const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
+const InfoSection = ({ onBack }: InfoSectionProps) => {
     const { t } = useTranslation();
     const [showPricing, setShowPricing] = useState(false);
     const [showCourses, setShowCourses] = useState(false);
+    const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
     const [selectedNote, setSelectedNote] = useState<SubjectNote | null>(null);
     const whatsappLink = `https://wa.me/+31612345678`; // Vervang met je echte WhatsApp nummer
+    const emailLink = `mailto:info@stephensprivelessen.nl`; // Replace with your actual email
+
+    const educationLevels = [
+        {
+            id: 'primair',
+            title: t({ EN: "Primary Education", NL: "Primair Onderwijs" }),
+            subjects: [
+                'Rekenen', 'Taal', 'Begrijpend Lezen', 'Spelling',
+                'Technisch Lezen', 'Studievaardigheden'
+            ]
+        },
+        {
+            id: 'voortgezet',
+            title: t({ EN: "Secondary Education", NL: "Voortgezet Onderwijs" }),
+            subjects: [
+                'Wiskunde A/B/C/D', 'Natuurkunde', 'Scheikunde', 'Engels',
+                'Nederlands', 'Biologie', 'Economie', 'M&O', 'Bedrijfseconomie'
+            ]
+        },
+        {
+            id: 'hoger',
+            title: t({ EN: "Higher Education", NL: "Hoger Onderwijs" }),
+            subjects: [
+                'Bedrijfsstatistiek', 'Calculus', 'Economie', 'Statistiek',
+                'Kansberekening', 'Lineaire Algebra', 'Verzamelingenleer',
+                'Business Analytics', 'Data Analysis', 'Machine Learning'
+            ]
+        },
+        {
+            id: 'programming',
+            title: t({ EN: "Programming", NL: "Programmeren" }),
+            subjects: [
+                'C', 'C#', 'C++', 'CSS', 'HTML', 'Java', 'Javascript',
+                'MATLAB', 'Python', 'R', 'React', 'SPSS', 'SQL'
+            ]
+        }
+    ];
+
+    // Personal communication note
+    const communicationNote = t({
+        EN: "I prefer to keep communication personal and direct through WhatsApp or email. This allows me to give you my full attention and provide the best possible support for your learning journey.",
+        NL: "Ik houd de communicatie graag persoonlijk en direct via WhatsApp of email. Zo kan ik je mijn volledige aandacht geven en de beste ondersteuning bieden voor je leertraject."
+    });
 
     const handlePreviewNotes = (subject: string) => {
         const note = subjectNotes.find(n => n.subject === subject);
@@ -151,24 +194,26 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
         }
     };
 
-    const renderEducationLevel = (title: string, subjects: string[]) => (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-3"
-        >
-            <h4 className="text-lg font-semibold text-yellow-300">{title}</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+    const renderSubjects = (subjects: string[], levelId: string) => {
+        return (
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-6"
+            >
                 {subjects.map(subject => (
                     <div 
                         key={subject}
-                        className="flex items-center justify-between bg-blue-600/30 backdrop-blur-sm rounded-lg p-3 border border-blue-500/30"
+                        className="group relative flex items-center bg-blue-700/40 hover:bg-blue-600/50 rounded-xl p-3 transition-all duration-200 border border-blue-500/30 hover:border-blue-400/50"
                     >
-                        <span className="text-white">{subject}</span>
+                        <span className="text-yellow-100 group-hover:text-yellow-200 font-medium transition-colors">
+                            {subject}
+                        </span>
                         {subjectNotes.some(note => note.subject === subject) && (
                             <button
                                 onClick={() => handlePreviewNotes(subject)}
-                                className="p-1.5 text-yellow-300 hover:text-yellow-400 hover:bg-blue-600/50 rounded-full transition-colors"
+                                className="ml-auto p-2 text-yellow-300 hover:text-yellow-400 hover:bg-blue-600/50 rounded-lg transition-all duration-200"
                                 title={String(t({
                                     EN: "Preview Notes",
                                     NL: "Bekijk Notities"
@@ -179,59 +224,71 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                         )}
                     </div>
                 ))}
-            </div>
-        </motion.div>
-    );
+            </motion.div>
+        );
+    };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
             <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.1 }}
                 className="bg-blue-700 p-6 rounded-lg"
             >
-                <div className="flex items-center justify-between text-yellow-300 mb-3">
+                <div className="flex items-center justify-between text-yellow-300 mb-6">
                     <div className="flex items-center">
                         <FaGraduationCap className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-xl font-semibold">
                             {String(t({ EN: "Available Courses", NL: "Beschikbare Vakken" }))}
                         </h3>
                     </div>
-                    <button
-                        onClick={() => setShowCourses(!showCourses)}
-                        className="text-yellow-300 hover:text-yellow-400"
-                    >
-                        {showCourses ? <FaChevronUp /> : <FaChevronDown />}
-                    </button>
                 </div>
-                <AnimatePresence>
-                    {showCourses && (
-                        <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="space-y-6 overflow-hidden"
-                        >
-                            {renderEducationLevel(
-                                String(t({ EN: "University Level", NL: "Universitair Niveau" })),
-                                ['Calculus', 'Linear Algebra', 'Statistics', 'Probability', 'Physics']
-                            )}
-                            {renderEducationLevel(
-                                String(t({ EN: "HBO Level", NL: "HBO Niveau" })),
-                                ['Wiskunde', 'Statistiek', 'Natuurkunde']
-                            )}
-                            {renderEducationLevel(
-                                String(t({ EN: "VWO Level", NL: "VWO Niveau" })),
-                                ['Wiskunde A', 'Wiskunde B', 'Wiskunde C', 'Wiskunde D', 'Natuurkunde', 'Informatica']
-                            )}
-                            {renderEducationLevel(
-                                String(t({ EN: "Programming", NL: "Programmeren" })),
-                                ['Python', 'Java', 'JavaScript', 'C++', 'C#', 'R', 'MATLAB', 'SQL', 'HTML/CSS', 'React']
-                            )}
-                        </motion.div>
+                
+                <div className="relative">
+                    <select
+                        value={selectedLevel || ''}
+                        onChange={(e) => setSelectedLevel(e.target.value || null)}
+                        className="w-full bg-blue-600/30 text-yellow-100 rounded-xl py-3 px-4 appearance-none cursor-pointer border border-blue-500/30 hover:border-blue-400/50 transition-colors focus:outline-none focus:border-yellow-300"
+                    >
+                        <option value="">
+                            {String(t({
+                                EN: "Select Education Level",
+                                NL: "Kies Onderwijsniveau"
+                            }))}
+                        </option>
+                        {educationLevels.map(level => (
+                            <option key={level.id} value={level.id}>
+                                {String(level.title)}
+                            </option>
+                        ))}
+                    </select>
+                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-yellow-300">
+                        <FaChevronDown />
+                    </div>
+                </div>
+
+                <AnimatePresence mode="wait">
+                    {selectedLevel && (
+                        renderSubjects(
+                            educationLevels.find(level => level.id === selectedLevel)?.subjects || [],
+                            selectedLevel
+                        )
                     )}
                 </AnimatePresence>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="mt-6 p-4 bg-blue-600/30 rounded-xl border border-blue-500/30"
+                >
+                    <p className="text-yellow-100 text-sm">
+                        {String(t({
+                            EN: "I also provide thesis assistance including proofreading, data analysis, and statistical support for bachelor's and master's theses.",
+                            NL: "Ik bied ook ondersteuning bij scripties, waaronder proeflezen, data-analyse en statistische ondersteuning voor bachelor- en masterscripties."
+                        }))}
+                    </p>
+                </motion.div>
             </motion.div>
 
             <motion.div
@@ -327,44 +384,56 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 </AnimatePresence>
             </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={onBack}
-                    className="px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600"
-                >
-                    {String(t({
-                        EN: "Back",
-                        NL: "Terug"
-                    }))}
-                </motion.button>
-                
-                <motion.a
-                    href="https://wa.me/+31612345678" // Vervang met je WhatsApp nummer
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-400 text-center"
-                >
-                    {String(t({
-                        EN: "WhatsApp",
-                        NL: "WhatsApp"
-                    }))}
-                </motion.a>
+            <div className="flex flex-col items-center max-w-4xl mx-auto">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto mb-6">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={onBack}
+                        className="px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 w-full sm:w-auto"
+                    >
+                        {String(t({
+                            EN: "Back",
+                            NL: "Terug"
+                        }))}
+                    </motion.button>
+                    
+                    <motion.a
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 w-full sm:w-auto min-w-[200px]"
+                    >
+                        <FaWhatsapp className="mr-2" />
+                        {String(t({
+                            EN: "Contact via WhatsApp",
+                            NL: "Contact via WhatsApp"
+                        }))}
+                    </motion.a>
 
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={onRequestLesson}
-                    className="px-6 py-3 bg-yellow-400 text-blue-900 rounded-lg hover:bg-yellow-300"
+                    <motion.a
+                        href={emailLink}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center justify-center px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 w-full sm:w-auto min-w-[200px]"
+                    >
+                        <FaEnvelope className="mr-2" />
+                        {String(t({
+                            EN: "Contact via Email",
+                            NL: "Contact via Email"
+                        }))}
+                    </motion.a>
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-yellow-100 text-sm italic max-w-2xl text-center px-4"
                 >
-                    {String(t({
-                        EN: "Schedule Trial Lesson",
-                        NL: "Plan Proefles"
-                    }))}
-                </motion.button>
+                    {String(communicationNote)}
+                </motion.div>
             </div>
 
             <NotesPreviewModal
@@ -372,7 +441,6 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 onClose={() => setSelectedNote(null)}
                 subject={selectedNote?.subject || ''}
                 noteUrl={selectedNote?.noteUrl || ''}
-                onScheduleTrial={onRequestLesson}
             />
         </div>
     );
