@@ -49,26 +49,36 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
                     </p>
                 </motion.button>
 
-                <motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex flex-col items-center p-6 bg-yellow-400 rounded-lg text-blue-900 hover:bg-yellow-300 transition-colors border-2 border-yellow-500"
-                    onClick={onChooseLesson}
-                >
-                    <FaCalendarCheck className="text-3xl mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">
-                        {String(t({
-                            EN: "Schedule Trial Lesson",
-                            NL: "Plan Proefles"
-                        }))}
-                    </h3>
-                    <p className="text-sm text-center opacity-80">
-                        {String(t({
-                            EN: "Book a free 30-minute trial lesson now",
-                            NL: "Plan direct een gratis proefles van 30 minuten"
-                        }))}
-                    </p>
-                </motion.button>
+                <div className="relative">
+                    <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex flex-col items-center p-6 bg-gray-400 rounded-lg text-blue-900 transition-colors border-2 border-gray-500 w-full opacity-50 cursor-not-allowed"
+                        disabled
+                    >
+                        <FaCalendarCheck className="text-3xl mb-4" />
+                        <h3 className="text-lg font-semibold mb-2">
+                            {String(t({
+                                EN: "Schedule Trial Lesson",
+                                NL: "Plan Proefles"
+                            }))}
+                        </h3>
+                        <p className="text-sm text-center opacity-80">
+                            {String(t({
+                                EN: "Book a free 30-minute trial lesson now",
+                                NL: "Plan direct een gratis proefles van 30 minuten"
+                            }))}
+                        </p>
+                    </motion.button>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="bg-blue-900 text-yellow-300 px-4 py-2 rounded-full font-semibold transform -rotate-12">
+                            {String(t({
+                                EN: "Coming Soon",
+                                NL: "Binnenkort Beschikbaar"
+                            }))}
+                        </span>
+                    </div>
+                </div>
             </div>
         </motion.div>
     );
