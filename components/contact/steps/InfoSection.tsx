@@ -891,7 +891,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                                     <tbody>
                                         <tr className="border-b border-blue-600/50">
                                             <td className="py-2 text-yellow-100">Eenmalig consult</td>
-                                            <td className="py-2 text-yellow-300 font-semibold text-right">€80</td>
+                                            <td className="py-2 text-yellow-300 font-semibold text-right">€100</td>
                                         </tr>
                                         <tr className="border-b border-blue-600/50">
                                             <td className="py-2 text-yellow-100">4 sessies</td>
