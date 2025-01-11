@@ -84,7 +84,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                                             className="flex items-center justify-center"
                                         >
                                             <div className="text-2xl font-bold text-black/[0.07] whitespace-nowrap transform -rotate-[20deg] text-center">
-                                                <div>Eigendom van Stephen's</div>
+                                                <div>Eigendom van Stephen&apos;s</div>
                                                 <div className="text-lg mt-1">Kopiëren niet toegestaan</div>
                                             </div>
                                         </div>
