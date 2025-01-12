@@ -222,16 +222,20 @@ const Header = () => {
                                             animate={{ opacity: 1, height: 'auto' }}
                                             exit={{ opacity: 0, height: 0 }}
                                             transition={{ duration: 0.3 }}
-                                            className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl mt-4 rounded-2xl"
+                                            className="md:hidden fixed top-[64px] left-0 right-0 bg-white shadow-xl mx-4 rounded-2xl border border-gray-100 z-50"
+                                            style={{
+                                                maxHeight: 'calc(100vh - 80px)',
+                                                overflowY: 'auto'
+                                            }}
                                         >
-                                            <div className="p-4">
-                                                <div className="flex flex-col space-y-3">
+                                            <div className="p-6">
+                                                <div className="flex flex-col space-y-4">
                                                     {navItems.map(({ href, label }) => (
                                                         <Link
                                                             key={href}
                                                             href={href}
                                                             onClick={closeMenu}
-                                                            className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                                                            className={`text-base font-medium transition-colors hover:text-blue-600 py-2 ${
                                                                 pathname === href ? 'text-blue-600' : 'text-gray-600'
                                                             }`}
                                                         >

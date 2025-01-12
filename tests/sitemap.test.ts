@@ -47,7 +47,7 @@ describe('Sitemap Validation', () => {
     });
 
     test('all sitemap URLs are valid format', () => {
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+)$/;
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/bijles\/[a-z-]+)$/;
         sitemapUrls.forEach(url => {
             expect(url).toMatch(urlPattern);
         });

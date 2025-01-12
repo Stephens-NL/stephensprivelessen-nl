@@ -1,5 +1,4 @@
-import { Bilingual } from './types';
-import { Workshop, WorkshopType, WorkshopLevel, WorkshopFormat, Workshops } from './workshopTypes';
+import { Bilingual, Workshop, WorkshopType, WorkshopLevel, WorkshopFormat, Workshops } from './types';
 
 const defaultPrice: Bilingual = {
     EN: 'Contact for pricing',
@@ -24,13 +23,16 @@ const defaultPrerequisites: Bilingual = {
 export const workshops: Workshops = {
     'statistics-project': {
         id: 'statistics-project',
+        type: 'academic',
         title: { EN: 'Statistics Project Course', NL: 'Statistiek Project Cursus' },
         description: {
             EN: 'Comprehensive statistics workshops for entire classes or small groups. Perfect for high school students working on research projects, with flexible scheduling options to accommodate class schedules.',
             NL: 'Uitgebreide statistiek workshops voor hele klassen of kleine groepen. Perfect voor middelbare scholieren die aan onderzoeksprojecten werken, met flexibele planning om aan te sluiten bij lesroosters.'
         },
-        durationMinutes: 120,
-        durationText: { EN: '1-2 hours per session', NL: '1-2 uur per sessie' },
+        durationMinutes: 90,
+        durationText: { EN: '90 minutes per session', NL: '90 minuten per sessie' },
+        totalSessions: 6,
+        sessionStructure: 'series',
         level: 'intermediate',
         format: 'flexible',
         details: {
@@ -40,7 +42,8 @@ export const workshops: Workshops = {
                 'Hands-on practice with real datasets',
                 'Focus on research methodology',
                 'Interactive learning approach',
-                'Online or in-person sessions'
+                'Online or in-person sessions',
+                'Series of 6 sessions over 6-12 weeks'
             ],
             NL: [
                 'Beschikbaar voor hele klassen of kleine groepen',
@@ -48,50 +51,54 @@ export const workshops: Workshops = {
                 'Praktijkervaring met echte datasets',
                 'Focus op onderzoeksmethodologie',
                 'Interactieve leeraanpak',
-                'Online of fysieke sessies'
+                'Online of fysieke sessies',
+                'Serie van 6 sessies over 6-12 weken'
             ]
         },
         price: defaultPrice,
-        maxParticipants: 30,
+        minParticipants: 8,
+        maxParticipants: 24,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
-        type: 'academic',
         schedule: 'weekly'
     },
     'math-innovation': {
         id: 'math-innovation',
+        type: 'academic',
         title: { EN: 'Math Teachers Innovation Workshop', NL: 'Wiskunde Docenten Innovatie Workshop' },
         description: {
             EN: 'Workshop for math teachers focusing on innovative teaching methods, incorporating technology and modern approaches to engage students better.',
             NL: 'Workshop voor wiskundedocenten gericht op innovatieve onderwijsmethoden, integratie van technologie en moderne benaderingen om leerlingen beter te betrekken.'
         },
-        durationMinutes: 240,
-        durationText: { EN: '4 hours', NL: '4 uur' },
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 4,
+        sessionStructure: 'series',
         level: 'professional',
-        format: 'interactive',
+        format: 'professional',
         details: {
             EN: [
-                'Modern teaching methodologies',
+                'Innovative teaching methods',
                 'Technology integration in math education',
-                'Student engagement strategies',
-                'Practical examples and exercises',
-                'Resources and tools overview'
+                'Modern engagement strategies',
+                'Hands-on practice with tools',
+                'Collaborative learning techniques'
             ],
             NL: [
-                'Moderne onderwijsmethodologieën',
-                'Technologie integratie in wiskundeonderwijs',
-                'Strategieën voor leerlingbetrokkenheid',
-                'Praktische voorbeelden en oefeningen',
-                'Overzicht van hulpmiddelen en tools'
+                'Innovatieve onderwijsmethoden',
+                'Technologie-integratie in wiskundeonderwijs',
+                'Moderne betrokkenheidstrategieën',
+                'Praktische oefening met tools',
+                'Samenwerkende leertechnieken'
             ]
         },
         price: defaultPrice,
-        maxParticipants: 15,
+        minParticipants: 6,
+        maxParticipants: 12,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
-        type: 'academic',
         schedule: 'weekly'
     },
     'ai-math': {
@@ -101,33 +108,34 @@ export const workshops: Workshops = {
             EN: 'Explore the intersection of artificial intelligence and mathematics. Learn how AI can enhance mathematical understanding and problem-solving.',
             NL: 'Verken het snijvlak van kunstmatige intelligentie en wiskunde. Leer hoe AI wiskundig begrip en probleemoplossing kan verbeteren.'
         },
-        durationMinutes: 180,
-        durationText: { EN: '3 hours', NL: '3 uur' },
         level: 'advanced',
-        format: 'hands-on',
+        format: 'flexible',
         details: {
             EN: [
-                'Introduction to AI concepts',
-                'Mathematical foundations of AI',
-                'Practical applications in education',
-                'Hands-on experience with AI tools',
-                'Future trends and developments'
+                'Fundamentals of AI algorithms',
+                'Mathematical principles in machine learning',
+                'Practical applications in data analysis',
+                'Problem-solving with AI tools'
             ],
             NL: [
-                'Introductie tot AI concepten',
-                'Wiskundige fundamenten van AI',
-                'Praktische toepassingen in onderwijs',
-                'Praktijkervaring met AI tools',
-                'Toekomstige trends en ontwikkelingen'
+                'Fundamenten van AI-algoritmen',
+                'Wiskundige principes in machine learning',
+                'Praktische toepassingen in data-analyse',
+                'Probleemoplossing met AI-tools'
             ]
         },
-        price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 120,
+        durationText: { EN: '2 hours per session', NL: '2 uur per sessie' },
+        totalSessions: 3,
+        sessionStructure: 'series',
+        minParticipants: 4,
+        maxParticipants: 8,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
         type: 'academic',
-        schedule: 'weekly'
+        schedule: 'weekly',
+        price: defaultPrice
     },
     'music-production': {
         id: 'music-production',
@@ -136,35 +144,33 @@ export const workshops: Workshops = {
             EN: 'Learn the basics of music production and DJing, from creating beats to mixing tracks. Perfect for anyone interested in music, technology, or performance.',
             NL: 'Leer de basis van muziekproductie en DJ\'en, van beats maken tot tracks mixen. Perfect voor iedereen met interesse in muziek, technologie of performance.'
         },
-        durationMinutes: 120,
-        durationText: { EN: '2-4 hours', NL: '2-4 uur' },
-        level: 'all_levels',
-        format: 'practical',
+        level: 'beginner',
+        format: 'hands-on',
         details: {
             EN: [
-                'Introduction to music production software (Ableton Live)',
-                'Creating beats, sampling, and melodies',
-                'DJ mixing techniques and controller usage',
-                'Creating flow in a DJ set',
-                'Hands-on track creation',
-                'Personal DJ set practice'
+                'Understanding basic music theory',
+                'Creating beats and melodies',
+                'Using DJ equipment',
+                'Mixing and transitioning between tracks'
             ],
             NL: [
-                'Introductie tot muziekproductie software (Ableton Live)',
-                'Beats maken, samplen en melodieën creëren',
-                'DJ mixtechnieken en gebruik van controllers',
-                'Flow creëren in een DJ-set',
-                'Hands-on track maken',
-                'Persoonlijke DJ-set oefening'
+                'Begrip van basis muziektheorie',
+                'Beats en melodieën maken',
+                'DJ-apparatuur gebruiken',
+                'Mixen en overgangen tussen tracks'
             ]
         },
-        price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours', NL: '3 uur' },
+        sessionStructure: 'single',
+        minParticipants: 3,
+        maxParticipants: 6,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
         type: 'creative',
-        schedule: 'weekly'
+        schedule: 'weekly',
+        price: defaultPrice
     },
     'analog-photography': {
         id: 'analog-photography',
@@ -173,30 +179,18 @@ export const workshops: Workshops = {
             EN: 'Explore the art of analog photography using professional cameras. Learn about film selection, development, and digital post-processing.',
             NL: 'Ontdek de kunst van analoge fotografie met professionele camera\'s. Leer over filmkeuze, ontwikkeling en digitale nabewerking.'
         },
-        durationMinutes: 180,
-        durationText: { EN: '3-4 hours', NL: '3-4 uur' },
-        level: 'all_levels',
-        format: 'practical',
+        level: 'beginner',
+        format: 'hands-on',
         details: {
-            EN: [
-                'Basics of analog photography',
-                'Using professional cameras (Canon A1, Mamiya 645)',
-                'Film selection and light manipulation',
-                'Film development and scanning',
-                'Digital editing with Lightroom/Photoshop',
-                'Creating a photo series'
-            ],
-            NL: [
-                'Basis van analoge fotografie',
-                'Werken met professionele camera\'s (Canon A1, Mamiya 645)',
-                'Filmkeuze en lichtmanipulatie',
-                'Film ontwikkelen en scannen',
-                'Digitale bewerking met Lightroom/Photoshop',
-                'Fotoserie maken'
-            ]
+            EN: ['Professional analog camera handling', 'Film selection and loading', 'Development process', 'Digital post-processing techniques'],
+            NL: ['Professionele analoge camera bediening', 'Filmkeuze en laden', 'Ontwikkelingsproces', 'Digitale nabewerkingstechnieken']
         },
         price: defaultPrice,
-        maxParticipants: 10,
+        durationMinutes: 240,
+        durationText: { EN: '4 hours', NL: '4 uur' },
+        sessionStructure: 'single',
+        minParticipants: 3,
+        maxParticipants: 6,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -210,30 +204,19 @@ export const workshops: Workshops = {
             EN: 'Learn to communicate visually through graphic design. Master color, composition, and typography using professional tools.',
             NL: 'Leer visueel communiceren door grafisch ontwerp. Beheers kleur, compositie en typografie met professionele tools.'
         },
-        durationMinutes: 120,
-        durationText: { EN: '2-3 hours', NL: '2-3 uur' },
-        level: 'all_levels',
-        format: 'practical',
+        level: 'beginner',
+        format: 'hands-on',
         details: {
-            EN: [
-                'Graphic design fundamentals',
-                'Color theory and composition',
-                'Typography basics',
-                'Using Canva and Adobe Illustrator',
-                'Creating posters and logos',
-                'Visual storytelling techniques'
-            ],
-            NL: [
-                'Grafisch ontwerp fundamenten',
-                'Kleurtheorie en compositie',
-                'Typografie basis',
-                'Werken met Canva en Adobe Illustrator',
-                'Posters en logo\'s maken',
-                'Visuele storytelling technieken'
-            ]
+            EN: ['Color theory and psychology', 'Composition principles', 'Typography basics', 'Professional design tools', 'Visual storytelling techniques'],
+            NL: ['Kleurtheorie en psychologie', 'Compositieprincipes', 'Typografie basis', 'Professionele ontwerptools', 'Visuele storytelling technieken']
         },
         price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 2,
+        sessionStructure: 'series',
+        minParticipants: 4,
+        maxParticipants: 8,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -247,30 +230,19 @@ export const workshops: Workshops = {
             EN: 'Combine programming and art using Python. Create interactive visuals and animations while learning coding basics.',
             NL: 'Combineer programmeren en kunst met Python. Maak interactieve visuals en animaties terwijl je de basis van coderen leert.'
         },
-        durationMinutes: 120,
-        durationText: { EN: '2-3 hours', NL: '2-3 uur' },
         level: 'beginner',
-        format: 'practical',
+        format: 'hands-on',
         details: {
-            EN: [
-                'Introduction to Python programming',
-                'Using Processing.py and Pygame',
-                'Creating interactive visuals',
-                'Animation basics',
-                'Algorithmic thinking',
-                'Pattern generation'
-            ],
-            NL: [
-                'Introductie tot Python programmeren',
-                'Werken met Processing.py en Pygame',
-                'Interactieve visuals maken',
-                'Basis van animatie',
-                'Algoritmisch denken',
-                'Patronen genereren'
-            ]
+            EN: ['Learn Python basics', 'Create digital art with code', 'Build interactive animations', 'Understand creative algorithms'],
+            NL: ['Leer Python basis', 'Maak digitale kunst met code', 'Bouw interactieve animaties', 'Begrijp creatieve algoritmes']
         },
         price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 120,
+        durationText: { EN: '2 hours per session', NL: '2 uur per sessie' },
+        totalSessions: 4,
+        sessionStructure: 'series',
+        minParticipants: 4,
+        maxParticipants: 8,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -284,35 +256,33 @@ export const workshops: Workshops = {
             EN: 'Explore the intersection of AI and art. Learn to use AI tools for creating unique artworks and music.',
             NL: 'Verken het snijvlak van AI en kunst. Leer AI-tools gebruiken voor het maken van unieke kunstwerken en muziek.'
         },
-        durationMinutes: 120,
-        durationText: { EN: '2-3 hours', NL: '2-3 uur' },
-        level: 'all_levels',
-        format: 'interactive',
+        level: 'beginner',
+        format: 'hands-on',
         details: {
             EN: [
-                'Introduction to AI art tools',
-                'Using DALL·E and RunwayML',
-                'AI in music and visual art',
-                'Creating AI-assisted artworks',
-                'Ethical considerations',
-                'Future of AI in art'
+                'Introduction to AI art generation tools',
+                'Creating digital artwork with AI assistance',
+                'Music generation with AI',
+                'Ethics and future of AI in creative fields'
             ],
             NL: [
-                'Introductie tot AI-kunsttools',
-                'Werken met DALL·E en RunwayML',
-                'AI in muziek en beeldende kunst',
-                'AI-ondersteunde kunstwerken maken',
-                'Ethische overwegingen',
-                'Toekomst van AI in kunst'
+                'Introductie tot AI kunstgeneratie tools',
+                'Digitale kunst maken met AI-ondersteuning',
+                'Muziek genereren met AI',
+                'Ethiek en toekomst van AI in creatieve velden'
             ]
         },
-        price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours', NL: '3 uur' },
+        sessionStructure: 'single',
+        minParticipants: 4,
+        maxParticipants: 10,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
         type: 'creative',
-        schedule: 'weekly'
+        schedule: 'weekly',
+        price: defaultPrice
     },
     'escape-room': {
         id: 'escape-room',
@@ -321,30 +291,29 @@ export const workshops: Workshops = {
             EN: 'Learn to design and program escape room puzzles. Combine storytelling, technology, and problem-solving in this unique workshop.',
             NL: 'Leer escape room puzzels ontwerpen en programmeren. Combineer storytelling, technologie en probleemoplossing in deze unieke workshop.'
         },
-        durationMinutes: 180,
-        durationText: { EN: '3-4 hours', NL: '3-4 uur' },
-        level: 'all_levels',
-        format: 'interactive',
+        level: 'intermediate',
+        format: 'flexible',
         details: {
             EN: [
-                'Escape room design principles',
-                'Storytelling and puzzle creation',
-                'Using Arduino for interactive elements',
-                'Basic programming concepts',
-                'Testing and refining puzzles',
-                'Creating a mini escape room'
+                'Design engaging puzzle mechanics',
+                'Program interactive elements',
+                'Create compelling narratives',
+                'Test and refine escape room experiences'
             ],
             NL: [
-                'Escape room ontwerpprincipes',
-                'Storytelling en puzzels maken',
-                'Arduino gebruiken voor interactieve elementen',
-                'Basis programmeerconcepten',
-                'Puzzels testen en verfijnen',
-                'Mini escape room maken'
+                'Ontwerp boeiende puzzelmechanismen',
+                'Programmeer interactieve elementen',
+                'Creëer meeslepende verhaallijnen',
+                'Test en verfijn escape room ervaringen'
             ]
         },
         price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 240,
+        durationText: { EN: '4 hours per session', NL: '4 uur per sessie' },
+        totalSessions: 2,
+        sessionStructure: 'series',
+        minParticipants: 4,
+        maxParticipants: 8,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -361,19 +330,29 @@ export const workshops: Workshops = {
             EN: 'Learn to create stunning data visualizations using Python libraries like Matplotlib, Seaborn, and Plotly. Perfect for both students and teachers looking to enhance their data presentation skills.',
             NL: 'Leer indrukwekkende datavisualisaties maken met Python-bibliotheken zoals Matplotlib, Seaborn en Plotly. Perfect voor zowel leerlingen als docenten die hun datapresenatievaardigheden willen verbeteren.'
         },
-        durationMinutes: 180,
-        durationText: { 
-            EN: '3 hours', 
-            NL: '3 uur' 
-        },
         level: 'intermediate',
         format: 'hands-on',
         details: {
-            EN: ['Introduction to data visualization principles', 'Working with Matplotlib and Seaborn', 'Interactive visualizations with Plotly', 'Best practices for data presentation', 'Real-world dataset examples'],
-            NL: ['Introductie tot datavisualisatie principes', 'Werken met Matplotlib en Seaborn', 'Interactieve visualisaties met Plotly', 'Best practices voor datapresentatie', 'Praktijkvoorbeelden met echte datasets']
+            EN: [
+                'Introduction to Python visualization libraries',
+                'Creating static and interactive plots',
+                'Data presentation best practices',
+                'Advanced visualization techniques'
+            ],
+            NL: [
+                'Introductie tot Python visualisatie bibliotheken',
+                'Statische en interactieve plots maken',
+                'Best practices voor data presentatie',
+                'Geavanceerde visualisatie technieken'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 15,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 3,
+        sessionStructure: 'series',
+        minParticipants: 5,
+        maxParticipants: 12,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -390,19 +369,28 @@ export const workshops: Workshops = {
             EN: 'Create engaging mathematical games using simple programming tools. Learn how to make math fun and interactive for students through game-based learning.',
             NL: 'Creëer boeiende wiskundige spellen met eenvoudige programmeertools. Leer hoe je wiskunde leuk en interactief kunt maken voor leerlingen door middel van spelend leren.'
         },
-        durationMinutes: 240,
-        durationText: { 
-            EN: '4 hours', 
-            NL: '4 uur' 
-        },
-        level: 'all_levels',
-        format: 'creative',
+        level: 'intermediate',
+        format: 'hands-on',
         details: {
-            EN: ['Game design principles', 'Educational game mechanics', 'Basic programming concepts', 'Testing and iteration', 'Implementation strategies'],
-            NL: ['Spelontwerp principes', 'Educatieve spelmechanismen', 'Basis programmeerconcepten', 'Testen en iteratie', 'Implementatiestrategieën']
+            EN: [
+                'Game design principles for educational content',
+                'Integrating mathematical concepts into games',
+                'Using programming tools for math games',
+                'Testing and improving game mechanics'
+            ],
+            NL: [
+                'Spelontwerp principes voor educatieve inhoud',
+                'Integratie van wiskundige concepten in spellen',
+                'Gebruik van programmeertools voor wiskundespellen',
+                'Testen en verbeteren van spelmechanismen'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours', NL: '3 uur' },
+        sessionStructure: 'single',
+        minParticipants: 6,
+        maxParticipants: 15,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -419,19 +407,28 @@ export const workshops: Workshops = {
             EN: 'Explore the beautiful intersection of mathematics and art. Create stunning visual patterns using mathematical principles and digital tools.',
             NL: 'Ontdek het prachtige snijvlak van wiskunde en kunst. Creëer verbluffende visuele patronen met behulp van wiskundige principes en digitale tools.'
         },
-        durationMinutes: 180,
-        durationText: { 
-            EN: '3 hours', 
-            NL: '3 uur' 
-        },
-        level: 'all_levels',
-        format: 'creative',
+        level: 'intermediate',
+        format: 'hands-on',
         details: {
-            EN: ['Geometric patterns', 'Fractals and recursion', 'Golden ratio in art', 'Digital pattern creation', 'Mathematical symmetry'],
-            NL: ['Geometrische patronen', 'Fractals en recursie', 'Gulden snede in kunst', 'Digitale patroonvorming', 'Wiskundige symmetrie']
+            EN: [
+                'Learn geometric pattern principles',
+                'Create fractal-based artwork',
+                'Explore symmetry and tessellation',
+                'Use digital tools for mathematical art'
+            ],
+            NL: [
+                'Leer geometrische patroonprincipes',
+                'Maak kunst gebaseerd op fractalen',
+                'Verken symmetrie en tessellatie',
+                'Gebruik digitale tools voor wiskundige kunst'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 15,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours', NL: '3 uur' },
+        sessionStructure: 'single',
+        minParticipants: 4,
+        maxParticipants: 10,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -448,19 +445,29 @@ export const workshops: Workshops = {
             EN: 'Learn to create 3D models using mathematical principles. Perfect for visualizing geometric concepts and creating educational materials.',
             NL: 'Leer 3D-modellen maken met wiskundige principes. Perfect voor het visualiseren van geometrische concepten en het maken van educatief materiaal.'
         },
-        durationMinutes: 240,
-        durationText: { 
-            EN: '4 hours', 
-            NL: '4 uur' 
-        },
-        level: 'intermediate',
-        format: 'technical',
+        level: 'advanced',
+        format: 'flexible',
         details: {
-            EN: ['3D geometry basics', 'Working with modeling software', 'Mathematical transformations', 'Creating educational models', 'Printing and sharing models'],
-            NL: ['3D-geometrie basis', 'Werken met modelleersoftware', 'Wiskundige transformaties', 'Educatieve modellen maken', 'Modellen printen en delen']
+            EN: [
+                'Mathematical principles of 3D modeling',
+                'Geometric transformations',
+                'Creating parametric models',
+                'Visualization techniques'
+            ],
+            NL: [
+                'Wiskundige principes van 3D-modellering',
+                'Geometrische transformaties',
+                'Parametrische modellen maken',
+                'Visualisatietechnieken'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 10,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 4,
+        sessionStructure: 'series',
+        minParticipants: 4,
+        maxParticipants: 8,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -477,19 +484,28 @@ export const workshops: Workshops = {
             EN: 'Learn to create engaging stories that incorporate mathematical concepts. Perfect for teachers looking to make math more accessible and interesting.',
             NL: 'Leer boeiende verhalen maken die wiskundige concepten bevatten. Perfect voor docenten die wiskunde toegankelijker en interessanter willen maken.'
         },
-        durationMinutes: 180,
-        durationText: { 
-            EN: '3 hours', 
-            NL: '3 uur' 
-        },
-        level: 'all_levels',
-        format: 'creative',
+        level: 'intermediate',
+        format: 'interactive',
         details: {
-            EN: ['Storytelling techniques', 'Mathematical concept integration', 'Visual storytelling', 'Interactive narratives', 'Digital story creation'],
-            NL: ['Verhaaltechnieken', 'Integratie van wiskundige concepten', 'Visueel verhalen vertellen', 'Interactieve verhalen', 'Digitale verhalen maken']
+            EN: [
+                'Story structure and mathematical integration',
+                'Creating engaging narratives',
+                'Adapting stories for different age groups',
+                'Practice sessions with feedback'
+            ],
+            NL: [
+                'Verhaalstructuur en wiskundige integratie',
+                'Boeiende verhalen creëren',
+                'Verhalen aanpassen voor verschillende leeftijdsgroepen',
+                'Oefensessies met feedback'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 15,
+        durationMinutes: 150,
+        durationText: { EN: '2.5 hours', NL: '2.5 uur' },
+        sessionStructure: 'single',
+        minParticipants: 5,
+        maxParticipants: 12,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -506,19 +522,29 @@ export const workshops: Workshops = {
             EN: 'Create engaging audio content about mathematical concepts. Learn podcast production and storytelling techniques for educational content.',
             NL: 'Maak boeiende audio-inhoud over wiskundige concepten. Leer podcastproductie en verhaaltechnieken voor educatieve content.'
         },
-        durationMinutes: 240,
-        durationText: { 
-            EN: '4 hours', 
-            NL: '4 uur' 
-        },
-        level: 'all_levels',
-        format: 'media',
+        level: 'intermediate',
+        format: 'hands-on',
         details: {
-            EN: ['Podcast planning', 'Audio recording basics', 'Script writing', 'Editing techniques', 'Distribution platforms'],
-            NL: ['Podcast planning', 'Audio opname basis', 'Script schrijven', 'Bewerkingstechnieken', 'Distributieplatforms']
+            EN: [
+                'Audio production basics',
+                'Mathematical storytelling techniques',
+                'Recording and editing skills',
+                'Content planning and structure'
+            ],
+            NL: [
+                'Basis audio-productie',
+                'Wiskundige verhaaltechnieken',
+                'Opname- en bewerkingsvaardigheden',
+                'Content planning en structuur'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 8,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 2,
+        sessionStructure: 'series',
+        minParticipants: 3,
+        maxParticipants: 6,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -535,19 +561,29 @@ export const workshops: Workshops = {
             EN: 'Learn to create engaging educational math videos. Master video production techniques and visual explanation methods.',
             NL: 'Leer boeiende educatieve wiskundevideo\'s maken. Beheers videoproductietechnieken en visuele uitlegmethoden.'
         },
-        durationMinutes: 360,
-        durationText: { 
-            EN: '6 hours', 
-            NL: '6 uur' 
-        },
         level: 'intermediate',
-        format: 'media',
+        format: 'hands-on',
         details: {
-            EN: ['Video planning', 'Recording techniques', 'Visual effects', 'Animation basics', 'Publishing strategies'],
-            NL: ['Video planning', 'Opnametechnieken', 'Visuele effecten', 'Animatie basis', 'Publicatiestrategieën']
+            EN: [
+                'Video production basics',
+                'Mathematical content presentation',
+                'Visual storytelling techniques',
+                'Video editing and post-production'
+            ],
+            NL: [
+                'Basis videoproductie',
+                'Wiskundige inhoud presenteren',
+                'Visuele vertellingtechnieken',
+                'Video-editing en postproductie'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 10,
+        durationMinutes: 240,
+        durationText: { EN: '4 hours per session', NL: '4 uur per sessie' },
+        totalSessions: 3,
+        sessionStructure: 'series',
+        minParticipants: 3,
+        maxParticipants: 6,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -564,19 +600,29 @@ export const workshops: Workshops = {
             EN: 'Explore innovative ways to assess mathematical understanding using technology and creative methods.',
             NL: 'Ontdek innovatieve manieren om wiskundig begrip te toetsen met behulp van technologie en creatieve methoden.'
         },
-        durationMinutes: 240,
-        durationText: { 
-            EN: '4 hours', 
-            NL: '4 uur' 
-        },
         level: 'advanced',
-        format: 'professional',
+        format: 'interactive',
         details: {
-            EN: ['Alternative assessment methods', 'Digital tools for assessment', 'Rubric development', 'Feedback strategies', 'Portfolio assessment'],
-            NL: ['Alternatieve toetsingsmethoden', 'Digitale tools voor toetsing', 'Rubric ontwikkeling', 'Feedback strategieën', 'Portfolio beoordeling']
+            EN: [
+                'Technology-enhanced assessment methods',
+                'Creative evaluation techniques',
+                'Digital tools for math assessment',
+                'Formative assessment strategies'
+            ],
+            NL: [
+                'Technologie-verbeterde beoordelingsmethoden',
+                'Creatieve evaluatietechnieken',
+                'Digitale hulpmiddelen voor wiskundetoetsing',
+                'Formatieve beoordelingsstrategieën'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 20,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 2,
+        sessionStructure: 'series',
+        minParticipants: 6,
+        maxParticipants: 15,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -593,19 +639,29 @@ export const workshops: Workshops = {
             EN: 'Learn effective strategies for differentiating math instruction to meet diverse student needs.',
             NL: 'Leer effectieve strategieën voor het differentiëren van wiskundeonderwijs om aan diverse leerlingbehoeften te voldoen.'
         },
-        durationMinutes: 300,
-        durationText: { 
-            EN: '5 hours', 
-            NL: '5 uur' 
-        },
         level: 'advanced',
-        format: 'professional',
+        format: 'interactive',
         details: {
-            EN: ['Differentiation strategies', 'Task design', 'Group management', 'Assessment adaptation', 'Digital tools for differentiation'],
-            NL: ['Differentiatiestrategieën', 'Taakontwerp', 'Groepsmanagement', 'Toetsingsaanpassing', 'Digitale tools voor differentiatie']
+            EN: [
+                'Understanding student learning differences',
+                'Differentiation strategies for math instruction',
+                'Assessment and adaptation techniques',
+                'Creating inclusive math learning environments'
+            ],
+            NL: [
+                'Begrip van verschillen in leren',
+                'Differentiatiestrategieën voor wiskundeonderwijs',
+                'Beoordelings- en aanpassingstechnieken',
+                'Creëren van inclusieve wiskundeleeromgevingen'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 15,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 3,
+        sessionStructure: 'series',
+        minParticipants: 6,
+        maxParticipants: 12,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -622,19 +678,28 @@ export const workshops: Workshops = {
             EN: 'Integrate mindfulness techniques into mathematics education to reduce anxiety and improve focus.',
             NL: 'Integreer mindfulness-technieken in wiskundeonderwijs om angst te verminderen en focus te verbeteren.'
         },
-        durationMinutes: 180,
-        durationText: { 
-            EN: '3 hours', 
-            NL: '3 uur' 
-        },
-        level: 'all_levels',
-        format: 'wellness',
+        level: 'intermediate',
+        format: 'interactive',
         details: {
-            EN: ['Math anxiety management', 'Mindfulness exercises', 'Focus techniques', 'Stress reduction', 'Classroom implementation'],
-            NL: ['Wiskundeangst management', 'Mindfulness oefeningen', 'Focustechnieken', 'Stressreductie', 'Klasimplementatie']
+            EN: [
+                'Understanding math anxiety and its impact',
+                'Practical mindfulness techniques for the classroom',
+                'Integration strategies for mathematical concepts',
+                'Building confidence through mindful practice'
+            ],
+            NL: [
+                'Begrip van wiskundeangst en de impact ervan',
+                'Praktische mindfulness-technieken voor in de klas',
+                'Integratiestrategieën voor wiskundige concepten',
+                'Opbouwen van vertrouwen door mindful oefenen'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 120,
+        durationText: { EN: '2 hours', NL: '2 uur' },
+        sessionStructure: 'single',
+        minParticipants: 4,
+        maxParticipants: 10,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -651,19 +716,18 @@ export const workshops: Workshops = {
             EN: 'Learn mindfulness techniques to reduce stress and improve mental health.',
             NL: 'Leer mindfulness-technieken om stress te verminderen en mentale gezondheid te verbeteren.'
         },
-        durationMinutes: 180,
-        durationText: { 
-            EN: '3 hours', 
-            NL: '3 uur' 
-        },
-        level: 'all_levels',
-        format: 'wellness',
+        level: 'beginner',
+        format: 'interactive',
         details: {
-            EN: ['Mindfulness techniques', 'Stress reduction', 'Mental health improvement', 'Classroom implementation'],
-            NL: ['Mindfulness-technieken', 'Stressreductie', 'Mentale gezondheid verbeteren', 'Klasimplementatie']
+            EN: ['Stress reduction techniques', 'Mental health awareness', 'Mindfulness practices', 'Guided meditation'],
+            NL: ['Stressverminderingstechnieken', 'Bewustzijn van mentale gezondheid', 'Mindfulness-oefeningen', 'Begeleide meditatie']
         },
         price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 120,
+        durationText: { EN: '2 hours', NL: '2 uur' },
+        sessionStructure: 'single',
+        minParticipants: 4,
+        maxParticipants: 10,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
@@ -680,24 +744,33 @@ export const workshops: Workshops = {
             EN: 'Learn effective time management techniques to improve productivity and reduce stress.',
             NL: 'Leer effectieve tijdmanagementtechnieken om productiviteit te verbeteren en stress te verminderen.'
         },
-        durationMinutes: 180,
-        durationText: { 
-            EN: '3 hours', 
-            NL: '3 uur' 
-        },
-        level: 'all_levels',
-        format: 'wellness',
-        details: {
-            EN: ['Time management techniques', 'Productivity improvement', 'Stress reduction', 'Classroom implementation'],
-            NL: ['Tijdmanagementtechnieken', 'Productiviteit verbeteren', 'Stressreductie', 'Klasimplementatie']
-        },
-        price: defaultPrice,
+        durationMinutes: 150,
+        durationText: { EN: '2.5 hours', NL: '2.5 uur' },
+        sessionStructure: 'single',
+        minParticipants: 4,
         maxParticipants: 12,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,
         type: 'creative',
-        schedule: 'single'
+        schedule: 'single',
+        level: 'intermediate',
+        format: 'interactive',
+        details: {
+            EN: [
+                'Time management principles and techniques',
+                'Productivity optimization strategies',
+                'Stress reduction through better planning',
+                'Priority setting and task organization'
+            ],
+            NL: [
+                'Tijdmanagement principes en technieken',
+                'Productiviteitsoptimalisatie strategieën',
+                'Stressvermindering door betere planning',
+                'Prioriteiten stellen en taakorganisatie'
+            ]
+        },
+        price: defaultPrice
     },
     'exam-preparation': {
         id: 'exam-preparation',
@@ -709,19 +782,29 @@ export const workshops: Workshops = {
             EN: 'Learn effective exam preparation strategies to improve exam performance.',
             NL: 'Leer effectieve examvoorbereidingsstrategieën om examenprestaties te verbeteren.'
         },
-        durationMinutes: 180,
-        durationText: { 
-            EN: '3 hours', 
-            NL: '3 uur' 
-        },
-        level: 'all_levels',
-        format: 'wellness',
+        level: 'intermediate',
+        format: 'interactive',
         details: {
-            EN: ['Exam preparation strategies', 'Time management', 'Stress reduction', 'Classroom implementation'],
-            NL: ['Examenvoorbereidingsstrategieën', 'Tijdmanagement', 'Stressreductie', 'Klasimplementatie']
+            EN: [
+                'Study planning and time management',
+                'Effective note-taking techniques',
+                'Memory and retention strategies',
+                'Practice exam strategies'
+            ],
+            NL: [
+                'Studieplanning en tijdmanagement',
+                'Effectieve aantekentechnieken',
+                'Geheugen- en retentiestrategieën',
+                'Oefenexamenstrategieën'
+            ]
         },
         price: defaultPrice,
-        maxParticipants: 12,
+        durationMinutes: 180,
+        durationText: { EN: '3 hours per session', NL: '3 uur per sessie' },
+        totalSessions: 3,
+        sessionStructure: 'series',
+        minParticipants: 4,
+        maxParticipants: 10,
         prerequisites: defaultPrerequisites,
         materials: defaultMaterials,
         location: defaultLocation,

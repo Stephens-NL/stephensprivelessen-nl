@@ -621,13 +621,18 @@ export type LocationPricingTableProps = {
 export type WorkshopType = 'academic' | 'creative';
 export type WorkshopLevel = 'beginner' | 'intermediate' | 'advanced' | 'professional' | 'all_levels';
 export type WorkshopFormat = 'interactive' | 'practical' | 'technical' | 'creative' | 'professional' | 'media' | 'flexible' | 'hands-on' | 'wellness';
+export type WorkshopSchedule = 'single' | 'weekly' | 'monthly';
+export type SessionStructure = 'single' | 'series' | 'flexible';
 
 export interface Workshop {
     id: string;
+    type: WorkshopType;
     title: Bilingual;
     description: Bilingual;
     durationMinutes: number;
     durationText: Bilingual;
+    totalSessions?: number;
+    sessionStructure?: SessionStructure;
     level: WorkshopLevel;
     format: WorkshopFormat;
     details: {
@@ -635,11 +640,14 @@ export interface Workshop {
         NL: string[];
     };
     price: Bilingual;
+    minParticipants?: number;
     maxParticipants: number;
     prerequisites: Bilingual;
     materials: Bilingual;
     location: Bilingual;
-    type: WorkshopType;
+    schedule: WorkshopSchedule;
 }
 
-export type Workshops = { [key: string]: Workshop };
+export interface Workshops {
+    [key: string]: Workshop;
+}

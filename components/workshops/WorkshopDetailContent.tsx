@@ -58,41 +58,44 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
                             "mb-8 flex items-center",
                             isCreative ? "text-purple-600 hover:text-purple-700" : "text-blue-600 hover:text-blue-700"
                         )}
+                        aria-label={String(t({ EN: 'Back to Workshops overview', NL: 'Terug naar Workshop overzicht' }))}
                     >
                         ← {String(t({ EN: 'Back to Workshops', NL: 'Terug naar Workshops' }))}
                     </button>
 
-                    <div className="bg-white rounded-lg shadow-lg p-8">
-                        <div className="inline-flex gap-2 mb-6">
-                            <span className={cn(
-                                "text-sm font-medium px-3 py-1 rounded-full",
-                                isCreative ? "bg-purple-50 text-purple-700" : "bg-blue-50 text-blue-700"
+                    <article className="bg-white rounded-lg shadow-lg p-8">
+                        <header>
+                            <div className="inline-flex gap-2 mb-6" role="group" aria-label={String(t({ EN: 'Workshop categories', NL: 'Workshop categorieën' }))}>
+                                <span className={cn(
+                                    "text-sm font-medium px-3 py-1 rounded-full",
+                                    isCreative ? "bg-purple-50 text-purple-700" : "bg-blue-50 text-blue-700"
+                                )}>
+                                    {String(t(workshop.format))}
+                                </span>
+                                <span className={cn(
+                                    "text-sm font-medium px-3 py-1 rounded-full",
+                                    isCreative ? "bg-purple-50 text-purple-700" : "bg-blue-50 text-blue-700"
+                                )}>
+                                    {String(t({ 
+                                        EN: isCreative ? 'Creative' : 'Academic',
+                                        NL: isCreative ? 'Creatief' : 'Academisch'
+                                    }))}
+                                </span>
+                            </div>
+                            
+                            <h1 className={cn(
+                                "text-4xl font-bold mb-6",
+                                isCreative ? "text-purple-900" : "text-blue-900"
                             )}>
-                                {String(t(workshop.format))}
-                            </span>
-                            <span className={cn(
-                                "text-sm font-medium px-3 py-1 rounded-full",
-                                isCreative ? "bg-purple-50 text-purple-700" : "bg-blue-50 text-blue-700"
-                            )}>
-                                {String(t({ 
-                                    EN: isCreative ? 'Creative' : 'Academic',
-                                    NL: isCreative ? 'Creatief' : 'Academisch'
-                                }))}
-                            </span>
-                        </div>
+                                {String(t(workshop.title))}
+                            </h1>
+                        </header>
                         
-                        <h1 className={cn(
-                            "text-4xl font-bold mb-6",
-                            isCreative ? "text-purple-900" : "text-blue-900"
-                        )}>
-                            {String(t(workshop.title))}
-                        </h1>
-                        
-                        <p className="text-lg text-gray-600 mb-8">
+                        <div className="text-lg text-gray-600 mb-8" role="doc-subtitle">
                             {String(t(workshop.description))}
-                        </p>
+                        </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <section aria-label={String(t({ EN: 'Workshop details', NL: 'Workshop details' }))} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                             <div className={cn(
                                 "p-4 rounded-lg",
                                 isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
@@ -120,16 +123,10 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
                                 </h3>
                                 <p className="text-gray-600">{String(t(workshop.level))}</p>
                             </div>
-                        </div>
+                        </section>
 
                         {(workshop.prerequisites || workshop.materials || workshop.location || workshop.maxParticipants) && (
-                            <div className="mb-8">
-                                <h2 className={cn(
-                                    "text-2xl font-semibold mb-4",
-                                    isCreative ? "text-purple-900" : "text-blue-900"
-                                )}>
-                                    {String(t({ EN: 'Additional Information', NL: 'Aanvullende Informatie' }))}
-                                </h2>
+                            <section aria-label={String(t({ EN: 'Additional Information', NL: 'Aanvullende Informatie' }))} className="mb-8">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {workshop.prerequisites && (
                                         <div className={cn(
@@ -176,10 +173,10 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
                                         </div>
                                     )}
                                 </div>
-                            </div>
+                            </section>
                         )}
 
-                        <div className="mb-8">
+                        <section aria-label={String(t({ EN: 'Workshop content', NL: 'Workshop inhoud' }))} className="mb-8">
                             <h2 className={cn(
                                 "text-2xl font-semibold mb-4",
                                 isCreative ? "text-purple-900" : "text-blue-900"
@@ -191,9 +188,9 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
                                     <li key={index}>{detail}</li>
                                 ))}
                             </ul>
-                        </div>
+                        </section>
 
-                        <div className="flex justify-center">
+                        <footer className="flex justify-center">
                             <button
                                 onClick={handleRequestInfo}
                                 className={cn(
@@ -202,11 +199,12 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
                                         ? "bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800"
                                         : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
                                 )}
+                                aria-label={String(t({ EN: 'Request information about this workshop', NL: 'Informatie aanvragen over deze workshop' }))}
                             >
                                 {String(t({ EN: 'Request Information', NL: 'Informatie Aanvragen' }))}
                             </button>
-                        </div>
-                    </div>
+                        </footer>
+                    </article>
                 </motion.div>
             </div>
         </div>

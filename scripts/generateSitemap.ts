@@ -1,5 +1,5 @@
 import type { NavItem } from '../data/types';
-import type { Workshop, Workshops } from '../data/workshopTypes';
+import type { Workshop, Workshops } from '../data/types';
 
 const fs = require('fs');
 const path = require('path');
@@ -26,6 +26,12 @@ const generateSitemap = () => {
   // Add homepage
   urlset.push(createUrlEntry('/', 'weekly', '1.0'));
 
+  // Add main service pages with high priority
+  urlset.push(createUrlEntry('/bijles', 'weekly', '1.0'));
+  urlset.push(createUrlEntry('/scriptiebegeleiding', 'weekly', '1.0'));
+  urlset.push(createUrlEntry('/statistiek', 'weekly', '0.9'));
+  urlset.push(createUrlEntry('/wiskunde', 'weekly', '0.9'));
+
   // Add navigation pages
   navigationData.navigation.forEach((item: NavItem) => {
     if (item.href !== '/') { // Skip homepage as it's already added
@@ -44,6 +50,24 @@ const generateSitemap = () => {
       `/workshops/${workshop.id}`,
       'monthly',
       '0.7'
+    ));
+  });
+
+  // Add location specific pages
+  urlset.push('\n  <!-- Location Pages -->');
+  const locations = [
+    'amsterdam-zuid',
+    'amsterdam-centrum',
+    'amsterdam-noord',
+    'amsterdam-west',
+    'amsterdam-oost'
+  ];
+  
+  locations.forEach(location => {
+    urlset.push(createUrlEntry(
+      `/bijles/${location}`,
+      'monthly',
+      '0.8'
     ));
   });
 
