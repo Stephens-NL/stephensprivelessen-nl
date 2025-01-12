@@ -69,7 +69,7 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold mb-2">{t(plan.name)}</h3>
                   <div className="text-4xl font-bold text-blue-600 mb-2">
-                    {plan.price}
+                    {t(plan.price)}
                   </div>
                   <div className="text-gray-600">{t(plan.interval)}</div>
                 </div>

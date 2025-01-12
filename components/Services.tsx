@@ -96,15 +96,27 @@ const Services = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 text-center text-white"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {String(t(ourServices))}
-        </motion.h2>
+        {/* Introduction Section */}
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {String(t(ourServices))}
+          </motion.h2>
+          <motion.p
+            className="text-lg sm:text-xl text-white mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {String(t(generalContent.serviceDetails))}
+          </motion.p>
+        </div>
 
+        {/* Services Grid */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           variants={containerVariants}

@@ -166,39 +166,70 @@ export const tutoringPage: TutoringPage = {
     ]
   },
   pricing: {
-    title: { EN: 'Simple, Transparent Pricing', NL: 'Eenvoudige, Transparante Prijzen' },
+    title: { EN: 'Tutoring Packages', NL: 'Bijlespakketten' },
     subtitle: {
-      EN: 'Choose the plan that fits your needs.',
-      NL: 'Kies het plan dat bij je past.'
+      EN: 'Quality tutoring starting from €30 per hour - Contact us for a personalized plan',
+      NL: 'Kwaliteitsbijles vanaf €30 per uur - Neem contact op voor een plan op maat'
     },
     plans: [
       {
-        name: { EN: 'Single Session', NL: 'Enkele Sessie' },
-        price: '€60',
-        interval: { EN: 'per session', NL: 'per sessie' },
+        name: { EN: 'High School Math & Science', NL: 'Middelbare School Wiskunde & Beta' },
+        price: { EN: 'From €30', NL: 'Vanaf €30' },
+        interval: { EN: 'per hour', NL: 'per uur' },
         features: [
-          { EN: '1-hour session', NL: '1 uur sessie' },
-          { EN: 'Personalized attention', NL: 'Persoonlijke aandacht' },
-          { EN: 'Session summary', NL: 'Sessie samenvatting' }
+          { EN: 'Math A/B/C/D support', NL: 'Wiskunde A/B/C/D ondersteuning' },
+          { EN: 'Physics and Chemistry help', NL: 'Natuurkunde en scheikunde hulp' },
+          { EN: 'Exam preparation', NL: 'Examenvoorbereiding' },
+          { EN: 'Homework guidance', NL: 'Huiswerkbegeleiding' }
         ],
         cta: {
-          text: { EN: 'Book Now', NL: 'Nu Boeken' },
+          text: { EN: 'Schedule Trial', NL: 'Plan Proefles' },
           href: '/contact'
         }
       },
       {
-        name: { EN: 'Monthly Package', NL: 'Maandelijks Pakket' },
-        price: '€200',
-        interval: { EN: 'per month', NL: 'per maand' },
+        name: { EN: 'University Mathematics', NL: 'Universitair Wiskunde' },
+        price: { EN: 'From €40', NL: 'Vanaf €40' },
+        interval: { EN: 'per hour', NL: 'per uur' },
         features: [
-          { EN: '4 sessions per month', NL: '4 sessies per maand' },
-          { EN: 'Progress tracking', NL: 'Voortgang volgen' },
-          { EN: 'Study materials included', NL: 'Studiemateriaal inbegrepen' },
-          { EN: 'Email support', NL: 'Email ondersteuning' }
+          { EN: 'Calculus & Linear Algebra', NL: 'Calculus & Lineaire Algebra' },
+          { EN: 'Statistics & Probability', NL: 'Statistiek & Kansberekening' },
+          { EN: 'Thesis support', NL: 'Scriptiebegeleiding' },
+          { EN: 'Research methodology', NL: 'Onderzoeksmethodologie' }
         ],
         popular: true,
         cta: {
           text: { EN: 'Get Started', NL: 'Begin Nu' },
+          href: '/contact'
+        }
+      },
+      {
+        name: { EN: 'Programming & Data', NL: 'Programmeren & Data' },
+        price: { EN: 'From €40', NL: 'Vanaf €40' },
+        interval: { EN: 'per hour', NL: 'per uur' },
+        features: [
+          { EN: 'Python, R, Java, JavaScript', NL: 'Python, R, Java, JavaScript' },
+          { EN: 'Data Analysis & Statistics', NL: 'Data Analyse & Statistiek' },
+          { EN: 'Machine Learning basics', NL: 'Machine Learning basics' },
+          { EN: 'Project guidance', NL: 'Projectbegeleiding' }
+        ],
+        cta: {
+          text: { EN: 'Contact Us', NL: 'Neem Contact Op' },
+          href: '/contact'
+        }
+      },
+      {
+        name: { EN: 'Thesis & Research', NL: 'Scriptie & Onderzoek' },
+        price: { EN: 'Custom', NL: 'Op maat' },
+        interval: { EN: 'package price', NL: 'pakketprijs' },
+        features: [
+          { EN: 'Master thesis guidance', NL: 'Masterscriptie begeleiding' },
+          { EN: 'Statistical analysis', NL: 'Statistische analyse' },
+          { EN: 'Research design support', NL: 'Onderzoeksopzet begeleiding' },
+          { EN: 'SPSS/R/Python assistance', NL: 'SPSS/R/Python assistentie' }
+        ],
+        cta: {
+          text: { EN: 'Discuss Options', NL: 'Bespreek Mogelijkheden' },
           href: '/contact'
         }
       }
