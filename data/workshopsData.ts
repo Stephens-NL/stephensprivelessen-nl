@@ -835,4 +835,4 @@ export const workshops: WorkshopsPageContent = {
     ]
 };
 
-export { workshopItems }; 
+export default workshopItems; 

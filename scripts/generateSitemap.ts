@@ -1,9 +1,11 @@
 import type { NavItem } from '../data/types';
 import type { Workshop, Workshops } from '../data/types';
+import type { Service } from '../data/types';
+import workshopItems from '../data/workshopsData';
+import { services } from '../data/services';
 
 const fs = require('fs');
 const path = require('path');
-const { workshopItems } = require('../data/workshopsData');
 const navigationData = require('../data/navigation');
 
 const DOMAIN = 'https://www.stephensprivelessen.nl';
@@ -27,17 +29,18 @@ const generateSitemap = () => {
   urlset.push(createUrlEntry('/', 'weekly', '1.0'));
 
   // Add main service pages with high priority
+  urlset.push(createUrlEntry('/services', 'weekly', '1.0')); // Main services overview page
   urlset.push(createUrlEntry('/bijles', 'weekly', '1.0'));
-  urlset.push(createUrlEntry('/scriptiebegeleiding', 'weekly', '1.0'));
-  urlset.push(createUrlEntry('/statistiek', 'weekly', '0.9'));
-  urlset.push(createUrlEntry('/wiskunde', 'weekly', '0.9'));
+  urlset.push(createUrlEntry('/workshops', 'weekly', '1.0'));
+  urlset.push(createUrlEntry('/consultancy', 'weekly', '0.9'));
 
   // Add navigation pages
   navigationData.navigation.forEach((item: NavItem) => {
-    if (item.href !== '/') { // Skip homepage as it's already added
+    if (item.href !== '/' && item.href !== '/services' && item.href !== '/workshops' && item.href !== '/consultancy') { 
+      // Skip pages we've already added
       urlset.push(createUrlEntry(
         item.href,
-        item.href === '/workshops' || item.href === '/blog' ? 'weekly' : 'monthly',
+        item.href === '/blog' ? 'weekly' : 'monthly',
         item.href === '/faq' ? '0.6' : '0.8'
       ));
     }

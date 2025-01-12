@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Hero, HeroData, Service, ServiceData, generalContent } from '../data';
+import { Hero, Service, generalContent } from '@/data';
+import type { HeroData, ServiceData } from '@/data/types';
 import { useTranslation } from '@/hooks/useTranslation';
 import ButtonTrial from './ButtonTrial';
 import ButtonLearnMore from './ButtonLearnMore';
@@ -110,7 +111,7 @@ const Services = () => {
           initial="hidden"
           animate="visible"
         >
-          {services.map(({ icon, title, shortDescription }, index) => (
+          {services.map(({ icon, title, shortDescription }: Service, index: number) => (
             <motion.div
               key={index}
               className="bg-white bg-opacity-90 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col transform hover:-translate-y-2"

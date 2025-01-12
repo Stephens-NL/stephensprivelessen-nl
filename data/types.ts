@@ -409,3 +409,11 @@ export interface TutoringPage {
     };
   };
 }
+
+export interface HeroData {
+    hero: Hero;
+}
+
+export interface ServiceData {
+    services: Service[];
+}

@@ -4,9 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useRouter } from 'next/navigation';
-import { workshops } from '@/data/workshopsData';
+import workshopsData from '@/data/workshopsData';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
+import type { Workshop, Language } from '@/data/types';
 
 interface WorkshopDetailContentProps {
     id: string;
@@ -17,7 +18,7 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
     const { language } = useLanguage();
     const router = useRouter();
 
-    const workshop = workshops[id];
+    const workshop = workshopsData[id];
 
     if (!workshop) {
         return (
@@ -184,7 +185,7 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
                                 {String(t({ EN: 'What to Expect', NL: 'Wat kun je verwachten' }))}
                             </h2>
                             <ul className="list-disc list-inside space-y-2 text-gray-600">
-                                {workshop.details[language as keyof typeof workshop.details]?.map((detail, index) => (
+                                {workshop.details[language as Language]?.map((detail: string, index: number) => (
                                     <li key={index}>{detail}</li>
                                 ))}
                             </ul>

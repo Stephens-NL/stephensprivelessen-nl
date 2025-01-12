@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useRouter } from 'next/navigation'
-import { workshops } from '@/data/workshopsData'
+import workshopsData from '@/data/workshopsData'
 import type { Workshop, WorkshopLevel, WorkshopFormat, Workshops } from '@/data/types'
 import type { Bilingual } from '@/data/types'
 import { FiClock, FiUsers, FiBookOpen, FiFilter, FiX, FiChevronDown, FiRotateCcw } from 'react-icons/fi'
@@ -441,7 +441,7 @@ const WorkshopsContent: React.FC = () => {
     };
 
     const filteredWorkshops = useMemo(() => {
-        let filtered = Object.values(workshops).filter(workshop => {
+        let filtered = Object.values(workshopsData).filter(workshop => {
             if (typeFilter !== 'all' && workshop.type !== typeFilter) return false;
             
             if (audienceFilter !== 'all') {
@@ -498,7 +498,7 @@ const WorkshopsContent: React.FC = () => {
 
     // Count workshops by type
     const workshopCounts = useMemo(() => {
-        const allWorkshops = Object.values(workshops);
+        const allWorkshops = Object.values(workshopsData);
         return {
             all: allWorkshops.length,
             creative: allWorkshops.filter(w => w.type === 'creative').length,
