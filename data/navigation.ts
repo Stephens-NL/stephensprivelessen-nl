@@ -9,6 +9,7 @@ export const navigation: NavItem[] = [
     { href: '/', label: { EN: 'Home', NL: 'Home' } },
     { href: '/about', label: { EN: 'About', NL: 'Over Ons' } },
     { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
+    { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
     { href: '/blog', label: { EN: 'Blog', NL: 'Blog' } },
     { href: '/contact', label: { EN: 'Contact', NL: 'Contact' } },
     { href: '/FAQ', label: { EN: 'FAQ', NL: 'Vragen' } },

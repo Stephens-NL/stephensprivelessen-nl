@@ -1,10 +1,10 @@
-
 {
   "siteName": "Stephen's Privélessen",
   "nav": {
     "home": "Home",
     "about": "Over",
     "services": "Diensten",
+    "workshops": "Workshops",
     "booking": "Boeken",
     "contact": "Contact",
     "faq": "FAQ",
