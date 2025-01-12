@@ -22,6 +22,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        anton: ["var(--font-anton)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -56,6 +57,13 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        'warm-gray': {
+          '50': 'var(--warm-gray-50)',
+          '100': 'var(--warm-gray-100)',
+          '200': 'var(--warm-gray-200)',
+          '300': 'var(--warm-gray-300)',
+          '400': 'var(--warm-gray-400)',
         },
       },
       borderRadius: {

@@ -1,4 +1,4 @@
-import { Hero } from "./types";
+import { Hero, Bilingual } from "./types";
 
 
 export const hero: Hero = {

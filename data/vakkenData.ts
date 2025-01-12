@@ -1,8 +1,8 @@
 // vakkenData.ts
 
-import { VakkenData } from "./types";
+import { Bilingual } from "./types";
 
-export const vakkenData: VakkenData = [
+export const vakkenData: Bilingual[] = [
     {
         NL: "Rekenen",
         EN: "Arithmetic"

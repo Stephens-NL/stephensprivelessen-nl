@@ -1,6 +1,6 @@
-import { SiteTitle, NavItem } from './types';
+import { NavItem, Bilingual } from './types';
 
-export const siteTitle: SiteTitle = {
+export const siteTitle: Bilingual = {
     EN: "Stephen's Private Lessons",
     NL: "Stephen's Privélessen"
 };

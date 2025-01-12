@@ -1,174 +1,255 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { navigation, siteTitle } from '@/data/navigation';
-import { useTranslation } from '../hooks/useTranslation';
-import { NavItem } from '../data';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Menu, X } from 'lucide-react';
-
-const OPACITY_THRESHOLD = 0.3;
+import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
+import { useTranslation } from '@/hooks/useTranslation'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { FiMenu, FiX } from 'react-icons/fi'
+import { siteTitle } from '@/data/navigation'
 
 const Header = () => {
-    const pathname = usePathname();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [scrollY, setScrollY] = useState(0);
-    const { setLanguage, language } = useLanguage();
-    const { t } = useTranslation();
+    const [isOpen, setIsOpen] = useState(false)
+    const [visible, setVisible] = useState(true)
+    const { scrollY, scrollYProgress } = useScroll()
+    const pathname = usePathname()
+    const { t } = useTranslation()
+    const { language, setLanguage } = useLanguage()
 
-    useEffect(() => {
-        const handleScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    useMotionValueEvent(scrollYProgress, "change", (current) => {
+        if (typeof current === "number") {
+            const direction = current - scrollYProgress.getPrevious()!;
+            const isAtTop = scrollY.get() < 20;
+            const isScrollingABit = scrollY.get() > 100 && scrollY.get() < 400;
+            const isNearTop = scrollY.get() < 100;
 
-    const opacity = Math.max(1 - scrollY / 300, 0);
-    const isClickable = opacity > OPACITY_THRESHOLD;
+            if (isAtTop || isNearTop) {
+                setVisible(true);
+            } else if (isScrollingABit) {
+                setVisible(true);
+            } else {
+                setVisible(direction < 0);
+            }
+        }
+    });
 
+    const closeMenu = () => setIsOpen(false)
+    
     const toggleLanguage = () => {
-        if (isClickable) {
-            const newLanguage = language == 'EN' ? 'NL' : 'EN';
-            setLanguage(newLanguage);
-        }
-    };
+        setLanguage(language === 'EN' ? 'NL' : 'EN')
+    }
 
-    const toggleMenu = () => {
-        if (isClickable) {
-            setIsMenuOpen(!isMenuOpen);
-        }
-    };
+    const navItems = [
+        { href: '/', label: { EN: 'Home', NL: 'Home' } },
+        { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
+        { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
+        { href: '/about', label: { EN: 'About', NL: 'Over Mij' } },
+        { href: '/faq', label: { EN: 'FAQ', NL: 'FAQ' } },
+        { href: '/contact', label: { EN: 'Contact', NL: 'Contact' } },
+    ]
 
-    const NavLink = ({ href, label }: NavItem) => (
-        <motion.div 
-            whileHover={{ scale: isClickable ? 1.05 : 1 }} 
-            whileTap={{ scale: isClickable ? 0.95 : 1 }}
-            className="w-full sm:w-auto"
-        >
-            <Link
-                href={isClickable ? href : '#'}
-                onClick={(e) => { 
-                    if (!isClickable) e.preventDefault();
-                    setIsMenuOpen(false);
-                }}
-                className={`block w-full px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                    pathname === href
-                        ? 'bg-blue-600 text-white'
-                        : 'text-gray-800 hover:bg-blue-500 hover:text-white'
-                } ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-            >
-                {String(t(label))}  
-            </Link>
-        </motion.div>
-    );
+    const isAtTop = scrollY.get() < 20;
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-white shadow-lg" style={{ opacity }}>
-            <div className="container mx-auto px-4">
-                <nav className="flex items-center justify-between h-20">
-                    <motion.div
-                        initial={{ opacity: 1, x: 0 }}
-                        animate={{ x: Math.min(scrollY / 5, 50) }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        <Link 
-                            href={isClickable ? "/" : "#"}
-                            onClick={(e) => !isClickable && e.preventDefault()}
-                            className={`text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-                        >
-                            {String(t(siteTitle))}
-                        </Link>
-                    </motion.div>
-
-                    <motion.button
-                        onClick={toggleLanguage}
-                        className={`hidden sm:flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-                        whileHover={{ scale: isClickable ? 1.05 : 1 }}
-                        whileTap={{ scale: isClickable ? 0.95 : 1 }}
-                    >
-                        {language === 'EN' ? 'Liever Nederlands?' : 'Prefer English?'}
-                    </motion.button>
-
-                    <div className="flex items-center gap-4">
-                        <motion.button
-                            className={`sm:hidden p-2 px-3 rounded-md bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-                            onClick={toggleLanguage}
-                            whileHover={{ scale: isClickable ? 1.05 : 1 }}
-                            whileTap={{ scale: isClickable ? 0.95 : 1 }}
-                        >
-                            {language === 'EN' ? 'Nederlands?' : 'English?'}
-                        </motion.button>
-
-                        <motion.button
-                            className={`lg:hidden p-2 rounded-md bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200 ${!isClickable ? 'pointer-events-none opacity-50' : ''}`}
-                            onClick={toggleMenu}
-                            aria-label="Toggle menu"
-                            whileHover={{ scale: isClickable ? 1.05 : 1 }}
-                            whileTap={{ scale: isClickable ? 0.95 : 1 }}
-                        >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </motion.button>
-                    </div>
-
-                    <motion.ul
-                        className="hidden lg:flex space-x-4 items-center"
-                        initial={{ opacity: 1, y: 0 }}
-                        animate={{ x: Math.min(scrollY / 5, 50) }}
-                        transition={{ duration: 0.5, staggerChildren: 0.1 }}
-                    >
-                        {navigation.map((item) => (
-                            <motion.li key={item.href} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                <NavLink href={item.href} label={item.label} />
-                            </motion.li>
-                        ))}
-                    </motion.ul>
-                </nav>
-
-                <AnimatePresence>
-                    {isMenuOpen && (
+        <AnimatePresence mode="wait">
+            <motion.header 
+                className="fixed w-full z-50"
+                initial={{
+                    opacity: 1,
+                    y: -100,
+                }}
+                animate={{
+                    y: visible ? (isAtTop ? 0 : 20) : -100,
+                    opacity: visible ? 1 : 0,
+                }}
+                transition={{
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
+                }}
+            >
+                {/* Background shape that morphs based on scroll position */}
+                <motion.div
+                    className="absolute inset-x-0 overflow-hidden"
+                    animate={{ 
+                        height: isAtTop ? '96px' : '64px',
+                        width: isAtTop ? '100%' : 'clamp(min(90%, 900px), 85%, 95%)',
+                        borderRadius: isAtTop ? '0px' : '32px',
+                        left: isAtTop ? '0%' : '50%',
+                        x: isAtTop ? '0%' : '-50%',
+                        backgroundColor: isAtTop ? '#1E40AF' : 'white',
+                        boxShadow: isAtTop 
+                            ? 'none'
+                            : '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                        y: isAtTop ? 0 : 10,
+                    }}
+                    transition={{ 
+                        duration: 0.5,
+                        ease: [0.22, 1, 0.36, 1],
+                        backgroundColor: {
+                            duration: 0.8,
+                            ease: [0.22, 1, 0.36, 1],
+                        }
+                    }}
+                    style={{
+                        filter: isAtTop ? 'none' : 'drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08))'
+                    }}
+                >
+                    {/* Sheen effect */}
+                    {isAtTop && (
                         <motion.div
-                            className="lg:hidden fixed inset-0 bg-white z-40"
-                            initial={{ opacity: 0, x: '100%' }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: '100%' }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        >
-                            <div className="flex flex-col h-full">
-                                <div className="flex justify-between items-center p-4 border-b">
-                                    <span className="text-2xl font-bold text-blue-600">
-                                        {String(t(siteTitle))}
-                                    </span>
-                                    <button
-                                        onClick={toggleMenu}
-                                        className="p-2 rounded-md bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors duration-200"
+                            className="absolute inset-0 pointer-events-none"
+                            initial={{ x: '-100%', opacity: 0.5 }}
+                            animate={{ 
+                                x: '200%',
+                                opacity: [0.3, 0.5, 0.3],
+                                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+                                backgroundSize: '200% 100%',
+                            }}
+                            transition={{ 
+                                repeat: Infinity,
+                                duration: 4,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                        />
+                    )}
+                    
+                    {/* Content */}
+                    <div className="relative h-full">
+                        <nav className={`h-full mx-auto ${
+                            isAtTop 
+                                ? 'max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-12' 
+                                : 'px-4 sm:px-5'
+                        }`}>
+                            <div className="flex items-center justify-between h-full">
+                                <Link 
+                                    href="/" 
+                                    className={`text-lg sm:text-xl font-bold whitespace-nowrap transition-all duration-500 ${
+                                        isAtTop ? 'text-white' : 'text-gray-900'
+                                    }`}
+                                >
+                                    {String(t(siteTitle))}
+                                </Link>
+
+                                {/* Desktop Navigation */}
+                                <div className="hidden md:flex items-center justify-between flex-1 pl-8">
+                                    {/* Left side navigation items */}
+                                    <div className="flex items-center gap-4 lg:gap-6 xl:gap-8">
+                                        {navItems.slice(0, Math.ceil(navItems.length / 2)).map(({ href, label }) => (
+                                            <Link
+                                                key={href}
+                                                href={href}
+                                                className={`text-sm font-medium transition-all duration-500 whitespace-nowrap ${
+                                                    isAtTop
+                                                        ? pathname === href
+                                                            ? 'text-white'
+                                                            : 'text-blue-100 hover:text-white'
+                                                        : pathname === href
+                                                            ? 'text-blue-600'
+                                                            : 'text-gray-600 hover:text-blue-600'
+                                                }`}
+                                            >
+                                                {String(t(label))}
+                                            </Link>
+                                        ))}
+                                    </div>
+
+                                    {/* Language toggle in center */}
+                                    <motion.button
+                                        onClick={toggleLanguage}
+                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
+                                            isAtTop
+                                                ? 'bg-white/10 text-white hover:bg-white/20'
+                                                : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                                        }`}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
                                     >
-                                        <X size={24} />
+                                        {language === 'EN' ? 'Nederlands?' : 'English?'}
+                                    </motion.button>
+
+                                    {/* Right side navigation items */}
+                                    <div className="flex items-center gap-4 lg:gap-6 xl:gap-8">
+                                        {navItems.slice(Math.ceil(navItems.length / 2)).map(({ href, label }) => (
+                                            <Link
+                                                key={href}
+                                                href={href}
+                                                className={`text-sm font-medium transition-all duration-500 whitespace-nowrap ${
+                                                    isAtTop
+                                                        ? pathname === href
+                                                            ? 'text-white'
+                                                            : 'text-blue-100 hover:text-white'
+                                                        : pathname === href
+                                                            ? 'text-blue-600'
+                                                            : 'text-gray-600 hover:text-blue-600'
+                                                }`}
+                                            >
+                                                {String(t(label))}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Mobile Menu Button */}
+                                <div className="md:hidden flex items-center gap-3">
+                                    <motion.button
+                                        onClick={toggleLanguage}
+                                        className={`px-2 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+                                            isAtTop
+                                                ? 'bg-white/10 text-white hover:bg-white/20'
+                                                : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                                        }`}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        {language === 'EN' ? 'NL' : 'EN'}
+                                    </motion.button>
+                                    <button
+                                        onClick={() => setIsOpen(!isOpen)}
+                                        className={`p-1.5 transition-colors duration-200 ${
+                                            isAtTop ? 'text-white hover:text-blue-100' : 'text-gray-600 hover:text-gray-900'
+                                        }`}
+                                    >
+                                        {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
                                     </button>
                                 </div>
-                                <nav className="flex-grow overflow-y-auto">
-                                    <ul className="p-4 space-y-4">
-                                        {navigation.map((item) => (
-                                            <motion.li
-                                                key={item.href}
-                                                initial={{ opacity: 0, x: -20 }}
-                                                animate={{ opacity: 1, x: 0 }}
-                                                exit={{ opacity: 0, x: -20 }}
-                                                transition={{ duration: 0.2 }}
-                                            >
-                                                <NavLink href={item.href} label={item.label} />
-                                            </motion.li>
-                                        ))}
-                                    </ul>
-                                </nav>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </header>
-    );
-};
 
-export default Header;
+                                {/* Mobile Navigation */}
+                                <AnimatePresence>
+                                    {isOpen && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: 'auto' }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl mt-4 rounded-2xl"
+                                        >
+                                            <div className="p-4">
+                                                <div className="flex flex-col space-y-3">
+                                                    {navItems.map(({ href, label }) => (
+                                                        <Link
+                                                            key={href}
+                                                            href={href}
+                                                            onClick={closeMenu}
+                                                            className={`text-sm font-medium transition-colors hover:text-blue-600 ${
+                                                                pathname === href ? 'text-blue-600' : 'text-gray-600'
+                                                            }`}
+                                                        >
+                                                            {String(t(label))}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        </nav>
+                    </div>
+                </motion.div>
+            </motion.header>
+        </AnimatePresence>
+    )
+}
+
+export default Header

@@ -8,7 +8,7 @@ import { IconType } from 'react-icons/lib';
 export type Language = 'EN' | 'NL';
 
 // Bilingual type for handling multilingual content
-type Bilingual<T = string | string[] | Record<string, any>> = {
+export type Bilingual<T = string | string[] | Record<string, any>> = {
   [key in Language]: T;
 };
 
@@ -616,3 +616,30 @@ export type LocationPricingTableProps = {
   pricing: LocationPricingItem[];
   title: string;
 };
+
+// Workshop-related types
+export type WorkshopType = 'academic' | 'creative';
+export type WorkshopLevel = 'beginner' | 'intermediate' | 'advanced' | 'professional' | 'all_levels';
+export type WorkshopFormat = 'interactive' | 'practical' | 'technical' | 'creative' | 'professional' | 'media' | 'flexible' | 'hands-on' | 'wellness';
+
+export interface Workshop {
+    id: string;
+    title: Bilingual;
+    description: Bilingual;
+    durationMinutes: number;
+    durationText: Bilingual;
+    level: WorkshopLevel;
+    format: WorkshopFormat;
+    details: {
+        EN: string[];
+        NL: string[];
+    };
+    price: Bilingual;
+    maxParticipants: number;
+    prerequisites: Bilingual;
+    materials: Bilingual;
+    location: Bilingual;
+    type: WorkshopType;
+}
+
+export type Workshops = { [key: string]: Workshop };

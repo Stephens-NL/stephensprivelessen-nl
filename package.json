@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run generate-sitemap && next dev",
+    "build": "npm run generate-sitemap && next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "jest",
     "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "test:form": "ts-node scripts/test-form-submission.ts",
-    "setup:sheet": "clasp push && clasp run createFormTrackingSheet"
+    "setup:sheet": "clasp push && clasp run createFormTrackingSheet",
+    "generate-sitemap": "ts-node --project tsconfig.scripts.json scripts/generateSitemap.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
@@ -54,13 +55,14 @@
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.14",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
     "@types/pg": "^8.11.6",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/supertest": "^6.0.2",
+    "@types/xml2js": "^0.4.14",
     "drizzle-kit": "^0.24.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
@@ -69,8 +71,10 @@
     "postcss": "^8",
     "supertest": "^7.0.0",
     "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "xml2js": "^0.6.2"
   },
   "prisma": {
     "seed": "ts-node --compiler-options \"{\\\"module\\\":\\\"CommonJS\\\"}\" prisma/seed.ts"

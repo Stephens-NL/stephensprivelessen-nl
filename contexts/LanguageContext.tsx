@@ -1,32 +1,28 @@
 'use client';
 
-import { Language, LanguageContextType } from "../data";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useState, useCallback, useContext } from 'react';
+import { Language, LanguageContextType } from '@/data/types';
 
-
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
-
-type LanguageProviderProps = {
-  children: ReactNode;
-};
-
-export const LanguageProvider = ({ children }: LanguageProviderProps): React.ReactElement => {
-  const [language, setLanguage] = useState<Language>('NL');
-
-  return (
-    <LanguageContext.Provider value={{ language, setLanguage }}>
-      {children}
-    </LanguageContext.Provider>
-  );
-};
+export const LanguageContext = createContext<LanguageContextType | null>(null);
 
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
 };
 
-// Export de LanguageContext als deze elders nodig is
-export { LanguageContext };
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>('NL');
+
+  const handleSetLanguage = useCallback((lang: Language) => {
+    setLanguage(lang);
+  }, []);
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
