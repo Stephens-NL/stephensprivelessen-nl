@@ -5,31 +5,41 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useRouter } from 'next/navigation'
 import { workshops } from '@/data/workshopsData'
-import type { Workshop, WorkshopLevel, WorkshopFormat } from '@/data/workshopTypes'
+import type { Workshop, WorkshopLevel, WorkshopFormat, Workshops } from '@/data/types'
 import type { Bilingual } from '@/data/types'
 import { FiClock, FiUsers, FiBookOpen, FiFilter, FiX, FiChevronDown, FiRotateCcw } from 'react-icons/fi'
 
 // Helper functions for translations
-const getLevelTranslation = (level: WorkshopLevel): Bilingual => ({
-    EN: level.charAt(0).toUpperCase() + level.slice(1).replace('_', ' '),
-    NL: level === 'beginner' ? 'Beginner' :
-        level === 'intermediate' ? 'Gevorderd' :
-        level === 'advanced' ? 'Vergevorderd' :
-        level === 'professional' ? 'Professional' :
-        'Alle Niveaus'
-});
+const getLevelTranslation = (level?: WorkshopLevel): Bilingual => {
+    if (!level) {
+        return { EN: 'All Levels', NL: 'Alle Niveaus' };
+    }
+    return {
+        EN: level.charAt(0).toUpperCase() + level.slice(1).replace('_', ' '),
+        NL: level === 'beginner' ? 'Beginner' :
+            level === 'intermediate' ? 'Gevorderd' :
+            level === 'advanced' ? 'Vergevorderd' :
+            level === 'professional' ? 'Professional' :
+            'Alle Niveaus'
+    };
+};
 
-const getFormatTranslation = (format: WorkshopFormat): Bilingual => ({
-    EN: format.charAt(0).toUpperCase() + format.slice(1).replace('-', ' '),
-    NL: format === 'hands-on' ? 'Praktisch' :
-        format === 'interactive' ? 'Interactief' :
-        format === 'technical' ? 'Technisch' :
-        format === 'creative' ? 'Creatief' :
-        format === 'professional' ? 'Professioneel' :
-        format === 'media' ? 'Media' :
-        format === 'flexible' ? 'Flexibel' :
-        format === 'wellness' ? 'Welzijn' : format
-});
+const getFormatTranslation = (format?: WorkshopFormat): Bilingual => {
+    if (!format) {
+        return { EN: 'Flexible', NL: 'Flexibel' };
+    }
+    return {
+        EN: format.charAt(0).toUpperCase() + format.slice(1).replace('-', ' '),
+        NL: format === 'hands-on' ? 'Praktisch' :
+            format === 'interactive' ? 'Interactief' :
+            format === 'technical' ? 'Technisch' :
+            format === 'creative' ? 'Creatief' :
+            format === 'professional' ? 'Professioneel' :
+            format === 'media' ? 'Media' :
+            format === 'flexible' ? 'Flexibel' :
+            format === 'wellness' ? 'Welzijn' : format
+    };
+};
 
 const HeroSection: React.FC = () => {
     const { t } = useTranslation()
