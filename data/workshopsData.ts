@@ -1,4 +1,4 @@
-import { Bilingual, Workshop, WorkshopType, WorkshopLevel, WorkshopFormat, Workshops } from './types';
+import { Bilingual, Workshop, WorkshopType, WorkshopLevel, WorkshopFormat, Workshops, WorkshopsPageContent } from './types';
 
 const defaultPrice: Bilingual = {
     EN: 'Contact for pricing',
@@ -20,7 +20,7 @@ const defaultPrerequisites: Bilingual = {
     NL: 'Geen specifieke voorvereisten'
 };
 
-export const workshops: Workshops = {
+const workshopItems: Workshops = {
     'statistics-project': {
         id: 'statistics-project',
         type: 'academic',
@@ -811,4 +811,28 @@ export const workshops: Workshops = {
         type: 'creative',
         schedule: 'weekly'
     }
-}; 
+};
+
+export const workshops: WorkshopsPageContent = {
+    id: 'workshops',
+    title: {
+        EN: 'Workshops & Courses',
+        NL: 'Workshops & Cursussen'
+    },
+    description: {
+        EN: 'Discover our diverse range of workshops and courses designed to enhance your skills and knowledge.',
+        NL: 'Ontdek ons diverse aanbod van workshops en cursussen ontworpen om je vaardigheden en kennis te verbeteren.'
+    },
+    categories: [
+        {
+            type: 'academic',
+            items: Object.values(workshopItems).filter(workshop => workshop.type === 'academic')
+        },
+        {
+            type: 'creative',
+            items: Object.values(workshopItems).filter(workshop => workshop.type === 'creative')
+        }
+    ]
+};
+
+export { workshopItems }; 

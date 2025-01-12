@@ -22,8 +22,8 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
         >
             <p className="text-center text-yellow-100 mb-8">
                 {String(t({
-                    EN: "Would you like to learn more about my teaching methods or schedule a trial lesson right away?",
-                    NL: "Wil je meer weten over mijn lesmethoden of direct een proefles inplannen?"
+                    EN: "Would you like to learn more about our teaching methods or schedule a trial lesson right away?",
+                    NL: "Wil je meer weten over onze lesmethoden of direct een proefles inplannen?"
                 }))}
             </p>
 
@@ -43,8 +43,8 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
                     </h3>
                     <p className="text-sm text-center opacity-80">
                         {String(t({
-                            EN: "Learn about my teaching methods, subjects, and pricing",
-                            NL: "Leer meer over mijn lesmethoden, vakken en tarieven"
+                            EN: "Learn about our teaching methods, subjects, and pricing",
+                            NL: "Leer meer over onze lesmethoden, vakken en tarieven"
                         }))}
                     </p>
                 </motion.button>

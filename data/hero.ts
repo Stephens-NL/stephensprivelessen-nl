@@ -1,20 +1,19 @@
 import { Hero, Bilingual } from "./types";
 
-
 export const hero: Hero = {
+    id: "main-hero",
     title: {
-        NL: "Ontgrendel Je Potentieel",
-        EN: "Unlock Your Potential"
+        EN: "Unlock Your Potential",
+        NL: "Ontgrendel Je Potentieel"
     },
     subtitle: {
-        NL: "Uitblinken met Expert Begeleiding",
-        EN: "Excel with Expert Guidance"
+        EN: "Excel with Expert Guidance",
+        NL: "Uitblinken met Expert Begeleiding"
     },
     subtitle2: {
-        NL: "Verbeter je vaardigheden met op maat gemaakte lessen en topdocenten.",
-        EN: "Enhance your skills with tailored lessons and top-tier teaching."
+        EN: "Enhance your skills with tailored lessons and top-tier teaching.",
+        NL: "Verbeter je vaardigheden met op maat gemaakte lessen en topdocenten."
     },
-
     already_enrolled: {
         EN: "Already enrolled?",
         NL: "Al ingeschreven?"
@@ -24,16 +23,16 @@ export const hero: Hero = {
         NL: "Hier inloggen"
     },
     sign_in_link: "/contact",
-
     schedulefreetrial: {
         EN: "Schedule a Free Trial Session",
-        NL: "Plan een Gratis Proefles",
+        NL: "Plan een Gratis Proefles"
     },
     img: {
         imageSrc: "/images/jpeg/portrait2.jpeg",
-        altern: { EN: "Illustration of personalized lessons", NL: "Illustratie van gepersonaliseerde lessen" }
+        altern: {
+            EN: "Illustration of personalized lessons",
+            NL: "Illustratie van gepersonaliseerde lessen"
+        }
     }
-    // Add more translation keys and their corresponding translations here
-
 };
 

@@ -47,7 +47,8 @@ describe('Sitemap Validation', () => {
     });
 
     test('all sitemap URLs are valid format', () => {
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/bijles\/[a-z-]+)$/;
+        // Allow for more granular location and service-specific URLs
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/bijles\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+)$/;
         sitemapUrls.forEach(url => {
             expect(url).toMatch(urlPattern);
         });
@@ -55,9 +56,11 @@ describe('Sitemap Validation', () => {
 
     test('all workshop detail pages exist in workshopsData', () => {
         const workshopUrls = sitemapUrls.filter(url => url.startsWith('/workshops/'));
+        const allWorkshops = workshops.categories.flatMap(category => category.items);
+        
         workshopUrls.forEach(url => {
             const workshopId = url.replace('/workshops/', '');
-            const workshopExists = Object.values(workshops).some(w => 
+            const workshopExists = allWorkshops.some(w => 
                 w.id.toLowerCase() === workshopId
             );
             expect(workshopExists).toBeTruthy();
@@ -78,6 +81,48 @@ describe('Sitemap Validation', () => {
             } else {
                 expect(parseFloat(entry.priority[0])).toBeGreaterThanOrEqual(0.6);
             }
+        });
+    });
+
+    test('sitemap entries follow SEO best practices', () => {
+        const entries = parsedSitemap.urlset.url;
+        
+        entries.forEach(entry => {
+            const url = entry.loc[0].toLowerCase();
+            const priority = parseFloat(entry.priority[0]);
+            const changefreq = entry.changefreq[0];
+
+            // Validate priority based on content importance
+            if (url.endsWith('stephensprivelessen.nl/')) {
+                expect(priority).toBe(1.0); // Homepage highest priority
+                expect(changefreq).toBe('weekly');
+            } else if (url.includes('/bijles/') || url.includes('/scriptiebegeleiding/')) {
+                expect(priority).toBeGreaterThanOrEqual(0.8); // Service pages high priority
+                expect(['daily', 'weekly', 'monthly']).toContain(changefreq);
+            } else if (url.includes('/workshops/')) {
+                expect(priority).toBeGreaterThanOrEqual(0.7); // Workshop pages medium-high priority
+                expect(['weekly', 'monthly']).toContain(changefreq);
+            }
+
+            // Ensure all entries have lastmod date
+            expect(entry.lastmod).toBeDefined();
+            expect(entry.lastmod[0]).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        });
+    });
+
+    test('location-specific pages have proper hierarchy', () => {
+        const locationPages = sitemapUrls.filter(url => 
+            url.includes('/bijles/amsterdam-') || 
+            url.includes('/scriptiebegeleiding/amsterdam-')
+        );
+
+        locationPages.forEach(url => {
+            const entry = parsedSitemap.urlset.url.find(e => 
+                e.loc[0].toLowerCase().endsWith(url)
+            );
+            expect(entry).toBeDefined();
+            expect(parseFloat(entry!.priority[0])).toBeGreaterThanOrEqual(0.8);
+            expect(['daily', 'weekly', 'monthly']).toContain(entry!.changefreq[0]);
         });
     });
 }); 

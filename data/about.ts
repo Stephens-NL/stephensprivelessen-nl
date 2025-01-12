@@ -1,6 +1,7 @@
 import { About, IntroductionContent } from "./types";
 
 export const about: About = {
+  id: "about-page",
   title: {
     EN: "About Us",
     NL: "Over Ons",
@@ -130,12 +131,41 @@ export const about: About = {
 };
 
 export const introductionContent: IntroductionContent = {
+  id: "introduction",
   title: {
     EN: "Our Approach",
     NL: "Onze Aanpak",
   },
-  description: {
-    EN: "Welcome to our tutoring and courses! We believe in a personalized and flexible approach, tailored to the unique needs of each student. Our experienced teachers provide customized support, from basic skills to advanced topics, in a friendly and stimulating learning environment. Whether you're studying for an exam, looking to improve your skills, or wanting to learn a new language, we're here to help you succeed.",
-    NL: "Welkom bij onze bijlessen en cursussen! Wij geloven in een persoonlijke en flexibele benadering, afgestemd op de unieke behoeften van elke student. Onze ervaren docenten bieden ondersteuning op maat, van basisvaardigheden tot geavanceerde onderwerpen, in een vriendelijke en stimulerende leeromgeving. Of je nu studeert voor een examen, je vaardigheden wilt verbeteren of een nieuwe taal wilt leren, wij staan voor je klaar om je te helpen slagen.",
-  },
+  sections: [
+    {
+      title: {
+        EN: "Welcome",
+        NL: "Welkom"
+      },
+      content: {
+        EN: "Welcome to our tutoring and courses! We believe in a personalized and flexible approach, tailored to the unique needs of each student. Our experienced teachers provide customized support, from basic skills to advanced topics, in a friendly and stimulating learning environment. Whether you're studying for an exam, looking to improve your skills, or wanting to learn a new language, we're here to help you succeed.",
+        NL: "Welkom bij onze bijlessen en cursussen! Wij geloven in een persoonlijke en flexibele benadering, afgestemd op de unieke behoeften van elke student. Onze ervaren docenten bieden ondersteuning op maat, van basisvaardigheden tot geavanceerde onderwerpen, in een vriendelijke en stimulerende leeromgeving. Of je nu studeert voor een examen, je vaardigheden wilt verbeteren of een nieuwe taal wilt leren, wij staan voor je klaar om je te helpen slagen."
+      }
+    },
+    {
+      title: {
+        EN: "Personalized Learning",
+        NL: "Persoonlijk Leren"
+      },
+      content: {
+        EN: "We tailor our teaching methods to match your learning style and pace. Every student is unique, and we adapt our approach accordingly.",
+        NL: "We passen onze onderwijsmethoden aan op jouw leerstijl en tempo. Elke student is uniek, en we passen onze aanpak daarop aan."
+      }
+    },
+    {
+      title: {
+        EN: "Expert Support",
+        NL: "Expert Ondersteuning"
+      },
+      content: {
+        EN: "Our experienced teachers provide guidance in various subjects, ensuring you receive high-quality education and support.",
+        NL: "Onze ervaren docenten bieden begeleiding in verschillende vakken, zodat je hoogwaardig onderwijs en ondersteuning krijgt."
+      }
+    }
+  ]
 };

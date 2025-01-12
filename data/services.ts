@@ -2,6 +2,7 @@ import { GeneralContentProps, Service } from './types';
 
 export const services: Service[] = [
   {
+    id: "mathematics-tutoring",
     icon: "/images/svg/math-icon.svg",
     title: { EN: "Mathematics & General Tutoring", NL: "Wiskunde & Algemene Bijles" },
     shortDescription: { 
@@ -19,6 +20,7 @@ export const services: Service[] = [
     ]
   },
   {
+    id: "programming-lessons",
     icon: "/images/svg/programming-icon.svg",
     title: { EN: "Programming Lessons", NL: "Programmeerlessen" },
     shortDescription: { 
@@ -35,6 +37,7 @@ export const services: Service[] = [
     ]
   },
   {
+    id: "creative-workshops",
     icon: "/images/svg/creative-workshop-icon.svg",
     title: { EN: "Creative Workshops", NL: "Creatieve Workshops" },
     shortDescription: { 
@@ -47,6 +50,7 @@ export const services: Service[] = [
     }
   },
   {
+    id: "non-creative-workshops",
     icon: "/images/svg/workshop-icon.svg",
     title: { EN: "Non-Creative Workshops", NL: "Niet-Creatieve Workshops" },
     shortDescription: { 
@@ -59,6 +63,7 @@ export const services: Service[] = [
     }
   },
   {
+    id: "consultancy",
     icon: "/images/svg/consultancy-icon.svg",
     title: { EN: "Consultancy & Advisory", NL: "Consultancy & Advies" },
     shortDescription: { 
@@ -71,6 +76,7 @@ export const services: Service[] = [
     }
   },
   {
+    id: "custom-solutions",
     icon: "/images/svg/custom-icon.svg",
     title: { EN: "Custom Solutions", NL: "Maatwerkoplossingen" },
     shortDescription: { 
@@ -91,4 +97,4 @@ export const generalContent: GeneralContentProps = {
     NL: "Ontdek ons aanbod van bijlessen en onderwijsdiensten, ontworpen om je te helpen uitblinken in wiskunde, programmeren, en meer."
   },
   learnMore: { EN: "Learn More", NL: "Meer Informatie" },
-}
+};

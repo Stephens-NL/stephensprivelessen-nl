@@ -8,6 +8,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import ButtonTrial from './ButtonTrial';
 import ButtonLearnMore from './ButtonLearnMore';
 import { X } from 'lucide-react';
+import Link from 'next/link';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
@@ -60,6 +61,7 @@ const Services = () => {
 
   const { services } = serviceData;
   const { hero } = heroData;
+  const { ourServices, learnMore } = generalContent;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -82,8 +84,6 @@ const Services = () => {
       },
     },
   };
-
-  const { ourServices } = generalContent;
 
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-blue-100 to-blue-800 overflow-hidden relative">
@@ -136,7 +136,33 @@ const Services = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ButtonLearnMore t={t} onButtonClick={() => setSelectedService(services[index])} index={index} />
+                {services[index].title.EN === "Mathematics & General Tutoring" || services[index].title.EN === "Programming Lessons" ? (
+                  <Link href="/bijles">
+                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
+                      {String(t(learnMore))} &rarr;
+                    </button>
+                  </Link>
+                ) : services[index].title.EN === "Creative Workshops" ? (
+                  <Link href="/workshops?type=creative">
+                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
+                      {String(t(learnMore))} &rarr;
+                    </button>
+                  </Link>
+                ) : services[index].title.EN === "Non-Creative Workshops" ? (
+                  <Link href="/workshops?type=academic">
+                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
+                      {String(t(learnMore))} &rarr;
+                    </button>
+                  </Link>
+                ) : services[index].title.EN === "Consultancy & Advisory" ? (
+                  <Link href="/consultancy">
+                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
+                      {String(t(learnMore))} &rarr;
+                    </button>
+                  </Link>
+                ) : (
+                  <ButtonLearnMore t={t} onButtonClick={() => setSelectedService(services[index])} index={index} />
+                )}
               </motion.div>
             </motion.div>
           ))}

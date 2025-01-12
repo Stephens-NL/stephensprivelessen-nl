@@ -3,7 +3,7 @@ import type { Workshop, Workshops } from '../data/types';
 
 const fs = require('fs');
 const path = require('path');
-const workshopsData = require('../data/workshopsData');
+const { workshopItems } = require('../data/workshopsData');
 const navigationData = require('../data/navigation');
 
 const DOMAIN = 'https://www.stephensprivelessen.nl';
@@ -45,7 +45,8 @@ const generateSitemap = () => {
 
   // Add workshop detail pages
   urlset.push('\n  <!-- Workshop Detail Pages -->');
-  Object.values(workshopsData.workshops as Workshops).forEach((workshop: Workshop) => {
+  const allWorkshops = Object.values(workshopItems as Workshops);
+  allWorkshops.forEach((workshop: Workshop) => {
     urlset.push(createUrlEntry(
       `/workshops/${workshop.id}`,
       'monthly',
