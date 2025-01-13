@@ -1,86 +1,80 @@
-import type { NavItem } from '../data/types';
-import type { Workshop, Workshops } from '../data/types';
-import type { Service } from '../data/types';
-import workshopItems from '../data/workshopsData';
-import { services } from '../data/services';
-
-const fs = require('fs');
-const path = require('path');
-const navigationData = require('../data/navigation');
+import { NavItem, Workshop, WorkshopsPageContent } from '../data/types';
+import { workshops } from '../data/workshopsData';
+import { navigation } from '../data/navigation';
+import fs from 'fs';
+import xml2js from 'xml2js';
 
 const DOMAIN = 'https://www.stephensprivelessen.nl';
 const LAST_MOD = new Date().toISOString().split('T')[0];
 
-// Helper to create URL entry
-const createUrlEntry = (path: string, changefreq: string, priority: string) => `  <url>
-    <loc>${DOMAIN}${path}</loc>
-    <lastmod>${LAST_MOD}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>`;
+// Valid locations for tutoring services
+const LOCATIONS = [
+  'amsterdam-zuid',
+  'amsterdam-centrum',
+  'amsterdam-noord',
+  'amsterdam-west',
+  'amsterdam-oost'
+] as const;
 
-// Generate sitemap content
-const generateSitemap = () => {
-  const urlset = [`<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Pages -->`];
+function createUrlEntry(path: string, changefreq: string = 'monthly', priority: string = '0.7'): any {
+  return {
+    loc: `${DOMAIN}${path}`,
+    lastmod: LAST_MOD,
+    changefreq: changefreq,
+    priority: priority
+  };
+}
 
-  // Add homepage
+function generateSitemap() {
+  const urlset: any[] = [];
+
+  // Add main pages with high priority
   urlset.push(createUrlEntry('/', 'weekly', '1.0'));
-
-  // Add main service pages with high priority
-  urlset.push(createUrlEntry('/services', 'weekly', '1.0')); // Main services overview page
+  urlset.push(createUrlEntry('/services', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/bijles', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/workshops', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/consultancy', 'weekly', '0.9'));
+  urlset.push(createUrlEntry('/contact', 'monthly', '0.8'));
+  urlset.push(createUrlEntry('/faq', 'monthly', '0.8'));
 
-  // Add navigation pages
-  navigationData.navigation.forEach((item: NavItem) => {
-    if (item.href !== '/' && item.href !== '/services' && item.href !== '/workshops' && item.href !== '/consultancy') { 
-      // Skip pages we've already added
+  // Add location-specific tutoring pages
+  LOCATIONS.forEach(location => {
+    urlset.push(createUrlEntry(`/bijles/${location}`, 'weekly', '0.9'));
+  });
+
+  // Add workshop detail pages
+  Object.entries(workshops).forEach(([id, workshop]) => {
+    if (workshop && typeof workshop === 'object' && 'id' in workshop) {
       urlset.push(createUrlEntry(
-        item.href,
-        item.href === '/blog' ? 'weekly' : 'monthly',
-        item.href === '/faq' ? '0.6' : '0.8'
+        `/workshops/${workshop.id}`,
+        'monthly',
+        '0.8'
       ));
     }
   });
 
-  // Add workshop detail pages
-  urlset.push('\n  <!-- Workshop Detail Pages -->');
-  const allWorkshops = Object.values(workshopItems as Workshops);
-  allWorkshops.forEach((workshop: Workshop) => {
-    urlset.push(createUrlEntry(
-      `/workshops/${workshop.id}`,
-      'monthly',
-      '0.7'
-    ));
+  // Add navigation pages (excluding already added pages)
+  const addedPaths = new Set(['/', '/services', '/bijles', '/workshops', '/consultancy', '/contact', '/faq']);
+  navigation.forEach((item: NavItem) => {
+    if (!addedPaths.has(item.href)) {
+      urlset.push(createUrlEntry(item.href));
+    }
   });
 
-  // Add location specific pages
-  urlset.push('\n  <!-- Location Pages -->');
-  const locations = [
-    'amsterdam-zuid',
-    'amsterdam-centrum',
-    'amsterdam-noord',
-    'amsterdam-west',
-    'amsterdam-oost'
-  ];
-  
-  locations.forEach(location => {
-    urlset.push(createUrlEntry(
-      `/bijles/${location}`,
-      'monthly',
-      '0.8'
-    ));
+  // Create sitemap XML
+  const builder = new xml2js.Builder();
+  const xml = builder.buildObject({
+    urlset: {
+      $: {
+        xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9'
+      },
+      url: urlset
+    }
   });
 
-  urlset.push('</urlset>');
-  return urlset.join('\n');
-};
+  // Write sitemap to file
+  fs.writeFileSync('public/sitemap.xml', xml);
+  console.log('Sitemap generated successfully!');
+}
 
-// Write sitemap to file
-const sitemap = generateSitemap();
-const outputPath = path.join(process.cwd(), 'public', 'sitemap.xml');
-fs.writeFileSync(outputPath, sitemap);
-console.log('Sitemap generated successfully!'); 
+generateSitemap(); 

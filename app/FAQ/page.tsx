@@ -1,6 +1,6 @@
-// app/FAQ/page.tsx
+// app/faq/page.tsx
 import { Metadata } from 'next';
-import FAQPage from '../../components/Faq';
+import FAQPage from '@/components/Faq';
 
 // Dynamische metadata voor de FAQ-pagina
 export const metadata: Metadata = {
@@ -9,10 +9,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "FAQ - Stephen's Private Lessons",
     description: "Learn more about Stephen's tutoring services through our frequently asked questions.",
-    url: "https://www.stephenadei.nl/FAQ",
+    url: "https://www.stephensprivelessen.nl/faq",
     images: [
       {
-        url: "https://www.stephenadei.nl/images/FAQ-banner.jpg",
+        url: "https://www.stephensprivelessen.nl/images/faq-banner.jpg",
         width: 1200,
         height: 630,
         alt: "Stephen's Private Tutoring FAQ",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FAQ - Stephen's Private Lessons",
     description: "Find answers to common questions about Stephen's personalized tutoring services.",
-    images: ["https://www.stephenadei.nl/images/FAQ-banner.jpg"],
+    images: ["https://www.stephensprivelessen.nl/images/faq-banner.jpg"],
   },
 };
 

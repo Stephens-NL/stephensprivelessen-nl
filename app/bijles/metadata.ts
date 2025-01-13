@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Private Tutoring | Stephen&apos;s Private Lessons',
     description: 'Expert private tutoring in mathematics, statistics, programming, and more. Personalized lessons tailored to your needs.',
     locale: 'en',
-    alternateLocales: ['nl'],
+    alternateLocale: ['nl'],
     type: 'website',
     siteName: 'Stephen&apos;s Private Lessons',
   },

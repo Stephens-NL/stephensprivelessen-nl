@@ -43,6 +43,7 @@ const Header = () => {
     const navItems = [
         { href: '/', label: { EN: 'Home', NL: 'Home' } },
         { href: '/bijles', label: { EN: 'Tutoring', NL: 'Bijles' } },
+        { href: '/scriptiebegeleiding', label: { EN: 'Thesis Supervision', NL: 'Scriptiebegeleiding' } },
         { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
         { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
         { href: '/consultancy', label: { EN: 'Consultancy', NL: 'Consultancy' } },
@@ -58,13 +59,13 @@ const Header = () => {
             {/* Desktop Header */}
             <AnimatePresence mode="wait">
                 <motion.header 
-                    className="fixed w-full z-50 hidden md:block"
+                    className="fixed top-0 w-full z-50 hidden md:block"
                     initial={{
                         opacity: 1,
-                        y: -100,
+                        y: 0,
                     }}
                     animate={{
-                        y: visible ? (isAtTop ? 0 : 20) : -100,
+                        y: visible ? 0 : -100,
                         opacity: visible ? 1 : 0,
                     }}
                     transition={{
@@ -131,32 +132,30 @@ const Header = () => {
                                     {String(t(siteTitle))}
                                 </Link>
 
-                                <div className="flex items-center justify-between flex-1 pl-8">
-                                    {/* Navigation items */}
-                                    <div className="flex items-center gap-4 lg:gap-6 xl:gap-8">
-                                        {navItems.map(({ href, label }) => (
-                                            <Link
-                                                key={href}
-                                                href={href}
-                                                className={`text-sm font-medium transition-all duration-500 whitespace-nowrap ${
-                                                    isAtTop
-                                                        ? pathname === href
-                                                            ? 'text-white'
-                                                            : 'text-blue-100 hover:text-white'
-                                                        : pathname === href
-                                                            ? 'text-blue-600'
-                                                            : 'text-gray-600 hover:text-blue-600'
-                                                }`}
-                                            >
-                                                {String(t(label))}
-                                            </Link>
-                                        ))}
-                                    </div>
+                                {/* Navigation items */}
+                                <div className="flex items-center gap-2 lg:gap-4 xl:gap-6">
+                                    {navItems.slice(0, 4).map(({ href, label }) => (
+                                        <Link
+                                            key={href}
+                                            href={href}
+                                            className={`text-sm font-medium transition-all duration-500 whitespace-nowrap px-2 ${
+                                                isAtTop
+                                                    ? pathname === href
+                                                        ? 'text-white'
+                                                        : 'text-blue-100 hover:text-white'
+                                                    : pathname === href
+                                                        ? 'text-blue-600'
+                                                        : 'text-gray-600 hover:text-blue-600'
+                                            }`}
+                                        >
+                                            {String(t(label))}
+                                        </Link>
+                                    ))}
 
                                     {/* Language toggle */}
                                     <motion.button
                                         onClick={toggleLanguage}
-                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
+                                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap mx-1 ${
                                             isAtTop
                                                 ? 'bg-white/10 text-white hover:bg-white/20'
                                                 : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
@@ -166,6 +165,24 @@ const Header = () => {
                                     >
                                         {language === 'EN' ? 'Nederlands?' : 'English?'}
                                     </motion.button>
+
+                                    {navItems.slice(4).map(({ href, label }) => (
+                                        <Link
+                                            key={href}
+                                            href={href}
+                                            className={`text-sm font-medium transition-all duration-500 whitespace-nowrap px-2 ${
+                                                isAtTop
+                                                    ? pathname === href
+                                                        ? 'text-white'
+                                                        : 'text-blue-100 hover:text-white'
+                                                    : pathname === href
+                                                        ? 'text-blue-600'
+                                                        : 'text-gray-600 hover:text-blue-600'
+                                            }`}
+                                        >
+                                            {String(t(label))}
+                                        </Link>
+                                    ))}
                                 </div>
                             </div>
                         </nav>
@@ -174,33 +191,33 @@ const Header = () => {
             </AnimatePresence>
 
             {/* Mobile Header */}
-            <header className="sticky top-0 w-full z-50 bg-blue-900 shadow-lg md:hidden">
-                <nav className="container mx-auto px-4">
-                    <div className="flex items-center justify-between h-16">
+            <header className="fixed top-0 w-full z-50 bg-blue-900 shadow-lg md:hidden">
+                <nav>
+                    <div className="flex items-center justify-between h-14 px-4">
                         <Link 
                             href="/" 
-                            className="text-lg sm:text-xl font-bold text-white whitespace-nowrap"
+                            className="text-base sm:text-lg font-bold text-white whitespace-nowrap"
                         >
                             {String(t(siteTitle))}
                         </Link>
 
+                        {/* Language toggle - Centered */}
+                        <motion.button
+                            onClick={toggleLanguage}
+                            className="px-2.5 py-1 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-white/20 mx-2"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {language === 'EN' ? 'NL' : 'EN'}
+                        </motion.button>
+
                         {/* Mobile Menu Button */}
-                        <div className="flex items-center gap-3">
-                            <motion.button
-                                onClick={toggleLanguage}
-                                className="px-2 py-1.5 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-white/20"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                {language === 'EN' ? 'NL' : 'EN'}
-                            </motion.button>
-                            <button
-                                onClick={() => setIsOpen(!isOpen)}
-                                className="p-1.5 text-white hover:text-blue-100"
-                            >
-                                {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-                            </button>
-                        </div>
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="p-1.5 text-white hover:text-blue-100"
+                        >
+                            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                        </button>
                     </div>
 
                     {/* Mobile Navigation */}
@@ -213,8 +230,33 @@ const Header = () => {
                                 transition={{ duration: 0.2 }}
                                 className="border-t border-white/10"
                             >
-                                <div className="py-4 space-y-2">
-                                    {navItems.map(({ href, label }) => (
+                                <div className="py-1">
+                                    {/* First set of navigation items */}
+                                    {navItems.slice(0, 4).map(({ href, label }) => (
+                                        <Link
+                                            key={href}
+                                            href={href}
+                                            onClick={closeMenu}
+                                            className={`block px-4 py-2 text-base font-medium transition-colors ${
+                                                pathname === href 
+                                                    ? 'text-white bg-white/10' 
+                                                    : 'text-blue-100 hover:text-white hover:bg-white/5'
+                                            }`}
+                                        >
+                                            {String(t(label))}
+                                        </Link>
+                                    ))}
+
+                                    {/* Language toggle in menu */}
+                                    <button
+                                        onClick={toggleLanguage}
+                                        className="w-full text-left px-4 py-2 text-base font-medium text-blue-100 hover:text-white hover:bg-white/5"
+                                    >
+                                        {language === 'EN' ? 'Nederlands?' : 'English?'}
+                                    </button>
+
+                                    {/* Remaining navigation items */}
+                                    {navItems.slice(4).map(({ href, label }) => (
                                         <Link
                                             key={href}
                                             href={href}

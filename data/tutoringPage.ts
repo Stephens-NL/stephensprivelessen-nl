@@ -223,10 +223,10 @@ export const tutoringPage: TutoringPage = {
         price: { EN: 'Custom', NL: 'Op maat' },
         interval: { EN: 'package price', NL: 'pakketprijs' },
         features: [
-          { EN: 'Master thesis guidance', NL: 'Masterscriptie begeleiding' },
-          { EN: 'Statistical analysis', NL: 'Statistische analyse' },
-          { EN: 'Research design support', NL: 'Onderzoeksopzet begeleiding' },
-          { EN: 'SPSS/R/Python assistance', NL: 'SPSS/R/Python assistentie' }
+          { EN: 'Psychology & Social Sciences', NL: 'Psychologie & Sociale Wetenschappen' },
+          { EN: 'Cybersecurity & Network Analysis', NL: 'Cybersecurity & Netwerk Analyse' },
+          { EN: 'Dynamic Systems & Quantum Communication', NL: 'Dynamische Systemen & Quantum Communicatie' },
+          { EN: 'Advanced Statistical Analysis (SPSS/R/Python)', NL: 'Geavanceerde Statistische Analyse (SPSS/R/Python)' }
         ],
         cta: {
           text: { EN: 'Discuss Options', NL: 'Bespreek Mogelijkheden' },

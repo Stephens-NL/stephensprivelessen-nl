@@ -170,6 +170,63 @@ export default function ScriptiebegeleidingPage() {
               </div>
             </div>
           </section>
+
+          {/* Experience Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              {String(t({
+                EN: 'Thesis Supervision Experience',
+                NL: 'Scriptiebegeleiding Ervaring'
+              }))}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-semibold mb-3">
+                  {String(t({
+                    EN: 'Academic Research',
+                    NL: 'Academisch Onderzoek'
+                  }))}
+                </h3>
+                <ul className="list-disc list-inside space-y-2 text-gray-600">
+                  <li>{String(t({
+                    EN: 'Personal research on dynamic systems and entanglement assisted zero error communication',
+                    NL: 'Eigen onderzoek naar dynamische systemen en entanglement assisted zero error communication'
+                  }))}</li>
+                  <li>{String(t({
+                    EN: 'Multiple psychology theses supervision',
+                    NL: 'Begeleiding van meerdere psychologie scripties'
+                  }))}</li>
+                  <li>{String(t({
+                    EN: 'Master thesis guidance in cybersecurity',
+                    NL: 'Masterscriptie begeleiding in cybersecurity'
+                  }))}</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <h3 className="text-xl font-semibold mb-3">
+                  {String(t({
+                    EN: 'Specialized Fields',
+                    NL: 'Specialistische Gebieden'
+                  }))}
+                </h3>
+                <ul className="list-disc list-inside space-y-2 text-gray-600">
+                  <li>{String(t({
+                    EN: 'Water security networks research',
+                    NL: 'Onderzoek naar water security netwerken'
+                  }))}</li>
+                  <li>{String(t({
+                    EN: 'Dynamic systems analysis',
+                    NL: 'Analyse van dynamische systemen'
+                  }))}</li>
+                  <li>{String(t({
+                    EN: 'Quantum communication research',
+                    NL: 'Onderzoek naar quantum communicatie'
+                  }))}</li>
+                </ul>
+              </div>
+            </div>
+          </section>
           
           <section className="mb-12">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">

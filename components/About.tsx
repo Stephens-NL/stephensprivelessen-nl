@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PhilosophyCardProps, QuestionAnswer, IntroSectionProps, AboutData } from '../data';
+import { PhilosophyCardProps, QuestionAnswer, IntroSectionProps, AboutData, Bilingual } from '../data/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 
@@ -84,7 +84,7 @@ const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSe
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
       >
         <h2 className="text-3xl font-semibold text-blue-900 mb-4">{heading}</h2>
-        {paragraphs.map((paragraph, index) => (
+        {paragraphs.map((paragraph: string, index: number) => (
           <motion.p
             key={index}
             className="mb-4 text-blue-800"
@@ -189,7 +189,7 @@ const About = () => {
             {content.philosophyTitle}
           </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {philosophyPoints.map((point, index) => (
+            {philosophyPoints.map((point: {title: Bilingual; description: Bilingual}, index: number) => (
               <PhilosophyCard key={index} title={String(t(point.title))} description={String(t(point.description))} />
             ))}
           </div>

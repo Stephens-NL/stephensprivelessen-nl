@@ -8,11 +8,12 @@ export const siteTitle: Bilingual = {
 export const navigation: NavItem[] = [
     { href: '/', label: { EN: 'Home', NL: 'Home' } },
     { href: '/bijles', label: { EN: 'Tutoring', NL: 'Bijles' } },
+    { href: '/scriptiebegeleiding', label: { EN: 'Thesis Supervision', NL: 'Scriptiebegeleiding' } },
     { href: '/about', label: { EN: 'About', NL: 'Over Ons' } },
     { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
     { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
     { href: '/consultancy', label: { EN: 'Consultancy', NL: 'Consultancy' } },
     { href: '/blog', label: { EN: 'Blog', NL: 'Blog' } },
+    { href: '/faq', label: { EN: 'FAQ', NL: 'Vragen' } },
     { href: '/contact', label: { EN: 'Contact', NL: 'Contact' } },
-    { href: '/FAQ', label: { EN: 'FAQ', NL: 'Vragen' } },
 ];

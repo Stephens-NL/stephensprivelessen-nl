@@ -1,6 +1,7 @@
 import { FAQInfo, FAQItems } from "./types";
 
 export const faqInfo: FAQInfo = {
+  id: 'faq-page',
   title: {
     EN: "Frequently Asked Questions",
     NL: "Veelgestelde Vragen"

@@ -204,7 +204,7 @@ export default function RootLayout({
       <body>
         <LanguageProvider>
           <Header />
-          <main className="pt-24">{children}</main>
+          <main className="pt-14 md:pt-24">{children}</main>
           <Footer />
         </LanguageProvider>
       </body>

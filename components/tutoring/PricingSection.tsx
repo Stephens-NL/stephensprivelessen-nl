@@ -47,7 +47,7 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex"
+              className={`flex ${plan.name.EN === 'Thesis & Research' ? 'md:col-span-2 lg:col-span-3' : ''}`}
             >
               <Card
                 className={`p-8 flex flex-col flex-grow ${

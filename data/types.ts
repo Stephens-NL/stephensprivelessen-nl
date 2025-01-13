@@ -26,6 +26,54 @@ export interface ContentEntity extends BilingualEntity {
 }
 
 // About Types
+export interface PhilosophyCardProps {
+  title: string;
+  description: string;
+}
+
+export interface QuestionAnswer {
+  question: string;
+  answer: string;
+}
+
+export interface IntroSectionProps {
+  title: string;
+  heading: string;
+  paragraphs: string[];
+  imageSrc: string;
+  altText: string;
+}
+
+export interface AboutData {
+  about: {
+    title: Bilingual;
+    introduction: {
+      heading: Bilingual;
+      paragraphs: Bilingual<string[]>;
+      altText: Bilingual;
+      imageSrc: string;
+    };
+    philosophyTitle: Bilingual;
+    philosophyPoints: Array<{
+      title: Bilingual;
+      description: Bilingual;
+    }>;
+    cta: {
+      title: Bilingual;
+      description: Bilingual;
+      buttonText: Bilingual;
+      buttonLink: string;
+    };
+    detailedTitle: Bilingual;
+    detailedInfo: {
+      [key in Language]: Array<{
+        question: string;
+        answer: string;
+      }>;
+    };
+  };
+}
+
 export interface About extends BilingualEntity {
   introduction: {
     heading: Bilingual;
@@ -417,3 +465,18 @@ export interface HeroData {
 export interface ServiceData {
     services: Service[];
 }
+
+// FAQ Types
+export interface FAQInfo extends BilingualEntity {
+  searchPlaceholder: Bilingual;
+  languageToggle: Bilingual;
+  scrollToTopLabel: Bilingual;
+}
+
+export type FAQItem = {
+  id: number;
+  question: Bilingual;
+  answer: Bilingual;
+}
+
+export type FAQItems = FAQItem[];

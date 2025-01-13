@@ -60,7 +60,7 @@ export interface TestimonialSlide {
 
 export interface PricingPlan {
   name: BilingualText;
-  price: string;
+  price: BilingualText;
   interval: BilingualText;
   features: BilingualText[];
   popular?: boolean;

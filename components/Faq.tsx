@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
@@ -8,35 +8,19 @@ import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useLanguage } from '@/contexts/LanguageContext';
 import FloatingShapes from './FloatingShapes';
 import FadeInText from './FadeInText';
-import { FAQData } from '@/data';
+import { faqInfo, faqItems } from '@/data/faq';
 
 const FAQPage: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const [faqData, setFaqData] = useState<FAQData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
   const showBackToTop = useScrollPosition(300);
 
-  useEffect(() => {
-    const fetchFaqData = async () => {
-      try {
-        const response = await fetch('/api/faq');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data: FAQData = await response.json();
-        setFaqData(data);
-        setLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-
-    fetchFaqData();
+  // Ensure hydration consistency
+  React.useEffect(() => {
+    setMounted(true);
   }, []);
 
   const toggleQuestion = useCallback((index: number) => {
@@ -48,9 +32,9 @@ const FAQPage: React.FC = () => {
   }, []);
 
   const filteredItems = useMemo(() => {
-    if (!faqData || !faqData.faqItems) return [];
-
-    return faqData.faqItems.filter((item) => {
+    if (!mounted) return faqItems;
+    
+    return faqItems.filter((item) => {
       const questionText = String(t(item.question));
       const answerText = String(t(item.answer));
 
@@ -59,14 +43,27 @@ const FAQPage: React.FC = () => {
         answerText.toLowerCase().includes(searchTerm.toLowerCase())
       );
     });
-  }, [faqData, searchTerm, t]);
+  }, [searchTerm, t, mounted]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  if (!faqData) return null;
-
-  const { faqInfo } = faqData;
-
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
+        <h1 className="text-4xl font-bold text-center mb-8">
+          {String(t(faqInfo.title))}
+        </h1>
+        <div className="max-w-3xl mx-auto">
+          {faqItems.map((item) => (
+            <div key={item.id} className="mb-4">
+              <button className="w-full p-4 text-left flex justify-between items-center bg-white bg-opacity-10 backdrop-blur-lg rounded-lg">
+                <span>{String(t(item.question))}</span>
+                <ChevronDown />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
@@ -138,21 +135,23 @@ const FAQPage: React.FC = () => {
         ))}
       </motion.div>
 
-      <motion.div
-        className="fixed bottom-8 right-8 flex space-x-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showBackToTop ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <motion.button
-          onClick={scrollToTop}
-          className="bg-white text-blue-900 rounded-full p-4 shadow-lg hover:bg-yellow-300 transition-colors duration-300"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+      {mounted && showBackToTop && (
+        <motion.div
+          className="fixed bottom-8 right-8 flex space-x-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
-          <ChevronUp />
-        </motion.button>
-      </motion.div>
+          <motion.button
+            onClick={scrollToTop}
+            className="bg-white text-blue-900 rounded-full p-4 shadow-lg hover:bg-yellow-300 transition-colors duration-300"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ChevronUp />
+          </motion.button>
+        </motion.div>
+      )}
 
       <FloatingShapes />
     </div>

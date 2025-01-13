@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { workshops } from '@/data/workshopsData'
+import workshopsData from '@/data/workshopsData'
 import WorkshopDetailContent from '@/components/workshops/WorkshopDetailContent'
 import { notFound } from 'next/navigation'
 import Script from 'next/script'
@@ -9,7 +9,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const workshop = workshops[params.id]
+  const workshop = workshopsData[params.id]
   
   if (!workshop) {
     return {
@@ -88,7 +88,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function WorkshopPage({ params }: Props) {
-  const workshop = workshops[params.id]
+  const workshop = workshopsData[params.id]
 
   if (!workshop) {
     notFound()

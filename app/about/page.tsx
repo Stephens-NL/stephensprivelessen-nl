@@ -31,5 +31,4 @@ const page = () => {
     <About />
   )
 }
-
 export default page
