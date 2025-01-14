@@ -3,6 +3,8 @@
 import Script from 'next/script'
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -44,6 +46,12 @@ const jsonLd = {
       }
     ]
   }
+};
+
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
 };
 
 export default function ScriptiebegeleidingPage() {
@@ -122,124 +130,140 @@ export default function ScriptiebegeleidingPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-white">
       <Script
         id="scriptiebegeleiding-jsonld"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">
-          {String(t(content.title))}
-        </h1>
-        <div className="prose prose-lg max-w-none">
-          <p className="text-xl text-gray-600 mb-8">
+      
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/thesis-hero.jpg"
+            alt="Thesis Supervision Background"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
+        <motion.div 
+          className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto"
+          initial="initial"
+          animate="animate"
+          variants={fadeIn}
+        >
+          <h1 className="text-6xl md:text-7xl font-bold mb-6 font-anton">
+            {String(t(content.title))}
+          </h1>
+          <p className="text-xl md:text-2xl leading-relaxed">
             {String(t(content.subtitle))}
           </p>
-          
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              {String(t(content.services.title))}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3">{String(t(content.services.methodology.title))}</h3>
-                <ul className="list-disc list-inside space-y-2">
-                  {content.services.methodology.items[language as keyof typeof content.services.methodology.items].map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3">{String(t(content.services.dataAnalysis.title))}</h3>
-                <ul className="list-disc list-inside space-y-2">
-                  {content.services.dataAnalysis.items[language as keyof typeof content.services.dataAnalysis.items].map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3">{String(t(content.services.guidance.title))}</h3>
-                <ul className="list-disc list-inside space-y-2">
-                  {content.services.guidance.items[language as keyof typeof content.services.guidance.items].map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </section>
+        </motion.div>
+      </section>
 
-          {/* Experience Section */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              {String(t({
-                EN: 'Thesis Supervision Experience',
-                NL: 'Scriptiebegeleiding Ervaring'
-              }))}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3">
-                  {String(t({
-                    EN: 'Academic Research',
-                    NL: 'Academisch Onderzoek'
-                  }))}
+      {/* Services Section */}
+      <section className="py-24 px-4">
+        <motion.div 
+          className="max-w-7xl mx-auto"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={fadeIn}
+        >
+          <h2 className="text-4xl font-bold text-center mb-16 font-anton">
+            {String(t(content.services.title))}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[content.services.methodology, content.services.dataAnalysis, content.services.guidance].map((service, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-50 p-8 rounded-lg transform hover:scale-105 transition-transform duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+              >
+                <h3 className="text-2xl font-bold mb-6">
+                  {String(t(service.title))}
                 </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-600">
-                  <li>{String(t({
-                    EN: 'Personal research on dynamic systems and entanglement assisted zero error communication',
-                    NL: 'Eigen onderzoek naar dynamische systemen en entanglement assisted zero error communication'
-                  }))}</li>
-                  <li>{String(t({
-                    EN: 'Multiple psychology theses supervision',
-                    NL: 'Begeleiding van meerdere psychologie scripties'
-                  }))}</li>
-                  <li>{String(t({
-                    EN: 'Master thesis guidance in cybersecurity',
-                    NL: 'Masterscriptie begeleiding in cybersecurity'
-                  }))}</li>
+                <ul className="space-y-4">
+                  {service.items[language as keyof typeof service.items].map((item, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <span className="mr-2 text-blue-600">•</span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3">
-                  {String(t({
-                    EN: 'Specialized Fields',
-                    NL: 'Specialistische Gebieden'
-                  }))}
-                </h3>
-                <ul className="list-disc list-inside space-y-2 text-gray-600">
-                  <li>{String(t({
-                    EN: 'Water security networks research',
-                    NL: 'Onderzoek naar water security netwerken'
-                  }))}</li>
-                  <li>{String(t({
-                    EN: 'Dynamic systems analysis',
-                    NL: 'Analyse van dynamische systemen'
-                  }))}</li>
-                  <li>{String(t({
-                    EN: 'Quantum communication research',
-                    NL: 'Onderzoek naar quantum communicatie'
-                  }))}</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-          
-          <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              {String(t(content.why.title))}
-            </h2>
-            <ul className="list-disc list-inside space-y-3 text-gray-600">
-              {content.why.items[language as keyof typeof content.why.items].map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </section>
-        </div>
-      </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-24 px-4 bg-gray-50">
+        <motion.div 
+          className="max-w-7xl mx-auto"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={fadeIn}
+        >
+          <h2 className="text-4xl font-bold text-center mb-16 font-anton">
+            {String(t(content.why.title))}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {content.why.items[language as keyof typeof content.why.items].map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-white p-6 rounded-lg shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="flex items-center mb-4">
+                  <span className="text-3xl text-blue-600 mr-4">0{index + 1}</span>
+                  <p className="text-lg">{item}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-4 bg-blue-600 text-white">
+        <motion.div 
+          className="max-w-4xl mx-auto text-center"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={fadeIn}
+        >
+          <h2 className="text-4xl font-bold mb-8 font-anton">
+            {String(t({
+              EN: 'Ready to Excel in Your Thesis?',
+              NL: 'Klaar om te Excelleren in Je Scriptie?'
+            }))}
+          </h2>
+          <p className="text-xl mb-12">
+            {String(t({
+              EN: 'Contact us today to discuss how we can help you achieve academic excellence.',
+              NL: 'Neem vandaag nog contact op om te bespreken hoe we je kunnen helpen academisch te excelleren.'
+            }))}
+          </p>
+          <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors duration-300">
+            {String(t({
+              EN: 'Get Started',
+              NL: 'Begin Nu'
+            }))}
+          </button>
+        </motion.div>
+      </section>
     </main>
-  )
+  );
 } 

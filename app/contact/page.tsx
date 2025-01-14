@@ -1,34 +1,55 @@
 // app/contact/page.tsx
 import { Metadata } from 'next';
 import React from 'react';
-import Placeholder from '@/components/contact/Placeholder';
 import Contact from '@/components/contact/Contact';
 
-export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "Contact", // Dit wordt "Contact | Stephen's Private Lessons" door het template in je layout
-    description: "Get in touch with Stephen's Private Lessons to schedule a tutoring session or inquire about our services in mathematics and programming.",
-    openGraph: {
-      title: "Contact - Stephen's Private Lessons",
-      description: "Reach out to us for personalized tutoring services in mathematics and programming.",
-      url: "https://www.stephenadei.nl/contact",
-      images: [
-        {
-          url: "https://www.stephenadei.nl/images/jpg/banner2.jpg",
-          width: 1200,
-          height: 630,
-          alt: "Contact Stephen's Private Lessons",
-        },
-      ],
+export const metadata: Metadata = {
+  title: "Contact | Stephens Privelessen Amsterdam",
+  description: "Neem contact op voor professionele bijles in wiskunde, statistiek of scriptiebegeleiding in Amsterdam. Persoonlijke aanpak en flexibele planning.",
+  keywords: [
+    'contact stephens privelessen',
+    'bijles afspraak amsterdam',
+    'wiskunde bijles contact',
+    'statistiek hulp contact',
+    'scriptiebegeleiding contact',
+    'bijles aanvragen',
+    'contact tutoring amsterdam',
+    'afspraak maken bijles',
+    'contact opnemen bijles',
+    'wiskunde tutor contact',
+    'statistiek begeleiding contact',
+  ],
+  openGraph: {
+    title: "Contact | Stephens Privelessen Amsterdam",
+    description: "Neem contact op voor professionele bijles in wiskunde, statistiek of scriptiebegeleiding in Amsterdam.",
+    url: "https://www.stephensprivelessen.nl/contact",
+    type: 'website',
+    locale: 'nl_NL',
+    alternateLocale: 'en_US',
+    siteName: 'Stephens Privelessen',
+    images: [
+      {
+        url: '/images/contact-banner.jpg',
+        width: 1200,
+        height: 630,
+        alt: "Contact Stephens Privelessen Amsterdam",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Stephens Privelessen Amsterdam",
+    description: "Neem contact op voor professionele bijles en begeleiding in Amsterdam.",
+    images: ['/images/contact-banner.jpg'],
+  },
+  alternates: {
+    canonical: '/contact',
+    languages: {
+      'nl-NL': '/contact',
+      'en-US': '/contact',
     },
-    twitter: {
-      card: "summary_large_image",
-      title: "Contact - Stephen's Private Lessons",
-      description: "Get in touch for personalized tutoring services in mathematics and programming.",
-      images: ["https://www.stephenadei.nl/images/jpg/banner2.jpg"],
-    },
-  };
-}
+  },
+};
 
 const ContactPage = () => {
   return <Contact />;

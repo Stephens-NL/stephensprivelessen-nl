@@ -18,6 +18,9 @@ describe('Navigation E2E', () => {
         console.error(`404 Error for ${url}`)
         const text = await response.text()
         console.error(`Response body:`, text.substring(0, 200))
+        console.error(`X-Vercel-Id:`, response.headers.get('x-vercel-id'))
+        console.error(`X-Matched-Path:`, response.headers.get('x-matched-path'))
+        console.error(`Cache-Control:`, response.headers.get('cache-control'))
       }
       
       expect(response.status).not.toBe(404)

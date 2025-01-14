@@ -1,6 +1,15 @@
-import { tutoringPage } from '@/data/tutoringPage';
+import { jsonLd } from './metadata';
+import Script from 'next/script';
 import { TutoringPage } from '@/components/tutoring/TutoringPage';
 
 export default function BijlesPage() {
-  return <TutoringPage content={tutoringPage} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <TutoringPage />
+    </>
+  );
 } 

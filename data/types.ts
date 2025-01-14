@@ -515,3 +515,44 @@ export interface ContactPageContent {
     href: string;
   }>;
 }
+
+export interface GroupLessons {
+  available: boolean;
+  locations: string[];
+  info: string;
+}
+
+export interface PreferredLocation {
+  name: string;
+  reason: string;
+  transport: string;
+}
+
+export interface LocationHighlight {
+  name: string;
+  benefit: string;
+  accessibility: string;
+}
+
+export interface OnlineFeatures {
+  platform: string;
+  benefits: string[];
+  requirements: string;
+}
+
+export interface Location {
+  id: string;
+  name: string;
+  title: string;
+  description: string;
+  keywords: string[];
+  metaDescription: string;
+  address: string;
+  postalCode: string;
+  area: string;
+  mapUrl: string;
+  groupLessons?: GroupLessons;
+  preferredLocation?: PreferredLocation;
+  locationHighlight?: LocationHighlight;
+  onlineFeatures?: OnlineFeatures;
+}

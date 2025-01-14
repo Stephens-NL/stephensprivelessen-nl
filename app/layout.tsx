@@ -17,23 +17,23 @@ const anton = Anton({
 
 const defaultKeywords = [
   // Algemene termen
-  'bijles amsterdam',
+  'privelessen amsterdam',
   'privelessen amsterdam',
   'huiswerkbegeleiding amsterdam',
   
   // Wiskunde gerelateerd
-  'wiskunde bijles amsterdam',
+  'wiskunde privelessen amsterdam',
   'wiskunde examentraining',
   'wiskunde huiswerk hulp',
   'wiskunde tutor amsterdam',
-  'wiskundebijles aan huis',
-  'online wiskunde bijles',
-  'bijles wiskunde vwo',
-  'bijles wiskunde havo',
-  'bijles wiskunde vmbo',
+  'wiskunde privelessen aan huis',
+  'online wiskunde privelessen',
+  'privelessen wiskunde vwo',
+  'privelessen wiskunde havo',
+  'privelessen wiskunde vmbo',
   
   // Statistiek gerelateerd
-  'statistiek bijles',
+  'statistiek privelessen',
   'statistiek hulp',
   'spss hulp amsterdam',
   'statistiek uitleg',
@@ -63,20 +63,20 @@ const defaultKeywords = [
   'academische begeleiding',
   
   // Locatie specifiek
-  'bijles zuid-amsterdam',
-  'bijles centrum amsterdam',
-  'bijles noord-amsterdam',
-  'bijles west-amsterdam',
-  'bijles oost-amsterdam',
+  'privelessen zuid-amsterdam',
+  'privelessen centrum amsterdam',
+  'privelessen noord-amsterdam',
+  'privelessen west-amsterdam',
+  'privelessen oost-amsterdam',
 ];
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.stephensprivelessen.nl'),
   title: {
-    default: 'Stephens Privelessen | Wiskunde & Statistiek Bijles Amsterdam',
+    default: 'Stephens Privelessen | Wiskunde & Statistiek Privelessen Amsterdam',
     template: '%s | Stephens Privelessen Amsterdam'
   },
-  description: 'Professionele wiskunde en statistiek bijles in Amsterdam. Scriptiebegeleiding, data-analyse en examentraining. Persoonlijke begeleiding op alle niveaus.',
+  description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Scriptiebegeleiding, data-analyse en examentraining. Persoonlijke begeleiding op alle niveaus.',
   keywords: defaultKeywords,
   authors: [{ name: 'Stephen Adei' }],
   creator: 'Stephen Adei',
@@ -98,15 +98,15 @@ export const metadata: Metadata = {
     locale: 'nl_NL',
     alternateLocale: 'en_US',
     siteName: 'Stephens Privelessen',
-    title: 'Wiskunde & Statistiek Bijles Amsterdam | Stephens Privelessen',
-    description: 'Professionele wiskunde en statistiek bijles in Amsterdam. Scriptiebegeleiding, data-analyse en examentraining. Persoonlijke begeleiding op alle niveaus.',
+    title: 'Wiskunde & Statistiek Privelessen Amsterdam | Stephens Privelessen',
+    description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Scriptiebegeleiding, data-analyse en examentraining. Persoonlijke begeleiding op alle niveaus.',
     url: 'https://www.stephensprivelessen.nl',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Stephens Privelessen - Wiskunde & Statistiek Bijles Amsterdam',
+        alt: 'Stephens Privelessen - Wiskunde & Statistiek Privelessen Amsterdam',
       },
     ],
   },
@@ -130,7 +130,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'EducationalOrganization',
   name: 'Stephens Privelessen',
-  description: 'Professionele wiskunde en statistiek bijles in Amsterdam. Scriptiebegeleiding en data-analyse ondersteuning.',
+  description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Scriptiebegeleiding en data-analyse ondersteuning.',
   url: 'https://www.stephensprivelessen.nl',
   address: {
     '@type': 'PostalAddress',
@@ -158,8 +158,8 @@ const jsonLd = {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Wiskunde Bijles',
-          description: 'Persoonlijke wiskunde bijles voor alle niveaus'
+          name: 'Wiskunde Privelessen',
+          description: 'Persoonlijke wiskunde privelessen voor alle niveaus'
         }
       },
       {

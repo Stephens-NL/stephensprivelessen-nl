@@ -5,71 +5,81 @@ import { notFound } from 'next/navigation';
 // Define valid locations
 const validLocations = {
   'amsterdam-zuid': {
-    title: 'Bijles Amsterdam Zuid | Stephens Privelessen',
-    description: 'Professionele wiskunde en statistiek bijles in Amsterdam Zuid. Persoonlijke begeleiding aan huis of op locatie. Ervaren docent voor alle niveaus.',
+    title: 'Wiskunde & Statistiek Lessen Amsterdam Zuid | Stephens Privelessen',
+    description: 'Professionele wiskunde en statistiek lessen in Amsterdam Zuid. Persoonlijke begeleiding op ons kantoor. Ervaren docent voor alle niveaus.',
     area: 'Amsterdam Zuid',
     keywords: [
+      'priveles amsterdam zuid',
       'bijles amsterdam zuid',
-      'wiskunde bijles zuid',
+      'wiskunde lessen zuid',
       'statistiek hulp zuid',
       'huiswerkbegeleiding zuid',
       'scriptiebegeleiding zuid amsterdam',
-      'bijles aan huis zuid',
-    ]
+      'wiskunde tutor zuid',
+      'statistiek docent zuid',
+    ] as string[]
   },
   'amsterdam-centrum': {
-    title: 'Bijles Amsterdam Centrum | Stephens Privelessen',
-    description: 'Professionele wiskunde en statistiek bijles in Amsterdam Centrum. Persoonlijke begeleiding aan huis of op locatie. Ervaren docent voor alle niveaus.',
+    title: 'Wiskunde & Statistiek Lessen Amsterdam Centrum | Stephens Privelessen',
+    description: 'Professionele wiskunde en statistiek lessen in Amsterdam Centrum. Persoonlijke begeleiding op ons kantoor. Ervaren docent voor alle niveaus.',
     area: 'Amsterdam Centrum',
     keywords: [
+      'priveles amsterdam centrum',
       'bijles amsterdam centrum',
-      'wiskunde bijles centrum',
+      'wiskunde lessen centrum',
       'statistiek hulp centrum',
       'huiswerkbegeleiding centrum',
       'scriptiebegeleiding centrum amsterdam',
-      'bijles aan huis centrum',
-    ]
+      'wiskunde tutor centrum',
+      'statistiek docent centrum',
+    ] as string[]
   },
   'amsterdam-noord': {
-    title: 'Bijles Amsterdam Noord | Stephens Privelessen',
-    description: 'Professionele wiskunde en statistiek bijles in Amsterdam Noord. Persoonlijke begeleiding aan huis of op locatie. Ervaren docent voor alle niveaus.',
+    title: 'Wiskunde & Statistiek Lessen Amsterdam Noord | Stephens Privelessen',
+    description: 'Professionele wiskunde en statistiek lessen in Amsterdam Noord. Persoonlijke begeleiding op ons kantoor. Ervaren docent voor alle niveaus.',
     area: 'Amsterdam Noord',
     keywords: [
+      'priveles amsterdam noord',
       'bijles amsterdam noord',
-      'wiskunde bijles noord',
+      'wiskunde lessen noord',
       'statistiek hulp noord',
       'huiswerkbegeleiding noord',
       'scriptiebegeleiding noord amsterdam',
-      'bijles aan huis noord',
-    ]
+      'wiskunde tutor noord',
+      'statistiek docent noord',
+    ] as string[]
   },
   'amsterdam-west': {
-    title: 'Bijles Amsterdam West | Stephens Privelessen',
-    description: 'Professionele wiskunde en statistiek bijles in Amsterdam West. Persoonlijke begeleiding aan huis of op locatie. Ervaren docent voor alle niveaus.',
+    title: 'Wiskunde & Statistiek Lessen Amsterdam West | Stephens Privelessen',
+    description: 'Professionele wiskunde en statistiek lessen in Amsterdam West. Persoonlijke begeleiding op ons kantoor. Ervaren docent voor alle niveaus.',
     area: 'Amsterdam West',
     keywords: [
+      'priveles amsterdam west',
       'bijles amsterdam west',
-      'wiskunde bijles west',
+      'wiskunde lessen west',
       'statistiek hulp west',
       'huiswerkbegeleiding west',
       'scriptiebegeleiding west amsterdam',
-      'bijles aan huis west',
-    ]
+      'wiskunde tutor west',
+      'statistiek docent west',
+    ] as string[]
   },
   'amsterdam-oost': {
-    title: 'Bijles Amsterdam Oost | Stephens Privelessen',
-    description: 'Professionele wiskunde en statistiek bijles in Amsterdam Oost. Persoonlijke begeleiding aan huis of op locatie. Ervaren docent voor alle niveaus.',
+    title: 'Wiskunde & Statistiek Lessen Amsterdam Oost | Stephens Privelessen',
+    description: 'Professionele wiskunde en statistiek lessen in Amsterdam Oost. Persoonlijke begeleiding op ons kantoor. Ervaren docent voor alle niveaus.',
     area: 'Amsterdam Oost',
     keywords: [
+      'priveles amsterdam oost',
       'bijles amsterdam oost',
-      'wiskunde bijles oost',
+      'wiskunde lessen oost',
       'statistiek hulp oost',
       'huiswerkbegeleiding oost',
       'scriptiebegeleiding oost amsterdam',
-      'bijles aan huis oost',
-    ]
+      'wiskunde tutor oost',
+      'statistiek docent oost',
+    ] as string[]
   }
-} as const;
+};
 
 type LocationParams = {
   params: {
@@ -91,11 +101,41 @@ export async function generateMetadata({ params }: LocationParams): Promise<Meta
     openGraph: {
       title: locationData.title,
       description: locationData.description,
-      url: `https://www.stephensprivelessen.nl/bijles/${params.location}`,
+      url: `https://stephensprivelessen.nl/bijles/${params.location}`,
       siteName: 'Stephens Privelessen',
       locale: 'nl_NL',
       type: 'website',
+      images: [{
+        url: '/images/tutoring-location.jpg',
+        width: 1200,
+        height: 630,
+        alt: `Wiskunde & Statistiek Lessen ${locationData.area}`
+      }]
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: locationData.title,
+      description: locationData.description,
+      images: ['/images/tutoring-location.jpg']
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1
+      }
+    },
+    alternates: {
+      canonical: `/bijles/${params.location}`,
+      languages: {
+        'nl-NL': `/bijles/${params.location}`,
+        'en-US': `/tutoring/${params.location}`
+      }
+    }
   };
 }
 
@@ -106,13 +146,41 @@ export default function LocationPage({ params }: LocationParams) {
     return notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Wiskunde & Statistiek Bijles ${locationData.area}`,
+    provider: {
+      '@type': 'EducationalOrganization',
+      name: 'Stephens Privelessen',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: locationData.area,
+        addressRegion: 'NH',
+        addressCountry: 'NL'
+      }
+    },
+    serviceType: 'Bijles',
+    areaServed: {
+      '@type': 'City',
+      name: locationData.area
+    },
+    description: locationData.description
+  };
+
   return (
-    <TutoringPage 
-      locationSpecific={{
-        area: locationData.area,
-        title: locationData.title,
-        description: locationData.description
-      }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <TutoringPage 
+        locationSpecific={{
+          area: locationData.area,
+          title: locationData.title,
+          description: locationData.description
+        }}
+      />
+    </>
   );
 } 

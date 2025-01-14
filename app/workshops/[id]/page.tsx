@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import workshopsData from '@/data/workshopsData'
 import WorkshopDetailContent from '@/components/workshops/WorkshopDetailContent'
 import { notFound } from 'next/navigation'
-import Script from 'next/script'
 
 type Props = {
   params: { id: string }
@@ -18,10 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const isCreative = workshop.type === 'creative';
-  const workshopType = isCreative ? 'Creatieve' : 'Academische';
-  const title = `${workshop.title.NL} Workshop | ${workshopType} Workshop`;
-  const description = `${workshop.description.NL} ${workshop.durationText.NL}, ${workshop.format === 'interactive' ? 'interactief' : workshop.format} format.`;
+  const isCreative = workshop.type === 'creative'
+  const workshopType = isCreative ? 'Creatieve' : 'Academische'
+  const title = `${workshop.title.NL} Workshop | ${workshopType} Workshop`
+  const description = `${workshop.description.NL} ${workshop.durationText.NL}, ${workshop.format === 'interactive' ? 'interactief' : workshop.format} format.`
 
   return {
     title,
@@ -65,13 +64,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ...workshop.details.EN.map(detail => detail.toLowerCase())
     ],
     openGraph: {
-      title: `${title} | Wiskunde & Statistiek Bijles Amsterdam`,
-      description: `${description} Professionele begeleiding in wiskunde, statistiek en scripties in Amsterdam. Online en op locatie beschikbaar.`,
+      title: `${title} | Stephens Privelessen`,
+      description: `${description} Professionele begeleiding in wiskunde, statistiek en scripties in Amsterdam.`,
       type: 'article',
-      url: `https://www.stephensprivelessen.nl/workshops/${params.id}`,
+      url: `https://stephensprivelessen.nl/workshops/${params.id}`,
+      locale: 'nl_NL',
+      alternateLocale: 'en_US',
+      siteName: 'Stephens Privelessen',
       images: [
         {
-          url: `/workshops/${params.id}-og.jpg`,
+          url: `/images/workshops/${params.id}.jpg`,
           width: 1200,
           height: 630,
           alt: `${workshop.title.NL} Workshop bij Stephens Privelessen`,
@@ -82,7 +84,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title,
       description: workshop.description.NL,
-      images: [`/workshops/${params.id}-og.jpg`],
+      images: [`/images/workshops/${params.id}.jpg`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    alternates: {
+      canonical: `/workshops/${params.id}`,
+      languages: {
+        'nl-NL': `/workshops/${params.id}`,
+        'en-US': `/workshops/${params.id}`,
+      },
     },
   }
 }
@@ -96,97 +116,52 @@ export default function WorkshopPage({ params }: Props) {
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': ['EducationalEvent', 'Service'],
+    '@type': ['EducationalEvent', 'Course'],
     name: workshop.title.NL,
     description: workshop.description.NL,
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: workshop.location.NL.includes('Online') ? 
       'https://schema.org/OnlineEventAttendanceMode' : 
       'https://schema.org/OfflineEventAttendanceMode',
+    provider: {
+      '@type': 'EducationalOrganization',
+      name: 'Stephens Privelessen',
+      url: 'https://stephensprivelessen.nl',
+      description: 'Professionele wiskunde en statistiek bijles in Amsterdam. Scriptiebegeleiding en data-analyse ondersteuning.',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Amsterdam',
+        addressRegion: 'NH',
+        addressCountry: 'NL'
+      }
+    },
     offers: {
       '@type': 'Offer',
       availability: 'https://schema.org/InStock',
       priceCurrency: 'EUR',
       priceSpecification: {
         '@type': 'PriceSpecification',
-        price: 'Contact for pricing',
+        price: workshop.price || 'Contact for pricing',
         priceCurrency: 'EUR'
       }
     },
-    provider: {
-      '@type': 'Organization',
-      name: 'Stephens Privelessen',
-      url: 'https://www.stephensprivelessen.nl',
-      description: 'Professionele wiskunde en statistiek bijles in Amsterdam. Scriptiebegeleiding en data-analyse ondersteuning.',
-      areaServed: {
-        '@type': 'City',
-        name: 'Amsterdam',
-        '@id': 'https://www.wikidata.org/wiki/Q727'
-      },
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Onderwijsdiensten',
-        itemListElement: [
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Wiskunde Bijles',
-              description: 'Persoonlijke wiskunde bijles voor alle niveaus'
-            }
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Statistiek Begeleiding',
-              description: 'Professionele begeleiding bij statistiek en data-analyse'
-            }
-          },
-          {
-            '@type': 'Offer',
-            itemOffered: {
-              '@type': 'Service',
-              name: 'Scriptiebegeleiding',
-              description: 'Ondersteuning bij scriptie en onderzoeksmethoden'
-            }
-          }
-        ]
-      }
-    },
-    location: workshop.location.NL.includes('Online') ? {
-      '@type': 'VirtualLocation',
-      url: 'https://www.stephensprivelessen.nl'
-    } : {
-      '@type': 'Place',
-      name: 'Amsterdam',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Amsterdam',
-        addressCountry: 'NL'
-      }
-    },
-    duration: `PT${workshop.durationMinutes}M`,
-    teaches: workshop.details.NL.join(', '),
     educationalLevel: workshop.level,
-    numberOfCredits: workshop.totalSessions || 1,
-    maximumAttendeeCapacity: workshop.maxParticipants,
-    isAccessibleForFree: false,
-    inLanguage: ['nl', 'en'],
-    audience: {
-      '@type': 'EducationalAudience',
-      educationalRole: workshop.level
-    },
-  };
+    teaches: workshop.details.NL,
+    courseWorkload: workshop.durationText.NL,
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: workshop.format === 'interactive' ? 'interactive' : workshop.format,
+      courseWorkload: workshop.durationText.NL
+    }
+  }
 
   return (
     <>
-      <Script
-        id="workshop-jsonld"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <WorkshopDetailContent id={params.id} />
+      <WorkshopDetailContent workshop={workshop} />
     </>
   )
 } 

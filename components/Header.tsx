@@ -132,57 +132,59 @@ const Header = () => {
                                     {String(t(siteTitle))}
                                 </Link>
 
-                                {/* Navigation items */}
-                                <div className="flex items-center gap-2 lg:gap-4 xl:gap-6">
-                                    {navItems.slice(0, 4).map(({ href, label }) => (
-                                        <Link
-                                            key={href}
-                                            href={href}
-                                            className={`text-sm font-medium transition-all duration-500 whitespace-nowrap px-2 ${
-                                                isAtTop
-                                                    ? pathname === href
-                                                        ? 'text-white'
-                                                        : 'text-blue-100 hover:text-white'
-                                                    : pathname === href
-                                                        ? 'text-blue-600'
-                                                        : 'text-gray-600 hover:text-blue-600'
-                                            }`}
-                                        >
-                                            {String(t(label))}
-                                        </Link>
-                                    ))}
+                                {/* Navigation items - Now with overflow handling */}
+                                <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 overflow-x-auto no-scrollbar">
+                                    <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 px-2">
+                                        {navItems.slice(0, 4).map(({ href, label }) => (
+                                            <Link
+                                                key={href}
+                                                href={href}
+                                                className={`text-sm font-medium transition-all duration-500 whitespace-nowrap ${
+                                                    isAtTop
+                                                        ? pathname === href
+                                                            ? 'text-white'
+                                                            : 'text-blue-100 hover:text-white'
+                                                        : pathname === href
+                                                            ? 'text-blue-600'
+                                                            : 'text-gray-600 hover:text-blue-600'
+                                                }`}
+                                            >
+                                                {String(t(label))}
+                                            </Link>
+                                        ))}
 
-                                    {/* Language toggle */}
-                                    <motion.button
-                                        onClick={toggleLanguage}
-                                        className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap mx-1 ${
-                                            isAtTop
-                                                ? 'bg-white/10 text-white hover:bg-white/20'
-                                                : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
-                                        }`}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        {language === 'EN' ? 'Nederlands?' : 'English?'}
-                                    </motion.button>
-
-                                    {navItems.slice(4).map(({ href, label }) => (
-                                        <Link
-                                            key={href}
-                                            href={href}
-                                            className={`text-sm font-medium transition-all duration-500 whitespace-nowrap px-2 ${
+                                        {/* Language toggle */}
+                                        <motion.button
+                                            onClick={toggleLanguage}
+                                            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
                                                 isAtTop
-                                                    ? pathname === href
-                                                        ? 'text-white'
-                                                        : 'text-blue-100 hover:text-white'
-                                                    : pathname === href
-                                                        ? 'text-blue-600'
-                                                        : 'text-gray-600 hover:text-blue-600'
+                                                    ? 'bg-white/10 text-white hover:bg-white/20'
+                                                    : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
                                             }`}
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
                                         >
-                                            {String(t(label))}
-                                        </Link>
-                                    ))}
+                                            {language === 'EN' ? 'Nederlands?' : 'English?'}
+                                        </motion.button>
+
+                                        {navItems.slice(4).map(({ href, label }) => (
+                                            <Link
+                                                key={href}
+                                                href={href}
+                                                className={`text-sm font-medium transition-all duration-500 whitespace-nowrap ${
+                                                    isAtTop
+                                                        ? pathname === href
+                                                            ? 'text-white'
+                                                            : 'text-blue-100 hover:text-white'
+                                                        : pathname === href
+                                                            ? 'text-blue-600'
+                                                            : 'text-gray-600 hover:text-blue-600'
+                                                }`}
+                                            >
+                                                {String(t(label))}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </nav>
