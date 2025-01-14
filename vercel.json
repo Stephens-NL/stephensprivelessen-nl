@@ -3,12 +3,6 @@
   "buildCommand": "next build",
   "cleanUrls": true,
   "trailingSlash": false,
-  "routes": [
-    {
-      "src": "/faq",
-      "dest": "/faq"
-    }
-  ],
   "ignoreCommand": "git diff --quiet HEAD^ HEAD ./__tests__/",
   "headers": [
     {
