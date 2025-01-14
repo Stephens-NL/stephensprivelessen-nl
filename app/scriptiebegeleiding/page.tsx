@@ -5,6 +5,20 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Syne, Space_Grotesk } from "next/font/google";
+import Link from 'next/link';
+
+const syne = Syne({ 
+    subsets: ['latin'],
+    variable: '--font-syne',
+    display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({ 
+    subsets: ['latin'],
+    variable: '--font-space-grotesk',
+    display: 'swap',
+});
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -130,140 +144,126 @@ export default function ScriptiebegeleidingPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      <Script
-        id="scriptiebegeleiding-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+    <div className={`${syne.variable} ${spaceGrotesk.variable}`}>
+      <div className="relative min-h-screen">
+        <Script
+          id="scriptiebegeleiding-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        
+        {/* Hero Section */}
+        <div className="relative h-screen bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800">
+          <div className="absolute inset-0 bg-black/30 z-10"></div>
           <Image
             src="/images/thesis-hero.jpg"
-            alt="Thesis Supervision Background"
+            alt="Scriptiebegeleiding Hero"
             fill
-            className="object-cover"
+            className="object-cover mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center">
+            <div className="max-w-[800px]">
+              <h1 className="font-syne text-4xl sm:text-5xl md:text-7xl lg:text-[120px] text-white mb-4 sm:mb-8 leading-[0.95] tracking-tight">
+                Scriptie<br />begeleiding
+              </h1>
+              <p className="font-space-grotesk text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-100 max-w-2xl">
+                Persoonlijke begeleiding bij methodologie, data-analyse en het schrijfproces van je scriptie
+              </p>
+            </div>
+          </div>
         </div>
-        <motion.div 
-          className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto"
-          initial="initial"
-          animate="animate"
-          variants={fadeIn}
-        >
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 font-anton">
-            {String(t(content.title))}
-          </h1>
-          <p className="text-xl md:text-2xl leading-relaxed">
-            {String(t(content.subtitle))}
-          </p>
-        </motion.div>
-      </section>
 
-      {/* Services Section */}
-      <section className="py-24 px-4">
-        <motion.div 
-          className="max-w-7xl mx-auto"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
-          <h2 className="text-4xl font-bold text-center mb-16 font-anton">
-            {String(t(content.services.title))}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[content.services.methodology, content.services.dataAnalysis, content.services.guidance].map((service, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-50 p-8 rounded-lg transform hover:scale-105 transition-transform duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-              >
-                <h3 className="text-2xl font-bold mb-6">
-                  {String(t(service.title))}
-                </h3>
-                <ul className="space-y-4">
-                  {service.items[language as keyof typeof service.items].map((item, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <span className="mr-2 text-blue-600">•</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+        {/* Services Section */}
+        <section className="py-16 sm:py-24 lg:py-32 bg-blue-950">
+          <div className="container mx-auto px-4">
+            <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-100 mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
+              {String(t(content.services.title))}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {[content.services.methodology, content.services.dataAnalysis, content.services.guidance].map((service, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-blue-900/50 backdrop-blur-sm p-6 sm:p-8 lg:p-12 rounded-3xl border border-blue-800/50"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.2 }}
+                >
+                  <span className="text-4xl sm:text-5xl lg:text-7xl font-syne text-blue-500 mb-4 lg:mb-8 block">0{index + 1}</span>
+                  <h3 className="font-syne text-xl sm:text-2xl lg:text-3xl text-blue-100 mb-4 lg:mb-8">
+                    {String(t(service.title))}
+                  </h3>
+                  <ul className="space-y-3 lg:space-y-4 font-space-grotesk text-base lg:text-lg text-blue-200">
+                    {service.items[language as keyof typeof service.items].map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <span className="mr-3 text-blue-400">—</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </motion.div>
-      </section>
+        </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-24 px-4 bg-gray-50">
-        <motion.div 
-          className="max-w-7xl mx-auto"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
-          <h2 className="text-4xl font-bold text-center mb-16 font-anton">
-            {String(t(content.why.title))}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {content.why.items[language as keyof typeof content.why.items].map((item, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className="flex items-center mb-4">
-                  <span className="text-3xl text-blue-600 mr-4">0{index + 1}</span>
-                  <p className="text-lg">{item}</p>
-                </div>
-              </motion.div>
-            ))}
+        {/* Why Choose Us Section - with improved responsive text */}
+        <section className="py-16 sm:py-24 lg:py-32 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-950 mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
+              {String(t(content.why.title))}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+              {content.why.items[language as keyof typeof content.why.items].map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="group"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="h-1 w-16 bg-blue-500 mb-6 lg:mb-8 group-hover:w-32 transition-all duration-300"></div>
+                  <p className="font-space-grotesk text-lg lg:text-xl text-blue-950">{item}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </motion.div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-24 px-4 bg-blue-600 text-white">
-        <motion.div 
-          className="max-w-4xl mx-auto text-center"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          variants={fadeIn}
-        >
-          <h2 className="text-4xl font-bold mb-8 font-anton">
-            {String(t({
-              EN: 'Ready to Excel in Your Thesis?',
-              NL: 'Klaar om te Excelleren in Je Scriptie?'
-            }))}
-          </h2>
-          <p className="text-xl mb-12">
-            {String(t({
-              EN: 'Contact us today to discuss how we can help you achieve academic excellence.',
-              NL: 'Neem vandaag nog contact op om te bespreken hoe we je kunnen helpen academisch te excelleren.'
-            }))}
-          </p>
-          <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors duration-300">
-            {String(t({
-              EN: 'Get Started',
-              NL: 'Begin Nu'
-            }))}
-          </button>
-        </motion.div>
-      </section>
-    </main>
+        {/* CTA Section - with improved responsive text and contact link */}
+        <section className="py-16 sm:py-24 lg:py-32 bg-blue-950">
+          <div className="container mx-auto px-4">
+            <div className="max-w-[800px] mx-auto">
+              <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-100 mb-6 lg:mb-8">
+                {String(t({
+                  EN: 'Ready to Excel?',
+                  NL: 'Klaar om te Excelleren?'
+                }))}
+              </h2>
+              <p className="font-space-grotesk text-lg sm:text-xl lg:text-2xl text-blue-200 mb-8 lg:mb-12">
+                {String(t({
+                  EN: 'Contact us today to discuss how we can help you achieve academic excellence.',
+                  NL: 'Neem vandaag nog contact op om te bespreken hoe we je kunnen helpen academisch te excelleren.'
+                }))}
+              </p>
+              <Link href="/contact">
+                <motion.button 
+                  className="bg-blue-100 text-blue-950 px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-xl font-space-grotesk hover:bg-white transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {String(t({
+                    EN: 'Get Started',
+                    NL: 'Begin Nu'
+                  }))}
+                </motion.button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   );
 } 

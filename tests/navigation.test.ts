@@ -8,7 +8,7 @@ describe('Navigation Links', () => {
     // Expected valid routes based on app directory structure
     const expectedValidRoutes = [
       '/',
-      '/bijles',
+      '/privelessen',
       '/scriptiebegeleiding',
       '/services',
       '/workshops',

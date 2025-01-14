@@ -1,74 +1,16 @@
 // app/layout.tsx
-import { Inter } from "next/font/google";
-import { Anton } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "../components/Footer";
-import { ReactNode } from "react";
+import './globals.css';
 import { Metadata } from 'next';
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Inter } from 'next/font/google';
+import { Anton } from 'next/font/google';
+import { LanguageProvider } from '@/contexts/LanguageContext';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { Analytics } from '@vercel/analytics/react';
+import WhatsAppButton from '@/components/shared/WhatsAppButton';
 
-const inter = Inter({ subsets: ["latin"], variable: '--font-sans' });
-const anton = Anton({ 
-    weight: '400',
-    subsets: ['latin'],
-    variable: '--font-anton'
-});
-
-const defaultKeywords = [
-  // Algemene termen
-  'privelessen amsterdam',
-  'privelessen amsterdam',
-  'huiswerkbegeleiding amsterdam',
-  
-  // Wiskunde gerelateerd
-  'wiskunde privelessen amsterdam',
-  'wiskunde examentraining',
-  'wiskunde huiswerk hulp',
-  'wiskunde tutor amsterdam',
-  'wiskunde privelessen aan huis',
-  'online wiskunde privelessen',
-  'privelessen wiskunde vwo',
-  'privelessen wiskunde havo',
-  'privelessen wiskunde vmbo',
-  
-  // Statistiek gerelateerd
-  'statistiek privelessen',
-  'statistiek hulp',
-  'spss hulp amsterdam',
-  'statistiek uitleg',
-  'statistiek workshops',
-  'data analyse hulp',
-  'statistiek eindexamen',
-  
-  // Scriptie gerelateerd
-  'scriptiebegeleiding amsterdam',
-  'scriptie hulp statistiek',
-  'thesis begeleiding',
-  'onderzoeksmethoden hulp',
-  'data analyse scriptie',
-  'methodologie hulp',
-  
-  // Software/Tools
-  'spss begeleiding',
-  'r studio hulp',
-  'python data analyse',
-  'stata hulp',
-  'excel data analyse',
-  
-  // Niveau specifiek
-  'universitair niveau',
-  'hbo statistiek',
-  'wo scriptie hulp',
-  'academische begeleiding',
-  
-  // Locatie specifiek
-  'privelessen zuid-amsterdam',
-  'privelessen centrum amsterdam',
-  'privelessen noord-amsterdam',
-  'privelessen west-amsterdam',
-  'privelessen oost-amsterdam',
-];
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.stephensprivelessen.nl'),
@@ -77,7 +19,228 @@ export const metadata: Metadata = {
     template: '%s | Stephens Privelessen Amsterdam'
   },
   description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Scriptiebegeleiding, data-analyse en examentraining. Persoonlijke begeleiding op alle niveaus.',
-  keywords: defaultKeywords,
+  keywords: [
+    // Algemene termen
+    'privelessen amsterdam',
+    'bijles amsterdam',
+    'bijles aan huis amsterdam',
+    'bijles geven amsterdam',
+    'bijles zoeken amsterdam',
+    'bijles nodig amsterdam',
+    'goede bijles amsterdam',
+    'betaalbare bijles amsterdam',
+    'professionele bijles amsterdam',
+    'ervaren bijles amsterdam',
+    'bijles docent amsterdam',
+    'bijles leraar amsterdam',
+    'bijles student amsterdam',
+    'bijles universitair amsterdam',
+    'bijles hbo amsterdam',
+    'bijles middelbare school amsterdam',
+    'bijles basisschool amsterdam',
+    'huiswerkbegeleiding amsterdam',
+    'huiswerk hulp amsterdam',
+    'studiebegeleiding amsterdam',
+    'studieondersteuning amsterdam',
+    'examentraining amsterdam',
+    
+    // Wiskunde gerelateerd
+    'wiskunde bijles amsterdam',
+    'wiskunde privelessen amsterdam',
+    'wiskunde examentraining',
+    'wiskunde huiswerk hulp',
+    'wiskunde tutor amsterdam',
+    'wiskunde privelessen aan huis',
+    'online wiskunde bijles',
+    'online wiskunde privelessen',
+    'bijles wiskunde vwo',
+    'bijles wiskunde havo',
+    'bijles wiskunde vmbo',
+    'privelessen wiskunde vwo',
+    'privelessen wiskunde havo',
+    'privelessen wiskunde vmbo',
+    'wiskunde a bijles',
+    'wiskunde b bijles',
+    'wiskunde c bijles',
+    'wiskunde d bijles',
+    
+    // Statistiek gerelateerd
+    'statistiek bijles',
+    'statistiek privelessen',
+    'statistiek hulp',
+    'spss hulp amsterdam',
+    'statistiek uitleg',
+    'statistiek workshops',
+    'data analyse hulp',
+    'statistiek eindexamen',
+    'statistiek tentamen hulp',
+    'statistiek examen training',
+    
+    // Scriptie gerelateerd
+    'scriptiebegeleiding amsterdam',
+    'scriptie hulp statistiek',
+    'thesis begeleiding',
+    'onderzoeksmethoden hulp',
+    'data analyse scriptie',
+    'methodologie hulp',
+    'scriptie bijles',
+    'scriptie privelessen',
+    'afstuderen hulp',
+    'afstudeerbegeleiding',
+    
+    // Software/Tools
+    'spss begeleiding',
+    'spss bijles',
+    'r studio hulp',
+    'r studio bijles',
+    'python data analyse',
+    'python bijles',
+    'stata hulp',
+    'stata bijles',
+    'excel data analyse',
+    'excel bijles',
+    
+    // Niveau specifiek
+    'universitair niveau',
+    'hbo statistiek',
+    'wo scriptie hulp',
+    'academische begeleiding',
+    'vwo bijles',
+    'havo bijles',
+    'vmbo bijles',
+    'mbo bijles',
+    'basisschool bijles',
+    
+    // Locatie specifiek
+    'bijles zuid-amsterdam',
+    'bijles centrum amsterdam',
+    'bijles noord-amsterdam',
+    'bijles west-amsterdam',
+    'bijles oost-amsterdam',
+    'privelessen zuid-amsterdam',
+    'privelessen centrum amsterdam',
+    'privelessen noord-amsterdam',
+    'privelessen west-amsterdam',
+    'privelessen oost-amsterdam',
+    
+    // Specifieke wijken
+    'bijles oud-zuid',
+    'bijles de pijp',
+    'bijles rivierenbuurt',
+    'bijles oud-west',
+    'bijles jordaan',
+    'bijles ijburg',
+    'bijles zuid-as',
+    'bijles buitenveldert',
+    'bijles amstelveen',
+    
+    // Online varianten
+    'online bijles',
+    'online privelessen',
+    'zoom bijles',
+    'skype bijles',
+    'teams bijles',
+    'digitale bijles',
+    'virtuele bijles',
+    'afstandsbijles',
+    
+    // Specifieke doelgroepen
+    'bijles voor studenten',
+    'bijles voor scholieren',
+    'bijles voor volwassenen',
+    'bijles voor werkenden',
+    'bijles voor beginners',
+    'bijles voor gevorderden',
+    'bijles examenvoorbereiding',
+    'bijles tentamenvoorbereiding',
+    
+    // Universiteitsvakken
+    'econometrie bijles',
+    'econometrie hulp',
+    'econometrie tentamen',
+    'kwantitatieve methoden bijles',
+    'kwantitatieve methoden hulp',
+    'research methods bijles',
+    'research methods hulp',
+    'methodologie bijles',
+    'methodologie hulp',
+    'data science bijles',
+    'data science hulp',
+    'machine learning bijles',
+    'machine learning hulp',
+    'artificial intelligence bijles',
+    'artificial intelligence hulp',
+    'business analytics bijles',
+    'business analytics hulp',
+    'operations research bijles',
+    'operations research hulp',
+    'quantitative finance bijles',
+    'quantitative finance hulp',
+    'financial mathematics bijles',
+    'financial mathematics hulp',
+    'actuariële wiskunde bijles',
+    'actuariële wiskunde hulp',
+    'biostatistiek bijles',
+    'biostatistiek hulp',
+    'psychologische statistiek bijles',
+    'psychologische statistiek hulp',
+    'medische statistiek bijles',
+    'medische statistiek hulp',
+    'epidemiologie statistiek bijles',
+    'epidemiologie statistiek hulp',
+    'multivariate analyse bijles',
+    'multivariate analyse hulp',
+    'tijdreeksanalyse bijles',
+    'tijdreeksanalyse hulp',
+    'regressieanalyse bijles',
+    'regressieanalyse hulp',
+    'variantieanalyse bijles',
+    'variantieanalyse hulp',
+    'factoranalyse bijles',
+    'factoranalyse hulp',
+    'structural equation modeling bijles',
+    'structural equation modeling hulp',
+    'data mining bijles',
+    'data mining hulp',
+    'big data analyse bijles',
+    'big data analyse hulp',
+    'statistische software bijles',
+    'statistische software hulp',
+    'data visualisatie bijles',
+    'data visualisatie hulp',
+    'experimenteel ontwerp bijles',
+    'experimenteel ontwerp hulp',
+    'steekproeftheorie bijles',
+    'steekproeftheorie hulp',
+    'bayesiaanse statistiek bijles',
+    'bayesiaanse statistiek hulp',
+    'stochastiek bijles',
+    'stochastiek hulp',
+    'kansrekening bijles',
+    'kansrekening hulp',
+    'discrete wiskunde bijles',
+    'discrete wiskunde hulp',
+    'numerieke wiskunde bijles',
+    'numerieke wiskunde hulp',
+    'optimalisatie bijles',
+    'optimalisatie hulp',
+    'lineaire algebra bijles',
+    'lineaire algebra hulp',
+    'differentiaalvergelijkingen bijles',
+    'differentiaalvergelijkingen hulp',
+    'complexe analyse bijles',
+    'complexe analyse hulp',
+    'topologie bijles',
+    'topologie hulp',
+    'abstracte algebra bijles',
+    'abstracte algebra hulp',
+    'functionaalanalyse bijles',
+    'functionaalanalyse hulp',
+    'meetkunde bijles',
+    'meetkunde hulp',
+    'logica bijles',
+    'logica hulp',
+  ],
   authors: [{ name: 'Stephen Adei' }],
   creator: 'Stephen Adei',
   publisher: 'Stephens Privelessen',
@@ -126,88 +289,22 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
-  name: 'Stephens Privelessen',
-  description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Scriptiebegeleiding en data-analyse ondersteuning.',
-  url: 'https://www.stephensprivelessen.nl',
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Amsterdam',
-    addressRegion: 'NH',
-    addressCountry: 'NL'
-  },
-  areaServed: {
-    '@type': 'City',
-    name: 'Amsterdam',
-    '@id': 'https://www.wikidata.org/wiki/Q727'
-  },
-  teaches: [
-    'Wiskunde',
-    'Statistiek',
-    'Data Analyse',
-    'Onderzoeksmethoden',
-    'Scriptiebegeleiding'
-  ],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Onderwijsdiensten',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Wiskunde Privelessen',
-          description: 'Persoonlijke wiskunde privelessen voor alle niveaus'
-        }
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Statistiek Begeleiding',
-          description: 'Professionele begeleiding bij statistiek en data-analyse'
-        }
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Scriptiebegeleiding',
-          description: 'Ondersteuning bij scriptie en onderzoeksmethoden'
-        }
-      }
-    ]
-  },
-  sameAs: [
-    'https://www.linkedin.com/in/yourusername', // Voeg hier je sociale media links toe
-  ]
-};
-
 export default function RootLayout({
   children,
 }: {
-  children: ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="nl" className={`${inter.variable} ${anton.variable} font-sans`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <link rel="alternate" hrefLang="nl" href="https://www.stephensprivelessen.nl" />
-        <link rel="alternate" hrefLang="en" href="https://www.stephensprivelessen.nl/en" />
-        <link rel="canonical" href="https://www.stephensprivelessen.nl" />
-      </head>
+    <html lang="nl" className={`${inter.variable} ${anton.variable} font-sans`} suppressHydrationWarning>
       <body>
         <LanguageProvider>
           <Header />
+          <WhatsAppButton />
           <main className="pt-14 md:pt-24">{children}</main>
           <Footer />
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
-  )
+  );
 }

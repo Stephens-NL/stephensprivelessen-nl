@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback, KeyboardEvent } from 'react';
 import { Search } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
-import { vakkenData } from '../../data';
+import { getBusinessData } from '@/data/businessData';
 
 interface VakkenSelectorProps {
   onChange: (vakken: string[]) => void;
@@ -11,13 +11,21 @@ interface VakkenSelectorProps {
 
 const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue = [], setIsQuestionAnswered }) => {
   const { t } = useTranslation();
+  const businessData = getBusinessData(t);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedVakken, setSelectedVakken] = useState<string[]>(Array.isArray(initialValue) ? initialValue : []);
+  const [selectedVakken, setSelectedVakken] = useState<string[]>(initialValue);
   const [customVak, setCustomVak] = useState('');
-  const vakken = vakkenData;
 
-  const filteredVakken = vakken.filter(vak =>
-    String(String(t(vak))).toLowerCase().includes(searchTerm.toLowerCase())
+  // Combine all subjects from businessData
+  const allVakken = [
+    ...businessData.subjects.primary.map(subject => subject.NL),
+    ...businessData.subjects.secondary.map(subject => subject.NL),
+    ...businessData.subjects.higher.map(subject => subject.NL),
+    ...businessData.subjects.programming.map(subject => subject.NL)
+  ];
+
+  const filteredVakken = allVakken.filter(vak =>
+    vak.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleToggleVak = useCallback((vak: string) => {
@@ -63,13 +71,13 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
       <div className="grid grid-cols-3 gap-4">
         {filteredVakken.map((vak) => (
           <button
-            key={String(t(vak))}
-            onClick={() => handleToggleVak(String(t(vak)))}
+            key={vak}
+            onClick={() => handleToggleVak(vak)}
             className={`px-4 py-2 rounded-md transition-colors duration-300 ${
-              selectedVakken.includes(String(t(vak))) ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-900 hover:bg-yellow-300'
+              selectedVakken.includes(vak) ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-900 hover:bg-yellow-300'
             }`}
           >
-            {String(t(vak))}
+            {vak}
           </button>
         ))}
       </div>

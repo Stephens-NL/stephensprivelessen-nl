@@ -1,4 +1,4 @@
-import { TutoringPage } from '@/types';
+import { TutoringPage } from '@/data/types';
 
 export const tutoringPage: TutoringPage = {
   hero: {

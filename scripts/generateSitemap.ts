@@ -31,7 +31,7 @@ function generateSitemap() {
   // Add main pages with high priority
   urlset.push(createUrlEntry('/', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/services', 'weekly', '1.0'));
-  urlset.push(createUrlEntry('/bijles', 'weekly', '1.0'));
+  urlset.push(createUrlEntry('/privelessen', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/workshops', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/consultancy', 'weekly', '0.9'));
   urlset.push(createUrlEntry('/contact', 'monthly', '0.8'));
@@ -39,7 +39,7 @@ function generateSitemap() {
 
   // Add location-specific tutoring pages
   LOCATIONS.forEach(location => {
-    urlset.push(createUrlEntry(`/bijles/${location}`, 'weekly', '0.9'));
+    urlset.push(createUrlEntry(`/privelessen/${location}`, 'weekly', '0.9'));
   });
 
   // Add workshop detail pages
@@ -54,7 +54,7 @@ function generateSitemap() {
   });
 
   // Add navigation pages (excluding already added pages)
-  const addedPaths = new Set(['/', '/services', '/bijles', '/workshops', '/consultancy', '/contact', '/faq']);
+  const addedPaths = new Set(['/', '/services', '/privelessen', '/workshops', '/consultancy', '/contact', '/faq']);
   navigation.forEach((item: NavItem) => {
     if (!addedPaths.has(item.href)) {
       urlset.push(createUrlEntry(item.href));

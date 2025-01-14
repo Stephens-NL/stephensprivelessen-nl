@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useRouter } from 'next/navigation';
 import Script from 'next/script';
+import { useRef } from 'react';
 import { jsonLd } from './metadata';
 
 const fadeIn = {
@@ -16,6 +18,16 @@ const fadeIn = {
 export default function ConsultancyPage() {
   const { t } = useTranslation();
   const { language } = useLanguage();
+  const router = useRouter();
+  const contactSectionRef = useRef<HTMLDivElement>(null);
+
+  const handleContactClick = (scrollToContact: boolean = false) => {
+    if (scrollToContact && contactSectionRef.current) {
+      contactSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      router.push('/contact?service=consultancy');
+    }
+  };
 
   const content = {
     hero: {
@@ -152,9 +164,18 @@ export default function ConsultancyPage() {
             <h1 className="text-6xl md:text-7xl font-bold mb-6 font-anton">
               {String(t(content.hero.title))}
             </h1>
-            <p className="text-xl md:text-2xl leading-relaxed">
+            <p className="text-xl md:text-2xl leading-relaxed mb-8">
               {String(t(content.hero.subtitle))}
             </p>
+            <button
+              onClick={() => handleContactClick(true)}
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors duration-300"
+            >
+              {String(t({
+                EN: 'More Info & Schedule Now',
+                NL: 'Meer Info & Plan Nu'
+              }))}
+            </button>
           </motion.div>
         </section>
 
@@ -230,7 +251,7 @@ export default function ConsultancyPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <section ref={contactSectionRef} className="py-24 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
           <motion.div 
             className="max-w-4xl mx-auto text-center"
             initial="initial"
@@ -250,10 +271,13 @@ export default function ConsultancyPage() {
                 NL: 'Neem vandaag nog contact op om te bespreken hoe wij u kunnen helpen uw data beter te benutten voor besluitvorming.'
               }))}
             </p>
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors duration-300">
+            <button
+              onClick={() => handleContactClick(false)}
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors duration-300"
+            >
               {String(t({
-                EN: 'Schedule a Consultation',
-                NL: 'Plan een Gesprek'
+                EN: 'Schedule Now',
+                NL: 'Plan Nu In'
               }))}
             </button>
           </motion.div>

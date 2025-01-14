@@ -13,4 +13,4 @@ export * from './contactData';
 export * from './feedbackQuestions';
 export * from './feedbackFormData';
 export * from './termsData';
-export * from './vakkenData';
+export * from './infoSection';

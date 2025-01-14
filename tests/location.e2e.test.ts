@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test';
+import { generateMetadata } from '../app/privelessen/[location]/page';
+import { Metadata } from 'next';
 
 const locations = [
   'amsterdam-zuid',
@@ -6,64 +7,48 @@ const locations = [
   'amsterdam-noord',
   'amsterdam-west',
   'amsterdam-oost'
-];
+] as const;
 
-test.describe('Location Pages', () => {
-  test('should have correct metadata for each location', async ({ page }) => {
+type ValidLocation = typeof locations[number];
+
+jest.mock('next/navigation', () => ({
+  notFound: () => { throw new Error('Not Found') }
+}));
+
+describe('Location Pages', () => {
+  test('should generate correct metadata for valid locations', async () => {
     for (const location of locations) {
-      await page.goto(`/privelessen/${location}`);
-      
-      // Check if page loads
-      await expect(page).toHaveTitle(new RegExp(`Amsterdam ${location.split('-')[1].charAt(0).toUpperCase() + location.split('-')[1].slice(1)}`));
-      
-      // Check meta description
-      const metaDescription = await page.locator('meta[name="description"]');
-      await expect(metaDescription).toHaveAttribute('content', new RegExp('kantoor'));
-      
-      // Check if main content is present
-      await expect(page.locator('main')).toBeVisible();
-      
-      // Check if area-specific content is present
-      const areaText = location.split('-')[1].charAt(0).toUpperCase() + location.split('-')[1].slice(1);
-      await expect(page.getByText(new RegExp(areaText))).toBeVisible();
-    }
-  });
+      const metadata = await generateMetadata({ 
+        params: { location }
+      }) as Metadata;
 
-  test('should return 404 for invalid location', async ({ page }) => {
-    const response = await page.goto('/privelessen/invalid-location');
-    expect(response?.status()).toBe(404);
-  });
-
-  test('should have correct OpenGraph tags', async ({ page }) => {
-    for (const location of locations) {
-      await page.goto(`/privelessen/${location}`);
+      // Check title
+      expect(metadata.title).toContain(location.split('-')[1].charAt(0).toUpperCase() + location.split('-')[1].slice(1));
       
-      // Check OpenGraph tags
-      const ogTitle = await page.locator('meta[property="og:title"]');
-      await expect(ogTitle).toHaveAttribute('content', new RegExp('Amsterdam'));
+      // Check description
+      expect(metadata.description).toContain('Persoonlijke begeleiding');
       
-      const ogUrl = await page.locator('meta[property="og:url"]');
-      await expect(ogUrl).toHaveAttribute('content', new RegExp(`stephensprivelessen.nl/privelessen/${location}`));
+      // Check OpenGraph
+      const og = metadata.openGraph;
+      expect(og?.title).toContain('Amsterdam');
+      expect(og?.url).toContain(`stephensprivelessen.nl/privelessen/${location}`);
+      expect(og?.siteName).toBe('Stephens Privelessen');
       
-      const ogType = await page.locator('meta[property="og:type"]');
-      await expect(ogType).toHaveAttribute('content', 'website');
-    }
-  });
-
-  test('should have correct keywords meta tag', async ({ page }) => {
-    for (const location of locations) {
-      await page.goto(`/privelessen/${location}`);
-      
-      const metaKeywords = await page.locator('meta[name="keywords"]');
-      const keywords = await metaKeywords.getAttribute('content');
-      
-      // Check if both 'priveles' and 'bijles' are present for SEO
-      expect(keywords).toContain('priveles');
-      expect(keywords).toContain('bijles');
-      
-      // Check location-specific keywords
+      // Check keywords
+      const keywords = metadata.keywords as string[];
       const area = location.split('-')[1];
-      expect(keywords).toContain(area);
+      expect(keywords).toContain(`priveles amsterdam ${area}`);
+      expect(keywords).toContain(`bijles amsterdam ${area}`);
+      expect(keywords.some(k => k.includes(area))).toBe(true);
     }
+  });
+
+  test('should throw notFound for invalid location', async () => {
+    const invalidLocation = 'invalid-location' as unknown as ValidLocation;
+    await expect(
+      generateMetadata({ 
+        params: { location: invalidLocation }
+      })
+    ).rejects.toThrow();
   });
 }); 

@@ -48,7 +48,7 @@ describe('Sitemap Validation', () => {
 
     test('all sitemap URLs are valid format', () => {
         // Allow for more granular location and service-specific URLs
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/bijles\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+)$/;
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+)$/;
         sitemapUrls.forEach(url => {
             expect(url).toMatch(urlPattern);
         });
@@ -96,7 +96,7 @@ describe('Sitemap Validation', () => {
             if (url.endsWith('stephensprivelessen.nl/')) {
                 expect(priority).toBe(1.0); // Homepage highest priority
                 expect(changefreq).toBe('weekly');
-            } else if (url.includes('/bijles/') || url.includes('/scriptiebegeleiding/')) {
+            } else if (url.includes('/privelessen/') || url.includes('/scriptiebegeleiding/')) {
                 expect(priority).toBeGreaterThanOrEqual(0.8); // Service pages high priority
                 expect(['daily', 'weekly', 'monthly']).toContain(changefreq);
             } else if (url.includes('/workshops/')) {
@@ -112,7 +112,7 @@ describe('Sitemap Validation', () => {
 
     test('location-specific pages have proper hierarchy', () => {
         const locationPages = sitemapUrls.filter(url => 
-            url.includes('/bijles/amsterdam-') || 
+            url.includes('/privelessen/amsterdam-') || 
             url.includes('/scriptiebegeleiding/amsterdam-')
         );
 

@@ -1,18 +1,27 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { generalQuestions, studentQuestions, guardianQuestions, companyQuestions, Question, MultipleChoiceQuestion, TextQuestion } from '../../data';
+import { generalQuestions, studentQuestions, guardianQuestions, companyQuestions } from '../../data';
+import { Question, MultipleChoiceQuestion, TextQuestion } from '@/data/types';
 import LanguageSelector from '../../components/contact/questions/LanguageSelector';
 import TextInput from '../../components/contact/questions/TextInput';
 import MultipleChoice from '../../components/contact/questions/MultipleChoice';
 import { motion } from 'framer-motion';
+import { getBusinessData } from '@/data/businessData';
+import { useTranslation } from '@/hooks/useTranslation';
 
 const ContactPage: React.FC = () => {
+  const { t } = useTranslation();
+  const businessData = getBusinessData(t);
   const [language, setLanguage] = useState<'en' | 'nl'>('en');
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [userType, setUserType] = useState<string>('');
+
+  const emailContact = businessData.contactItems.find(item => item.icon === "FaEnvelope");
+  const phoneContact = businessData.contactItems.find(item => item.icon === "FaPhone");
+  const locationContact = businessData.contactItems.find(item => item.icon === "FaMapMarkerAlt");
 
   useEffect(() => {
     // Check system preference for dark mode
@@ -135,16 +144,22 @@ const ContactPage: React.FC = () => {
       </div>
       <div className={`${isDarkMode ? 'bg-blue-800' : 'bg-blue-900'} ${isDarkMode ? 'text-yellow-300' : 'text-yellow-400'} p-4`}>
         <div className="flex justify-center space-x-4">
-          <a href="tel:+31647357426" className="flex items-center hover:underline">
-            <span className="mr-2">📞</span> +31 6 47357426
-          </a>
-          <a href="mailto:s.adei@outlook.com" className="flex items-center hover:underline">
-            <span className="mr-2">✉️</span> s.adei@outlook.com
-          </a>
+          {phoneContact && (
+            <a href={phoneContact.href} className="flex items-center hover:underline">
+              <span className="mr-2">📞</span> {phoneContact.content}
+            </a>
+          )}
+          {emailContact && (
+            <a href={emailContact.href} className="flex items-center hover:underline">
+              <span className="mr-2">✉️</span> {emailContact.content}
+            </a>
+          )}
         </div>
-        <div className="text-center mt-2">
-          <span className="mr-2">📍</span> Locatie: Science Park 904, 1098 XH Amsterdam
-        </div>
+        {locationContact && (
+          <div className="text-center mt-2">
+            <span className="mr-2">📍</span> {locationContact.content}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { FiMenu, FiX } from 'react-icons/fi'
-import { siteTitle } from '@/data/navigation'
+import { siteTitle, navigation } from '@/data/navigation'
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -39,18 +39,6 @@ const Header = () => {
     const toggleLanguage = () => {
         setLanguage(language === 'EN' ? 'NL' : 'EN')
     }
-
-    const navItems = [
-        { href: '/', label: { EN: 'Home', NL: 'Home' } },
-        { href: '/bijles', label: { EN: 'Tutoring', NL: 'Bijles' } },
-        { href: '/scriptiebegeleiding', label: { EN: 'Thesis Supervision', NL: 'Scriptiebegeleiding' } },
-        { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
-        { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
-        { href: '/consultancy', label: { EN: 'Consultancy', NL: 'Consultancy' } },
-        { href: '/about', label: { EN: 'About', NL: 'Over Ons' } },
-        { href: '/faq', label: { EN: 'FAQ', NL: 'FAQ' } },
-        { href: '/contact', label: { EN: 'Contact', NL: 'Contact' } },
-    ]
 
     const isAtTop = scrollY.get() < 20;
 
@@ -135,23 +123,35 @@ const Header = () => {
                                 {/* Navigation items - Now with overflow handling */}
                                 <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 overflow-x-auto no-scrollbar">
                                     <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 px-2">
-                                        {navItems.slice(0, 4).map(({ href, label }) => (
-                                            <Link
-                                                key={href}
-                                                href={href}
-                                                className={`text-sm font-medium transition-all duration-500 whitespace-nowrap ${
-                                                    isAtTop
-                                                        ? pathname === href
-                                                            ? 'text-white'
-                                                            : 'text-blue-100 hover:text-white'
-                                                        : pathname === href
-                                                            ? 'text-blue-600'
-                                                            : 'text-gray-600 hover:text-blue-600'
-                                                }`}
-                                            >
-                                                {String(t(label))}
-                                            </Link>
-                                        ))}
+                                        {/* Service navigation items */}
+                                        {navigation
+                                            .filter(item => ['/privelessen', '/scriptiebegeleiding', '/workshops', '/consultancy', '/services'].includes(item.href))
+                                            .map(({ href, label }) => (
+                                                <motion.div
+                                                    key={href}
+                                                    whileHover={{ 
+                                                        scale: 1.05,
+                                                        transition: { duration: 0.2 }
+                                                    }}
+                                                    className="relative group"
+                                                >
+                                                    <Link
+                                                        href={href}
+                                                        className={`text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                                                            isAtTop
+                                                                ? pathname === href
+                                                                    ? 'text-white'
+                                                                    : 'text-blue-100 hover:text-white'
+                                                                : pathname === href
+                                                                    ? 'text-blue-600'
+                                                                    : 'text-gray-600 hover:text-blue-600'
+                                                        }`}
+                                                    >
+                                                        {String(t(label))}
+                                                        <span className="absolute inset-x-0 -bottom-0.5 h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                                                    </Link>
+                                                </motion.div>
+                                            ))}
 
                                         {/* Language toggle */}
                                         <motion.button
@@ -167,23 +167,35 @@ const Header = () => {
                                             {language === 'EN' ? 'Nederlands?' : 'English?'}
                                         </motion.button>
 
-                                        {navItems.slice(4).map(({ href, label }) => (
-                                            <Link
-                                                key={href}
-                                                href={href}
-                                                className={`text-sm font-medium transition-all duration-500 whitespace-nowrap ${
-                                                    isAtTop
-                                                        ? pathname === href
-                                                            ? 'text-white'
-                                                            : 'text-blue-100 hover:text-white'
-                                                        : pathname === href
-                                                            ? 'text-blue-600'
-                                                            : 'text-gray-600 hover:text-blue-600'
-                                                }`}
-                                            >
-                                                {String(t(label))}
-                                            </Link>
-                                        ))}
+                                        {/* Info navigation items */}
+                                        {navigation
+                                            .filter(item => ['/about', '/blog', '/faq', '/contact'].includes(item.href))
+                                            .map(({ href, label }) => (
+                                                <motion.div
+                                                    key={href}
+                                                    whileHover={{ 
+                                                        scale: 1.05,
+                                                        transition: { duration: 0.2 }
+                                                    }}
+                                                    className="relative group"
+                                                >
+                                                    <Link
+                                                        href={href}
+                                                        className={`text-sm font-medium transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                                                            isAtTop
+                                                                ? pathname === href
+                                                                    ? 'text-white'
+                                                                    : 'text-blue-100 hover:text-white'
+                                                                : pathname === href
+                                                                    ? 'text-blue-600'
+                                                                    : 'text-gray-600 hover:text-blue-600'
+                                                        }`}
+                                                    >
+                                                        {String(t(label))}
+                                                        <span className="absolute inset-x-0 -bottom-0.5 h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+                                                    </Link>
+                                                </motion.div>
+                                            ))}
                                     </div>
                                 </div>
                             </div>
@@ -233,45 +245,41 @@ const Header = () => {
                                 className="border-t border-white/10"
                             >
                                 <div className="py-1">
-                                    {/* First set of navigation items */}
-                                    {navItems.slice(0, 4).map(({ href, label }) => (
-                                        <Link
-                                            key={href}
-                                            href={href}
-                                            onClick={closeMenu}
-                                            className={`block px-4 py-2 text-base font-medium transition-colors ${
-                                                pathname === href 
-                                                    ? 'text-white bg-white/10' 
-                                                    : 'text-blue-100 hover:text-white hover:bg-white/5'
-                                            }`}
-                                        >
-                                            {String(t(label))}
-                                        </Link>
-                                    ))}
+                                    {/* Service navigation items */}
+                                    {navigation
+                                        .filter(item => ['/privelessen', '/scriptiebegeleiding', '/workshops', '/consultancy', '/services'].includes(item.href))
+                                        .map(({ href, label }) => (
+                                            <Link
+                                                key={href}
+                                                href={href}
+                                                onClick={closeMenu}
+                                                className={`block px-4 py-2 text-base font-medium transition-colors ${
+                                                    pathname === href 
+                                                        ? 'text-white bg-white/10' 
+                                                        : 'text-blue-100 hover:text-white hover:bg-white/5'
+                                                }`}
+                                            >
+                                                {String(t(label))}
+                                            </Link>
+                                        ))}
 
-                                    {/* Language toggle in menu */}
-                                    <button
-                                        onClick={toggleLanguage}
-                                        className="w-full text-left px-4 py-2 text-base font-medium text-blue-100 hover:text-white hover:bg-white/5"
-                                    >
-                                        {language === 'EN' ? 'Nederlands?' : 'English?'}
-                                    </button>
-
-                                    {/* Remaining navigation items */}
-                                    {navItems.slice(4).map(({ href, label }) => (
-                                        <Link
-                                            key={href}
-                                            href={href}
-                                            onClick={closeMenu}
-                                            className={`block px-4 py-2 text-base font-medium transition-colors ${
-                                                pathname === href 
-                                                    ? 'text-white bg-white/10' 
-                                                    : 'text-blue-100 hover:text-white hover:bg-white/5'
-                                            }`}
-                                        >
-                                            {String(t(label))}
-                                        </Link>
-                                    ))}
+                                    {/* Info navigation items */}
+                                    {navigation
+                                        .filter(item => ['/about', '/blog', '/faq', '/contact'].includes(item.href))
+                                        .map(({ href, label }) => (
+                                            <Link
+                                                key={href}
+                                                href={href}
+                                                onClick={closeMenu}
+                                                className={`block px-4 py-2 text-base font-medium transition-colors ${
+                                                    pathname === href 
+                                                        ? 'text-white bg-white/10' 
+                                                        : 'text-blue-100 hover:text-white hover:bg-white/5'
+                                                }`}
+                                            >
+                                                {String(t(label))}
+                                            </Link>
+                                        ))}
                                 </div>
                             </motion.div>
                         )}

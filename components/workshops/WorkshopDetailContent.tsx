@@ -1,48 +1,32 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useRouter } from 'next/navigation';
-import workshopsData from '@/data/workshopsData';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 import type { Workshop, Language } from '@/data/types';
 
 interface WorkshopDetailContentProps {
-    id: string;
+    workshop: Workshop;
 }
 
-export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps) {
+export default function WorkshopDetailContent({ workshop }: WorkshopDetailContentProps) {
     const { t } = useTranslation();
     const { language } = useLanguage();
     const router = useRouter();
-
-    const workshop = workshopsData[id];
-
-    if (!workshop) {
-        return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold text-gray-800 mb-4">
-                        {String(t({ EN: 'Workshop Not Found', NL: 'Workshop Niet Gevonden' }))}
-                    </h1>
-                    <button
-                        onClick={() => router.push('/workshops')}
-                        className="text-blue-600 hover:text-blue-700"
-                    >
-                        {String(t({ EN: 'Return to Workshops', NL: 'Terug naar Workshops' }))}
-                    </button>
-                </div>
-            </div>
-        );
-    }
+    const contactSectionRef = useRef<HTMLDivElement>(null);
 
     const isCreative = workshop.type === 'creative';
     const baseColorClass = isCreative ? 'purple' : 'blue';
 
-    const handleRequestInfo = () => {
-        router.push(`/contact?workshop=${id}`);
+    const handleRequestInfo = (scrollToContact: boolean = false) => {
+        if (scrollToContact && contactSectionRef.current) {
+            contactSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            router.push(`/contact?workshop=${workshop.id}`);
+        }
     };
 
     return (
@@ -52,160 +36,125 @@ export default function WorkshopDetailContent({ id }: WorkshopDetailContentProps
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
+                    className="max-w-4xl mx-auto"
                 >
-                    <button
-                        onClick={() => router.push('/workshops')}
-                        className={cn(
-                            "mb-8 flex items-center",
-                            isCreative ? "text-purple-600 hover:text-purple-700" : "text-blue-600 hover:text-blue-700"
-                        )}
-                        aria-label={String(t({ EN: 'Back to Workshops overview', NL: 'Terug naar Workshop overzicht' }))}
-                    >
-                        ← {String(t({ EN: 'Back to Workshops', NL: 'Terug naar Workshops' }))}
-                    </button>
+                    {/* Header */}
+                    <div className="text-center mb-12">
+                        <h1 className={`text-4xl md:text-5xl font-bold mb-6 text-${baseColorClass}-900`}>
+                            {workshop.title[language as Language]}
+                        </h1>
+                        <p className="text-xl text-gray-600 mb-8">
+                            {workshop.description?.[language as Language] || ''}
+                        </p>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <button
+                                onClick={() => handleRequestInfo(true)}
+                                className={`px-8 py-3 rounded-full bg-${baseColorClass}-600 text-white hover:bg-${baseColorClass}-700 transition-colors`}
+                            >
+                                {String(t({ EN: 'More Info & Schedule Now', NL: 'Meer Info & Plan Nu' }))}
+                            </button>
+                            <button
+                                onClick={() => router.push('/workshops')}
+                                className="px-8 py-3 rounded-full bg-gray-200 text-gray-800 hover:bg-gray-300 transition-colors"
+                            >
+                                {String(t({ EN: 'Back to Workshops', NL: 'Terug naar Workshops' }))}
+                            </button>
+                        </div>
+                    </div>
 
-                    <article className="bg-white rounded-lg shadow-lg p-8">
-                        <header>
-                            <div className="inline-flex gap-2 mb-6" role="group" aria-label={String(t({ EN: 'Workshop categories', NL: 'Workshop categorieën' }))}>
-                                <span className={cn(
-                                    "text-sm font-medium px-3 py-1 rounded-full",
-                                    isCreative ? "bg-purple-50 text-purple-700" : "bg-blue-50 text-blue-700"
-                                )}>
-                                    {String(t(workshop.format))}
-                                </span>
-                                <span className={cn(
-                                    "text-sm font-medium px-3 py-1 rounded-full",
-                                    isCreative ? "bg-purple-50 text-purple-700" : "bg-blue-50 text-blue-700"
-                                )}>
-                                    {String(t({ 
-                                        EN: isCreative ? 'Creative' : 'Academic',
-                                        NL: isCreative ? 'Creatief' : 'Academisch'
+                    {/* Workshop Details */}
+                    <div className="grid md:grid-cols-2 gap-8 mb-12">
+                        <div className={`p-6 rounded-xl bg-white shadow-lg border border-${baseColorClass}-100`}>
+                            <h2 className={`text-2xl font-semibold mb-4 text-${baseColorClass}-900`}>
+                                {String(t({ EN: 'Workshop Details', NL: 'Workshop Details' }))}
+                            </h2>
+                            <ul className="space-y-3">
+                                <li className="flex items-center text-gray-700">
+                                    <span className="font-medium mr-2">{String(t({ EN: 'Duration:', NL: 'Duur:' }))}</span>
+                                    {workshop.durationText[language as Language]}
+                                </li>
+                                <li className="flex items-center text-gray-700">
+                                    <span className="font-medium mr-2">{String(t({ EN: 'Level:', NL: 'Niveau:' }))}</span>
+                                    {String(t({
+                                        EN: workshop.level.charAt(0).toUpperCase() + workshop.level.slice(1),
+                                        NL: workshop.level === 'beginner' ? 'Beginner' :
+                                            workshop.level === 'intermediate' ? 'Gevorderd' :
+                                            workshop.level === 'advanced' ? 'Vergevorderd' :
+                                            workshop.level === 'professional' ? 'Professional' : 'Alle Niveaus'
                                     }))}
-                                </span>
-                            </div>
-                            
-                            <h1 className={cn(
-                                "text-4xl font-bold mb-6",
-                                isCreative ? "text-purple-900" : "text-blue-900"
-                            )}>
-                                {String(t(workshop.title))}
-                            </h1>
-                        </header>
-                        
-                        <div className="text-lg text-gray-600 mb-8" role="doc-subtitle">
-                            {String(t(workshop.description))}
+                                </li>
+                                <li className="flex items-center text-gray-700">
+                                    <span className="font-medium mr-2">{String(t({ EN: 'Format:', NL: 'Format:' }))}</span>
+                                    {String(t({
+                                        EN: workshop.format.charAt(0).toUpperCase() + workshop.format.slice(1),
+                                        NL: workshop.format === 'interactive' ? 'Interactief' :
+                                            workshop.format === 'hands-on' ? 'Praktisch' :
+                                            workshop.format === 'technical' ? 'Technisch' :
+                                            workshop.format === 'creative' ? 'Creatief' :
+                                            workshop.format === 'professional' ? 'Professioneel' :
+                                            workshop.format === 'media' ? 'Media' :
+                                            workshop.format === 'flexible' ? 'Flexibel' :
+                                            workshop.format === 'wellness' ? 'Welzijn' : workshop.format
+                                    }))}
+                                </li>
+                                {workshop.totalSessions && (
+                                    <li className="flex items-center text-gray-700">
+                                        <span className="font-medium mr-2">{String(t({ EN: 'Total Sessions:', NL: 'Totaal Sessies:' }))}</span>
+                                        {workshop.totalSessions}
+                                    </li>
+                                )}
+                            </ul>
                         </div>
 
-                        <section aria-label={String(t({ EN: 'Workshop details', NL: 'Workshop details' }))} className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                            <div className={cn(
-                                "p-4 rounded-lg",
-                                isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
-                            )}>
-                                <h3 className="font-semibold text-gray-700 mb-2">
-                                    {String(t({ EN: 'Duration', NL: 'Duur' }))}
-                                </h3>
-                                <p className="text-gray-600">{String(t(workshop.durationText))}</p>
-                            </div>
-                            <div className={cn(
-                                "p-4 rounded-lg",
-                                isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
-                            )}>
-                                <h3 className="font-semibold text-gray-700 mb-2">
-                                    {String(t({ EN: 'Format', NL: 'Format' }))}
-                                </h3>
-                                <p className="text-gray-600">{String(t(workshop.format))}</p>
-                            </div>
-                            <div className={cn(
-                                "p-4 rounded-lg",
-                                isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
-                            )}>
-                                <h3 className="font-semibold text-gray-700 mb-2">
-                                    {String(t({ EN: 'For', NL: 'Voor' }))}
-                                </h3>
-                                <p className="text-gray-600">{String(t(workshop.level))}</p>
-                            </div>
-                        </section>
-
-                        {(workshop.prerequisites || workshop.materials || workshop.location || workshop.maxParticipants) && (
-                            <section aria-label={String(t({ EN: 'Additional Information', NL: 'Aanvullende Informatie' }))} className="mb-8">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {workshop.prerequisites && (
-                                        <div className={cn(
-                                            "p-4 rounded-lg",
-                                            isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
-                                        )}>
-                                            <h3 className="font-semibold text-gray-700 mb-2">
-                                                {String(t({ EN: 'Prerequisites', NL: 'Vereisten' }))}
-                                            </h3>
-                                            <p className="text-gray-600">{String(t(workshop.prerequisites))}</p>
-                                        </div>
-                                    )}
-                                    {workshop.materials && (
-                                        <div className={cn(
-                                            "p-4 rounded-lg",
-                                            isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
-                                        )}>
-                                            <h3 className="font-semibold text-gray-700 mb-2">
-                                                {String(t({ EN: 'Materials', NL: 'Materialen' }))}
-                                            </h3>
-                                            <p className="text-gray-600">{String(t(workshop.materials))}</p>
-                                        </div>
-                                    )}
-                                    {workshop.location && (
-                                        <div className={cn(
-                                            "p-4 rounded-lg",
-                                            isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
-                                        )}>
-                                            <h3 className="font-semibold text-gray-700 mb-2">
-                                                {String(t({ EN: 'Location', NL: 'Locatie' }))}
-                                            </h3>
-                                            <p className="text-gray-600">{String(t(workshop.location))}</p>
-                                        </div>
-                                    )}
-                                    {workshop.maxParticipants && (
-                                        <div className={cn(
-                                            "p-4 rounded-lg",
-                                            isCreative ? "bg-purple-50/50" : "bg-blue-50/50"
-                                        )}>
-                                            <h3 className="font-semibold text-gray-700 mb-2">
-                                                {String(t({ EN: 'Maximum Participants', NL: 'Maximum Aantal Deelnemers' }))}
-                                            </h3>
-                                            <p className="text-gray-600">{workshop.maxParticipants}</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </section>
-                        )}
-
-                        <section aria-label={String(t({ EN: 'Workshop content', NL: 'Workshop inhoud' }))} className="mb-8">
-                            <h2 className={cn(
-                                "text-2xl font-semibold mb-4",
-                                isCreative ? "text-purple-900" : "text-blue-900"
-                            )}>
-                                {String(t({ EN: 'What to Expect', NL: 'Wat kun je verwachten' }))}
+                        <div className={`p-6 rounded-xl bg-white shadow-lg border border-${baseColorClass}-100`}>
+                            <h2 className={`text-2xl font-semibold mb-4 text-${baseColorClass}-900`}>
+                                {String(t({ EN: 'What You\'ll Learn', NL: 'Wat Je Leert' }))}
                             </h2>
-                            <ul className="list-disc list-inside space-y-2 text-gray-600">
-                                {workshop.details[language as Language]?.map((detail: string, index: number) => (
-                                    <li key={index}>{detail}</li>
+                            <ul className="space-y-2">
+                                {workshop.details[language as Language].map((detail: string, index: number) => (
+                                    <li key={index} className="flex items-start">
+                                        <span className={`mr-2 text-${baseColorClass}-500`}>•</span>
+                                        {detail}
+                                    </li>
                                 ))}
                             </ul>
-                        </section>
+                        </div>
+                    </div>
 
-                        <footer className="flex justify-center">
-                            <button
-                                onClick={handleRequestInfo}
-                                className={cn(
-                                    "text-white py-3 px-8 rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md",
-                                    isCreative 
-                                        ? "bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800"
-                                        : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-                                )}
-                                aria-label={String(t({ EN: 'Request information about this workshop', NL: 'Informatie aanvragen over deze workshop' }))}
-                            >
-                                {String(t({ EN: 'Request Information', NL: 'Informatie Aanvragen' }))}
-                            </button>
-                        </footer>
-                    </article>
+                    {/* Additional Information */}
+                    <div className={`p-6 rounded-xl bg-white shadow-lg border border-${baseColorClass}-100 mb-12`}>
+                        <h2 className={`text-2xl font-semibold mb-4 text-${baseColorClass}-900`}>
+                            {String(t({ EN: 'Additional Information', NL: 'Aanvullende Informatie' }))}
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 className="font-medium mb-2">{String(t({ EN: 'Prerequisites', NL: 'Voorvereisten' }))}</h3>
+                                <p className="text-gray-700">{workshop.prerequisites[language as Language]}</p>
+                            </div>
+                            <div>
+                                <h3 className="font-medium mb-2">{String(t({ EN: 'Materials', NL: 'Materialen' }))}</h3>
+                                <p className="text-gray-700">{workshop.materials[language as Language]}</p>
+                            </div>
+                            <div>
+                                <h3 className="font-medium mb-2">{String(t({ EN: 'Location', NL: 'Locatie' }))}</h3>
+                                <p className="text-gray-700">{workshop.location[language as Language]}</p>
+                            </div>
+                            <div>
+                                <h3 className="font-medium mb-2">{String(t({ EN: 'Price', NL: 'Prijs' }))}</h3>
+                                <p className="text-gray-700">{workshop.price[language as Language]}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Call to Action */}
+                    <div ref={contactSectionRef} className="text-center">
+                        <button
+                            onClick={() => handleRequestInfo(false)}
+                            className={`px-8 py-3 rounded-full bg-${baseColorClass}-600 text-white hover:bg-${baseColorClass}-700 transition-colors`}
+                        >
+                            {String(t({ EN: 'Schedule Now', NL: 'Plan Nu In' }))}
+                        </button>
+                    </div>
                 </motion.div>
             </div>
         </div>

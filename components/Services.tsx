@@ -150,7 +150,7 @@ const Services = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 {services[index].title.EN === "Mathematics & General Tutoring" || services[index].title.EN === "Programming Lessons" ? (
-                  <Link href="/bijles">
+                  <Link href="/privelessen">
                     <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
                       {String(t(learnMore))} &rarr;
                     </button>

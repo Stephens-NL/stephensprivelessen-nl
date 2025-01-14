@@ -22,7 +22,8 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
-        anton: ["var(--font-anton)", "sans-serif"],
+        syne: ["var(--font-syne)", "sans-serif"],
+        'space-grotesk': ["var(--font-space-grotesk)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -2,7 +2,7 @@
 
 import { LucideIcon } from "lucide-react";
 import { IconType } from 'react-icons/lib';
-
+import { TFunction } from 'i18next';
 
 // Base Types
 export type Language = 'EN' | 'NL';
@@ -10,6 +10,23 @@ export type Language = 'EN' | 'NL';
 export type Bilingual<T = string> = {
   [key in Language]: T;
 };
+
+export type BilingualContent = string | Bilingual | any;
+
+export interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+}
+
+// Custom translation type that's compatible with both our bilingual structure and i18next
+export type CustomTranslationFunction = {
+  (key: Bilingual | string | undefined): string;
+  (key: string, defaultValue: string): string;
+  (key: string, options: object): string;
+} & TFunction;
+
+// Re-export TFunction for places where we need the full i18next type
+export type { TFunction };
 
 // Base Interfaces
 export interface BaseEntity {
@@ -174,24 +191,20 @@ type BaseQuestionConfig = {
     showIf: string;
   };
   comment?: Bilingual;
+  placeholder?: Bilingual;
+  min?: number;
+  max?: number;
 };
 
-interface BaseQuestion extends BaseEntity, BaseQuestionConfig {
+export interface Question extends BaseEntity, BaseQuestionConfig {
   label: Bilingual;
 }
 
-interface TextInputQuestion extends BaseQuestion {
+export interface TextQuestion extends Question {
   type: 'text' | 'email' | 'textarea';
-  placeholder?: Bilingual;
 }
 
-interface NumberInputQuestion extends BaseQuestion {
-  type: 'number' | 'rating';
-  min?: number;
-  max?: number;
-}
-
-interface ChoiceQuestion extends BaseQuestion {
+export interface MultipleChoiceQuestion extends Question {
   type: 'multipleChoice';
   options: Array<{
     value: string;
@@ -199,11 +212,15 @@ interface ChoiceQuestion extends BaseQuestion {
   }>;
 }
 
-interface SelectorQuestion extends BaseQuestion {
+export interface NumberQuestion extends Question {
+  type: 'number' | 'rating';
+}
+
+export interface SelectorQuestion extends Question {
   type: 'vakkenSelector';
 }
 
-export type Question = TextInputQuestion | NumberInputQuestion | ChoiceQuestion | SelectorQuestion;
+export type QuestionUnion = TextQuestion | MultipleChoiceQuestion | NumberQuestion | SelectorQuestion;
 
 // Form Types
 export interface QuestionGroup extends BilingualEntity {
@@ -369,23 +386,20 @@ export interface LanguageSelectorProps {
 export interface TutoringHero {
   title: Bilingual;
   subtitle: Bilingual;
-  backgroundVideo?: string;
   stats: Array<{
-    number: string;
+    value: string;
     label: Bilingual;
   }>;
   cta: {
-    primary: Bilingual;
-    secondary: Bilingual;
+    primary: {
+      text: Bilingual;
+      href: string;
+    };
+    secondary: {
+      text: Bilingual;
+      href: string;
+    };
   };
-}
-
-export interface TutoringFeature {
-  icon: string;
-  title: Bilingual;
-  description: Bilingual;
-  image?: string;
-  animation?: string;
 }
 
 export interface SubjectCategory {
@@ -393,9 +407,8 @@ export interface SubjectCategory {
   icon: string;
   subjects: Array<{
     name: Bilingual;
-    level: string[];
-    description: Bilingual;
-    image?: string;
+    level: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
+    description?: Bilingual;
   }>;
 }
 
@@ -403,15 +416,19 @@ export interface TestimonialSlide {
   quote: Bilingual;
   author: string;
   role: Bilingual;
-  image?: string;
+  image: string;
   rating: number;
-  subject: string;
+  subject: Bilingual;
 }
 
 export interface TutoringPage {
-  id: string;
   hero: TutoringHero;
-  features: TutoringFeature[];
+  features: Array<{
+    icon: string;
+    title: Bilingual;
+    description: Bilingual;
+    animation?: string;
+  }>;
   subjects: SubjectCategory[];
   process: {
     title: Bilingual;
@@ -433,9 +450,13 @@ export interface TutoringPage {
     plans: Array<{
       name: Bilingual;
       price: Bilingual;
+      interval: Bilingual;
       features: Bilingual[];
-      isPopular?: boolean;
-      cta: Bilingual;
+      popular?: boolean;
+      cta: {
+        text: Bilingual;
+        href: string;
+      };
     }>;
   };
   faq: {
@@ -451,7 +472,10 @@ export interface TutoringPage {
     form: {
       name: Bilingual;
       email: Bilingual;
-      subject: Bilingual;
+      subject: {
+        label: Bilingual;
+        options: Bilingual[];
+      };
       message: Bilingual;
       submit: Bilingual;
     };
@@ -555,4 +579,15 @@ export interface Location {
   preferredLocation?: PreferredLocation;
   locationHighlight?: LocationHighlight;
   onlineFeatures?: OnlineFeatures;
+}
+
+export interface Footer {
+    title: Bilingual;
+    description: Bilingual;
+    servicesLabel: Bilingual;
+    services: NavItem[];
+    infoLabel: Bilingual;
+    info: NavItem[];
+    contactLabel: Bilingual;
+    copyright: Bilingual;
 }

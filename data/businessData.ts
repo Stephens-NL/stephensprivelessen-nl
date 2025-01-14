@@ -4,9 +4,45 @@ import { TFunction } from 'next-i18next';
 export const getBusinessData = (t: TFunction) => ({
   title: t('common:siteName'),
   subjects: {
-    primary: ['arithmetic', 'language'].map(subject => t(`subjects:primary.${subject}`)),
-    secondary: ['mathABCD', 'physics', 'chemistry', 'english'].map(subject => t(`subjects:secondary.${subject}`)),
-    higher: ['businessStatistics', 'calculus', 'economics', 'statistics', 'probabilityTheory', 'linearAlgebra', 'setTheory', 'programming'].map(subject => t(`subjects:higher.${subject}`)),
+    primary: [
+      { NL: 'Rekenen', EN: 'Arithmetic' },
+      { NL: 'Taal', EN: 'Language' }
+    ],
+    secondary: [
+      { NL: 'Wiskunde A/B/C/D', EN: 'Mathematics A/B/C/D' },
+      { NL: 'Natuurkunde', EN: 'Physics' },
+      { NL: 'Scheikunde', EN: 'Chemistry' },
+      { NL: 'Engels', EN: 'English' },
+      { NL: 'Nederlands', EN: 'Dutch' },
+      { NL: 'Biologie', EN: 'Biology' },
+      { NL: 'Economie', EN: 'Economics' },
+      { NL: 'M&O', EN: 'M&O' },
+      { NL: 'Bedrijfseconomie', EN: 'Business Economics' }
+    ],
+    higher: [
+      { NL: 'Bedrijfsstatistiek', EN: 'Business Statistics' },
+      { NL: 'Calculus', EN: 'Calculus' },
+      { NL: 'Economie', EN: 'Economics' },
+      { NL: 'Statistiek', EN: 'Statistics' },
+      { NL: 'Kansberekening', EN: 'Probability' },
+      { NL: 'Lineaire Algebra', EN: 'Linear Algebra' },
+      { NL: 'Verzamelingenleer', EN: 'Set Theory' }
+    ],
+    programming: [
+      { NL: 'C', EN: 'C' },
+      { NL: 'C#', EN: 'C#' },
+      { NL: 'C++', EN: 'C++' },
+      { NL: 'CSS', EN: 'CSS' },
+      { NL: 'HTML', EN: 'HTML' },
+      { NL: 'Java', EN: 'Java' },
+      { NL: 'JavaScript', EN: 'JavaScript' },
+      { NL: 'MATLAB', EN: 'MATLAB' },
+      { NL: 'Python', EN: 'Python' },
+      { NL: 'R', EN: 'R' },
+      { NL: 'React', EN: 'React' },
+      { NL: 'SPSS', EN: 'SPSS' },
+      { NL: 'SQL', EN: 'SQL' }
+    ]
   },
   pricing: {
     higher: [
@@ -48,3 +84,10 @@ export const getBusinessData = (t: TFunction) => ({
 });
 
 export type BusinessData = ReturnType<typeof getBusinessData>;
+
+export const translations = {
+    researchMethodology: { EN: "Research Methodology", NL: "Onderzoeksmethodologie" },
+    dataAnalysis: { EN: "Data Analysis", NL: "Data-analyse" },
+    proofreading: { EN: "Proofreading", NL: "Proeflezen" },
+    softwareSupport: { EN: "Software Support", NL: "Software Ondersteuning" }
+} as const;

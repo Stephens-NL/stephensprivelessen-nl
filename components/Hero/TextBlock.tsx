@@ -1,14 +1,13 @@
 // components/TextBlock.tsx
 'use client';
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
-import { Hero } from '@/data';
+import { hero } from '@/data/hero';
 
-
-const TextBlock = ({ hero }: {hero: Hero}) => {
+const TextBlock = () => {
   const { t } = useTranslation();
-  const { title, subtitle, subtitle2 } = hero
+  const { title, subtitle, subtitle2 } = hero;
 
   return (
     <>

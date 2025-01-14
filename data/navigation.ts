@@ -7,7 +7,7 @@ export const siteTitle: Bilingual = {
 
 export const navigation: NavItem[] = [
     { href: '/', label: { EN: 'Home', NL: 'Home' } },
-    { href: '/bijles', label: { EN: 'Tutoring', NL: 'Bijles' } },
+    { href: '/privelessen', label: { EN: 'Tutoring', NL: 'Privelessen' } },
     { href: '/scriptiebegeleiding', label: { EN: 'Thesis Supervision', NL: 'Scriptiebegeleiding' } },
     { href: '/about', label: { EN: 'About', NL: 'Over Ons' } },
     { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },

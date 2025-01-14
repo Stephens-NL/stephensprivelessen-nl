@@ -34,6 +34,7 @@ export interface TutoringFeature {
 export interface Subject {
   name: BilingualText;
   level: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
+  description?: BilingualText;
 }
 
 export interface SubjectCategory {
