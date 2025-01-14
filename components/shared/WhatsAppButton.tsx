@@ -22,9 +22,6 @@ export default function WhatsAppButton() {
   const opacityTimeoutRef = useRef<NodeJS.Timeout>();
   const pathname = usePathname();
 
-  // Don't show on contact page
-  if (pathname === '/contact') return null;
-
   useEffect(() => {
     const checkDevice = () => {
       setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
@@ -38,16 +35,28 @@ export default function WhatsAppButton() {
     checkDevice();
     updateYPosition();
 
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       checkDevice();
       updateYPosition();
-    });
+    };
 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     return () => {
-      window.removeEventListener('resize', checkDevice);
-      window.removeEventListener('resize', updateYPosition);
+      if (expandTimeoutRef.current) {
+        clearTimeout(expandTimeoutRef.current);
+      }
+      if (opacityTimeoutRef.current) {
+        clearTimeout(opacityTimeoutRef.current);
+      }
     };
   }, []);
+
+  // Don't show on contact page
+  if (pathname === '/contact') return null;
 
   const handleMouseEnter = () => {
     setIsExpanded(true);
@@ -77,18 +86,6 @@ export default function WhatsAppButton() {
       setIsModalOpen(true);
     }
   };
-
-  // Cleanup timeouts on unmount
-  useEffect(() => {
-    return () => {
-      if (expandTimeoutRef.current) {
-        clearTimeout(expandTimeoutRef.current);
-      }
-      if (opacityTimeoutRef.current) {
-        clearTimeout(opacityTimeoutRef.current);
-      }
-    };
-  }, []);
 
   return (
     <>
