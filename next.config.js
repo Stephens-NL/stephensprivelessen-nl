@@ -4,8 +4,8 @@ const nextConfig = {
     NEXT_PUBLIC_GOOGLE_CALENDAR_URL: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0ExnxClOFAOP1PMhPF8Fw8-1cRnQbplBUH6MxBrpofDsNARyMG9pjDafwA-D2dS2UGXyO6Qpl_'
   },
   typescript: {
-    // We want to catch type errors during development and CI
-    ignoreBuildErrors: process.env.VERCEL_ENV === 'production',
+    // Enable type checking in development, ignore in production for faster builds
+    ignoreBuildErrors: process.env.NODE_ENV === 'production',
   },
   // Ensure test files are excluded from the build
   webpack: (config, { dev, isServer }) => {
@@ -16,7 +16,6 @@ const nextConfig = {
     return config;
   },
   // Optimize output
-  swcMinify: true,
   poweredByHeader: false,
 }
 

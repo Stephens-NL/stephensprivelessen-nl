@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { FormData } from '@/components/contact/Contact';
 
@@ -60,16 +60,9 @@ ${formData.unavailableDays.length > 0 ? `- Niet beschikbaar: ${formatDaysList(fo
     `;
 };
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Method not allowed' });
-    }
-
+export async function POST(request: NextRequest) {
     try {
-        const { to, subject, formData } = req.body;
+        const { to, subject, formData } = await request.json();
 
         await transporter.sendMail({
             from: process.env.SMTP_FROM,
@@ -78,9 +71,32 @@ export default async function handler(
             text: formatFormData(formData),
         });
 
-        res.status(200).json({ message: 'Email sent successfully' });
+        return NextResponse.json(
+            { message: 'Email sent successfully' },
+            { status: 200 }
+        );
     } catch (error) {
         console.error('Error sending email:', error);
-        res.status(500).json({ message: 'Error sending email' });
+        return NextResponse.json(
+            { message: 'Error sending email' },
+            { status: 500 }
+        );
     }
+}
+
+// Handle unsupported methods
+export async function GET() {
+    return new NextResponse(null, { status: 405 });
+}
+
+export async function PUT() {
+    return new NextResponse(null, { status: 405 });
+}
+
+export async function DELETE() {
+    return new NextResponse(null, { status: 405 });
+}
+
+export async function PATCH() {
+    return new NextResponse(null, { status: 405 });
 } 

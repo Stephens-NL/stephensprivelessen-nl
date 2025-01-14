@@ -1,17 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { FormData } from '@/components/contact/Contact';
 import nodemailer from 'nodemailer';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Method not allowed' });
-    }
-
+export async function POST(request: NextRequest) {
     try {
-        const formData = req.body as FormData;
+        const formData = await request.json() as FormData;
 
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
@@ -71,9 +64,29 @@ export default async function handler(
             html: emailBody,
         });
 
-        res.status(200).json({ message: 'Success' });
+        return NextResponse.json({ message: 'Success' }, { status: 200 });
     } catch (error) {
         console.error('Contact form error:', error);
-        res.status(500).json({ message: 'Error sending email' });
+        return NextResponse.json(
+            { message: 'Error sending email' },
+            { status: 500 }
+        );
     }
 }
+
+// Handle unsupported methods
+export async function GET() {
+    return new NextResponse(null, { status: 405 });
+}
+
+export async function PUT() {
+    return new NextResponse(null, { status: 405 });
+}
+
+export async function DELETE() {
+    return new NextResponse(null, { status: 405 });
+}
+
+export async function PATCH() {
+    return new NextResponse(null, { status: 405 });
+} 

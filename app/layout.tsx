@@ -1,6 +1,6 @@
 // app/layout.tsx
 import './globals.css';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Anton } from 'next/font/google';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -11,6 +11,10 @@ import WhatsAppButton from '@/components/shared/WhatsAppButton';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' });
+
+export const viewport: Viewport = {
+  themeColor: '#ffffff',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.stephensprivelessen.nl'),
@@ -249,6 +253,16 @@ export const metadata: Metadata = {
     address: true,
     telephone: true,
   },
+  icons: {
+    icon: [
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/favicon/site.webmanifest',
   alternates: {
     canonical: '/',
     languages: {
