@@ -9,11 +9,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "types": ["jest", "node", "@testing-library/jest-dom"]
   },
   "include": [
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "__tests__/**/*.ts",
+    "__tests__/**/*.tsx",
+    "jest.setup.js",
+    "jest.config.js"
   ],
   "exclude": [
     "node_modules"
