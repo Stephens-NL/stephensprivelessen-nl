@@ -85,7 +85,7 @@ export const getBusinessData = (t: TFunction) => ({
 
 export type BusinessData = ReturnType<typeof getBusinessData>;
 
-export const translations = {
+export const businessTranslations = {
     researchMethodology: { EN: "Research Methodology", NL: "Onderzoeksmethodologie" },
     dataAnalysis: { EN: "Data Analysis", NL: "Data-analyse" },
     proofreading: { EN: "Proofreading", NL: "Proeflezen" },

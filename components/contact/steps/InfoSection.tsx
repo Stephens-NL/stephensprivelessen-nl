@@ -9,7 +9,7 @@ import { getBusinessData } from '@/data/businessData';
 import { 
     subjectNotes, 
     contactLinks, 
-    translations, 
+    infoSectionTranslations as translations, 
     SubjectNote,
     pricingTiers,
     groupPricingTiers

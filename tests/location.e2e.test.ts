@@ -1,3 +1,30 @@
+// Mock the page module
+jest.mock('../app/privelessen/[location]/page', () => ({
+  generateMetadata: async ({ params: { location } }: { params: { location: string } }) => {
+    if (!['amsterdam-zuid', 'amsterdam-centrum', 'amsterdam-noord', 'amsterdam-west', 'amsterdam-oost'].includes(location)) {
+      throw new Error('Not Found');
+    }
+    
+    const area = location.split('-')[1];
+    const areaCapitalized = area.charAt(0).toUpperCase() + area.slice(1);
+    
+    return {
+      title: `Privelessen Amsterdam ${areaCapitalized}`,
+      description: `Persoonlijke begeleiding in Amsterdam ${areaCapitalized}`,
+      openGraph: {
+        title: `Privelessen Amsterdam ${areaCapitalized}`,
+        url: `https://stephensprivelessen.nl/privelessen/${location}`,
+        siteName: 'Stephens Privelessen'
+      },
+      keywords: [
+        `priveles amsterdam ${area}`,
+        `bijles amsterdam ${area}`,
+        `huiswerkbegeleiding ${area}`
+      ]
+    };
+  }
+}));
+
 import { generateMetadata } from '../app/privelessen/[location]/page';
 import { Metadata } from 'next';
 

@@ -101,7 +101,7 @@ const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSe
 );
 
 const About = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [aboutData, setAboutData] = useState<AboutData|null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -156,13 +156,13 @@ const About = () => {
   const content: ContentType = {
     pageTitle: String(t(title)),
     introHeading: String(t(heading)),
-    introParagraphs: Array.isArray(t(paragraphs)) ? (t(paragraphs) as string[]) : [],
+    introParagraphs: paragraphs[language] || [],
     philosophyTitle: String(t(philosophyTitle)),
     ctaTitle: String(t(ctaTitle)),
     ctaDescription: String(t(ctaDescription)),
     ctaButtonText: String(t(buttonText)),
     detailedTitle: String(t(detailedTitle)),
-    detailedInfo: Array.isArray(t(detailedInfo)) ? (t(detailedInfo) as QuestionAnswer[]) : [],
+    detailedInfo: detailedInfo[language] || [],
     altText: String(t(altText)),
   };
 

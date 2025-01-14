@@ -152,7 +152,7 @@ export const contactLinks = {
     email: "mailto:info@stephensprivelessen.nl" // Replace with your actual email
 };
 
-export const translations: Record<string, Bilingual> = {
+export const infoSectionTranslations: Record<string, Bilingual> = {
     communicationNote: {
         EN: "I prefer to keep communication personal and direct through WhatsApp or email. This allows me to give you my full attention and provide the best possible support for your learning journey.",
         NL: "Ik houd de communicatie graag persoonlijk en direct via WhatsApp of email. Zo kan ik je mijn volledige aandacht geven en de beste ondersteuning bieden voor je leertraject."

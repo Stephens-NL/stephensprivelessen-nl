@@ -1,7 +1,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
-import { BilingualContent, CustomTranslationFunction } from '../data/types';
+import { BilingualContent, CustomTranslationFunction, Language } from '../data/types';
 
-export function useTranslation(): { t: CustomTranslationFunction } {
+export function useTranslation(): { t: CustomTranslationFunction; language: Language } {
   const { language } = useLanguage();
 
   const t = ((content: BilingualContent, ...args: any[]): string => {
@@ -16,5 +16,5 @@ export function useTranslation(): { t: CustomTranslationFunction } {
     return content.EN || '';
   }) as CustomTranslationFunction;
 
-  return { t };
+  return { t, language };
 }

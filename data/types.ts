@@ -180,6 +180,12 @@ export interface BlogPost extends ContentEntity {
   altText?: Bilingual;
 }
 
+export type BlogPosts = BlogPost[];
+
+export interface BlogInfo extends BilingualEntity {
+  subtitle: Bilingual;
+}
+
 // Question Types
 export type QuestionType = 'text' | 'textarea' | 'email' | 'number' | 'vakkenSelector' | 'multipleChoice' | 'rating';
 

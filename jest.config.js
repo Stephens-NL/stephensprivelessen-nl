@@ -5,12 +5,14 @@ const config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testMatch: ['**/*.test.ts'],
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: 'tsconfig.test.json'
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
+      tsconfig: 'tsconfig.test.json',
+      jsx: 'react'
     }]
   },
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1'
+    '^@/(.*)$': '<rootDir>/$1',
+    '^next/navigation$': '<rootDir>/mocks/nextNavigation.ts'
   },
   testTimeout: 60000, // Increase timeout to 60s for e2e tests
   globalSetup: '<rootDir>/jest.global-setup.js',
