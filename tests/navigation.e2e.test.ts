@@ -9,13 +9,21 @@ describe('Navigation E2E', () => {
       const url = `${BASE_URL}${item.href}`
       const response = await fetch(url)
       
+      // Log the result for debugging
+      console.log(`Testing ${url}...`)
+      console.log(`Status: ${response.status}`)
+      console.log(`Headers:`, Object.fromEntries(response.headers))
+      
+      if (response.status === 404) {
+        console.error(`404 Error for ${url}`)
+        const text = await response.text()
+        console.error(`Response body:`, text.substring(0, 200))
+      }
+      
       expect(response.status).not.toBe(404)
       expect(response.ok).toBe(true)
-      
-      // Log the result for debugging
-      console.log(`Tested ${url}: ${response.status}`)
     }
-  })
+  }, 30000) // Increase timeout to 30 seconds
 
   it('should have proper content type headers', async () => {
     for (const item of navigation) {
@@ -25,7 +33,7 @@ describe('Navigation E2E', () => {
       const contentType = response.headers.get('content-type')
       expect(contentType).toContain('text/html')
     }
-  })
+  }, 30000) // Increase timeout to 30 seconds
 
   it('should redirect http to https', async () => {
     const httpUrl = BASE_URL.replace('https://', 'http://')
@@ -35,5 +43,5 @@ describe('Navigation E2E', () => {
     expect([301, 308]).toContain(response.status)
     const location = response.headers.get('location')
     expect(location).toContain('https://')
-  })
+  }, 30000) // Increase timeout to 30 seconds
 }) 

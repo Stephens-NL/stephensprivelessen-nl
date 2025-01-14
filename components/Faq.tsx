@@ -4,13 +4,13 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
-import { useScrollPosition } from '../hooks/useScrollPosition';
+import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { useLanguage } from '@/contexts/LanguageContext';
 import FloatingShapes from './FloatingShapes';
 import FadeInText from './FadeInText';
 import { faqInfo, faqItems } from '@/data/faq';
 
-const FAQPage: React.FC = () => {
+const Faq: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -158,4 +158,4 @@ const FAQPage: React.FC = () => {
   );
 };
 
-export default FAQPage;
+export default Faq;

@@ -480,3 +480,38 @@ export type FAQItem = {
 }
 
 export type FAQItems = FAQItem[];
+
+export interface ContactPageContent {
+  title: Bilingual;
+  aboutMe: Bilingual;
+  aboutLessons: Bilingual;
+  subjects: {
+    primary: Array<Bilingual>;
+    secondary: Array<Bilingual>;
+    higher: Array<Bilingual>;
+  };
+  pricing: {
+    higher: Array<{ duration: string; price: string; }>;
+    secondary20Plus: Array<{ duration: string; price: string; }>;
+    secondary20Minus: Array<{ duration: string; price: string; }>;
+  };
+  groupLessons: {
+    higher: Array<{ duration: string; price: string; }>;
+    secondary20Plus: Array<{ duration: string; price: string; }>;
+    secondary20Minus: Array<{ duration: string; price: string; }>;
+  };
+  examTraining: {
+    description: Bilingual;
+    mathA_C: Array<{ duration: string; price: string; }>;
+    mathB: Array<{ duration: string; price: string; }>;
+  };
+  flexibilityPremium: Array<{ duration: string; price: string; }>;
+  travelCosts: Array<{ duration: string; price: string; }>;
+  lastMinuteSurcharges: Array<{ timeFrame: string; percentage: number; }>;
+  contactItems: Array<{
+    icon: string;
+    title: Bilingual;
+    content: string;
+    href: string;
+  }>;
+}

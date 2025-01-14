@@ -9,6 +9,7 @@ describe('Navigation Links', () => {
     const expectedValidRoutes = [
       '/',
       '/bijles',
+      '/scriptiebegeleiding',
       '/services',
       '/workshops',
       '/consultancy',
