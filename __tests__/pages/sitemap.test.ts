@@ -47,8 +47,8 @@ describe('Sitemap Validation', () => {
     });
 
     test('all sitemap URLs are valid format', () => {
-        // Allow for more granular location and service-specific URLs
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+)$/;
+        // Allow for more granular location and service-specific URLs, and blog posts with numbers
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/blog\/\d+)$/;
         sitemapUrls.forEach(url => {
             expect(url).toMatch(urlPattern);
         });

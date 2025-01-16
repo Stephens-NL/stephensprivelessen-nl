@@ -1,4 +1,4 @@
-import { testComponentTranslations } from './utils/testUtils';
+import { testComponentTranslations } from '../utils/testUtils';
 
 // Import data files
 import { about, introductionContent } from '@/data/about';
