@@ -19,7 +19,7 @@ const LOCATIONS = [
 
 function createUrlEntry(path: string, changefreq: string = 'monthly', priority: string = '0.7'): any {
   return {
-    loc: `${DOMAIN}${path}`,
+    loc: `${DOMAIN}${path.toLowerCase()}`,
     lastmod: LAST_MOD,
     changefreq: changefreq,
     priority: priority
