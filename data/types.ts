@@ -182,8 +182,9 @@ export interface BlogPost extends ContentEntity {
 
 export type BlogPosts = BlogPost[];
 
-export interface BlogInfo extends BilingualEntity {
-  subtitle: Bilingual;
+export interface BlogInfo {
+  title: Bilingual;
+  description: Bilingual;
 }
 
 // Question Types

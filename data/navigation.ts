@@ -14,6 +14,6 @@ export const navigation: NavItem[] = [
     { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
     { href: '/consultancy', label: { EN: 'Consultancy', NL: 'Consultancy' } },
     { href: '/blog', label: { EN: 'Blog', NL: 'Blog' } },
-    { href: '/faq', label: { EN: 'FAQ', NL: 'Vragen' } },
+    { href: '/FAQ', label: { EN: 'FAQ', NL: 'Vragen' } },
     { href: '/contact', label: { EN: 'Contact', NL: 'Contact' } },
 ];

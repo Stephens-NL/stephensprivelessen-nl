@@ -3,6 +3,7 @@ import path from 'path';
 import xml2js from 'xml2js';
 import { workshops } from '@/data/workshopsData';
 import { navigation } from '@/data/navigation';
+import { blogPosts } from '@/data/blog';
 
 interface SitemapEntry {
     loc: string[];
@@ -123,6 +124,28 @@ describe('Sitemap Validation', () => {
             expect(entry).toBeDefined();
             expect(parseFloat(entry!.priority[0])).toBeGreaterThanOrEqual(0.8);
             expect(['daily', 'weekly', 'monthly']).toContain(entry!.changefreq[0]);
+        });
+    });
+
+    test('all blog posts are included in sitemap', () => {
+        const blogUrls = sitemapUrls.filter(url => url.startsWith('/blog/'));
+        
+        // Check if main blog page is included
+        expect(sitemapUrls).toContain('/blog');
+        
+        // Check if all individual blog posts are included
+        blogPosts.forEach(post => {
+            expect(blogUrls).toContain(`/blog/${post.id}`);
+        });
+
+        // Verify blog post entries have correct SEO attributes
+        blogUrls.forEach(url => {
+            const entry = parsedSitemap.urlset.url.find(e => 
+                e.loc[0].toLowerCase().endsWith(url)
+            );
+            expect(entry).toBeDefined();
+            expect(parseFloat(entry!.priority[0])).toBe(0.7);
+            expect(entry!.changefreq[0]).toBe('monthly');
         });
     });
 }); 

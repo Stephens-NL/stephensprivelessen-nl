@@ -1,6 +1,7 @@
 import { NavItem, Workshop, WorkshopsPageContent } from '../data/types';
 import { workshops } from '../data/workshopsData';
 import { navigation } from '../data/navigation';
+import { blogPosts } from '../data/blog';
 import fs from 'fs';
 import xml2js from 'xml2js';
 
@@ -51,6 +52,15 @@ function generateSitemap() {
         '0.8'
       ));
     }
+  });
+
+  // Add blog posts
+  blogPosts.forEach(post => {
+    urlset.push(createUrlEntry(
+      `/blog/${post.id}`,
+      'monthly',
+      '0.7'
+    ));
   });
 
   // Add navigation pages (excluding already added pages)
