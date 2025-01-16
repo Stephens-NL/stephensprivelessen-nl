@@ -32,15 +32,15 @@
     "i18next-browser-languagedetector": "^7.2.0",
     "i18next-http-backend": "^2.4.2",
     "lucide-react": "^0.309.0",
-    "next": "^14.2.23",
+    "next": "15.1.4",
     "next-i18next": "^15.1.0",
     "next-intl": "^3.4.2",
     "nodemailer": "^6.9.8",
     "pg": "^8.11.3",
-    "react": "^18.2.0",
+    "react": "19.0.0",
     "react-datepicker": "^4.25.0",
     "react-day-picker": "^8.10.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "19.0.0",
     "react-i18next": "^14.0.0",
     "react-icons": "^5.0.0",
     "react-qr-code": "^2.0.12",
@@ -59,14 +59,14 @@
     "@types/node": "^20.10.0",
     "@types/nodemailer": "^6.4.14",
     "@types/pg": "^8.10.9",
-    "@types/react": "^18.2.48",
-    "@types/react-dom": "^18.2.18",
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
     "@types/supertest": "^6.0.2",
     "@types/xml2js": "^0.4.14",
     "autoprefixer": "^10.4.16",
     "drizzle-kit": "^0.20.14",
     "eslint": "^8.56.0",
-    "eslint-config-next": "14.1.0",
+    "eslint-config-next": "15.1.4",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.4.33",
@@ -77,5 +77,9 @@
   },
   "engines": {
     "node": ">=18.17.0"
+  },
+  "overrides": {
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3"
   }
 }

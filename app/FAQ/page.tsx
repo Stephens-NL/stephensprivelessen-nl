@@ -1,6 +1,7 @@
 // app/faq/page.tsx
 import { Metadata } from 'next';
 import FAQPage from '@/components/Faq';
+import faqData from '@/data/faq.json';
 
 export const metadata: Metadata = {
   title: "Veelgestelde Vragen | Stephens Privelessen Amsterdam",
@@ -55,5 +56,5 @@ export const metadata: Metadata = {
 export const revalidate = 3600; // Revalidate every hour
 
 export default function FaqPage() {
-  return <FAQPage />;
+  return <FAQPage faqInfo={faqData.faqInfo} faqItems={faqData.faqItems} />;
 }

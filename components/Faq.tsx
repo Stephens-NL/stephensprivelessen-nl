@@ -8,9 +8,14 @@ import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { useLanguage } from '@/contexts/LanguageContext';
 import FloatingShapes from './FloatingShapes';
 import FadeInText from './FadeInText';
-import { faqInfo, faqItems } from '@/data/faq';
+import { FAQInfo, FAQItems } from '@/data/types';
 
-const Faq: React.FC = () => {
+interface FaqProps {
+  faqInfo: FAQInfo;
+  faqItems: FAQItems;
+}
+
+const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
   const [mounted, setMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');

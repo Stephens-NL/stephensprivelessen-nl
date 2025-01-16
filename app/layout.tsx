@@ -280,7 +280,7 @@ export const metadata: Metadata = {
     url: 'https://www.stephensprivelessen.nl',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/jpg/banner.jpg',
         width: 1200,
         height: 630,
         alt: 'Stephens Privelessen - Wiskunde & Statistiek Privelessen Amsterdam',
