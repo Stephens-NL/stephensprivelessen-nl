@@ -64,10 +64,10 @@ function generateSitemap() {
   });
 
   // Add navigation pages (excluding already added pages)
-  const addedPaths = new Set(['/', '/services', '/privelessen', '/workshops', '/consultancy', '/contact', '/faq']);
+  const addedPaths = new Set(['/', '/services', '/privelessen', '/workshops', '/consultancy', '/contact', '/faq'].map(p => p.toLowerCase()));
   navigation.forEach((item: NavItem) => {
-    if (!addedPaths.has(item.href)) {
-      urlset.push(createUrlEntry(item.href));
+    if (!addedPaths.has(item.href.toLowerCase())) {
+      urlset.push(createUrlEntry(item.href.toLowerCase()));
     }
   });
 
