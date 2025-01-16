@@ -48,7 +48,7 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
         answerText.toLowerCase().includes(searchTerm.toLowerCase())
       );
     });
-  }, [searchTerm, t, mounted]);
+  }, [searchTerm, t, mounted, faqItems]);
 
   if (!mounted) {
     return (
