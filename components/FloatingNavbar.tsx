@@ -75,25 +75,29 @@ const FloatingNavbar = () => {
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                         className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-screen-md px-4"
                     >
-                        <div className="bg-blue-600 backdrop-blur-md rounded-lg shadow-lg flex items-center justify-between overflow-hidden">
-                            <div className="flex items-center space-x-2 py-3 pl-4">
+                        <div className="bg-blue-600 backdrop-blur-md rounded-lg shadow-lg flex items-center justify-between">
+                            <div className="flex items-center space-x-2 py-3 pl-4 shrink-0">
                                 <ChevronUp className="text-white" size={18} />
                                 <span className="text-white font-semibold text-lg">{String(t(siteTitle))}</span>
                             </div>
-                            <div className="hidden md:flex items-center space-x-1 pr-2">
-                                {navigation.map((item) => (
-                                    <NavLink key={item.href} href={item.href} label={item.label} />
-                                ))}
+                            <div className="hidden md:flex items-center space-x-1 pr-2 overflow-x-auto relative scrollbar-hide">
+                                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-blue-600 to-transparent pointer-events-none z-10"></div>
+                                <div className="flex items-center space-x-1 px-8">
+                                    {navigation.map((item) => (
+                                        <NavLink key={item.href} href={item.href} label={item.label} />
+                                    ))}
+                                </div>
+                                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-blue-600 to-transparent pointer-events-none z-10"></div>
                                 <button
                                     onClick={toggleLanguage}
-                                    className="px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 rounded-md ml-2"
+                                    className="px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 rounded-md ml-2 shrink-0"
                                 >
                                     {language === 'EN' ? 'NL' : 'EN'}
                                 </button>
                             </div>
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="md:hidden px-4 py-3 text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300"
+                                className="md:hidden px-4 py-3 text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 shrink-0"
                             >
                                 <Menu size={24} />
                             </button>

@@ -153,21 +153,20 @@ export default function ScriptiebegeleidingPage() {
         />
         
         {/* Hero Section */}
-        <div className="relative h-screen bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800">
-          <div className="absolute inset-0 bg-black/30 z-10"></div>
+        <div className="relative h-screen">
           <Image
             src="/images/thesis-hero.jpg"
             alt="Scriptiebegeleiding Hero"
             fill
-            className="object-cover mix-blend-overlay"
+            className="object-cover"
             priority
           />
           <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center">
             <div className="max-w-[800px]">
-              <h1 className="font-syne text-4xl sm:text-5xl md:text-7xl lg:text-[120px] text-white mb-4 sm:mb-8 leading-[0.95] tracking-tight">
+              <h1 className="font-syne text-4xl sm:text-5xl md:text-7xl lg:text-[120px] text-white mb-4 sm:mb-8 leading-[0.95] tracking-tight drop-shadow-[0_4px_15px_rgba(0,0,0,0.4)]">
                 Scriptie<br />begeleiding
               </h1>
-              <p className="font-space-grotesk text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-100 max-w-2xl">
+              <p className="font-space-grotesk text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-100 max-w-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
                 Persoonlijke begeleiding bij methodologie, data-analyse en het schrijfproces van je scriptie
               </p>
             </div>

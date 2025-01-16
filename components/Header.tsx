@@ -121,8 +121,11 @@ const Header = () => {
                                 </Link>
 
                                 {/* Navigation items - Now with overflow handling */}
-                                <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 overflow-x-auto no-scrollbar">
-                                    <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 px-2">
+                                <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 overflow-x-auto no-scrollbar relative">
+                                    {/* Left shadow */}
+                                    <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none z-10 transition-opacity duration-300" style={{ opacity: isAtTop ? 0 : 1 }} />
+                                    
+                                    <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 px-8">
                                         {/* Service navigation items */}
                                         {navigation
                                             .filter(item => ['/privelessen', '/scriptiebegeleiding', '/workshops', '/consultancy', '/services'].includes(item.href))
@@ -197,6 +200,9 @@ const Header = () => {
                                                 </motion.div>
                                             ))}
                                     </div>
+
+                                    {/* Right shadow */}
+                                    <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 transition-opacity duration-300" style={{ opacity: isAtTop ? 0 : 1 }} />
                                 </div>
                             </div>
                         </nav>
