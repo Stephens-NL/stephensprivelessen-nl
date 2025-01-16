@@ -18,8 +18,8 @@ export default function WhatsAppButton() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [yPosition, setYPosition] = useState('-50%');
-  const expandTimeoutRef = useRef<NodeJS.Timeout>();
-  const opacityTimeoutRef = useRef<NodeJS.Timeout>();
+  const expandTimeoutRef = useRef<NodeJS.Timeout>(undefined);
+  const opacityTimeoutRef = useRef<NodeJS.Timeout>(undefined);
   const pathname = usePathname();
 
   useEffect(() => {

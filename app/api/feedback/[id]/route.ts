@@ -7,10 +7,8 @@ type FeedbackData = {
     [key: string]: any;
 };
 
-export async function GET(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     const dataFilePath = path.join(process.cwd(), 'data', 'feedback.json');
 
     if (!fs.existsSync(dataFilePath)) {
@@ -36,10 +34,8 @@ export async function GET(
     }
 }
 
-export async function PUT(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     const dataFilePath = path.join(process.cwd(), 'data', 'feedback.json');
 
     if (!fs.existsSync(dataFilePath)) {
@@ -54,7 +50,7 @@ export async function PUT(
 
     console.log(`PUT request received for feedback with id: ${params.id}`);
     const index = feedbackData.findIndex(item => item.id === params.id);
-    
+
     if (index !== -1) {
         const body = await request.json();
         feedbackData[index] = { ...feedbackData[index], ...body, id: params.id };
@@ -68,10 +64,8 @@ export async function PUT(
     }
 }
 
-export async function DELETE(
-    request: NextRequest,
-    { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+    const params = await props.params;
     const dataFilePath = path.join(process.cwd(), 'data', 'feedback.json');
 
     if (!fs.existsSync(dataFilePath)) {
@@ -86,7 +80,7 @@ export async function DELETE(
 
     console.log(`DELETE request received for feedback with id: ${params.id}`);
     const newData = feedbackData.filter(item => item.id !== params.id);
-    
+
     if (newData.length < feedbackData.length) {
         fs.writeFileSync(dataFilePath, JSON.stringify(newData, null, 2));
         return NextResponse.json(

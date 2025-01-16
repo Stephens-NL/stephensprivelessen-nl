@@ -83,14 +83,15 @@ const validLocations = {
 };
 
 type LocationParams = {
-  params: {
+  params: Promise<{
     location: keyof typeof validLocations;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: LocationParams): Promise<Metadata> {
+export async function generateMetadata(props: LocationParams): Promise<Metadata> {
+  const params = await props.params;
   const locationData = validLocations[params.location];
-  
+
   if (!locationData) {
     notFound();
   }
@@ -140,9 +141,10 @@ export async function generateMetadata({ params }: LocationParams): Promise<Meta
   };
 }
 
-export default async function LocationPage({ params }: LocationParams) {
+export default async function LocationPage(props: LocationParams) {
+  const params = await props.params;
   const locationData = validLocations[params.location];
-  
+
   if (!locationData) {
     notFound();
   }

@@ -4,12 +4,13 @@ import WorkshopDetailContent from '@/components/workshops/WorkshopDetailContent'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const workshop = workshopsData[params.id]
-  
+
   if (!workshop) {
     notFound()
   }
@@ -38,7 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function WorkshopPage({ params }: Props) {
+export default async function WorkshopPage(props: Props) {
+  const params = await props.params;
   const workshop = workshopsData[params.id]
 
   if (!workshop) {
