@@ -54,7 +54,7 @@ export function OSBContent() {
       titleNL: 'Voortgezet Onderwijs',
       titleEN: 'Secondary Education',
       subjects: businessData.subjects.secondary,
-      whatsappIntro: "Hi! I'm looking for tutoring at OSB",
+      whatsappIntro: "Hi! I&apos;m looking for tutoring at OSB",
       hasDiscount: true
     }
   ];
@@ -71,19 +71,19 @@ export function OSBContent() {
       title: "OSB Student Support",
       description: "📚 Expert tutoring for OSB students! Get help with your subjects, exam preparation, and homework. Start with a free 30-minute trial lesson to experience the difference.",
       cta: "WhatsApp for Trial Lesson",
-      whatsappMessage: "Hi! I'm interested in tutoring for OSB. I'd like to schedule a free trial lesson."
+      whatsappMessage: "Hi! I&apos;m interested in tutoring for OSB. I&apos;d like to schedule a free trial lesson."
     },
     {
       title: "Exam Preparation",
-      description: "🎯 Focused exam preparation sessions to help you succeed. We'll work on past papers, study techniques, and subject-specific strategies.",
+      description: "🎯 Focused exam preparation sessions to help you succeed. We&apos;ll work on past papers, study techniques, and subject-specific strategies.",
       cta: "WhatsApp for Info",
-      whatsappMessage: "Hi! I'm interested in exam preparation tutoring at OSB. Can you tell me more?"
+      whatsappMessage: "Hi! I&apos;m interested in exam preparation tutoring at OSB. Can you tell me more?"
     },
     {
       title: "Homework Support",
       description: "✏️ Need help with homework or assignments? Get personalized support to understand concepts better and improve your grades.",
       cta: "WhatsApp to Start",
-      whatsappMessage: "Hi! I need help with homework/assignments at OSB. I'd like to learn more about the tutoring options."
+      whatsappMessage: "Hi! I need help with homework/assignments at OSB. I&apos;d like to learn more about the tutoring options."
     }
   ];
 

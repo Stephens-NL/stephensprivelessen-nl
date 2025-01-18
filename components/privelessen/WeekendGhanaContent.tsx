@@ -67,7 +67,7 @@ export function WeekendGhanaContent() {
       titleNL: 'Basisonderwijs',
       titleEN: 'Primary Education',
       subjects: businessData.subjects.primary,
-      whatsappIntro: "Hi! I'm looking for primary school tutoring",
+      whatsappIntro: "Hi! I&apos;m looking for primary school tutoring",
       hasDiscount: true
     },
     {
@@ -75,7 +75,7 @@ export function WeekendGhanaContent() {
       titleNL: 'Voortgezet Onderwijs',
       titleEN: 'Secondary Education',
       subjects: businessData.subjects.secondary,
-      whatsappIntro: "Hi! I'm looking for high school tutoring",
+      whatsappIntro: "Hi! I&apos;m looking for high school tutoring",
       hasDiscount: true
     },
     {
@@ -83,7 +83,7 @@ export function WeekendGhanaContent() {
       titleNL: 'Hoger Onderwijs',
       titleEN: 'Higher Education',
       subjects: [...businessData.subjects.higher, ...businessData.subjects.programming],
-      whatsappIntro: "Hi! I'm looking for university level tutoring",
+      whatsappIntro: "Hi! I&apos;m looking for university level tutoring",
       hasDiscount: false
     }
   ];
@@ -101,21 +101,21 @@ export function WeekendGhanaContent() {
       titleTwi: "Adesua mma sukuufo",
       description: "🎓 Special community discount for Ghanaian youth in Zuidoost! Only €30 per hour (regular €60). Home tutoring available in Gein 3 & 4. Ɛyɛ mmerɛw! Start with a free 30-minute trial lesson!",
       cta: "WhatsApp for Trial Lesson",
-      whatsappMessage: "Hi! I'm interested in the weekend tutoring special offer (€30/hour). I'd like to schedule a free trial lesson."
+      whatsappMessage: "Hi! I&apos;m interested in the weekend tutoring special offer (€30/hour). I&apos;d like to schedule a free trial lesson."
     },
     {
       title: "Personal Coaching & Study Support",
       titleTwi: "Akwankyerɛ ne Mmoa",
-      description: "💡 Need guidance with your studies or personal development? Available weekends for €30/hour in Zuidoost. Me ne wo bɛyɛ adwuma! (We'll work together!) First 30-minute consultation is free.",
+      description: "💡 Need guidance with your studies or personal development? Available weekends for €30/hour in Zuidoost. Me ne wo bɛyɛ adwuma! (We&apos;ll work together!) First 30-minute consultation is free.",
       cta: "WhatsApp for Info",
-      whatsappMessage: "Hi! I'm interested in personal coaching/study support (€30/hour weekend offer). Can you tell me more?"
+      whatsappMessage: "Hi! I&apos;m interested in personal coaching/study support (€30/hour weekend offer). Can you tell me more?"
     },
     {
       title: "Flexible Weekend Support",
       titleTwi: "Mmerɛ-mmerɛ Mmoa",
-      description: "✨ Whether it's math, coaching, or just discussing your studies - I'm here to help! Special rate of €30/hour (save €30). Yɛbɛyɛ bi akɔ! Home service in Gein 3 & 4 (limited spots).",
+      description: "✨ Whether it&apos;s math, coaching, or just discussing your studies - I&apos;m here to help! Special rate of €30/hour (save €30). Yɛbɛyɛ bi akɔ! Home service in Gein 3 & 4 (limited spots).",
       cta: "WhatsApp to Start",
-      whatsappMessage: "Hi! I'm interested in the flexible weekend support (€30/hour). I'd like to learn more about the possibilities."
+      whatsappMessage: "Hi! I&apos;m interested in the flexible weekend support (€30/hour). I&apos;d like to learn more about the possibilities."
     }
   ];
 
@@ -381,7 +381,7 @@ Can you tell me more about the weekend tutoring ${priceInfo}?`;
                 </span>
               </h2>
               <p className="text-yellow-200 text-lg mb-4 italic">
-                (One who doesn't know can learn!)
+                (One who doesn&apos;t know can learn!)
               </p>
               <div className="text-5xl font-black bg-gradient-to-r from-yellow-400 to-yellow-300 text-transparent bg-clip-text mb-2">
                 FA MA YƐNKA!

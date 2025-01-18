@@ -32,13 +32,19 @@ export function WeekendZuidoostContent() {
   const educationLevels = [
     {
       id: 'basis',
-      title: 'Basisonderwijs',
-      subjects: businessData.subjects.primary
+      titleNL: 'Basisonderwijs',
+      titleEN: 'Primary Education',
+      subjects: businessData.subjects.primary,
+      whatsappIntro: "Hi! I&apos;m looking for primary school tutoring",
+      hasDiscount: true
     },
     {
       id: 'voortgezet',
-      title: 'Voortgezet Onderwijs',
-      subjects: businessData.subjects.secondary
+      titleNL: 'Voortgezet Onderwijs',
+      titleEN: 'Secondary Education',
+      subjects: businessData.subjects.secondary,
+      whatsappIntro: "Hi! I&apos;m looking for high school tutoring",
+      hasDiscount: true
     },
     {
       id: 'hoger',
@@ -91,19 +97,22 @@ export function WeekendZuidoostContent() {
 
   const offers = [
     {
-      title: "Weekend Bijles voor Scholieren",
-      description: "🎓 Speciale buurtkorting voor leerlingen in Amsterdam Zuidoost! Voor slechts €30 per uur (normaal €60) krijg je professionele bijles op zaterdag of zondag. Extra voordeel voor Gein 3 en 4: bijles aan huis mogelijk (beperkte plekken). Start met een gratis kennismakingsgesprek van 30 minuten!",
-      cta: "Plan je gratis kennismaking"
+      title: "Weekend Tutoring for Students",
+      description: "🎓 Special community discount for students in Zuidoost! Only €30 per hour (regular €60). Home tutoring available in Gein 3 & 4. Start with a free 30-minute trial lesson!",
+      cta: "WhatsApp for Trial Lesson",
+      whatsappMessage: "Hi! I&apos;m interested in the weekend tutoring special offer (€30/hour). I&apos;d like to schedule a free trial lesson."
     },
     {
-      title: "Persoonlijke Coaching & Studiebegeleiding",
-      description: "💡 Zoek je begeleiding bij je studie of persoonlijke ontwikkeling? Nu in het weekend beschikbaar voor €30 per uur (50% korting op regulier tarief) in Amsterdam Zuidoost. Eerste gesprek van 30 minuten is gratis. Samen werken we aan jouw doelen en studievaardigheden.",
-      cta: "Start met gratis gesprek"
+      title: "Personal Coaching & Study Support",
+      description: "💡 Need guidance with your studies or personal development? Available weekends for €30/hour in Zuidoost. First 30-minute consultation is free.",
+      cta: "WhatsApp for Info",
+      whatsappMessage: "Hi! I&apos;m interested in personal coaching/study support (€30/hour weekend offer). Can you tell me more?"
     },
     {
-      title: "Flexibele Weekend Hulp",
-      description: "✨ Of je nu hulp nodig hebt bij wiskunde, coaching zoekt, of gewoon wilt sparren over je studie - in het weekend sta ik voor je klaar in Zuidoost. Profiteer van het speciale buurttarief van €30 per uur (normaal €60). Eerste 30 minuten gratis kennismaking. Aan huis service in Gein 3 en 4 (beperkt beschikbaar).",
-      cta: "Maak een afspraak"
+      title: "Flexible Weekend Support",
+      description: "✨ Whether it&apos;s math, coaching, or just discussing your studies - I&apos;m here to help! Special rate of €30/hour (save €30). Home service in Gein 3 & 4 (limited spots).",
+      cta: "WhatsApp to Start",
+      whatsappMessage: "Hi! I&apos;m interested in the flexible weekend support (€30/hour). I&apos;d like to learn more about the possibilities."
     }
   ];
 
@@ -215,7 +224,7 @@ export function WeekendZuidoostContent() {
               <div className="bg-blue-900/50 p-6 rounded-xl border border-blue-700/50">
                 <div className="flex items-center gap-3 mb-3">
                   <FaCheck className="text-yellow-400 text-xl" />
-                  <h3 className="font-semibold text-blue-100">Extra's</h3>
+                  <h3 className="font-semibold text-blue-100">Extra&apos;s</h3>
                 </div>
                 <p className="text-blue-200">Gratis kennismakingsgesprek van 30 minuten</p>
               </div>
@@ -269,7 +278,7 @@ export function WeekendZuidoostContent() {
                               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                             />
                           )}
-                          <span className="relative z-10">{level.title}</span>
+                          <span className="relative z-10">{level.titleNL}</span>
                         </motion.button>
                       ))}
                     </div>
