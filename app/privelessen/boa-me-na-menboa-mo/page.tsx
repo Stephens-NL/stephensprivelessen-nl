@@ -3,80 +3,736 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaStar, FaClock, FaMapMarkerAlt, FaCheck, FaGraduationCap, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { weekendLocations } from '@/data/weekendTutoring';
+import { useState } from 'react';
+import { getBusinessData } from '@/data/businessData';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const content = {
-  hero: {
-    title: {
-      EN: 'Boa me na menboa mo',
-      NL: 'Boa me na menboa mo'
-    },
-    subtitle: {
-      EN: 'Weekend Tutoring for Ghanaian Youth in Amsterdam Zuidoost',
-      NL: 'Weekend Bijles voor Ghanese Jongeren in Amsterdam Zuidoost'
-    },
-    description: {
-      EN: 'Expert tutoring tailored to support Ghanaian students in their academic journey. €30/hour with experienced tutors who understand both educational systems.',
-      NL: 'Deskundige bijles op maat om Ghanese studenten te ondersteunen in hun academische reis. €30/uur met ervaren docenten die beide onderwijssystemen begrijpen.'
-    }
-  },
-  cta: {
-    trial: {
-      EN: 'Book Free Trial',
-      NL: 'Boek Gratis Proefles'
-    },
-    whatsapp: {
-      EN: 'WhatsApp Us',
-      NL: 'WhatsApp Ons'
-    }
-  },
-  footer: {
-    EN: 'Yɛbɛyɛ bi akɔ!',
-    NL: 'Yɛbɛyɛ bi akɔ!'
-  }
-};
+function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educationLevels }: { 
+  title: string;
+  titleTwi?: string;
+  description: string; 
+  cta: string; 
+  whatsappMessage: string;
+  educationLevels: Array<{
+    id: string;
+    titleNL: string;
+    titleEN: string;
+    subjects: Array<{ NL: string; EN: string; }>;
+  }>;
+}) {
+  const [showModal, setShowModal] = useState(false);
+  const [studentName, setStudentName] = useState('');
+  const [studentAge, setStudentAge] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const { language } = useLanguage();
+
+  const handleSubmit = () => {
+    const level = educationLevels.find(l => l.id === selectedLevel);
+    const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
+    
+    const fullMessage = `${whatsappMessage}
+- Name: ${studentName}
+- Age: ${studentAge}
+- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
+- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
+
+    window.open(`https://wa.me/31687340641?text=${encodeURIComponent(fullMessage)}`, '_blank');
+    setShowModal(false);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+    >
+      <h3 className="text-xl font-bold text-yellow-300 mb-2">{title}</h3>
+      {titleTwi && (
+        <p className="text-lg text-yellow-200/80 mb-4 italic">{titleTwi}</p>
+      )}
+      <p className="text-white/90 mb-6">{description}</p>
+      <Dialog open={showModal} onOpenChange={setShowModal}>
+        <DialogTrigger asChild>
+          <Button
+            className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold"
+          >
+            {cta}
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                value={studentName}
+                onChange={(e) => setStudentName(e.target.value)}
+                className="bg-white/10 border-white/20 text-white"
+                placeholder="Enter student's name"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="age">Age</Label>
+              <Input
+                id="age"
+                value={studentAge}
+                onChange={(e) => setStudentAge(e.target.value)}
+                className="bg-white/10 border-white/20 text-white"
+                placeholder="Enter student's age"
+                type="number"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="level">Education Level</Label>
+              <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+                <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                  <SelectValue placeholder="Select level" />
+                </SelectTrigger>
+                <SelectContent className="bg-amber-900 text-white">
+                  {educationLevels.map((level) => (
+                    <SelectItem key={level.id} value={level.id}>
+                      {language === 'NL' ? level.titleNL : level.titleEN}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            {selectedLevel && (
+              <div className="grid gap-2">
+                <Label htmlFor="subject">Subject</Label>
+                <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                  <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                    <SelectValue placeholder="Select subject" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-amber-900 text-white">
+                    {educationLevels
+                      .find(l => l.id === selectedLevel)
+                      ?.subjects.map((subject) => (
+                        <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                          {language === 'NL' ? subject.NL : subject.EN}
+                        </SelectItem>
+                      ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+            <Button
+              onClick={handleSubmit}
+              className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+              disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
+            >
+              Continue to WhatsApp
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </motion.div>
+  );
+}
 
 export default function BoaMeNaMenboaMoPage() {
   const { t } = useTranslation();
   const { language } = useLanguage();
+  const content = weekendLocations.find(loc => loc.id === 'boa-me-na-menboa-mo')!;
+  const businessData = getBusinessData(t);
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
+  const [showCourses, setShowCourses] = useState(true);
+  
+  // Add state for student information form
+  const [studentName, setStudentName] = useState('');
+  const [studentAge, setStudentAge] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+  const educationLevels = [
+    {
+      id: 'basis',
+      titleNL: 'Basisonderwijs',
+      titleEN: 'Primary Education',
+      subjects: businessData.subjects.primary,
+      whatsappIntro: "Hi! I'm looking for primary school tutoring",
+      hasDiscount: true
+    },
+    {
+      id: 'voortgezet',
+      titleNL: 'Voortgezet Onderwijs',
+      titleEN: 'Secondary Education',
+      subjects: businessData.subjects.secondary,
+      whatsappIntro: "Hi! I'm looking for high school tutoring",
+      hasDiscount: true
+    },
+    {
+      id: 'hoger',
+      titleNL: 'Hoger Onderwijs',
+      titleEN: 'Higher Education',
+      subjects: [...businessData.subjects.higher, ...businessData.subjects.programming],
+      whatsappIntro: "Hi! I'm looking for university level tutoring",
+      hasDiscount: false
+    }
+  ];
+
+  const renderSubjects = (subjects: Array<{ NL: string, EN: string }>) => {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="mt-8"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {subjects.map((subject, index) => (
+            <motion.div 
+              key={subject.NL}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.3,
+                delay: index * 0.05,
+                ease: "easeOut"
+              }}
+              className="group relative flex items-center bg-white/10 backdrop-blur-sm
+                       rounded-xl transition-all duration-300 
+                       border border-white/10 hover:border-white/20
+                       transform hover:-translate-y-1 overflow-hidden h-[60px] w-full
+                       hover:shadow-lg hover:shadow-black/20"
+            >
+              <div className="flex-1 p-4 overflow-hidden">
+                <div className="overflow-hidden">
+                  <motion.span 
+                    className="text-white/90 group-hover:text-white font-medium transition-colors inline-block whitespace-nowrap"
+                  >
+                    {language === 'NL' ? subject.NL : subject.EN}
+                  </motion.span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    );
+  };
+
+  const offers = [
+    {
+      title: "Weekend Tutoring for Ghanaian Youth",
+      titleTwi: "Adesua mma sukuufo",
+      description: "🎓 Special community discount for Ghanaian youth in Zuidoost! Only €30 per hour (regular €60). Home tutoring available in Gein or at Douwe Egberts. Ɛyɛ mmerɛw! Start with a free 30-minute trial lesson!",
+      cta: "Book Free Trial",
+      whatsappMessage: "Hi! I'm interested in the Boa me na menboa mo tutoring program. Can I book a trial lesson?"
+    },
+    {
+      title: "Personal Coaching & Study Support",
+      titleTwi: "Akwankyerɛ ne Mmoa",
+      description: "💡 Need guidance with your studies or personal development? Available weekends for €30/hour in Zuidoost. Me ne wo bɛyɛ adwuma! (We'll work together!) First 30-minute consultation is free.",
+      cta: "Get Info",
+      whatsappMessage: "Hi! I'm interested in personal coaching/study support from the Boa me na menboa mo program. Can you tell me more?"
+    },
+    {
+      title: "Flexible Weekend Support",
+      titleTwi: "Mmerɛ-mmerɛ Mmoa",
+      description: "✨ Whether it's math, coaching, or just discussing your studies - I'm here to help! Special rate of €30/hour (save €30). Yɛbɛyɛ bi akɔ! Available at Douwe Egberts or home tutoring in Gein.",
+      cta: "Start Now",
+      whatsappMessage: "Hi! I'm interested in the flexible weekend support from Boa me na menboa mo. I'd like to learn more about the possibilities."
+    }
+  ];
 
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gradient-to-b from-green-600 to-yellow-500 pt-14 md:pt-24">
+      <main className="min-h-screen bg-gradient-to-b from-amber-900 to-amber-700 pt-14 md:pt-24">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center text-white">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">
-              {t(content.hero.title)}
-            </h1>
-            <h2 className="text-2xl md:text-3xl mb-6">
-              {t(content.hero.subtitle)}
-            </h2>
-            <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
-              {t(content.hero.description)}
-            </p>
-            
-            <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-              <a 
-                href="https://wa.me/31687340641?text=Hi!%20I'm%20interested%20in%20the%20Boa%20me%20na%20menboa%20mo%20tutoring%20program.%20Can%20I%20book%20a%20trial%20lesson?"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
-              >
-                {t(content.cta.trial)}
-              </a>
-              <a 
-                href="https://wa.me/31687340641"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-bold py-3 px-8 rounded-full transition-all duration-300"
-              >
-                {t(content.cta.whatsapp)}
-              </a>
+            {/* Special Offer Banner */}
+            <div className="inline-block bg-yellow-500/20 rounded-full px-6 py-2 mb-6">
+              <div className="flex items-center gap-2 text-yellow-300 font-bold">
+                <FaStar />
+                <span>{t(content.specialOffer)}</span>
+                <FaStar />
+              </div>
             </div>
 
-            <p className="mt-12 text-2xl font-bold">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              {t(content.title)}
+            </h1>
+            <h2 className="text-2xl md:text-3xl mb-6">
+              {t(content.subtitle)}
+            </h2>
+
+            {/* Twi Proverb */}
+            {content.proverb && (
+              <div className="mb-8">
+                <p className="text-2xl font-bold text-yellow-300">{t(content.proverb.text)}</p>
+                <p className="text-lg text-yellow-200/80">{t(content.proverb.meaning)}</p>
+              </div>
+            )}
+
+            {/* Big Discount Text */}
+            <div className="mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-yellow-300 mb-2">
+                {t(content.discount.text)}
+              </h2>
+              <p className="text-xl text-yellow-200">{t(content.discount.subtext)}</p>
+            </div>
+
+            {/* Pricing Comparison */}
+            <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12">
+              {/* Regular Price */}
+              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm w-full md:w-64">
+                <h3 className="text-lg font-medium text-yellow-200 mb-2">
+                  {t(content.pricing.regularPrice.label)}
+                </h3>
+                <div className="text-3xl font-bold mb-1 line-through text-white/70">
+                  €{content.pricing.regularPrice.amount}
+                </div>
+                <div className="text-sm text-white/60">{t(content.pricing.regularPrice.perHour)}</div>
+              </div>
+
+              {/* Arrow */}
+              <div className="text-4xl text-yellow-300">→</div>
+
+              {/* Community Rate */}
+              <motion.div 
+                className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 w-full md:w-72 transform hover:scale-105 transition-transform duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <h3 className="text-lg font-medium text-white mb-2">
+                  {t(content.pricing.communityRate.label)}
+                </h3>
+                <div className="text-5xl font-bold mb-1">€{content.pricing.communityRate.amount}</div>
+                <div className="text-sm mb-2">{t(content.pricing.communityRate.perHour)}</div>
+                <div className="bg-yellow-400 text-yellow-900 text-sm font-bold py-1 px-3 rounded-full inline-block">
+                  {t(content.pricing.communityRate.savings)}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Features Grid */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-yellow-300 mb-3">
+                  <FaMapMarkerAlt className="text-xl" />
+                  <h3 className="font-medium">{t(content.features.location.title)}</h3>
+                </div>
+                <p className="text-white/90">{t(content.features.location.text)}</p>
+              </div>
+
+              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-yellow-300 mb-3">
+                  <FaClock className="text-xl" />
+                  <h3 className="font-medium">{t(content.features.availability.title)}</h3>
+                </div>
+                <p className="text-white/90">{t(content.features.availability.text)}</p>
+              </div>
+
+              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                <div className="flex items-center gap-2 text-yellow-300 mb-3">
+                  <FaCheck className="text-xl" />
+                  <h3 className="font-medium">{t(content.features.extras.title)}</h3>
+                </div>
+                <p className="text-white/90">{t(content.features.extras.text)}</p>
+              </div>
+            </div>
+
+            {/* Available Subjects Section */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-12">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <FaGraduationCap className="text-3xl text-yellow-300" />
+                  <h2 className="text-2xl font-bold text-white">Available Subjects</h2>
+                </div>
+                <button
+                  onClick={() => setShowCourses(!showCourses)}
+                  className="p-3 hover:bg-white/10 rounded-xl transition-colors"
+                >
+                  {showCourses ? <FaChevronUp className="text-yellow-300" /> : <FaChevronDown className="text-yellow-300" />}
+                </button>
+              </div>
+
+              <AnimatePresence>
+                {showCourses && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="space-y-8">
+                      <div className="flex justify-center">
+                        <div className="inline-flex bg-white/10 rounded-2xl p-1.5">
+                          {educationLevels.map((level, index) => (
+                            <motion.button
+                              key={level.id}
+                              onClick={() => setSelectedLevel(level.id)}
+                              className={`
+                                relative px-8 py-3 rounded-xl text-center transition-all duration-200
+                                ${selectedLevel === level.id 
+                                  ? 'text-yellow-300' 
+                                  : 'text-white/70 hover:text-white'
+                                }
+                                ${index !== educationLevels.length - 1 ? 'mr-1' : ''}
+                              `}
+                            >
+                              {selectedLevel === level.id && (
+                                <motion.div
+                                  layoutId="activeTab"
+                                  className="absolute inset-0 bg-white/10 rounded-xl"
+                                  initial={false}
+                                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                />
+                              )}
+                              <span className="relative z-10">
+                                {language === 'NL' ? level.titleNL : level.titleEN}
+                              </span>
+                            </motion.button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="w-full">
+                        <AnimatePresence mode="wait">
+                          {selectedLevel && (
+                            renderSubjects(
+                              educationLevels.find(level => level.id === selectedLevel)?.subjects || []
+                            )
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Offers Grid */}
+            <div className="grid gap-8 md:grid-cols-3 mb-12">
+              {offers.map((offer, index) => (
+                <OfferVariant 
+                  key={index} 
+                  {...offer} 
+                  educationLevels={educationLevels}
+                />
+              ))}
+            </div>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold py-4 px-8 rounded-full transition-all duration-300"
+                  >
+                    {t(content.cta.trial)}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        value={studentName}
+                        onChange={(e) => setStudentName(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's name"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="age">Age</Label>
+                      <Input
+                        id="age"
+                        value={studentAge}
+                        onChange={(e) => setStudentAge(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's age"
+                        type="number"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="level">Education Level</Label>
+                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-amber-900 text-white">
+                          {educationLevels.map((level) => (
+                            <SelectItem key={level.id} value={level.id}>
+                              {language === 'NL' ? level.titleNL : level.titleEN}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    {selectedLevel && (
+                      <div className="grid gap-2">
+                        <Label htmlFor="subject">Subject</Label>
+                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                            <SelectValue placeholder="Select subject" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-amber-900 text-white">
+                            {educationLevels
+                              .find(l => l.id === selectedLevel)
+                              ?.subjects.map((subject) => (
+                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                                  {language === 'NL' ? subject.NL : subject.EN}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
+                    <Button
+                      onClick={() => {
+                        const level = educationLevels.find(l => l.id === selectedLevel);
+                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
+                        
+                        const message = `Hi! I'm interested in booking a trial lesson for the Boa me na menboa mo program.
+- Name: ${studentName}
+- Age: ${studentAge}
+- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
+- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
+
+                        window.open(`https://wa.me/31687340641?text=${encodeURIComponent(message)}`, '_blank');
+                        setShowModal(false);
+                      }}
+                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
+                    >
+                      Continue to WhatsApp
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    className="bg-white/20 hover:bg-white/30 text-white font-bold py-4 px-8 rounded-full transition-all duration-300"
+                  >
+                    {t(content.cta.whatsapp)}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        value={studentName}
+                        onChange={(e) => setStudentName(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's name"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="age">Age</Label>
+                      <Input
+                        id="age"
+                        value={studentAge}
+                        onChange={(e) => setStudentAge(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's age"
+                        type="number"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="level">Education Level</Label>
+                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-amber-900 text-white">
+                          {educationLevels.map((level) => (
+                            <SelectItem key={level.id} value={level.id}>
+                              {language === 'NL' ? level.titleNL : level.titleEN}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    {selectedLevel && (
+                      <div className="grid gap-2">
+                        <Label htmlFor="subject">Subject</Label>
+                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                            <SelectValue placeholder="Select subject" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-amber-900 text-white">
+                            {educationLevels
+                              .find(l => l.id === selectedLevel)
+                              ?.subjects.map((subject) => (
+                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                                  {language === 'NL' ? subject.NL : subject.EN}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
+                    <Button
+                      onClick={() => {
+                        const level = educationLevels.find(l => l.id === selectedLevel);
+                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
+                        
+                        const message = `Hi! I'd like to learn more about the Boa me na menboa mo program.
+- Name: ${studentName}
+- Age: ${studentAge}
+- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
+- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
+
+                        window.open(`https://wa.me/31687340641?text=${encodeURIComponent(message)}`, '_blank');
+                        setShowModal(false);
+                      }}
+                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
+                    >
+                      Continue to WhatsApp
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            {/* Footer */}
+            <motion.p 
+              className="text-3xl font-bold text-yellow-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
               {t(content.footer)}
-            </p>
+            </motion.p>
+
+            {/* Contact Section */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="mt-16 text-center"
+            >
+              <p className="text-xl text-white/90 mb-6">
+                Have questions? Feel free to contact us for more information.
+              </p>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-semibold px-8 py-6 text-lg">
+                    Contact Us Now
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        value={studentName}
+                        onChange={(e) => setStudentName(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's name"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="age">Age</Label>
+                      <Input
+                        id="age"
+                        value={studentAge}
+                        onChange={(e) => setStudentAge(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's age"
+                        type="number"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="level">Education Level</Label>
+                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-amber-900 text-white">
+                          {educationLevels.map((level) => (
+                            <SelectItem key={level.id} value={level.id}>
+                              {language === 'NL' ? level.titleNL : level.titleEN}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    {selectedLevel && (
+                      <div className="grid gap-2">
+                        <Label htmlFor="subject">Subject</Label>
+                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                            <SelectValue placeholder="Select subject" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-amber-900 text-white">
+                            {educationLevels
+                              .find(l => l.id === selectedLevel)
+                              ?.subjects.map((subject) => (
+                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                                  {language === 'NL' ? subject.NL : subject.EN}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
+                    <Button
+                      onClick={() => {
+                        const level = educationLevels.find(l => l.id === selectedLevel);
+                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
+                        
+                        const message = `Hi! I have some questions about the Boa me na menboa mo program.
+- Name: ${studentName}
+- Age: ${studentAge}
+- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
+- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
+
+                        window.open(`https://wa.me/31687340641?text=${encodeURIComponent(message)}`, '_blank');
+                        setShowModal(false);
+                      }}
+                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
+                    >
+                      Continue to WhatsApp
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </motion.div>
           </div>
         </div>
       </main>
