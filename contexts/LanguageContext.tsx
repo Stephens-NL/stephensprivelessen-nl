@@ -14,7 +14,7 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('NL');
+  const [language, setLanguage] = useState<Language>('EN');
 
   const handleSetLanguage = useCallback((lang: Language) => {
     setLanguage(lang);

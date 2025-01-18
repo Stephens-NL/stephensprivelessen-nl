@@ -2,9 +2,8 @@
 
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Header from '@/components/Header';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaStar, FaClock, FaMapMarkerAlt, FaCheck, FaGraduationCap, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FaStar, FaClock, FaMapMarkerAlt, FaCheck, FaGraduationCap, FaChevronUp, FaChevronDown, FaCoffee } from 'react-icons/fa';
 import { weekendLocations } from '@/data/weekendTutoring';
 import { useState } from 'react';
 import { getBusinessData } from '@/data/businessData';
@@ -17,8 +16,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -26,6 +23,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Header from '@/components/Header';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educationLevels }: { 
   title: string;
@@ -151,6 +151,69 @@ function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educ
         </DialogContent>
       </Dialog>
     </motion.div>
+  );
+}
+
+function LocationMap() {
+  const [showMap, setShowMap] = useState(false);
+  const { language } = useLanguage();
+
+  return (
+    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-12">
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-3">
+          <FaCoffee className="text-3xl text-yellow-300" />
+          <h2 className="text-2xl font-bold text-white">
+            {language === 'NL' ? 'Locatie: Douwe Egberts Café' : 'Location: Douwe Egberts Café'}
+          </h2>
+        </div>
+        <button
+          onClick={() => setShowMap(!showMap)}
+          className="p-3 hover:bg-white/10 rounded-xl transition-colors"
+        >
+          {showMap ? <FaChevronUp className="text-yellow-300" /> : <FaChevronDown className="text-yellow-300" />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {showMap && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <div className="space-y-4">
+              <p className="text-white/90 text-lg mb-4">
+                {language === 'NL' 
+                  ? 'Het Douwe Egberts Café aan het Bijlmerplein 888 in Amsterdam is dagelijks geopend van 08:00 tot 22:00 uur. Het café biedt een moderne en gezellige sfeer, ideaal voor ontmoetingen en ontspanning. Bezoekers kunnen genieten van diverse koffievariaties en lekkernijen. Daarnaast is het café laptopvriendelijk, waardoor het een geschikte plek is om te werken of studeren.'
+                  : 'The Douwe Egberts Café at Bijlmerplein 888 in Amsterdam is open daily from 08:00 to 22:00. The café offers a modern and cozy atmosphere, perfect for meetings and relaxation. Visitors can enjoy various coffee variations and treats. Additionally, the café is laptop-friendly, making it a suitable place for working or studying.'}
+              </p>
+              <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
+                <iframe
+                  src="https://maps.app.goo.gl/nMBBA9MAaKhDrPmSA?g_st=iwb"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0"
+                />
+              </div>
+              <div className="flex items-center gap-2 text-white/90 mt-4">
+                <FaMapMarkerAlt className="text-yellow-300" />
+                <span>Bijlmerplein 888, 1102 MG Amsterdam</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/90">
+                <FaClock className="text-yellow-300" />
+                <span>{language === 'NL' ? 'Dagelijks geopend: 08:00 - 22:00' : 'Open daily: 08:00 - 22:00'}</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -308,20 +371,106 @@ export default function ZuidoostGhanaPage() {
               <div className="text-4xl text-yellow-300">→</div>
 
               {/* Community Rate */}
-              <motion.div 
-                className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 w-full md:w-72 transform hover:scale-105 transition-transform duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <h3 className="text-lg font-medium text-white mb-2">
-                  {t(content.pricing.communityRate.label)}
-                </h3>
-                <div className="text-5xl font-bold mb-1">€{content.pricing.communityRate.amount}</div>
-                <div className="text-sm mb-2">{t(content.pricing.communityRate.perHour)}</div>
-                <div className="bg-yellow-400 text-yellow-900 text-sm font-bold py-1 px-3 rounded-full inline-block">
-                  {t(content.pricing.communityRate.savings)}
-                </div>
-              </motion.div>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <motion.div 
+                    className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 w-full md:w-72 
+                             transform hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <h3 className="text-lg font-medium text-white mb-2">
+                      {t(content.pricing.communityRate.label)}
+                    </h3>
+                    <div className="text-5xl font-bold mb-1">€{content.pricing.communityRate.amount}</div>
+                    <div className="text-sm mb-2">{t(content.pricing.communityRate.perHour)}</div>
+                    <div className="bg-yellow-400 text-yellow-900 text-sm font-bold py-1 px-3 rounded-full inline-block">
+                      {t(content.pricing.communityRate.savings)}
+                    </div>
+                  </motion.div>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input
+                        id="name"
+                        value={studentName}
+                        onChange={(e) => setStudentName(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's name"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="age">Age</Label>
+                      <Input
+                        id="age"
+                        value={studentAge}
+                        onChange={(e) => setStudentAge(e.target.value)}
+                        className="bg-white/10 border-white/20 text-white"
+                        placeholder="Enter student's age"
+                        type="number"
+                      />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="level">Education Level</Label>
+                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                          <SelectValue placeholder="Select level" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-amber-900 text-white">
+                          {educationLevels.map((level) => (
+                            <SelectItem key={level.id} value={level.id}>
+                              {language === 'NL' ? level.titleNL : level.titleEN}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    {selectedLevel && (
+                      <div className="grid gap-2">
+                        <Label htmlFor="subject">Subject</Label>
+                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                            <SelectValue placeholder="Select subject" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-amber-900 text-white">
+                            {educationLevels
+                              .find(l => l.id === selectedLevel)
+                              ?.subjects.map((subject) => (
+                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                                  {language === 'NL' ? subject.NL : subject.EN}
+                                </SelectItem>
+                              ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )}
+                    <Button
+                      onClick={() => {
+                        const level = educationLevels.find(l => l.id === selectedLevel);
+                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
+                        
+                        const message = `Hi! I'm interested in the €30/hour Ghanaian tutoring special offer!
+- Name: ${studentName}
+- Age: ${studentAge}
+- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
+- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
+
+                        window.open(`https://wa.me/31687340641?text=${encodeURIComponent(message)}`, '_blank');
+                        setShowModal(false);
+                      }}
+                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
+                    >
+                      Continue to WhatsApp
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
 
             {/* Features Grid */}
@@ -350,6 +499,9 @@ export default function ZuidoostGhanaPage() {
                 <p className="text-white/90">{t(content.features.extras.text)}</p>
               </div>
             </div>
+
+            {/* Location Map */}
+            <LocationMap />
 
             {/* Available Subjects Section */}
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-12">
