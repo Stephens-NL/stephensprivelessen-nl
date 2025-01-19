@@ -215,7 +215,7 @@ Can you tell me more about tutoring for this subject?`;
                   
                   return (
                     <motion.div
-                      key={subject.NL}
+                      key={`${selectedLevel}-${subject.NL}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}

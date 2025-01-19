@@ -598,3 +598,69 @@ export interface Footer {
     contactLabel: Bilingual;
     copyright: Bilingual;
 }
+
+// Weekend Tutoring Types
+export interface ProgramOffer {
+  title: Bilingual;
+  titleTwi?: string;
+  description: Bilingual;
+  whatsappMessage: Bilingual;
+}
+
+export interface WeekendLocation extends BilingualEntity {
+  id: string;
+  subtitle: Bilingual;
+  specialOffer: Bilingual;
+  proverb?: {
+    text: Bilingual;
+    meaning: Bilingual;
+  };
+  discount: {
+    text: Bilingual;
+    subtext: Bilingual;
+  };
+  pricing: {
+    regularPrice: {
+      label: Bilingual;
+      amount: number;
+      perHour: Bilingual;
+    };
+    communityRate: {
+      label: Bilingual;
+      amount: number;
+      perHour: Bilingual;
+      savings: Bilingual;
+    };
+  };
+  features: {
+    location: {
+      title: Bilingual;
+      text: Bilingual;
+    };
+    availability: {
+      title: Bilingual;
+      text: Bilingual;
+    };
+    extras: {
+      title: Bilingual;
+      text: Bilingual;
+    };
+  };
+  cta: {
+    trial: Bilingual;
+    whatsapp: Bilingual;
+  };
+  programOffers: {
+    weekendTutoring: ProgramOffer;
+    personalCoaching: ProgramOffer;
+    flexibleSupport: ProgramOffer;
+  };
+  location: {
+    name: Bilingual;
+    description: Bilingual;
+    address: string;
+    mapUrl: string;
+    hours: Bilingual;
+  };
+  footer: Bilingual;
+}

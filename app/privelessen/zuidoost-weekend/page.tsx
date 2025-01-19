@@ -27,6 +27,12 @@ import Header from '@/components/Header';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+interface Subject {
+  NL: string;
+  EN: string;
+  id: string;
+}
+
 function OfferVariant({ title, description, cta, whatsappMessage, educationLevels }: { 
   title: string; 
   description: string; 
@@ -128,7 +134,7 @@ function OfferVariant({ title, description, cta, whatsappMessage, educationLevel
                     {educationLevels
                       .find(l => l.id === selectedLevel)
                       ?.subjects.map((subject) => (
-                        <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                        <SelectItem key={`${selectedLevel}-${subject.NL}`} value={language === 'NL' ? subject.NL : subject.EN}>
                           {language === 'NL' ? subject.NL : subject.EN}
                         </SelectItem>
                       ))}
@@ -163,7 +169,7 @@ function OfferVariant({ title, description, cta, whatsappMessage, educationLevel
 }
 
 function LocationMap() {
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
   const { language } = useLanguage();
 
   return (
@@ -194,8 +200,8 @@ function LocationMap() {
             <div className="space-y-4">
               <p className="text-white/90 text-lg mb-4">
                 {language === 'NL' 
-                  ? 'Het Douwe Egberts Café aan het Bijlmerplein 888 in Amsterdam is dagelijks geopend van 08:00 tot 22:00 uur. Het café biedt een moderne en gezellige sfeer, ideaal voor ontmoetingen en ontspanning. Bezoekers kunnen genieten van diverse koffievariaties en lekkernijen. Daarnaast is het café laptopvriendelijk, waardoor het een geschikte plek is om te werken of studeren.'
-                  : 'The Douwe Egberts Café at Bijlmerplein 888 in Amsterdam is open daily from 08:00 to 22:00. The café offers a modern and cozy atmosphere, perfect for meetings and relaxation. Visitors can enjoy various coffee variations and treats. Additionally, the café is laptop-friendly, making it a suitable place for working or studying.'}
+                  ? 'Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.'
+                  : 'Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.'}
               </p>
               <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
                 <iframe
@@ -228,7 +234,8 @@ function LocationMap() {
 export default function ZuidoostWeekendPage() {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const content = weekendLocations.find(loc => loc.id === 'zuidoost-weekend')!;
+  const content = weekendLocations.find(loc => loc.id === 'zuidoost-weekend');
+  if (!content) throw new Error('Content not found for zuidoost-weekend');
   const businessData = getBusinessData(t);
   const [selectedLevel, setSelectedLevel] = useState<string>('');
   const [showCourses, setShowCourses] = useState(true);
@@ -278,7 +285,7 @@ export default function ZuidoostWeekendPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {subjects.map((subject, index) => (
             <motion.div 
-              key={subject.NL}
+              key={`${selectedLevel}-${subject.NL}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ 
@@ -446,7 +453,7 @@ export default function ZuidoostWeekendPage() {
                             {educationLevels
                               .find(l => l.id === selectedLevel)
                               ?.subjects.map((subject) => (
-                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                                <SelectItem key={`${selectedLevel}-${subject.NL}`} value={language === 'NL' ? subject.NL : subject.EN}>
                                   {language === 'NL' ? subject.NL : subject.EN}
                                 </SelectItem>
                               ))}
@@ -691,7 +698,7 @@ export default function ZuidoostWeekendPage() {
                             {educationLevels
                               .find(l => l.id === selectedLevel)
                               ?.subjects.map((subject) => (
-                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
+                                <SelectItem key={`${selectedLevel}-${subject.NL}`} value={language === 'NL' ? subject.NL : subject.EN}>
                                   {language === 'NL' ? subject.NL : subject.EN}
                                 </SelectItem>
                               ))}

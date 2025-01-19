@@ -1,0 +1,176 @@
+# Stephen's Privélessen - Development Rules and Guidelines
+
+## 1. Data Management
+
+### 1.1 Data Source Hierarchy
+- Primary data sources are in `@data/` directory (e.g., weekendTutoring.ts, businessData.ts)
+- All content MUST be sourced from data files, never hardcoded in components
+- Each data file should export typed interfaces for its data structures
+- Example structure from weekendTutoring.ts:
+  ```typescript
+  interface WeekendLocation {
+    id: string;
+    title: Bilingual;
+    subtitle: Bilingual;
+    // ... other properties
+  }
+  ```
+
+### 1.2 Bilingual Support
+- All user-facing text must support both Dutch (NL) and English (EN)
+- Use the Bilingual type for text content:
+  ```typescript
+  interface Bilingual {
+    NL: string;
+    EN: string;
+  }
+  ```
+- Access text using the language context:
+  ```typescript
+  const { language } = useLanguage();
+  content.title[language]
+  ```
+
+### 1.3 Subject Management
+- Subjects are defined in businessData.ts
+- Group subjects by education level (primary, secondary, higher)
+- Include both Dutch and English names for each subject
+- Support common variations in search (e.g., "scheikunde" ↔ "chemistry")
+
+## 2. Component Architecture
+
+### 2.1 Page Components
+- Use the Next.js 13+ app directory structure
+- Implement 'use client' directive for client-side components
+- Follow the pattern:
+  ```typescript
+  export default function Page() {
+    // Get data from central sources
+    const content = weekendLocations.find(loc => loc.id === 'page-id');
+    // Component logic
+    return (
+      // JSX
+    );
+  }
+  ```
+
+### 2.2 Section Components
+- Break pages into logical sections (e.g., HeroSection, AboutSection)
+- Each section should:
+  - Accept data through props
+  - Handle its own animations and state
+  - Use consistent styling patterns
+
+### 2.3 Interactive Components
+- Implement proper loading states
+- Use Framer Motion for animations
+- Handle both mouse and touch interactions
+- Example pattern:
+  ```typescript
+  function InteractiveComponent() {
+    const [state, setState] = useState();
+    const ref = useRef(null);
+    const isInView = useInView(ref);
+    // Component logic
+  }
+  ```
+
+## 3. Styling Guidelines
+
+### 3.1 Color Scheme
+- Use the established color palette:
+  - Primary: yellow-300 to yellow-500
+  - Background: amber-950
+  - Text: white with varying opacity
+- Implement gradients consistently:
+  ```css
+  bg-gradient-to-r from-yellow-300 to-yellow-500
+  ```
+
+### 3.2 Animation Standards
+- Use Framer Motion for all animations
+- Implement consistent animation patterns:
+  - Scroll-based transforms
+  - Hover states
+  - Page transitions
+- Example:
+  ```typescript
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 }}
+  >
+  ```
+
+## 4. Form Handling
+
+### 4.1 WhatsApp Integration
+- Use the standard message format:
+  ```typescript
+  const fullMessage = `
+    - Name: ${studentName}
+    - Age: ${studentAge}
+    - Level: ${level}
+    - Subject: ${subject}
+  `;
+  ```
+- Always encode URLs:
+  ```typescript
+  window.open(`https://wa.me/31687340641?text=${encodeURIComponent(fullMessage)}`);
+  ```
+
+### 4.2 Input Components
+- Use shadcn/ui components consistently
+- Implement proper validation
+- Maintain consistent styling:
+  ```typescript
+  <Input
+    className="bg-white/5 border-yellow-500/20 text-white"
+    // ... props
+  />
+  ```
+
+## 5. Performance Guidelines
+
+### 5.1 Data Loading
+- Use proper data fetching methods
+- Implement loading states
+- Cache data where appropriate
+
+### 5.2 Animation Performance
+- Use hardware-accelerated properties
+- Implement proper exit animations
+- Use AnimatePresence for unmounting
+
+## 6. Security Considerations
+
+### 6.1 Sensitive Data
+- Store contact information in environment variables
+- Never expose API keys or sensitive data in client code
+- Use proper validation for user inputs
+
+## 7. Accessibility
+
+### 7.1 Standards
+- Implement proper ARIA labels
+- Ensure keyboard navigation
+- Maintain proper color contrast
+- Support screen readers
+
+## 8. Error Handling
+
+### 8.1 Content Errors
+- Implement proper fallbacks for missing content
+- Validate data structure at runtime
+- Example:
+  ```typescript
+  if (!content) throw new Error('Content not found for page-id');
+  ```
+
+## 9. Testing Guidelines
+
+### 9.1 Component Testing
+- Test bilingual content rendering
+- Verify form submissions
+- Check animation behaviors
+- Validate responsive layouts 

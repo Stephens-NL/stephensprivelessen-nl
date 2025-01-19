@@ -12,6 +12,7 @@ import { getBusinessData } from '@/data/businessData';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Adinkra symbols as background patterns
 const AdinkraPattern = () => (
@@ -49,6 +50,7 @@ const OfferVariant = ({ title, titleTwi, description, cta, whatsappMessage }: {
 
 export function WeekendGhanaContent() {
   const { t } = useTranslation();
+  const { language } = useLanguage();
   const businessData = getBusinessData(t);
   const [showCourses, setShowCourses] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -282,7 +284,7 @@ Can you tell me more about the weekend tutoring ${priceInfo}?`;
                   
                   return (
                     <motion.div
-                      key={subject.NL}
+                      key={`${selectedLevel}-${subject.NL}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05 }}
@@ -291,10 +293,10 @@ Can you tell me more about the weekend tutoring ${priceInfo}?`;
                       onClick={() => handleSubjectClick(subject, currentLevel)}
                     >
                       <div className="font-medium text-yellow-100 group-hover:text-yellow-400 transition-colors">
-                        {subject.NL}
+                        {language === 'NL' ? subject.NL : subject.EN}
                       </div>
                       <div className="text-sm text-yellow-200/75 group-hover:text-yellow-300 transition-colors">
-                        {subject.EN}
+                        {language === 'NL' ? subject.EN : subject.NL}
                       </div>
                       <div className="mt-2 pt-2 border-t border-yellow-600/30 text-xs text-yellow-200/50 group-hover:text-yellow-200 transition-colors flex items-center gap-1">
                         <FaWhatsapp className="text-sm" />

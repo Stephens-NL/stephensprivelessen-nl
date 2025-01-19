@@ -9,24 +9,24 @@ export const getBusinessData = (t: TFunction) => ({
       { NL: 'Taal', EN: 'Language' }
     ],
     secondary: [
-      { NL: 'Wiskunde A/B/C/D', EN: 'Mathematics A/B/C/D' },
-      { NL: 'Natuurkunde', EN: 'Physics' },
-      { NL: 'Scheikunde', EN: 'Chemistry' },
-      { NL: 'Engels', EN: 'English' },
-      { NL: 'Nederlands', EN: 'Dutch' },
-      { NL: 'Biologie', EN: 'Biology' },
-      { NL: 'Economie', EN: 'Economics' },
-      { NL: 'M&O', EN: 'M&O' },
-      { NL: 'Bedrijfseconomie', EN: 'Business Economics' }
+      { NL: 'Wiskunde A/B/C/D', EN: 'Mathematics A/B/C/D', id: 'voortgezet-Wiskunde' },
+      { NL: 'Natuurkunde', EN: 'Physics', id: 'voortgezet-Natuurkunde' },
+      { NL: 'Scheikunde', EN: 'Chemistry', id: 'voortgezet-Scheikunde' },
+      { NL: 'Engels', EN: 'English', id: 'voortgezet-Engels' },
+      { NL: 'Nederlands', EN: 'Dutch', id: 'voortgezet-Nederlands' },
+      { NL: 'Biologie', EN: 'Biology', id: 'voortgezet-Biologie' },
+      { NL: 'Economie', EN: 'Economics', id: 'voortgezet-Economie' },
+      { NL: 'M&O', EN: 'M&O', id: 'voortgezet-MO' },
+      { NL: 'Bedrijfseconomie', EN: 'Business Economics', id: 'voortgezet-Bedrijfseconomie' }
     ],
     higher: [
-      { NL: 'Bedrijfsstatistiek', EN: 'Business Statistics' },
-      { NL: 'Calculus', EN: 'Calculus' },
-      { NL: 'Economie', EN: 'Economics' },
-      { NL: 'Statistiek', EN: 'Statistics' },
-      { NL: 'Kansberekening', EN: 'Probability' },
-      { NL: 'Lineaire Algebra', EN: 'Linear Algebra' },
-      { NL: 'Verzamelingenleer', EN: 'Set Theory' }
+      { NL: 'Bedrijfsstatistiek', EN: 'Business Statistics', id: 'hoger-Bedrijfsstatistiek' },
+      { NL: 'Calculus', EN: 'Calculus', id: 'hoger-Calculus' },
+      { NL: 'Economie', EN: 'Economics', id: 'hoger-Economie' },
+      { NL: 'Statistiek', EN: 'Statistics', id: 'hoger-Statistiek' },
+      { NL: 'Kansberekening', EN: 'Probability', id: 'hoger-Kansberekening' },
+      { NL: 'Lineaire Algebra', EN: 'Linear Algebra', id: 'hoger-LineaireAlgebra' },
+      { NL: 'Verzamelingenleer', EN: 'Set Theory', id: 'hoger-Verzamelingenleer' }
     ],
     programming: [
       { NL: 'C', EN: 'C' },
