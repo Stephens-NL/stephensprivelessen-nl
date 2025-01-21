@@ -39,6 +39,10 @@ export interface BilingualEntity extends BaseEntity {
 }
 
 export interface ContentEntity extends BilingualEntity {
+  content?: Bilingual;
+}
+
+export interface RequiredContentEntity extends BilingualEntity {
   content: Bilingual;
 }
 
@@ -172,7 +176,7 @@ export interface WorkshopsPageContent extends BilingualEntity {
 }
 
 // Blog Types
-export interface BlogPost extends ContentEntity {
+export interface BlogPost extends RequiredContentEntity {
   author: string;
   date: string;
   tags: string[];
@@ -234,13 +238,22 @@ export interface QuestionGroup extends BilingualEntity {
   questions: Question[];
 }
 
-export interface PersonalIntermezzo extends ContentEntity {}
+export interface PersonalIntermezzo extends RequiredContentEntity {}
 
 export type FormSection = QuestionGroup | PersonalIntermezzo;
 
 export interface FeedbackForm extends BilingualEntity {
   sections: FormSection[];
   conclusion: Bilingual;
+}
+
+// Education Types
+export interface EducationLevel {
+  id: string;
+  title: string;
+  subjects: Bilingual[];
+  icon: string;
+  color: string;
 }
 
 // Response Types
@@ -663,4 +676,35 @@ export interface WeekendLocation extends BilingualEntity {
     hours: Bilingual;
   };
   footer: Bilingual;
+}
+
+// Education Level Types
+export interface BusinessSubjects {
+  primary: Bilingual[];
+  secondary: Bilingual[];
+  higher: Bilingual[];
+  programming: Bilingual[];
+}
+
+export interface SubjectWithKey extends Bilingual {
+  uniqueKey: string;
+}
+
+// Component Props Types
+export interface OfferVariantProps {
+  offer: ProgramOffer;
+  ctaText: string;
+  preSelectedLevel?: string;
+  preSelectedSubject?: Bilingual;
+  educationLevels: EducationLevel[];
+  activeLevel: string;
+  subject: Bilingual;
+}
+
+export interface SubjectsSectionProps {
+  educationLevels: EducationLevel[];
+  activeLevel: string;
+  setActiveLevel: (level: string) => void;
+  subject: Bilingual;
+  setSubject: (subject: Bilingual) => void;
 }

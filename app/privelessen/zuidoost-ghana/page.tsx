@@ -5,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaStar, FaClock, FaMapMarkerAlt, FaCheck, FaGraduationCap, FaChevronUp, FaChevronDown, FaCoffee } from 'react-icons/fa';
 import { weekendLocations } from '@/data/weekendTutoring';
+import { WeekendLocation } from '@/data/types';
 import { useState } from 'react';
 import { getBusinessData } from '@/data/businessData';
 import { Button } from '@/components/ui/button';
@@ -220,7 +221,8 @@ function LocationMap() {
 export default function ZuidoostGhanaPage() {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  const content = weekendLocations.find(loc => loc.id === 'zuidoost-ghana')!;
+  const content = weekendLocations.find(loc => loc.id === 'boa-me-na-menboa-mo') as WeekendLocation;
+  if (!content) throw new Error('Content not found for boa-me-na-menboa-mo');
   const businessData = getBusinessData(t);
   const [selectedLevel, setSelectedLevel] = useState<string>('');
   const [showCourses, setShowCourses] = useState(true);
