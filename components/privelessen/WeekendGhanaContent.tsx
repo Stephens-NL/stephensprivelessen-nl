@@ -13,6 +13,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useLanguage } from '@/contexts/LanguageContext';
+import { contactInfo } from '@/data/config';
 
 // Adinkra symbols as background patterns
 const AdinkraPattern = () => (
@@ -29,7 +30,7 @@ const OfferVariant = ({ title, titleTwi, description, cta, whatsappMessage }: {
   cta: string;
   whatsappMessage: string;
 }) => {
-  const whatsappLink = `https://wa.me/31687340641?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappLink = `${contactInfo.phone.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
   
   return (
     <Card className="relative overflow-hidden bg-gradient-to-br from-[#8B4513] to-[#654321] text-white p-8 rounded-2xl border border-yellow-600/50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
@@ -141,7 +142,7 @@ Subject: ${subject.EN} (${subject.NL})
 
 Can you tell me more about the weekend tutoring ${priceInfo}?`;
     
-    window.open(`https://wa.me/31687340641?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
     setShowModal(false);
     setStudentName('');
     setStudentAge('');
@@ -482,7 +483,7 @@ Can you tell me more about the weekend tutoring ${priceInfo}?`;
             <span className="text-yellow-400 italic">Wo wɔ asɛm bi ka? Bra ma yɛnkasa!</span>
           </p>
           <a 
-            href="https://wa.me/31687340641?text=Hi!%20I%20have%20a%20question%20about%20the%20weekend%20tutoring%20offer."
+            href={`${contactInfo.phone.whatsapp}?text=Hi!%20I%20have%20a%20question%20about%20the%20weekend%20tutoring%20offer.`}
             target="_blank"
             rel="noopener noreferrer"
           >

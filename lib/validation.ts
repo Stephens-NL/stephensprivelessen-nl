@@ -1,3 +1,5 @@
+import { contactInfo } from '@/data/config';
+
 export const isValidEmail = (email: string): boolean => {
     // RFC 5322 compliant email regex
     const emailRegex = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i;
@@ -6,7 +8,7 @@ export const isValidEmail = (email: string): boolean => {
 
 export const isValidPhoneNumber = (phoneNumber: string): boolean => {
     // Regex for international phone numbers with country code
-    // Accepts formats: +31612345678, +31 6 12345678, +31-6-12345678
+    // Accepts formats: +31647357426, +31 6 47357426, +31-6-47357426
     const phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
     return phoneRegex.test(phoneNumber);
 };
@@ -32,8 +34,8 @@ export const getPhoneNumberError = (phoneNumber: string, t: any): string | null 
     
     if (!isValidPhoneNumber(formattedNumber)) {
         return String(t({
-            EN: "Please enter a valid phone number with country code (e.g., +31612345678)",
-            NL: "Voer een geldig telefoonnummer in met landcode (bijv. +31612345678)"
+            EN: "Please enter a valid phone number with country code (e.g., +31647357426)",
+            NL: "Voer een geldig telefoonnummer in met landcode (bijv. +31647357426)"
         }));
     }
     

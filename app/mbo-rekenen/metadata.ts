@@ -1,0 +1,84 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding',
+  description: 'Professionele rekenbijles voor MBO-studenten en volwassenen in Amsterdam. Persoonlijke begeleiding voor de MBO-rekentoets. Online en op locatie beschikbaar.',
+  keywords: [
+    'mbo rekenen',
+    'rekenbijles amsterdam',
+    'mbo rekentoets',
+    'rekenen bijles',
+    'volwassenen rekenen',
+    'dyscalculie begeleiding',
+    'bbl rekenen',
+    'mbo niveau 2 rekenen',
+    'mbo niveau 3 rekenen',
+    'mbo niveau 4 rekenen',
+    'online rekenbijles',
+    'rekenen priveles',
+    'rekenen examentraining',
+  ],
+  openGraph: {
+    title: 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding',
+    description: 'Professionele rekenbijles voor MBO-studenten en volwassenen in Amsterdam. Persoonlijke begeleiding voor de MBO-rekentoets.',
+    url: 'https://stephensprivelessen.nl/mbo-rekenen',
+    type: 'website',
+    locale: 'nl_NL',
+    alternateLocale: 'en_US',
+    siteName: 'Stephens Privelessen',
+    images: [
+      {
+        url: '/images/mbo-rekenen-banner.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MBO Rekenen Bijles Amsterdam',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding',
+    description: 'Professionele rekenbijles voor MBO-studenten en volwassenen in Amsterdam.',
+    images: ['/images/mbo-rekenen-banner.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/mbo-rekenen',
+    languages: {
+      'nl-NL': '/mbo-rekenen',
+      'en-US': '/mbo-math',
+    },
+  },
+};
+
+export const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'MBO Rekenen Bijles',
+  provider: {
+    '@type': 'EducationalOrganization',
+    name: 'Stephens Privelessen',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Amsterdam',
+      addressRegion: 'NH',
+      addressCountry: 'NL'
+    }
+  },
+  serviceType: 'Bijles',
+  areaServed: {
+    '@type': 'City',
+    name: 'Amsterdam'
+  },
+  description: 'Professionele rekenbijles voor MBO-studenten en volwassenen in Amsterdam. Persoonlijke begeleiding voor de MBO-rekentoets.'
+}; 

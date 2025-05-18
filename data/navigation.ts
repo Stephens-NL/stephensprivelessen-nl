@@ -8,6 +8,7 @@ export const siteTitle: Bilingual = {
 export const navigation: NavItem[] = [
     { href: '/', label: { EN: 'Home', NL: 'Home' } },
     { href: '/privelessen', label: { EN: 'Tutoring', NL: 'Privelessen' } },
+    { href: '/mbo-rekenen', label: { EN: 'MBO Math', NL: 'MBO Rekenen' } },
     { href: '/scriptiebegeleiding', label: { EN: 'Thesis Supervision', NL: 'Scriptiebegeleiding' } },
     { href: '/about', label: { EN: 'About', NL: 'Over Ons' } },
     { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },

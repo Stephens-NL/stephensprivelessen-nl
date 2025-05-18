@@ -26,6 +26,7 @@ import {
 import Header from '@/components/Header';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { contactInfo } from '@/data/config';
 
 interface Subject {
   NL: string;
@@ -62,7 +63,7 @@ function OfferVariant({ title, description, cta, whatsappMessage, educationLevel
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-    window.open(`https://wa.me/31687340641?text=${encodeURIComponent(fullMessage)}`, '_blank');
+    window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(fullMessage)}`, '_blank');
     setShowModal(false);
   };
 
@@ -153,7 +154,7 @@ function OfferVariant({ title, description, cta, whatsappMessage, educationLevel
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-                window.open(`https://wa.me/31687340641?text=${encodeURIComponent(message)}`, '_blank');
+                window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
                 setShowModal(false);
               }}
               className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
@@ -472,7 +473,7 @@ export default function ZuidoostWeekendPage() {
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-                        window.open(`https://wa.me/31687340641?text=${encodeURIComponent(message)}`, '_blank');
+                        window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
                         setShowModal(false);
                       }}
                       className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
@@ -599,7 +600,7 @@ export default function ZuidoostWeekendPage() {
             {/* CTA Buttons */}
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
               <motion.a 
-                href="https://wa.me/31687340641?text=Hi!%20I'm%20interested%20in%20weekend%20tutoring.%20Can%20I%20book%20a%20trial%20lesson?"
+                href={`${contactInfo.phone.whatsapp}?text=Hi!%20I'm%20interested%20in%20weekend%20tutoring.%20Can%20I%20book%20a%20trial%20lesson?`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold py-4 px-8 rounded-full transition-all duration-300"
@@ -609,7 +610,7 @@ export default function ZuidoostWeekendPage() {
                 {t(content.cta.trial)}
               </motion.a>
               <motion.a 
-                href="https://wa.me/31687340641"
+                href={contactInfo.phone.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white/20 hover:bg-white/30 text-white font-bold py-4 px-8 rounded-full transition-all duration-300"
@@ -717,7 +718,7 @@ export default function ZuidoostWeekendPage() {
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-                        window.open(`https://wa.me/31687340641?text=${encodeURIComponent(message)}`, '_blank');
+                        window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
                         setShowModal(false);
                       }}
                       className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"

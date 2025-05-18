@@ -1,6 +1,7 @@
 // src/data/contactData.ts
 
 import { ContactPageContent } from "./types";
+import { contactInfo } from './config';
 
 export const contactData: ContactPageContent = {
   title: {
@@ -170,8 +171,8 @@ export const contactData: ContactPageContent = {
     {
       icon: "FaPhone",
       title: { EN: "Phone", NL: "Telefoon" },
-      content: "+31 6 47357426",
-      href: "tel:+31647357426",
+      content: contactInfo.phone.display,
+      href: contactInfo.phone.href,
     },
     {
       icon: "FaEnvelope",

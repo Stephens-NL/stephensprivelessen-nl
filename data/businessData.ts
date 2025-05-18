@@ -1,5 +1,6 @@
 // src/data/businessData.ts
 import { TFunction } from 'next-i18next';
+import { contactInfo } from './config';
 
 export const getBusinessData = (t: TFunction) => ({
   title: t('common:siteName'),
@@ -65,8 +66,8 @@ export const getBusinessData = (t: TFunction) => ({
     {
       icon: "FaPhone",
       title: 'contact:contactInfo.phone',
-      content: "+31 6 47357426",
-      href: "tel:+31647357426",
+      content: contactInfo.phone.display,
+      href: contactInfo.phone.href,
     },
     {
       icon: "FaEnvelope",

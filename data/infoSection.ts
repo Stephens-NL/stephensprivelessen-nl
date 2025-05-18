@@ -1,4 +1,5 @@
 import { Bilingual } from './types';
+import { contactInfo } from './config';
 
 export interface SubjectNote {
     subject: string;
@@ -148,7 +149,7 @@ export const subjectNotes: SubjectNote[] = [
 ];
 
 export const contactLinks = {
-    whatsapp: "https://wa.me/+31612345678", // Replace with your actual WhatsApp number
+    whatsapp: contactInfo.phone.whatsapp,
     email: "mailto:info@stephensprivelessen.nl" // Replace with your actual email
 };
 
