@@ -1,7 +1,7 @@
 // src/data/contactData.ts
 
 import { ContactPageContent } from "./types";
-import { contactInfo } from './config';
+import { contactInfo, config } from './config';
 
 export const contactData: ContactPageContent = {
   title: {
@@ -178,7 +178,7 @@ export const contactData: ContactPageContent = {
       icon: "FaEnvelope",
       title: { EN: "Email", NL: "E-mail" },
       content: "s.adei@outlook.com",
-      href: "mailto:s.adei@outlook.com",
+      href: `mailto:${config.contact.email}`,
     },
     {
       icon: "FaMapMarkerAlt",

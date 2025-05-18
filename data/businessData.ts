@@ -1,6 +1,6 @@
 // src/data/businessData.ts
 import { TFunction } from 'next-i18next';
-import { contactInfo } from './config';
+import { contactInfo, config } from './config';
 
 export const getBusinessData = (t: TFunction) => ({
   title: t('common:siteName'),
@@ -73,7 +73,7 @@ export const getBusinessData = (t: TFunction) => ({
       icon: "FaEnvelope",
       title: 'contact:contactInfo.email',
       content: "s.adei@outlook.com",
-      href: "mailto:s.adei@outlook.com",
+      href: `mailto:${config.contact.email}`,
     },
     {
       icon: "FaMapMarkerAlt",

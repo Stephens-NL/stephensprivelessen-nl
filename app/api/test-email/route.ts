@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { config } from '@/data/config';
 
 export async function POST() {
     const transporter = nodemailer.createTransport({
@@ -24,7 +25,7 @@ export async function POST() {
         // Then send a test email
         const info = await transporter.sendMail({
             from: process.env.SMTP_FROM,
-            to: 'info@stephenadei.nl',
+            to: config.contact.email,
             subject: 'Test Email',
             text: 'Als je deze email ontvangt, werkt de email configuratie correct!',
         });

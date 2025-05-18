@@ -1,7 +1,7 @@
-export const contactInfo = {
-  phone: {
-    display: "+31 6 47357426",
-    href: "tel:+31647357426",
-    whatsapp: "https://wa.me/31647357426"
-  }
+export const config = {
+    contact: {
+        email: 'info@stephenadei.nl',
+        phone: '+31612345678', // This is already centralized
+        whatsapp: '+31612345678' // This is already centralized
+    }
 } as const; 

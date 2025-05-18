@@ -1,5 +1,5 @@
 import { Bilingual } from './types';
-import { contactInfo } from './config';
+import { contactInfo, config } from './config';
 
 export interface SubjectNote {
     subject: string;
@@ -150,7 +150,7 @@ export const subjectNotes: SubjectNote[] = [
 
 export const contactLinks = {
     whatsapp: contactInfo.phone.whatsapp,
-    email: "mailto:info@stephensprivelessen.nl" // Replace with your actual email
+    email: `mailto:${config.contact.email}`,
 };
 
 export const infoSectionTranslations: Record<string, Bilingual> = {
