@@ -1,9 +1,13 @@
-import { NavItem, Workshop, WorkshopsPageContent } from '../data/types';
-import { workshops } from '../data/workshopsData';
-import { navigation } from '../data/navigation';
-import { blogPosts } from '../data/blog';
-import fs from 'fs';
-import xml2js from 'xml2js';
+// @ts-ignore
+const { NavItem, Workshop, WorkshopsPageContent, BlogPost } = require('../data/types');
+// @ts-ignore
+const { workshops } = require('../data/workshopsData');
+// @ts-ignore
+const { navigation } = require('../data/navigation');
+// @ts-ignore
+const { blogPosts } = require('../data/blog');
+const fs = require('fs');
+const xml2js = require('xml2js');
 
 const DOMAIN = 'https://www.stephensprivelessen.nl';
 const LAST_MOD = new Date().toISOString().split('T')[0];
@@ -55,7 +59,7 @@ function generateSitemap() {
   });
 
   // Add blog posts
-  blogPosts.forEach(post => {
+  blogPosts.forEach((post: typeof BlogPost) => {
     urlset.push(createUrlEntry(
       `/blog/${post.id}`,
       'monthly',
@@ -65,7 +69,7 @@ function generateSitemap() {
 
   // Add navigation pages (excluding already added pages)
   const addedPaths = new Set(['/', '/services', '/privelessen', '/workshops', '/consultancy', '/contact', '/faq'].map(p => p.toLowerCase()));
-  navigation.forEach((item: NavItem) => {
+  navigation.forEach((item: typeof NavItem) => {
     if (!addedPaths.has(item.href.toLowerCase())) {
       urlset.push(createUrlEntry(item.href.toLowerCase()));
     }

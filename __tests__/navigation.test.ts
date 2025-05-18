@@ -16,7 +16,8 @@ describe('Navigation Links', () => {
       '/about',
       '/blog',
       '/faq',
-      '/contact'
+      '/contact',
+      '/mbo-rekenen'
     ]
 
     // Check if all navigation routes are in the expected valid routes

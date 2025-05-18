@@ -2,7 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
-import { WhatsAppButton } from '@/components/shared/WhatsAppButton';
+import WhatsAppButton from '@/components/shared/WhatsAppButton';
 
 export function ContactSection() {
   const { language } = useLanguage();
