@@ -1,0 +1,134 @@
+# Cursor Conventions and Best Practices
+
+## Test Organization
+1. Place tests in the correct directory structure:
+   - Unit tests: `__tests__/` directory
+   - E2E tests: `tests/` directory
+   - Component tests: `__tests__/components/` directory
+   - Page tests: `__tests__/pages/` directory
+
+2. Test File Naming:
+   - Use `.test.ts` or `.test.tsx` extension
+   - Match the name of the file being tested (e.g., `ComponentName.test.tsx` for `ComponentName.tsx`)
+
+## Dynamic Routes Testing
+1. Avoid testing dynamic route files directly (e.g., `[location]/page.tsx`)
+2. Instead, test the functionality through:
+   - Integration tests
+   - E2E tests
+   - Unit tests of the underlying logic
+
+## Navigation and Routing
+1. All routes must be:
+   - Lowercase (except root '/')
+   - No trailing slashes (except root '/')
+   - No spaces or special characters (only hyphens allowed)
+   - Included in both navigation and sitemap
+
+2. Required routes in navigation:
+   ```typescript
+   const expectedValidRoutes = [
+     '/',
+     '/privelessen',
+     '/scriptiebegeleiding',
+     '/services',
+     '/workshops',
+     '/consultancy',
+     '/about',
+     '/blog',
+     '/faq',
+     '/contact',
+     '/mbo-rekenen'
+   ];
+   ```
+
+## Sitemap Conventions
+1. URL Patterns:
+   ```typescript
+   const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/mbo-rekenen|\/blog\/\d+)$/;
+   ```
+
+2. Sitemap Requirements:
+   - All navigation routes must be included
+   - All blog posts must be included
+   - All workshop pages must be included
+   - Valid priorities and change frequencies must be set
+
+## Component Testing
+1. Import/Export Conventions:
+   - Use default exports for components
+   - Use named imports for hooks and utilities
+   - Example:
+     ```typescript
+     // Component file
+     export default function Component() { ... }
+     
+     // Test file
+     import Component from './Component';
+     ```
+
+2. Mock Conventions:
+   - Place mocks in `__mocks__/` directory
+   - Use `jest.mock()` for module mocks
+   - Mock external dependencies, not internal components
+
+## Type Safety
+1. Avoid using `any` type
+2. Use proper type assertions when necessary
+3. Define interfaces for test data
+4. Example:
+   ```typescript
+   interface TestData {
+     id: string;
+     name: string;
+     // ... other properties
+   }
+   ```
+
+## Error Prevention
+1. Always run tests before committing:
+   ```bash
+   npm test
+   ```
+
+2. Check for common issues:
+   - Missing routes in navigation
+   - Incorrect URL patterns in sitemap
+   - Type mismatches in imports/exports
+   - Dynamic route testing issues
+
+3. When adding new routes:
+   - Add to navigation array
+   - Update sitemap generation
+   - Update URL pattern tests
+   - Add to expected valid routes
+
+## Best Practices
+1. Keep tests focused and isolated
+2. Use descriptive test names
+3. Follow the Arrange-Act-Assert pattern
+4. Mock external dependencies
+5. Test both success and error cases
+6. Keep test files close to the code they test
+
+## Common Issues to Watch For
+1. Module resolution errors:
+   - Check import paths
+   - Verify file extensions
+   - Ensure proper module exports
+
+2. Type errors:
+   - Use proper TypeScript types
+   - Avoid `any` type
+   - Define interfaces for test data
+
+3. Route validation:
+   - All routes must be lowercase
+   - No trailing slashes
+   - Valid URL patterns
+   - Included in navigation and sitemap
+
+4. Test organization:
+   - Correct directory structure
+   - Proper file naming
+   - Appropriate test types (unit, integration, e2e) 
