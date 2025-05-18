@@ -1,5 +1,7 @@
 // src/data/prices.ts
 
+import { config } from './config';
+
 export const prices = {
     higher: [
       { duration: 1, price: 80.00 }, // 1 uur
@@ -32,17 +34,17 @@ export const prices = {
       ],
     },
     flexibilityPremium: [
-      { duration: 2, price: 15.00 },  // Pakket van 2 lessen
-      { duration: 4, price: 30.00 },  // Pakket van 4 lessen
-      { duration: 6, price: 50.00 },  // Pakket van 6 lessen of meer
+        { duration: "Pakket van 2 lessen", price: `€${config.pricing.flexibilityPremium.twoLessons}` },
+        { duration: "Pakket van 4 lessen", price: `€${config.pricing.flexibilityPremium.fourLessons}` },
+        { duration: "Pakket van 6 lessen of meer", price: `€${config.pricing.flexibilityPremium.sixOrMoreLessons}` },
     ],
     travelCosts: [
-      { location: 'VU/UvA (niet Sciencepark)', price: 15.00 },
-      { location: 'Thuis (Amsterdam e.o.)', price: 40.00 },
-      { location: 'Sciencepark', price: 0.00 },
+        { duration: "VU/UvA (niet Sciencepark)", price: `€${config.pricing.travelCosts.vuUva}` },
+        { duration: "Thuis (Amsterdam e.o.)", price: `€${config.pricing.travelCosts.homeAmsterdam}` },
+        { duration: "Sciencepark", price: `€${config.pricing.travelCosts.sciencePark}` },
     ],
     lastMinuteSurcharges: [
-      { timeFrame: "Minder dan 24 uur", percentage: 20 },
-      { timeFrame: "Minder dan 12 uur", percentage: 50 },
+        { timeFrame: "Minder dan 24 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan24Hours },
+        { timeFrame: "Minder dan 12 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan12Hours },
     ],
   };

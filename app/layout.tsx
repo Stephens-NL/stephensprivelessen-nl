@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import WhatsAppButton from '@/components/shared/WhatsAppButton';
+import { config } from '@/data/config';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' });
@@ -17,7 +18,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.stephensprivelessen.nl'),
+  metadataBase: new URL(config.business.siteUrl),
   title: {
     default: 'Stephens Privelessen | Wiskunde & Statistiek Privelessen Amsterdam',
     template: '%s | Stephens Privelessen Amsterdam'

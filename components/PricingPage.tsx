@@ -41,7 +41,7 @@ const PricingPage = () => {
         />
 
         {/* Flexibility Premium */}
-        <PricingTable
+        <LocationPricingTable
           pricing={prices.flexibilityPremium}
           title={String(t({ EN: 'Flexibility Premium', NL: 'Premie voor Flexibele Uren' }))}
         />

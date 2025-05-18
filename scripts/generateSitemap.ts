@@ -8,8 +8,9 @@ const { navigation } = require('../data/navigation');
 const { blogPosts } = require('../data/blog');
 const fs = require('fs');
 const xml2js = require('xml2js');
+import { config } from '../data/config';
 
-const DOMAIN = 'https://www.stephensprivelessen.nl';
+const DOMAIN = config.business.siteUrl;
 const LAST_MOD = new Date().toISOString().split('T')[0];
 
 // Valid locations for tutoring services

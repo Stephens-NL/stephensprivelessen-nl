@@ -6,10 +6,10 @@ import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 import { useTranslation } from '@/hooks/useTranslation';
 import QRCode from 'react-qr-code';
 import { usePathname } from 'next/navigation';
-import { contactInfo } from '@/data/config';
+import { config } from '@/data/config';
 
 const WHATSAPP_MESSAGE = 'Hallo, ik heb een vraag over je diensten';
-const WHATSAPP_URL = `${contactInfo.phone.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+const WHATSAPP_URL = `${config.contact.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 export default function WhatsAppButton() {
   const { t } = useTranslation();
@@ -172,7 +172,7 @@ export default function WhatsAppButton() {
                       NL: 'Scan met je telefoon of klik hieronder'
                     }))}
                   </p>
-                  <p className="font-mono text-gray-800 mb-4">{contactInfo.phone.display}</p>
+                  <p className="font-mono text-gray-800 mb-4">{config.contact.display.phone}</p>
                 </div>
 
                 <a

@@ -1,4 +1,5 @@
 import { WeekendLocation } from './types';
+import { config } from './config';
 
 export const weekendLocations: WeekendLocation[] = [
   {
@@ -161,7 +162,7 @@ export const weekendLocations: WeekendLocation[] = [
         EN: 'Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.',
         NL: 'Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.'
       },
-      address: 'Bijlmerplein 888, 1102 MG Amsterdam',
+      address: `${config.business.weekendOffice.address}, ${config.business.weekendOffice.postalCode} ${config.business.weekendOffice.city}`,
       mapUrl: 'https://maps.app.goo.gl/nMBBA9MAaKhDrPmSA?g_st=iwb',
       hours: {
         EN: 'Open daily: 08:00 - 22:00',
@@ -320,7 +321,7 @@ export const weekendLocations: WeekendLocation[] = [
         EN: 'Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.',
         NL: 'Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.'
       },
-      address: 'Bijlmerplein 888, 1102 MG Amsterdam',
+      address: `${config.business.weekendOffice.address}, ${config.business.weekendOffice.postalCode} ${config.business.weekendOffice.city}`,
       mapUrl: 'https://maps.app.goo.gl/nMBBA9MAaKhDrPmSA?g_st=iwb',
       hours: {
         EN: 'Open daily: 08:00 - 22:00',

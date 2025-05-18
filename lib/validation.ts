@@ -1,4 +1,4 @@
-import { contactInfo } from '@/data/config';
+import { config } from '@/data/config';
 
 export const isValidEmail = (email: string): boolean => {
     // RFC 5322 compliant email regex

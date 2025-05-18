@@ -1,7 +1,7 @@
 // src/data/contactData.ts
 
 import { ContactPageContent } from "./types";
-import { contactInfo, config } from './config';
+import { config } from './config';
 
 export const contactData: ContactPageContent = {
   title: {
@@ -98,18 +98,18 @@ export const contactData: ContactPageContent = {
     ],
   },
   flexibilityPremium: [
-    { duration: "Pakket van 2 lessen", price: "€15" },
-    { duration: "Pakket van 4 lessen", price: "€30" },
-    { duration: "Pakket van 6 lessen of meer", price: "€50" },
+    { duration: "Pakket van 2 lessen", price: `€${config.pricing.flexibilityPremium.twoLessons}` },
+    { duration: "Pakket van 4 lessen", price: `€${config.pricing.flexibilityPremium.fourLessons}` },
+    { duration: "Pakket van 6 lessen of meer", price: `€${config.pricing.flexibilityPremium.sixOrMoreLessons}` },
   ],
   travelCosts: [
-    { duration: "VU/UvA (niet Sciencepark)", price: "€15" },
-    { duration: "Thuis (Amsterdam e.o.)", price: "€40" },
-    { duration: "Sciencepark", price: "€0" },
+    { duration: "VU/UvA (niet Sciencepark)", price: `€${config.pricing.travelCosts.vuUva}` },
+    { duration: "Thuis (Amsterdam e.o.)", price: `€${config.pricing.travelCosts.homeAmsterdam}` },
+    { duration: "Sciencepark", price: `€${config.pricing.travelCosts.sciencePark}` },
   ],
   lastMinuteSurcharges: [
-    { timeFrame: "Minder dan 24 uur van tevoren gepland", percentage: 20 },
-    { timeFrame: "Minder dan 12 uur van tevoren gepland", percentage: 50 },
+    { timeFrame: "Minder dan 24 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan24Hours },
+    { timeFrame: "Minder dan 12 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan12Hours },
   ],
   // terms: [
   //   {
@@ -171,20 +171,20 @@ export const contactData: ContactPageContent = {
     {
       icon: "FaPhone",
       title: { EN: "Phone", NL: "Telefoon" },
-      content: contactInfo.phone.display,
-      href: contactInfo.phone.href,
+      content: config.contact.display.phone,
+      href: config.contact.display.href,
     },
     {
       icon: "FaEnvelope",
       title: { EN: "Email", NL: "E-mail" },
-      content: "s.adei@outlook.com",
+      content: config.contact.email,
       href: `mailto:${config.contact.email}`,
     },
     {
       icon: "FaMapMarkerAlt",
       title: { EN: "Location", NL: "Locatie" },
-      content: "Science Park 904, 1098 XH Amsterdam",
-      href: "https://maps.google.com/?q=Science Park 904, 1098 XH Amsterdam",
+      content: `${config.business.mainOffice.address}, ${config.business.mainOffice.postalCode} ${config.business.mainOffice.city}`,
+      href: config.business.mainOffice.googleMapsUrl,
     },
   ],
 };

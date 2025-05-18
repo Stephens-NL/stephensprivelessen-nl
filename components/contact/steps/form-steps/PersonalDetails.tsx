@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FormData } from '../../Contact';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { getEmailError, getPhoneNumberError, formatPhoneNumber } from '../../../../lib/validation';
-import { contactInfo } from '@/data/config';
+import { config } from '@/data/config';
 
 interface PersonalDetailsProps {
     formData: FormData;
@@ -107,7 +107,7 @@ const PersonalDetails = ({ formData, onUpdate }: PersonalDetailsProps) => {
                 type="tel"
                 value={formData.parentPhone || ''}
                 onChange={handlePhoneChange}
-                placeholder={contactInfo.phone.display}
+                placeholder={config.contact.display.phone}
                 className={`w-full p-3 rounded-lg bg-blue-700 text-white border ${
                     phoneError ? 'border-red-500' : 'border-blue-600'
                 } focus:border-yellow-400 focus:outline-none`}

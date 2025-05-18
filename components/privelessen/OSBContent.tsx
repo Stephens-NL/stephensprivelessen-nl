@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getBusinessData } from '@/data/businessData';
 import { useTranslation } from 'react-i18next';
-import { contactInfo } from '@/data/config';
+import { config } from '@/data/config';
 
 const OfferVariant = ({ title, description, cta, whatsappMessage }: { 
   title: string;
@@ -18,7 +18,7 @@ const OfferVariant = ({ title, description, cta, whatsappMessage }: {
   cta: string;
   whatsappMessage: string;
 }) => {
-  const whatsappLink = `${contactInfo.phone.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappLink = `${config.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
   
   return (
     <Card className="relative overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800 text-white p-8 rounded-2xl border border-blue-300/50 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
@@ -105,7 +105,7 @@ Subject: ${subject.EN} (${subject.NL})
 
 Can you tell me more about tutoring for this subject?`;
     
-    window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
     setShowModal(false);
     setStudentName('');
     setStudentAge('');
@@ -336,7 +336,7 @@ Can you tell me more about tutoring for this subject?`;
               Questions? Message me directly on WhatsApp!
             </p>
             <a 
-              href={`${contactInfo.phone.whatsapp}?text=Hi!%20I%20have%20a%20question%20about%20tutoring%20at%20OSB.`}
+              href={`${config.contact.whatsapp}?text=Hi!%20I%20have%20a%20question%20about%20tutoring%20at%20OSB.`}
               target="_blank"
               rel="noopener noreferrer"
             >

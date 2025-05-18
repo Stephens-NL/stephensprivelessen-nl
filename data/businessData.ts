@@ -1,6 +1,6 @@
 // src/data/businessData.ts
 import { TFunction } from 'next-i18next';
-import { contactInfo, config } from './config';
+import { config } from './config';
 
 export const getBusinessData = (t: TFunction) => ({
   title: t('common:siteName'),
@@ -66,20 +66,20 @@ export const getBusinessData = (t: TFunction) => ({
     {
       icon: "FaPhone",
       title: 'contact:contactInfo.phone',
-      content: contactInfo.phone.display,
-      href: contactInfo.phone.href,
+      content: config.contact.display.phone,
+      href: config.contact.display.href,
     },
     {
       icon: "FaEnvelope",
       title: 'contact:contactInfo.email',
-      content: "s.adei@outlook.com",
+      content: config.contact.email,
       href: `mailto:${config.contact.email}`,
     },
     {
       icon: "FaMapMarkerAlt",
       title: 'contact:contactInfo.location',
-      content: "Science Park 904, 1098 XH Amsterdam",
-      href: "https://maps.google.com/?q=Science Park 904, 1098 XH Amsterdam",
+      content: `${config.business.mainOffice.address}, ${config.business.mainOffice.postalCode} ${config.business.mainOffice.city}`,
+      href: config.business.mainOffice.googleMapsUrl,
     },
   ],
 });

@@ -13,14 +13,14 @@ export const LocationPricingTable = ({ pricing, title }: LocationPricingTablePro
                 <thead>
                     <tr>
                         <th className="text-left">Location</th>
-                        <th className="text-right">Price (€)</th>
+                        <th className="text-right">Price</th>
                     </tr>
                 </thead>
                 <tbody>
                     {pricing.map((item, index) => (
                         <tr key={index}>
-                            <td>{item.location}</td>
-                            <td className="text-right">{item.price.toFixed(2)}</td>
+                            <td>{item.duration}</td>
+                            <td className="text-right">{item.price}</td>
                         </tr>
                     ))}
                 </tbody>

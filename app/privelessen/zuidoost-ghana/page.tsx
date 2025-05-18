@@ -27,7 +27,7 @@ import {
 import Header from '@/components/Header';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { contactInfo } from '@/data/config';
+import { config } from '@/data/config';
 
 function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educationLevels }: { 
   title: string;
@@ -59,7 +59,7 @@ function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educ
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-    window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(fullMessage)}`, '_blank');
+    window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(fullMessage)}`, '_blank');
     setShowModal(false);
   };
 
@@ -463,7 +463,7 @@ export default function ZuidoostGhanaPage() {
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-                        window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
                         setShowModal(false);
                       }}
                       className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
@@ -668,7 +668,7 @@ export default function ZuidoostGhanaPage() {
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-                        window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
                         setShowModal(false);
                       }}
                       className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
@@ -758,7 +758,7 @@ export default function ZuidoostGhanaPage() {
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-                        window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
                         setShowModal(false);
                       }}
                       className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
@@ -868,7 +868,7 @@ export default function ZuidoostGhanaPage() {
 - Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
 
-                        window.open(`${contactInfo.phone.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
                         setShowModal(false);
                       }}
                       className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"

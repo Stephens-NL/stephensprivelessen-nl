@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from '@/hooks/useTranslation';
 import { Textarea } from "@/components/ui/textarea";
-import { contactInfo } from '@/data/config';
+import { config } from '@/data/config';
 
 interface WhatsAppCTAButtonProps {
   phoneNumber?: string;
@@ -29,7 +29,7 @@ interface WhatsAppCTAButtonProps {
 }
 
 export default function WhatsAppCTAButton({
-  phoneNumber = contactInfo.phone.whatsapp.replace('https://wa.me/', ''),
+  phoneNumber = config.contact.whatsapp,
   prefilledMessage = '',
   buttonText,
   buttonClassName = "bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2",
@@ -48,6 +48,11 @@ export default function WhatsAppCTAButton({
     message: '',
     preferredTimes: [] as string[]
   });
+
+  // Process phone number if it starts with https://wa.me/
+  if (phoneNumber.startsWith('https://wa.me/')) {
+    phoneNumber = phoneNumber.replace('https://wa.me/', '');
+  }
 
   const handleTimeSelect = (time: string) => {
     setFormData(prev => {
