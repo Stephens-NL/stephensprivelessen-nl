@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Image from "next/image";
 import { generateCampusStructuredData } from "@/lib/structured-data";
 import Script from "next/script";
+import Link from "next/link";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -50,6 +51,11 @@ export default function UVABijlesPage() {
           <h1 className="text-4xl font-bold mb-6">
             Bijles voor UvA studenten
           </h1>
+          <div className="mb-6">
+            <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
+              &laquo; Terug naar Bijles Amsterdam Overzicht
+            </Link>
+          </div>
           
           <p className="text-xl mb-8">
             Speciaal voor UvA studenten: professionele bijles op Science Park en Roeterseiland. 

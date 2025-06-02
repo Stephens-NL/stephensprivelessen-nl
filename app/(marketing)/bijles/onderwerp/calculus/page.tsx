@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateSubjectStructuredData } from "@/lib/structured-data";
 import Script from "next/script";
+import Link from "next/link";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -49,6 +50,11 @@ export default function CalculusBijlesPage() {
           <h1 className="text-4xl font-bold mb-6">
             Calculus bijles voor niet-bèta studenten
           </h1>
+          <div className="mb-6">
+            <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
+              &laquo; Terug naar Bijles Amsterdam Overzicht
+            </Link>
+          </div>
           
           <p className="text-xl mb-8">
             Calculus hoeft niet ingewikkeld te zijn. Wij maken differentiëren en integreren 
