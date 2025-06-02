@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import BlogPostComponent from '@/components/BlogPostComponent';
 import { blogPosts } from '@/data/blog';
 import { notFound } from 'next/navigation';
+import { config } from '@/data/config'; // Import config for siteUrl
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -17,11 +18,65 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   if (!post) {
     return {
       title: "Blog Post Niet Gevonden",
+      // Add a more descriptive message for OG tags if post not found
+      openGraph: {
+        title: "Blog Post Niet Gevonden",
+        description: "Deze blog post kon niet worden gevonden.",
+      }
     };
   }
 
+  const ogTitle = post.title.NL;
+  const ogDescription = post.summary.NL;
+  const featureImageUrl = '/images/og-blog-banner.jpg'; // Default for blog posts
+  const pageUrl = `${config.business.siteUrl}/blog/${post.id}`;
+
   return {
     title: post.title.NL,
+    description: post.summary.NL,
+    alternates: {
+      canonical: pageUrl,
+    },
+    openGraph: {
+      title: ogTitle,
+      description: ogDescription,
+      url: pageUrl,
+      type: 'article',
+      publishedTime: post.date, // Assuming post object has a date field
+      authors: ['Stephen Adei'], // Or dynamically if available
+      images: [
+        {
+          url: `${config.business.siteUrl}/api/og?title=${encodeURIComponent(
+            ogTitle
+          )}&brandText=${encodeURIComponent(
+            'Stephensprivelessen.nl'
+          )}&buttonText=${encodeURIComponent(
+            'Lees Blog'
+          )}&footerText=${encodeURIComponent(
+            `Blog Post | ${post.category?.NL || 'Algemeen'}` // Add category if available
+          )}&featureImageUrl=${encodeURIComponent(featureImageUrl)}`,
+          width: 1200,
+          height: 630,
+          alt: ogTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: ogDescription,
+      images: [
+        `${config.business.siteUrl}/api/og?title=${encodeURIComponent(
+          ogTitle
+        )}&brandText=${encodeURIComponent(
+          'Stephensprivelessen.nl'
+        )}&buttonText=${encodeURIComponent(
+          'Lees Blog'
+        )}&footerText=${encodeURIComponent(
+          `Blog Post | ${post.category?.NL || 'Algemeen'}`
+        )}&featureImageUrl=${encodeURIComponent(featureImageUrl)}`,
+      ],
+    },
   };
 }
 

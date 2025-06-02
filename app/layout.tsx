@@ -281,10 +281,20 @@ export const metadata: Metadata = {
     url: 'https://www.stephensprivelessen.nl',
     images: [
       {
-        url: '/images/jpg/banner.jpg',
+        url: `${config.business.siteUrl}/api/og?title=${encodeURIComponent(
+          'Expert Bijles & Coaching'
+        )}&brandText=${encodeURIComponent(
+          'Stephensprivelessen.nl'
+        )}&buttonText=${encodeURIComponent(
+          'Ontdek Meer'
+        )}&footerText=${encodeURIComponent(
+          'Wiskunde | Statistiek | Scriptie'
+        )}&featureImageUrl=${encodeURIComponent(
+          '/images/og-default-banner.jpg' // Ensure this image exists in public/images
+        )}`,
         width: 1200,
         height: 630,
-        alt: 'Stephens Privelessen - Wiskunde & Statistiek Privelessen Amsterdam',
+        alt: 'Expert Bijles & Coaching | Stephensprivelessen.nl', // Updated alt text
       },
     ],
   },
