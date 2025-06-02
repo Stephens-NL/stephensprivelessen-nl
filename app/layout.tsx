@@ -281,7 +281,7 @@ export const metadata: Metadata = {
     url: 'https://www.stephensprivelessen.nl',
     images: [
       {
-        url: `${config.business.siteUrl}/api/og?title=${encodeURIComponent(
+        url: `/api/og?title=${encodeURIComponent(
           'Expert Bijles & Coaching'
         )}&brandText=${encodeURIComponent(
           'Stephensprivelessen.nl'
@@ -290,11 +290,11 @@ export const metadata: Metadata = {
         )}&footerText=${encodeURIComponent(
           'Wiskunde | Statistiek | Scriptie'
         )}&featureImageUrl=${encodeURIComponent(
-          '/images/og-default-banner.jpg' // Ensure this image exists in public/images
+          '/images/og-default-banner.jpg'
         )}`,
         width: 1200,
         height: 630,
-        alt: 'Expert Bijles & Coaching | Stephensprivelessen.nl', // Updated alt text
+        alt: 'Expert Bijles & Coaching | Stephensprivelessen.nl',
       },
     ],
   },

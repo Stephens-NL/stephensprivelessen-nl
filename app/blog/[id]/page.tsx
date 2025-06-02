@@ -46,7 +46,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       authors: ['Stephen Adei'], // Or dynamically if available
       images: [
         {
-          url: `${config.business.siteUrl}/api/og?title=${encodeURIComponent(
+          url: `/api/og?title=${encodeURIComponent(
             ogTitle
           )}&brandText=${encodeURIComponent(
             'Stephensprivelessen.nl'
@@ -66,7 +66,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       title: ogTitle,
       description: ogDescription,
       images: [
-        `${config.business.siteUrl}/api/og?title=${encodeURIComponent(
+        `/api/og?title=${encodeURIComponent(
           ogTitle
         )}&brandText=${encodeURIComponent(
           'Stephensprivelessen.nl'

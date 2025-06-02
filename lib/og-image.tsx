@@ -5,31 +5,29 @@ export const runtime = "edge";
 
 interface OGImageParams {
   title?: string;
-  brandText?: string; // e.g., your domain or brand name
-  buttonText?: string; // e.g., "Read More"
-  footerText?: string; // e.g., Location like "Amsterdam"
-  featureImageUrl?: string; // URL for the main image on the card
+  brandText?: string;
+  buttonText?: string;
+  footerText?: string;
+  featureImageUrl?: string;
 }
 
 export async function generateOGImage(params: OGImageParams) {
   try {
-    console.log('Starting OG image generation with params:', params);
-    
     const {
-      title = "Ontdek Onze Diensten",
+      title = "Expert Wiskunde & Statistiek Bijles | Amsterdam", // Default Title
       brandText = "stephensprivelessen.nl",
       buttonText = "Lees Meer",
-      footerText = "Amsterdam",
-      // IMPORTANT: Replace with your actual image URL or ensure this path is valid in your public folder
-      featureImageUrl = "https://www.stephensprivelessen.nl/images/og-fallback.jpg", // Fallback/default image
+      footerText = "Persoonlijke Begeleiding op Elk Niveau",
+      // featureImageUrl should be an absolute URL passed from the API route
+      // The API route /api/og/route.tsx is responsible for constructing the absolute URL
+      featureImageUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/og-default-banner.jpg`, // Default fallback
     } = params;
 
-    console.log('Using feature image URL:', featureImageUrl);
+    console.log('[og-image.tsx] Generating OG Image with Params:', { title, brandText, buttonText, footerText, featureImageUrl });
 
-    // Basic font stack, consider loading custom fonts for better aesthetics
-    const font = "sans-serif";
+    const fontStack = `Inter, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`;
 
-    const response = new ImageResponse(
+    return new ImageResponse(
       (
         <div
           style={{
@@ -37,98 +35,106 @@ export async function generateOGImage(params: OGImageParams) {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            backgroundColor: "#f7fafc", // Light gray background
-            borderRadius: "24px",
-            border: "2px solid #e2e8f0", // Light border
-            boxSizing: "border-box",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#1a202c",
+            position: 'relative',
+            fontFamily: fontStack,
           }}
         >
-          {/* Main Content Area */}
-          <div style={{ display: "flex", flex: 1, width: "100%", padding: "40px" }}>
-            {/* Left Column: Image */}
-            <div style={{ width: "45%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <img 
-                src={featureImageUrl} 
-                alt=""
-                style={{
-                  width: "100%", 
-                  height: "100%", 
-                  objectFit: "cover", 
-                  borderRadius: "16px"
-                }}
-              />
-            </div>
-
-            {/* Right Column: Text Content */}
-            <div 
-              style={{
-                width: "55%", 
-                display: "flex", 
-                flexDirection: "column", 
-                justifyContent: "center", 
-                paddingLeft: "40px",
-                fontFamily: font,
-              }}
-            >
-              <p style={{ fontSize: "24px", color: "#718096", margin: "0 0 10px 0" }}>
+          <img
+            src={featureImageUrl} 
+            alt="Background Banner"
+            width={1200}
+            height={630}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover', 
+              zIndex: 0, // Unitless
+              filter: 'brightness(0.6) blur(1px)',
+            }}
+          />
+          <div 
+            style={{
+              zIndex: 1, // Unitless
+              position: 'relative',
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              alignItems: 'center',
+              width: '90%',
+              maxWidth: '1000px',
+              padding: '40px',
+              textAlign: 'center',
+              color: '#ffffff',
+            }}
+          >
+            {brandText && (
+              <p style={{ fontSize: '28px', color: '#cbd5e0', margin: '0 0 12px 0', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
                 {brandText}
               </p>
-              <h1 style={{ fontSize: "48px", fontWeight: 700, color: "#2d3748", margin: "0 0 25px 0", lineHeight: 1.3 }}>
-                {title}
-              </h1>
-              <div
+            )}
+            <h1 style={{ 
+              fontSize: '60px', 
+              fontWeight: 800, 
+              margin: '0 0 24px 0', 
+              lineHeight: 1.2,
+              letterSpacing: '-2px',
+              textShadow: '0 3px 6px rgba(0,0,0,0.7)',
+            }}>
+              {title}
+            </h1>
+            {buttonText && (
+              <div // This div acts as the button
                 style={{
-                  display: "inline-flex", // To make it wrap content width
-                  backgroundColor: "#2d3748", // Dark button background
+                  display: 'flex', // Use flex to center content if needed, or 'block'
+                  backgroundColor: "#3182ce",
                   color: "white",
-                  padding: "12px 28px",
+                  padding: "14px 32px",
                   borderRadius: "8px",
-                  fontSize: "22px",
-                  fontWeight: 500,
+                  fontSize: "26px",
+                  fontWeight: 600,
+                  marginTop: '20px',
+                  boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.4)',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
                 {buttonText}
               </div>
+            )}
+          </div>
+          {footerText && (
+            <div 
+              style={{
+                zIndex: 1, // Unitless
+                position: 'absolute', 
+                bottom: '30px', 
+                width: '100%', 
+                textAlign: 'center', 
+                fontSize: '24px',
+                color: '#a0aec0',
+                textShadow: '0 1px 3px rgba(0,0,0,0.6)',
+              }}
+            >
+              {footerText}
             </div>
-          </div>
-
-          {/* Footer Area */}
-          <div 
-            style={{
-              width: "100%", 
-              padding: "20px 40px", 
-              textAlign: "center", 
-              borderTop: "2px solid #e2e8f0",
-              fontSize: "20px",
-              color: "#4a5568",
-              fontFamily: font,
-              boxSizing: "border-box",
-            }}
-          >
-            {footerText}
-          </div>
+          )}
         </div>
       ),
       {
         width: 1200,
         height: 630,
-        // You might need to embed fonts if you use custom ones:
-        // fonts: [
-        //   {
-        //     name: 'YourFontName',
-        //     data: yourFontData, // ArrayBuffer
-        //     style: 'normal',
-        //     weight: 400,
-        //   },
-        // ],
       }
     );
-
-    console.log('OG image generated successfully');
-    return response;
-  } catch (error) {
-    console.error('Error in generateOGImage:', error);
-    throw error;
+  } catch (error: any) {
+    console.error('[og-image.tsx] Error generating OG Image:', error.message, error.stack);
+    return new Response(`Failed to generate OG image: ${error.message}`, { status: 500 });
   }
 }
 
