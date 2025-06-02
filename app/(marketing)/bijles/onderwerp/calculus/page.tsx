@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   title: "Calculus Bijles | Differentiëren & Integreren",
   description: "Professionele calculus bijles voor niet-bèta studenten. Van differentiëren tot integreren, wij maken het begrijpelijk. Boek direct!",
   openGraph: {
-    title: "Calculus Bijles | Differentiëren & Integreren",
+    title: "Calculus Bijles Amsterdam | Diff. & Int.",
     description: "Professionele calculus bijles voor niet-bèta studenten. Van differentiëren tot integreren, wij maken het begrijpelijk. Boek direct!",
     images: [
       {
-        url: "/api/og?title=Calculus%20Bijles&subtitle=Differenti%C3%ABren%20%26%20Integreren&category=Wiskunde",
+        url: "/api/og?title=Calculus%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Start%20Calculus&footerText=Life%20Sci%20%26%20Eco%20(A%27dam)&featureImageUrl=/images/og-calculus-feature.jpg",
         width: 1200,
         height: 630,
-        alt: "Calculus bijles",
+        alt: "Calculus Bijles Amsterdam - Life Sci & Economie | Stephensprivelessen.nl",
       },
     ],
   },

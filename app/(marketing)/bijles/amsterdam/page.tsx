@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     description: "Professionele bijles in Amsterdam voor statistiek, calculus en programmeren. Speciaal voor UvA & VU studenten. Boek direct je eerste les!",
     images: [
       {
-        url: "/api/og?title=Bijles%20in%20Amsterdam&subtitle=Statistiek%2C%20Calculus%20%26%20Programmeren&category=Alle%20vakken",
+        url: "/api/og?title=Top%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Meer%20Info&footerText=Alle%20Vakken%20-%20Amsterdam&featureImageUrl=/images/og-default-feature.jpg",
         width: 1200,
         height: 630,
-        alt: "Bijles in Amsterdam",
+        alt: "Top Bijles Amsterdam - Alle Vakken | Stephensprivelessen.nl",
       },
     ],
   },

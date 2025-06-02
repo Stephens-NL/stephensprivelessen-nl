@@ -1,20 +1,28 @@
+/* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
 interface OGImageParams {
   title?: string;
-  subtitle?: string;
-  category?: string;
+  brandText?: string; // e.g., your domain or brand name
+  buttonText?: string; // e.g., "Read More"
+  footerText?: string; // e.g., Location like "Amsterdam"
+  featureImageUrl?: string; // URL for the main image on the card
 }
 
 export async function generateOGImage(params: OGImageParams) {
-  const { 
-    title = "Bijles in Amsterdam",
-    subtitle = "Statistiek, Calculus & Programmeren",
-    category = "Alle vakken"
+  const {
+    title = "Ontdek Onze Diensten",
+    brandText = "stephensprivelessen.nl",
+    buttonText = "Lees Meer",
+    footerText = "Amsterdam",
+    // IMPORTANT: Replace with your actual image URL or ensure this path is valid in your public folder
+    featureImageUrl = "https://www.stephensprivelessen.nl/images/og-fallback.jpg", // Fallback/default image
   } = params;
+
+  // Basic font stack, consider loading custom fonts for better aesthetics
+  const font = "sans-serif";
 
   return new ImageResponse(
     (
@@ -24,156 +32,93 @@ export async function generateOGImage(params: OGImageParams) {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "white",
-          padding: "40px 80px",
+          backgroundColor: "#f7fafc", // Light gray background
+          borderRadius: "24px",
+          border: "2px solid #e2e8f0", // Light border
+          boxSizing: "border-box",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "center",
-          }}
-        >
-          <h1
-            style={{
-              fontSize: "60px",
-              fontWeight: "bold",
-              color: "#1a365d",
-              marginBottom: "20px",
-              lineHeight: 1.2,
-            }}
-          >
-            {title}
-          </h1>
-          <p
-            style={{
-              fontSize: "32px",
-              color: "#4a5568",
-              marginBottom: "40px",
-            }}
-          >
-            {subtitle}
-          </p>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#ebf8ff",
-              padding: "12px 24px",
-              borderRadius: "8px",
-            }}
-          >
-            <span
+        {/* Main Content Area */}
+        <div style={{ display: "flex", flex: 1, width: "100%", padding: "40px" }}>
+          {/* Left Column: Image */}
+          <div style={{ width: "45%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img 
+              src={featureImageUrl} 
+              alt=""
               style={{
-                fontSize: "24px",
-                color: "#2b6cb0",
-                fontWeight: "medium",
+                width: "100%", 
+                height: "100%", 
+                objectFit: "cover", 
+                borderRadius: "16px"
+              }}
+            />
+          </div>
+
+          {/* Right Column: Text Content */}
+          <div 
+            style={{
+              width: "55%", 
+              display: "flex", 
+              flexDirection: "column", 
+              justifyContent: "center", 
+              paddingLeft: "40px",
+              fontFamily: font,
+            }}
+          >
+            <p style={{ fontSize: "24px", color: "#718096", margin: "0 0 10px 0" }}>
+              {brandText}
+            </p>
+            <h1 style={{ fontSize: "48px", fontWeight: 700, color: "#2d3748", margin: "0 0 25px 0", lineHeight: 1.3 }}>
+              {title}
+            </h1>
+            <div
+              style={{
+                display: "inline-flex", // To make it wrap content width
+                backgroundColor: "#2d3748", // Dark button background
+                color: "white",
+                padding: "12px 28px",
+                borderRadius: "8px",
+                fontSize: "22px",
+                fontWeight: 500,
               }}
             >
-              {category}
-            </span>
+              {buttonText}
+            </div>
           </div>
+        </div>
+
+        {/* Footer Area */}
+        <div 
+          style={{
+            width: "100%", 
+            padding: "20px 40px", 
+            textAlign: "center", 
+            borderTop: "2px solid #e2e8f0",
+            fontSize: "20px",
+            color: "#4a5568",
+            fontFamily: font,
+            boxSizing: "border-box",
+          }}
+        >
+          {footerText}
         </div>
       </div>
     ),
     {
       width: 1200,
       height: 630,
+      // You might need to embed fonts if you use custom ones:
+      // fonts: [
+      //   {
+      //     name: 'YourFontName',
+      //     data: yourFontData, // ArrayBuffer
+      //     style: 'normal',
+      //     weight: 400,
+      //   },
+      // ],
     }
   );
 }
 
-// export async function GET(req: NextRequest) {
-//   try {
-//     const { searchParams } = new URL(req.url);
-// 
-//     // Get dynamic parameters
-//     const title = searchParams.get("title") || "Bijles in Amsterdam";
-//     const subtitle = searchParams.get("subtitle") || "Statistiek, Calculus & Programmeren";
-//     const category = searchParams.get("category") || "Alle vakken";
-// 
-//     // Create the image
-//     return new ImageResponse(
-//       (
-//         <div
-//           style={{
-//             height: "100%",
-//             width: "100%",
-//             display: "flex",
-//             flexDirection: "column",
-//             alignItems: "center",
-//             justifyContent: "center",
-//             backgroundColor: "white",
-//             padding: "40px 80px",
-//           }}
-//         >
-//           <div
-//             style={{
-//               display: "flex",
-//               flexDirection: "column",
-//               alignItems: "center",
-//               justifyContent: "center",
-//               textAlign: "center",
-//             }}
-//           >
-//             <h1
-//               style={{
-//                 fontSize: "60px",
-//                 fontWeight: "bold",
-//                 color: "#1a365d",
-//                 marginBottom: "20px",
-//                 lineHeight: 1.2,
-//               }}
-//             >
-//               {title}
-//             </h1>
-//             <p
-//               style={{
-//                 fontSize: "32px",
-//                 color: "#4a5568",
-//                 marginBottom: "40px",
-//               }}
-//             >
-//               {subtitle}
-//             </p>
-//             <div
-//               style={{
-//                 display: "flex",
-//                 alignItems: "center",
-//                 justifyContent: "center",
-//                 backgroundColor: "#ebf8ff",
-//                 padding: "12px 24px",
-//                 borderRadius: "8px",
-//               }}
-//             >
-//               <span
-//                 style={{
-//                   fontSize: "24px",
-//                   color: "#2b6cb0",
-//                   fontWeight: "medium",
-//                 }}
-//               >
-//                 {category}
-//               </span>
-//             </div>
-//           </div>
-//         </div>
-//       ),
-//       {
-//         width: 1200,
-//         height: 630,
-//       }
-//     );
-//   } catch (e: any) {
-//     console.log(`${e.message}`);
-//     return new Response(`Failed to generate the image`, {
-//       status: 500,
-//     });
-//   }
-// } 
+// Commented out the old GET handler as it's no longer needed here
+// export async function GET(req: NextRequest) { ... } 

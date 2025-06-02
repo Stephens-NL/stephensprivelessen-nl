@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   title: "Programmeren Bijles | Python & R voor Data Science",
   description: "Professionele programmeren bijles voor niet-bèta studenten. Python & R voor data science en statistiek. Boek direct je eerste les!",
   openGraph: {
-    title: "Programmeren Bijles | Python & R voor Data Science",
+    title: "Python/R Bijles Amsterdam | Data Science",
     description: "Professionele programmeren bijles voor niet-bèta studenten. Python & R voor data science en statistiek. Boek direct je eerste les!",
     images: [
       {
-        url: "/api/og?title=Programmeren%20Bijles&subtitle=Python%20%26%20R%20voor%20Data%20Science&category=Programmeren",
+        url: "/api/og?title=Python%2FR%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Start%20Code&footerText=Data%20Science%20(A%27dam)&featureImageUrl=/images/og-programmeren-feature.jpg",
         width: 1200,
         height: 630,
-        alt: "Programmeren bijles",
+        alt: "Python/R Bijles Amsterdam - Data Science | Stephensprivelessen.nl",
       },
     ],
   },

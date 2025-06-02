@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   title: "Statistiek Bijles voor Psychologie Studenten | SPSS & Data Analyse",
   description: "Professionele statistiek bijles voor psychologie studenten. SPSS begeleiding, statistische analyses en scriptie ondersteuning. Boek direct!",
   openGraph: {
-    title: "Statistiek Bijles voor Psychologie Studenten | SPSS & Data Analyse",
+    title: "Statistiek Psychologie A'dam | SPSS & Data Analyse",
     description: "Professionele statistiek bijles voor psychologie studenten. SPSS begeleiding, statistische analyses en scriptie ondersteuning. Boek direct!",
     images: [
       {
-        url: "/images/og/statistiek-psychologie.jpg",
+        url: "/api/og?title=Statistiek%20Psychologie%20A%27dam&brandText=Stephensprivelessen.nl&buttonText=Start%20Analyse&footerText=Voor%20Psychologie%20(UvA%2FVU)&featureImageUrl=/images/og-statistiek-psychologie-feature.jpg",
         width: 1200,
         height: 630,
-        alt: "Statistiek bijles voor psychologie",
+        alt: "Statistiek Psychologie Bijles Amsterdam (UvA/VU) | Stephensprivelessen.nl",
       },
     ],
   },

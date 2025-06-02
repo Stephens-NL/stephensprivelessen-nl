@@ -5,22 +5,22 @@ import Image from "next/image";
 
 export const revalidate = 3600; // Revalidate every hour
 
- export const metadata: Metadata = {
-   title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
-   description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
-   openGraph: {
-     title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
-     description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
-     images: [
-       {
-        url: "/api/og?title=Bijles%20voor%20UvA%20Studenten&subtitle=Science%20Park%20%26%20Roeterseiland&category=UvA%20Campus",
-         width: 1200,
-         height: 630,
-         alt: "UvA Campus bijles",
-       },
-     ],
-   },
- };
+export const metadata: Metadata = {
+  title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
+  description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
+  openGraph: {
+    title: "UvA Bijles Amsterdam | Campus & Zuidas",
+    description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
+    images: [
+      {
+        url: "/api/og?title=UvA%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Details%20UvA&footerText=UvA%3A%20Science%20Park%20%26%20Roeters&featureImageUrl=/images/og-uva-feature.jpg",
+        width: 1200,
+        height: 630,
+        alt: "UvA Bijles Amsterdam - Science Park & Roeters | Stephensprivelessen.nl",
+      },
+    ],
+  },
+};
 
 export default function UVABijlesPage() {
   return (

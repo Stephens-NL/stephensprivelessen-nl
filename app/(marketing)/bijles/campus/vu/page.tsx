@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   title: "Bijles voor VU Studenten | Campus & Zuidas",
   description: "Professionele bijles voor VU studenten. Statistiek, calculus en programmeren bijles op de VU campus en Zuidas. Studentenkorting!",
   openGraph: {
-    title: "Bijles voor VU Studenten | Campus & Zuidas",
+    title: "VU Bijles Amsterdam | Campus & Zuidas",
     description: "Professionele bijles voor VU studenten. Statistiek, calculus en programmeren bijles op de VU campus en Zuidas. Studentenkorting!",
     images: [
       {
-        url: "/api/og?title=Bijles%20voor%20VU%20Studenten&subtitle=Campus%20%26%20Zuidas&category=VU%20Campus",
+        url: "/api/og?title=VU%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Details%20VU&footerText=VU%3A%20Campus%20%26%20Zuidas&featureImageUrl=/images/og-vu-feature.jpg",
         width: 1200,
         height: 630,
-        alt: "VU Campus bijles",
+        alt: "VU Bijles Amsterdam - Campus & Zuidas | Stephensprivelessen.nl",
       },
     ],
   },
