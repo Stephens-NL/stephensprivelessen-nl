@@ -28,10 +28,10 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/mbo-rekenen-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("MBO Rekenen A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Start Rekenen")}&footerText=${encodeURIComponent("MBO Rekentoets Hulp")}&featureImageUrl=/images/mbo-rekenen-banner.jpg`,
         width: 1200,
         height: 630,
-        alt: 'MBO Rekenen Bijles Amsterdam',
+        alt: "MBO Rekenen Bijles Amsterdam | Stephens Privelessen",
       },
     ],
   },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding',
     description: 'Professionele rekenbijles voor MBO-studenten en volwassenen in Amsterdam.',
-    images: ['/images/mbo-rekenen-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("MBO Rekenen A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Start Rekenen")}&footerText=${encodeURIComponent("MBO Rekentoets Hulp")}&featureImageUrl=/images/mbo-rekenen-banner.jpg`],
   },
   robots: {
     index: true,

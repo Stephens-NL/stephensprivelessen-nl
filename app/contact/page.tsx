@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/contact-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("Contact A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Neem Contact Op")}&footerText=${encodeURIComponent("Wiskunde, Statistiek & Meer")}&featureImageUrl=/images/contact-banner.jpg`,
         width: 1200,
         height: 630,
         alt: "Contact Stephens Privelessen Amsterdam",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact | Stephens Privelessen Amsterdam",
     description: "Neem contact op voor professionele bijles en begeleiding in Amsterdam.",
-    images: ['/images/contact-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Contact A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Neem Contact Op")}&footerText=${encodeURIComponent("Wiskunde, Statistiek & Meer")}&featureImageUrl=/images/contact-banner.jpg`],
   },
   alternates: {
     canonical: '/contact',

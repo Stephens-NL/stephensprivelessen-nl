@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/services-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("Onze Diensten A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Bekijk Diensten")}&footerText=${encodeURIComponent("Bijles, Workshops & Meer")}&featureImageUrl=/images/services-banner.jpg`,
         width: 1200,
         height: 630,
         alt: 'Diensten Stephens Privelessen Amsterdam',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Diensten | Stephens Privelessen Amsterdam',
     description: 'Professionele bijles, workshops en consultancy in Amsterdam.',
-    images: ['/images/services-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Onze Diensten A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Bekijk Diensten")}&footerText=${encodeURIComponent("Bijles, Workshops & Meer")}&featureImageUrl=/images/services-banner.jpg`],
   },
   robots: {
     index: true,

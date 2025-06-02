@@ -108,17 +108,17 @@ export async function generateMetadata(props: LocationParams): Promise<Metadata>
       locale: 'nl_NL',
       type: 'website',
       images: [{
-        url: '/images/tutoring-location.jpg',
+        url: `/api/og?title=${encodeURIComponent("Privéles " + locationData.area.replace("Amsterdam ", "A'dam "))}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info " + locationData.area.replace("Amsterdam ", ""))}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-location.jpg`,
         width: 1200,
         height: 630,
-        alt: `Wiskunde & Statistiek Lessen ${locationData.area}`
+        alt: `Privéles Wiskunde & Statistiek ${locationData.area} | Stephens Privelessen`
       }]
     },
     twitter: {
       card: 'summary_large_image',
       title: locationData.title,
       description: locationData.description,
-      images: ['/images/tutoring-location.jpg']
+      images: [`/api/og?title=${encodeURIComponent("Privéles " + locationData.area.replace("Amsterdam ", "A'dam "))}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info " + locationData.area.replace("Amsterdam ", ""))}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-location.jpg`]
     },
     robots: {
       index: true,

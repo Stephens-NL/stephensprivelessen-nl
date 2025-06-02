@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/tutoring-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("Privéles A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info Privéles")}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-banner.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Wiskunde & Statistiek Privelessen Amsterdam',
+        alt: "Privéles Wiskunde & Statistiek Amsterdam | Stephens Privelessen",
       },
     ],
   },
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Privelessen Amsterdam | Wiskunde & Statistiek Expert',
     description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Persoonlijke aanpak op elk niveau.',
-    images: ['/images/tutoring-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Privéles A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info Privéles")}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-banner.jpg`],
   },
   robots: {
     index: true,

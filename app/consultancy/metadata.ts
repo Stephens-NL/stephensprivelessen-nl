@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/consultancy-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("Consultancy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Meer Advies Info")}&footerText=${encodeURIComponent("Data & Statistiek Expert")}&featureImageUrl=/images/consultancy-banner.jpg`,
         width: 1200,
         height: 630,
         alt: 'Data & Statistiek Consultancy Amsterdam',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Consultancy | Data & Statistiek Expert Amsterdam',
     description: 'Expert consultancy in data-analyse en statistiek voor bedrijven en organisaties.',
-    images: ['/images/consultancy-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Consultancy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Meer Advies Info")}&footerText=${encodeURIComponent("Data & Statistiek Expert")}&featureImageUrl=/images/consultancy-banner.jpg`],
   },
   robots: {
     index: true,

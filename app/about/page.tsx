@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/about-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("Over Ons A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Lees Meer")}&footerText=${encodeURIComponent("Onze Visie & Aanpak")}&featureImageUrl=/images/about-banner.jpg`,
         width: 1200,
         height: 630,
         alt: "Over Stephens Privelessen Amsterdam",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Over Ons | Stephens Privelessen Amsterdam",
     description: "Ontdek onze visie op onderwijs en persoonlijke begeleiding.",
-    images: ['/images/about-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Over Ons A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Lees Meer")}&footerText=${encodeURIComponent("Onze Visie & Aanpak")}&featureImageUrl=/images/about-banner.jpg`],
   },
   alternates: {
     canonical: '/about',

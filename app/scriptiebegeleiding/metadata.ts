@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/thesis-supervision.jpg',
+        url: `/api/og?title=${encodeURIComponent("Scriptie Hulp A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Start Scriptie")}&footerText=${encodeURIComponent("Thesis & Methodologie")}&featureImageUrl=/images/thesis-supervision.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Scriptiebegeleiding Amsterdam - Stephens Privelessen',
+        alt: 'Scriptiebegeleiding Amsterdam | Stephens Privelessen',
       },
     ],
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Scriptiebegeleiding Amsterdam | Expert Thesis Begeleiding',
     description: 'Professionele scriptiebegeleiding met focus op statistiek en methodologie. Persoonlijke aanpak voor studenten.',
-    images: ['/images/thesis-supervision.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Scriptie Hulp A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Start Scriptie")}&footerText=${encodeURIComponent("Thesis & Methodologie")}&featureImageUrl=/images/thesis-supervision.jpg`],
   },
   alternates: {
     canonical: '/scriptiebegeleiding',

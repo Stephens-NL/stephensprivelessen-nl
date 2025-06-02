@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/faq-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("FAQ A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Krijg Antwoorden")}&footerText=${encodeURIComponent("Veelgestelde Vragen")}&featureImageUrl=/images/faq-banner.jpg`,
         width: 1200,
         height: 630,
         alt: "FAQ Stephens Privelessen Amsterdam",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FAQ | Stephens Privelessen Amsterdam",
     description: "Veelgestelde vragen over onze bijles en begeleiding in Amsterdam.",
-    images: ['/images/faq-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("FAQ A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Krijg Antwoorden")}&footerText=${encodeURIComponent("Veelgestelde Vragen")}&featureImageUrl=/images/faq-banner.jpg`],
   },
   alternates: {
     canonical: '/faq',

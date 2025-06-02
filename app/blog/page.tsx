@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/blog-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("Blog A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Lees Artikelen")}&footerText=${encodeURIComponent("Wiskunde, Statistiek & Tips")}&featureImageUrl=/images/blog-banner.jpg`,
         width: 1200,
         height: 630,
         alt: "Blog Stephens Privelessen Amsterdam",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Blog | Stephens Privelessen Amsterdam",
     description: "Artikelen over wiskunde, statistiek en academische vaardigheden.",
-    images: ['/images/blog-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Blog A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Lees Artikelen")}&footerText=${encodeURIComponent("Wiskunde, Statistiek & Tips")}&featureImageUrl=/images/blog-banner.jpg`],
   },
   alternates: {
     canonical: '/blog',

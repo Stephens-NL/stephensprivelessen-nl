@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     siteName: 'Stephens Privelessen',
     images: [
       {
-        url: '/images/workshops-banner.jpg',
+        url: `/api/og?title=${encodeURIComponent("Workshops A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Bekijk Workshops")}&footerText=${encodeURIComponent("Wiskunde, Statistiek & Meer")}&featureImageUrl=/images/workshops-banner.jpg`,
         width: 1200,
         height: 630,
-        alt: 'Stephens Privelessen Workshops',
+        alt: "Workshops Wiskunde & Statistiek Amsterdam | Stephens Privelessen",
       },
     ],
   },
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Workshops | Wiskunde, Statistiek & Creatieve Vaardigheden',
     description: 'Interactieve workshops voor wiskunde, statistiek en creatieve vaardigheden.',
-    images: ['/images/workshops-banner.jpg'],
+    images: [`/api/og?title=${encodeURIComponent("Workshops A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Bekijk Workshops")}&footerText=${encodeURIComponent("Wiskunde, Statistiek & Meer")}&featureImageUrl=/images/workshops-banner.jpg`],
   },
   robots: {
     index: true,
