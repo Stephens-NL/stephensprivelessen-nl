@@ -3,22 +3,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 
-export const metadata: Metadata = {
-  title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
-  description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
-  openGraph: {
-    title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
-    description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
-    images: [
-      {
-        url: "/images/og/uva-campus.jpg",
-        width: 1200,
-        height: 630,
-        alt: "UvA Campus bijles",
-      },
-    ],
-  },
-};
+export const revalidate = 3600; // Revalidate every hour
+
+ export const metadata: Metadata = {
+   title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
+   description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
+   openGraph: {
+     title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
+     description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
+     images: [
+       {
+        url: "/api/og?title=Bijles%20voor%20UvA%20Studenten&subtitle=Science%20Park%20%26%20Roeterseiland&category=UvA%20Campus",
+         width: 1200,
+         height: 630,
+         alt: "UvA Campus bijles",
+       },
+     ],
+   },
+ };
 
 export default function UVABijlesPage() {
   return (
