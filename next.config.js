@@ -17,6 +17,11 @@ const nextConfig = {
   },
   // Optimize output
   poweredByHeader: false,
+  // Enable edge runtime for OG image generation
+  experimental: {
+    runtime: 'edge',
+    serverComponentsExternalPackages: ['@vercel/og'],
+  },
 }
 
 module.exports = nextConfig 
