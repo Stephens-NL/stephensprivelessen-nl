@@ -69,7 +69,7 @@ export default function AmsterdamBijlesPage() {
                   <li>Scriptie ondersteuning</li>
                 </ul>
                 <Button className="mt-4" asChild>
-                  <a href="/bijles/onderwerp/statistiek">Meer info</a>
+                  <a href="/bijles/onderwerp/statistiek/psychologie">Meer info</a>
                 </Button>
               </CardContent>
             </Card>
@@ -115,13 +115,18 @@ export default function AmsterdamBijlesPage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>UvA Science Park</li>
-                  <li>VU Campus</li>
+                  <li>UvA - Science Park & Roeters</li>
+                  <li>VU - Campus & Zuidas</li>
                   <li>Studentenkorting</li>
                 </ul>
-                <Button className="mt-4" asChild>
-                  <a href="/bijles/campus">Meer info</a>
-                </Button>
+                <div className="mt-4 space-x-2">
+                  <Button asChild>
+                    <a href="/bijles/campus/uva">Info UvA</a>
+                  </Button>
+                  <Button asChild>
+                    <a href="/bijles/campus/vu">Info VU</a>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>
