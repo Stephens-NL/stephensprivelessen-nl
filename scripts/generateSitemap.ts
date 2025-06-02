@@ -48,6 +48,14 @@ function generateSitemap() {
     urlset.push(createUrlEntry(`/privelessen/${location}`, 'weekly', '0.9'));
   });
 
+  // Add new Bijles pages
+  urlset.push(createUrlEntry('/bijles/amsterdam', 'weekly', '0.9'));
+  urlset.push(createUrlEntry('/bijles/onderwerp/statistiek/psychologie', 'monthly', '0.8'));
+  urlset.push(createUrlEntry('/bijles/onderwerp/calculus', 'monthly', '0.8'));
+  urlset.push(createUrlEntry('/bijles/onderwerp/programmeren', 'monthly', '0.8'));
+  urlset.push(createUrlEntry('/bijles/campus/uva', 'monthly', '0.8'));
+  urlset.push(createUrlEntry('/bijles/campus/vu', 'monthly', '0.8'));
+
   // Add workshop detail pages
   Object.entries(workshops).forEach(([id, workshop]) => {
     if (workshop && typeof workshop === 'object' && 'id' in workshop) {
