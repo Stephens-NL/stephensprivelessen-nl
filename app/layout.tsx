@@ -7,6 +7,7 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import WhatsAppButton from '@/components/shared/WhatsAppButton';
 import { config } from '@/data/config';
 
@@ -328,6 +329,7 @@ export default function RootLayout({
           <main className="pt-14 md:pt-24">{children}</main>
           <Footer />
           <Analytics />
+          <SpeedInsights/>
         </LanguageProvider>
       </body>
     </html>
