@@ -1,7 +1,9 @@
 'use client';
 
+import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
+import { GraduationCap, Briefcase, Book, Calculator } from 'lucide-react';
 
 const targetGroups = [
   {
@@ -10,10 +12,10 @@ const targetGroups = [
       en: 'MBO students level 2, 3 and 4'
     },
     description: {
-      nl: 'Die moeite hebben met rekenen.',
-      en: 'Who struggle with mathematics.'
+      nl: 'Die moeite hebben met rekenen en extra ondersteuning nodig hebben.',
+      en: 'Who struggle with mathematics and need additional support.'
     },
-    icon: '🎓'
+    icon: GraduationCap
   },
   {
     title: {
@@ -21,10 +23,10 @@ const targetGroups = [
       en: 'BBL students'
     },
     description: {
-      nl: 'Die naast hun werk moeite hebben met het rekenonderdeel.',
-      en: 'Who struggle with the mathematics component alongside their work.'
+      nl: 'Die naast hun werk moeite hebben met het rekenonderdeel van hun opleiding.',
+      en: 'Who struggle with the mathematics component of their education alongside their work.'
     },
-    icon: '💼'
+    icon: Briefcase
   },
   {
     title: {
@@ -35,7 +37,7 @@ const targetGroups = [
       nl: 'Die terug naar school zijn gegaan en rekenen als obstakel ervaren.',
       en: 'Who have returned to school and find mathematics as an obstacle.'
     },
-    icon: '📚'
+    icon: Book
   },
   {
     title: {
@@ -43,10 +45,10 @@ const targetGroups = [
       en: 'Students with dyscalculia'
     },
     description: {
-      nl: 'Of andere rekenproblemen.',
-      en: 'Or other mathematics difficulties.'
+      nl: 'Of andere rekenproblemen die speciale aandacht vereisen.',
+      en: 'Or other mathematics difficulties that require special attention.'
     },
-    icon: '🧮'
+    icon: Calculator
   }
 ];
 
@@ -54,39 +56,83 @@ export function TargetGroupSection() {
   const { language } = useLanguage();
 
   return (
-    <section className="py-20 bg-amber-950">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gray-50">
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-            {language === 'NL' ? 'Voor wie geschikt?' : 'Who is it for?'}
+          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+            {language === 'NL' ? 'Voor wie is dit geschikt?' : 'Who is this suitable for?'}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {targetGroups.map((group, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-amber-900 p-6 rounded-lg flex items-start space-x-4"
-              >
-                <div className="text-4xl">{group.icon}</div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            {language === 'NL'
+              ? 'Onze lessen zijn toegankelijk voor iedereen die moeite heeft met rekenen, ongeacht achtergrond of niveau.'
+              : 'Our lessons are accessible to anyone who struggles with mathematics, regardless of background or level.'}
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {targetGroups.map((group, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-200"
+            >
+              <div className="flex items-start gap-6">
+                                 <div className="inline-flex items-center justify-center w-14 h-14 bg-gray-100 rounded-xl group-hover:bg-gray-900 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                   {React.createElement(group.icon, { className: "w-7 h-7" })}
+                 </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-medium text-gray-900 mb-3">
                     {language === 'NL' ? group.title.nl : group.title.en}
                   </h3>
-                  <p className="text-amber-200">
+                  <p className="text-gray-600 leading-relaxed">
                     {language === 'NL' ? group.description.nl : group.description.en}
                   </p>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Additional Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <div className="bg-white rounded-2xl border border-gray-200 p-8 text-center">
+            <h3 className="text-2xl font-light text-gray-900 mb-4">
+              {language === 'NL' ? 'Twijfel je nog?' : 'Still unsure?'}
+            </h3>
+            <p className="text-gray-600 mb-6 max-w-2xl mx-auto leading-relaxed">
+              {language === 'NL'
+                ? 'Geen probleem! We bieden een gratis kennismakingsgesprek aan om te kijken of onze aanpak bij jou past.'
+                : 'No problem! We offer a free introductory meeting to see if our approach suits you.'}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                {language === 'NL' ? 'Geen verplichtingen' : 'No obligations'}
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                {language === 'NL' ? 'Persoonlijk advies' : 'Personal advice'}
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                {language === 'NL' ? 'Gratis intake' : 'Free intake'}
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

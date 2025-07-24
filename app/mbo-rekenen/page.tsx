@@ -17,7 +17,7 @@ export default function Page() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-amber-950 text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <CustomCursor />
       <Header />
       <HeroSection />
