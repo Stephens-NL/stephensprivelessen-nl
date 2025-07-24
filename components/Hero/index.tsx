@@ -44,6 +44,7 @@ const Hero = () => {
               height={400}
               className="rounded-xl shadow-lg"
               priority
+              placeholder="blur"
             />
           </motion.div>
         </div>
