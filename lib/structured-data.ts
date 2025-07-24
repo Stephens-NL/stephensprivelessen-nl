@@ -104,4 +104,38 @@ export function generateSubjectStructuredData({
       "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
     },
   };
-} 
+}
+
+export const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Stephens Privelessen",
+  "url": "https://www.stephensprivelessen.nl",
+  "logo": "https://www.stephensprivelessen.nl/images/logo.png", // Zorg ervoor dat dit pad klopt
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+31-6-12345678", // Voeg je telefoonnummer toe
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Voorbeeldstraat 1", // Voeg je adres toe
+    "addressLocality": "Amsterdam",
+    "postalCode": "1011AA",
+    "addressCountry": "NL"
+  },
+  "sameAs": [
+    "https://www.instagram.com/stephensprivelessen" // Voeg andere sociale media links toe
+  ]
+};
+
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://www.stephensprivelessen.nl",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.stephensprivelessen.nl/zoeken?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}; 

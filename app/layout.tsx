@@ -10,6 +10,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import WhatsAppButton from '@/components/shared/WhatsAppButton';
 import { config } from '@/data/config';
+import { organizationSchema } from '@/lib/structured-data';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' });
@@ -322,6 +323,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl" className={`${inter.variable} ${anton.variable} font-sans`} suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body>
         <LanguageProvider>
           <Header />
