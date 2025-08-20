@@ -54,7 +54,7 @@ export const groupPricingTiers: GroupPricingTier[] = [
     {
         level: "Hoger Onderwijs",
         prices: [
-            { students: 1, duration: "1 uur", price: "€80" },
+            { students: 1, duration: "1 uur", price: "€90" },
             { students: 2, duration: "1 uur", price: "€55" },
             { students: 3, duration: "1,5 uur", price: "€40" },
             { students: 4, duration: "1,5 uur", price: "€35" },
@@ -63,28 +63,46 @@ export const groupPricingTiers: GroupPricingTier[] = [
     {
         level: "Hoger Onderwijs 4-uurs pakket",
         prices: [
-            { students: 1, duration: "4 uur", price: "€62,50" },
-            { students: 2, duration: "4 uur", price: "€45" },
-            { students: 3, duration: "4 uur", price: "€32,50" },
-            { students: 4, duration: "4 uur", price: "€27,50" },
+            { students: 1, duration: "4 uur", price: "€250" },
+            { students: 2, duration: "4 uur", price: "€180" },
+            { students: 3, duration: "4 uur", price: "€150" },
+            { students: 4, duration: "4 uur", price: "€125" },
         ]
     },
     {
-        level: "Middelbare School",
+        level: "Voortgezet Onderwijs (20+)",
         prices: [
-            { students: 1, duration: "1 uur", price: "€60" },
-            { students: 2, duration: "1 uur", price: "€40" },
-            { students: 3, duration: "1,5 uur", price: "€30" },
-            { students: 4, duration: "1,5 uur", price: "€25" },
+            { students: 1, duration: "1 uur", price: "€80" },
+            { students: 2, duration: "1 uur", price: "€55" },
+            { students: 3, duration: "1,5 uur", price: "€40" },
+            { students: 4, duration: "1,5 uur", price: "€35" },
         ]
     },
     {
-        level: "Middelbare School 4-uurs pakket",
+        level: "Voortgezet Onderwijs (20+) 4-uurs pakket",
         prices: [
-            { students: 1, duration: "4 uur", price: "€50" },
-            { students: 2, duration: "4 uur", price: "€35" },
-            { students: 3, duration: "4 uur", price: "€27,50" },
-            { students: 4, duration: "4 uur", price: "€22,50" },
+            { students: 1, duration: "4 uur", price: "€230" },
+            { students: 2, duration: "4 uur", price: "€180" },
+            { students: 3, duration: "4 uur", price: "€150" },
+            { students: 4, duration: "4 uur", price: "€125" },
+        ]
+    },
+    {
+        level: "Voortgezet Onderwijs (20-)",
+        prices: [
+            { students: 1, duration: "1 uur", price: "€75" },
+            { students: 2, duration: "1 uur", price: "€55" },
+            { students: 3, duration: "1,5 uur", price: "€40" },
+            { students: 4, duration: "1,5 uur", price: "€35" },
+        ]
+    },
+    {
+        level: "Voortgezet Onderwijs (20-) 4-uurs pakket",
+        prices: [
+            { students: 1, duration: "4 uur", price: "€200" },
+            { students: 2, duration: "4 uur", price: "€165" },
+            { students: 3, duration: "4 uur", price: "€150" },
+            { students: 4, duration: "4 uur", price: "€125" },
         ]
     }
 ];
