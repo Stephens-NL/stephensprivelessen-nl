@@ -153,15 +153,13 @@ export default async function LocationPage(props: LocationParams) {
   const serviceJsonLd = generateServiceStructuredData({
     title: `Wiskunde & Statistiek Bijles ${locationData.area}`,
     description: locationData.description,
-    price: 45,
-    priceCurrency: 'EUR',
     provider: {
       name: 'Stephens Privelessen',
       type: 'EducationalOrganization',
     },
     areaServed: locationData.area,
     serviceType: 'Bijles',
-    category: ['Mathematics', 'Statistics', 'Programming'],
+    category: ['Wiskunde', 'Statistiek', 'Programmeren'],
   });
 
   return (

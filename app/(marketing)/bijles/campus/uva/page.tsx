@@ -9,8 +9,8 @@ import Link from "next/link";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "UvA Bijles Amsterdam | Science Park & Roeterseiland - Studentenkorting",
-  description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R. Studentenkorting €40/uur. 5 minuten van campus.",
+  title: "UvA Bijles Amsterdam | Science Park & Roeterseiland",
+  description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R.",
   keywords: [
     'uva bijles amsterdam',
     'science park bijles',
@@ -18,15 +18,14 @@ export const metadata: Metadata = {
     'uva studenten bijles',
     'statistiek uva',
     'calculus uva',
-    'python uva',
-    'studentenkorting bijles'
+    'python uva'
   ],
   openGraph: {
     title: "UvA Bijles Amsterdam | Science Park & Roeterseiland",
-    description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R. Studentenkorting €40/uur.",
+    description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R.",
     images: [
       {
-        url: "/api/og?title=UvA%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Studentenkorting&footerText=Science%20Park%20%E2%80%A2%20Roeterseiland&featureImageUrl=/images/og-uva-feature.jpg",
+        url: "/api/og?title=UvA%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Meer%20info&footerText=Science%20Park%20%E2%80%A2%20Roeterseiland&featureImageUrl=/images/og-uva-feature.jpg",
         width: 1200,
         height: 630,
         alt: "UvA Bijles Amsterdam - Science Park & Roeters | Stephensprivelessen.nl",
@@ -37,9 +36,7 @@ export const metadata: Metadata = {
 
 const structuredData = generateCampusStructuredData({
   title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
-  description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
-  price: 40, // Student price
-  priceCurrency: "EUR",
+  description: "Bijles voor UvA studenten. Statistiek, calculus en programmeren op Science Park en Roeterseiland.",
   provider: {
     name: "StephensPrivelessen",
     type: "Person",
@@ -63,12 +60,12 @@ export default function UVABijlesPage() {
           </h1>
           <div className="mb-6">
             <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
-              &laquo; Terug naar Bijles Amsterdam Overzicht
+              « Terug naar Bijles Amsterdam Overzicht
             </Link>
           </div>
           
           <p className="text-xl mb-8">
-            Speciaal voor UvA studenten: professionele bijles op Science Park en Roeterseiland. 
+            Speciaal voor UvA studenten: bijles op Science Park en Roeterseiland. 
             Van statistiek tot programmeren, wij helpen je door je studie.
           </p>
 
@@ -76,7 +73,7 @@ export default function UVABijlesPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Science Park</CardTitle>
-                <CardDescription>Voor life sciences & beta studies</CardDescription>
+                <CardDescription>Voor life sciences & bèta studies</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
@@ -96,27 +93,12 @@ export default function UVABijlesPage() {
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>SPSS & statistiek</li>
-                  <li>Scriptie begeleiding</li>
+                  <li>Scriptiebegeleiding</li>
                   <li>Data analyse</li>
                   <li>Centrale locatie</li>
                 </ul>
               </CardContent>
             </Card>
-          </div>
-
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
-            <h2 className="text-2xl font-bold mb-4">UvA Studentenkorting</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h3 className="font-semibold mb-2">Regulier tarief</h3>
-                <p className="text-2xl font-bold">€45/uur</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">UvA studenten</h3>
-                <p className="text-2xl font-bold">€40/uur</p>
-                <p className="text-sm">Toon je studentenpas</p>
-              </div>
-            </div>
           </div>
 
           <div className="prose max-w-none">
@@ -142,20 +124,6 @@ export default function UVABijlesPage() {
               <li>Dichtbij Weesperplein metro</li>
               <li>Studievriendelijke omgeving</li>
             </ul>
-
-            <h2>Wat zeggen UvA studenten?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <blockquote className="border-l-4 border-blue-500 pl-4">
-                "De bijles op Science Park was perfect voor mijn calculus tentamen. 
-                Eindelijk begreep ik de stof!"
-                <footer className="mt-2 text-sm">- Lisa, Psychologie</footer>
-              </blockquote>
-              <blockquote className="border-l-4 border-blue-500 pl-4">
-                "De SPSS begeleiding heeft me echt geholpen met mijn scriptie. 
-                Zeer aan te raden!"
-                <footer className="mt-2 text-sm">- Thomas, Economie</footer>
-              </blockquote>
-            </div>
           </div>
 
           <div className="mt-8">

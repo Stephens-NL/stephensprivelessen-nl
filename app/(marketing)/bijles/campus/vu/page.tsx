@@ -8,8 +8,8 @@ import Link from "next/link";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "VU Bijles Amsterdam | Campus & Zuidas - Studentenkorting",
-  description: "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R. Studentenkorting €40/uur. 5 minuten van VU campus.",
+  title: "VU Bijles Amsterdam | Campus & Zuidas",
+  description: "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R.",
   keywords: [
     'vu bijles amsterdam',
     'vu campus bijles',
@@ -17,15 +17,14 @@ export const metadata: Metadata = {
     'vu studenten bijles',
     'econometrie vu',
     'statistiek vu',
-    'python vu',
-    'studentenkorting bijles'
+    'python vu'
   ],
   openGraph: {
     title: "VU Bijles Amsterdam | Campus & Zuidas",
-    description: "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R. Studentenkorting €40/uur.",
+    description: "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R.",
     images: [
       {
-        url: "/api/og?title=VU%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Studentenkorting&footerText=VU%20Campus%20%E2%80%A2%20Zuidas&featureImageUrl=/images/og-vu-feature.jpg",
+        url: "/api/og?title=VU%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Meer%20info&footerText=VU%20Campus%20%E2%80%A2%20Zuidas&featureImageUrl=/images/og-vu-feature.jpg",
         width: 1200,
         height: 630,
         alt: "VU Bijles Amsterdam - Campus & Zuidas | Stephensprivelessen.nl",
@@ -36,9 +35,7 @@ export const metadata: Metadata = {
 
 const structuredData = generateCampusStructuredData({
   title: "Bijles voor VU Studenten | Campus & Zuidas",
-  description: "Professionele bijles voor VU studenten. Statistiek, calculus en programmeren bijles op de VU campus en Zuidas.",
-  price: 40,
-  priceCurrency: "EUR",
+  description: "Bijles voor VU studenten. Statistiek, calculus en programmeren op de VU campus en Zuidas.",
   provider: {
     name: "StephensPrivelessen",
     type: "Person",
@@ -62,12 +59,12 @@ export default function VUBijlesPage() {
           </h1>
           <div className="mb-6">
             <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
-              &laquo; Terug naar Bijles Amsterdam Overzicht
+              « Terug naar Bijles Amsterdam Overzicht
             </Link>
           </div>
           
           <p className="text-xl mb-8">
-            Speciaal voor VU studenten: professionele bijles op de VU campus en Zuidas. 
+            Speciaal voor VU studenten: bijles op de VU campus en Zuidas. 
             Van statistiek tot programmeren, wij helpen je door je studie.
           </p>
 
@@ -103,21 +100,6 @@ export default function VUBijlesPage() {
             </Card>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
-            <h2 className="text-2xl font-bold mb-4">VU Studentenkorting</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <h3 className="font-semibold mb-2">Regulier tarief</h3>
-                <p className="text-2xl font-bold">€45/uur</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">VU studenten</h3>
-                <p className="text-2xl font-bold">€40/uur</p>
-                <p className="text-sm">Toon je studentenpas</p>
-              </div>
-            </div>
-          </div>
-
           <div className="prose max-w-none">
             <h2>Routebeschrijving</h2>
             
@@ -141,20 +123,6 @@ export default function VUBijlesPage() {
               <li>Dichtbij Zuidas metro</li>
               <li>Studievriendelijke omgeving</li>
             </ul>
-
-            <h2>Wat zeggen VU studenten?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <blockquote className="border-l-4 border-blue-500 pl-4">
-                "De bijles op de VU campus was perfect voor mijn econometrie tentamen. 
-                Eindelijk begreep ik de stof!"
-                <footer className="mt-2 text-sm">- Emma, Economie</footer>
-              </blockquote>
-              <blockquote className="border-l-4 border-blue-500 pl-4">
-                "De Python begeleiding heeft me echt geholpen met mijn data science project. 
-                Zeer aan te raden!"
-                <footer className="mt-2 text-sm">- David, Business Analytics</footer>
-              </blockquote>
-            </div>
           </div>
 
           <div className="mt-8">

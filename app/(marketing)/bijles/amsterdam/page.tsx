@@ -8,7 +8,7 @@ export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
   title: "Bijles Amsterdam voor UvA & VU | Statistiek, Calculus & Programmeren",
-  description: "Bijles in Amsterdam voor UvA & VU studenten: statistiek (SPSS, R), calculus en programmeren. 1‑op‑1 begeleiding, flexibele tijden. Boek direct.",
+  description: "Bijles in Amsterdam: statistiek (SPSS, R), calculus en programmeren. 1‑op‑1 begeleiding, flexibele tijden. Boek direct.",
   keywords: [
     'bijles amsterdam',
     'statistiek bijles amsterdam',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Bijles Amsterdam | Statistiek, Calculus & Programmeren",
-    description: "Bijles in Amsterdam voor statistiek, calculus en programmeren. Speciaal voor UvA & VU studenten. 1‑op‑1 begeleiding.",
+    description: "Bijles in Amsterdam voor statistiek, calculus en programmeren. 1‑op‑1 begeleiding.",
     images: [
       {
         url: "/api/og?title=Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Boek%20les&footerText=Statistiek%20%E2%80%A2%20Calculus%20%E2%80%A2%20Programmeren&featureImageUrl=/images/og-default-feature.jpg",
@@ -35,9 +35,7 @@ export const metadata: Metadata = {
 
 const structuredData = generateStructuredData({
   title: "Bijles in Amsterdam | Statistiek, Calculus & Programmeren",
-  description: "Professionele bijles in Amsterdam voor statistiek, calculus en programmeren. Speciaal voor UvA & VU studenten.",
-  price: 45,
-  priceCurrency: "EUR",
+  description: "Professionele bijles in Amsterdam voor statistiek, calculus en programmeren.",
   provider: {
     name: "StephensPrivelessen",
     type: "Person",
@@ -45,7 +43,7 @@ const structuredData = generateStructuredData({
   areaServed: "Amsterdam",
   category: ["Psychology", "Business & Economics", "Life Sciences"],
   educationalProgramMode: "One-on-one tutoring",
-  timeToComplete: "PT90M", // 90 minutes
+  timeToComplete: "PT90M",
 });
 
 export default function AmsterdamBijlesPage() {
@@ -127,7 +125,6 @@ export default function AmsterdamBijlesPage() {
                 <ul className="list-disc pl-5 space-y-2">
                   <li>UvA - Science Park & Roeters</li>
                   <li>VU - Campus & Zuidas</li>
-                  <li>Studentenkorting</li>
                 </ul>
                 <div className="mt-4 space-x-2">
                   <Button asChild>
@@ -168,7 +165,6 @@ export default function AmsterdamBijlesPage() {
               <li>1-op-1 begeleiding op jouw tempo</li>
               <li>Praktijkgerichte voorbeelden uit jouw vakgebied</li>
               <li>Flexibele planning, ook 's avonds mogelijk</li>
-              <li>Studentenkorting voor UvA & VU studenten</li>
             </ul>
           </div>
         </div>

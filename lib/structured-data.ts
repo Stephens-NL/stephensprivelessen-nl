@@ -1,8 +1,8 @@
 export interface StructuredDataProps {
   title: string;
   description: string;
-  price: number;
-  priceCurrency: string;
+  price?: number;
+  priceCurrency?: string;
   provider: {
     name: string;
     type: string;
@@ -26,7 +26,7 @@ export function generateStructuredData({
   timeToComplete,
   category,
 }: StructuredDataProps) {
-  return {
+  const base: any = {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalProgram",
     "name": title,
@@ -40,12 +40,15 @@ export function generateStructuredData({
     "educationalCredentialAwarded": educationalCredentialAwarded,
     "educationalProgramMode": educationalProgramMode,
     "timeToComplete": timeToComplete,
-    "offers": {
+  };
+  if (price !== undefined && priceCurrency) {
+    base.offers = {
       "@type": "Offer",
       "price": price,
       "priceCurrency": priceCurrency,
-    },
-  };
+    };
+  }
+  return base;
 }
 
 export function generateCampusStructuredData({
@@ -57,7 +60,7 @@ export function generateCampusStructuredData({
   areaServed,
   category,
 }: StructuredDataProps) {
-  return {
+  const base: any = {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalProgram",
     "name": title,
@@ -68,13 +71,16 @@ export function generateCampusStructuredData({
     },
     "occupationalCategory": category,
     "areaServed": areaServed,
-    "offers": {
+  };
+  if (price !== undefined && priceCurrency) {
+    base.offers = {
       "@type": "Offer",
       "price": price,
       "priceCurrency": priceCurrency,
       "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-    },
-  };
+    };
+  }
+  return base;
 }
 
 export function generateSubjectStructuredData({
@@ -86,7 +92,7 @@ export function generateSubjectStructuredData({
   areaServed,
   category,
 }: StructuredDataProps) {
-  return {
+  const base: any = {
     "@context": "https://schema.org",
     "@type": "EducationalOccupationalProgram",
     "name": title,
@@ -97,13 +103,16 @@ export function generateSubjectStructuredData({
     },
     "occupationalCategory": category,
     "areaServed": areaServed,
-    "offers": {
+  };
+  if (price !== undefined && priceCurrency) {
+    base.offers = {
       "@type": "Offer",
       "price": price,
       "priceCurrency": priceCurrency,
       "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-    },
-  };
+    };
+  }
+  return base;
 }
 
 export const organizationSchema = {
@@ -152,8 +161,8 @@ export function generateServiceStructuredData({
 }: {
   title: string;
   description: string;
-  price: number;
-  priceCurrency: string;
+  price?: number;
+  priceCurrency?: string;
   provider: {
     name: string;
     type: string;
@@ -162,7 +171,7 @@ export function generateServiceStructuredData({
   serviceType: string;
   category: string[];
 }) {
-  return {
+  const base: any = {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": title,
@@ -177,11 +186,14 @@ export function generateServiceStructuredData({
       "name": areaServed
     },
     "category": category,
-    "offers": {
+  };
+  if (price !== undefined && priceCurrency) {
+    base.offers = {
       "@type": "Offer",
       "price": price,
       "priceCurrency": priceCurrency,
       "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-    },
-  };
+    };
+  }
+  return base;
 } 
