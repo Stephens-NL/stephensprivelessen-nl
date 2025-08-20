@@ -56,5 +56,27 @@ export const metadata: Metadata = {
 export const revalidate = 3600; // Revalidate every hour
 
 export default function FaqPage() {
-  return <FAQPage faqInfo={faqData.faqInfo} faqItems={faqData.faqItems} />;
+  // Build FAQPage JSON-LD from data
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqData.faqItems.map((item: any) => ({
+      '@type': 'Question',
+      name: item.question?.NL || item.question?.EN,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer?.NL || item.answer?.EN
+      }
+    }))
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <FAQPage faqInfo={faqData.faqInfo} faqItems={faqData.faqItems} />
+    </>
+  );
 }

@@ -8,14 +8,24 @@ import Link from "next/link";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "Programmeren Bijles | Python & R voor Data Science",
-  description: "Professionele programmeren bijles voor niet-bèta studenten. Python & R voor data science en statistiek. Boek direct je eerste les!",
+  title: "Python & R Bijles Amsterdam | Data Science voor Psychologie & Economie",
+  description: "Python en R bijles in Amsterdam voor data science. Speciaal voor psychologie, economie en life sciences studenten. SPSS, R Studio begeleiding.",
+  keywords: [
+    'python bijles amsterdam',
+    'r studio bijles amsterdam',
+    'data science bijles',
+    'spss hulp amsterdam',
+    'programmeren psychologie',
+    'python economie',
+    'r studio begeleiding',
+    'data analyse bijles'
+  ],
   openGraph: {
-    title: "Python/R Bijles Amsterdam | Data Science",
-    description: "Professionele programmeren bijles voor niet-bèta studenten. Python & R voor data science en statistiek. Boek direct je eerste les!",
+    title: "Python & R Bijles Amsterdam | Data Science",
+    description: "Python en R bijles voor data science. Speciaal voor psychologie, economie en life sciences studenten in Amsterdam.",
     images: [
       {
-        url: "/api/og?title=Python%2FR%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Start%20Code&footerText=Data%20Science%20(A%27dam)&featureImageUrl=/images/og-programmeren-feature.jpg",
+        url: "/api/og?title=Python%20%26%20R%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Start%20Code&footerText=Data%20Science%20%E2%80%A2%20Statistiek&featureImageUrl=/images/og-programmeren-feature.jpg",
         width: 1200,
         height: 630,
         alt: "Python/R Bijles Amsterdam - Data Science | Stephensprivelessen.nl",
@@ -128,6 +138,28 @@ export default function ProgrammerenBijlesPage() {
                 vakgebied maken het veel begrijpelijker."
                 <footer className="mt-2 text-sm">- Mark, Business Analytics</footer>
               </blockquote>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+            <h2 className="text-2xl font-bold mb-6">Veelgestelde Vragen - Python & R</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Moet ik al kunnen programmeren voor deze bijles?</h3>
+                <p className="text-gray-700">Nee, we beginnen bij de basis. We leren je Python en R vanaf het begin, speciaal gericht op data science en statistiek voor jouw vakgebied.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Wat is het verschil tussen Python en R?</h3>
+                <p className="text-gray-700">Python is veelzijdiger en populair in data science, machine learning en business analytics. R is specifiek ontwikkeld voor statistiek en wordt veel gebruikt in psychologie en life sciences onderzoek.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Welke tools gebruiken jullie tijdens de lessen?</h3>
+                <p className="text-gray-700">We gebruiken Jupyter Notebooks voor Python, R Studio voor R, en werken met echte datasets uit jouw vakgebied. Je krijgt ook toegang tot onze oefenmaterialen.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Kan ik ook hulp krijgen met mijn scriptie data analyse?</h3>
+                <p className="text-gray-700">Ja, we helpen je graag met data analyse voor je scriptie. Van data cleaning tot statistische analyses en visualisaties - we begeleiden je door het hele proces.</p>
+              </div>
             </div>
           </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { TutoringPage } from '@/components/privelessen';
 import { notFound } from 'next/navigation';
+import { generateServiceStructuredData } from '@/lib/structured-data';
 
 // Define valid locations
 const validLocations = {
@@ -108,7 +109,7 @@ export async function generateMetadata(props: LocationParams): Promise<Metadata>
       locale: 'nl_NL',
       type: 'website',
       images: [{
-        url: `/api/og?title=${encodeURIComponent("Privéles " + locationData.area.replace("Amsterdam ", "A'dam "))}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info " + locationData.area.replace("Amsterdam ", ""))}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-location.jpg`,
+        url: `/api/og?title=${encodeURIComponent("Privéles " + locationData.area.replace("Amsterdam ", "A'dam "))}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info " + locationData.area.replace("Amsterdam ", ""))}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-hero.jpg`,
         width: 1200,
         height: 630,
         alt: `Privéles Wiskunde & Statistiek ${locationData.area} | Stephens Privelessen`
@@ -118,7 +119,7 @@ export async function generateMetadata(props: LocationParams): Promise<Metadata>
       card: 'summary_large_image',
       title: locationData.title,
       description: locationData.description,
-      images: [`/api/og?title=${encodeURIComponent("Privéles " + locationData.area.replace("Amsterdam ", "A'dam "))}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info " + locationData.area.replace("Amsterdam ", ""))}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-location.jpg`]
+      images: [`/api/og?title=${encodeURIComponent("Privéles " + locationData.area.replace("Amsterdam ", "A'dam "))}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Info " + locationData.area.replace("Amsterdam ", ""))}&footerText=${encodeURIComponent("Wiskunde & Statistiek")}&featureImageUrl=/images/tutoring-hero.jpg`]
     },
     robots: {
       index: true,
@@ -149,33 +150,25 @@ export default async function LocationPage(props: LocationParams) {
     notFound();
   }
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: `Wiskunde & Statistiek Bijles ${locationData.area}`,
+  const serviceJsonLd = generateServiceStructuredData({
+    title: `Wiskunde & Statistiek Bijles ${locationData.area}`,
+    description: locationData.description,
+    price: 45,
+    priceCurrency: 'EUR',
     provider: {
-      '@type': 'EducationalOrganization',
       name: 'Stephens Privelessen',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: locationData.area,
-        addressRegion: 'NH',
-        addressCountry: 'NL'
-      }
+      type: 'EducationalOrganization',
     },
+    areaServed: locationData.area,
     serviceType: 'Bijles',
-    areaServed: {
-      '@type': 'City',
-      name: locationData.area
-    },
-    description: locationData.description
-  };
+    category: ['Mathematics', 'Statistics', 'Programming'],
+  });
 
   return (
     <React.Fragment>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
       <main>
         <TutoringPage 

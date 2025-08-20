@@ -8,6 +8,7 @@ import ButtonTrial from '../ButtonTrial';
 import SignInHere from './SignInHere';
 import { useTranslation } from '../../hooks/useTranslation';
 import { hero } from '@/data/hero';
+import portrait2 from '@/public/images/jpeg/portrait2.jpeg';
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ const Hero = () => {
             className="relative w-full max-w-lg mx-auto"
           >
             <Image
-              src={imageSrc}
+              src={portrait2}
               alt={String(t(altern))}
               width={600}
               height={400}

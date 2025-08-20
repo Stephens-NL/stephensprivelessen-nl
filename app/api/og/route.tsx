@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
     // Prepend site URL if featureImageUrl is relative (e.g., /images/banner.jpg)
     // This assumes NEXT_PUBLIC_SITE_URL is set in your environment variables
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://stephensprivelessen.nl';
     if (featureImageUrl && featureImageUrl.startsWith('/')) {
       featureImageUrl = `${siteUrl}${featureImageUrl}`;
     } else if (!featureImageUrl) {

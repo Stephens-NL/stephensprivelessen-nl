@@ -8,14 +8,24 @@ import Link from "next/link";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "Statistiek Bijles voor Psychologie Studenten | SPSS & Data Analyse",
-  description: "Professionele statistiek bijles voor psychologie studenten. SPSS begeleiding, statistische analyses en scriptie ondersteuning. Boek direct!",
+  title: "Statistiek Bijles Amsterdam | SPSS voor Psychologie Studenten",
+  description: "Statistiek bijles in Amsterdam voor psychologie studenten. SPSS begeleiding, χ²-tests, ANOVA. UvA & VU studenten. Scriptie ondersteuning.",
+  keywords: [
+    'statistiek bijles amsterdam',
+    'spss bijles amsterdam',
+    'psychologie statistiek',
+    'spss hulp amsterdam',
+    'statistiek uva',
+    'statistiek vu',
+    'chi kwadraat toets',
+    'anova bijles'
+  ],
   openGraph: {
-    title: "Statistiek Psychologie A'dam | SPSS & Data Analyse",
-    description: "Professionele statistiek bijles voor psychologie studenten. SPSS begeleiding, statistische analyses en scriptie ondersteuning. Boek direct!",
+    title: "Statistiek Bijles Amsterdam | SPSS voor Psychologie",
+    description: "Statistiek bijles voor psychologie studenten. SPSS begeleiding, χ²-tests, ANOVA. UvA & VU studenten in Amsterdam.",
     images: [
       {
-        url: "/api/og?title=Statistiek%20Psychologie%20A%27dam&brandText=Stephensprivelessen.nl&buttonText=Start%20Analyse&footerText=Voor%20Psychologie%20(UvA%2FVU)&featureImageUrl=/images/og-statistiek-psychologie-feature.jpg",
+        url: "/api/og?title=Statistiek%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=SPSS%20Hulp&footerText=Psychologie%20%E2%80%A2%20UvA%20%26%20VU&featureImageUrl=/images/og-statistiek-psychologie-feature.jpg",
         width: 1200,
         height: 630,
         alt: "Statistiek Psychologie Bijles Amsterdam (UvA/VU) | Stephensprivelessen.nl",
@@ -143,6 +153,28 @@ export default function StatistiekPsychologiePage() {
                   <li>Mediatie & moderatie</li>
                   <li>Multilevel analyses</li>
                 </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+            <h2 className="text-2xl font-bold mb-6">Veelgestelde Vragen - Statistiek</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Welke statistische tests behandelen jullie?</h3>
+                <p className="text-gray-700">We behandelen alle gangbare tests: t-toetsen, ANOVA, chi-kwadraat toetsen, correlaties, regressie-analyses, factor analyses en non-parametrische tests.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Hoe help je me met SPSS?</h3>
+                <p className="text-gray-700">Van data invoer tot output interpretatie. We leren je stap voor stap hoe je analyses uitvoert en hoe je de resultaten correct interpreteert en rapporteert.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Wat als ik helemaal geen wiskunde achtergrond heb?</h3>
+                <p className="text-gray-700">Geen probleem! We beginnen bij de absolute basis en bouwen stap voor stap op. We focussen op begrip en praktische toepassing, niet op ingewikkelde formules.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Kunnen jullie ook helpen met mijn scriptie statistiek?</h3>
+                <p className="text-gray-700">Ja, we helpen je met de volledige statistische analyse voor je scriptie: van onderzoeksvraag tot resultaten en interpretatie. We begeleiden je door het hele proces.</p>
               </div>
             </div>
           </div>

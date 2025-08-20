@@ -7,14 +7,24 @@ import Script from "next/script";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "Bijles in Amsterdam | Statistiek, Calculus & Programmeren",
-  description: "Professionele bijles in Amsterdam voor statistiek, calculus en programmeren. Speciaal voor UvA & VU studenten. Boek direct je eerste les!",
+  title: "Bijles Amsterdam voor UvA & VU | Statistiek, Calculus & Programmeren",
+  description: "Bijles in Amsterdam voor UvA & VU studenten: statistiek (SPSS, R), calculus en programmeren. 1‑op‑1 begeleiding, flexibele tijden. Boek direct.",
+  keywords: [
+    'bijles amsterdam',
+    'statistiek bijles amsterdam',
+    'calculus bijles amsterdam',
+    'programmeren bijles amsterdam',
+    'uva bijles',
+    'vu bijles',
+    'spss hulp amsterdam',
+    'r tutor amsterdam'
+  ],
   openGraph: {
-    title: "Bijles in Amsterdam | Statistiek, Calculus & Programmeren",
-    description: "Professionele bijles in Amsterdam voor statistiek, calculus en programmeren. Speciaal voor UvA & VU studenten. Boek direct je eerste les!",
+    title: "Bijles Amsterdam | Statistiek, Calculus & Programmeren",
+    description: "Bijles in Amsterdam voor statistiek, calculus en programmeren. Speciaal voor UvA & VU studenten. 1‑op‑1 begeleiding.",
     images: [
       {
-        url: "/api/og?title=Top%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Meer%20Info&footerText=Alle%20Vakken%20-%20Amsterdam&featureImageUrl=/images/og-default-feature.jpg",
+        url: "/api/og?title=Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Boek%20les&footerText=Statistiek%20%E2%80%A2%20Calculus%20%E2%80%A2%20Programmeren&featureImageUrl=/images/og-default-feature.jpg",
         width: 1200,
         height: 630,
         alt: "Top Bijles Amsterdam - Alle Vakken | Stephensprivelessen.nl",

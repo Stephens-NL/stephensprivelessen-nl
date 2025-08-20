@@ -9,14 +9,24 @@ import Link from "next/link";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
-  description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
+  title: "UvA Bijles Amsterdam | Science Park & Roeterseiland - Studentenkorting",
+  description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R. Studentenkorting €40/uur. 5 minuten van campus.",
+  keywords: [
+    'uva bijles amsterdam',
+    'science park bijles',
+    'roeterseiland bijles',
+    'uva studenten bijles',
+    'statistiek uva',
+    'calculus uva',
+    'python uva',
+    'studentenkorting bijles'
+  ],
   openGraph: {
-    title: "UvA Bijles Amsterdam | Campus & Zuidas",
-    description: "Professionele bijles voor UvA studenten. Statistiek, calculus en programmeren bijles op Science Park en Roeterseiland. Studentenkorting!",
+    title: "UvA Bijles Amsterdam | Science Park & Roeterseiland",
+    description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R. Studentenkorting €40/uur.",
     images: [
       {
-        url: "/api/og?title=UvA%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Details%20UvA&footerText=UvA%3A%20Science%20Park%20%26%20Roeters&featureImageUrl=/images/og-uva-feature.jpg",
+        url: "/api/og?title=UvA%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Studentenkorting&footerText=Science%20Park%20%E2%80%A2%20Roeterseiland&featureImageUrl=/images/og-uva-feature.jpg",
         width: 1200,
         height: 630,
         alt: "UvA Bijles Amsterdam - Science Park & Roeters | Stephensprivelessen.nl",

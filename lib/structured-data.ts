@@ -109,33 +109,79 @@ export function generateSubjectStructuredData({
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  "name": "Stephens Privelessen",
-  "url": "https://www.stephensprivelessen.nl",
-  "logo": "https://www.stephensprivelessen.nl/images/logo.png", // Zorg ervoor dat dit pad klopt
+  "name": "Stephen's Privelessen",
+  "url": "https://stephensprivelessen.nl",
+  "logo": "https://stephensprivelessen.nl/favicon/android-chrome-512x512.png",
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+31-6-12345678", // Voeg je telefoonnummer toe
+    "telephone": "+31 6 47 35 74 26",
     "contactType": "Customer Service"
   },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Voorbeeldstraat 1", // Voeg je adres toe
+    "streetAddress": "Science Park 904",
     "addressLocality": "Amsterdam",
-    "postalCode": "1011AA",
+    "postalCode": "1098 XH",
     "addressCountry": "NL"
   },
   "sameAs": [
-    "https://www.instagram.com/stephensprivelessen" // Voeg andere sociale media links toe
+    "https://www.instagram.com/stephensprivelessen"
   ]
 };
 
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "url": "https://www.stephensprivelessen.nl",
+  "url": "https://stephensprivelessen.nl",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://www.stephensprivelessen.nl/zoeken?q={search_term_string}",
+    "target": "https://stephensprivelessen.nl/zoeken?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
-}; 
+};
+
+export function generateServiceStructuredData({
+  title,
+  description,
+  price,
+  priceCurrency,
+  provider,
+  areaServed,
+  serviceType,
+  category,
+}: {
+  title: string;
+  description: string;
+  price: number;
+  priceCurrency: string;
+  provider: {
+    name: string;
+    type: string;
+  };
+  areaServed: string;
+  serviceType: string;
+  category: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": title,
+    "description": description,
+    "provider": {
+      "@type": provider.type,
+      "name": provider.name,
+    },
+    "serviceType": serviceType,
+    "areaServed": {
+      "@type": "City",
+      "name": areaServed
+    },
+    "category": category,
+    "offers": {
+      "@type": "Offer",
+      "price": price,
+      "priceCurrency": priceCurrency,
+      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
+    },
+  };
+} 

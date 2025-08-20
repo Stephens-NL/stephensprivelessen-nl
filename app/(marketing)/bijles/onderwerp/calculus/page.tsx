@@ -8,14 +8,24 @@ import Link from "next/link";
 export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: "Calculus Bijles | Differentiëren & Integreren",
-  description: "Professionele calculus bijles voor niet-bèta studenten. Van differentiëren tot integreren, wij maken het begrijpelijk. Boek direct!",
+  title: "Calculus Bijles Amsterdam | Differentiëren & Integreren voor Life Sciences",
+  description: "Calculus bijles in Amsterdam voor Life Sciences en Economie studenten. Differentiëren, integreren en toegepaste wiskunde. 1‑op‑1 begeleiding.",
+  keywords: [
+    'calculus bijles amsterdam',
+    'differentiëren bijles',
+    'integreren bijles',
+    'wiskunde life sciences',
+    'calculus economie',
+    'toegepaste wiskunde bijles',
+    'afgeleiden berekenen',
+    'integralen berekenen'
+  ],
   openGraph: {
-    title: "Calculus Bijles Amsterdam | Diff. & Int.",
-    description: "Professionele calculus bijles voor niet-bèta studenten. Van differentiëren tot integreren, wij maken het begrijpelijk. Boek direct!",
+    title: "Calculus Bijles Amsterdam | Differentiëren & Integreren",
+    description: "Calculus bijles voor Life Sciences en Economie studenten. Differentiëren, integreren en toegepaste wiskunde in Amsterdam.",
     images: [
       {
-        url: "/api/og?title=Calculus%20Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Start%20Calculus&footerText=Life%20Sci%20%26%20Eco%20(A%27dam)&featureImageUrl=/images/og-calculus-feature.jpg",
+        url: "/api/og?title=Calculus%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Start%20Calculus&footerText=Differentiëren%20%E2%80%A2%20Integreren&featureImageUrl=/images/og-calculus-feature.jpg",
         width: 1200,
         height: 630,
         alt: "Calculus Bijles Amsterdam - Life Sci & Economie | Stephensprivelessen.nl",
@@ -126,6 +136,28 @@ export default function CalculusBijlesPage() {
                 "De stapsgewijze aanpak heeft me door mijn calculus tentamen geholpen. Zeer aan te raden!"
                 <footer className="mt-2 text-sm">- Thomas, Economie</footer>
               </blockquote>
+            </div>
+          </div>
+
+          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+            <h2 className="text-2xl font-bold mb-6">Veelgestelde Vragen - Calculus</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Wat is calculus en waarom is het belangrijk?</h3>
+                <p className="text-gray-700">Calculus is de wiskunde van verandering en beweging. Het is essentieel voor life sciences (groei van populaties, medicijnconcentraties) en economie (marginale kosten, optimalisatie).</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Hoe lang duurt het om calculus onder de knie te krijgen?</h3>
+                <p className="text-gray-700">Met onze 1-op-1 begeleiding zien studenten meestal binnen 4-6 lessen significante verbetering. Het hangt af van je basiskennis en hoeveel tijd je erin steekt.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Welke calculus onderwerpen behandelen jullie?</h3>
+                <p className="text-gray-700">We behandelen differentiëren (afgeleiden, kettingregel), integreren (bepaalde/onbepaalde integralen, substitutie) en toegepaste calculus voor jouw vakgebied.</p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">Is calculus bijles ook geschikt voor beginners?</h3>
+                <p className="text-gray-700">Ja, we beginnen altijd bij jouw niveau. Of je nu helemaal opnieuw wilt beginnen of specifieke onderwerpen wilt oefenen - we passen ons aan.</p>
+              </div>
             </div>
           </div>
 
