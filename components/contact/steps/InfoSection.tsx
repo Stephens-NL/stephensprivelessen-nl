@@ -164,23 +164,23 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         <tbody>
                             {[
                                 { 
-                                    type: "Losse sessie", 
-                                    ms20minus: "€60", ms20plus: "€75", 
-                                    bachelor: "€75", master: "€80" 
+                                    type: { EN: "Single session", NL: "Losse sessie" }, 
+                                    ms20minus: "€75", ms20plus: "€80", 
+                                    bachelor: "€80", master: "€90" 
                                 },
                                 { 
-                                    type: "2 sessies", 
-                                    ms20minus: "€100", ms20plus: "€130", 
-                                    bachelor: "€130", master: "€135" 
+                                    type: { EN: "2 sessions", NL: "2 sessies" }, 
+                                    ms20minus: "€130", ms20plus: "€135", 
+                                    bachelor: "€135", master: "€140" 
                                 },
                                 { 
-                                    type: "4 sessies", 
+                                    type: { EN: "4 sessions", NL: "4 sessies" }, 
                                     ms20minus: "€200", ms20plus: "€230", 
                                     bachelor: "€230", master: "€250" 
                                 },
                             ].map((row) => (
-                                <tr key={row.type} className="border-b border-blue-600/50 last:border-0">
-                                    <td className="py-2 text-yellow-100">{row.type}</td>
+                                <tr key={row.type.NL} className="border-b border-blue-600/50 last:border-0">
+                                    <td className="py-2 text-yellow-100">{t(row.type)}</td>
                                     {selectedLevel === 'middelbaar' ? (
                                         <>
                                             <td className="py-2 text-yellow-300 font-semibold text-right">{row.ms20minus}</td>
@@ -244,9 +244,9 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     <table className="w-full min-w-full">
                         <thead>
                             <tr className="border-b border-blue-600/50">
-                                <th className="text-left py-2 text-yellow-100 font-medium">Aantal<br/>leerlingen</th>
-                                <th className="text-right py-2 text-yellow-100 font-medium">Losse<br/>sessie<br/>(€/uur p.p.)</th>
-                                <th className="text-right py-2 text-yellow-100 font-medium">4 sessies<br/>(€/uur p.p.)</th>
+                                <th className="text-left py-2 text-yellow-100 font-medium">{t({ EN: "Number of<br/>students", NL: "Aantal<br/>leerlingen" })}</th>
+                                <th className="text-right py-2 text-yellow-100 font-medium">{t({ EN: "Single<br/>session<br/>(€/hour p.p.)", NL: "Losse<br/>sessie<br/>(€/uur p.p.)" })}</th>
+                                <th className="text-right py-2 text-yellow-100 font-medium">{t({ EN: "4 sessions<br/>(€/hour p.p.)", NL: "4 sessies<br/>(€/uur p.p.)" })}</th>
                             </tr>
                         </thead>
                         <tbody>
