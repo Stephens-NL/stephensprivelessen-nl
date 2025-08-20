@@ -312,7 +312,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'google-site-verification-code', // Voeg hier je Google verificatie code toe
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION,
+    other: {
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION,
+    },
   },
 };
 
