@@ -252,11 +252,11 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         <tbody>
                             {[1, 2, 3, 4].map((students) => {
                                 const regular = groupPricingTiers.find(t => 
-                                    t.level === (selectedLevel === 'middelbaar' ? "Middelbare School" : "Hoger Onderwijs")
+                                    t.level === (selectedLevel === 'middelbaar' ? "Voortgezet Onderwijs (20-)" : "Hoger Onderwijs")
                                 )?.prices.find(p => p.students === students)?.price || '';
                                 
                                 const package4h = groupPricingTiers.find(t => 
-                                    t.level === (selectedLevel === 'middelbaar' ? "Middelbare School 4-uurs pakket" : "Hoger Onderwijs 4-uurs pakket")
+                                    t.level === (selectedLevel === 'middelbaar' ? "Voortgezet Onderwijs (20-) 4-uurs pakket" : "Hoger Onderwijs 4-uurs pakket")
                                 )?.prices.find(p => p.students === students)?.price || '';
                                 
                                 return (
@@ -313,8 +313,8 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                                                     {t(translations.groupSessions)}
                                                 </p>
                                                 <ul className="mt-1 space-y-1 text-sm text-yellow-100">
-                                                    <li>• {`Price per person: ${selectedLevel === 'middelbaar' ? '€90' : '€110'} (${selectedLevel === 'middelbaar' ? '€22.50' : '€27.50'}/hour)`}</li>
-                                                    <li>• {`Total for the group: 4 × ${selectedLevel === 'middelbaar' ? '€90' : '€110'} = ${selectedLevel === 'middelbaar' ? '€360' : '€440'}`}</li>
+                                                    <li>• {`Price per person: ${selectedLevel === 'middelbaar' ? '€125' : '€125'} (${selectedLevel === 'middelbaar' ? '€31.25' : '€31.25'}/hour)`}</li>
+                                                    <li>• {`Total for the group: 4 × ${selectedLevel === 'middelbaar' ? '€125' : '€125'} = ${selectedLevel === 'middelbaar' ? '€500' : '€500'}`}</li>
                                                 </ul>
                                             </div>
                                         </div>
