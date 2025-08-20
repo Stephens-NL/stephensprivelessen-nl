@@ -121,7 +121,7 @@ const Contact = () => {
         } catch (error) {
             console.error('Form submission error:', error);
             handleUpdateFormData({ 
-                error: error instanceof Error ? error.message : 'Er is iets misgegaan' 
+                error: error instanceof Error ? error.message : t({ EN: 'Something went wrong', NL: 'Er is iets misgegaan' }) 
             });
         } finally {
             setIsSubmitting(false);

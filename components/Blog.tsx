@@ -84,7 +84,7 @@ export const BlogList: React.FC = () => {
   }
 
   if (!posts || posts.length === 0) {
-    return <p className="text-gray-300">No posts available.</p>;
+    return <p className="text-gray-300">{t({ EN: "No posts available.", NL: "Geen berichten beschikbaar." })}</p>;
   }
 
   const container = {
@@ -195,7 +195,7 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
             onClick={onClose}
             className="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-cyan-400 transition-colors duration-300"
           >
-            Terug naar alle blogs
+            {t({ EN: "Back to all blogs", NL: "Terug naar alle blogs" })}
           </button>
         </motion.div>
       )}
@@ -223,7 +223,7 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
           transition={{ duration: 0.5 }}
           className="text-2xl font-semibold"
         >
-          Loading...
+          {t({ EN: "Loading...", NL: "Laden..." })}
         </motion.div>
       </div>
     );
@@ -253,7 +253,7 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
           transition={{ duration: 0.5 }}
           className="text-xl"
         >
-          No post data available.
+          {t({ EN: "No post data available.", NL: "Geen berichtgegevens beschikbaar." })}
         </motion.div>
       </div>
     );

@@ -125,8 +125,8 @@ const About = () => {
     fetchAboutData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) return <div>{t({ EN: "Loading...", NL: "Laden..." })}</div>;
+  if (error) return <div>{t({ EN: "Error: ", NL: "Fout: " })}{error}</div>;
   if (!aboutData) return null;
 
   // Destructure 'about' first

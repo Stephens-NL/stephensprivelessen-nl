@@ -34,8 +34,8 @@ const Footer = () => {
     fetchFooter();
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading footer data</div>;
+  if (isLoading) return <div>{t({ EN: "Loading...", NL: "Laden..." })}</div>;
+  if (error) return <div>{t({ EN: "Error loading footer data", NL: "Fout bij het laden van footer gegevens" })}</div>;
   if (!footerData) return null;
   const footer = footerData.footer;
 
