@@ -17,11 +17,11 @@ const WEEKEND_OFFICE = {
     city: 'Amsterdam'
 };
 
-// Pricing Constants
+// Pricing Constants (travel premiums)
 const TRAVEL_COSTS = {
-    sciencePark: 0,
-    vuUva: 15,
-    homeAmsterdam: 40
+    sciencePark: 0,      // Default fysieke locatie
+    vuUva: 20,           // Uni-plekken buiten Science Park
+    homeAmsterdam: 50    // Aan huis in Amsterdam e.o.
 };
 
 const LAST_MINUTE_SURCHARGES = {

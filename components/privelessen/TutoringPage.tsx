@@ -29,12 +29,12 @@ export function TutoringPage({ locationSpecific }: TutoringPageProps) {
   const heroContent = locationSpecific ? {
     ...tutoringPage.hero,
     title: {
-      EN: `Professional Math Tutoring in ${locationSpecific.area}`,
-      NL: `Professionele Wiskunde Bijles in ${locationSpecific.area}`
+      EN: `Professional Tutoring in ${locationSpecific.area}`,
+      NL: `Professionele Bijles in ${locationSpecific.area}`
     },
     subtitle: {
-      EN: `Expert tutoring in mathematics, statistics, and programming. Available at your home or a location of your choice in ${locationSpecific.area}.`,
-      NL: `Deskundige bijles in wiskunde, statistiek en programmeren. Beschikbaar bij u thuis of op een locatie naar keuze in ${locationSpecific.area}.`
+      EN: `Wiskunde, statistiek en programmeren. Online of op Science Park.`,
+      NL: `Wiskunde, statistiek en programmeren. Online of op Science Park.`
     }
   } : tutoringPage.hero;
 
