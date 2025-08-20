@@ -244,9 +244,15 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     <table className="w-full min-w-full">
                         <thead>
                             <tr className="border-b border-blue-600/50">
-                                <th className="text-left py-2 text-yellow-100 font-medium">{t({ EN: "Number of<br/>students", NL: "Aantal<br/>leerlingen" })}</th>
-                                <th className="text-right py-2 text-yellow-100 font-medium">{t({ EN: "Single<br/>session<br/>(€/hour p.p.)", NL: "Losse<br/>sessie<br/>(€/uur p.p.)" })}</th>
-                                <th className="text-right py-2 text-yellow-100 font-medium">{t({ EN: "4 sessions<br/>(€/hour p.p.)", NL: "4 sessies<br/>(€/uur p.p.)" })}</th>
+                                <th className="text-left py-2 text-yellow-100 font-medium">
+                                    <div dangerouslySetInnerHTML={{ __html: t({ EN: "Number of<br/>students", NL: "Aantal<br/>leerlingen" }) }} />
+                                </th>
+                                <th className="text-right py-2 text-yellow-100 font-medium">
+                                    <div dangerouslySetInnerHTML={{ __html: t({ EN: "Single<br/>session<br/>(€/hour p.p.)", NL: "Losse<br/>sessie<br/>(€/uur p.p.)" }) }} />
+                                </th>
+                                <th className="text-right py-2 text-yellow-100 font-medium">
+                                    <div dangerouslySetInnerHTML={{ __html: t({ EN: "4 sessions<br/>(€/hour p.p.)", NL: "4 sessies<br/>(€/uur p.p.)" }) }} />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
