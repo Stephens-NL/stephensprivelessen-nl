@@ -9,26 +9,26 @@ const InternalLinks: React.FC = () => {
     {
       href: '/privelessen/amsterdam-zuid',
       title: 'Bijles Amsterdam Zuid',
-      description: 'Wiskunde & statistiek bijles in Amsterdam Zuid',
-      keywords: 'bijles amsterdam zuid, wiskunde zuid, statistiek zuid'
+      description: 'Online bijles of op Science Park - Wiskunde & statistiek',
+      keywords: 'bijles amsterdam zuid, wiskunde zuid, statistiek zuid, online bijles'
     },
     {
       href: '/privelessen/amsterdam-centrum',
       title: 'Bijles Amsterdam Centrum',
-      description: 'Wiskunde & statistiek bijles in Amsterdam Centrum',
-      keywords: 'bijles amsterdam centrum, wiskunde centrum, statistiek centrum'
+      description: 'Online bijles of op Science Park - Wiskunde & statistiek',
+      keywords: 'bijles amsterdam centrum, wiskunde centrum, statistiek centrum, online bijles'
     },
     {
       href: '/privelessen/amsterdam-west',
       title: 'Bijles Amsterdam West',
-      description: 'Wiskunde & statistiek bijles in Amsterdam West',
-      keywords: 'bijles amsterdam west, wiskunde west, statistiek west'
+      description: 'Online bijles of op Science Park - Wiskunde & statistiek',
+      keywords: 'bijles amsterdam west, wiskunde west, statistiek west, online bijles'
     },
     {
       href: '/privelessen/amsterdam-oost',
       title: 'Bijles Amsterdam Oost',
-      description: 'Wiskunde & statistiek bijles in Amsterdam Oost',
-      keywords: 'bijles amsterdam oost, wiskunde oost, statistiek oost'
+      description: 'Online bijles of op Science Park - Wiskunde & statistiek',
+      keywords: 'bijles amsterdam oost, wiskunde oost, statistiek oost, online bijles'
     }
   ];
 
@@ -57,14 +57,14 @@ const InternalLinks: React.FC = () => {
     {
       href: '/bijles/campus/uva',
       title: 'UvA Bijles',
-      description: 'Bijles voor UvA studenten op Science Park en Roeterseiland',
-      keywords: 'uva bijles, science park bijles, roeterseiland bijles'
+      description: 'Online bijles of op Science Park - Voor UvA studenten',
+      keywords: 'uva bijles, science park bijles, online bijles uva'
     },
     {
       href: '/bijles/campus/vu',
       title: 'VU Bijles',
-      description: 'Bijles voor VU studenten op campus en Zuidas',
-      keywords: 'vu bijles, vu campus bijles, zuidas bijles'
+      description: 'Online bijles of op Science Park - Voor VU studenten',
+      keywords: 'vu bijles, science park bijles, online bijles vu'
     }
   ];
 
@@ -72,12 +72,12 @@ const InternalLinks: React.FC = () => {
     <section className="bg-gray-50 py-16">
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-3xl font-bold mb-8 text-center">
-          Bijles in Amsterdam - Alle Locaties & Vakken
+          Bijles in Amsterdam - Online & Science Park
         </h2>
         
         {/* Locatie Links */}
         <div className="mb-12">
-          <h3 className="text-2xl font-semibold mb-6 text-center">Bijles per Locatie</h3>
+          <h3 className="text-2xl font-semibold mb-6 text-center">Bijles per Regio</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {locationLinks.map((link, index) => (
               <motion.div
@@ -156,14 +156,9 @@ const InternalLinks: React.FC = () => {
                   <p className="text-gray-600 text-sm mb-3">
                     {link.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-blue-500 text-sm font-medium">
-                      Meer info →
-                    </span>
-                    <span className="text-green-600 text-sm font-medium">
-                      Studentenkorting
-                    </span>
-                  </div>
+                  <span className="text-blue-500 text-sm font-medium">
+                    Meer info →
+                  </span>
                 </Link>
               </motion.div>
             ))}

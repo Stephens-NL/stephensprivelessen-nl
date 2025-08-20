@@ -35,13 +35,13 @@ export const metadata: Metadata = {
 };
 
 const structuredData = generateCampusStructuredData({
-  title: "Bijles voor UvA Studenten | Science Park & Roeterseiland",
-  description: "Bijles voor UvA studenten. Statistiek, calculus en programmeren op Science Park en Roeterseiland.",
+      title: "Bijles voor UvA Studenten | Online & Science Park",
+  description: "Bijles voor UvA studenten. Statistiek, calculus en programmeren online of op Science Park.",
   provider: {
     name: "StephensPrivelessen",
     type: "Person",
   },
-  areaServed: "Amsterdam UvA Science Park, Amsterdam UvA Roeterseiland",
+  areaServed: "Amsterdam UvA Science Park, Online",
   category: ["University Tutoring", "STEM Tutoring", "Social Sciences Tutoring"],
 });
 
@@ -65,11 +65,26 @@ export default function UVABijlesPage() {
           </div>
           
           <p className="text-xl mb-8">
-            Speciaal voor UvA studenten: bijles op Science Park en Roeterseiland. 
+            Speciaal voor UvA studenten: online bijles of op Science Park. 
             Van statistiek tot programmeren, wij helpen je door je studie.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle>Online Bijles</CardTitle>
+                <CardDescription>Flexibel en comfortabel</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Calculus & wiskunde</li>
+                  <li>Python & R programmeren</li>
+                  <li>Statistische analyses</li>
+                  <li>Vanaf je eigen kamer</li>
+                </ul>
+              </CardContent>
+            </Card>
+
             <Card>
               <CardHeader>
                 <CardTitle>Science Park</CardTitle>
@@ -77,33 +92,29 @@ export default function UVABijlesPage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Calculus & wiskunde</li>
-                  <li>Python & R programmeren</li>
-                  <li>Statistische analyses</li>
-                  <li>5 minuten lopen van Science Park</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Roeterseiland</CardTitle>
-                <CardDescription>Voor sociale wetenschappen</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc pl-5 space-y-2">
                   <li>SPSS & statistiek</li>
                   <li>Scriptiebegeleiding</li>
                   <li>Data analyse</li>
-                  <li>Centrale locatie</li>
+                  <li>5 minuten lopen van Science Park</li>
                 </ul>
               </CardContent>
             </Card>
           </div>
 
           <div className="prose max-w-none">
-            <h2>Routebeschrijving</h2>
+            <h2>Locaties</h2>
             
+            <h3>Online Bijles</h3>
+            <p>
+              Flexibele online bijles via Zoom of Teams. Perfect voor drukke studenten die 
+              tijd willen besparen op reizen. Alle vakken beschikbaar.
+            </p>
+            <ul>
+              <li>Geen reistijd</li>
+              <li>Flexibele planning</li>
+              <li>Screen sharing mogelijk</li>
+            </ul>
+
             <h3>Science Park</h3>
             <p>
               Onze bijleslocatie ligt op 5 minuten lopen van Science Park. 
@@ -113,16 +124,6 @@ export default function UVABijlesPage() {
               <li>5 minuten lopen van Science Park</li>
               <li>Gratis parkeren mogelijk</li>
               <li>Goed bereikbaar met bus 40</li>
-            </ul>
-
-            <h3>Roeterseiland</h3>
-            <p>
-              Centrale locatie voor studenten van de Faculteit der Maatschappij- en Gedragswetenschappen (FMG).
-            </p>
-            <ul>
-              <li>10 minuten lopen van Roeterseiland</li>
-              <li>Dichtbij Weesperplein metro</li>
-              <li>Studievriendelijke omgeving</li>
             </ul>
           </div>
 

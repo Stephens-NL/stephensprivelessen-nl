@@ -34,13 +34,13 @@ export const metadata: Metadata = {
 };
 
 const structuredData = generateCampusStructuredData({
-  title: "Bijles voor VU Studenten | Campus & Zuidas",
-  description: "Bijles voor VU studenten. Statistiek, calculus en programmeren op de VU campus en Zuidas.",
+      title: "Bijles voor VU Studenten | Online & Science Park",
+  description: "Bijles voor VU studenten. Statistiek, calculus en programmeren online of op Science Park.",
   provider: {
     name: "StephensPrivelessen",
     type: "Person",
   },
-  areaServed: "VU Campus, Amsterdam",
+  areaServed: "Science Park, Online",
   category: ["Psychology", "Business & Economics", "Life Sciences"],
 });
 
@@ -64,64 +64,65 @@ export default function VUBijlesPage() {
           </div>
           
           <p className="text-xl mb-8">
-            Speciaal voor VU studenten: bijles op de VU campus en Zuidas. 
+            Speciaal voor VU studenten: online bijles of op Science Park. 
             Van statistiek tot programmeren, wij helpen je door je studie.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle>VU Campus</CardTitle>
-                <CardDescription>Voor alle faculteiten</CardDescription>
+                <CardTitle>Online Bijles</CardTitle>
+                <CardDescription>Flexibel en comfortabel</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>Statistiek & SPSS</li>
                   <li>Calculus & wiskunde</li>
                   <li>Python & R programmeren</li>
-                  <li>5 minuten lopen van VU campus</li>
+                  <li>Vanaf je eigen kamer</li>
                 </ul>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Zuidas</CardTitle>
-                <CardDescription>Voor economie & business</CardDescription>
+                <CardTitle>Science Park</CardTitle>
+                <CardDescription>Voor alle studies</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>Econometrie</li>
                   <li>Business analytics</li>
                   <li>Data analyse</li>
-                  <li>Centrale locatie</li>
+                  <li>Goed bereikbaar vanaf VU</li>
                 </ul>
               </CardContent>
             </Card>
           </div>
 
           <div className="prose max-w-none">
-            <h2>Routebeschrijving</h2>
+            <h2>Locaties</h2>
             
-            <h3>VU Campus</h3>
+            <h3>Online Bijles</h3>
             <p>
-              Onze bijleslocatie ligt op 5 minuten lopen van de VU campus. 
-              Perfect voor studenten van alle faculteiten.
+              Flexibele online bijles via Zoom of Teams. Perfect voor drukke studenten die 
+              tijd willen besparen op reizen. Alle vakken beschikbaar.
             </p>
             <ul>
-              <li>5 minuten lopen van VU campus</li>
-              <li>Gratis parkeren mogelijk</li>
-              <li>Goed bereikbaar met metro 50</li>
+              <li>Geen reistijd</li>
+              <li>Flexibele planning</li>
+              <li>Screen sharing mogelijk</li>
             </ul>
 
-            <h3>Zuidas</h3>
+            <h3>Science Park</h3>
             <p>
-              Centrale locatie voor studenten van de School of Business and Economics (SBE).
+              Onze bijleslocatie ligt op Science Park, goed bereikbaar vanaf de VU campus. 
+              Perfect voor alle VU studenten.
             </p>
             <ul>
-              <li>10 minuten lopen van VU campus</li>
-              <li>Dichtbij Zuidas metro</li>
-              <li>Studievriendelijke omgeving</li>
+              <li>Goed bereikbaar vanaf VU campus</li>
+              <li>Gratis parkeren mogelijk</li>
+              <li>Goed bereikbaar met bus 40</li>
             </ul>
           </div>
 
