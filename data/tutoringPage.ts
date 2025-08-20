@@ -168,19 +168,19 @@ export const tutoringPage: TutoringPage = {
   pricing: {
     title: { EN: 'Tutoring Packages', NL: 'Bijlespakketten' },
     subtitle: {
-      EN: 'Quality tutoring starting from €30 per hour - Contact us for a personalized plan',
-      NL: 'Kwaliteitsbijles vanaf €30 per uur - Neem contact op voor een plan op maat'
+      EN: 'Quality tutoring starting from €75 per hour - Online or at Science Park',
+      NL: 'Kwaliteitsbijles vanaf €75 per uur - Online of op Science Park'
     },
     plans: [
       {
-        name: { EN: 'High School Math & Science', NL: 'Middelbare School Wiskunde & Beta' },
-        price: { EN: 'From €30', NL: 'Vanaf €30' },
+        name: { EN: 'Individual Tutoring', NL: 'Individuele Bijles' },
+        price: { EN: 'From €75', NL: 'Vanaf €75' },
         interval: { EN: 'per hour', NL: 'per uur' },
         features: [
-          { EN: 'Math A/B/C/D support', NL: 'Wiskunde A/B/C/D ondersteuning' },
-          { EN: 'Physics and Chemistry help', NL: 'Natuurkunde en scheikunde hulp' },
-          { EN: 'Exam preparation', NL: 'Examenvoorbereiding' },
-          { EN: 'Homework guidance', NL: 'Huiswerkbegeleiding' }
+          { EN: 'Personalized attention', NL: 'Persoonlijke aandacht' },
+          { EN: 'All subjects available', NL: 'Alle vakken beschikbaar' },
+          { EN: 'Flexible scheduling', NL: 'Flexibele planning' },
+          { EN: 'Online or Science Park', NL: 'Online of op Science Park' }
         ],
         cta: {
           text: { EN: 'Schedule Trial', NL: 'Plan Proefles' },
@@ -188,14 +188,14 @@ export const tutoringPage: TutoringPage = {
         }
       },
       {
-        name: { EN: 'University Mathematics', NL: 'Universitair Wiskunde' },
-        price: { EN: 'From €40', NL: 'Vanaf €40' },
-        interval: { EN: 'per hour', NL: 'per uur' },
+        name: { EN: 'Group Lessons (2 persons)', NL: 'Groepslessen (2 personen)' },
+        price: { EN: 'From €55', NL: 'Vanaf €55' },
+        interval: { EN: 'per hour per person', NL: 'per uur per persoon' },
         features: [
-          { EN: 'Calculus & Linear Algebra', NL: 'Calculus & Lineaire Algebra' },
-          { EN: 'Statistics & Probability', NL: 'Statistiek & Kansberekening' },
-          { EN: 'Thesis support', NL: 'Scriptiebegeleiding' },
-          { EN: 'Research methodology', NL: 'Onderzoeksmethodologie' }
+          { EN: 'Shared learning experience', NL: 'Gedeelde leerervaring' },
+          { EN: 'Reduced cost per person', NL: 'Lagere kosten per persoon' },
+          { EN: 'Interactive group dynamics', NL: 'Interactieve groepsdynamiek' },
+          { EN: 'Online or Science Park', NL: 'Online of op Science Park' }
         ],
         popular: true,
         cta: {
@@ -204,14 +204,14 @@ export const tutoringPage: TutoringPage = {
         }
       },
       {
-        name: { EN: 'Programming & Data', NL: 'Programmeren & Data' },
-        price: { EN: 'From €40', NL: 'Vanaf €40' },
+        name: { EN: 'Thesis & Research', NL: 'Scriptie & Onderzoek' },
+        price: { EN: 'From €90', NL: 'Vanaf €90' },
         interval: { EN: 'per hour', NL: 'per uur' },
         features: [
-          { EN: 'Python, R, Java, JavaScript', NL: 'Python, R, Java, JavaScript' },
-          { EN: 'Data Analysis & Statistics', NL: 'Data Analyse & Statistiek' },
-          { EN: 'Machine Learning basics', NL: 'Machine Learning basics' },
-          { EN: 'Project guidance', NL: 'Projectbegeleiding' }
+          { EN: 'Statistics & Research', NL: 'Statistiek & Onderzoek' },
+          { EN: 'Data Science & AI', NL: 'Data Science & AI' },
+          { EN: 'Advanced SPSS/R/Python', NL: 'Geavanceerde SPSS/R/Python' },
+          { EN: 'Complete thesis support', NL: 'Volledige scriptiebegeleiding' }
         ],
         cta: {
           text: { EN: 'Contact Us', NL: 'Neem Contact Op' },
@@ -219,14 +219,14 @@ export const tutoringPage: TutoringPage = {
         }
       },
       {
-        name: { EN: 'Thesis & Research', NL: 'Scriptie & Onderzoek' },
-        price: { EN: 'Custom', NL: 'Op maat' },
-        interval: { EN: 'package price', NL: 'pakketprijs' },
+        name: { EN: 'Weekend Programs', NL: 'Weekend Programma\'s' },
+        price: { EN: 'From €30', NL: 'Vanaf €30' },
+        interval: { EN: 'per hour', NL: 'per uur' },
         features: [
-          { EN: 'Psychology & Social Sciences', NL: 'Psychologie & Sociale Wetenschappen' },
-          { EN: 'Cybersecurity & Network Analysis', NL: 'Cybersecurity & Netwerk Analyse' },
-          { EN: 'Dynamic Systems & Quantum Communication', NL: 'Dynamische Systemen & Quantum Communicatie' },
-          { EN: 'Advanced Statistical Analysis (SPSS/R/Python)', NL: 'Geavanceerde Statistische Analyse (SPSS/R/Python)' }
+          { EN: 'Special community rates', NL: 'Speciale gemeenschapstarieven' },
+          { EN: 'Weekend availability', NL: 'Weekend beschikbaarheid' },
+          { EN: 'Zuidoost Amsterdam', NL: 'Amsterdam Zuidoost' },
+          { EN: 'Home tutoring available', NL: 'Bijles aan huis mogelijk' }
         ],
         cta: {
           text: { EN: 'Discuss Options', NL: 'Bespreek Mogelijkheden' },
