@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Consultancy | Data & Statistiek Expert Amsterdam',
-  description: 'Professionele consultancy in data-analyse, statistiek en onderzoeksmethodologie. Expert advies voor bedrijven en organisaties in Amsterdam en omgeving.',
+  description: 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur. Science Park of online.',
   keywords: [
     'statistiek consultant',
     'data analyse consultant',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Consultancy | Data & Statistiek Expert Amsterdam',
-    description: 'Professionele consultancy in data-analyse, statistiek en onderzoeksmethodologie. Expert advies op maat.',
+    description: 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur.',
     url: 'https://stephensprivelessen.nl/consultancy',
     type: 'website',
     locale: 'nl_NL',

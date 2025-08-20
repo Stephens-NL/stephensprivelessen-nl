@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding',
-  description: 'Professionele rekenbijles voor MBO-studenten en volwassenen in Amsterdam. Persoonlijke begeleiding voor de MBO-rekentoets. Online en op locatie beschikbaar.',
+  description: 'MBO Rekenen Amsterdam: Expert begeleiding voor MBO-rekentoets. Voor studenten & volwassenen. Online of Science Park. Persoonlijke aanpak.',
   keywords: [
     'mbo rekenen',
     'rekenbijles amsterdam',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding',
-    description: 'Professionele rekenbijles voor MBO-studenten en volwassenen in Amsterdam. Persoonlijke begeleiding voor de MBO-rekentoets.',
+    description: 'MBO Rekenen Amsterdam: Expert begeleiding voor MBO-rekentoets. Voor studenten & volwassenen. Online of Science Park.',
     url: 'https://stephensprivelessen.nl/mbo-rekenen',
     type: 'website',
     locale: 'nl_NL',

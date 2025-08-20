@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Scriptiebegeleiding Amsterdam | Thesis Begeleiding & Methodologie',
-  description: 'Professionele scriptiebegeleiding in Amsterdam. Expert in statistiek, methodologie en data-analyse. Persoonlijke begeleiding voor bachelor en master scripties.',
+  description: 'Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van €90/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding op Science Park of online.',
   keywords: [
     'scriptiebegeleiding amsterdam',
     'thesis begeleiding',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Scriptiebegeleiding Amsterdam | Expert Thesis Begeleiding',
-    description: 'Professionele scriptiebegeleiding met focus op statistiek, methodologie en data-analyse. Persoonlijke begeleiding voor bachelor en master studenten.',
+    description: 'Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van €90/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding.',
     url: 'https://www.stephensprivelessen.nl/scriptiebegeleiding',
     type: 'website',
     locale: 'nl_NL',

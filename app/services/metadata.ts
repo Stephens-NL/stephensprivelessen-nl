@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Diensten | Stephens Privelessen Amsterdam',
-  description: 'Ontdek onze professionele diensten: bijles, workshops, scriptiebegeleiding en consultancy in Amsterdam. Gespecialiseerd in wiskunde, statistiek en methodologie.',
+  description: 'Diensten Stephens Privelessen: Bijles, workshops, scriptiebegeleiding & consultancy in Amsterdam. Wiskunde, statistiek & methodologie. Van €75/uur.',
   keywords: [
     'bijles amsterdam',
     'wiskunde bijles',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Diensten | Stephens Privelessen Amsterdam',
-    description: 'Professionele bijles, workshops, scriptiebegeleiding en consultancy in Amsterdam. Expert in wiskunde, statistiek en methodologie.',
+    description: 'Diensten Stephens Privelessen: Bijles, workshops, scriptiebegeleiding & consultancy in Amsterdam. Wiskunde, statistiek & methodologie. Van €75/uur.',
     url: 'https://stephensprivelessen.nl/services',
     type: 'website',
     locale: 'nl_NL',

@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     default: 'Stephens Privelessen | Wiskunde & Statistiek Privelessen Amsterdam',
     template: '%s | Stephens Privelessen Amsterdam'
   },
-  description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Scriptiebegeleiding, data-analyse en examentraining. Persoonlijke begeleiding op alle niveaus.',
-  keywords: [
+    description: 'Expert bijles in wiskunde, statistiek en programmeren in Amsterdam. Online of op Science Park. Van €75/uur. Scriptiebegeleiding, SPSS, R, Python. UvA & VU studenten.',
+    keywords: [
     // Algemene termen
     'privelessen amsterdam',
     'bijles amsterdam',
@@ -279,7 +279,7 @@ export const metadata: Metadata = {
     alternateLocale: 'en_US',
     siteName: 'Stephens Privelessen',
     title: 'Wiskunde & Statistiek Privelessen Amsterdam | Stephens Privelessen',
-    description: 'Professionele wiskunde en statistiek privelessen in Amsterdam. Scriptiebegeleiding, data-analyse en examentraining. Persoonlijke begeleiding op alle niveaus.',
+    description: 'Expert bijles in wiskunde, statistiek en programmeren in Amsterdam. Online of op Science Park. Van €75/uur. Scriptiebegeleiding, SPSS, R, Python. UvA & VU studenten.',
     url: 'https://www.stephensprivelessen.nl',
     images: [
       {

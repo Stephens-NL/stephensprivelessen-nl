@@ -5,7 +5,7 @@ import Contact from '@/components/contact/Contact';
 
 export const metadata: Metadata = {
   title: "Contact | Stephens Privelessen Amsterdam",
-  description: "Neem contact op voor professionele bijles in wiskunde, statistiek of scriptiebegeleiding in Amsterdam. Persoonlijke aanpak en flexibele planning.",
+  description: "Contact Stephens Privelessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur. Snelle reactie.",
   keywords: [
     'contact stephens privelessen',
     'bijles afspraak amsterdam',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Contact | Stephens Privelessen Amsterdam",
-    description: "Neem contact op voor professionele bijles in wiskunde, statistiek of scriptiebegeleiding in Amsterdam.",
+    description: "Contact Stephens Privelessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur.",
     url: "https://www.stephensprivelessen.nl/contact",
     type: 'website',
     locale: 'nl_NL',

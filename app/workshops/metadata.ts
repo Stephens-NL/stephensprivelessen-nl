@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Workshops | Wiskunde, Statistiek & Creatieve Vaardigheden',
-  description: 'Ontdek onze interactieve workshops voor wiskunde, statistiek en creatieve vaardigheden. Kleine groepen, flexibele planning en expert begeleiding in Amsterdam.',
+  description: 'Workshops Amsterdam: Wiskunde, statistiek & creatieve vaardigheden. Kleine groepen, flexibele planning. Expert begeleiding op Science Park of online.',
   keywords: [
     'workshops amsterdam',
     'wiskunde workshops',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Workshops | Wiskunde, Statistiek & Creatieve Vaardigheden',
-    description: 'Ontdek onze interactieve workshops voor wiskunde, statistiek en creatieve vaardigheden. Kleine groepen, flexibele planning en expert begeleiding in Amsterdam.',
+    description: 'Workshops Amsterdam: Wiskunde, statistiek & creatieve vaardigheden. Kleine groepen, flexibele planning. Expert begeleiding op Science Park of online.',
     url: 'https://stephensprivelessen.nl/workshops',
     type: 'website',
     locale: 'nl_NL',

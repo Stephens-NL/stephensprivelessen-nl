@@ -8,7 +8,7 @@ export const revalidate = 3600; // Revalidate every hour
 
 export const metadata: Metadata = {
   title: "Bijles Amsterdam voor UvA & VU | Statistiek, Calculus & Programmeren",
-  description: "Bijles in Amsterdam: statistiek (SPSS, R), calculus en programmeren. 1‑op‑1 begeleiding, flexibele tijden. Boek direct.",
+  description: "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. Van €75/uur. UvA & VU studenten. 1-op-1 begeleiding.",
   keywords: [
     'bijles amsterdam',
     'statistiek bijles amsterdam',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Bijles Amsterdam | Statistiek, Calculus & Programmeren",
-    description: "Bijles in Amsterdam voor statistiek, calculus en programmeren. 1‑op‑1 begeleiding.",
+    description: "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. Van €75/uur. UvA & VU studenten.",
     images: [
       {
         url: "/api/og?title=Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Boek%20les&footerText=Statistiek%20%E2%80%A2%20Calculus%20%E2%80%A2%20Programmeren&featureImageUrl=/images/og-default-feature.jpg",

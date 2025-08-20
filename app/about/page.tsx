@@ -4,7 +4,7 @@ import React from 'react'
 
 export const metadata: Metadata = {
   title: "Over Ons | Stephens Privelessen Amsterdam",
-  description: "Leer meer over onze visie op onderwijs en onze aanpak van wiskunde, statistiek en scriptiebegeleiding in Amsterdam.",
+  description: "Over Stephens Privelessen Amsterdam: Expert in wiskunde, statistiek & scriptiebegeleiding. Persoonlijke aanpak, ervaren docent. Online of Science Park.",
   keywords: [
     'bijles amsterdam',
     'wiskunde docent amsterdam',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Over Ons | Stephens Privelessen Amsterdam",
-    description: "Ontdek onze visie op onderwijs en persoonlijke begeleiding in wiskunde, statistiek en scriptiebegeleiding.",
+    description: "Over Stephens Privelessen Amsterdam: Expert in wiskunde, statistiek & scriptiebegeleiding. Persoonlijke aanpak, ervaren docent.",
     url: "https://www.stephensprivelessen.nl/about",
     type: 'website',
     locale: 'nl_NL',
