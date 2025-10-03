@@ -1171,9 +1171,10 @@
                                     </div>
                                     
                                     <!-- Debug buttons -->
-                                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem; justify-content: center;">
+                                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
                                         <button onclick="testFunction()" style="background: #ef4444; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🧪 Test JS</button>
                                         <button onclick="testGoogleScriptConnection()" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🔗 Test GAS</button>
+                                        <button onclick="debugRachelFolder()" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🔍 Debug Rachel</button>
                                     </div>
                     </div>
                     
@@ -2216,6 +2217,48 @@
                 .testConnection();
                 
             return true;
+        }
+        
+        // Debug function to check what's in Rachel's folder
+        function debugRachelFolder() {
+            console.log('Debugging Rachel folder...');
+            
+            if (typeof google === 'undefined' || !google.script || !google.script.run) {
+                console.error('Google Apps Script not available');
+                alert('Google Apps Script not available!');
+                return;
+            }
+            
+            // First, let's search for Rachel to get her folder ID
+            google.script.run
+                .withSuccessHandler(function(students) {
+                    console.log('All students:', students);
+                    const rachel = students.find(s => s.name.toLowerCase().includes('rachel'));
+                    if (rachel) {
+                        console.log('Found Rachel:', rachel);
+                        console.log('Rachel folder ID:', rachel.folderId);
+                        
+                        // Now check what's in her folder
+                        google.script.run
+                            .withSuccessHandler(function(files) {
+                                console.log('Files in Rachel folder:', files);
+                                alert('Rachel folder contains ' + files.length + ' files. Check console for details.');
+                            })
+                            .withFailureHandler(function(error) {
+                                console.error('Error getting Rachel files:', error);
+                                alert('Error getting Rachel files: ' + error.message);
+                            })
+                            .listFilesInFolder(rachel.folderId);
+                    } else {
+                        console.log('Rachel not found in students list');
+                        alert('Rachel not found in students list. Check console for all students.');
+                    }
+                })
+                .withFailureHandler(function(error) {
+                    console.error('Error getting students:', error);
+                    alert('Error getting students: ' + error.message);
+                })
+                .getAllStudents();
         }
         
         // Initialize
