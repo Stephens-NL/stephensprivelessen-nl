@@ -667,6 +667,15 @@
             font-weight: 600;
         }
         
+        .featured-date {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
         .featured-content {
             display: grid;
             grid-template-columns: 1fr 2fr;
@@ -1789,6 +1798,37 @@
                 .listFilesInFolder(folderId);
         }
         
+        // Extract lesson date from filename
+        function extractLessonDate(filename) {
+            // Try to extract date from filename format: YYYY-MM-DD__topic__v001.pdf
+            const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
+            if (dateMatch) {
+                return new Date(dateMatch[1]);
+            }
+            
+            // Fallback: try other common date formats
+            const altDateMatch = filename.match(/(\d{4})[_-](\d{2})[_-](\d{2})/);
+            if (altDateMatch) {
+                return new Date(altDateMatch[1], altDateMatch[2] - 1, altDateMatch[3]);
+            }
+            
+            return null;
+        }
+        
+        // Format date for display
+        function formatDate(date) {
+            if (!date) return 'Datum onbekend';
+            
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            };
+            
+            return date.toLocaleDateString(currentLanguage === 'en' ? 'en-US' : 'nl-NL', options);
+        }
+        
         // Show featured note (latest note)
         function showFeaturedNote(files) {
             if (!files || files.length === 0) {
@@ -1798,10 +1838,14 @@
             
             const latestFile = files[0]; // Files are sorted by date, newest first
             
+            // Extract lesson date from filename (format: YYYY-MM-DD__topic__v001.pdf)
+            const lessonDate = extractLessonDate(latestFile.name);
+            const formattedLessonDate = lessonDate ? formatDate(lessonDate) : 'Datum onbekend';
+            
             const featuredHtml = `
                 <div class="featured-header">
                      <h2 class="featured-title">${t('latest_note')}</h2>
-                    <div class="featured-subject">Subject</div>
+                    <div class="featured-date">${formattedLessonDate}</div>
                 </div>
                 <div class="featured-content">
                     <div class="featured-preview">

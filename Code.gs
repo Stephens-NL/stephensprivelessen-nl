@@ -304,8 +304,23 @@ function listFilesInFolder(folderId) {
       });
     }
     
-    // Sort by modification time (newest first)
-    const sortedFiles = fileList.sort((a, b) => new Date(b.modifiedTime) - new Date(a.modifiedTime));
+    // Sort by lesson date (newest first) - extract date from filename
+    const sortedFiles = fileList.sort((a, b) => {
+      const dateA = extractDateFromFilename(a.name);
+      const dateB = extractDateFromFilename(b.name);
+      
+      // If both have dates, sort by date
+      if (dateA && dateB) {
+        return dateB - dateA;
+      }
+      
+      // If only one has date, prioritize it
+      if (dateA && !dateB) return -1;
+      if (!dateA && dateB) return 1;
+      
+      // If neither has date, fall back to modification time
+      return new Date(b.modifiedTime) - new Date(a.modifiedTime);
+    });
     
     // Cache the metadata (not file content)
     _setCache_(cacheKey, {
@@ -344,15 +359,24 @@ function getStudentOverview(folderId) {
       }
       
       const lastFile = files[0]; // Files are sorted by date, newest first
-      const lastActivityDate = new Date(lastFile.modifiedTime).toLocaleDateString('nl-NL', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      });
+      
+      // Try to get lesson date from filename, fallback to modified time
+      const lessonDate = extractDateFromFilename(lastFile.name);
+      const lastActivityDate = lessonDate ? 
+        lessonDate.toLocaleDateString('nl-NL', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        }) :
+        new Date(lastFile.modifiedTime).toLocaleDateString('nl-NL', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
       
       return {
         fileCount: files.length,
-        lastActivity: lastFile.modifiedTime,
+        lastActivity: lessonDate || lastFile.modifiedTime,
         lastActivityDate: lastActivityDate
       };
     }
@@ -940,8 +964,23 @@ function searchByMetadata(searchTerm) {
       }
     }
     
-    // Sort by modification time (newest first)
-    const sortedFiles = allFiles.sort((a, b) => new Date(b.modifiedTime) - new Date(a.modifiedTime));
+    // Sort by lesson date (newest first) - extract date from filename
+    const sortedFiles = allFiles.sort((a, b) => {
+      const dateA = extractDateFromFilename(a.name);
+      const dateB = extractDateFromFilename(b.name);
+      
+      // If both have dates, sort by date
+      if (dateA && dateB) {
+        return dateB - dateA;
+      }
+      
+      // If only one has date, prioritize it
+      if (dateA && !dateB) return -1;
+      if (!dateA && dateB) return 1;
+      
+      // If neither has date, fall back to modification time
+      return new Date(b.modifiedTime) - new Date(a.modifiedTime);
+    });
     
     Logger.log('Found ' + sortedFiles.length + ' files matching metadata search');
     return sortedFiles;
@@ -1157,6 +1196,28 @@ function testDriveAccess() {
     Logger.log('🎉 Drive access test completed!');
   } catch (error) {
     Logger.log('❌ Error: ' + error.toString());
+  }
+}
+
+// Extract date from filename
+function extractDateFromFilename(filename) {
+  try {
+    // Try to extract date from filename format: YYYY-MM-DD__topic__v001.pdf
+    const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
+    if (dateMatch) {
+      return new Date(dateMatch[1]);
+    }
+    
+    // Fallback: try other common date formats
+    const altDateMatch = filename.match(/(\d{4})[_-](\d{2})[_-](\d{2})/);
+    if (altDateMatch) {
+      return new Date(altDateMatch[1], altDateMatch[2] - 1, altDateMatch[3]);
+    }
+    
+    return null;
+  } catch (error) {
+    Logger.log('Error extracting date from filename: ' + filename + ' - ' + error.toString());
+    return null;
   }
 }
 
