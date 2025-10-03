@@ -34,14 +34,17 @@ export default function AantekeningenPage() {
         <meta property="og:url" content="https://stephensprivelessen.nl/aantekeningen" />
         <meta property="og:title" content="📚 Aantekeningen - Stephen's Privelessen" />
         <meta property="og:description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
-        <meta property="og:image" content="https://stephensprivelessen.nl/images/og-default-banner.jpg" />
+        <meta property="og:image" content="https://stephensprivelessen.nl/images/og-aantekeningen.svg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/svg+xml" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://stephensprivelessen.nl/aantekeningen" />
         <meta property="twitter:title" content="📚 Aantekeningen - Stephen's Privelessen" />
         <meta property="twitter:description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
-        <meta property="twitter:image" content="https://stephensprivelessen.nl/images/og-default-banner.jpg" />
+        <meta property="twitter:image" content="https://stephensprivelessen.nl/images/og-aantekeningen.svg" />
       </Head>
       
       <div className="h-screen flex flex-col">
