@@ -3,17 +3,24 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { useSearchParams } from "next/navigation";
 
 export default function AantekeningenPage() {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [iframeError, setIframeError] = useState(false);
+  const [studentName, setStudentName] = useState<string | null>(null);
+  const searchParams = useSearchParams();
 
   // Google Apps Script web app URL - NEW DEPLOYMENT WITH SHARE FUNCTIONALITY
   const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyviQRaLpf3eNDlTrPgMfcHAtIuWk1bQv07G539qsydJsrqiLgZr-14G6UnunIeNqNu/exec";
 
   useEffect(() => {
-    // You can add any initialization logic here
-  }, []);
+    // Get student name from URL parameters
+    const name = searchParams.get('student');
+    if (name) {
+      setStudentName(name);
+    }
+  }, [searchParams]);
 
   const handleIframeLoad = () => {
     setIframeLoaded(true);
@@ -26,25 +33,25 @@ export default function AantekeningenPage() {
   return (
     <>
       <Head>
-        <title>📚 Aantekeningen - Stephen's Privelessen</title>
-        <meta name="description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
+        <title>{studentName ? `📚 ${studentName}'s Aantekeningen - Stephen's Privelessen` : "📚 Aantekeningen - Stephen's Privelessen"}</title>
+        <meta name="description" content={studentName ? `${studentName}'s aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk.` : "Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk."} />
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://stephensprivelessen.nl/aantekeningen" />
-        <meta property="og:title" content="📚 Aantekeningen - Stephen's Privelessen" />
-        <meta property="og:description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
-        <meta property="og:image" content="https://stephensprivelessen.nl/images/og-aantekeningen.svg" />
+        <meta property="og:url" content={`https://stephensprivelessen.nl/aantekeningen${studentName ? `?student=${encodeURIComponent(studentName)}` : ''}`} />
+        <meta property="og:title" content={studentName ? `📚 ${studentName}'s Aantekeningen - Stephen's Privelessen` : "📚 Aantekeningen - Stephen's Privelessen"} />
+        <meta property="og:description" content={studentName ? `${studentName}'s aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk.` : "Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk."} />
+        <meta property="og:image" content={studentName ? `https://stephensprivelessen.nl/api/og-image?student=${encodeURIComponent(studentName)}` : "https://stephensprivelessen.nl/images/og-aantekeningen.svg"} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/svg+xml" />
         
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://stephensprivelessen.nl/aantekeningen" />
-        <meta property="twitter:title" content="📚 Aantekeningen - Stephen's Privelessen" />
-        <meta property="twitter:description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
-        <meta property="twitter:image" content="https://stephensprivelessen.nl/images/og-aantekeningen.svg" />
+        <meta property="twitter:url" content={`https://stephensprivelessen.nl/aantekeningen${studentName ? `?student=${encodeURIComponent(studentName)}` : ''}`} />
+        <meta property="twitter:title" content={studentName ? `📚 ${studentName}'s Aantekeningen - Stephen's Privelessen` : "📚 Aantekeningen - Stephen's Privelessen"} />
+        <meta property="twitter:description" content={studentName ? `${studentName}'s aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk.` : "Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk."} />
+        <meta property="twitter:image" content={studentName ? `https://stephensprivelessen.nl/api/og-image?student=${encodeURIComponent(studentName)}` : "https://stephensprivelessen.nl/images/og-aantekeningen.svg"} />
       </Head>
       
       <div className="h-screen flex flex-col">
