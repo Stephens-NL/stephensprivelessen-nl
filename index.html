@@ -1590,7 +1590,8 @@
             // If only one match, auto-open the student
             if (matches.length === 1) {
                 const student = matches[0];
-                showStudentDetail(student.folderId, student.name, student.subject);
+                const folderId = student.folderId || student.id || student.folder_id;
+                showStudentDetail(folderId, student.name, student.subject);
                 return;
             }
             
@@ -1601,8 +1602,9 @@
                 '</div>';
             
             // Show student cards with overview info
-            const studentsHtml = matches.map(student => 
-                '<div class="student-card" onclick="showStudentDetail(\'' + student.id + '\', \'' + student.name + '\', \'' + student.subject + '\')">' +
+            const studentsHtml = matches.map(student => {
+                const folderId = student.folderId || student.id || student.folder_id;
+                return '<div class="student-card" onclick="showStudentDetail(\'' + folderId + '\', \'' + student.name + '\', \'' + student.subject + '\')">' +
                     '<div class="student-header">' +
                         '<div class="student-name">' + student.name + '</div>' +
                         '<div class="subject-badge">' + student.subject + '</div>' +
@@ -1618,8 +1620,8 @@
                     '<div class="click-hint">' +
                         t('click_to_view') +
                     '</div>' +
-                '</div>'
-            ).join('');
+                '</div>';
+            }).join('');
             
             resultsDiv.innerHTML = statsHtml + studentsHtml;
             
@@ -2291,8 +2293,19 @@
                         const rachel = students[0]; // Take first result
                         console.log('👤 Found Rachel:', rachel);
                         console.log('📁 Rachel folder ID:', rachel.folderId);
+                        console.log('📁 Rachel ID:', rachel.id);
                         console.log('📚 Rachel subject:', rachel.subject);
                         console.log('🏷️ Rachel name:', rachel.name);
+                        
+                        // Try different possible folder ID properties
+                        const folderId = rachel.folderId || rachel.id || rachel.folder_id;
+                        console.log('🔍 Using folder ID:', folderId);
+                        
+                        if (!folderId) {
+                            console.error('❌ No folder ID found for Rachel');
+                            alert('Rachel found but no folder ID available. Check console for details.');
+                            return;
+                        }
                         
                         // Now check what's in her folder
                         console.log('🔍 Checking files in Rachel folder...');
@@ -2317,7 +2330,7 @@
                                 console.error('❌ Error getting Rachel files:', error);
                                 alert('Error getting Rachel files: ' + error.message);
                             })
-                            .listFilesInFolder(rachel.folderId);
+                            .listFilesInFolder(folderId);
                     } else {
                         console.log('❌ Rachel not found in search results');
                         alert('Rachel not found in search results. Check console for details.');
