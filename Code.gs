@@ -17,6 +17,68 @@ const CACHE_KEY_AI_ANALYSIS = 'cached_ai_analysis_';
 const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE'; // Replace with your actual API key
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
+// Subject mapping for better categorization
+const SUBJECT_MAPPING = {
+  'wiskunde': '🧮 Wiskunde',
+  'wiskunde a': '🧮 Wiskunde A',
+  'wiskunde b': '🧮 Wiskunde B', 
+  'wiskunde c': '🧮 Wiskunde C',
+  'wiskunde d': '🧮 Wiskunde D',
+  'natuurkunde': '🧪 Natuurkunde',
+  'scheikunde': '🧪 Scheikunde',
+  'natuur & techniek': '🧪 Natuur & Techniek',
+  'informatica': '💻 Informatica',
+  'programmeren': '💻 Programmeren',
+  'python': '💻 Python',
+  'digitale vaardigheden': '💻 Digitale Vaardigheden',
+  'rekenen': '📊 Rekenen',
+  'statistiek': '📊 Statistiek',
+  'data-analyse': '📊 Data-analyse',
+  'rekenen & toegepaste vaardigheden': '📊 Rekenen & Toegepaste Vaardigheden'
+};
+
+// Language support
+const TRANSLATIONS = {
+  'nl': {
+    'search_placeholder': 'Typ je naam om je aantekeningen te vinden...',
+    'search_button': '🔍 Zoeken',
+    'loading': 'Laden...',
+    'no_results': 'Geen studenten gevonden',
+    'try_again': 'Probeer een andere naam of controleer de spelling.',
+    'students_found': 'studenten gevonden',
+    'student_found': 'student gevonden',
+    'last_activity': 'Laatste activiteit',
+    'files': 'Bestanden',
+    'click_to_view': '👆 Klik om details te bekijken',
+    'back_to_search': '← Terug naar zoeken',
+    'icon_view': 'Icon View',
+    'list_view': 'List View',
+    'no_files': 'Geen bestanden gevonden in deze map.',
+    'error_loading': 'Fout bij laden van bestanden. Probeer opnieuw.',
+    'error_loading_files': 'Fout bij laden',
+    'hover_to_load': 'Hover om te laden'
+  },
+  'en': {
+    'search_placeholder': 'Type your name to find your notes...',
+    'search_button': '🔍 Search',
+    'loading': 'Loading...',
+    'no_results': 'No students found',
+    'try_again': 'Try a different name or check the spelling.',
+    'students_found': 'students found',
+    'student_found': 'student found',
+    'last_activity': 'Last activity',
+    'files': 'Files',
+    'click_to_view': '👆 Click to view details',
+    'back_to_search': '← Back to search',
+    'icon_view': 'Icon View',
+    'list_view': 'List View',
+    'no_files': 'No files found in this folder.',
+    'error_loading': 'Error loading files. Please try again.',
+    'error_loading_files': 'Error loading',
+    'hover_to_load': 'Hover to load'
+  }
+};
+
 /**
  * Main entry point for web app
  */
@@ -676,8 +738,8 @@ function analyzeDocumentWithAI(fileName, fileContent = null) {
     
     // Prepare prompt for OpenAI
     const prompt = `Analyze this document and extract metadata. Return a JSON object with:
-    - subject: The main subject/vak (e.g., "Wiskunde", "Nederlands", "Biologie")
-    - topic: The specific topic/onderwerp (e.g., "Algebra", "Grammatica", "Celbiologie")
+    - subject: The main subject/vak from this list: Wiskunde A, Wiskunde B, Wiskunde C, Wiskunde D, Natuurkunde, Scheikunde, Informatica, Programmeren, Python, Rekenen, Statistiek, Data-analyse
+    - topic: The specific topic/onderwerp (e.g., "Algebra", "Functies", "Differentiëren", "Integreren", "Mechanica", "Elektriciteit", "Organische chemie", "Python basics", "Statistiek")
     - level: Educational level (e.g., "VO", "WO", "HBO")
     - keywords: Array of 3-5 relevant keywords
     - summary: Brief 1-sentence summary

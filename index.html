@@ -433,6 +433,126 @@
         .icon-view.active {
             display: block;
         }
+        
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4f46e5;
+            border-color: white;
+        }
+        
+        /* Enhanced Subject Badges */
+        .subject-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* Enhanced File Icons */
+        .file-icon {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .file-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            border-color: #4f46e5;
+        }
+        
+        /* Enhanced Student Cards */
+        .student-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .student-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border-color: #4f46e5;
+        }
+        
+        /* Enhanced Search Box */
+        .search-box {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+        
+        /* Enhanced View Toggle */
+        .view-toggle {
+            background: white;
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #6b7280;
+        }
+        
+        .toggle-btn.active {
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+        }
+        
+        .toggle-btn:hover:not(.active) {
+            background: #f3f4f6;
+            color: #374151;
+        }
     </style>
 </head>
 <body>
@@ -440,6 +560,12 @@
         <div class="header">
             <h1>📚 Aantekeningen</h1>
             <p>Vind je lesmateriaal snel en eenvoudig</p>
+            
+            <!-- Language Toggle -->
+            <div class="language-toggle">
+                <button id="langNl" class="lang-btn active" onclick="setLanguage('nl')">🇳🇱 NL</button>
+                <button id="langEn" class="lang-btn" onclick="setLanguage('en')">🇬🇧 EN</button>
+            </div>
         </div>
         
         <div class="search-section">
@@ -464,6 +590,81 @@
         let currentResults = [];
         let currentStudent = null;
         let currentView = 'icon'; // 'icon' or 'list'
+        let currentLanguage = 'nl'; // 'nl' or 'en'
+        
+        // Translations
+        const translations = {
+            'nl': {
+                'search_placeholder': 'Typ je naam om je aantekeningen te vinden...',
+                'search_button': '🔍 Zoeken',
+                'loading': 'Laden...',
+                'no_results': 'Geen studenten gevonden',
+                'try_again': 'Probeer een andere naam of controleer de spelling.',
+                'students_found': 'studenten gevonden',
+                'student_found': 'student gevonden',
+                'last_activity': 'Laatste activiteit',
+                'files': 'Bestanden',
+                'click_to_view': '👆 Klik om details te bekijken',
+                'back_to_search': '← Terug naar zoeken',
+                'icon_view': 'Icon View',
+                'list_view': 'List View',
+                'no_files': 'Geen bestanden gevonden in deze map.',
+                'error_loading': 'Fout bij laden van bestanden. Probeer opnieuw.',
+                'error_loading_files': 'Fout bij laden',
+                'hover_to_load': 'Hover om te laden'
+            },
+            'en': {
+                'search_placeholder': 'Type your name to find your notes...',
+                'search_button': '🔍 Search',
+                'loading': 'Loading...',
+                'no_results': 'No students found',
+                'try_again': 'Try a different name or check the spelling.',
+                'students_found': 'students found',
+                'student_found': 'student found',
+                'last_activity': 'Last activity',
+                'files': 'Files',
+                'click_to_view': '👆 Click to view details',
+                'back_to_search': '← Back to search',
+                'icon_view': 'Icon View',
+                'list_view': 'List View',
+                'no_files': 'No files found in this folder.',
+                'error_loading': 'Error loading files. Please try again.',
+                'error_loading_files': 'Error loading',
+                'hover_to_load': 'Hover to load'
+            }
+        };
+        
+        // Language functions
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
+            
+            // Update UI elements
+            updateUI();
+        }
+        
+        function updateUI() {
+            const t = translations[currentLanguage];
+            
+            // Update search input
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = t.search_placeholder;
+            }
+            
+            // Update search button
+            const searchBtn = document.getElementById('searchBtn');
+            if (searchBtn && !searchBtn.disabled) {
+                searchBtn.textContent = t.search_button;
+            }
+        }
+        
+        function t(key) {
+            return translations[currentLanguage][key] || key;
+        }
         
         // Search functionality
         function searchStudents() {
@@ -473,17 +674,17 @@
             const searchBtn = document.getElementById('searchBtn');
             
             if (!searchTerm) {
-                resultsDiv.innerHTML = '<div class="error">Voer een naam in om te zoeken.</div>';
+                resultsDiv.innerHTML = `<div class="error">${t('try_again')}</div>`;
                 return;
             }
             
             // Show loading
             searchBtn.disabled = true;
-            searchBtn.textContent = '⏳ Zoeken...';
+            searchBtn.textContent = '⏳ ' + t('loading');
             resultsDiv.innerHTML = `
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p>Zoeken naar studenten...</p>
+                    <p>${t('loading')}</p>
                 </div>
             `;
             
@@ -499,17 +700,17 @@
             const resultsDiv = document.getElementById('results');
             const searchBtn = document.getElementById('searchBtn');
             
-            // Reset button
-            searchBtn.disabled = false;
-            searchBtn.textContent = '🔍 Zoeken';
+        // Reset button
+        searchBtn.disabled = false;
+        searchBtn.textContent = t('search_button');
             
             currentResults = matches;
             
             if (matches.length === 0) {
                 resultsDiv.innerHTML = `
                     <div class="no-results">
-                        <h3>Geen studenten gevonden</h3>
-                        <p>Probeer een andere naam of controleer de spelling.</p>
+                        <h3>${t('no_results')}</h3>
+                        <p>${t('try_again')}</p>
                     </div>
                 `;
                 return;
@@ -518,7 +719,7 @@
             // Show stats
             const statsHtml = `
                 <div class="stats">
-                    ${matches.length} student${matches.length !== 1 ? 'en' : ''} gevonden
+                    ${matches.length} ${matches.length !== 1 ? t('students_found') : t('student_found')}
                 </div>
             `;
             
