@@ -952,13 +952,13 @@
                     if (shareButtons) {
                         shareButtons.innerHTML = `
                             <button class="share-btn whatsapp" onclick="shareViaWhatsApp()">
-                                📱 t('share_whatsapp')
+                                📱 ${t('share_whatsapp')}
                             </button>
                             <button class="share-btn email" onclick="shareViaEmail()">
-                                📧 t('share_email')
+                                📧 ${t('share_email')}
                             </button>
                             <button class="share-btn copy" onclick="copyShareLink()">
-                                📋 t('copy_link')
+                                📋 ${t('copy_link')}
                             </button>
                         `;
                     }
@@ -1086,8 +1086,8 @@
             if (matches.length === 0) {
                 resultsDiv.innerHTML = `
                     <div class="no-results">
-                        <h3>t('no_results')</h3>
-                        <p>t('try_again')</p>
+                        <h3>${t('no_results')}</h3>
+                        <p>${t('try_again')}</p>
                     </div>
                 `;
                 return;
@@ -1198,8 +1198,8 @@
                 return;
             }
             
-            lastActivityDiv.textContent = `❌ t('error_loading_files')`;
-            fileCountDiv.textContent = `❌ t('error_loading_files')`;
+            lastActivityDiv.textContent = `❌ ${t('error_loading_files')}`;
+            fileCountDiv.textContent = `❌ ${t('error_loading_files')}`;
         }
         
         // Show student detail view
@@ -1275,7 +1275,7 @@
                 .withFailureHandler(error => {
                     console.error('Error loading files:', error);
                     document.getElementById('student-files').innerHTML = `
-                        <div class="error">t('error_loading')</div>
+                        <div class="error">${t('error_loading')}</div>
                     `;
                 })
                 .listFilesInFolder(folderId);
@@ -1351,12 +1351,12 @@
             
             if (!files || !Array.isArray(files)) {
                 console.error('Files is null, undefined, or not an array for folder:', folderId, 'Files:', files);
-                filesDiv.innerHTML = `<div class="error">t('error_loading')</div>`;
+                filesDiv.innerHTML = `<div class="error">${t('error_loading')}</div>`;
                 return;
             }
             
             if (files.length === 0) {
-                filesDiv.innerHTML = `<div class="no-results"><h3>t('no_files')</h3></div>`;
+                filesDiv.innerHTML = `<div class="no-results"><h3>${t('no_files')}</h3></div>`;
                 return;
             }
             
@@ -1386,8 +1386,8 @@
             const years = [...new Set(files.map(file => file.schoolYear).filter(y => y))];
             
             // Clear existing options (except "all")
-            subjectFilter.innerHTML = `<option value="all">t('all_subjects')</option>`;
-            yearFilter.innerHTML = `<option value="all">t('all_years')</option>`;
+            subjectFilter.innerHTML = `<option value="all">${t('all_subjects')}</option>`;
+            yearFilter.innerHTML = `<option value="all">${t('all_years')}</option>`;
             
             // Add subject options
             subjects.forEach(subject => {
@@ -1557,7 +1557,7 @@
                     .withFailureHandler(error => {
                         console.error('Error reloading files:', error);
                         document.getElementById('student-files').innerHTML = `
-                            <div class="error">t('error_loading')</div>
+                            <div class="error">${t('error_loading')}</div>
                         `;
                     })
                     .listFilesInFolder(currentStudent.id);
