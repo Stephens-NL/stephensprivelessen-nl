@@ -56,7 +56,7 @@ describe('Sitemap Validation', () => {
 
     test('all sitemap URLs are valid format', () => {
         // Allow for more granular location and service-specific URLs
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/mbo-rekenen|\/aantekeningen|\/blog\/\d+)$/;
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/bijles\/[a-z-]+|\/mbo-rekenen|\/aantekeningen|\/blog\/\d+)$/;
         
         // Convert absolute URLs to relative for pattern matching
         const relativeSitemapUrls = sitemapUrls.map(url => {
@@ -144,21 +144,26 @@ describe('Sitemap Validation', () => {
     });
 
     test('all blog posts are included in sitemap', () => {
-        const blogUrls = sitemapUrls.filter(url => url.startsWith('/blog/'));
-        
-        // Check if main blog page is included (convert absolute URLs to relative)
+        // Convert absolute URLs to relative for filtering
         const relativeSitemapUrls = sitemapUrls.map(url => {
             if (url.startsWith('https://stephensprivelessen.nl')) {
                 return url.replace('https://stephensprivelessen.nl', '');
             }
             return url;
         });
+        const blogUrls = relativeSitemapUrls.filter(url => url.startsWith('/blog/'));
+        
+        // Check if main blog page is included
         expect(relativeSitemapUrls).toContain('/blog');
         
-        // Check if all individual blog posts are included
-        blogPosts.forEach(post => {
-            expect(blogUrls).toContain(`/blog/${post.id}`);
-        });
+        // Check if all individual blog posts are included (only if blog posts exist)
+        if (blogPosts && blogPosts.length > 0) {
+            blogPosts.forEach(post => {
+                expect(blogUrls).toContain(`/blog/${post.id}`);
+            });
+        } else {
+            console.log('No blog posts found, skipping blog post URL validation');
+        }
 
         // Verify blog post entries have correct SEO attributes
         blogUrls.forEach(url => {
