@@ -736,13 +736,17 @@ function analyzeDocumentWithAI(fileName, fileContent = null) {
     
     Logger.log('Analyzing document with AI: ' + fileName);
     
-    // Prepare prompt for OpenAI
+    // Prepare prompt for OpenAI with bilingual support
     const prompt = `Analyze this document and extract metadata. Return a JSON object with:
     - subject: The main subject/vak from this list: Wiskunde A, Wiskunde B, Wiskunde C, Wiskunde D, Natuurkunde, Scheikunde, Informatica, Programmeren, Python, Rekenen, Statistiek, Data-analyse
     - topic: The specific topic/onderwerp (e.g., "Algebra", "Functies", "Differentiëren", "Integreren", "Mechanica", "Elektriciteit", "Organische chemie", "Python basics", "Statistiek")
     - level: Educational level (e.g., "VO", "WO", "HBO")
+    - schoolYear: School year (e.g., "2024-2025", "2023-2024", "2022-2023")
     - keywords: Array of 3-5 relevant keywords
     - summary: Brief 1-sentence summary
+    - summaryEn: Brief 1-sentence summary in English
+    - topicEn: The specific topic in English
+    - keywordsEn: Array of 3-5 relevant keywords in English
     
     Document name: "${fileName}"
     ${fileContent ? `Content preview: "${fileContent.substring(0, 1000)}..."` : ''}
@@ -799,27 +803,55 @@ function _basicAnalysis_(fileName) {
     subject: 'Onbekend',
     topic: 'Algemeen',
     level: 'VO',
+    schoolYear: '2024-2025',
     keywords: ['lesmateriaal'],
-    summary: 'Lesmateriaal document'
+    summary: 'Lesmateriaal document',
+    topicEn: 'General',
+    keywordsEn: ['study material'],
+    summaryEn: 'Study material document'
   };
   
   // Try to extract subject from filename
   const lowerName = fileName.toLowerCase();
   if (lowerName.includes('wiskunde') || lowerName.includes('math')) {
     analysis.subject = 'Wiskunde';
-    analysis.topic = 'Algemeen';
+    analysis.topic = 'Wiskunde';
+    analysis.topicEn = 'Mathematics';
+    analysis.keywords = ['wiskunde', 'rekenen', 'algebra'];
+    analysis.keywordsEn = ['mathematics', 'calculations', 'algebra'];
   } else if (lowerName.includes('nederlands') || lowerName.includes('dutch')) {
     analysis.subject = 'Nederlands';
     analysis.topic = 'Taal';
+    analysis.topicEn = 'Language';
+    analysis.keywords = ['nederlands', 'taal', 'grammatica'];
+    analysis.keywordsEn = ['dutch', 'language', 'grammar'];
   } else if (lowerName.includes('biologie') || lowerName.includes('biology')) {
     analysis.subject = 'Biologie';
     analysis.topic = 'Natuurwetenschappen';
+    analysis.topicEn = 'Natural Sciences';
+    analysis.keywords = ['biologie', 'natuur', 'cellen'];
+    analysis.keywordsEn = ['biology', 'nature', 'cells'];
   } else if (lowerName.includes('scheikunde') || lowerName.includes('chemistry')) {
     analysis.subject = 'Scheikunde';
     analysis.topic = 'Natuurwetenschappen';
+    analysis.topicEn = 'Natural Sciences';
+    analysis.keywords = ['scheikunde', 'chemie', 'moleculen'];
+    analysis.keywordsEn = ['chemistry', 'molecules', 'reactions'];
   } else if (lowerName.includes('fysica') || lowerName.includes('physics')) {
     analysis.subject = 'Fysica';
     analysis.topic = 'Natuurwetenschappen';
+    analysis.topicEn = 'Natural Sciences';
+    analysis.keywords = ['fysica', 'natuurkunde', 'mechanica'];
+    analysis.keywordsEn = ['physics', 'mechanics', 'forces'];
+  }
+  
+  // Extract school year from filename if present
+  const yearMatch = fileName.match(/(\d{4})/);
+  if (yearMatch) {
+    const year = parseInt(yearMatch[1]);
+    if (year >= 2020 && year <= 2030) {
+      analysis.schoolYear = `${year}-${year + 1}`;
+    }
   }
   
   // Try to extract level

@@ -443,6 +443,166 @@
             color: #1e293b;
         }
         
+        .filters-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .filter-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .filter-select {
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            background: white;
+            font-size: 0.9rem;
+            color: #1e293b;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .clear-filters {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #cbd5e1;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .clear-filters:hover {
+            background: #e2e8f0;
+            color: #475569;
+        }
+        
+        /* Share Button */
+        .share-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .share-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .share-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .share-btn.whatsapp {
+            background: #25d366;
+        }
+        
+        .share-btn.whatsapp:hover {
+            background: #20ba5a;
+        }
+        
+        .share-btn.email {
+            background: #667eea;
+        }
+        
+        .share-btn.email:hover {
+            background: #5a67d8;
+        }
+        
+        .share-btn.copy {
+            background: #6b7280;
+        }
+        
+        .share-btn.copy:hover {
+            background: #4b5563;
+        }
+        
+        .share-url {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            color: #64748b;
+            word-break: break-all;
+            margin-top: 1rem;
+        }
+        
+        .copy-success {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: #10b981;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
         .view-toggle {
             display: flex;
             gap: 0.5rem;
@@ -613,6 +773,23 @@
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
                 gap: 1rem;
             }
+            
+            .share-buttons {
+                flex-direction: column;
+            }
+            
+            .share-btn {
+                justify-content: center;
+            }
+            
+            .filters-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -655,6 +832,11 @@
         let currentStudent = null;
         let currentView = 'icon';
         let currentLanguage = 'nl';
+        let currentFiles = [];
+        let currentFilters = {
+            subject: 'all',
+            schoolYear: 'all'
+        };
         
         // Translations
         const translations = {
@@ -684,7 +866,18 @@
                 'topic': 'Onderwerp',
                 'level': 'Niveau',
                 'keywords': 'Trefwoorden',
-                'summary': 'Samenvatting'
+                'summary': 'Samenvatting',
+                'filter_subject': 'Filter op vak',
+                'filter_year': 'Filter op schooljaar',
+                'clear_filters': 'Filters wissen',
+                'all_subjects': 'Alle vakken',
+                'all_years': 'Alle schooljaren',
+                'share_notes': 'Deel je aantekeningen',
+                'share_whatsapp': 'Deel via WhatsApp',
+                'share_email': 'Deel via e-mail',
+                'copy_link': 'Kopieer link',
+                'link_copied': 'Link gekopieerd!',
+                'share_message': 'Bekijk mijn aantekeningen van Stephen\'s Privelessen:'
             },
             'en': {
                 'search_placeholder': 'Type your name to find your notes...',
@@ -712,7 +905,18 @@
                 'topic': 'Topic',
                 'level': 'Level',
                 'keywords': 'Keywords',
-                'summary': 'Summary'
+                'summary': 'Summary',
+                'filter_subject': 'Filter by subject',
+                'filter_year': 'Filter by school year',
+                'clear_filters': 'Clear filters',
+                'all_subjects': 'All subjects',
+                'all_years': 'All school years',
+                'share_notes': 'Share your notes',
+                'share_whatsapp': 'Share via WhatsApp',
+                'share_email': 'Share via email',
+                'copy_link': 'Copy link',
+                'link_copied': 'Link copied!',
+                'share_message': 'Check out my notes from Stephen\'s Privelessen:'
             }
         };
         
@@ -726,6 +930,41 @@
             
             // Update UI elements
             updateUI();
+            
+            // Refresh current view if student is selected
+            if (currentStudent && currentFiles.length > 0) {
+                // Refresh share section
+                const shareSection = document.getElementById('share-section');
+                if (shareSection) {
+                    const shareTitle = shareSection.querySelector('.share-title');
+                    const shareButtons = shareSection.querySelector('.share-buttons');
+                    if (shareTitle) shareTitle.textContent = t('share_notes');
+                    if (shareButtons) {
+                        shareButtons.innerHTML = `
+                            <button class="share-btn whatsapp" onclick="shareViaWhatsApp()">
+                                📱 ${t('share_whatsapp')}
+                            </button>
+                            <button class="share-btn email" onclick="shareViaEmail()">
+                                📧 ${t('share_email')}
+                            </button>
+                            <button class="share-btn copy" onclick="copyShareLink()">
+                                📋 ${t('copy_link')}
+                            </button>
+                        `;
+                    }
+                }
+                
+                // Refresh featured note
+                showFeaturedNote(currentFiles);
+                
+                // Refresh files display
+                const filteredFiles = applyFiltersToFiles(currentFiles);
+                if (currentView === 'icon') {
+                    displayIconView(filteredFiles);
+                } else {
+                    displayListView(filteredFiles);
+                }
+            }
         }
         
         function updateUI() {
@@ -915,6 +1154,25 @@
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = `
                 <button class="back-btn" onclick="showSearchResults()">${t('back_to_search')}</button>
+                <div class="share-section" id="share-section">
+                    <div class="share-header">
+                        <h3 class="share-title">${t('share_notes')}</h3>
+                    </div>
+                    <div class="share-buttons">
+                        <button class="share-btn whatsapp" onclick="shareViaWhatsApp()">
+                            📱 ${t('share_whatsapp')}
+                        </button>
+                        <button class="share-btn email" onclick="shareViaEmail()">
+                            📧 ${t('share_email')}
+                        </button>
+                        <button class="share-btn copy" onclick="copyShareLink()">
+                            📋 ${t('copy_link')}
+                        </button>
+                    </div>
+                    <div class="share-url" id="share-url" style="display: none;">
+                        ${window.location.href}
+                    </div>
+                </div>
                 <div class="featured-note" id="featured-note">
                     <div class="loading">
                         <div class="spinner"></div>
@@ -928,6 +1186,21 @@
                             <button class="toggle-btn active" onclick="switchView('icon')">${t('icon_view')}</button>
                             <button class="toggle-btn" onclick="switchView('list')">${t('list_view')}</button>
                         </div>
+                    </div>
+                    <div class="filters-section" id="filters-section">
+                        <div class="filter-group">
+                            <label class="filter-label">${t('filter_subject')}</label>
+                            <select class="filter-select" id="subject-filter" onchange="applyFilters()">
+                                <option value="all">${t('all_subjects')}</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">${t('filter_year')}</label>
+                            <select class="filter-select" id="year-filter" onchange="applyFilters()">
+                                <option value="all">${t('all_years')}</option>
+                            </select>
+                        </div>
+                        <button class="clear-filters" onclick="clearFilters()">${t('clear_filters')}</button>
                     </div>
                     <div id="student-files">
                         <div class="loading">
@@ -983,7 +1256,7 @@
                     <div class="featured-details">
                         <div class="featured-summary">
                             <h4>${latestFile.title || latestFile.name}</h4>
-                            <p>${latestFile.summary || 'Geen samenvatting beschikbaar.'}</p>
+                            <p>${currentLanguage === 'en' ? (latestFile.summaryEn || latestFile.summary || 'No summary available.') : (latestFile.summary || 'Geen samenvatting beschikbaar.')}</p>
                         </div>
                         <div class="featured-meta">
                             <div class="meta-item">
@@ -992,12 +1265,18 @@
                             </div>
                             <div class="meta-item">
                                 <div class="meta-label">${t('topic')}</div>
-                                <div class="meta-value">${latestFile.topic || 'Onbekend'}</div>
+                                <div class="meta-value">${currentLanguage === 'en' ? (latestFile.topicEn || latestFile.topic || 'Unknown') : (latestFile.topic || 'Onbekend')}</div>
                             </div>
                             <div class="meta-item">
                                 <div class="meta-label">${t('level')}</div>
                                 <div class="meta-value">${latestFile.level || 'Onbekend'}</div>
                             </div>
+                            ${latestFile.schoolYear ? `
+                            <div class="meta-item">
+                                <div class="meta-label">Schooljaar</div>
+                                <div class="meta-value">${latestFile.schoolYear}</div>
+                            </div>
+                            ` : ''}
                         </div>
                         <div class="featured-actions">
                             <a href="${latestFile.viewUrl}" target="_blank" class="action-btn btn-primary">${t('preview')}</a>
@@ -1026,10 +1305,95 @@
                 return;
             }
             
+            // Store current files for filtering
+            currentFiles = files;
+            
+            // Populate filter options
+            populateFilters(files);
+            
+            // Apply current filters
+            const filteredFiles = applyFiltersToFiles(files);
+            
             if (currentView === 'icon') {
-                displayIconView(files);
+                displayIconView(filteredFiles);
             } else {
-                displayListView(files);
+                displayListView(filteredFiles);
+            }
+        }
+        
+        // Populate filter options
+        function populateFilters(files) {
+            const subjectFilter = document.getElementById('subject-filter');
+            const yearFilter = document.getElementById('year-filter');
+            
+            // Get unique subjects
+            const subjects = [...new Set(files.map(file => file.subject).filter(s => s && s !== 'Onbekend'))];
+            const years = [...new Set(files.map(file => file.schoolYear).filter(y => y))];
+            
+            // Clear existing options (except "all")
+            subjectFilter.innerHTML = `<option value="all">${t('all_subjects')}</option>`;
+            yearFilter.innerHTML = `<option value="all">${t('all_years')}</option>`;
+            
+            // Add subject options
+            subjects.forEach(subject => {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectFilter.appendChild(option);
+            });
+            
+            // Add year options
+            years.sort().reverse().forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearFilter.appendChild(option);
+            });
+        }
+        
+        // Apply filters to files
+        function applyFiltersToFiles(files) {
+            return files.filter(file => {
+                const subjectMatch = currentFilters.subject === 'all' || file.subject === currentFilters.subject;
+                const yearMatch = currentFilters.schoolYear === 'all' || file.schoolYear === currentFilters.schoolYear;
+                return subjectMatch && yearMatch;
+            });
+        }
+        
+        // Apply filters
+        function applyFilters() {
+            const subjectFilter = document.getElementById('subject-filter');
+            const yearFilter = document.getElementById('year-filter');
+            
+            currentFilters.subject = subjectFilter.value;
+            currentFilters.schoolYear = yearFilter.value;
+            
+            const filteredFiles = applyFiltersToFiles(currentFiles);
+            
+            if (currentView === 'icon') {
+                displayIconView(filteredFiles);
+            } else {
+                displayListView(filteredFiles);
+            }
+        }
+        
+        // Clear filters
+        function clearFilters() {
+            currentFilters.subject = 'all';
+            currentFilters.schoolYear = 'all';
+            
+            const subjectFilter = document.getElementById('subject-filter');
+            const yearFilter = document.getElementById('year-filter');
+            
+            subjectFilter.value = 'all';
+            yearFilter.value = 'all';
+            
+            const filteredFiles = applyFiltersToFiles(currentFiles);
+            
+            if (currentView === 'icon') {
+                displayIconView(filteredFiles);
+            } else {
+                displayListView(filteredFiles);
             }
         }
         
@@ -1062,10 +1426,11 @@
                                 ${file.subject && file.subject !== 'Onbekend' ? `
                                     <div class="file-meta">
                                         <div class="file-subject">${file.subject}</div>
-                                        ${file.topic ? `<div class="file-topic">${file.topic}</div>` : ''}
+                                        ${file.topic ? `<div class="file-topic">${currentLanguage === 'en' ? (file.topicEn || file.topic) : file.topic}</div>` : ''}
                                         ${file.keywords && file.keywords.length > 0 ? `
-                                            <div class="file-keywords">${file.keywords.slice(0, 3).join(', ')}</div>
+                                            <div class="file-keywords">${currentLanguage === 'en' ? (file.keywordsEn || file.keywords).slice(0, 3).join(', ') : file.keywords.slice(0, 3).join(', ')}</div>
                                         ` : ''}
+                                        ${file.schoolYear ? `<div class="file-year" style="font-size: 0.7rem; color: #94a3b8; margin-top: 0.25rem;">${file.schoolYear}</div>` : ''}
                                     </div>
                                 ` : ''}
                             </div>
@@ -1106,10 +1471,11 @@
                                 ${file.subject && file.subject !== 'Onbekend' ? `
                                     <div class="file-meta">
                                         <div class="file-subject">${file.subject}</div>
-                                        ${file.topic ? `<div class="file-topic">${file.topic}</div>` : ''}
+                                        ${file.topic ? `<div class="file-topic">${currentLanguage === 'en' ? (file.topicEn || file.topic) : file.topic}</div>` : ''}
                                         ${file.keywords && file.keywords.length > 0 ? `
-                                            <div class="file-keywords">${file.keywords.slice(0, 3).join(', ')}</div>
+                                            <div class="file-keywords">${currentLanguage === 'en' ? (file.keywordsEn || file.keywords).slice(0, 3).join(', ') : file.keywords.slice(0, 3).join(', ')}</div>
                                         ` : ''}
+                                        ${file.schoolYear ? `<div class="file-year" style="font-size: 0.7rem; color: #94a3b8; margin-top: 0.25rem;">${file.schoolYear}</div>` : ''}
                                     </div>
                                 ` : ''}
                             </div>
@@ -1160,6 +1526,79 @@
                     </div>
                 `;
             }
+        }
+        
+        // Share functions
+        function shareViaWhatsApp() {
+            const shareUrl = window.location.href;
+            const message = encodeURIComponent(`${t('share_message')} ${shareUrl}`);
+            const whatsappUrl = `https://wa.me/?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        function shareViaEmail() {
+            const shareUrl = window.location.href;
+            const subject = encodeURIComponent(`${currentStudent.name} - ${t('share_notes')}`);
+            const body = encodeURIComponent(`${t('share_message')}\n\n${shareUrl}`);
+            const emailUrl = `mailto:?subject=${subject}&body=${body}`;
+            window.location.href = emailUrl;
+        }
+        
+        function copyShareLink() {
+            const shareUrl = window.location.href;
+            
+            // Try to use the modern clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    showCopySuccess();
+                }).catch(() => {
+                    fallbackCopyTextToClipboard(shareUrl);
+                });
+            } else {
+                fallbackCopyTextToClipboard(shareUrl);
+            }
+        }
+        
+        function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy link. Please copy manually: ' + text);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        
+        function showCopySuccess() {
+            // Remove existing success message
+            const existing = document.querySelector('.copy-success');
+            if (existing) {
+                existing.remove();
+            }
+            
+            // Create new success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'copy-success';
+            successDiv.textContent = t('link_copied');
+            document.body.appendChild(successDiv);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                if (successDiv.parentNode) {
+                    successDiv.parentNode.removeChild(successDiv);
+                }
+            }, 3000);
         }
         
         // Show error
