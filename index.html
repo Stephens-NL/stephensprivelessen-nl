@@ -1982,10 +1982,10 @@
             appContainer.innerHTML = `
                  <button class="back-btn" onclick="showSearchResults()">${t('back_to_search')}</button>
                 <div class="student-header">
-                    <h1 class="student-name">${student.name}</h1>
+                    <h1 class="student-name">${studentName}</h1>
                     <div class="student-info">
-                        <span class="student-subject">${student.subject || 'Vak onbekend'}</span>
-                        <span class="student-files-count">${student.fileCount || 0} bestanden</span>
+                        <span class="student-subject">${subject || 'Vak onbekend'}</span>
+                        <span class="student-files-count">0 bestanden</span>
                     </div>
                 </div>
                 <div class="share-section" id="share-section">
