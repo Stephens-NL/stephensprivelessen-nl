@@ -391,12 +391,14 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             background: #f8fafc;
+            color: #1a202c;
         }
         
         .search-input:focus {
             outline: none;
             border-color: #667eea;
             background: white;
+            color: #1a202c;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
         
@@ -458,14 +460,64 @@
         
         .no-results {
             text-align: center;
-            padding: 3rem;
+            padding: 3rem 2rem;
             color: #64748b;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
         
         .no-results h3 {
             color: #334155;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             font-size: 1.5rem;
+        }
+        
+        .no-results p {
+            margin-bottom: 1.5rem;
+            color: #64748b;
+        }
+        
+        .suggestions-list {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .suggestions-list li {
+            padding: 0.5rem 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .suggestions-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .search-again {
+            margin-top: 2rem;
+        }
+        
+        .retry-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
         
         /* Stats */
@@ -1216,6 +1268,12 @@
                 'no_notes_found': 'Geen aantekeningen gevonden',
                 'no_files_available': 'Er zijn nog geen bestanden beschikbaar voor deze student.',
                 'no_search_results': 'Geen zoekresultaten',
+                'no_results_title': 'Geen studenten gevonden',
+                'no_results_suggestions': 'Probeer het opnieuw met:',
+                'suggestion_partial': '• Alleen je voornaam',
+                'suggestion_caps': '• Verschillende hoofdletters',
+                'suggestion_contact': '• Neem contact op als je je naam niet kunt vinden',
+                'try_again': 'Opnieuw proberen',
                 'hero_title': 'Vind je aantekeningen in seconden',
                 'hero_description': 'Alle je notities, georganiseerd en direct toegankelijk. Voer gewoon je naam in en vind al je lesmateriaal.',
                 'search_placeholder_hero': 'Typ je naam om je aantekeningen te vinden...',
@@ -1266,6 +1324,12 @@
                 'no_notes_found': 'No notes found',
                 'no_files_available': 'No files are available for this student yet.',
                 'no_search_results': 'No search results',
+                'no_results_title': 'No students found',
+                'no_results_suggestions': 'Try searching with:',
+                'suggestion_partial': '• Just your first name',
+                'suggestion_caps': '• Different capitalization',
+                'suggestion_contact': '• Contact us if you can\'t find your name',
+                'try_again': 'Try again',
                 'hero_title': 'Find your notes in seconds',
                 'hero_description': 'All your notes, organized and directly accessible. Just enter your name and find all your study materials.',
                 'search_placeholder_hero': 'Type your name to find your notes...',
@@ -1977,8 +2041,29 @@
             if (currentResults && currentResults.length > 0) {
                 displayResults(currentResults);
             } else {
-                document.getElementById('results').innerHTML = '<div class="no-results"><h3>' + t('no_search_results') + '</h3><p>' + t('enter_name_to_search') + '</p></div>';
+                document.getElementById('results').innerHTML = 
+                    '<div class="no-results">' +
+                        '<div class="no-results-icon">🔍</div>' +
+                        '<h3>' + t('no_results_title') + '</h3>' +
+                        '<p>' + t('no_results_suggestions') + '</p>' +
+                        '<ul class="suggestions-list">' +
+                            '<li>' + t('suggestion_partial') + '</li>' +
+                            '<li>' + t('suggestion_caps') + '</li>' +
+                            '<li>' + t('suggestion_contact') + '</li>' +
+                        '</ul>' +
+                        '<div class="search-again">' +
+                            '<button onclick="clearSearch()" class="retry-button">' + t('try_again') + '</button>' +
+                        '</div>' +
+                    '</div>';
             }
+        }
+        
+        // Clear search function
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchInput').focus();
+            document.getElementById('results').innerHTML = '';
+            currentResults = [];
         }
         
         // Share functions
