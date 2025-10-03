@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function AantekeningenPage() {
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -23,7 +24,27 @@ export default function AantekeningenPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col">
+    <>
+      <Head>
+        <title>📚 Aantekeningen - Stephen's Privelessen</title>
+        <meta name="description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://stephensprivelessen.nl/aantekeningen" />
+        <meta property="og:title" content="📚 Aantekeningen - Stephen's Privelessen" />
+        <meta property="og:description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
+        <meta property="og:image" content="https://stephensprivelessen.nl/images/og-default-banner.jpg" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://stephensprivelessen.nl/aantekeningen" />
+        <meta property="twitter:title" content="📚 Aantekeningen - Stephen's Privelessen" />
+        <meta property="twitter:description" content="Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk." />
+        <meta property="twitter:image" content="https://stephensprivelessen.nl/images/og-default-banner.jpg" />
+      </Head>
+      
+      <div className="h-screen flex flex-col">
       {/* Compact Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-lg">
         <div className="container mx-auto flex items-center justify-between">
@@ -100,6 +121,7 @@ export default function AantekeningenPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -2527,22 +2527,24 @@
         
         // Share functions
         function shareViaWhatsApp() {
-            const shareUrl = window.location.href;
-            const message = encodeURIComponent(t('share_message') + ' ' + shareUrl);
+            const shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
+            const studentName = currentStudent ? currentStudent.name : '';
+            const message = encodeURIComponent('Bekijk mijn aantekeningen van Stephen\'s Privelessen: ' + shareUrl);
             const whatsappUrl = 'https://wa.me/?text=' + message;
             window.open(whatsappUrl, '_blank');
         }
         
         function shareViaEmail() {
-            const shareUrl = window.location.href;
-            const subject = encodeURIComponent(currentStudent.name + ' - ' + t('share_notes'));
-            const body = encodeURIComponent(t('share_message') + '\n\n' + shareUrl);
+            const shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
+            const studentName = currentStudent ? currentStudent.name : '';
+            const subject = encodeURIComponent('Mijn aantekeningen van Stephen\'s Privelessen');
+            const body = encodeURIComponent('Bekijk mijn aantekeningen van Stephen\'s Privelessen:\n\n' + shareUrl);
             const emailUrl = 'mailto:?subject=' + subject + '&body=' + body;
             window.location.href = emailUrl;
         }
         
         function copyShareLink() {
-            const shareUrl = window.location.href;
+            const shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
             
             // Try to use the modern clipboard API
             if (navigator.clipboard && window.isSecureContext) {
