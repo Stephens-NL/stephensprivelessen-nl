@@ -83,9 +83,46 @@ const TRANSLATIONS = {
  * Main entry point for web app
  */
 function doGet(e) {
-  return HtmlService.createHtmlOutputFromFile('index')
+  const htmlOutput = HtmlService.createHtmlOutputFromFile('index')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
     .setTitle('Aantekeningen - Stephen\'s Privelessen');
+  
+  // Check if student parameter is provided
+  if (e.parameter && e.parameter.student) {
+    const studentName = e.parameter.student;
+    Logger.log('Student parameter received: ' + studentName);
+    
+    // Add JavaScript to automatically search for the student
+    const autoSearchScript = `
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Wait a bit for the page to fully load
+          setTimeout(function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            if (searchInput && searchBtn) {
+              // Set the search input value
+              searchInput.value = '${studentName}';
+              
+              // Trigger the search
+              if (typeof performSearch === 'function') {
+                performSearch();
+              } else {
+                // Fallback: click the search button
+                searchBtn.click();
+              }
+            }
+          }, 1000);
+        });
+      </script>
+    `;
+    
+    // Append the auto-search script to the HTML
+    htmlOutput.append(autoSearchScript);
+  }
+  
+  return htmlOutput;
 }
 
 /**
