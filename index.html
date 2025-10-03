@@ -2612,6 +2612,9 @@
             }
             
             console.log('Successfully returned to search');
+            
+            // Reinitialize event listeners after DOM update
+            initializeEventListeners();
         }
         
         // Clear search function
@@ -2866,19 +2869,17 @@
                 .findStudentFolders('rachel');
         }
         
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing...');
-            console.log('Current URL:', window.location.href);
-            console.log('User agent:', navigator.userAgent);
+        // Initialize event listeners function
+        function initializeEventListeners() {
+            console.log('Initializing event listeners');
             
-            updateUI();
-            
-            // Test if buttons are working
             const searchBtn = document.getElementById('searchBtn');
             if (searchBtn) {
                 console.log('Search button found');
-                searchBtn.addEventListener('click', function(e) {
+                // Remove existing listeners to prevent duplicates
+                searchBtn.replaceWith(searchBtn.cloneNode(true));
+                const newSearchBtn = document.getElementById('searchBtn');
+                newSearchBtn.addEventListener('click', function(e) {
                     console.log('Search button clicked', e);
                     e.preventDefault();
                     searchStudents();
@@ -2887,41 +2888,59 @@
                 console.error('Search button not found');
             }
             
-            // Test search input
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
-                // Live search disabled - only search on button click or Enter
-                // searchInput.addEventListener('input', function(e) {
-                //     console.log('Search input changed:', e.target.value);
-                //     debouncedSearch();
-                // });
-                
-                // Keep Enter key functionality
-                searchInput.addEventListener('keypress', function(e) {
+                console.log('Search input found');
+                // Remove existing listeners to prevent duplicates
+                searchInput.replaceWith(searchInput.cloneNode(true));
+                const newSearchInput = document.getElementById('searchInput');
+                newSearchInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
-                        console.log('Enter pressed in search input');
+                        console.log('Enter key pressed in search input');
+                        e.preventDefault();
                         searchStudents();
                     }
                 });
+            } else {
+                console.error('Search input not found');
             }
             
-            // Add language button event listeners
             const langNl = document.getElementById('langNl');
             const langEn = document.getElementById('langEn');
             
             if (langNl) {
-                langNl.addEventListener('click', function() {
+                // Remove existing listeners to prevent duplicates
+                langNl.replaceWith(langNl.cloneNode(true));
+                const newLangNl = document.getElementById('langNl');
+                newLangNl.addEventListener('click', function() {
                     console.log('NL button clicked');
                     setLanguage('nl');
                 });
             }
             
             if (langEn) {
-                langEn.addEventListener('click', function() {
+                // Remove existing listeners to prevent duplicates
+                langEn.replaceWith(langEn.cloneNode(true));
+                const newLangEn = document.getElementById('langEn');
+                newLangEn.addEventListener('click', function() {
                     console.log('EN button clicked');
                     setLanguage('en');
                 });
             }
+            
+            console.log('Event listeners initialized successfully');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            console.log('Current URL:', window.location.href);
+            console.log('User agent:', navigator.userAgent);
+            
+            updateUI();
+            
+            // Initialize event listeners
+            initializeEventListeners();
         });
     </script>
     
