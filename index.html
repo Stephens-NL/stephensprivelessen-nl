@@ -2229,12 +2229,12 @@
                 return;
             }
             
-            // First, let's search for Rachel to get her folder ID
+            // First, let's search for Rachel using the findStudentFolders function
             google.script.run
                 .withSuccessHandler(function(students) {
-                    console.log('All students:', students);
-                    const rachel = students.find(s => s.name.toLowerCase().includes('rachel'));
-                    if (rachel) {
+                    console.log('Search results for "rachel":', students);
+                    if (students && students.length > 0) {
+                        const rachel = students[0]; // Take first result
                         console.log('Found Rachel:', rachel);
                         console.log('Rachel folder ID:', rachel.folderId);
                         
@@ -2250,15 +2250,15 @@
                             })
                             .listFilesInFolder(rachel.folderId);
                     } else {
-                        console.log('Rachel not found in students list');
-                        alert('Rachel not found in students list. Check console for all students.');
+                        console.log('Rachel not found in search results');
+                        alert('Rachel not found in search results. Check console for details.');
                     }
                 })
                 .withFailureHandler(function(error) {
-                    console.error('Error getting students:', error);
-                    alert('Error getting students: ' + error.message);
+                    console.error('Error searching for Rachel:', error);
+                    alert('Error searching for Rachel: ' + error.message);
                 })
-                .getAllStudents();
+                .findStudentFolders('rachel');
         }
         
         // Initialize
