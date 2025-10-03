@@ -1746,9 +1746,11 @@
             
             console.log('Performing search for:', searchTerm);
             
-            // Show loading
-            searchBtn.disabled = true;
-            searchBtn.textContent = '⏳ Loading...';
+            // Show loading if button exists
+            if (searchBtn) {
+                searchBtn.disabled = true;
+                searchBtn.textContent = '⏳ Loading...';
+            }
             appContainer.innerHTML = 
                 '<div class="loading">' +
                     '<div class="spinner"></div>' +
@@ -1771,8 +1773,10 @@
                         '<br>' +
                         'Please check the console for more details.' +
                     '</div>';
-                searchBtn.disabled = false;
-                searchBtn.textContent = '🔍 Search';
+                if (searchBtn) {
+                    searchBtn.disabled = false;
+                    searchBtn.textContent = '🔍 Search';
+                }
                 return;
             }
             
@@ -1796,8 +1800,10 @@
                         '<br><br>' +
                         'Search term was: "' + searchTerm + '"' +
                     '</div>';
-                searchBtn.disabled = false;
-                searchBtn.textContent = '🔍 Search';
+                if (searchBtn) {
+                    searchBtn.disabled = false;
+                    searchBtn.textContent = '🔍 Search';
+                }
             }
         }
         
@@ -1812,9 +1818,11 @@
                 heroSection.style.display = 'none';
             }
             
-            // Reset button
-            searchBtn.disabled = false;
-            searchBtn.textContent = t('search_button');
+            // Reset button if it exists
+            if (searchBtn) {
+                searchBtn.disabled = false;
+                searchBtn.textContent = t('search_button');
+            }
             
             currentResults = matches;
             
@@ -2592,13 +2600,15 @@
         
         // Show error
         function showError(error) {
-            const resultsDiv = document.getElementById('results');
+            const appContainer = document.querySelector('.app-container');
             const searchBtn = document.getElementById('searchBtn');
             
-            searchBtn.disabled = false;
-            searchBtn.textContent = t('search_button');
+            if (searchBtn) {
+                searchBtn.disabled = false;
+                searchBtn.textContent = t('search_button');
+            }
             
-            resultsDiv.innerHTML = 
+            appContainer.innerHTML = 
                 '<div class="error">' +
                     'Er is een fout opgetreden: ' + (error.message || error) +
                 '</div>';
