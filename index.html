@@ -2003,9 +2003,17 @@
         
         // Load student overview data
         function loadStudentOverview(folderId) {
+            console.log('🔍 Loading student overview for folderId:', folderId);
+            
             google.script.run
-                .withSuccessHandler(overview => updateStudentOverviewFromOverview(folderId, overview))
-                .withFailureHandler(error => updateStudentOverviewError(folderId, error))
+                .withSuccessHandler(overview => {
+                    console.log('📊 Overview received for folderId:', folderId, 'overview:', overview);
+                    updateStudentOverviewFromOverview(folderId, overview);
+                })
+                .withFailureHandler(error => {
+                    console.error('❌ Error loading overview for folderId:', folderId, 'error:', error);
+                    updateStudentOverviewError(folderId, error);
+                })
                 .getStudentOverview(folderId);
         }
         
@@ -2024,14 +2032,38 @@
             
             if (!overview) {
                 console.error('Overview is null or undefined for folder:', folderId);
-                lastActivityDiv.textContent = '❌ ' + t('error_loading_files');
-                fileCountDiv.textContent = '❌ ' + t('error_loading_files');
-                return;
+                
+                // Retry once after a short delay
+                if (!window.overviewRetryCount) {
+                    window.overviewRetryCount = {};
+                }
+                
+                if (!window.overviewRetryCount[folderId]) {
+                    window.overviewRetryCount[folderId] = 1;
+                    console.log('🔄 Retrying overview load for folder:', folderId);
+                    setTimeout(() => {
+                        loadStudentOverview(folderId);
+                    }, 1000);
+                    return;
+                } else {
+                    console.error('❌ Overview retry failed for folder:', folderId);
+                    lastActivityDiv.textContent = '❌ ' + t('error_loading_files');
+                    fileCountDiv.textContent = '❌ ' + t('error_loading_files');
+                    return;
+                }
             }
             
             // Additional validation for overview object
             if (typeof overview !== 'object') {
                 console.error('Overview is not an object for folder:', folderId, 'Type:', typeof overview);
+                lastActivityDiv.textContent = '❌ ' + t('error_loading_files');
+                fileCountDiv.textContent = '❌ ' + t('error_loading_files');
+                return;
+            }
+            
+            // Validate required properties
+            if (overview.fileCount === undefined || overview.lastActivityDate === undefined) {
+                console.error('Overview missing required properties for folder:', folderId, 'overview:', overview);
                 lastActivityDiv.textContent = '❌ ' + t('error_loading_files');
                 fileCountDiv.textContent = '❌ ' + t('error_loading_files');
                 return;

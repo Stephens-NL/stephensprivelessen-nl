@@ -391,9 +391,11 @@ function listFilesInFolder(folderId) {
  */
 function getStudentOverview(folderId) {
   try {
+    Logger.log('🔍 getStudentOverview called for folderId:', folderId);
+    
     // Validate input
     if (!folderId || typeof folderId !== 'string') {
-      Logger.log('Error: Invalid folderId provided to getStudentOverview:', folderId);
+      Logger.log('❌ Error: Invalid folderId provided to getStudentOverview:', folderId);
       return {
         fileCount: 0,
         lastActivity: null,
@@ -405,12 +407,15 @@ function getStudentOverview(folderId) {
     const cacheKey = CACHE_KEY_FILES + folderId;
     const cachedData = _getCache_(cacheKey);
     
+    Logger.log('📊 Cache check for folderId:', folderId, 'cachedData:', !!cachedData);
+    
     if (cachedData && _isCacheValid_(cachedData)) {
       const files = cachedData.files;
+      Logger.log('📁 Using cached data for folderId:', folderId, 'files count:', files ? files.length : 'null');
       
       // Validate cached files data
       if (!files || !Array.isArray(files)) {
-        Logger.log('Warning: Cached files data is invalid for folder:', folderId);
+        Logger.log('⚠️ Warning: Cached files data is invalid for folder:', folderId, 'files type:', typeof files);
         // Fall through to direct Drive access
       } else {
         if (files.length === 0) {
@@ -446,10 +451,14 @@ function getStudentOverview(folderId) {
     }
     
     // If not cached, get minimal info directly from Drive
+    Logger.log('🔄 Fetching data directly from Drive for folderId:', folderId);
+    
     const folder = DriveApp.getFolderById(folderId);
     const files = folder.getFiles();
     let fileCount = 0;
     let lastModified = null;
+    
+    Logger.log('📂 Drive folder found for folderId:', folderId, 'folder name:', folder.getName());
     
     while (files.hasNext()) {
       const file = files.next();
@@ -473,18 +482,24 @@ function getStudentOverview(folderId) {
       day: 'numeric'
     });
     
-    return {
+    const result = {
       fileCount: fileCount,
       lastActivity: lastModified,
       lastActivityDate: lastActivityDate
     };
+    
+    Logger.log('✅ getStudentOverview returning for folderId:', folderId, 'result:', JSON.stringify(result));
+    return result;
+    
   } catch (error) {
-    Logger.log('Error getting student overview: ' + error.toString());
-    return {
+    Logger.log('❌ Error getting student overview for folderId:', folderId, 'error:', error.toString());
+    const errorResult = {
       fileCount: 0,
       lastActivity: null,
       lastActivityDate: 'Fout bij laden'
     };
+    Logger.log('🔄 getStudentOverview returning error result:', JSON.stringify(errorResult));
+    return errorResult;
   }
 }
 
