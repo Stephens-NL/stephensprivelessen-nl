@@ -122,6 +122,11 @@
             outline: none;
             border-color: rgba(255, 255, 255, 0.5);
             background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+        
+        .search-input:focus::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
         
         .search-button {
@@ -1360,25 +1365,47 @@
             return translations[currentLanguage][key] || key;
         }
         
-        // Search functionality
+        // Debounced search function
+        let searchTimeout;
+        function debouncedSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const input = document.getElementById('searchInput');
+                const searchTerm = input.value.trim();
+                
+                if (searchTerm.length >= 2) {
+                    performSearch(searchTerm);
+                } else if (searchTerm.length === 0) {
+                    // Clear results when input is empty
+                    const resultsDiv = document.getElementById('results');
+                    resultsDiv.innerHTML = '';
+                }
+            }, 300); // 300ms delay
+        }
+        
+        // Main search functionality
         function searchStudents() {
             console.log('searchStudents function called');
             
             const input = document.getElementById('searchInput');
             const searchTerm = input.value.trim();
-            const resultsDiv = document.getElementById('results');
-            const searchBtn = document.getElementById('searchBtn');
-            
-            console.log('Search term:', searchTerm);
-            console.log('Input element:', input);
-            console.log('Results div:', resultsDiv);
-            console.log('Search button:', searchBtn);
             
             if (!searchTerm) {
                 console.log('No search term provided');
+                const resultsDiv = document.getElementById('results');
                 resultsDiv.innerHTML = '<div class="error">' + t('enter_name_to_search') + '</div>';
                 return;
             }
+            
+            performSearch(searchTerm);
+        }
+        
+        // Perform the actual search
+        function performSearch(searchTerm) {
+            const resultsDiv = document.getElementById('results');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            console.log('Performing search for:', searchTerm);
             
             // Show loading
             searchBtn.disabled = true;
@@ -1459,6 +1486,13 @@
                         <p>${t('try_again')}</p>
                     </div>
                 `;
+                return;
+            }
+            
+            // If only one match, auto-open the student
+            if (matches.length === 1) {
+                const student = matches[0];
+                showStudentDetail(student.folderId, student.name, student.subject);
                 return;
             }
             
@@ -2067,6 +2101,13 @@
             // Test search input
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
+                // Add live search functionality
+                searchInput.addEventListener('input', function(e) {
+                    console.log('Search input changed:', e.target.value);
+                    debouncedSearch();
+                });
+                
+                // Keep Enter key functionality
                 searchInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
                         console.log('Enter pressed in search input');
