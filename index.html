@@ -1174,6 +1174,7 @@
                                     <div style="margin-top: 1rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
                                         <button onclick="testFunction()" style="background: #ef4444; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🧪 Test JS</button>
                                         <button onclick="testGoogleScriptConnection()" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🔗 Test GAS</button>
+                                        <button onclick="debugCacheStatus()" style="background: #f59e0b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🗄️ Cache</button>
                                         <button onclick="debugRachelFolder()" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🔍 Debug Rachel</button>
                                     </div>
                     </div>
@@ -2219,9 +2220,31 @@
             return true;
         }
         
+        // Debug function to check cache status
+        function debugCacheStatus() {
+            console.log('🗄️ Checking cache status...');
+            
+            if (typeof google === 'undefined' || !google.script || !google.script.run) {
+                console.error('Google Apps Script not available');
+                alert('Google Apps Script not available!');
+                return;
+            }
+            
+            google.script.run
+                .withSuccessHandler(function(status) {
+                    console.log('📊 Cache status:', status);
+                    alert('Cache status checked. Check console for details.');
+                })
+                .withFailureHandler(function(error) {
+                    console.error('❌ Error checking cache:', error);
+                    alert('Error checking cache: ' + error.message);
+                })
+                .checkCacheStatus();
+        }
+        
         // Debug function to check what's in Rachel's folder
         function debugRachelFolder() {
-            console.log('Debugging Rachel folder...');
+            console.log('🔍 Debugging Rachel folder...');
             
             if (typeof google === 'undefined' || !google.script || !google.script.run) {
                 console.error('Google Apps Script not available');
@@ -2232,30 +2255,47 @@
             // First, let's search for Rachel using the findStudentFolders function
             google.script.run
                 .withSuccessHandler(function(students) {
-                    console.log('Search results for "rachel":', students);
+                    console.log('📋 Search results for "rachel":', students);
+                    console.log('📊 Number of students found:', students ? students.length : 0);
+                    
                     if (students && students.length > 0) {
                         const rachel = students[0]; // Take first result
-                        console.log('Found Rachel:', rachel);
-                        console.log('Rachel folder ID:', rachel.folderId);
+                        console.log('👤 Found Rachel:', rachel);
+                        console.log('📁 Rachel folder ID:', rachel.folderId);
+                        console.log('📚 Rachel subject:', rachel.subject);
+                        console.log('🏷️ Rachel name:', rachel.name);
                         
                         // Now check what's in her folder
+                        console.log('🔍 Checking files in Rachel folder...');
                         google.script.run
                             .withSuccessHandler(function(files) {
-                                console.log('Files in Rachel folder:', files);
-                                alert('Rachel folder contains ' + files.length + ' files. Check console for details.');
+                                console.log('📄 Files in Rachel folder:', files);
+                                console.log('📊 Number of files found:', files ? files.length : 0);
+                                
+                                if (files && files.length > 0) {
+                                    console.log('📝 File details:');
+                                    files.forEach((file, index) => {
+                                        console.log(`  ${index + 1}. ${file.name} (${file.id})`);
+                                        console.log(`     - Title: ${file.title}`);
+                                        console.log(`     - Modified: ${file.modifiedTime}`);
+                                        console.log(`     - Size: ${file.size}`);
+                                    });
+                                }
+                                
+                                alert(`Rachel folder contains ${files ? files.length : 0} files.\n\nCheck console for detailed file information.`);
                             })
                             .withFailureHandler(function(error) {
-                                console.error('Error getting Rachel files:', error);
+                                console.error('❌ Error getting Rachel files:', error);
                                 alert('Error getting Rachel files: ' + error.message);
                             })
                             .listFilesInFolder(rachel.folderId);
                     } else {
-                        console.log('Rachel not found in search results');
+                        console.log('❌ Rachel not found in search results');
                         alert('Rachel not found in search results. Check console for details.');
                     }
                 })
                 .withFailureHandler(function(error) {
-                    console.error('Error searching for Rachel:', error);
+                    console.error('❌ Error searching for Rachel:', error);
                     alert('Error searching for Rachel: ' + error.message);
                 })
                 .findStudentFolders('rachel');
