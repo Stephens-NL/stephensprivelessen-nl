@@ -7,8 +7,8 @@ export default function AantekeningenPage() {
   const [iframeLoaded, setIframeLoaded] = useState(false);
   const [iframeError, setIframeError] = useState(false);
 
-  // Google Apps Script web app URL - WITH DOM TIMING FIX
-  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwVn9Z-b5dYo8uFV-nnlWzsSRIx_UNXUzav-_DteS_jzOLFIdV7ZfyBEy5boamBxoEh/exec";
+  // Google Apps Script web app URL - UPDATE THIS WITH NEW DEPLOYMENT URL
+  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxWC0UKqhvLJUKWIsasBi4ZZ0FENrc_Zze4q2NEXaiKAtzZoYTHS38twegpq1_26iQy/exec";
 
   useEffect(() => {
     // You can add any initialization logic here
