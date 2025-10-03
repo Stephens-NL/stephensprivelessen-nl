@@ -801,8 +801,8 @@
             
             <!-- Language Toggle -->
             <div class="language-toggle">
-                <button id="langNl" class="lang-btn active" onclick="setLanguage('nl')">🇳🇱 NL</button>
-                <button id="langEn" class="lang-btn" onclick="setLanguage('en')">🇬🇧 EN</button>
+                <button id="langNl" class="lang-btn active">🇳🇱 NL</button>
+                <button id="langEn" class="lang-btn">🇬🇧 EN</button>
             </div>
         </div>
         
@@ -817,7 +817,7 @@
                         placeholder="Type your name to find your notes..."
                         autocomplete="off"
                     >
-                    <button id="searchBtn" class="search-btn" onclick="searchStudents()">
+                    <button id="searchBtn" class="search-btn">
                         🔍 Search
                     </button>
                 </div>
@@ -922,11 +922,18 @@
         
         // Language functions
         function setLanguage(lang) {
+            console.log('setLanguage called with:', lang);
             currentLanguage = lang;
             
             // Update active button
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
+            const activeBtn = document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1));
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                console.log('Language button updated');
+            } else {
+                console.error('Language button not found for:', lang);
+            }
             
             // Update UI elements
             updateUI();
@@ -989,12 +996,17 @@
         
         // Search functionality
         function searchStudents() {
+            console.log('searchStudents function called');
+            
             const input = document.getElementById('searchInput');
             const searchTerm = input.value.trim();
             const resultsDiv = document.getElementById('results');
             const searchBtn = document.getElementById('searchBtn');
             
+            console.log('Search term:', searchTerm);
+            
             if (!searchTerm) {
+                console.log('No search term provided');
                 resultsDiv.innerHTML = `<div class="error">${t('try_again')}</div>`;
                 return;
             }
@@ -1009,10 +1021,18 @@
                 </div>
             `;
             
+            console.log('Calling Google Apps Script...');
+            
             // Call Google Apps Script function
             google.script.run
-                .withSuccessHandler(displayResults)
-                .withFailureHandler(showError)
+                .withSuccessHandler(function(result) {
+                    console.log('Google Apps Script success:', result);
+                    displayResults(result);
+                })
+                .withFailureHandler(function(error) {
+                    console.error('Google Apps Script error:', error);
+                    showError(error);
+                })
                 .findStudentFolders(searchTerm);
         }
         
@@ -1618,7 +1638,49 @@
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
             updateUI();
+            
+            // Test if buttons are working
+            const searchBtn = document.getElementById('searchBtn');
+            if (searchBtn) {
+                console.log('Search button found');
+                searchBtn.addEventListener('click', function() {
+                    console.log('Search button clicked');
+                    searchStudents();
+                });
+            } else {
+                console.error('Search button not found');
+            }
+            
+            // Test search input
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        console.log('Enter pressed in search input');
+                        searchStudents();
+                    }
+                });
+            }
+            
+            // Add language button event listeners
+            const langNl = document.getElementById('langNl');
+            const langEn = document.getElementById('langEn');
+            
+            if (langNl) {
+                langNl.addEventListener('click', function() {
+                    console.log('NL button clicked');
+                    setLanguage('nl');
+                });
+            }
+            
+            if (langEn) {
+                langEn.addEventListener('click', function() {
+                    console.log('EN button clicked');
+                    setLanguage('en');
+                });
+            }
         });
     </script>
 </body>
