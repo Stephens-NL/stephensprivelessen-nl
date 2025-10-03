@@ -284,22 +284,6 @@
             50% { transform: translateY(-20px); }
         }
         
-        .results-section {
-            background: #f8fafc;
-            height: 100vh;
-            width: 100vw;
-            padding: 2rem 1.5rem;
-            overflow-y: auto;
-            box-sizing: border-box;
-            display: none; /* Hidden by default */
-        }
-        
-        /* When hero section is hidden, show results section */
-        .hero-section[style*="display: none"] + .results-section {
-            display: block;
-            height: 100vh;
-            padding-top: 1rem;
-        }
         
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -1378,9 +1362,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Results Section -->
-        <div id="results" class="results-section"></div>
     </div>
 
     <script>
@@ -1608,8 +1589,10 @@
                     performSearch(searchTerm);
                 } else if (searchTerm.length === 0) {
                     // Clear results when input is empty
-                    const resultsDiv = document.getElementById('results');
-                    resultsDiv.innerHTML = '';
+                    const appContainer = document.querySelector('.app-container');
+                    if (appContainer && appContainer.innerHTML.includes('student-cards')) {
+                        appContainer.innerHTML = '';
+                    }
                 }
             }, 300); // 300ms delay
         }
@@ -1623,8 +1606,8 @@
             
             if (!searchTerm) {
                 console.log('No search term provided');
-                const resultsDiv = document.getElementById('results');
-                resultsDiv.innerHTML = '<div class="error">' + t('enter_name_to_search') + '</div>';
+                const appContainer = document.querySelector('.app-container');
+                appContainer.innerHTML = '<div class="error">' + t('enter_name_to_search') + '</div>';
                 return;
             }
             
@@ -1633,7 +1616,7 @@
         
         // Perform the actual search
         function performSearch(searchTerm) {
-            const resultsDiv = document.getElementById('results');
+            const appContainer = document.querySelector('.app-container');
             const searchBtn = document.getElementById('searchBtn');
             
             console.log('Performing search for:', searchTerm);
@@ -1641,7 +1624,7 @@
             // Show loading
             searchBtn.disabled = true;
             searchBtn.textContent = '⏳ Loading...';
-            resultsDiv.innerHTML = 
+            appContainer.innerHTML = 
                 '<div class="loading">' +
                     '<div class="spinner"></div>' +
                     '<p>Loading...</p>' +
@@ -1695,17 +1678,13 @@
         
         // Display search results
         function displayResults(matches) {
-            const resultsDiv = document.getElementById('results');
+            const appContainer = document.querySelector('.app-container');
             const searchBtn = document.getElementById('searchBtn');
             
-            // Hide hero section and show results section when showing search results
+            // Hide hero section when showing search results
             const heroSection = document.querySelector('.hero-section');
-            const resultsSection = document.querySelector('.results-section');
             if (heroSection) {
                 heroSection.style.display = 'none';
-            }
-            if (resultsSection) {
-                resultsSection.style.display = 'block';
             }
             
             // Reset button
@@ -1760,7 +1739,7 @@
                 '</div>';
             }).join('');
             
-            resultsDiv.innerHTML = statsHtml + studentsHtml;
+            appContainer.innerHTML = statsHtml + studentsHtml;
             
             // Load file info for first 3 students immediately, rest on demand
             matches.slice(0, 3).forEach((student, index) => {
@@ -1846,18 +1825,14 @@
         function showStudentDetail(folderId, studentName, subject) {
             currentStudent = { id: folderId, name: studentName, subject: subject };
             
-            // Hide hero section and show results section when student is selected
+            // Hide hero section when student is selected
             const heroSection = document.querySelector('.hero-section');
-            const resultsSection = document.querySelector('.results-section');
             if (heroSection) {
                 heroSection.style.display = 'none';
             }
-            if (resultsSection) {
-                resultsSection.style.display = 'block';
-            }
             
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = `
+            const appContainer = document.querySelector('.app-container');
+            appContainer.innerHTML = `
                  <button class="back-btn" onclick="showSearchResults()">${t('back_to_search')}</button>
                 <div class="student-header">
                     <h1 class="student-name">${student.name}</h1>
@@ -2259,23 +2234,107 @@
         function showSearchResults() {
             console.log('showSearchResults called');
             
-            // Show hero section and hide results section when going back to search
+            // Show hero section when going back to search
             const heroSection = document.querySelector('.hero-section');
-            const resultsSection = document.querySelector('.results-section');
             if (heroSection) {
                 heroSection.style.display = 'flex';
                 console.log('Hero section shown');
             }
-            if (resultsSection) {
-                resultsSection.style.display = 'none';
-                console.log('Results section hidden');
-            }
             
-            // Clear the results section completely
-            const resultsDiv = document.getElementById('results');
-            if (resultsDiv) {
-                resultsDiv.innerHTML = '';
-                console.log('Results section cleared');
+            // Restore original app container content
+            const appContainer = document.querySelector('.app-container');
+            if (appContainer) {
+                appContainer.innerHTML = `
+                    <div class="hero-section">
+                        <div class="hero-content">
+                            <div class="hero-left">
+                                <div class="hero-badge">
+                                    <span class="badge-icon">📚</span>
+                                    <span class="badge-text">Stephen's Privelessen</span>
+                                </div>
+                                
+                                <h1 class="hero-title" id="hero-title">
+                                    Vind je <span class="gradient-text">aantekeningen</span> in seconden
+                                </h1>
+                                
+                                <p class="hero-description" id="hero-description">
+                                    Alle je notities, georganiseerd en direct toegankelijk. Voer gewoon je naam in en vind al je lesmateriaal.
+                                </p>
+                                
+                                <div class="search-container">
+                                    <div class="search-input-group">
+                                        <input
+                                            type="text"
+                                            id="searchInput"
+                                            class="search-input"
+                                            placeholder="Voer je naam in..."
+                                            autocomplete="off"
+                                        >
+                                        <button id="searchBtn" class="search-button">
+                                            <span class="search-icon">🔍</span>
+                                            <span class="search-text" id="search-text">Zoeken</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="language-toggle">
+                                        <button id="langNl" class="lang-btn active">
+                                            <span class="flag">🇳🇱</span>
+                                            <span class="lang-text">Nederlands</span>
+                                        </button>
+                                        <button id="langEn" class="lang-btn">
+                                            <span class="flag">🇬🇧</span>
+                                            <span class="lang-text">English</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Debug buttons -->
+                                    <div class="debug-buttons">
+                                        <button onclick="testFunction()" style="background: #ef4444; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🧪 Test JS</button>
+                                        <button onclick="testGoogleScriptConnection()" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🔗 Test GAS</button>
+                                        <button onclick="debugCacheStatus()" style="background: #f59e0b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🗄️ Cache</button>
+                                        <button onclick="debugRachelFolder()" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🔍 Debug Rachel</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="hero-features">
+                                    <div class="feature">
+                                        <span class="feature-icon">⚡</span>
+                                        <span class="feature-text" id="feature-fast">Snel zoeken</span>
+                                    </div>
+                                    <div class="feature">
+                                        <span class="feature-icon">🔒</span>
+                                        <span class="feature-text" id="feature-secure">Privacy veilig</span>
+                                    </div>
+                                    <div class="feature">
+                                        <span class="feature-icon">📱</span>
+                                        <span class="feature-text" id="feature-mobile">Mobiel vriendelijk</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="hero-visual">
+                                <div class="floating-cards">
+                                    <div class="card card-1">
+                                        <div class="card-icon">📐</div>
+                                        <div class="card-title">Wiskunde</div>
+                                        <div class="card-subtitle">Algebra & Functies</div>
+                                    </div>
+                                    <div class="card card-2">
+                                        <div class="card-icon">🧪</div>
+                                        <div class="card-title">Scheikunde</div>
+                                        <div class="card-subtitle">Fases & Stoffen</div>
+                                    </div>
+                                    <div class="card card-3">
+                                        <div class="card-icon">⚡</div>
+                                        <div class="card-title">Natuurkunde</div>
+                                        <div class="card-subtitle">Mechanica</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                console.log('App container restored to original state');
             }
             
             // Reset current student and results
