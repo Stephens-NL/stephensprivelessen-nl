@@ -2032,38 +2032,61 @@
         
         // Show search results again
         function showSearchResults() {
+            console.log('showSearchResults called');
+            
             // Show hero section again when going back to search
             const heroSection = document.querySelector('.hero-section');
             if (heroSection) {
                 heroSection.style.display = 'flex';
+                console.log('Hero section shown');
             }
             
-            if (currentResults && currentResults.length > 0) {
-                displayResults(currentResults);
-            } else {
-                document.getElementById('results').innerHTML = 
-                    '<div class="no-results">' +
-                        '<div class="no-results-icon">🔍</div>' +
-                        '<h3>' + t('no_results_title') + '</h3>' +
-                        '<p>' + t('no_results_suggestions') + '</p>' +
-                        '<ul class="suggestions-list">' +
-                            '<li>' + t('suggestion_partial') + '</li>' +
-                            '<li>' + t('suggestion_caps') + '</li>' +
-                            '<li>' + t('suggestion_contact') + '</li>' +
-                        '</ul>' +
-                        '<div class="search-again">' +
-                            '<button onclick="clearSearch()" class="retry-button">' + t('try_again') + '</button>' +
-                        '</div>' +
-                    '</div>';
+            // Clear the results section completely
+            const resultsDiv = document.getElementById('results');
+            if (resultsDiv) {
+                resultsDiv.innerHTML = '';
+                console.log('Results section cleared');
             }
+            
+            // Reset current student and results
+            currentStudent = null;
+            currentResults = [];
+            
+            // Clear search input and focus
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.focus();
+                console.log('Search input cleared and focused');
+            }
+            
+            console.log('Successfully returned to search');
         }
         
         // Clear search function
         function clearSearch() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('searchInput').focus();
-            document.getElementById('results').innerHTML = '';
+            console.log('clearSearch called');
+            
+            // Clear search input and focus
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.focus();
+                console.log('Search input cleared and focused');
+            }
+            
+            // Clear results
+            const resultsDiv = document.getElementById('results');
+            if (resultsDiv) {
+                resultsDiv.innerHTML = '';
+                console.log('Results cleared');
+            }
+            
+            // Reset state
             currentResults = [];
+            currentStudent = null;
+            
+            console.log('Search cleared successfully');
         }
         
         // Share functions
@@ -2183,11 +2206,11 @@
             // Test search input
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
-                // Add live search functionality
-                searchInput.addEventListener('input', function(e) {
-                    console.log('Search input changed:', e.target.value);
-                    debouncedSearch();
-                });
+                // Live search disabled - only search on button click or Enter
+                // searchInput.addEventListener('input', function(e) {
+                //     console.log('Search input changed:', e.target.value);
+                //     debouncedSearch();
+                // });
                 
                 // Keep Enter key functionality
                 searchInput.addEventListener('keypress', function(e) {
