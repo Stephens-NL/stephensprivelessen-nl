@@ -291,10 +291,12 @@
             padding: 2rem 1.5rem;
             overflow-y: auto;
             box-sizing: border-box;
+            display: none; /* Hidden by default */
         }
         
-        /* When hero section is hidden, make results section full height */
+        /* When hero section is hidden, show results section */
         .hero-section[style*="display: none"] + .results-section {
+            display: block;
             height: 100vh;
             padding-top: 1rem;
         }
@@ -1696,10 +1698,14 @@
             const resultsDiv = document.getElementById('results');
             const searchBtn = document.getElementById('searchBtn');
             
-            // Hide hero section when showing search results
+            // Hide hero section and show results section when showing search results
             const heroSection = document.querySelector('.hero-section');
+            const resultsSection = document.querySelector('.results-section');
             if (heroSection) {
                 heroSection.style.display = 'none';
+            }
+            if (resultsSection) {
+                resultsSection.style.display = 'block';
             }
             
             // Reset button
@@ -1840,10 +1846,14 @@
         function showStudentDetail(folderId, studentName, subject) {
             currentStudent = { id: folderId, name: studentName, subject: subject };
             
-            // Hide hero section when student is selected
+            // Hide hero section and show results section when student is selected
             const heroSection = document.querySelector('.hero-section');
+            const resultsSection = document.querySelector('.results-section');
             if (heroSection) {
                 heroSection.style.display = 'none';
+            }
+            if (resultsSection) {
+                resultsSection.style.display = 'block';
             }
             
             const resultsDiv = document.getElementById('results');
@@ -2249,11 +2259,16 @@
         function showSearchResults() {
             console.log('showSearchResults called');
             
-            // Show hero section again when going back to search
+            // Show hero section and hide results section when going back to search
             const heroSection = document.querySelector('.hero-section');
+            const resultsSection = document.querySelector('.results-section');
             if (heroSection) {
                 heroSection.style.display = 'flex';
                 console.log('Hero section shown');
+            }
+            if (resultsSection) {
+                resultsSection.style.display = 'none';
+                console.log('Results section hidden');
             }
             
             // Clear the results section completely
