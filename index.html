@@ -24,42 +24,141 @@
             flex-direction: column;
         }
         
-        /* Header */
-        .header {
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            display: flex;
+            align-items: center;
             padding: 2rem 1.5rem;
-            text-align: center;
             position: relative;
+            overflow: hidden;
         }
         
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
         }
         
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .hero-left {
+            z-index: 2;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            margin-bottom: 2rem;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .badge-icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 500px;
+        }
+        
+        .search-container {
+            margin-bottom: 2rem;
+        }
+        
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .search-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            border: none;
+            border-radius: 50px;
+            color: #1a202c;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
         }
         
         .language-toggle {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
             display: flex;
             gap: 0.5rem;
         }
         
         .lang-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 0.9rem;
             font-weight: 600;
@@ -68,12 +167,185 @@
         }
         
         .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
         }
         
         .lang-btn.active {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .hero-features {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+        
+        .feature-icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .floating-cards {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        
+        .card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem;
+            color: white;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .card-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .card-2 {
+            top: 50%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+        
+        .card-3 {
+            bottom: 20%;
+            left: 30%;
+            animation-delay: 4s;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .card-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .results-section {
+            background: #f8fafc;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-description {
+                font-size: 1.1rem;
+            }
+            
+            .search-input-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .search-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-features {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .floating-cards {
+                height: 300px;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .card-1 {
+                top: 10%;
+                left: 5%;
+            }
+            
+            .card-2 {
+                top: 40%;
+                right: 10%;
+            }
+            
+            .card-3 {
+                bottom: 10%;
+                left: 20%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .search-input {
+                padding: 0.875rem 1.25rem;
+            }
+            
+            .search-button {
+                padding: 0.875rem 1.5rem;
+            }
+            
+            .lang-btn {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.8rem;
+            }
+        }
             color: #667eea;
             border-color: white;
         }
@@ -795,39 +1067,90 @@
 </head>
 <body>
     <div class="app-container">
-        <div class="header">
-            <h1>📚 Notes Dashboard</h1>
-            <p>Find your study materials quickly and easily</p>
-            
-            <!-- Language Toggle -->
-            <div class="language-toggle">
-                <button id="langNl" class="lang-btn active">🇳🇱 NL</button>
-                <button id="langEn" class="lang-btn">🇬🇧 EN</button>
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-badge">
+                        <span class="badge-icon">📚</span>
+                        <span class="badge-text">Stephen's Privelessen</span>
+                    </div>
+                    
+                    <h1 class="hero-title" id="hero-title">
+                        Vind je <span class="gradient-text">aantekeningen</span> in seconden
+                    </h1>
+                    
+                    <p class="hero-description" id="hero-description">
+                        Alle je notities, georganiseerd en direct toegankelijk. Voer gewoon je naam in en vind al je lesmateriaal.
+                    </p>
+                    
+                    <div class="search-container">
+                        <div class="search-input-group">
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                placeholder="Typ je naam om je aantekeningen te vinden..." 
+                                class="search-input"
+                                autocomplete="off"
+                            />
+                            <button id="searchBtn" class="search-button">
+                                <span class="search-icon">🔍</span>
+                                <span class="search-text" id="search-text">Zoeken</span>
+                            </button>
+                        </div>
+                        
+                        <div class="language-toggle">
+                            <button id="langNl" class="lang-btn active">
+                                <span class="flag">🇳🇱</span>
+                                <span class="lang-text">Nederlands</span>
+                            </button>
+                            <button id="langEn" class="lang-btn">
+                                <span class="flag">🇬🇧</span>
+                                <span class="lang-text">English</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-features">
+                        <div class="feature">
+                            <span class="feature-icon">⚡</span>
+                            <span class="feature-text" id="feature-fast">Snel zoeken</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🔒</span>
+                            <span class="feature-text" id="feature-secure">Privacy veilig</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">📱</span>
+                            <span class="feature-text" id="feature-mobile">Mobiel vriendelijk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="floating-cards">
+                        <div class="card card-1">
+                            <div class="card-icon">📝</div>
+                            <div class="card-title">Wiskunde</div>
+                            <div class="card-subtitle">Algebra & Functies</div>
+                        </div>
+                        <div class="card card-2">
+                            <div class="card-icon">🧪</div>
+                            <div class="card-title">Scheikunde</div>
+                            <div class="card-subtitle">Fases & Stoffen</div>
+                        </div>
+                        <div class="card card-3">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-title">Natuurkunde</div>
+                            <div class="card-subtitle">Mechanica</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div class="main-content">
-            <!-- Search Section -->
-            <div class="search-section">
-                <div class="search-box">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        class="search-input" 
-                        placeholder="Type your name to find your notes..."
-                        autocomplete="off"
-                    >
-                    <button id="searchBtn" class="search-btn">
-                        🔍 Search
-                    </button>
-                    <button onclick="testFunction()" style="background: red; color: white; padding: 0.5rem; margin-left: 1rem; border: none; border-radius: 0.5rem;">
-                        🧪 Test
-                    </button>
-                </div>
-                
-                <div id="results"></div>
-            </div>
-        </div>
+        <!-- Results Section -->
+        <div id="results" class="results-section"></div>
     </div>
 
     <script>
@@ -884,7 +1207,14 @@
                 'enter_name_to_search': 'Voer een naam in om te zoeken',
                 'no_notes_found': 'Geen aantekeningen gevonden',
                 'no_files_available': 'Er zijn nog geen bestanden beschikbaar voor deze student.',
-                'no_search_results': 'Geen zoekresultaten'
+                'no_search_results': 'Geen zoekresultaten',
+                'hero_title': 'Vind je aantekeningen in seconden',
+                'hero_description': 'Alle je notities, georganiseerd en direct toegankelijk. Voer gewoon je naam in en vind al je lesmateriaal.',
+                'search_placeholder_hero': 'Typ je naam om je aantekeningen te vinden...',
+                'search_button_hero': 'Zoeken',
+                'feature_fast': 'Snel zoeken',
+                'feature_secure': 'Privacy veilig',
+                'feature_mobile': 'Mobiel vriendelijk'
             },
             'en': {
                 'search_placeholder': 'Type your name to find your notes...',
@@ -927,7 +1257,14 @@
                 'enter_name_to_search': 'Enter a name to search',
                 'no_notes_found': 'No notes found',
                 'no_files_available': 'No files are available for this student yet.',
-                'no_search_results': 'No search results'
+                'no_search_results': 'No search results',
+                'hero_title': 'Find your notes in seconds',
+                'hero_description': 'All your notes, organized and directly accessible. Just enter your name and find all your study materials.',
+                'search_placeholder_hero': 'Type your name to find your notes...',
+                'search_button_hero': 'Search',
+                'feature_fast': 'Fast search',
+                'feature_secure': 'Privacy safe',
+                'feature_mobile': 'Mobile friendly'
             }
         };
         
@@ -988,17 +1325,29 @@
         function updateUI() {
             const t = translations[currentLanguage];
             
-            // Update search input
+            // Update hero section
+            const heroTitle = document.getElementById('hero-title');
+            const heroDescription = document.getElementById('hero-description');
             const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.placeholder = t.search_placeholder;
-            }
+            const searchText = document.getElementById('search-text');
+            const featureFast = document.getElementById('feature-fast');
+            const featureSecure = document.getElementById('feature-secure');
+            const featureMobile = document.getElementById('feature-mobile');
             
-            // Update search button
-            const searchBtn = document.getElementById('searchBtn');
-            if (searchBtn && !searchBtn.disabled) {
-                searchBtn.textContent = t.search_button;
+            if (heroTitle) {
+                const gradientText = heroTitle.querySelector('.gradient-text');
+                if (gradientText) {
+                    heroTitle.innerHTML = t.hero_title.replace('aantekeningen', '<span class="gradient-text">aantekeningen</span>');
+                } else {
+                    heroTitle.textContent = t.hero_title;
+                }
             }
+            if (heroDescription) heroDescription.textContent = t.hero_description;
+            if (searchInput) searchInput.placeholder = t.search_placeholder_hero;
+            if (searchText) searchText.textContent = t.search_button_hero;
+            if (featureFast) featureFast.textContent = t.feature_fast;
+            if (featureSecure) featureSecure.textContent = t.feature_secure;
+            if (featureMobile) featureMobile.textContent = t.feature_mobile;
         }
         
         function t(key) {
