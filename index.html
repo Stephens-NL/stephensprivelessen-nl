@@ -820,9 +820,6 @@
                     <button id="searchBtn" class="search-btn">
                         🔍 Search
                     </button>
-                    <button onclick="testFunction()" style="background: red; color: white; padding: 0.5rem; margin-left: 1rem; border: none; border-radius: 0.5rem;">
-                        🧪 Test
-                    </button>
                 </div>
                 
                 <div id="results"></div>
@@ -925,18 +922,11 @@
         
         // Language functions
         function setLanguage(lang) {
-            console.log('setLanguage called with:', lang);
             currentLanguage = lang;
             
             // Update active button
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            const activeBtn = document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1));
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                console.log('Language button updated');
-            } else {
-                console.error('Language button not found for:', lang);
-            }
+            document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
             
             // Update UI elements
             updateUI();
@@ -999,80 +989,31 @@
         
         // Search functionality
         function searchStudents() {
-            console.log('searchStudents function called');
-            
             const input = document.getElementById('searchInput');
             const searchTerm = input.value.trim();
             const resultsDiv = document.getElementById('results');
             const searchBtn = document.getElementById('searchBtn');
             
-            console.log('Search term:', searchTerm);
-            console.log('Input element:', input);
-            console.log('Results div:', resultsDiv);
-            console.log('Search button:', searchBtn);
-            
             if (!searchTerm) {
-                console.log('No search term provided');
-                resultsDiv.innerHTML = `<div class="error">Please enter a name to search</div>`;
+                resultsDiv.innerHTML = `<div class="error">${t('try_again')}</div>`;
                 return;
             }
             
             // Show loading
             searchBtn.disabled = true;
-            searchBtn.textContent = '⏳ Loading...';
+            searchBtn.textContent = '⏳ ' + t('loading');
             resultsDiv.innerHTML = `
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p>Loading...</p>
+                    <p>${t('loading')}</p>
                 </div>
             `;
             
-            console.log('About to call Google Apps Script...');
-            console.log('google object:', typeof google);
-            console.log('google.script:', typeof google?.script);
-            console.log('google.script.run:', typeof google?.script?.run);
-            
-            // Check if Google Apps Script is available
-            if (typeof google === 'undefined' || !google.script || !google.script.run) {
-                console.error('Google Apps Script not available');
-                resultsDiv.innerHTML = `
-                    <div class="error">
-                        Google Apps Script not available. This might be a deployment issue.
-                        <br><br>
-                        Search term was: "${searchTerm}"
-                        <br>
-                        Please check the console for more details.
-                    </div>
-                `;
-                searchBtn.disabled = false;
-                searchBtn.textContent = '🔍 Search';
-                return;
-            }
-            
             // Call Google Apps Script function
-            try {
-                google.script.run
-                    .withSuccessHandler(function(result) {
-                        console.log('Google Apps Script success:', result);
-                        displayResults(result);
-                    })
-                    .withFailureHandler(function(error) {
-                        console.error('Google Apps Script error:', error);
-                        showError(error);
-                    })
-                    .findStudentFolders(searchTerm);
-            } catch (error) {
-                console.error('Error calling Google Apps Script:', error);
-                resultsDiv.innerHTML = `
-                    <div class="error">
-                        Error calling Google Apps Script: ${error.message}
-                        <br><br>
-                        Search term was: "${searchTerm}"
-                    </div>
-                `;
-                searchBtn.disabled = false;
-                searchBtn.textContent = '🔍 Search';
-            }
+            google.script.run
+                .withSuccessHandler(displayResults)
+                .withFailureHandler(showError)
+                .findStudentFolders(searchTerm);
         }
         
         // Display search results
@@ -1675,39 +1616,25 @@
             `;
         }
         
-        // Test function
-        function testFunction() {
-            console.log('Test function called successfully!');
-            alert('Test function works!');
-        }
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing...');
-            console.log('Current URL:', window.location.href);
-            console.log('User agent:', navigator.userAgent);
-            
             updateUI();
             
-            // Test if buttons are working
+            // Add event listeners
             const searchBtn = document.getElementById('searchBtn');
             if (searchBtn) {
-                console.log('Search button found');
                 searchBtn.addEventListener('click', function(e) {
-                    console.log('Search button clicked', e);
                     e.preventDefault();
                     searchStudents();
                 });
-            } else {
-                console.error('Search button not found');
             }
             
-            // Test search input
+            // Add search input event listener
             const searchInput = document.getElementById('searchInput');
             if (searchInput) {
                 searchInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
-                        console.log('Enter pressed in search input');
                         searchStudents();
                     }
                 });
@@ -1719,14 +1646,12 @@
             
             if (langNl) {
                 langNl.addEventListener('click', function() {
-                    console.log('NL button clicked');
                     setLanguage('nl');
                 });
             }
             
             if (langEn) {
                 langEn.addEventListener('click', function() {
-                    console.log('EN button clicked');
                     setLanguage('en');
                 });
             }
