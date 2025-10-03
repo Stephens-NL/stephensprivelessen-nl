@@ -820,6 +820,9 @@
                     <button id="searchBtn" class="search-btn">
                         🔍 Search
                     </button>
+                    <button onclick="testFunction()" style="background: red; color: white; padding: 0.5rem; margin-left: 1rem; border: none; border-radius: 0.5rem;">
+                        🧪 Test
+                    </button>
                 </div>
                 
                 <div id="results"></div>
@@ -1004,36 +1007,72 @@
             const searchBtn = document.getElementById('searchBtn');
             
             console.log('Search term:', searchTerm);
+            console.log('Input element:', input);
+            console.log('Results div:', resultsDiv);
+            console.log('Search button:', searchBtn);
             
             if (!searchTerm) {
                 console.log('No search term provided');
-                resultsDiv.innerHTML = `<div class="error">${t('try_again')}</div>`;
+                resultsDiv.innerHTML = `<div class="error">Please enter a name to search</div>`;
                 return;
             }
             
             // Show loading
             searchBtn.disabled = true;
-            searchBtn.textContent = '⏳ ' + t('loading');
+            searchBtn.textContent = '⏳ Loading...';
             resultsDiv.innerHTML = `
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p>${t('loading')}</p>
+                    <p>Loading...</p>
                 </div>
             `;
             
-            console.log('Calling Google Apps Script...');
+            console.log('About to call Google Apps Script...');
+            console.log('google object:', typeof google);
+            console.log('google.script:', typeof google?.script);
+            console.log('google.script.run:', typeof google?.script?.run);
+            
+            // Check if Google Apps Script is available
+            if (typeof google === 'undefined' || !google.script || !google.script.run) {
+                console.error('Google Apps Script not available');
+                resultsDiv.innerHTML = `
+                    <div class="error">
+                        Google Apps Script not available. This might be a deployment issue.
+                        <br><br>
+                        Search term was: "${searchTerm}"
+                        <br>
+                        Please check the console for more details.
+                    </div>
+                `;
+                searchBtn.disabled = false;
+                searchBtn.textContent = '🔍 Search';
+                return;
+            }
             
             // Call Google Apps Script function
-            google.script.run
-                .withSuccessHandler(function(result) {
-                    console.log('Google Apps Script success:', result);
-                    displayResults(result);
-                })
-                .withFailureHandler(function(error) {
-                    console.error('Google Apps Script error:', error);
-                    showError(error);
-                })
-                .findStudentFolders(searchTerm);
+            try {
+                google.script.run
+                    .withSuccessHandler(function(result) {
+                        console.log('Google Apps Script success:', result);
+                        displayResults(result);
+                    })
+                    .withFailureHandler(function(error) {
+                        console.error('Google Apps Script error:', error);
+                        showError(error);
+                    })
+                    .findStudentFolders(searchTerm);
+            } catch (error) {
+                console.error('Error calling Google Apps Script:', error);
+                resultsDiv.innerHTML = `
+                    <div class="error">
+                        Error calling Google Apps Script: ${error.message}
+                        <br><br>
+                        Search term was: "${searchTerm}"
+                    </div>
+                `;
+                searchBtn.disabled = false;
+                searchBtn.textContent = '🔍 Search';
+            }
         }
         
         // Display search results
@@ -1636,17 +1675,27 @@
             `;
         }
         
+        // Test function
+        function testFunction() {
+            console.log('Test function called successfully!');
+            alert('Test function works!');
+        }
+        
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, initializing...');
+            console.log('Current URL:', window.location.href);
+            console.log('User agent:', navigator.userAgent);
+            
             updateUI();
             
             // Test if buttons are working
             const searchBtn = document.getElementById('searchBtn');
             if (searchBtn) {
                 console.log('Search button found');
-                searchBtn.addEventListener('click', function() {
-                    console.log('Search button clicked');
+                searchBtn.addEventListener('click', function(e) {
+                    console.log('Search button clicked', e);
+                    e.preventDefault();
                     searchStudents();
                 });
             } else {
