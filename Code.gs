@@ -1158,4 +1158,10 @@ function testDriveAccess() {
   } catch (error) {
     Logger.log('❌ Error: ' + error.toString());
   }
+}
+
+// Test connection function for debugging
+function testConnection() {
+  Logger.log('🧪 Test connection called');
+  return 'Google Apps Script connection successful!';
 } 

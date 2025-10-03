@@ -1159,16 +1159,22 @@
                             </button>
                         </div>
                         
-                        <div class="language-toggle">
-                            <button id="langNl" class="lang-btn active">
-                                <span class="flag">🇳🇱</span>
-                                <span class="lang-text">Nederlands</span>
-                            </button>
-                            <button id="langEn" class="lang-btn">
-                                <span class="flag">🇬🇧</span>
-                                <span class="lang-text">English</span>
-                            </button>
-                        </div>
+                                    <div class="language-toggle">
+                                        <button id="langNl" class="lang-btn active">
+                                            <span class="flag">🇳🇱</span>
+                                            <span class="lang-text">Nederlands</span>
+                                        </button>
+                                        <button id="langEn" class="lang-btn">
+                                            <span class="flag">🇬🇧</span>
+                                            <span class="lang-text">English</span>
+                                        </button>
+                                    </div>
+                                    
+                                    <!-- Debug buttons -->
+                                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem; justify-content: center;">
+                                        <button onclick="testFunction()" style="background: #ef4444; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🧪 Test JS</button>
+                                        <button onclick="testGoogleScriptConnection()" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; font-size: 0.8rem;">🔗 Test GAS</button>
+                                    </div>
                     </div>
                     
                     <div class="hero-features">
@@ -2180,6 +2186,36 @@
         function testFunction() {
             console.log('Test function called successfully!');
             alert('Test function works!');
+        }
+        
+        // Test Google Apps Script connection
+        function testGoogleScriptConnection() {
+            console.log('Testing Google Apps Script connection...');
+            console.log('google object:', typeof google);
+            console.log('google.script:', typeof google?.script);
+            console.log('google.script.run:', typeof google?.script?.run);
+            
+            if (typeof google === 'undefined' || !google.script || !google.script.run) {
+                console.error('Google Apps Script not available');
+                alert('Google Apps Script not available! Check console for details.');
+                return false;
+            }
+            
+            console.log('Google Apps Script is available, testing connection...');
+            
+            // Try to call a simple function
+            google.script.run
+                .withSuccessHandler(function(result) {
+                    console.log('Google Apps Script connection successful:', result);
+                    alert('Google Apps Script connection successful!');
+                })
+                .withFailureHandler(function(error) {
+                    console.error('Google Apps Script connection failed:', error);
+                    alert('Google Apps Script connection failed: ' + error.message);
+                })
+                .testConnection();
+                
+            return true;
         }
         
         // Initialize
