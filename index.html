@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aantekeningen - Stephen's Privelessen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .search-section {
+            padding: 40px 30px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .search-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+        
+        .search-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6b7280;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .results {
+            margin-top: 30px;
+        }
+        
+        .student-card {
+            background: #f8fafc;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .student-card:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .student-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .student-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .subject-badge {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .student-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .last-activity {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .file-count {
+            background: #e5e7eb;
+            color: #374151;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .click-hint {
+            text-align: center;
+            color: #4f46e5;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .files-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-item:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.1);
+        }
+        
+        .file-info {
+            flex: 1;
+        }
+        
+        .file-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        
+        .file-date {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-view {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-download {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #6b7280;
+        }
+        
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+        
+        .error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .stats {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            color: #0369a1;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Detail View Styles */
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        
+        .back-btn {
+            background: #6b7280;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #4b5563;
+        }
+        
+        .view-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .toggle-btn {
+            padding: 8px 16px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn.active {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .file-icon {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .file-icon:hover {
+            border-color: #4f46e5;
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .file-icon-preview {
+            width: 100%;
+            height: 120px;
+            background: #f3f4f6;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #6b7280;
+            overflow: hidden;
+        }
+        
+        .file-icon-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .file-icon-preview img[loading] {
+            opacity: 0.7;
+        }
+        
+        .file-icon-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .file-icon-date {
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+        
+        .file-icon-metadata {
+            margin-top: 8px;
+            padding: 4px 8px;
+            background: #f3f4f6;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+        
+        .file-icon-subject {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        
+        .file-icon-topic {
+            color: #059669;
+            font-size: 0.65rem;
+        }
+        
+        .file-icon-keywords {
+            color: #6b7280;
+            font-size: 0.6rem;
+            margin-top: 2px;
+        }
+        
+        .list-view {
+            display: none;
+        }
+        
+        .list-view.active {
+            display: block;
+        }
+        
+        .icon-view {
+            display: none;
+        }
+        
+        .icon-view.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Aantekeningen</h1>
+            <p>Vind je lesmateriaal snel en eenvoudig</p>
+        </div>
+        
+        <div class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Typ je naam om je aantekeningen te vinden..."
+                    autocomplete="off"
+                >
+                <button id="searchBtn" class="search-btn" onclick="searchStudents()">
+                    🔍 Zoeken
+                </button>
+            </div>
+            
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentResults = [];
+        let currentStudent = null;
+        let currentView = 'icon'; // 'icon' or 'list'
+        
+        // Search functionality
+        function searchStudents() {
+            const input = document.getElementById('searchInput');
+            const searchTerm = input.value.trim();
+            const resultsDiv = document.getElementById('results');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            if (!searchTerm) {
+                resultsDiv.innerHTML = '<div class="error">Voer een naam in om te zoeken.</div>';
+                return;
+            }
+            
+            // Show loading
+            searchBtn.disabled = true;
+            searchBtn.textContent = '⏳ Zoeken...';
+            resultsDiv.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Zoeken naar studenten...</p>
+                </div>
+            `;
+            
+            // Call Google Apps Script function
+            google.script.run
+                .withSuccessHandler(displayResults)
+                .withFailureHandler(showError)
+                .findStudentFolders(searchTerm);
+        }
+        
+        // Display search results
+        function displayResults(matches) {
+            const resultsDiv = document.getElementById('results');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            // Reset button
+            searchBtn.disabled = false;
+            searchBtn.textContent = '🔍 Zoeken';
+            
+            currentResults = matches;
+            
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="no-results">
+                        <h3>Geen studenten gevonden</h3>
+                        <p>Probeer een andere naam of controleer de spelling.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Show stats
+            const statsHtml = `
+                <div class="stats">
+                    ${matches.length} student${matches.length !== 1 ? 'en' : ''} gevonden
+                </div>
+            `;
+            
+            // Show student cards with overview info
+            const studentsHtml = matches.map(student => `
+                <div class="student-card" onclick="showStudentDetail('${student.id}', '${student.name}', '${student.subject}')">
+                    <div class="student-header">
+                        <div class="student-name">${student.name}</div>
+                        <div class="subject-badge">${student.subject}</div>
+                    </div>
+                    <div class="student-info">
+                        <div class="last-activity" id="last-activity-${student.id}">
+                            📅 Laatste activiteit: Laden...
+                        </div>
+                        <div class="file-count" id="file-count-${student.id}">
+                            📄 Bestanden: Laden...
+                        </div>
+                    </div>
+                    <div class="click-hint">
+                        👆 Klik om details te bekijken
+                    </div>
+                </div>
+            `).join('');
+            
+            resultsDiv.innerHTML = statsHtml + studentsHtml;
+            
+                // Load file info for first 3 students immediately, rest on demand
+                matches.slice(0, 3).forEach((student, index) => {
+                    setTimeout(() => {
+                        // Check if DOM elements exist before loading overview
+                        const lastActivityDiv = document.getElementById(`last-activity-${student.id}`);
+                        const fileCountDiv = document.getElementById(`file-count-${student.id}`);
+                        
+                        if (lastActivityDiv && fileCountDiv) {
+                            loadStudentOverview(student.id);
+                        } else {
+                            console.log('DOM elements not ready for student:', student.name, 'retrying...');
+                            // Retry after a short delay
+                            setTimeout(() => {
+                                loadStudentOverview(student.id);
+                            }, 500);
+                        }
+                    }, index * 200 + 100); // 200ms delay between each request + 100ms initial delay
+                });
+            
+            // For remaining students, show placeholder and load on hover
+            matches.slice(3).forEach(student => {
+                const lastActivityDiv = document.getElementById(`last-activity-${student.id}`);
+                const fileCountDiv = document.getElementById(`file-count-${student.id}`);
+                
+                if (lastActivityDiv && fileCountDiv) {
+                    lastActivityDiv.textContent = '📅 Hover om te laden';
+                    fileCountDiv.textContent = '📄 Hover om te laden';
+                    
+                    // Add hover event to load on demand
+                    const studentCard = document.querySelector(`[onclick*="${student.id}"]`);
+                    if (studentCard) {
+                        studentCard.addEventListener('mouseenter', () => {
+                            if (lastActivityDiv.textContent === '📅 Hover om te laden') {
+                                loadStudentOverview(student.id);
+                            }
+                        });
+                    }
+                } else {
+                    console.log('DOM elements not found for hover setup, student:', student.name);
+                }
+            });
+        }
+        
+        // Load overview info for a student (quick)
+        function loadStudentOverview(folderId) {
+            console.log('Loading overview for folder:', folderId);
+            
+            // Double-check DOM elements exist before making API call
+            const lastActivityDiv = document.getElementById(`last-activity-${folderId}`);
+            const fileCountDiv = document.getElementById(`file-count-${folderId}`);
+            
+            if (!lastActivityDiv || !fileCountDiv) {
+                console.log('DOM elements not ready for overview loading, folder:', folderId, 'retrying in 1 second...');
+                setTimeout(() => {
+                    loadStudentOverview(folderId);
+                }, 1000);
+                return;
+            }
+            
+            google.script.run
+                .withSuccessHandler(overview => {
+                    console.log('Overview loaded for', folderId, ':', overview);
+                    updateStudentOverviewFromOverview(folderId, overview);
+                })
+                .withFailureHandler(error => {
+                    console.error('Error loading overview for ' + folderId + ':', error);
+                    updateStudentOverviewError(folderId, error);
+                })
+                .getStudentOverview(folderId);
+        }
+        
+        // Update student overview with file count and last activity (from files array)
+        function updateStudentOverview(folderId, files) {
+            const lastActivityDiv = document.getElementById(`last-activity-${folderId}`);
+            const fileCountDiv = document.getElementById(`file-count-${folderId}`);
+            
+            if (files && files.length > 0) {
+                const lastFile = files[0]; // Files are sorted by date, newest first
+                const lastDate = new Date(lastFile.modifiedTime).toLocaleDateString('nl-NL', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                lastActivityDiv.textContent = `📅 Laatste activiteit: ${lastDate}`;
+                fileCountDiv.textContent = `📄 Bestanden: ${files.length}`;
+            } else {
+                lastActivityDiv.textContent = '📅 Geen bestanden gevonden';
+                fileCountDiv.textContent = '📄 Bestanden: 0';
+            }
+        }
+        
+        // Update student overview with file count and last activity (from overview object)
+        function updateStudentOverviewFromOverview(folderId, overview) {
+            const lastActivityDiv = document.getElementById(`last-activity-${folderId}`);
+            const fileCountDiv = document.getElementById(`file-count-${folderId}`);
+            
+            // Check if DOM elements exist
+            if (!lastActivityDiv || !fileCountDiv) {
+                console.error('DOM elements not found for folder:', folderId, 'retrying in 500ms...');
+                // Retry after a short delay
+                setTimeout(() => {
+                    updateStudentOverviewFromOverview(folderId, overview);
+                }, 500);
+                return;
+            }
+            
+            // Check if overview is null or undefined
+            if (!overview) {
+                console.error('Overview is null or undefined for folder:', folderId);
+                lastActivityDiv.textContent = '❌ Fout bij laden';
+                fileCountDiv.textContent = '❌ Fout bij laden';
+                return;
+            }
+            
+            if (overview.fileCount > 0) {
+                lastActivityDiv.textContent = `📅 Laatste activiteit: ${overview.lastActivityDate}`;
+                fileCountDiv.textContent = `📄 Bestanden: ${overview.fileCount}`;
+            } else {
+                lastActivityDiv.textContent = '📅 Geen bestanden gevonden';
+                fileCountDiv.textContent = '📄 Bestanden: 0';
+            }
+        }
+        
+        // Update student overview with error message
+        function updateStudentOverviewError(folderId, error) {
+            const lastActivityDiv = document.getElementById(`last-activity-${folderId}`);
+            const fileCountDiv = document.getElementById(`file-count-${folderId}`);
+            
+            // Check if DOM elements exist
+            if (!lastActivityDiv || !fileCountDiv) {
+                console.error('DOM elements not found for error update, folder:', folderId);
+                return;
+            }
+            
+            lastActivityDiv.textContent = '❌ Fout bij laden';
+            fileCountDiv.textContent = '❌ Fout bij laden';
+            
+            // Show error in console for debugging
+            console.error('Failed to load overview for folder:', folderId, 'Error:', error);
+        }
+        
+        // Show student detail view
+        function showStudentDetail(folderId, studentName, subject) {
+            currentStudent = { id: folderId, name: studentName, subject: subject };
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <div class="detail-header">
+                    <button class="back-btn" onclick="showSearchResults()">← Terug naar zoeken</button>
+                    <div>
+                        <h2>${studentName}</h2>
+                        <p>${subject}</p>
+                    </div>
+                </div>
+                
+                <div class="view-toggle">
+                    <button class="toggle-btn ${currentView === 'icon' ? 'active' : ''}" onclick="switchView('icon')">
+                        📋 Icon View
+                    </button>
+                    <button class="toggle-btn ${currentView === 'list' ? 'active' : ''}" onclick="switchView('list')">
+                        📄 List View
+                    </button>
+                </div>
+                
+                <div id="student-files">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Laden van bestanden...</p>
+                    </div>
+                </div>
+            `;
+            
+            // Load files for detail view
+            loadStudentFiles(folderId);
+        }
+        
+        // Switch between icon and list view
+        function switchView(view) {
+            currentView = view;
+            
+            // Update toggle buttons
+            document.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update file display
+            if (currentStudent) {
+                loadStudentFiles(currentStudent.id);
+            }
+        }
+        
+        // Show search results again
+        function showSearchResults() {
+            currentStudent = null;
+            displayResults(currentResults);
+        }
+        
+        // Load files for a specific student
+        function loadStudentFiles(folderId) {
+            const filesDiv = document.getElementById('student-files');
+            
+            console.log('Loading files for folder:', folderId);
+            
+            google.script.run
+                .withSuccessHandler(files => {
+                    console.log('Files received for folder', folderId, ':', files);
+                    displayFiles(folderId, files);
+                })
+                .withFailureHandler(error => {
+                    console.error('Error loading files for folder', folderId, ':', error);
+                    showFileError(folderId, error);
+                })
+                .listFilesInFolder(folderId);
+        }
+        
+        // Display files for a student
+        function displayFiles(folderId, files) {
+            const filesDiv = document.getElementById('student-files');
+            
+            // Check if files is null, undefined, or not an array
+            if (!files || !Array.isArray(files)) {
+                console.error('Files is null, undefined, or not an array for folder:', folderId, 'Files:', files);
+                filesDiv.innerHTML = '<p style="color: #dc2626; text-align: center; padding: 20px;">❌ Fout bij laden van bestanden. Probeer opnieuw.</p>';
+                return;
+            }
+            
+            if (files.length === 0) {
+                filesDiv.innerHTML = '<p style="color: #6b7280; text-align: center; padding: 20px;">Geen bestanden gevonden in deze map.</p>';
+                return;
+            }
+            
+            if (currentView === 'icon') {
+                displayIconView(files);
+            } else {
+                displayListView(files);
+            }
+        }
+        
+        // Display files in icon view
+        function displayIconView(files) {
+            const filesDiv = document.getElementById('student-files');
+            
+            const iconHtml = `
+                <div class="icon-view active">
+                    <div class="icon-grid">
+                        ${files.map(file => {
+                            const date = new Date(file.modifiedTime).toLocaleDateString('nl-NL', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                            });
+                            
+                            // Format date more nicely
+                            const formattedDate = date.replace(/(\d{1,2})\s+(\w{3})\s+(\d{4})/, '$1 $2 $3');
+                            
+                            // Use clean title if available, otherwise use original name
+                            const displayTitle = file.title || file.name;
+                            
+                            return `
+                                <div class="file-icon" onclick="openFile('${file.viewUrl}', '${file.downloadUrl}')">
+                                    <div class="file-icon-preview">
+                                        ${file.thumbnailUrl ? 
+                                            `<img src="${file.thumbnailUrl}" alt="Preview" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" loading="lazy">
+                                             <div class="pdf-icon" style="display: none;">📄</div>` :
+                                            `<div class="pdf-icon">📄</div>`
+                                        }
+                                    </div>
+                                    <div class="file-icon-name">${displayTitle}</div>
+                                    <div class="file-icon-date">${formattedDate}</div>
+                                    ${file.subject && file.subject !== 'Onbekend' ? `
+                                        <div class="file-icon-metadata">
+                                            <div class="file-icon-subject">${file.subject}</div>
+                                            ${file.topic ? `<div class="file-icon-topic">${file.topic}</div>` : ''}
+                                            ${file.keywords && file.keywords.length > 0 ? `
+                                                <div class="file-icon-keywords">${file.keywords.slice(0, 3).join(', ')}</div>
+                                            ` : ''}
+                                        </div>
+                                    ` : ''}
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+            
+            filesDiv.innerHTML = iconHtml;
+        }
+        
+        // Display files in list view
+        function displayListView(files) {
+            const filesDiv = document.getElementById('student-files');
+            
+            const listHtml = `
+                <div class="list-view active">
+                    <div class="files-list">
+                        ${files.map(file => {
+                            const date = new Date(file.modifiedTime).toLocaleDateString('nl-NL', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            });
+                            
+                            // Use clean title if available, otherwise use original name
+                            const displayTitle = file.title || file.name;
+                            
+                            return `
+                                <div class="file-item">
+                                    <div class="file-info">
+                                        <div class="file-name">${displayTitle}</div>
+                                        <div class="file-date">Laatst gewijzigd: ${date}</div>
+                                    </div>
+                                    <div class="file-actions">
+                                        <a href="${file.viewUrl}" target="_blank" class="btn btn-view">
+                                            👁️ Bekijken
+                                        </a>
+                                        <a href="${file.downloadUrl}" class="btn btn-download">
+                                            ⬇️ Downloaden
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+            
+            filesDiv.innerHTML = listHtml;
+        }
+        
+        // Open file (for icon view)
+        function openFile(viewUrl, downloadUrl) {
+            // Open in new tab
+            window.open(viewUrl, '_blank');
+        }
+        
+        // Show error
+        function showError(error) {
+            const resultsDiv = document.getElementById('results');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            searchBtn.disabled = false;
+            searchBtn.textContent = '🔍 Zoeken';
+            
+            resultsDiv.innerHTML = `
+                <div class="error">
+                    <strong>Er is een fout opgetreden:</strong><br>
+                    ${error.message || error}
+                </div>
+            `;
+        }
+        
+        // Show file loading error
+        function showFileError(folderId, error) {
+            const filesDiv = document.getElementById('student-files');
+            filesDiv.innerHTML = `
+                <div class="error">
+                    <strong>Fout bij laden van bestanden:</strong><br>
+                    ${error.message || error}
+                </div>
+            `;
+        }
+        
+        // Allow Enter key to search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchStudents();
+            }
+        });
+        
+        // Focus search input on page load
+        window.onload = function() {
+            document.getElementById('searchInput').focus();
+        };
+    </script>
+</body>
+</html>
+
