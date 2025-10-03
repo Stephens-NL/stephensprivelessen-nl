@@ -296,6 +296,12 @@ function findStudentFolders(needle) {
  */
 function listFilesInFolder(folderId) {
   try {
+    // Validate input
+    if (!folderId || typeof folderId !== 'string') {
+      Logger.log('Error: Invalid folderId provided to listFilesInFolder:', folderId);
+      return [];
+    }
+    
     const cacheKey = CACHE_KEY_FILES + folderId;
     
     // Try to get cached data first
@@ -303,7 +309,12 @@ function listFilesInFolder(folderId) {
     
     if (cachedData && _isCacheValid_(cachedData)) {
       Logger.log('Using cached file metadata for folder: ' + folderId);
-      return cachedData.files;
+      // Ensure cached data is valid
+      if (cachedData.files && Array.isArray(cachedData.files)) {
+        return cachedData.files;
+      } else {
+        Logger.log('Warning: Cached data is invalid, refetching for folder: ' + folderId);
+      }
     }
     
     Logger.log('Cache miss, fetching file metadata for folder: ' + folderId);
@@ -380,6 +391,16 @@ function listFilesInFolder(folderId) {
  */
 function getStudentOverview(folderId) {
   try {
+    // Validate input
+    if (!folderId || typeof folderId !== 'string') {
+      Logger.log('Error: Invalid folderId provided to getStudentOverview:', folderId);
+      return {
+        fileCount: 0,
+        lastActivity: null,
+        lastActivityDate: 'Fout bij laden'
+      };
+    }
+    
     // Try to get from cache first
     const cacheKey = CACHE_KEY_FILES + folderId;
     const cachedData = _getCache_(cacheKey);
@@ -387,13 +408,18 @@ function getStudentOverview(folderId) {
     if (cachedData && _isCacheValid_(cachedData)) {
       const files = cachedData.files;
       
-      if (files.length === 0) {
-        return {
-          fileCount: 0,
-          lastActivity: null,
-          lastActivityDate: 'Geen bestanden'
-        };
-      }
+      // Validate cached files data
+      if (!files || !Array.isArray(files)) {
+        Logger.log('Warning: Cached files data is invalid for folder:', folderId);
+        // Fall through to direct Drive access
+      } else {
+        if (files.length === 0) {
+          return {
+            fileCount: 0,
+            lastActivity: null,
+            lastActivityDate: 'Geen bestanden'
+          };
+        }
       
       const lastFile = files[0]; // Files are sorted by date, newest first
       
@@ -411,11 +437,12 @@ function getStudentOverview(folderId) {
           day: 'numeric'
         });
       
-      return {
-        fileCount: files.length,
-        lastActivity: lessonDate || lastFile.modifiedTime,
-        lastActivityDate: lastActivityDate
-      };
+        return {
+          fileCount: files.length,
+          lastActivity: lessonDate || lastFile.modifiedTime,
+          lastActivityDate: lastActivityDate
+        };
+      }
     }
     
     // If not cached, get minimal info directly from Drive

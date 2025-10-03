@@ -2029,6 +2029,14 @@
                 return;
             }
             
+            // Additional validation for overview object
+            if (typeof overview !== 'object') {
+                console.error('Overview is not an object for folder:', folderId, 'Type:', typeof overview);
+                lastActivityDiv.textContent = '❌ ' + t('error_loading_files');
+                fileCountDiv.textContent = '❌ ' + t('error_loading_files');
+                return;
+            }
+            
             if (overview.fileCount > 0) {
                 lastActivityDiv.textContent = '📅 ' + t('last_activity') + ': ' + overview.lastActivityDate;
                 fileCountDiv.textContent = '📄 ' + t('files') + ': ' + overview.fileCount;
@@ -2243,13 +2251,20 @@
         function displayFiles(folderId, files) {
             const filesDiv = document.getElementById('student-files');
             
+            if (!filesDiv) {
+                console.error('Files container not found for folder:', folderId);
+                return;
+            }
+            
             if (!files || !Array.isArray(files)) {
                 console.error('Files is null, undefined, or not an array for folder:', folderId, 'Files:', files);
                 filesDiv.innerHTML = `<div class="error">${t('error_loading')}</div>`;
                 return;
             }
             
+            // Additional validation for files array
             if (files.length === 0) {
+                console.log('No files found for folder:', folderId);
                 filesDiv.innerHTML = `<div class="no-results"><h3>${t('no_files')}</h3></div>`;
                 return;
             }
