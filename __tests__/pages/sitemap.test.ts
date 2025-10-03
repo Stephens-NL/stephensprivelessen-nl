@@ -55,7 +55,7 @@ describe('Sitemap Validation', () => {
 
     test('all sitemap URLs are valid format', () => {
         // Allow for more granular location and service-specific URLs, and blog posts with numbers
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/bijles\/[a-z-]+|\/mbo-rekenen|\/aantekeningen|\/blog\/\d+)$/;
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/bijles\/[a-z-]+(\/[a-z-]+)*|\/mbo-rekenen|\/aantekeningen|\/blog\/\d+)$/;
         
         // Convert absolute URLs to relative for pattern matching
         const relativeSitemapUrls = sitemapUrls.map(url => {
