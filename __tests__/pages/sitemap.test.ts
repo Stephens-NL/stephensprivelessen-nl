@@ -40,16 +40,32 @@ describe('Sitemap Validation', () => {
         // Convert navigation items to lowercase paths
         const navPaths = navigation.map(item => item.href.toLowerCase());
         
-        // Check if all navigation paths are in sitemap
+        // Check if all navigation paths are in sitemap (convert absolute URLs to relative)
+        const relativeSitemapUrls = sitemapUrls.map(url => {
+            if (url.startsWith('https://stephensprivelessen.nl')) {
+                return url.replace('https://stephensprivelessen.nl', '');
+            }
+            return url;
+        });
+        
         navPaths.forEach(path => {
-            expect(sitemapUrls).toContain(path);
+            expect(relativeSitemapUrls).toContain(path);
         });
     });
 
     test('all sitemap URLs are valid format', () => {
         // Allow for more granular location and service-specific URLs, and blog posts with numbers
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/blog\/\d+)$/;
-        sitemapUrls.forEach(url => {
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/mbo-rekenen|\/aantekeningen|\/blog\/\d+)$/;
+        
+        // Convert absolute URLs to relative for pattern matching
+        const relativeSitemapUrls = sitemapUrls.map(url => {
+            if (url.startsWith('https://stephensprivelessen.nl')) {
+                return url.replace('https://stephensprivelessen.nl', '');
+            }
+            return url;
+        });
+        
+        relativeSitemapUrls.forEach(url => {
             expect(url).toMatch(urlPattern);
         });
     });

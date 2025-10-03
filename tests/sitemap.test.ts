@@ -41,16 +41,32 @@ describe('Sitemap Validation', () => {
         // Convert navigation items to lowercase paths
         const navPaths = navigation.map(item => item.href.toLowerCase());
         
-        // Check if all navigation paths are in sitemap
+        // Check if all navigation paths are in sitemap (convert absolute URLs to relative)
+        const relativeSitemapUrls = sitemapUrls.map(url => {
+            if (url.startsWith('https://stephensprivelessen.nl')) {
+                return url.replace('https://stephensprivelessen.nl', '');
+            }
+            return url;
+        });
+        
         navPaths.forEach(path => {
-            expect(sitemapUrls).toContain(path);
+            expect(relativeSitemapUrls).toContain(path);
         });
     });
 
     test('all sitemap URLs are valid format', () => {
         // Allow for more granular location and service-specific URLs
-        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/mbo-rekenen|\/blog\/\d+)$/;
-        sitemapUrls.forEach(url => {
+        const urlPattern = /^(\/|\/[a-z-]+|\/workshops\/[a-z-]+|\/privelessen\/[a-z-]+(\/[a-z-]+)?|\/scriptiebegeleiding\/[a-z-]+|\/mbo-rekenen|\/aantekeningen|\/blog\/\d+)$/;
+        
+        // Convert absolute URLs to relative for pattern matching
+        const relativeSitemapUrls = sitemapUrls.map(url => {
+            if (url.startsWith('https://stephensprivelessen.nl')) {
+                return url.replace('https://stephensprivelessen.nl', '');
+            }
+            return url;
+        });
+        
+        relativeSitemapUrls.forEach(url => {
             expect(url).toMatch(urlPattern);
         });
     });
@@ -130,8 +146,14 @@ describe('Sitemap Validation', () => {
     test('all blog posts are included in sitemap', () => {
         const blogUrls = sitemapUrls.filter(url => url.startsWith('/blog/'));
         
-        // Check if main blog page is included
-        expect(sitemapUrls).toContain('/blog');
+        // Check if main blog page is included (convert absolute URLs to relative)
+        const relativeSitemapUrls = sitemapUrls.map(url => {
+            if (url.startsWith('https://stephensprivelessen.nl')) {
+                return url.replace('https://stephensprivelessen.nl', '');
+            }
+            return url;
+        });
+        expect(relativeSitemapUrls).toContain('/blog');
         
         // Check if all individual blog posts are included
         blogPosts.forEach(post => {
