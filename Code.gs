@@ -765,7 +765,7 @@ function analyzeDocumentWithAI(fileName, fileContent = null) {
     - subject: The main subject/vak from this list: Wiskunde A, Wiskunde B, Wiskunde C, Wiskunde D, Natuurkunde, Scheikunde, Informatica, Programmeren, Python, Rekenen, Statistiek, Data-analyse
     - topic: The specific topic/onderwerp (e.g., "Algebra", "Functies", "Differentiëren", "Integreren", "Mechanica", "Elektriciteit", "Organische chemie", "Python basics", "Statistiek")
     - level: Educational level (e.g., "VO", "WO", "HBO")
-    - schoolYear: School year (e.g., "2024-2025", "2023-2024", "2022-2023")
+    - schoolYear: School year in format "YY/YY" (e.g., "24/25", "23/24", "22/23")
     - keywords: Array of 3-5 relevant keywords
     - summary: Brief 1-sentence summary
     - summaryEn: Brief 1-sentence summary in English
@@ -827,7 +827,7 @@ function _basicAnalysis_(fileName) {
     subject: 'Onbekend',
     topic: 'Algemeen',
     level: 'VO',
-    schoolYear: '2024-2025',
+    schoolYear: '24/25',
     keywords: ['lesmateriaal'],
     summary: 'Lesmateriaal document',
     topicEn: 'General',
@@ -874,8 +874,19 @@ function _basicAnalysis_(fileName) {
   if (yearMatch) {
     const year = parseInt(yearMatch[1]);
     if (year >= 2020 && year <= 2030) {
-      analysis.schoolYear = `${year}-${year + 1}`;
+      // Convert to school year format (e.g., 2024 -> 24/25)
+      const shortYear = year.toString().slice(-2);
+      const nextShortYear = (year + 1).toString().slice(-2);
+      analysis.schoolYear = `${shortYear}/${nextShortYear}`;
     }
+  }
+  
+  // Also check for explicit school year in filename (e.g., "2024-10-15__wiskunde_24-25__v001.pdf")
+  const explicitYearMatch = fileName.match(/(\d{2})[_-](\d{2})/);
+  if (explicitYearMatch) {
+    const year1 = explicitYearMatch[1];
+    const year2 = explicitYearMatch[2];
+    analysis.schoolYear = `${year1}/${year2}`;
   }
   
   // Try to extract level

@@ -1148,6 +1148,51 @@
             background: #4b5563;
         }
         
+        /* Student Header */
+        .student-header {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .student-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 0 0 1rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .student-info {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .student-subject {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .student-files-count {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -1221,6 +1266,21 @@
             
             .filter-group {
                 width: 100%;
+            }
+            
+            .student-header {
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .student-name {
+                font-size: 2rem;
+            }
+            
+            .student-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
             }
         }
     </style>
@@ -1789,6 +1849,13 @@
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = `
                  <button class="back-btn" onclick="showSearchResults()">${t('back_to_search')}</button>
+                <div class="student-header">
+                    <h1 class="student-name">${student.name}</h1>
+                    <div class="student-info">
+                        <span class="student-subject">${student.subject || 'Vak onbekend'}</span>
+                        <span class="student-files-count">${student.fileCount || 0} bestanden</span>
+                    </div>
+                </div>
                 <div class="share-section" id="share-section">
                     <div class="share-header">
                          <h3 class="share-title">${t('share_notes')}</h3>
@@ -1833,6 +1900,9 @@
                             <label class="filter-label">${t('filter_year')}</label>
                             <select class="filter-select" id="year-filter" onchange="applyFilters()">
                                 <option value="all">${t('all_years')}</option>
+                                <option value="23/24">2023/2024</option>
+                                <option value="24/25">2024/2025</option>
+                                <option value="25/26">2025/2026</option>
                             </select>
                         </div>
                         <button class="clear-filters" onclick="clearFilters()">${t('clear_filters')}</button>
