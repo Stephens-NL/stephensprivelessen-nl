@@ -8,7 +8,7 @@ export default function AantekeningenPage() {
   const [iframeError, setIframeError] = useState(false);
 
   // Google Apps Script web app URL - NEW DEPLOYMENT WITH SHARE FUNCTIONALITY
-  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7IlQZTwsytHPUuUc0JkIYyMXdmYBeVD4HutgSfeTWXkqm_tN-38gYCDXC1OohVC8K/exec";
+  const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-7B3ZNSltu03_pV0iw-71JQ-EcLvPsjQ6wp0EgnugEdql1UbSR-9XuDfmP4PyrBKU/exec";
 
   useEffect(() => {
     // You can add any initialization logic here
