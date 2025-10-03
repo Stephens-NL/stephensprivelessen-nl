@@ -433,19 +433,6 @@
                 display: none;
             }
             
-            .debug-buttons {
-                flex-wrap: wrap;
-                gap: 1rem;
-                justify-content: center;
-                margin-bottom: 1.5rem;
-            }
-            
-            .debug-btn {
-                font-size: 0.9rem;
-                padding: 0.75rem 1.25rem;
-                border-radius: 0.75rem;
-                min-width: auto;
-            }
             
             .language-toggle {
                 gap: 1rem;
@@ -489,18 +476,6 @@
                 font-size: 1rem;
             }
             
-            .debug-buttons {
-                gap: 0.75rem;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .debug-btn {
-                font-size: 0.85rem;
-                padding: 0.75rem 1rem;
-                width: 100%;
-                max-width: 200px;
-            }
             
             .hero-features {
                 gap: 1.5rem;
@@ -1557,12 +1532,6 @@
                                     </div>
                                     
                                     <!-- Debug buttons -->
-                                    <div style="margin-top: 2rem; display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                                        <button onclick="testFunction()" style="background: #ef4444; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🧪 Test JS</button>
-                                        <button onclick="testGoogleScriptConnection()" style="background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🔗 Test GAS</button>
-                                        <button onclick="debugCacheStatus()" style="background: #f59e0b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🗄️ Cache</button>
-                                        <button onclick="debugRachelFolder()" style="background: #10b981; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🔍 Debug Rachel</button>
-                                    </div>
                     </div>
                     
                     <div class="hero-features">
@@ -2549,13 +2518,6 @@
                                         </button>
                                     </div>
                                     
-                                    <!-- Debug buttons -->
-                                    <div class="debug-buttons">
-                                        <button onclick="testFunction()" style="background: #ef4444; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🧪 Test JS</button>
-                                        <button onclick="testGoogleScriptConnection()" style="background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🔗 Test GAS</button>
-                                        <button onclick="debugCacheStatus()" style="background: #f59e0b; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🗄️ Cache</button>
-                                        <button onclick="debugRachelFolder()" style="background: #10b981; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-size: 1rem;">🔍 Debug Rachel</button>
-                                    </div>
                                 </div>
                                 
                                 <div class="hero-features">
@@ -2739,134 +2701,6 @@
                 '<div class="error">' +
                     'Er is een fout opgetreden: ' + (error.message || error) +
                 '</div>';
-        }
-        
-        // Test function
-        function testFunction() {
-            console.log('Test function called successfully!');
-            alert('Test function works!');
-        }
-        
-        // Test Google Apps Script connection
-        function testGoogleScriptConnection() {
-            console.log('Testing Google Apps Script connection...');
-            console.log('google object:', typeof google);
-            console.log('google.script:', typeof google?.script);
-            console.log('google.script.run:', typeof google?.script?.run);
-            
-            if (typeof google === 'undefined' || !google.script || !google.script.run) {
-                console.error('Google Apps Script not available');
-                alert('Google Apps Script not available! Check console for details.');
-                return false;
-            }
-            
-            console.log('Google Apps Script is available, testing connection...');
-            
-            // Try to call a simple function
-            google.script.run
-                .withSuccessHandler(function(result) {
-                    console.log('Google Apps Script connection successful:', result);
-                    alert('Google Apps Script connection successful!');
-                })
-                .withFailureHandler(function(error) {
-                    console.error('Google Apps Script connection failed:', error);
-                    alert('Google Apps Script connection failed: ' + error.message);
-                })
-                .testConnection();
-                
-            return true;
-        }
-        
-        // Debug function to check cache status
-        function debugCacheStatus() {
-            console.log('🗄️ Checking cache status...');
-            
-            if (typeof google === 'undefined' || !google.script || !google.script.run) {
-                console.error('Google Apps Script not available');
-                alert('Google Apps Script not available!');
-                return;
-            }
-            
-            google.script.run
-                .withSuccessHandler(function(status) {
-                    console.log('📊 Cache status:', status);
-                    alert('Cache status checked. Check console for details.');
-                })
-                .withFailureHandler(function(error) {
-                    console.error('❌ Error checking cache:', error);
-                    alert('Error checking cache: ' + error.message);
-                })
-                .checkCacheStatus();
-        }
-        
-        // Debug function to check what's in Rachel's folder
-        function debugRachelFolder() {
-            console.log('🔍 Debugging Rachel folder...');
-            
-            if (typeof google === 'undefined' || !google.script || !google.script.run) {
-                console.error('Google Apps Script not available');
-                alert('Google Apps Script not available!');
-                return;
-            }
-            
-            // First, let's search for Rachel using the findStudentFolders function
-            google.script.run
-                .withSuccessHandler(function(students) {
-                    console.log('📋 Search results for "rachel":', students);
-                    console.log('📊 Number of students found:', students ? students.length : 0);
-                    
-                    if (students && students.length > 0) {
-                        const rachel = students[0]; // Take first result
-                        console.log('👤 Found Rachel:', rachel);
-                        console.log('📁 Rachel folder ID:', rachel.folderId);
-                        console.log('📁 Rachel ID:', rachel.id);
-                        console.log('📚 Rachel subject:', rachel.subject);
-                        console.log('🏷️ Rachel name:', rachel.name);
-                        
-                        // Try different possible folder ID properties
-                        const folderId = rachel.folderId || rachel.id || rachel.folder_id;
-                        console.log('🔍 Using folder ID:', folderId);
-                        
-                        if (!folderId) {
-                            console.error('❌ No folder ID found for Rachel');
-                            alert('Rachel found but no folder ID available. Check console for details.');
-                            return;
-                        }
-                        
-                        // Now check what's in her folder
-                        console.log('🔍 Checking files in Rachel folder...');
-                        google.script.run
-                            .withSuccessHandler(function(files) {
-                                console.log('📄 Files in Rachel folder:', files);
-                                console.log('📊 Number of files found:', files ? files.length : 0);
-                                
-                                if (files && files.length > 0) {
-                                    console.log('📝 File details:');
-                                    files.forEach((file, index) => {
-                                        console.log(`  ${index + 1}. ${file.name} (${file.id})`);
-                                        console.log(`     - Title: ${file.title}`);
-                                        console.log(`     - Modified: ${file.modifiedTime}`);
-                                        console.log(`     - Size: ${file.size}`);
-                                    });
-                                }
-                                
-                                alert(`Rachel folder contains ${files ? files.length : 0} files.\n\nCheck console for detailed file information.`);
-                            })
-                            .withFailureHandler(function(error) {
-                                console.error('❌ Error getting Rachel files:', error);
-                                alert('Error getting Rachel files: ' + error.message);
-                            })
-                            .listFilesInFolder(folderId);
-                    } else {
-                        console.log('❌ Rachel not found in search results');
-                        alert('Rachel not found in search results. Check console for details.');
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    console.error('❌ Error searching for Rachel:', error);
-                    alert('Error searching for Rachel: ' + error.message);
-                })
-                .findStudentFolders('rachel');
         }
         
         // Initialize event listeners function
