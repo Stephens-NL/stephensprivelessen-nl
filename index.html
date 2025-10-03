@@ -880,7 +880,11 @@
                 'share_email': 'Deel via e-mail',
                 'copy_link': 'Kopieer link',
                 'link_copied': 'Link gekopieerd!',
-                'share_message': 'Bekijk mijn aantekeningen van Stephen\'s Privelessen:'
+                'share_message': 'Bekijk mijn aantekeningen van Stephen\'s Privelessen:',
+                'enter_name_to_search': 'Voer een naam in om te zoeken',
+                'no_notes_found': 'Geen aantekeningen gevonden',
+                'no_files_available': 'Er zijn nog geen bestanden beschikbaar voor deze student.',
+                'no_search_results': 'Geen zoekresultaten'
             },
             'en': {
                 'search_placeholder': 'Type your name to find your notes...',
@@ -919,7 +923,11 @@
                 'share_email': 'Share via email',
                 'copy_link': 'Copy link',
                 'link_copied': 'Link copied!',
-                'share_message': 'Check out my notes from Stephen\'s Privelessen:'
+                'share_message': 'Check out my notes from Stephen\'s Privelessen:',
+                'enter_name_to_search': 'Enter a name to search',
+                'no_notes_found': 'No notes found',
+                'no_files_available': 'No files are available for this student yet.',
+                'no_search_results': 'No search results'
             }
         };
         
@@ -1013,7 +1021,7 @@
             
             if (!searchTerm) {
                 console.log('No search term provided');
-                resultsDiv.innerHTML = `<div class="error">Please enter a name to search</div>`;
+                resultsDiv.innerHTML = '<div class="error">' + t('enter_name_to_search') + '</div>';
                 return;
             }
             
@@ -1274,9 +1282,7 @@
                 })
                 .withFailureHandler(error => {
                     console.error('Error loading files:', error);
-                    document.getElementById('student-files').innerHTML = `
-                        <div class="error">${t('error_loading')}</div>
-                    `;
+                    document.getElementById('student-files').innerHTML = '<div class="error">' + t('error_loading') + '</div>';
                 })
                 .listFilesInFolder(folderId);
         }
@@ -1284,12 +1290,7 @@
         // Show featured note (latest note)
         function showFeaturedNote(files) {
             if (!files || files.length === 0) {
-                document.getElementById('featured-note').innerHTML = `
-                    <div class="no-results">
-                        <h3>Geen aantekeningen gevonden</h3>
-                        <p>Er zijn nog geen bestanden beschikbaar voor deze student.</p>
-                    </div>
-                `;
+                document.getElementById('featured-note').innerHTML = '<div class="no-results"><h3>' + t('no_notes_found') + '</h3><p>' + t('no_files_available') + '</p></div>';
                 return;
             }
             
@@ -1556,9 +1557,7 @@
                     .withSuccessHandler(files => displayFiles(currentStudent.id, files))
                     .withFailureHandler(error => {
                         console.error('Error reloading files:', error);
-                        document.getElementById('student-files').innerHTML = `
-                            <div class="error">${t('error_loading')}</div>
-                        `;
+                        document.getElementById('student-files').innerHTML = '<div class="error">' + t('error_loading') + '</div>';
                     })
                     .listFilesInFolder(currentStudent.id);
             }
@@ -1574,12 +1573,7 @@
             if (currentResults && currentResults.length > 0) {
                 displayResults(currentResults);
             } else {
-                document.getElementById('results').innerHTML = `
-                    <div class="no-results">
-                        <h3>Geen zoekresultaten</h3>
-                        <p>Voer een naam in om te zoeken.</p>
-                    </div>
-                `;
+                document.getElementById('results').innerHTML = '<div class="no-results"><h3>' + t('no_search_results') + '</h3><p>' + t('enter_name_to_search') + '</p></div>';
             }
         }
         
