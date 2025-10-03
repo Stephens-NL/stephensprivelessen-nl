@@ -1207,63 +1207,64 @@
             currentStudent = { id: folderId, name: studentName, subject: subject };
             
             const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = 
-                '<button class="back-btn" onclick="showSearchResults()">' + t('back_to_search') + '</button>' +
-                '<div class="share-section" id="share-section">' +
-                    '<div class="share-header">' +
-                        '<h3 class="share-title">' + t('share_notes') + '</h3>' +
-                    '</div>' +
-                    '<div class="share-buttons">' +
-                        '<button class="share-btn whatsapp" onclick="shareViaWhatsApp()">' +
-                            '📱 ' + t('share_whatsapp') +
-                        '</button>' +
-                        '<button class="share-btn email" onclick="shareViaEmail()">' +
-                            '📧 ' + t('share_email') +
-                        '</button>' +
-                        '<button class="share-btn copy" onclick="copyShareLink()">' +
-                            '📋 ' + t('copy_link') +
-                        '</button>' +
-                    '</div>' +
-                    '<div class="share-url" id="share-url" style="display: none;">' +
-                        '<!-- URL will be set by JavaScript -->' +
-                    '</div>' +
-                '</div>' +
-                '<div class="featured-note" id="featured-note">' +
-                    '<div class="loading">' +
-                        '<div class="spinner"></div>' +
-                        '<p>' + t('loading') + ' ' + t('latest_note') + '...</p>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="files-section" id="files-section" style="display: none;">' +
-                    '<div class="files-header">' +
-                        '<h2 class="files-title">' + t('all_files') + '</h2>' +
-                        '<div class="view-toggle">' +
-                            '<button class="toggle-btn active" onclick="switchView(\'icon\')">' + t('icon_view') + '</button>' +
-                            '<button class="toggle-btn" onclick="switchView(\'list\')">' + t('list_view') + '</button>' +
-                        '</div>' +
-                    '</div>' +
-                    '<div class="filters-section" id="filters-section">' +
-                        '<div class="filter-group">' +
-                            '<label class="filter-label">' + t('filter_subject') + '</label>' +
-                            '<select class="filter-select" id="subject-filter" onchange="applyFilters()">' +
-                                '<option value="all">' + t('all_subjects') + '</option>' +
-                            '</select>' +
-                        '</div>' +
-                        '<div class="filter-group">' +
-                            '<label class="filter-label">' + t('filter_year') + '</label>' +
-                            '<select class="filter-select" id="year-filter" onchange="applyFilters()">' +
-                                '<option value="all">' + t('all_years') + '</option>' +
-                            '</select>' +
-                        '</div>' +
-                        '<button class="clear-filters" onclick="clearFilters()">' + t('clear_filters') + '</button>' +
-                    '</div>' +
-                    '<div id="student-files">' +
-                        '<div class="loading">' +
-                            '<div class="spinner"></div>' +
-                            '<p>' + t('loading') + ' ' + t('files') + '...</p>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>';
+            resultsDiv.innerHTML = `
+                 <button class="back-btn" onclick="showSearchResults()">${t('back_to_search')}</button>
+                <div class="share-section" id="share-section">
+                    <div class="share-header">
+                         <h3 class="share-title">${t('share_notes')}</h3>
+                    </div>
+                    <div class="share-buttons">
+                        <button class="share-btn whatsapp" onclick="shareViaWhatsApp()">
+                            📱 ${t('share_whatsapp')}
+                        </button>
+                        <button class="share-btn email" onclick="shareViaEmail()">
+                            📧 ${t('share_email')}
+                        </button>
+                        <button class="share-btn copy" onclick="copyShareLink()">
+                            📋 ${t('copy_link')}
+                        </button>
+                    </div>
+                    <div class="share-url" id="share-url" style="display: none;">
+                        <!-- URL will be set by JavaScript -->
+                    </div>
+                </div>
+                <div class="featured-note" id="featured-note">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                         <p>${t('loading')} ${t('latest_note')}...</p>
+                    </div>
+                </div>
+                <div class="files-section" id="files-section" style="display: none;">
+                    <div class="files-header">
+                        <h2 class="files-title">${t('all_files')}</h2>
+                        <div class="view-toggle">
+                            <button class="toggle-btn active" onclick="switchView('icon')">${t('icon_view')}</button>
+                            <button class="toggle-btn" onclick="switchView('list')">${t('list_view')}</button>
+                        </div>
+                    </div>
+                    <div class="filters-section" id="filters-section">
+                        <div class="filter-group">
+                            <label class="filter-label">${t('filter_subject')}</label>
+                            <select class="filter-select" id="subject-filter" onchange="applyFilters()">
+                                <option value="all">${t('all_subjects')}</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label class="filter-label">${t('filter_year')}</label>
+                            <select class="filter-select" id="year-filter" onchange="applyFilters()">
+                                <option value="all">${t('all_years')}</option>
+                            </select>
+                        </div>
+                        <button class="clear-filters" onclick="clearFilters()">${t('clear_filters')}</button>
+                    </div>
+                    <div id="student-files">
+                        <div class="loading">
+                            <div class="spinner"></div>
+                            <p>${t('loading')} ${t('files')}...</p>
+                        </div>
+                    </div>
+                </div>
+            `;
             
             // Load student files
             google.script.run
@@ -1294,11 +1295,11 @@
             
             const latestFile = files[0]; // Files are sorted by date, newest first
             
-            const featuredHtml = 
-                '<div class="featured-header">' +
-                    '<h2 class="featured-title">' + t('latest_note') + '</h2>' +
-                    '<div class="featured-subject">' + (latestFile.subject || 'Onbekend') + '</div>' +
-                '</div>';
+            const featuredHtml = `
+                <div class="featured-header">
+                     <h2 class="featured-title">${t('latest_note')}</h2>
+                    <div class="featured-subject">Subject</div>
+                </div>
                 <div class="featured-content">
                     <div class="featured-preview">
                         ${latestFile.thumbnailUrl ? 
@@ -1314,15 +1315,15 @@
                         </div>
                         <div class="featured-meta">
                             <div class="meta-item">
-                                <div class="meta-label">' + t('subject') + '</div>
+                                 <div class="meta-label">${t('subject')}</div>
                                 <div class="meta-value">${latestFile.subject || 'Onbekend'}</div>
                             </div>
                             <div class="meta-item">
-                                <div class="meta-label">' + t('topic') + '</div>
+                                <div class="meta-label">${t('topic')}</div>
                                 <div class="meta-value">${currentLanguage === 'en' ? (latestFile.topicEn || latestFile.topic || 'Unknown') : (latestFile.topic || 'Onbekend')}</div>
                             </div>
                             <div class="meta-item">
-                                <div class="meta-label">' + t('level') + '</div>
+                                <div class="meta-label">${t('level')}</div>
                                 <div class="meta-value">${latestFile.level || 'Onbekend'}</div>
                             </div>
                             ${latestFile.schoolYear ? `
@@ -1333,8 +1334,8 @@
                             ` : ''}
                         </div>
                         <div class="featured-actions">
-                            <a href="${latestFile.viewUrl}" target="_blank" class="action-btn btn-primary">' + t('preview') + '</a>' +
-                            '<a href="${latestFile.downloadUrl}" class="action-btn btn-secondary">' + t('download') + '</a>
+                             <a href="${latestFile.viewUrl}" target="_blank" class="action-btn btn-primary">${t('preview')}</a>
+                             <a href="${latestFile.downloadUrl}" class="action-btn btn-secondary">${t('download')}</a>
                         </div>
                     </div>
                 </div>
