@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Notes Dashboard - Stephen's Privelessen</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Aantekeningen">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- iOS Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <style>
         * {
             margin: 0;
@@ -1628,6 +1643,14 @@
                                         </button>
                                     </div>
                                     
+                                    <!-- PWA Install Button -->
+                                    <div class="pwa-install-container" id="pwa-install-container" style="display: none;">
+                                        <button id="pwa-install-btn" class="pwa-install-btn">
+                                            <span class="install-icon">📱</span>
+                                            <span class="install-text">Toevoegen aan startscherm</span>
+                                        </button>
+                                    </div>
+                                    
                                     <!-- Debug buttons -->
                     </div>
                     
@@ -3214,7 +3237,67 @@
             
             // Initialize event listeners
             initializeEventListeners();
+            
+            // Initialize PWA install functionality
+            initializePWA();
         });
+        
+        // PWA Install functionality
+        let deferredPrompt;
+        
+        function initializePWA() {
+            // Check if PWA is already installed
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('PWA is already installed');
+                return;
+            }
+            
+            // Listen for beforeinstallprompt event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                console.log('PWA install prompt available');
+                e.preventDefault();
+                deferredPrompt = e;
+                
+                // Show install button
+                const installContainer = document.getElementById('pwa-install-container');
+                if (installContainer) {
+                    installContainer.style.display = 'block';
+                }
+            });
+            
+            // Listen for install button click
+            const installBtn = document.getElementById('pwa-install-btn');
+            if (installBtn) {
+                installBtn.addEventListener('click', async () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        const { outcome } = await deferredPrompt.userChoice;
+                        console.log('PWA install outcome:', outcome);
+                        
+                        if (outcome === 'accepted') {
+                            console.log('PWA installed successfully');
+                            // Hide install button
+                            const installContainer = document.getElementById('pwa-install-container');
+                            if (installContainer) {
+                                installContainer.style.display = 'none';
+                            }
+                        }
+                        
+                        deferredPrompt = null;
+                    }
+                });
+            }
+            
+            // Listen for appinstalled event
+            window.addEventListener('appinstalled', () => {
+                console.log('PWA was installed');
+                // Hide install button
+                const installContainer = document.getElementById('pwa-install-container');
+                if (installContainer) {
+                    installContainer.style.display = 'none';
+                }
+            });
+        }
     </script>
     
     <style>
@@ -3334,6 +3417,42 @@
             .option-name {
                 font-size: 1.125rem;
             }
+        }
+        
+        /* PWA Install Button */
+        .pwa-install-container {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .pwa-install-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .pwa-install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .install-icon {
+            font-size: 1.1rem;
+        }
+        
+        .install-text {
+            font-size: 0.9rem;
         }
         
         /* iOS Safari specific optimizations */
