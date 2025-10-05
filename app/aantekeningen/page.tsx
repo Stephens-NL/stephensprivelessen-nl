@@ -12,7 +12,7 @@ export default function AantekeningenPage() {
   const searchParams = useSearchParams();
 
   // Google Apps Script web app URL - LATEST DEPLOYMENT
-  const baseGoogleAppsScriptURL = "https://script.google.com/macros/s/AKfycbwzMgTh45BPWvxpoJX41V4eA9NpEQQcOQTM45hRGorcf6YrcUZwtQwCDk8XSGA4omIG/exec";
+  const baseGoogleAppsScriptURL = "https://script.google.com/macros/s/AKfycbzzjWmv-Xlt2cnw9ZZIokPnfB3xD267-heVolu_YbRDU-5za9KcMQTOMgAs3Phy6xhh/exec";
   
   // Add student parameter to Google Apps Script URL if student name is available
   const GOOGLE_APPS_SCRIPT_URL = studentName 
