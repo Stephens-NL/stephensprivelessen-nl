@@ -62,7 +62,7 @@
         }
         
         .hero-content {
-            max-width: 1800px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
@@ -2208,7 +2208,7 @@
                     <h1 class="student-name">${studentName}</h1>
                     <div class="student-info">
                         <span class="student-subject">${subject || 'Vak onbekend'}</span>
-                        <span class="student-files-count">0 bestanden</span>
+                        <span class="student-files-count" id="student-files-count">0 bestanden</span>
                     </div>
                 </div>
                 <div class="share-section" id="share-section">
@@ -2378,6 +2378,20 @@
             document.getElementById('files-section').style.display = 'block';
         }
         
+        // Update file count display
+        function updateFileCount(count, isError = false) {
+            const fileCountElement = document.getElementById('student-files-count');
+            if (fileCountElement) {
+                if (isError) {
+                    fileCountElement.textContent = '❌ Error';
+                    fileCountElement.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                } else {
+                    fileCountElement.textContent = `${count} bestanden`;
+                    fileCountElement.style.background = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
+                }
+            }
+        }
+        
         // Display files
         function displayFiles(folderId, files) {
             const filesDiv = document.getElementById('student-files');
@@ -2390,8 +2404,13 @@
             if (!files || !Array.isArray(files)) {
                 console.error('Files is null, undefined, or not an array for folder:', folderId, 'Files:', files);
                 filesDiv.innerHTML = `<div class="error">${t('error_loading')}</div>`;
+                // Update file count to show error
+                updateFileCount(0, true);
                 return;
             }
+            
+            // Update file count dynamically
+            updateFileCount(files.length, false);
             
             // Additional validation for files array
             if (files.length === 0) {
