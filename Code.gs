@@ -1455,6 +1455,57 @@ function testAmirahOverview() {
   }
 }
 
+// Debug function to test file loading for a specific student
+function debugFileLoading(studentName = "Amirah") {
+  Logger.log('🔍 DEBUG: Testing file loading for student: ' + studentName);
+  Logger.log('=' .repeat(50));
+  
+  try {
+    // Step 1: Find the student
+    const students = findStudentFolders(studentName);
+    if (students.length === 0) {
+      Logger.log('❌ Student not found: ' + studentName);
+      return { success: false, error: 'Student not found' };
+    }
+    
+    const student = students[0];
+    Logger.log('✅ Student found: ' + student.name + ' (ID: ' + student.id + ')');
+    
+    // Step 2: Test folder access
+    Logger.log('📁 Testing folder access...');
+    try {
+      const folder = DriveApp.getFolderById(student.id);
+      Logger.log('✅ Folder accessible: ' + folder.getName());
+    } catch (error) {
+      Logger.log('❌ Cannot access folder: ' + error.toString());
+      return { success: false, error: 'Cannot access folder: ' + error.toString() };
+    }
+    
+    // Step 3: Test file listing
+    Logger.log('📄 Testing file listing...');
+    const files = listFilesInFolder(student.id);
+    Logger.log('✅ Files found: ' + files.length);
+    
+    if (files.length > 0) {
+      Logger.log('📋 First few files:');
+      files.slice(0, 3).forEach((file, index) => {
+        Logger.log(`  ${index + 1}. ${file.name} (${file.date})`);
+      });
+    }
+    
+    return {
+      success: true,
+      student: student,
+      fileCount: files.length,
+      files: files.slice(0, 5) // Return first 5 files for debugging
+    };
+    
+  } catch (error) {
+    Logger.log('❌ Error in debug file loading: ' + error.toString());
+    return { success: false, error: error.toString() };
+  }
+}
+
 // Debug function to test student search from web app
 function debugStudentSearch(studentName = "Amirah") {
   Logger.log('🔍 DEBUG: Searching for student: ' + studentName);
