@@ -1883,6 +1883,31 @@
             if (featureFast) featureFast.textContent = t.feature_fast;
             if (featureSecure) featureSecure.textContent = t.feature_secure;
             if (featureMobile) featureMobile.textContent = t.feature_mobile;
+            
+            // Check for student parameter in URL and auto-search
+            checkForStudentParameter();
+        }
+        
+        // Check for student parameter in URL and perform automatic search
+        function checkForStudentParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const studentName = urlParams.get('student');
+            
+            if (studentName) {
+                console.log('🎯 Student parameter found in URL:', studentName);
+                
+                // Fill the search input with the student name
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    searchInput.value = studentName;
+                }
+                
+                // Perform automatic search after a short delay to ensure everything is loaded
+                setTimeout(() => {
+                    console.log('🔍 Performing automatic search for:', studentName);
+                    performSearch(studentName);
+                }, 500);
+            }
         }
         
         function t(key) {
