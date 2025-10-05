@@ -1892,9 +1892,13 @@
         function checkForStudentParameter() {
             const urlParams = new URLSearchParams(window.location.search);
             const studentName = urlParams.get('student');
+            const subjectHint = urlParams.get('subject'); // Optional subject hint
             
             if (studentName) {
                 console.log('🎯 Student parameter found in URL:', studentName);
+                if (subjectHint) {
+                    console.log('📚 Subject hint provided:', subjectHint);
+                }
                 
                 // Fill the search input with the student name
                 const searchInput = document.getElementById('searchInput');
@@ -1905,9 +1909,156 @@
                 // Perform automatic search after a short delay to ensure everything is loaded
                 setTimeout(() => {
                     console.log('🔍 Performing automatic search for:', studentName);
-                    performSearch(studentName);
+                    performSearchWithSmartHandling(studentName, subjectHint);
                 }, 500);
             }
+        }
+        
+        // Enhanced search with smart handling for duplicate names
+        function performSearchWithSmartHandling(studentName, subjectHint = null) {
+            const appContainer = document.querySelector('.app-container');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            console.log('🔍 Smart search for:', studentName, 'with subject hint:', subjectHint);
+            
+            // Show loading if button exists
+            if (searchBtn) {
+                searchBtn.disabled = true;
+                searchBtn.textContent = '⏳ Loading...';
+            }
+            appContainer.innerHTML = 
+                '<div class="loading">' +
+                    '<div class="spinner"></div>' +
+                    '<p>Loading...</p>' +
+                '</div>';
+            
+            console.log('About to call Google Apps Script...');
+            console.log('google object:', typeof google);
+            console.log('google.script:', typeof google?.script);
+            
+            google.script.run
+                .withSuccessHandler(result => {
+                    console.log('✅ Search result received:', result);
+                    handleSmartSearchResult(result, studentName, subjectHint);
+                })
+                .withFailureHandler(error => {
+                    console.error('❌ Search failed:', error);
+                    appContainer.innerHTML = '<div class="error">' + t('search_error') + '</div>';
+                    if (searchBtn) {
+                        searchBtn.disabled = false;
+                        searchBtn.textContent = t('search_button');
+                    }
+                })
+                .findStudentFolders(studentName);
+        }
+        
+        // Handle search results with smart logic for duplicate names
+        function handleSmartSearchResult(result, studentName, subjectHint) {
+            const searchBtn = document.getElementById('searchBtn');
+            
+            // Reset button
+            if (searchBtn) {
+                searchBtn.disabled = false;
+                searchBtn.textContent = t('search_button');
+            }
+            
+            if (!result || result.length === 0) {
+                console.log('❌ No students found');
+                displayNoResults(studentName);
+                return;
+            }
+            
+            console.log('📊 Found', result.length, 'students:', result);
+            
+            // Smart handling based on number of results
+            if (result.length === 1) {
+                // Single match - go directly to student detail
+                console.log('✅ Single match found, going directly to student detail');
+                const student = result[0];
+                const folderId = student.folderId || student.id || student.folder_id;
+                showStudentDetail(folderId, student.name, student.subject);
+            } else {
+                // Multiple matches - show smart selection
+                console.log('🔄 Multiple matches found, showing smart selection');
+                displaySmartSelection(result, studentName, subjectHint);
+            }
+        }
+        
+        // Display smart selection for multiple students with same name
+        function displaySmartSelection(students, studentName, subjectHint) {
+            const appContainer = document.querySelector('.app-container');
+            
+            // If subject hint provided, try to find exact match
+            if (subjectHint) {
+                const exactMatch = students.find(s => 
+                    s.subject && s.subject.toLowerCase() === subjectHint.toLowerCase()
+                );
+                if (exactMatch) {
+                    console.log('✅ Exact match found with subject hint:', exactMatch);
+                    const folderId = exactMatch.folderId || exactMatch.id || exactMatch.folder_id;
+                    showStudentDetail(folderId, exactMatch.name, exactMatch.subject);
+                    return;
+                }
+            }
+            
+            // Show selection interface
+            const statsHtml = 
+                '<div class="stats">' +
+                    'Meerdere leerlingen gevonden met de naam "' + studentName + '"' +
+                '</div>';
+            
+            const selectionHtml = 
+                '<div class="smart-selection">' +
+                    '<div class="selection-header">' +
+                        '<h3>👥 Kies de juiste leerling:</h3>' +
+                        '<p class="selection-subtitle">Er zijn meerdere leerlingen met deze naam. Selecteer de juiste:</p>' +
+                    '</div>' +
+                    '<div class="student-options">' +
+                        students.map(student => {
+                            const folderId = student.folderId || student.id || student.folder_id;
+                            return '<div class="student-option" onclick="showStudentDetail(\'' + folderId + '\', \'' + student.name + '\', \'' + student.subject + '\')">' +
+                                '<div class="option-header">' +
+                                    '<div class="option-name">' + student.name + '</div>' +
+                                    '<div class="option-subject">' + student.subject + '</div>' +
+                                '</div>' +
+                                '<div class="option-hint">Klik om ' + student.name + ' (' + student.subject + ') te bekijken</div>' +
+                            '</div>';
+                        }).join('') +
+                    '</div>' +
+                    '<div class="selection-footer">' +
+                        '<button class="back-to-search-btn" onclick="showSearchResults()">' +
+                            '🔍 Terug naar zoeken' +
+                        '</button>' +
+                    '</div>' +
+                '</div>';
+            
+            appContainer.innerHTML = statsHtml + selectionHtml;
+        }
+        
+        // Display no results with helpful suggestions
+        function displayNoResults(studentName) {
+            const appContainer = document.querySelector('.app-container');
+            appContainer.innerHTML = `
+                <div class="no-results-container">
+                    <div class="no-results">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>Geen leerling gevonden</h3>
+                        <p>Er is geen leerling gevonden met de naam "${studentName}"</p>
+                        <div class="suggestions">
+                            <p><strong>Suggesties:</strong></p>
+                            <ul class="suggestions-list">
+                                <li>Controleer de spelling van de naam</li>
+                                <li>Probeer alleen de voornaam</li>
+                                <li>Probeer een andere schrijfwijze</li>
+                                <li>Neem contact op met Stephen voor hulp</li>
+                            </ul>
+                        </div>
+                        <button class="retry-button" onclick="showSearchResults()">
+                            🔄 Terug naar zoeken
+                        </button>
+                    </div>
+                </div>
+            `;
         }
         
         function t(key) {
@@ -2825,9 +2976,19 @@
         
         function copyShareLink() {
             const studentName = currentStudent ? currentStudent.name : '';
-            const shareUrl = studentName ? 
-                `https://stephensprivelessen.nl/aantekeningen?student=${encodeURIComponent(studentName)}` : 
-                'https://stephensprivelessen.nl/aantekeningen';
+            const studentSubject = currentStudent ? currentStudent.subject : '';
+            
+            // Create smart share URL with subject hint if available
+            let shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
+            if (studentName) {
+                shareUrl += `?student=${encodeURIComponent(studentName)}`;
+                // Add subject hint to help with duplicate names
+                if (studentSubject) {
+                    shareUrl += `&subject=${encodeURIComponent(studentSubject)}`;
+                }
+            }
+            
+            console.log('📋 Copying share link:', shareUrl);
             
             // Try to use the modern clipboard API
             if (navigator.clipboard && window.isSecureContext) {
@@ -2975,6 +3136,124 @@
     </script>
     
     <style>
+        /* Smart Selection Interface */
+        .smart-selection {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .selection-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .selection-header h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        
+        .selection-subtitle {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+        
+        .student-options {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .student-option {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .student-option:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .option-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .option-subject {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .option-hint {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .selection-footer {
+            text-align: center;
+        }
+        
+        .back-to-search-btn {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .back-to-search-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+        }
+        
+        /* Mobile responsive for smart selection */
+        @media (max-width: 768px) {
+            .smart-selection {
+                padding: 1rem;
+            }
+            
+            .selection-header h3 {
+                font-size: 1.25rem;
+            }
+            
+            .student-option {
+                padding: 1rem;
+            }
+            
+            .option-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .option-name {
+                font-size: 1.125rem;
+            }
+        }
+
         /* Student Detail View Responsive */
         @media (max-width: 1024px) {
             .student-header {
