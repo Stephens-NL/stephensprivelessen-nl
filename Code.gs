@@ -1448,4 +1448,76 @@ function testAmirahOverview() {
     Logger.log('❌ Error testing Amirah overview: ' + error.toString());
     return { success: false, error: error.toString() };
   }
+}
+
+// Debug function to test student search from web app
+function debugStudentSearch(studentName) {
+  Logger.log('🔍 DEBUG: Searching for student: ' + studentName);
+  Logger.log('=' .repeat(50));
+  
+  try {
+    // Test 1: Check if we can access the main folder
+    Logger.log('📁 Test 1: Checking main folder access...');
+    const privelesFolder = _getPrivelesFolder_();
+    if (!privelesFolder) {
+      Logger.log('❌ Cannot access main priveles folder');
+      return { success: false, error: 'Cannot access main folder' };
+    }
+    Logger.log('✅ Main folder accessible: ' + privelesFolder.getName());
+    
+    // Test 2: List all subject folders
+    Logger.log('📚 Test 2: Listing subject folders...');
+    const subjectFolders = privelesFolder.getFolders();
+    const subjectList = [];
+    while (subjectFolders.hasNext()) {
+      const subjectFolder = subjectFolders.next();
+      subjectList.push(subjectFolder.getName());
+    }
+    Logger.log('📚 Subject folders found: ' + subjectList.join(', '));
+    
+    // Test 3: Search for the specific student
+    Logger.log('👤 Test 3: Searching for student: ' + studentName);
+    const students = findStudentFolders(studentName);
+    Logger.log('👤 Students found: ' + students.length);
+    
+    if (students.length > 0) {
+      students.forEach((student, index) => {
+        Logger.log(`  ${index + 1}. ${student.name} (${student.subject}) - ID: ${student.id}`);
+      });
+    } else {
+      Logger.log('❌ No students found with name: ' + studentName);
+      
+      // Test 4: List all students to see what's available
+      Logger.log('👥 Test 4: Listing all students...');
+      const allStudents = [];
+      const subjectFolders2 = privelesFolder.getFolders();
+      while (subjectFolders2.hasNext()) {
+        const subjectFolder = subjectFolders2.next();
+        const studentFolders = subjectFolder.getFolders();
+        while (studentFolders.hasNext()) {
+          const studentFolder = studentFolders.next();
+          allStudents.push({
+            name: studentFolder.getName(),
+            subject: subjectFolder.getName()
+          });
+        }
+      }
+      Logger.log('👥 All students found: ' + allStudents.length);
+      allStudents.slice(0, 10).forEach((student, index) => {
+        Logger.log(`  ${index + 1}. ${student.name} (${student.subject})`);
+      });
+    }
+    
+    return {
+      success: students.length > 0,
+      studentCount: students.length,
+      students: students,
+      subjectFolders: subjectList,
+      allStudentsCount: allStudents ? allStudents.length : 0
+    };
+    
+  } catch (error) {
+    Logger.log('❌ Error in debug search: ' + error.toString());
+    return { success: false, error: error.toString() };
+  }
 } 
