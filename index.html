@@ -953,6 +953,7 @@
         
         .action-btn {
             flex: 1;
+            min-width: 120px;
             padding: 1rem 1.5rem;
             border: none;
             border-radius: 0.75rem;
@@ -1013,16 +1014,18 @@
         
         .filters-section {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-bottom: 1.5rem;
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-end;
+            justify-content: flex-start;
         }
         
         .filter-group {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            min-width: 150px;
         }
         
         .filter-label {
@@ -1090,6 +1093,7 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            justify-content: flex-start;
         }
         
         .share-btn {
