@@ -11,8 +11,8 @@ export default function AantekeningenPage() {
   const [studentName, setStudentName] = useState<string | null>(null);
   const searchParams = useSearchParams();
 
-  // Google Apps Script web app URL - WORKING DEPLOYMENT WITH AMIRAH FIX
-  const baseGoogleAppsScriptURL = "https://script.google.com/macros/s/AKfycbwbEmfUxH4Dbyocu4Y59mWzGs5M44kSw_7D2pBr8Rja32duxFoDGLbgOtP0iHg7aJAD/exec";
+  // Google Apps Script web app URL - NEW DEPLOYMENT
+  const baseGoogleAppsScriptURL = "https://script.google.com/macros/s/AKfycbwCsOoxC_rJdQLg69_G-KrlfU1qV3xh-G6dzcXMLR7Y7b7i2wg4IiYYoAQ0cCrvHSsp/exec";
   
   // Add student parameter to Google Apps Script URL if student name is available
   const GOOGLE_APPS_SCRIPT_URL = studentName 
