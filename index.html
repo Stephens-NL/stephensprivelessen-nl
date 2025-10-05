@@ -1287,6 +1287,13 @@
             font-size: 0.7rem;
         }
         
+        /* Back Button Container */
+        .back-button-container {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: flex-start;
+        }
+        
         /* Back Button */
         .back-btn {
             background: #6b7280;
@@ -1297,7 +1304,8 @@
             cursor: pointer;
             font-weight: 600;
             transition: background-color 0.3s ease;
-            margin-bottom: 1.5rem;
+            width: auto;
+            display: inline-block;
         }
         
         .back-btn:hover {
@@ -2184,7 +2192,9 @@
             
             const appContainer = document.querySelector('.app-container');
             appContainer.innerHTML = `
-                 <button class="back-btn" onclick="showSearchResults()">${t('back_to_search')}</button>
+                <div class="back-button-container">
+                    <button class="back-btn" onclick="showSearchResults()">${t('back_to_search')}</button>
+                </div>
                 <div class="student-header">
                     <h1 class="student-name">${studentName}</h1>
                     <div class="student-info">
