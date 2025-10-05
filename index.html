@@ -182,6 +182,25 @@
                 box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
             }
             
+            /* Larger touch targets for mobile */
+            .search-button, .share-btn, .file-card, .student-card {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Better spacing for touch */
+            .search-input-group {
+                gap: 1rem;
+            }
+            
+            .share-buttons {
+                gap: 1rem;
+            }
+            
+            .files-grid {
+                gap: 1rem;
+            }
+            
             .search-button:active {
                 transform: scale(0.98);
                 box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
@@ -397,17 +416,18 @@
             }
             
             .search-input {
-                padding: 1.5rem 2rem;
-                font-size: 1.1rem;
-                border-radius: 1rem;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                border-radius: 0.75rem;
+                width: 100%;
             }
             
             .search-button {
                 width: 100%;
                 justify-content: center;
-                padding: 1.5rem 2rem;
-                font-size: 1.1rem;
-                border-radius: 1rem;
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+                border-radius: 0.75rem;
             }
             
             .hero-features {
@@ -467,13 +487,15 @@
             }
             
             .search-input {
-                padding: 1.25rem 1.5rem;
+                padding: 1rem 1.25rem;
                 font-size: 1rem;
+                border-radius: 0.5rem;
             }
             
             .search-button {
-                padding: 1.25rem 1.5rem;
+                padding: 1rem 1.25rem;
                 font-size: 1rem;
+                border-radius: 0.5rem;
             }
             
             
@@ -2936,37 +2958,111 @@
         
         @media (max-width: 480px) {
             .student-header {
-                padding: 0.75rem;
+                padding: 1rem;
+                text-align: center;
             }
             
             .student-name {
                 font-size: 1.8rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .student-info {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
             }
             
             .share-section {
-                padding: 0.75rem;
+                padding: 1rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
             }
             
             .share-btn {
                 padding: 1rem 1.25rem;
                 font-size: 1rem;
+                width: 100%;
+                border-radius: 0.5rem;
             }
             
             .featured-note {
-                padding: 0.75rem;
+                padding: 1rem;
                 margin: 0.75rem;
+                border-radius: 0.75rem;
             }
             
             .featured-title {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .featured-description {
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+            
+            .featured-actions {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .featured-actions .btn {
+                width: 100%;
+                padding: 0.875rem 1rem;
+                font-size: 0.95rem;
+                border-radius: 0.5rem;
             }
             
             .files-grid {
                 padding: 0.75rem;
+                gap: 0.75rem;
+                grid-template-columns: 1fr;
+            }
+            
+            .file-card {
+                padding: 1rem;
+                border-radius: 0.75rem;
+            }
+            
+            .file-title {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .file-meta {
+                font-size: 0.8rem;
             }
             
             .filters-section {
                 padding: 0.75rem;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .filter-group {
+                width: 100%;
+            }
+            
+            .filter-select {
+                width: 100%;
+                padding: 0.75rem;
+                font-size: 0.95rem;
+                border-radius: 0.5rem;
+            }
+            
+            .view-toggle {
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .toggle-btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+                border-radius: 0.5rem;
             }
         }
     </style>
