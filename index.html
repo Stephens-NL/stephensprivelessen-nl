@@ -1831,7 +1831,7 @@
                     if (shareTitle) shareTitle.textContent = t('share_notes');
                     if (shareButtons) {
                         shareButtons.innerHTML = `
-                            <button class="share-btn whatsapp" onclick="shareViaWhatsApp()">
+                            <button class="share-btn whatsapp" onclick="shareViaWhatsAppWithImage()">
                                 📱 ${t('share_whatsapp')}
                             </button>
                             <button class="share-btn email" onclick="shareViaEmail()">
@@ -2398,7 +2398,7 @@
                          <h3 class="share-title">${t('share_notes')}</h3>
                     </div>
                     <div class="share-buttons">
-                        <button class="share-btn whatsapp" onclick="shareViaWhatsApp()">
+                        <button class="share-btn whatsapp" onclick="shareViaWhatsAppWithImage()">
                             📱 ${t('share_whatsapp')}
                         </button>
                         <button class="share-btn email" onclick="shareViaEmail()">
@@ -2955,21 +2955,53 @@
         // Share functions
         function shareViaWhatsApp() {
             const studentName = currentStudent ? currentStudent.name : '';
-            const shareUrl = studentName ? 
-                `https://stephensprivelessen.nl/aantekeningen?student=${encodeURIComponent(studentName)}` : 
-                'https://stephensprivelessen.nl/aantekeningen';
-            const message = encodeURIComponent('Bekijk mijn aantekeningen van Stephen\'s Privelessen: ' + shareUrl);
+            const studentSubject = currentStudent ? currentStudent.subject : '';
+            
+            // Create smart share URL with subject hint if available
+            let shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
+            if (studentName) {
+                shareUrl += `?student=${encodeURIComponent(studentName)}`;
+                // Add subject hint to help with duplicate names
+                if (studentSubject) {
+                    shareUrl += `&subject=${encodeURIComponent(studentSubject)}`;
+                }
+            }
+            
+            // Create enhanced message with emoji and formatting
+            const message = encodeURIComponent(
+                `📚 ${studentName ? `${studentName}'s aantekeningen` : 'Mijn aantekeningen'} van Stephen's Privelessen\n\n` +
+                `🔗 ${shareUrl}\n\n` +
+                `💡 Tip: Gebruik je voornaam om direct toegang te krijgen tot je lesmateriaal!`
+            );
+            
             const whatsappUrl = 'https://wa.me/?text=' + message;
             window.open(whatsappUrl, '_blank');
         }
         
         function shareViaEmail() {
             const studentName = currentStudent ? currentStudent.name : '';
-            const shareUrl = studentName ? 
-                `https://stephensprivelessen.nl/aantekeningen?student=${encodeURIComponent(studentName)}` : 
-                'https://stephensprivelessen.nl/aantekeningen';
-            const subject = encodeURIComponent(studentName ? `${studentName}'s aantekeningen van Stephen's Privelessen` : 'Mijn aantekeningen van Stephen\'s Privelessen');
-            const body = encodeURIComponent((studentName ? `${studentName}'s aantekeningen` : 'Bekijk mijn aantekeningen') + ' van Stephen\'s Privelessen:\n\n' + shareUrl);
+            const studentSubject = currentStudent ? currentStudent.subject : '';
+            
+            // Create smart share URL with subject hint if available
+            let shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
+            if (studentName) {
+                shareUrl += `?student=${encodeURIComponent(studentName)}`;
+                // Add subject hint to help with duplicate names
+                if (studentSubject) {
+                    shareUrl += `&subject=${encodeURIComponent(studentSubject)}`;
+                }
+            }
+            
+            const subject = encodeURIComponent(`📚 ${studentName ? `${studentName}'s aantekeningen` : 'Mijn aantekeningen'} van Stephen's Privelessen`);
+            const body = encodeURIComponent(
+                `Hallo!\n\n` +
+                `Ik wil je graag mijn aantekeningen van Stephen's Privelessen delen:\n\n` +
+                `📚 ${studentName ? `${studentName}'s aantekeningen` : 'Mijn aantekeningen'}\n` +
+                `🔗 ${shareUrl}\n\n` +
+                `💡 Tip: Gebruik je voornaam om direct toegang te krijgen tot je lesmateriaal!\n\n` +
+                `Met vriendelijke groet,\n` +
+                `${studentName || 'Stephen'}`
+            );
             const emailUrl = 'mailto:?subject=' + subject + '&body=' + body;
             window.location.href = emailUrl;
         }
@@ -3008,6 +3040,48 @@
                 console.log('⚠️ Using fallback copy method');
                 fallbackCopyTextToClipboard(shareUrl);
             }
+        }
+        
+        // Generate Open Graph image URL for better social sharing
+        function generateOGImageUrl(studentName, studentSubject) {
+            const baseUrl = 'https://stephensprivelessen.nl/api/og-image';
+            const params = new URLSearchParams();
+            
+            if (studentName) {
+                params.append('student', studentName);
+            }
+            if (studentSubject) {
+                params.append('subject', studentSubject);
+            }
+            
+            return `${baseUrl}?${params.toString()}`;
+        }
+        
+        // Enhanced WhatsApp share with image preview
+        function shareViaWhatsAppWithImage() {
+            const studentName = currentStudent ? currentStudent.name : '';
+            const studentSubject = currentStudent ? currentStudent.subject : '';
+            
+            // Create smart share URL with subject hint if available
+            let shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
+            if (studentName) {
+                shareUrl += `?student=${encodeURIComponent(studentName)}`;
+                // Add subject hint to help with duplicate names
+                if (studentSubject) {
+                    shareUrl += `&subject=${encodeURIComponent(studentSubject)}`;
+                }
+            }
+            
+            // Create enhanced message with emoji and formatting
+            const message = encodeURIComponent(
+                `📚 ${studentName ? `${studentName}'s aantekeningen` : 'Mijn aantekeningen'} van Stephen's Privelessen\n\n` +
+                `🔗 ${shareUrl}\n\n` +
+                `💡 Tip: Gebruik je voornaam om direct toegang te krijgen tot je lesmateriaal!\n\n` +
+                `🖼️ Preview: ${generateOGImageUrl(studentName, studentSubject)}`
+            );
+            
+            const whatsappUrl = 'https://wa.me/?text=' + message;
+            window.open(whatsappUrl, '_blank');
         }
         
         function fallbackCopyTextToClipboard(text) {
