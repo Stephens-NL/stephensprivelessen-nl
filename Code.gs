@@ -276,6 +276,11 @@ function findStudentFolders(needle) {
     }
     
     // Filter students based on search term
+    if (!needle || typeof needle !== 'string') {
+      Logger.log('❌ Invalid search term provided: ' + needle);
+      return [];
+    }
+    
     const searchTerm = needle.toLowerCase();
     const matches = allStudents.filter(student => {
       const studentName = student.name.toLowerCase();
@@ -1451,7 +1456,7 @@ function testAmirahOverview() {
 }
 
 // Debug function to test student search from web app
-function debugStudentSearch(studentName) {
+function debugStudentSearch(studentName = "Amirah") {
   Logger.log('🔍 DEBUG: Searching for student: ' + studentName);
   Logger.log('=' .repeat(50));
   
@@ -1475,6 +1480,26 @@ function debugStudentSearch(studentName) {
     }
     Logger.log('📚 Subject folders found: ' + subjectList.join(', '));
     
+    // Test 4: List all students first to see what's available
+    Logger.log('👥 Test 4: Listing all students...');
+    const allStudents = [];
+    const subjectFolders2 = privelesFolder.getFolders();
+    while (subjectFolders2.hasNext()) {
+      const subjectFolder = subjectFolders2.next();
+      const studentFolders = subjectFolder.getFolders();
+      while (studentFolders.hasNext()) {
+        const studentFolder = studentFolders.next();
+        allStudents.push({
+          name: studentFolder.getName(),
+          subject: subjectFolder.getName()
+        });
+      }
+    }
+    Logger.log('👥 All students found: ' + allStudents.length);
+    allStudents.slice(0, 10).forEach((student, index) => {
+      Logger.log(`  ${index + 1}. ${student.name} (${student.subject})`);
+    });
+    
     // Test 3: Search for the specific student
     Logger.log('👤 Test 3: Searching for student: ' + studentName);
     const students = findStudentFolders(studentName);
@@ -1487,25 +1512,16 @@ function debugStudentSearch(studentName) {
     } else {
       Logger.log('❌ No students found with name: ' + studentName);
       
-      // Test 4: List all students to see what's available
-      Logger.log('👥 Test 4: Listing all students...');
-      const allStudents = [];
-      const subjectFolders2 = privelesFolder.getFolders();
-      while (subjectFolders2.hasNext()) {
-        const subjectFolder = subjectFolders2.next();
-        const studentFolders = subjectFolder.getFolders();
-        while (studentFolders.hasNext()) {
-          const studentFolder = studentFolders.next();
-          allStudents.push({
-            name: studentFolder.getName(),
-            subject: subjectFolder.getName()
-          });
-        }
+      // Check if student exists with different case
+      const matchingStudents = allStudents.filter(s => 
+        s.name.toLowerCase().includes(studentName.toLowerCase())
+      );
+      if (matchingStudents.length > 0) {
+        Logger.log('🔍 Found similar names:');
+        matchingStudents.forEach((student, index) => {
+          Logger.log(`  ${index + 1}. ${student.name} (${student.subject})`);
+        });
       }
-      Logger.log('👥 All students found: ' + allStudents.length);
-      allStudents.slice(0, 10).forEach((student, index) => {
-        Logger.log(`  ${index + 1}. ${student.name} (${student.subject})`);
-      });
     }
     
     return {
@@ -1513,7 +1529,8 @@ function debugStudentSearch(studentName) {
       studentCount: students.length,
       students: students,
       subjectFolders: subjectList,
-      allStudentsCount: allStudents ? allStudents.length : 0
+      allStudentsCount: allStudents.length,
+      allStudents: allStudents.slice(0, 20) // Return first 20 for debugging
     };
     
   } catch (error) {
