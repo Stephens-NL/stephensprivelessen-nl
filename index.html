@@ -12,11 +12,11 @@
         }
         
         html, body {
-            height: 100vh;
+            min-height: 100vh;
             width: 100vw;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         
         body {
@@ -27,11 +27,10 @@
         }
         
         .app-container {
-            height: 100vh;
+            min-height: 100vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
         
         /* Hero Section */
@@ -592,6 +591,7 @@
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
+            overflow-y: auto;
         }
         
         /* Search Section */
@@ -1296,6 +1296,9 @@
             padding: 1rem 1.5rem;
             display: flex;
             justify-content: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
         }
         
         /* Back Button */
@@ -1303,13 +1306,15 @@
             background: #6b7280;
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: background-color 0.3s ease;
             width: auto;
             display: inline-block;
+            max-width: 200px;
         }
         
         .back-btn:hover {
