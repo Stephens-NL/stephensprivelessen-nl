@@ -11,8 +11,8 @@ export default function AantekeningenPage() {
   const [studentName, setStudentName] = useState<string | null>(null);
   const searchParams = useSearchParams();
 
-  // Google Apps Script web app URL - LATEST DEPLOYMENT
-  const baseGoogleAppsScriptURL = "https://script.google.com/macros/s/AKfycbwGAe0zONi_XtquRciXn0Yre9ZVigChsZJNbQ333oNsC4oEIJMdf6xCyFj5pcU5c9gM/exec";
+  // Google Apps Script web app URL - NEWEST VERSION
+  const baseGoogleAppsScriptURL = "https://script.google.com/macros/s/AKfycbyvzRmC7qgKOg33fgpEyx_pZNP_KezRUyobjZ4ODYfJNb6crTMMLW8yxNHRnf5VBp7x/exec";
   
   // Add student parameter to Google Apps Script URL if student name is available
   const GOOGLE_APPS_SCRIPT_URL = studentName 
