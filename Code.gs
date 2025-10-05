@@ -347,8 +347,12 @@ function listFilesInFolder(folderId) {
         subject: aiAnalysis.subject,
         topic: aiAnalysis.topic,
         level: aiAnalysis.level,
+        schoolYear: aiAnalysis.schoolYear,
         keywords: aiAnalysis.keywords,
-        summary: aiAnalysis.summary
+        summary: aiAnalysis.summary,
+        summaryEn: aiAnalysis.summaryEn,
+        topicEn: aiAnalysis.topicEn,
+        keywordsEn: aiAnalysis.keywordsEn
       });
     }
     
