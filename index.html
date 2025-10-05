@@ -1724,6 +1724,9 @@
                 'enter_name_to_search': 'Voer een naam in om te zoeken',
                 'no_notes_found': 'Geen aantekeningen gevonden',
                 'no_files_available': 'Er zijn nog geen bestanden beschikbaar voor deze student.',
+                'subject_unknown': 'Vak onbekend',
+                'date_unknown': 'Datum onbekend',
+                'unknown': 'Onbekend',
                 'no_search_results': 'Geen zoekresultaten',
                 'no_results_title': 'Geen studenten gevonden',
                 'no_results_suggestions': 'Probeer het opnieuw met:',
@@ -1780,6 +1783,9 @@
                 'enter_name_to_search': 'Enter a name to search',
                 'no_notes_found': 'No notes found',
                 'no_files_available': 'No files are available for this student yet.',
+                'subject_unknown': 'Subject unknown',
+                'date_unknown': 'Date unknown',
+                'unknown': 'Unknown',
                 'no_search_results': 'No search results',
                 'no_results_title': 'No students found',
                 'no_results_suggestions': 'Try searching with:',
@@ -2170,7 +2176,7 @@
                 lastActivityDiv.textContent = '📅 ' + t('last_activity') + ': ' + overview.lastActivityDate;
                 fileCountDiv.textContent = '📄 ' + t('files') + ': ' + overview.fileCount;
             } else {
-                lastActivityDiv.textContent = '📅 Geen bestanden gevonden';
+                lastActivityDiv.textContent = '📅 ' + t('no_files_available');
                 fileCountDiv.textContent = '📄 ' + t('files') + ': 0';
             }
         }
@@ -2207,7 +2213,7 @@
                 <div class="student-header">
                     <h1 class="student-name">${studentName}</h1>
                     <div class="student-info">
-                        <span class="student-subject">${subject || 'Vak onbekend'}</span>
+                        <span class="student-subject">${subject || t('subject_unknown')}</span>
                         <span class="student-files-count" id="student-files-count">0 bestanden</span>
                     </div>
                 </div>
@@ -2303,7 +2309,7 @@
         
         // Format date for display
         function formatDate(date) {
-            if (!date) return 'Datum onbekend';
+            if (!date) return t('date_unknown');
             
             const options = {
                 year: 'numeric',
@@ -2326,7 +2332,7 @@
             
             // Extract lesson date from filename (format: YYYY-MM-DD__topic__v001.pdf)
             const lessonDate = extractLessonDate(latestFile.name);
-            const formattedLessonDate = lessonDate ? formatDate(lessonDate) : 'Datum onbekend';
+            const formattedLessonDate = lessonDate ? formatDate(lessonDate) : t('date_unknown');
             
             const featuredHtml = `
                 <div class="featured-header">
@@ -2349,15 +2355,15 @@
                         <div class="featured-meta">
                             <div class="meta-item">
                                  <div class="meta-label">${t('subject')}</div>
-                                <div class="meta-value">${latestFile.subject || 'Onbekend'}</div>
+                                <div class="meta-value">${latestFile.subject || t('unknown')}</div>
                             </div>
                             <div class="meta-item">
                                 <div class="meta-label">${t('topic')}</div>
-                                <div class="meta-value">${currentLanguage === 'en' ? (latestFile.topicEn || latestFile.topic || 'Unknown') : (latestFile.topic || 'Onbekend')}</div>
+                                <div class="meta-value">${currentLanguage === 'en' ? (latestFile.topicEn || latestFile.topic || t('unknown')) : (latestFile.topic || t('unknown'))}</div>
                             </div>
                             <div class="meta-item">
                                 <div class="meta-label">${t('level')}</div>
-                                <div class="meta-value">${latestFile.level || 'Onbekend'}</div>
+                                <div class="meta-value">${latestFile.level || t('unknown')}</div>
                             </div>
                             ${latestFile.schoolYear ? `
                             <div class="meta-item">
@@ -2441,7 +2447,7 @@
             const yearFilter = document.getElementById('year-filter');
             
             // Get unique subjects
-            const subjects = [...new Set(files.map(file => file.subject).filter(s => s && s !== 'Onbekend'))];
+            const subjects = [...new Set(files.map(file => file.subject).filter(s => s && s !== t('unknown')))];
             const years = [...new Set(files.map(file => file.schoolYear).filter(y => y))];
             
             // Clear existing options (except "all")
@@ -2537,7 +2543,7 @@
                                 </div>
                                 <div class="file-name">${displayTitle}</div>
                                 <div class="file-date">${date}</div>
-                                ${file.subject && file.subject !== 'Onbekend' ? `
+                                ${file.subject && file.subject !== t('unknown') ? `
                                     <div class="file-meta">
                                         <div class="file-subject">${file.subject}</div>
                                         ${file.topic ? `<div class="file-topic">${currentLanguage === 'en' ? (file.topicEn || file.topic) : file.topic}</div>` : ''}
@@ -2582,7 +2588,7 @@
                                 </div>
                                 <div class="file-name">${displayTitle}</div>
                                 <div class="file-date">${date}</div>
-                                ${file.subject && file.subject !== 'Onbekend' ? `
+                                ${file.subject && file.subject !== t('unknown') ? `
                                     <div class="file-meta">
                                         <div class="file-subject">${file.subject}</div>
                                         ${file.topic ? `<div class="file-topic">${currentLanguage === 'en' ? (file.topicEn || file.topic) : file.topic}</div>` : ''}
