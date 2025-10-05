@@ -1315,4 +1315,133 @@ function extractDateFromFilename(filename) {
 function testConnection() {
   Logger.log('🧪 Test connection called');
   return 'Google Apps Script connection successful!';
+}
+
+// Test function specifically for Amirah
+function testAmirah() {
+  Logger.log('🔍 Testing Amirah specifically...');
+  Logger.log('=' .repeat(50));
+  
+  try {
+    const result = debugStudentFiles("Amirah");
+    Logger.log('✅ Debug result: ' + JSON.stringify(result));
+    return result;
+  } catch (error) {
+    Logger.log('❌ Error testing Amirah: ' + error.toString());
+    return { success: false, error: error.toString() };
+  }
+}
+
+// Test function for all students (replaces listAllStudents)
+function testAllStudents() {
+  Logger.log('👥 Testing all students in the system...');
+  Logger.log('=' .repeat(50));
+  
+  try {
+    const result = testDriveAccess();
+    Logger.log('✅ All students test completed');
+    return result;
+  } catch (error) {
+    Logger.log('❌ Error testing all students: ' + error.toString());
+    return { success: false, error: error.toString() };
+  }
+}
+
+// Test webapp communication specifically
+function testWebappCommunication() {
+  Logger.log('🌐 Testing webapp communication...');
+  Logger.log('=' .repeat(50));
+  
+  try {
+    // Test 1: Basic communication
+    Logger.log('📡 Test 1: Basic communication');
+    const connectionTest = testConnection();
+    Logger.log('Connection test result: ' + connectionTest);
+    
+    // Test 2: Find Amirah
+    Logger.log('🔍 Test 2: Finding Amirah');
+    const amirahSearch = findStudentFolders("Amirah");
+    Logger.log('Amirah search result: ' + JSON.stringify(amirahSearch));
+    
+    // Test 3: If Amirah found, test file loading
+    if (amirahSearch && amirahSearch.length > 0) {
+      Logger.log('📁 Test 3: Loading Amirah files');
+      const amirahFolder = amirahSearch[0];
+      const files = listFilesInFolder(amirahFolder.id);
+      Logger.log('Files found: ' + files.length);
+      
+      if (files.length > 0) {
+        Logger.log('✅ SUCCESS: Amirah has ' + files.length + ' files');
+        Logger.log('First few files:');
+        files.slice(0, 3).forEach((file, index) => {
+          Logger.log('  ' + (index + 1) + '. ' + file.name);
+        });
+      } else {
+        Logger.log('⚠️ WARNING: Amirah folder exists but has no files');
+      }
+    } else {
+      Logger.log('❌ PROBLEM: Amirah not found in search results');
+    }
+    
+    // Test 4: Cache status
+    Logger.log('💾 Test 4: Cache status');
+    const cacheStatus = checkCacheStatus();
+    Logger.log('Cache status: ' + JSON.stringify(cacheStatus));
+    
+    return {
+      success: true,
+      amirahFound: amirahSearch && amirahSearch.length > 0,
+      amirahFiles: amirahSearch && amirahSearch.length > 0 ? listFilesInFolder(amirahSearch[0].id).length : 0,
+      cacheStatus: cacheStatus
+    };
+    
+  } catch (error) {
+    Logger.log('❌ Error in webapp communication test: ' + error.toString());
+    return { success: false, error: error.toString() };
+  }
+}
+
+// Test the overview function specifically for Amirah
+function testAmirahOverview() {
+  Logger.log('📊 Testing Amirah overview function...');
+  Logger.log('=' .repeat(50));
+  
+  try {
+    // Find Amirah first
+    const amirahSearch = findStudentFolders("Amirah");
+    if (!amirahSearch || amirahSearch.length === 0) {
+      Logger.log('❌ Amirah not found');
+      return { success: false, error: 'Amirah not found' };
+    }
+    
+    const amirahFolder = amirahSearch[0];
+    Logger.log('🔍 Testing overview for folderId: ' + amirahFolder.id);
+    
+    // Test the overview function
+    const overview = getStudentOverview(amirahFolder.id);
+    Logger.log('📊 Overview result: ' + JSON.stringify(overview));
+    
+    // Test file loading directly
+    const files = listFilesInFolder(amirahFolder.id);
+    Logger.log('📁 Direct file count: ' + files.length);
+    
+    // Compare results
+    if (overview.fileCount !== files.length) {
+      Logger.log('⚠️ MISMATCH: Overview shows ' + overview.fileCount + ' files, but direct count shows ' + files.length);
+    } else {
+      Logger.log('✅ MATCH: Overview and direct count both show ' + overview.fileCount + ' files');
+    }
+    
+    return {
+      success: true,
+      folderId: amirahFolder.id,
+      overview: overview,
+      directFileCount: files.length,
+      match: overview.fileCount === files.length
+    };
+    
+  } catch (error) {
+    Logger.log('❌ Error testing Amirah overview: ' + error.toString());
+    return { success: false, error: error.toString() };
+  }
 } 
