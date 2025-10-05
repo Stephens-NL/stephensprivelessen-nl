@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Notes Dashboard - Stephen's Privelessen</title>
     <style>
         * {
@@ -2978,6 +2978,11 @@
             const studentName = currentStudent ? currentStudent.name : '';
             const studentSubject = currentStudent ? currentStudent.subject : '';
             
+            console.log('🔍 Debug copyShareLink:');
+            console.log('  currentStudent:', currentStudent);
+            console.log('  studentName:', studentName);
+            console.log('  studentSubject:', studentSubject);
+            
             // Create smart share URL with subject hint if available
             let shareUrl = 'https://stephensprivelessen.nl/aantekeningen';
             if (studentName) {
@@ -2993,11 +2998,14 @@
             // Try to use the modern clipboard API
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(shareUrl).then(() => {
+                    console.log('✅ Link copied to clipboard successfully');
                     showCopySuccess();
-                }).catch(() => {
+                }).catch((error) => {
+                    console.error('❌ Clipboard API failed:', error);
                     fallbackCopyTextToClipboard(shareUrl);
                 });
             } else {
+                console.log('⚠️ Using fallback copy method');
                 fallbackCopyTextToClipboard(shareUrl);
             }
         }
@@ -3251,6 +3259,218 @@
             
             .option-name {
                 font-size: 1.125rem;
+            }
+        }
+        
+        /* iOS Safari specific optimizations */
+        @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+            /* Reduce hero section padding for iOS */
+            .hero-section {
+                padding: 1rem 0.5rem;
+                min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            }
+            
+            .hero-content {
+                padding: 0.5rem;
+            }
+            
+            /* Compact header for mobile */
+            .hero-left {
+                padding: 0.5rem 0;
+            }
+            
+            .hero-badge {
+                margin-bottom: 0.5rem;
+                padding: 0.25rem 0.5rem;
+            }
+            
+            .hero-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+                line-height: 1.2;
+            }
+            
+            .hero-description {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+                line-height: 1.3;
+            }
+            
+            /* Compact search container */
+            .search-container {
+                margin-bottom: 1rem;
+            }
+            
+            .search-input-group {
+                margin-bottom: 0.75rem;
+            }
+            
+            .search-input {
+                padding: 0.75rem;
+                font-size: 1rem;
+            }
+            
+            .search-button {
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            /* Compact language toggle */
+            .language-toggle {
+                margin-bottom: 0.75rem;
+            }
+            
+            .lang-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            
+            /* Compact features */
+            .hero-features {
+                gap: 0.5rem;
+                margin-top: 0.75rem;
+            }
+            
+            .feature {
+                font-size: 0.8rem;
+            }
+            
+            /* Hide floating cards on mobile to save space */
+            .hero-visual {
+                display: none;
+            }
+            
+            /* Compact student header */
+            .student-header {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .student-name {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .student-info {
+                gap: 0.5rem;
+                flex-wrap: wrap;
+            }
+            
+            /* Compact share section */
+            .share-section {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .share-header {
+                margin-bottom: 0.75rem;
+            }
+            
+            .share-title {
+                font-size: 1.1rem;
+            }
+            
+            .share-buttons {
+                gap: 0.5rem;
+            }
+            
+            .share-btn {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+            
+            /* Compact featured note */
+            .featured-note {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .featured-header {
+                margin-bottom: 0.75rem;
+            }
+            
+            .featured-title {
+                font-size: 1.1rem;
+            }
+            
+            .featured-date {
+                font-size: 0.8rem;
+                padding: 0.25rem 0.5rem;
+            }
+            
+            /* Compact files section */
+            .files-section {
+                padding: 1rem;
+            }
+            
+            .files-header {
+                margin-bottom: 1rem;
+            }
+            
+            .files-title {
+                font-size: 1.2rem;
+            }
+            
+            .filters-section {
+                margin-bottom: 1rem;
+                gap: 0.75rem;
+            }
+            
+            .filter-group {
+                margin-bottom: 0.5rem;
+            }
+            
+            .filter-label {
+                font-size: 0.9rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .filter-select {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .clear-filters-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            
+            /* Compact file grid */
+            .files-grid {
+                gap: 0.75rem;
+            }
+            
+            .file-card {
+                padding: 0.75rem;
+            }
+            
+            .file-title {
+                font-size: 0.9rem;
+                margin-bottom: 0.25rem;
+            }
+            
+            .file-date {
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .file-meta {
+                margin-top: 0.5rem;
+                padding-top: 0.5rem;
+            }
+            
+            .file-subject, .file-topic, .file-keywords {
+                font-size: 0.75rem;
+            }
+            
+            /* Compact back button */
+            .back-button-container {
+                padding: 0.5rem 1rem;
+            }
+            
+            .back-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
             }
         }
 
