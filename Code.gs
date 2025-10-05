@@ -1455,6 +1455,44 @@ function testAmirahOverview() {
   }
 }
 
+// Debug function to check AI analysis configuration
+function debugAIConfiguration() {
+  Logger.log('🔍 DEBUG: AI Configuration Check');
+  Logger.log('=' .repeat(50));
+  
+  try {
+    // Check API key configuration
+    const hasAPIKey = OPENAI_API_KEY !== 'YOUR_OPENAI_API_KEY_HERE';
+    Logger.log('📋 OpenAI API Key configured:', hasAPIKey);
+    
+    if (!hasAPIKey) {
+      Logger.log('❌ No OpenAI API key configured!');
+      Logger.log('💡 To fix this:');
+      Logger.log('   1. Go to Google Apps Script');
+      Logger.log('   2. Replace "YOUR_OPENAI_API_KEY_HERE" with your actual API key');
+      Logger.log('   3. Redeploy the web app');
+      return { success: false, error: 'No API key configured' };
+    }
+    
+    // Test AI analysis on a sample file
+    const testFileName = '2024-10-05__Algebra__v001.pdf';
+    Logger.log('🧪 Testing AI analysis on:', testFileName);
+    
+    const analysis = analyzeDocumentWithAI(testFileName);
+    Logger.log('✅ AI Analysis result:', analysis);
+    
+    return {
+      success: true,
+      hasAPIKey: hasAPIKey,
+      testAnalysis: analysis
+    };
+    
+  } catch (error) {
+    Logger.log('❌ Error in AI configuration check:', error.toString());
+    return { success: false, error: error.toString() };
+  }
+}
+
 // Debug function to test file loading for a specific student
 function debugFileLoading(studentName = "Amirah") {
   Logger.log('🔍 DEBUG: Testing file loading for student: ' + studentName);
