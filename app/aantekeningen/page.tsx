@@ -6,18 +6,17 @@ import Head from "next/head";
 import { useSearchParams } from "next/navigation";
 
 export default function AantekeningenPage() {
-  const [iframeLoaded, setIframeLoaded] = useState(false);
-  const [iframeError, setIframeError] = useState(false);
   const [studentName, setStudentName] = useState<string | null>(null);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const searchParams = useSearchParams();
 
-  // Google Apps Script web app URL - LATEST DEPLOYMENT
-  const baseGoogleAppsScriptURL = "https://script.google.com/macros/s/AKfycbyxOnNv6F9ycHunQgUSuABav_MyBGnUoHx4FDKiaPwMEDLJDkB0By2jQ99XGd6N9yTn/exec";
+  // Nieuwe Aantekeningen App URL - VERVANG DIT MET JE VERCEL URL
+  const baseAantekeningenAppURL = "https://aantekeningen-1fsetfkyv-stencil-karats78-icloudcoms-projects.vercel.app";
   
-  // Add student parameter to Google Apps Script URL if student name is available
-  const GOOGLE_APPS_SCRIPT_URL = studentName 
-    ? `${baseGoogleAppsScriptURL}?student=${encodeURIComponent(studentName)}`
-    : baseGoogleAppsScriptURL;
+  // Add student parameter to new app URL if student name is available
+  const AANTEKENINGEN_APP_URL = studentName 
+    ? `${baseAantekeningenAppURL}?student=${encodeURIComponent(studentName)}`
+    : baseAantekeningenAppURL;
 
   useEffect(() => {
     // Get student name from URL parameters
@@ -25,15 +24,15 @@ export default function AantekeningenPage() {
     if (name) {
       setStudentName(name);
     }
-  }, [searchParams]);
+    
+    // Redirect to the new app after a short delay
+    setIsRedirecting(true);
+    const timer = setTimeout(() => {
+      window.location.href = AANTEKENINGEN_APP_URL;
+    }, 2000);
 
-  const handleIframeLoad = () => {
-    setIframeLoaded(true);
-  };
-
-  const handleIframeError = () => {
-    setIframeError(true);
-  };
+    return () => clearTimeout(timer);
+  }, [searchParams, AANTEKENINGEN_APP_URL]);
 
   return (
     <>
@@ -59,83 +58,61 @@ export default function AantekeningenPage() {
         <meta property="twitter:image" content={studentName ? `https://stephensprivelessen.nl/api/og-image?student=${encodeURIComponent(studentName)}` : "https://stephensprivelessen.nl/images/og-aantekeningen.svg"} />
       </Head>
       
-      <div className="h-screen flex flex-col">
-      {/* Compact Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-lg">
-        <div className="container mx-auto flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">📚 Aantekeningen</h1>
-            <p className="text-blue-100 text-sm">Stephen's Privelessen</p>
-          </div>
-          <div className="text-sm text-blue-100">
-            <Link href="/" className="hover:text-white transition-colors">← Terug naar website</Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Fullscreen Content */}
-      <div className="flex-1 relative">
-        {/* Loading State */}
-        {!iframeLoaded && !iframeError && (
-          <div className="absolute inset-0 bg-white flex items-center justify-center z-10">
-            <div className="text-center">
-              <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-600 text-lg">Aantekeningen dashboard wordt geladen...</p>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center">
+          {/* Header */}
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-3xl">📚</span>
             </div>
+            <h1 className="text-2xl font-bold text-gray-800 mb-2">
+              {studentName ? `${studentName}'s Aantekeningen` : 'Aantekeningen'}
+            </h1>
+            <p className="text-gray-600">
+              {studentName 
+                ? `Je wordt doorgestuurd naar ${studentName}'s aantekeningen...`
+                : 'Je wordt doorgestuurd naar het nieuwe aantekeningen dashboard...'
+              }
+            </p>
           </div>
-        )}
 
-        {/* Error State */}
-        {iframeError && (
-          <div className="absolute inset-0 bg-white flex items-center justify-center z-10">
-            <div className="max-w-md mx-auto p-6">
-              <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                <div className="flex items-start gap-3">
-                  <span className="text-red-600 text-2xl">❌</span>
-                  <div>
-                    <h3 className="font-medium text-red-800 mb-2">Dashboard niet beschikbaar</h3>
-                    <p className="text-red-700 mb-3">
-                      Het aantekeningen dashboard kan momenteel niet worden geladen.
-                    </p>
-                    <div className="text-sm text-red-600">
-                      <p><strong>Mogelijke oplossingen:</strong></p>
-                      <ul className="list-disc list-inside mt-1 space-y-1">
-                        <li>Controleer je internetverbinding</li>
-                        <li>Probeer de pagina te vernieuwen</li>
-                        <li>Neem contact op met Stephen voor hulp</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Loading Animation */}
+          <div className="mb-8">
+            <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-gray-600 text-sm">
+              {isRedirecting ? 'Doorsturen naar nieuwe app...' : 'Voorbereiden...'}
+            </p>
           </div>
-        )}
 
-        {/* Fullscreen Iframe */}
-        <iframe
-          src={GOOGLE_APPS_SCRIPT_URL}
-          className="w-full h-full border-0"
-          title="Aantekeningen Dashboard"
-          onLoad={handleIframeLoad}
-          onError={handleIframeError}
-          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-        />
-      </div>
+          {/* Manual Link */}
+          <div className="space-y-4">
+            <p className="text-sm text-gray-500">
+              Als je niet automatisch wordt doorgestuurd:
+            </p>
+            <a 
+              href={AANTEKENINGEN_APP_URL}
+              className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              🚀 Ga naar Aantekeningen App
+            </a>
+          </div>
 
-      {/* Compact Privacy Notice */}
-      <div className="bg-gray-50 border-t border-gray-200 p-3">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-between text-xs text-gray-600">
-            <div className="flex items-center gap-4">
-              <span>🔒 Privacy: Alleen je voornaam wordt gebruikt</span>
+          {/* Footer */}
+          <div className="mt-8 pt-6 border-t border-gray-200">
+            <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
+              <span>🔒 Privacy veilig</span>
               <span>•</span>
-              <span>👨‍👩‍👧‍👦 Ouders: gebruik de voornaam van je kind</span>
+              <span>⚡ Snelle zoekresultaten</span>
+              <span>•</span>
+              <span>📱 Mobiel vriendelijk</span>
             </div>
-            <Link href="/contact" className="text-blue-600 hover:underline">Contact</Link>
+            <div className="mt-3">
+              <Link href="/" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                ← Terug naar hoofdsite
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </>
   );
