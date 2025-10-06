@@ -11,7 +11,7 @@ export default function AantekeningenPage() {
   const searchParams = useSearchParams();
 
   // Nieuwe Aantekeningen App URL - VERVANG DIT MET JE VERCEL URL
-  const baseAantekeningenAppURL = "https://aantekeningen-1fsetfkyv-stencil-karats78-icloudcoms-projects.vercel.app";
+  const baseAantekeningenAppURL = "https://aantekeningen-cx20njihh-stencil-karats78-icloudcoms-projects.vercel.app";
   
   // Add student parameter to new app URL if student name is available
   const AANTEKENINGEN_APP_URL = studentName 
