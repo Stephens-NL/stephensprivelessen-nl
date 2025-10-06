@@ -10,8 +10,12 @@ export default function AantekeningenPage() {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const searchParams = useSearchParams();
 
-  // Nieuwe Aantekeningen App URL - VERVANG DIT MET JE VERCEL URL
-  const baseAantekeningenAppURL = "https://aantekeningen-cx20njihh-stencil-karats78-icloudcoms-projects.vercel.app";
+  // Nieuwe Aantekeningen App URL - gelezen vanuit environment variable
+  const baseAantekeningenAppURL = process.env.NEXT_PUBLIC_AANTEKENINGEN_APP_URL;
+  
+  if (!baseAantekeningenAppURL) {
+    throw new Error('NEXT_PUBLIC_AANTEKENINGEN_APP_URL environment variable is required but not set');
+  }
   
   // Add student parameter to new app URL if student name is available
   const AANTEKENINGEN_APP_URL = studentName 
