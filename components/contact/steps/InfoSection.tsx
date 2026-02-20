@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaWhatsapp, FaChevronDown, FaChevronUp, FaEye, FaEnvelope } from 'react-icons/fa';
@@ -11,9 +11,10 @@ import {
     contactLinks, 
     infoSectionTranslations as translations, 
     SubjectNote,
-    pricingTiers,
-    groupPricingTiers
 } from '@/data/infoSection';
+import { ContactPricingTable } from './ContactPricingTable';
+import { ContactGroupPricingTable } from './ContactGroupPricingTable';
+import { InfoSectionCoursesBlock } from './InfoSectionCoursesBlock';
 
 interface InfoSectionProps {
     onBack: () => void;
@@ -48,194 +49,6 @@ function infoReducer(state: InfoState, action: InfoAction): InfoState {
   }
 }
 
-function ContactPricingTable() {
-    const { t } = useTranslation();
-    const [selectedLevel, setSelectedLevel] = useState<'middelbaar' | 'hoger'>('middelbaar');
-    return (
-        <m.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-blue-600/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/30"
-        >
-            <div className="flex justify-center mb-4">
-                <div className="inline-flex bg-blue-600/20 rounded-xl p-1">
-                    <button
-                        onClick={() => setSelectedLevel('middelbaar')}
-                        className={`px-4 py-2 rounded-lg text-sm transition-all ${
-                            selectedLevel === 'middelbaar' ? 'bg-blue-500/30 text-yellow-300' : 'text-yellow-100 hover:text-yellow-200'
-                        }`}
-                    >
-                        {t(translations.secondaryEducation)}
-                    </button>
-                    <button
-                        onClick={() => setSelectedLevel('hoger')}
-                        className={`px-4 py-2 rounded-lg text-sm transition-all ${
-                            selectedLevel === 'hoger' ? 'bg-blue-500/30 text-yellow-300' : 'text-yellow-100 hover:text-yellow-200'
-                        }`}
-                    >
-                        {t(translations.higherEducation)}
-                    </button>
-                </div>
-            </div>
-            <div className="overflow-x-auto">
-                <table className="w-full min-w-full">
-                    <thead>
-                        <tr className="border-b border-blue-600/50">
-                            <th className="text-left py-2 text-yellow-100 font-medium">Type</th>
-                            {selectedLevel === 'middelbaar' ? (
-                                <>
-                                    <th className="text-right py-2 text-yellow-100 font-medium">Tot 20 jaar</th>
-                                    <th className="text-right py-2 text-yellow-100 font-medium">Vanaf 20 jaar</th>
-                                </>
-                            ) : (
-                                <>
-                                    <th className="text-right py-2 text-yellow-100 font-medium">Bachelor</th>
-                                    <th className="text-right py-2 text-yellow-100 font-medium">Master</th>
-                                </>
-                            )}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {[
-                            { type: { EN: "Single session", NL: "Losse sessie" }, ms20minus: "€75", ms20plus: "€80", bachelor: "€80", master: "€90" },
-                            { type: { EN: "2 sessions", NL: "2 sessies" }, ms20minus: "€130", ms20plus: "€135", bachelor: "€135", master: "€140" },
-                            { type: { EN: "4 sessions", NL: "4 sessies" }, ms20minus: "€200", ms20plus: "€230", bachelor: "€230", master: "€250" },
-                        ].map((row) => (
-                            <tr key={row.type.NL} className="border-b border-blue-600/50 last:border-0">
-                                <td className="py-2 text-yellow-100">{t(row.type)}</td>
-                                {selectedLevel === 'middelbaar' ? (
-                                    <>
-                                        <td className="py-2 text-yellow-300 font-semibold text-right">{row.ms20minus}</td>
-                                        <td className="py-2 text-yellow-300 font-semibold text-right">{row.ms20plus}</td>
-                                    </>
-                                ) : (
-                                    <>
-                                        <td className="py-2 text-yellow-300 font-semibold text-right">{row.bachelor}</td>
-                                        <td className="py-2 text-yellow-300 font-semibold text-right">{row.master}</td>
-                                    </>
-                                )}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            <p className="mt-4 text-sm text-yellow-100 italic">{t(translations.whatsappSupport)}</p>
-        </m.div>
-    );
-}
-
-function ContactGroupPricingTable() {
-    const { t, language } = useTranslation();
-    const [showExample, setShowExample] = useState(false);
-    const [selectedLevel, setSelectedLevel] = useState<'middelbaar' | 'hoger'>('middelbaar');
-    return (
-        <m.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="bg-blue-600/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/30"
-        >
-            <div className="flex justify-center mb-4">
-                <div className="inline-flex bg-blue-600/20 rounded-xl p-1">
-                    <button
-                        onClick={() => setSelectedLevel('middelbaar')}
-                        className={`px-4 py-2 rounded-lg text-sm transition-all ${
-                            selectedLevel === 'middelbaar' ? 'bg-blue-500/30 text-yellow-300' : 'text-yellow-100 hover:text-yellow-200'
-                        }`}
-                    >
-                        {t(translations.secondaryEducation)}
-                    </button>
-                    <button
-                        onClick={() => setSelectedLevel('hoger')}
-                        className={`px-4 py-2 rounded-lg text-sm transition-all ${
-                            selectedLevel === 'hoger' ? 'bg-blue-500/30 text-yellow-300' : 'text-yellow-100 hover:text-yellow-200'
-                        }`}
-                    >
-                        {t(translations.higherEducation)}
-                    </button>
-                </div>
-            </div>
-            <div className="overflow-x-auto">
-                <table className="w-full min-w-full">
-                    <thead>
-                        <tr className="border-b border-blue-600/50">
-                            <th className="text-left py-2 text-yellow-100 font-medium">
-                                {language === 'NL' ? <span>Aantal<br />leerlingen</span> : <span>Number of<br />students</span>}
-                            </th>
-                            <th className="text-right py-2 text-yellow-100 font-medium">
-                                {language === 'NL' ? <span>Losse<br />sessie<br />(€/uur p.p.)</span> : <span>Single<br />session<br />(€/hour p.p.)</span>}
-                            </th>
-                            <th className="text-right py-2 text-yellow-100 font-medium">
-                                {language === 'NL' ? <span>4 sessies<br />(€/uur p.p.)</span> : <span>4 sessions<br />(€/hour p.p.)</span>}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {[1, 2, 3, 4].map((students) => {
-                            const regular = groupPricingTiers.find(tier =>
-                                tier.level === (selectedLevel === 'middelbaar' ? "Voortgezet Onderwijs (20-)" : "Hoger Onderwijs")
-                            )?.prices.find(p => p.students === students)?.price || '';
-                            const package4h = groupPricingTiers.find(tier =>
-                                tier.level === (selectedLevel === 'middelbaar' ? "Voortgezet Onderwijs (20-) 4-uurs pakket" : "Hoger Onderwijs 4-uurs pakket")
-                            )?.prices.find(p => p.students === students)?.price || '';
-                            return (
-                                <tr key={students} className="border-b border-blue-600/50 last:border-0">
-                                    <td className="py-2 text-yellow-100">{students}</td>
-                                    <td className="py-2 text-yellow-300 font-semibold text-right">{regular}</td>
-                                    <td className="py-2 text-yellow-300 font-semibold text-right">{package4h}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <div className="mt-4 space-y-2">
-                <p className="text-sm text-yellow-100 italic">{t(translations.standardSession)}</p>
-                <div className="mt-2">
-                    <button
-                        onClick={() => setShowExample(!showExample)}
-                        className="flex items-center text-sm text-yellow-300 hover:text-yellow-200 transition-colors"
-                    >
-                        {showExample ? <FaChevronUp className="mr-2" /> : <FaChevronDown className="mr-2" />}
-                        {t(translations.showExample)}
-                    </button>
-                    <AnimatePresence>
-                        {showExample && (
-                            <m.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                className="overflow-hidden"
-                            >
-                                <div className="mt-2 p-4 bg-blue-600/20 rounded-xl border border-blue-500/30">
-                                    <p className="text-sm text-yellow-100 font-medium mb-3">
-                                        {t(translations.costComparison).replace('{level}', selectedLevel === 'middelbaar' ? 'high school' : 'university')}
-                                    </p>
-                                    <div className="space-y-4">
-                                        <div>
-                                            <p className="text-sm text-yellow-300 font-medium mb-1">{t(translations.individualSessions)}</p>
-                                            <ul className="mt-1 space-y-1 text-sm text-yellow-100">
-                                                <li>• {`Price per 4 hours: ${selectedLevel === 'middelbaar' ? '€200' : '€250'}`}</li>
-                                                <li>• {`For 4 separate students: 4 × ${selectedLevel === 'middelbaar' ? '€200' : '€250'} = ${selectedLevel === 'middelbaar' ? '€800' : '€1000'}`}</li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-yellow-300 font-medium mb-1">{t(translations.groupSessions)}</p>
-                                            <ul className="mt-1 space-y-1 text-sm text-yellow-100">
-                                                <li>• {`Price per person: ${selectedLevel === 'middelbaar' ? '€125' : '€125'} (${selectedLevel === 'middelbaar' ? '€31.25' : '€31.25'}/hour)`}</li>
-                                                <li>• {`Total for the group: 4 × ${selectedLevel === 'middelbaar' ? '€125' : '€125'} = ${selectedLevel === 'middelbaar' ? '€500' : '€500'}`}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </m.div>
-                        )}
-                    </AnimatePresence>
-                </div>
-            </div>
-        </m.div>
-    );
-}
-
 const InfoSection = ({ onBack }: InfoSectionProps) => {
     const { t } = useTranslation();
     const businessData = getBusinessData(t);
@@ -249,24 +62,6 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
     });
     const { showPricing, showGroupPricing, showThesis, showCourses, selectedLevel, selectedNote } = state;
 
-    const educationLevels = [
-        {
-            id: 'basis',
-            title: t(translations.primaryEducation),
-            subjects: businessData.subjects.primary
-        },
-        {
-            id: 'voortgezet',
-            title: t(translations.secondaryEducation),
-            subjects: businessData.subjects.secondary
-        },
-        {
-            id: 'hoger',
-            title: t(translations.higherEducation),
-            subjects: [...businessData.subjects.higher, ...businessData.subjects.programming]
-        }
-    ];
-
     const handlePreviewNotes = (subject: string) => {
         const note = subjectNotes.find(n => n.subject === subject);
         if (note) {
@@ -274,147 +69,15 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
         }
     };
 
-    const renderSubjects = (subjects: Array<{ NL: string, EN: string }>, levelId: string) => {
-        return (
-            <m.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="mt-8"
-            >
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {subjects.map((subject, index) => {
-                        const subjectText = t(subject);
-                        return (
-                            <m.div 
-                                key={subject.NL}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ 
-                                    duration: 0.3,
-                                    delay: index * 0.05,
-                                    ease: "easeOut"
-                                }}
-                                className="group relative flex items-center bg-gradient-to-br from-blue-600/30 to-blue-700/40 backdrop-blur-sm 
-                                         hover:from-blue-500/40 hover:to-blue-600/50 rounded-xl transition-all duration-300 
-                                         border border-blue-500/30 hover:border-blue-400/50 shadow-lg hover:shadow-xl
-                                         transform hover:-translate-y-1 overflow-hidden h-[60px] w-full"
-                            >
-                                <div className="flex-1 p-4 overflow-hidden">
-                                    <div className="overflow-hidden">
-                                        <m.span 
-                                            className="text-yellow-100 group-hover:text-yellow-200 font-medium transition-colors inline-block whitespace-nowrap"
-                                        >
-                                            {subjectText}
-                                        </m.span>
-                                    </div>
-                                </div>
-                                {subjectNotes.some(note => note.subject === subject.NL) && (
-                                    <button 
-                                        onClick={() => handlePreviewNotes(subject.NL)}
-                                        className="h-full flex items-center px-3 bg-blue-500/20 group-hover:bg-blue-500/30 
-                                                 border-l border-blue-500/30 cursor-pointer transition-all duration-200"
-                                        title={t(translations.previewNotes)}
-                                        aria-label={t(translations.previewNotes)}
-                                    >
-                                        <FaEye className="w-4 h-4 text-yellow-300/80 group-hover:text-yellow-300 transition-colors" />
-                                    </button>
-                                )}
-                            </m.div>
-                        );
-                    })}
-                </div>
-            </m.div>
-        );
-    };
-
     return (
         <div className="space-y-8">
-            <m.div
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.1 }}
-                className="bg-blue-700 p-6 rounded-lg"
-            >
-                <div className="flex items-center justify-between text-yellow-300 mb-6">
-                    <div className="flex items-center">
-                        <FaGraduationCap className="text-2xl mr-3" />
-                        <h3 className="text-xl font-semibold">
-                            {t(translations.availableCourses)}
-                        </h3>
-                    </div>
-                    <button
-                        onClick={() => dispatch({ type: 'TOGGLE_COURSES' })}
-                        className="p-2 hover:bg-blue-600/50 rounded-lg transition-colors"
-                    >
-                        {showCourses ? <FaChevronUp /> : <FaChevronDown />}
-                    </button>
-                </div>
-
-                <AnimatePresence>
-                    {showCourses && (
-                        <m.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden"
-                        >
-                            <div className="space-y-6">
-                                <div className="flex justify-center">
-                                    <div className="inline-flex bg-blue-600/20 rounded-2xl p-1.5">
-                                        {educationLevels.map((level, index) => (
-                                            <m.button
-                                                key={level.id}
-                                                onClick={() => dispatch({ type: 'SET_LEVEL', level: level.id })}
-                                                className={`
-                                                    relative px-8 py-3 rounded-xl text-center transition-all duration-200
-                                                    ${selectedLevel === level.id 
-                                                        ? 'bg-blue-600/50 text-yellow-300 shadow-lg' 
-                                                        : 'text-yellow-100 hover:text-yellow-200'
-                                                    }
-                                                    ${index !== educationLevels.length - 1 ? 'mr-1' : ''}
-                                                `}
-                                            >
-                                                {selectedLevel === level.id && (
-                                                    <m.div
-                                                        layoutId="activeTab"
-                                                        className="absolute inset-0 bg-blue-500/20 rounded-xl"
-                                                        initial={false}
-                                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                                    />
-                                                )}
-                                                <span className="relative z-10">{level.title}</span>
-                                            </m.button>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="w-full">
-                                    <AnimatePresence mode="wait">
-                                        {selectedLevel && (
-                                            renderSubjects(
-                                                educationLevels.find(level => level.id === selectedLevel)?.subjects || [],
-                                                selectedLevel
-                                            )
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-                            </div>
-                        </m.div>
-                    )}
-                </AnimatePresence>
-
-                <m.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="mt-6 p-4 bg-blue-600/30 rounded-xl border border-blue-500/30"
-                >
-                    <p className="text-yellow-100 text-sm">
-                        {t(translations.thesisDescription)}
-                    </p>
-                </m.div>
-            </m.div>
+            <InfoSectionCoursesBlock
+                showCourses={showCourses}
+                selectedLevel={selectedLevel}
+                onToggleCourses={() => dispatch({ type: 'TOGGLE_COURSES' })}
+                onSetLevel={(level) => dispatch({ type: 'SET_LEVEL', level })}
+                onPreviewNotes={handlePreviewNotes}
+            />
 
             <m.div
                 initial={{ x: -20, opacity: 0 }}

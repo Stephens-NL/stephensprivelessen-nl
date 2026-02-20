@@ -75,6 +75,7 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
                         src={slide.image}
                         alt={slide.author}
                         fill
+                        sizes="48px"
                         className="object-cover"
                       />
                     </div>

@@ -14,7 +14,7 @@ type PricingTableProps = {
   title: string;
 };
 
-export const PricingTable = ({ pricing, title }: PricingTableProps) => {
+const PricingTable = ({ pricing, title }: PricingTableProps) => {
   return (
     <div className="mb-8 p-6 bg-blue-800 rounded-lg shadow-lg">
       <h3 className="text-2xl font-semibold text-yellow-300 mb-4 text-center">{title}</h3>

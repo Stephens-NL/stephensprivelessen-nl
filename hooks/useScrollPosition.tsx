@@ -18,5 +18,3 @@ export const useScrollPosition = (threshold: number = 300): boolean => {
 
   return showBackToTop;
 };
-
-export default useScrollPosition;

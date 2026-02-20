@@ -5,7 +5,7 @@ import React from 'react';
 import { LocationPricingTableProps } from '../data'
 
 
-export const LocationPricingTable = ({ pricing, title }: LocationPricingTableProps) => {
+const LocationPricingTable = ({ pricing, title }: LocationPricingTableProps) => {
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold text-yellow-300 mb-2">{title}</h3>

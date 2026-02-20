@@ -302,5 +302,3 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
     </div>
   );
 };
-
-export default BlogList;

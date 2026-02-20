@@ -22,6 +22,7 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
           src="/images/tutoring-hero.jpg"
           alt="Students learning"
           fill
+          sizes="100vw"
           className="object-cover opacity-30"
           priority
         />

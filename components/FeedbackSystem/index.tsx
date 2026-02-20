@@ -342,5 +342,3 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
     </div>
   );
 };
-
-export default FeedbackSystem;
