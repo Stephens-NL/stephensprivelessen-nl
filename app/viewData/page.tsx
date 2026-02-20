@@ -1,16 +1,11 @@
-'use client';
+import type { Metadata } from 'next';
+import ViewDataContent from './ViewDataContent';
 
-import dynamic from 'next/dynamic';
+export const metadata: Metadata = {
+  title: 'Feedback Data | Stephens Privelessen',
+  description: 'View feedback data from Stephens Privelessen.',
+};
 
-const FeedbackDataViewer = dynamic(
-  () => import('../../components/FeedbackSystem/FeedbackDataViewer'),
-  { ssr: false }
-);
-
-const page = () => {
-  return (
-    <FeedbackDataViewer />
-  )
+export default function ViewDataPage() {
+  return <ViewDataContent />;
 }
-
-export default page

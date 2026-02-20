@@ -1,11 +1,11 @@
-import TutoringDatePicker from '@/components/BookingSystem/TutoringDatePicker'
-import DatePicker from '../../components/BookingSystem/DatePicker'
-import React from 'react'
+import type { Metadata } from 'next';
+import TutoringDatePicker from '@/components/BookingSystem/TutoringDatePicker';
 
-const hoi = () => {
-  return (
-    <TutoringDatePicker />
-  )
+export const metadata: Metadata = {
+  title: 'Boek een Les | Stephens Privelessen',
+  description: 'Plan een bijles of priveles in bij Stephens Privelessen in Amsterdam.',
+};
+
+export default function BookingPage() {
+  return <TutoringDatePicker />;
 }
-
-export default hoi

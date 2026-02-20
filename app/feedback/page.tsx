@@ -1,22 +1,11 @@
-'use client';
+import type { Metadata } from 'next';
+import FeedbackContent from './FeedbackContent';
 
-import { longVersion, shortVersion } from "../../data";
-import { FeedbackSystem } from "../../components/FeedbackSystem"; 
-
-const page = () => {
-
-  // Placeholder onSubmit function
-  const handleSubmit = (formData: any) => {
-    // Log the form data or display a placeholder message
-    console.log("Form submitted with data:", formData);
-    alert("Form submitted!"); // You can replace this with more advanced logic
-  };
-
-  return (
-    <>
-      <FeedbackSystem longVersion={longVersion} shortVersion={shortVersion}/>
-    </>
-  );
+export const metadata: Metadata = {
+  title: 'Feedback | Stephens Privelessen',
+  description: 'Share your feedback about Stephens Privelessen tutoring services.',
 };
 
-export default page;
+export default function FeedbackPage() {
+  return <FeedbackContent />;
+}

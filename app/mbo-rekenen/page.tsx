@@ -1,32 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
+import { metadata as mboRekenenMetadata } from './metadata';
+import MboRekenenContent from './MboRekenenContent';
 
-import { useTranslation } from '@/hooks/useTranslation';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { CustomCursor } from '@/components/shared/CustomCursor';
-import Header from '@/components/Header';
-import { HeroSection } from '@/components/mbo-rekenen/HeroSection';
-import { AboutSection } from '@/components/mbo-rekenen/AboutSection';
-import { ServicesSection } from '@/components/mbo-rekenen/ServicesSection';
-import { PricingSection } from '@/components/mbo-rekenen/PricingSection';
-import { TargetGroupSection } from '@/components/mbo-rekenen/TargetGroupSection';
-import { WhyChooseSection } from '@/components/mbo-rekenen/WhyChooseSection';
-import { ContactSection } from '@/components/mbo-rekenen/ContactSection';
+export const metadata: Metadata = mboRekenenMetadata;
 
-export default function Page() {
-  const { language } = useLanguage();
-  const { t } = useTranslation();
-
-  return (
-    <div className="min-h-screen bg-white text-gray-900">
-      <CustomCursor />
-      <Header />
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <PricingSection />
-      <TargetGroupSection />
-      <WhyChooseSection />
-      <ContactSection />
-    </div>
-  );
-} 
+export default function MboRekenenPage() {
+  return <MboRekenenContent />;
+}
