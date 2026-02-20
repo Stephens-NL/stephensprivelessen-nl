@@ -1,13 +1,15 @@
 'use client'
 
-import React, { useState, useMemo, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useState, useMemo, useEffect, useRef, useSyncExternalStore, useReducer } from 'react'
+import { m, AnimatePresence } from 'framer-motion'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useRouter } from 'next/navigation'
 import workshopsData from '@/data/workshopsData'
 import type { Workshop, WorkshopLevel, WorkshopFormat, Workshops } from '@/data/types'
 import type { Bilingual } from '@/data/types'
-import { FiClock, FiUsers, FiBookOpen, FiFilter, FiX, FiChevronDown, FiRotateCcw } from 'react-icons/fi'
+import { FiClock, FiUsers, FiBookOpen, FiFilter, FiChevronDown } from 'react-icons/fi'
+import { MobileFilterDrawer, Tab } from './WorkshopsFilters'
+import { WorkshopsFilterPanel } from './WorkshopsFilterPanel'
 
 // Helper functions for translations
 const getLevelTranslation = (level?: WorkshopLevel): Bilingual => {
@@ -47,7 +49,7 @@ const HeroSection: React.FC = () => {
     return (
         <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white">
             <div className="container mx-auto px-4 py-16 md:py-24">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -76,7 +78,7 @@ const HeroSection: React.FC = () => {
                             <span>{String(t({ EN: 'Expert Guidance', NL: 'Expert Begeleiding' }))}</span>
                         </div>
                     </div>
-                </motion.div>
+                </m.div>
             </div>
         </div>
     )
@@ -122,7 +124,10 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
     return (
         <div className="h-full">
             <div 
+                role="button"
+                tabIndex={0}
                 onClick={handleCardClick}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCardClick(); } }}
                 className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 relative group transform hover:-translate-y-1 flex flex-col h-full cursor-pointer"
             >
                 {/* Hover overlay - only visible on desktop */}
@@ -236,186 +241,75 @@ const CustomWorkshopCTA: React.FC<CustomWorkshopCTAProps> = ({ onContactUs }) =>
     )
 }
 
-interface FilterOption {
-    id: string;
-    labelEN: string;
-    labelNL: string;
-}
+// Client-only random seed for workshop shuffle - avoids useEffect(setState, []) hydration flash
+const clientSeedStore = (() => {
+    let seed: number | null = null;
+    const listeners = new Set<() => void>();
+    return {
+        getSnapshot: () => {
+            if (typeof window === 'undefined') return null;
+            if (seed === null) seed = Math.random();
+            return seed;
+        },
+        getServerSnapshot: () => null,
+        subscribe: (cb: () => void) => {
+            listeners.add(cb);
+            if (typeof window !== 'undefined' && seed === null) {
+                queueMicrotask(() => listeners.forEach((l) => l()));
+            }
+            return () => listeners.delete(cb);
+        },
+    };
+})();
 
-const typeFilters: FilterOption[] = [
-    { id: 'all', labelEN: 'All Workshops', labelNL: 'Alle Workshops' },
-    { id: 'creative', labelEN: 'Creative', labelNL: 'Creatief' },
-    { id: 'academic', labelEN: 'Academic', labelNL: 'Academisch' }
-];
-
-const audienceFilters: FilterOption[] = [
-    { id: 'all', labelEN: 'All Audiences', labelNL: 'Alle Doelgroepen' },
-    { id: 'students', labelEN: 'Students', labelNL: 'Leerlingen' },
-    { id: 'teachers', labelEN: 'Teachers', labelNL: 'Docenten' },
-    { id: 'everyone', labelEN: 'Everyone', labelNL: 'Iedereen' }
-];
-
-const sizeFilters: FilterOption[] = [
-    { id: 'all', labelEN: 'All Sizes', labelNL: 'Alle Groottes' },
-    { id: 'small', labelEN: 'Small Groups (≤8)', labelNL: 'Kleine Groepen (≤8)' },
-    { id: 'medium', labelEN: 'Medium Groups (9-15)', labelNL: 'Middelgrote Groepen (9-15)' },
-    { id: 'large', labelEN: 'Large Groups (15+)', labelNL: 'Grote Groepen (15+)' }
-];
-
-const durationFilters: FilterOption[] = [
-    { id: 'all', labelEN: 'All Durations', labelNL: 'Alle Tijdsduren' },
-    { id: 'short', labelEN: '2-3 hours', labelNL: '2-3 uur' },
-    { id: 'medium', labelEN: '4-5 hours', labelNL: '4-5 uur' },
-    { id: 'long', labelEN: '6+ hours', labelNL: '6+ uur' }
-];
-
-const scheduleFilters: FilterOption[] = [
-    { id: 'all', labelEN: 'All Schedules', labelNL: 'Alle Roosters' },
-    { id: 'single', labelEN: 'Single Session', labelNL: 'Eenmalig' },
-    { id: 'weekly', labelEN: 'Weekly Sessions', labelNL: 'Wekelijkse Sessies' },
-    { id: 'monthly', labelEN: 'Monthly Sessions', labelNL: 'Maandelijkse Sessies' }
-];
-
-interface FilterButtonProps {
-    isActive: boolean;
-    onClick: () => void;
-    children: React.ReactNode;
-}
-
-const FilterButton: React.FC<FilterButtonProps> = ({ isActive, onClick, children }) => (
-    <button
-        onClick={onClick}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-            isActive 
-                ? 'bg-blue-600 text-white shadow-md transform scale-105' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-        }`}
-    >
-        {children}
-    </button>
-);
-
-interface FilterSectionProps {
-    title: string;
-    options: FilterOption[];
-    activeFilter: string;
-    onFilterChange: (filter: string) => void;
-}
-
-const FilterSection: React.FC<FilterSectionProps> = ({ title, options, activeFilter, onFilterChange }) => {
-    const { t } = useTranslation();
-    
-    return (
-        <div className="mb-6">
-            <h3 className="text-sm font-medium text-gray-500 mb-3">{title}</h3>
-            <div className="flex flex-wrap gap-2">
-                {options.map(option => (
-                    <FilterButton
-                        key={option.id}
-                        isActive={activeFilter === option.id}
-                        onClick={() => onFilterChange(option.id)}
-                    >
-                        {String(t({ EN: option.labelEN, NL: option.labelNL }))}
-                    </FilterButton>
-                ))}
-            </div>
-        </div>
-    );
+type FilterState = {
+    type: string;
+    audience: string;
+    size: string;
+    duration: string;
+    schedule: string;
+    isMobileOpen: boolean;
+    isDesktopOpen: boolean;
 };
 
-interface MobileFilterDrawerProps {
-    isOpen: boolean;
-    onClose: () => void;
-    children: React.ReactNode;
-}
-
-const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, onClose, children }) => {
-    const { t } = useTranslation();
-
-    return (
-        <AnimatePresence>
-            {isOpen && (
-                <>
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black z-40"
-                        onClick={onClose}
-                    />
-                    <motion.div
-                        initial={{ x: '100%' }}
-                        animate={{ x: 0 }}
-                        exit={{ x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed right-0 top-0 h-full w-[85%] max-w-md bg-white z-50 p-6 overflow-y-auto"
-                    >
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold">
-                                {String(t({ EN: 'Filter Workshops', NL: 'Filter Workshops' }))}
-                            </h2>
-                            <button onClick={onClose} className="p-2">
-                                <FiX className="w-6 h-6" />
-                            </button>
-                        </div>
-                        {children}
-                        <button
-                            onClick={onClose}
-                            className="w-full bg-blue-600 text-white py-3 rounded-xl mt-6"
-                        >
-                            {String(t({ EN: 'Apply Filters', NL: 'Filters Toepassen' }))}
-                        </button>
-                    </motion.div>
-                </>
-            )}
-        </AnimatePresence>
-    );
+const initialFilterState: FilterState = {
+    type: 'all',
+    audience: 'all',
+    size: 'all',
+    duration: 'all',
+    schedule: 'all',
+    isMobileOpen: false,
+    isDesktopOpen: false,
 };
 
-interface TabProps {
-    isActive: boolean;
-    onClick: () => void;
-    children: React.ReactNode;
-    count: number;
+function filterReducer(state: FilterState, action: { type: string; payload?: string }) {
+    switch (action.type) {
+        case 'SET_TYPE': return { ...state, type: action.payload ?? 'all' };
+        case 'SET_AUDIENCE': return { ...state, audience: action.payload ?? 'all' };
+        case 'SET_SIZE': return { ...state, size: action.payload ?? 'all' };
+        case 'SET_DURATION': return { ...state, duration: action.payload ?? 'all' };
+        case 'SET_SCHEDULE': return { ...state, schedule: action.payload ?? 'all' };
+        case 'TOGGLE_MOBILE': return { ...state, isMobileOpen: !state.isMobileOpen };
+        case 'CLOSE_MOBILE': return { ...state, isMobileOpen: false };
+        case 'TOGGLE_DESKTOP': return { ...state, isDesktopOpen: !state.isDesktopOpen };
+        case 'RESET': return initialFilterState;
+        default: return state;
+    }
 }
-
-const Tab: React.FC<TabProps> = ({ isActive, onClick, children, count }) => (
-    <button
-        onClick={onClick}
-        className={`flex items-center gap-2 px-6 py-3 font-medium rounded-xl transition-all duration-200 ${
-            isActive 
-                ? 'bg-white shadow-md text-gray-900' 
-                : 'text-gray-600 hover:bg-white/50'
-        }`}
-    >
-        <span>{children}</span>
-        <span className={`text-sm px-2 py-0.5 rounded-full ${
-            isActive ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'
-        }`}>
-            {count}
-        </span>
-    </button>
-);
 
 const WorkshopsContent: React.FC = () => {
     const router = useRouter();
     const { t } = useTranslation();
-    const [typeFilter, setTypeFilter] = useState('all');
-    const [audienceFilter, setAudienceFilter] = useState('all');
-    const [sizeFilter, setSizeFilter] = useState('all');
-    const [durationFilter, setDurationFilter] = useState('all');
-    const [scheduleFilter, setScheduleFilter] = useState('all');
-    const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
-    const [isDesktopFilterOpen, setIsDesktopFilterOpen] = useState(false);
-    const [randomSeed, setRandomSeed] = useState<number | null>(null);
+    const [filters, dispatchFilter] = useReducer(filterReducer, initialFilterState);
+    const { type: typeFilter, audience: audienceFilter, size: sizeFilter, duration: durationFilter, schedule: scheduleFilter, isMobileOpen: isMobileFilterOpen, isDesktopOpen: isDesktopFilterOpen } = filters;
+    const randomSeed = useSyncExternalStore(
+        clientSeedStore.subscribe,
+        clientSeedStore.getSnapshot,
+        clientSeedStore.getServerSnapshot
+    );
     const [isScrollingUp, setIsScrollingUp] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [isInitialized, setIsInitialized] = useState(false);
-
-    // Set random seed on client-side only
-    useEffect(() => {
-        setRandomSeed(Math.random());
-    }, []);
+    const lastScrollYRef = useRef(0);
 
     // Function to shuffle array using Fisher-Yates algorithm with seed
     const shuffleArray = <T,>(array: T[], seed: number): T[] => {
@@ -432,13 +326,7 @@ const WorkshopsContent: React.FC = () => {
         return shuffled;
     };
 
-    const resetFilters = () => {
-        setTypeFilter('all');
-        setAudienceFilter('all');
-        setSizeFilter('all');
-        setDurationFilter('all');
-        setScheduleFilter('all');
-    };
+    const resetFilters = () => dispatchFilter({ type: 'RESET' });
 
     const filteredWorkshops = useMemo(() => {
         let filtered = Object.values(workshopsData).filter(workshop => {
@@ -507,85 +395,44 @@ const WorkshopsContent: React.FC = () => {
     }, []);
 
     const filterContent = (
-        <>
-            <div className="flex justify-between items-center mb-4">
-                <h3 className="font-medium text-gray-900">
-                    {String(t({ EN: 'Filter Options', NL: 'Filter Opties' }))}
-                </h3>
-                {hasActiveFilters && (
-                    <button
-                        onClick={resetFilters}
-                        className="flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
-                    >
-                        <FiRotateCcw className="w-4 h-4" />
-                        {String(t({ EN: 'Reset Filters', NL: 'Filters Resetten' }))}
-                    </button>
-                )}
-            </div>
-            <FilterSection
-                title={String(t({ EN: 'Workshop Type', NL: 'Workshop Type' }))}
-                options={typeFilters}
-                activeFilter={typeFilter}
-                onFilterChange={setTypeFilter}
-            />
-            <FilterSection
-                title={String(t({ EN: 'Target Audience', NL: 'Doelgroep' }))}
-                options={audienceFilters}
-                activeFilter={audienceFilter}
-                onFilterChange={setAudienceFilter}
-            />
-            <FilterSection
-                title={String(t({ EN: 'Group Size', NL: 'Groepsgrootte' }))}
-                options={sizeFilters}
-                activeFilter={sizeFilter}
-                onFilterChange={setSizeFilter}
-            />
-            <FilterSection
-                title={String(t({ EN: 'Duration', NL: 'Tijdsduur' }))}
-                options={durationFilters}
-                activeFilter={durationFilter}
-                onFilterChange={setDurationFilter}
-            />
-            <FilterSection
-                title={String(t({ EN: 'Schedule', NL: 'Rooster' }))}
-                options={scheduleFilters}
-                activeFilter={scheduleFilter}
-                onFilterChange={setScheduleFilter}
-            />
-        </>
+        <WorkshopsFilterPanel
+            typeFilter={typeFilter}
+            audienceFilter={audienceFilter}
+            sizeFilter={sizeFilter}
+            durationFilter={durationFilter}
+            scheduleFilter={scheduleFilter}
+            hasActiveFilters={hasActiveFilters}
+            onFilterChange={(type, payload) => dispatchFilter({ type, payload })}
+            onReset={resetFilters}
+        />
     );
 
     useEffect(() => {
-        // Initialize scroll position
-        setLastScrollY(window.scrollY);
+        lastScrollYRef.current = window.scrollY;
         setIsInitialized(true);
 
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            const scrollDelta = currentScrollY - lastScrollY;
-            
-            // Show navigation when:
-            // 1. Scrolling up (negative delta)
-            // 2. Near the top of the page (within 100px)
-            // 3. At the hero section
+            const scrollDelta = currentScrollY - lastScrollYRef.current;
+
             setIsScrollingUp(
-                scrollDelta < -5 || // More sensitive to upward scrolling
-                currentScrollY < 100 || 
-                currentScrollY < window.innerHeight * 0.5 // Show in top half of hero
+                scrollDelta < -5 ||
+                currentScrollY < 100 ||
+                currentScrollY < window.innerHeight * 0.5
             );
-            
-            setLastScrollY(currentScrollY);
+
+            lastScrollYRef.current = currentScrollY;
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, []);
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-warm-gray-50 to-warm-gray-100/50 backdrop-blur">
             <HeroSection />
             <div className="container mx-auto px-4 py-16">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -593,7 +440,7 @@ const WorkshopsContent: React.FC = () => {
                     {/* Mobile Filter Button */}
                     <div className="md:hidden mb-6">
                         <button
-                            onClick={() => setIsMobileFilterOpen(true)}
+                            onClick={() => dispatchFilter({ type: 'TOGGLE_MOBILE' })}
                             className="w-full flex items-center justify-center gap-2 bg-white/80 backdrop-blur-sm border border-warm-gray-200 rounded-xl py-3 px-4 text-gray-600 shadow-sm"
                         >
                             <FiFilter />
@@ -611,21 +458,21 @@ const WorkshopsContent: React.FC = () => {
                         <div className="flex gap-2 p-1 bg-warm-gray-100/50 backdrop-blur-sm rounded-xl overflow-x-auto">
                             <Tab 
                                 isActive={typeFilter === 'all'} 
-                                onClick={() => setTypeFilter('all')}
+                                onClick={() => dispatchFilter({ type: 'SET_TYPE', payload: 'all' })}
                                 count={workshopCounts.all}
                             >
                                 {String(t({ EN: 'All Workshops', NL: 'Alle Workshops' }))}
                             </Tab>
                             <Tab 
                                 isActive={typeFilter === 'creative'} 
-                                onClick={() => setTypeFilter('creative')}
+                                onClick={() => dispatchFilter({ type: 'SET_TYPE', payload: 'creative' })}
                                 count={workshopCounts.creative}
                             >
                                 {String(t({ EN: 'Creative', NL: 'Creatief' }))}
                             </Tab>
                             <Tab 
                                 isActive={typeFilter === 'academic'} 
-                                onClick={() => setTypeFilter('academic')}
+                                onClick={() => dispatchFilter({ type: 'SET_TYPE', payload: 'academic' })}
                                 count={workshopCounts.academic}
                             >
                                 {String(t({ EN: 'Academic', NL: 'Academisch' }))}
@@ -636,7 +483,7 @@ const WorkshopsContent: React.FC = () => {
                     {/* Desktop Filters */}
                     <div className="hidden md:block mb-8">
                         <button
-                            onClick={() => setIsDesktopFilterOpen(!isDesktopFilterOpen)}
+                            onClick={() => dispatchFilter({ type: 'TOGGLE_DESKTOP' })}
                             className="w-full flex items-center justify-between bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-sm mb-2"
                         >
                             <div className="flex items-center gap-2">
@@ -658,7 +505,7 @@ const WorkshopsContent: React.FC = () => {
                         </button>
                         <AnimatePresence>
                             {isDesktopFilterOpen && (
-                                <motion.div
+                                <m.div
                                     initial={{ opacity: 0, height: 0 }}
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
@@ -666,7 +513,7 @@ const WorkshopsContent: React.FC = () => {
                                     className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm overflow-hidden"
                                 >
                                     {filterContent}
-                                </motion.div>
+                                </m.div>
                             )}
                         </AnimatePresence>
                     </div>
@@ -674,16 +521,16 @@ const WorkshopsContent: React.FC = () => {
                     {/* Mobile Filter Drawer */}
                     <MobileFilterDrawer
                         isOpen={isMobileFilterOpen}
-                        onClose={() => setIsMobileFilterOpen(false)}
+                        onClose={() => dispatchFilter({ type: 'CLOSE_MOBILE' })}
                     >
                         {filterContent}
                     </MobileFilterDrawer>
 
-                    {/* Workshop Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* Workshop Grid - suppressHydrationWarning: order differs on client due to seeded shuffle */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" suppressHydrationWarning>
                         <AnimatePresence mode="wait">
                             {filteredWorkshops.map((workshop, index) => (
-                                <motion.div
+                                <m.div
                                     key={workshop.id}
                                     layout="position"
                                     layoutId={workshop.id}
@@ -704,13 +551,13 @@ const WorkshopsContent: React.FC = () => {
                                         index={index}
                                         onRequestInfo={handleRequestInfo}
                                     />
-                                </motion.div>
+                                </m.div>
                             ))}
                         </AnimatePresence>
                     </div>
 
                     {filteredWorkshops.length === 0 && (
-                        <motion.div
+                        <m.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.2 }}
@@ -722,11 +569,11 @@ const WorkshopsContent: React.FC = () => {
                                     NL: 'Geen workshops gevonden die aan je filters voldoen.'
                                 }))}
                             </p>
-                        </motion.div>
+                        </m.div>
                     )}
 
                     <CustomWorkshopCTA onContactUs={handleContactUs} />
-                </motion.div>
+                </m.div>
             </div>
         </div>
     );

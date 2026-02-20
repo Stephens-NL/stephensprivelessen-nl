@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TutoringPage } from '@/types';
 import { Icon, IconName } from '@/components/ui/icons';
 import { Card } from '@/components/ui/card';
@@ -15,19 +15,19 @@ export function ProcessSection({ process, t }: ProcessSectionProps) {
   return (
     <section className="py-24 bg-muted/50">
       <div className="container px-4 md:px-6">
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-3xl font-bold text-center mb-12"
         >
           {t(process.title)}
-        </motion.h2>
+        </m.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {process.steps.map((step, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={String(step.title?.EN ?? step.title?.NL ?? step.number ?? index)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -43,7 +43,7 @@ export function ProcessSection({ process, t }: ProcessSectionProps) {
                 <h3 className="text-xl font-semibold mb-2">{t(step.title)}</h3>
                 <p className="text-muted-foreground">{t(step.description)}</p>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

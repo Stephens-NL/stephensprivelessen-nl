@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TutoringPage } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,15 +19,15 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl font-bold mb-4"
           >
             {t(contact.title)}
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -35,11 +35,11 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
             className="text-xl text-gray-600"
           >
             {t(contact.subtitle)}
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Contact Form */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -81,8 +81,8 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
                   <SelectValue placeholder={t(contact.form.subject.label)} />
                 </SelectTrigger>
                 <SelectContent>
-                  {contact.form.subject.options.map((option, index) => (
-                    <SelectItem key={index} value={t(option).toLowerCase()}>
+                  {contact.form.subject.options.map((option) => (
+                    <SelectItem key={t(option)} value={t(option).toLowerCase()}>
                       {t(option)}
                     </SelectItem>
                   ))}
@@ -106,7 +106,7 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
               {t(contact.form.submit)}
             </Button>
           </form>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

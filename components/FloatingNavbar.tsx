@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { navigation, siteTitle } from '@/data/navigation';
 import { useTranslation } from '../hooks/useTranslation';
 import { NavItem, Bilingual } from '../data';
@@ -60,7 +60,7 @@ const FloatingNavbar = () => {
 
     return (
         <>
-            <motion.div
+            <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -73,10 +73,10 @@ const FloatingNavbar = () => {
                 >
                     <Menu size={24} />
                 </button>
-            </motion.div>
+            </m.div>
             <AnimatePresence>
                 {isVisible && (
-                    <motion.nav
+                    <m.nav
                         initial={{ y: -100, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -100, opacity: 0 }}
@@ -112,7 +112,7 @@ const FloatingNavbar = () => {
                         </div>
                         <AnimatePresence>
                             {isMobileMenuOpen && (
-                                <motion.div
+                                <m.div
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
@@ -134,10 +134,10 @@ const FloatingNavbar = () => {
                                             </button>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </m.div>
                             )}
                         </AnimatePresence>
-                    </motion.nav>
+                    </m.nav>
                 )}
             </AnimatePresence>
         </>

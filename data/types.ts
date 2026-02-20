@@ -11,8 +11,6 @@ export type Bilingual<T = string> = {
   [key in Language]: T;
 };
 
-export type BilingualContent = string | Bilingual | any;
-
 export interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;

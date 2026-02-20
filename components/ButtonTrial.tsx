@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslation } from '../hooks/useTranslation';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import React from 'react';
 import { hero } from '@/data/hero';
 
@@ -10,7 +10,7 @@ const ButtonTrial = () => {
     const { t: translation } = useTranslation();
     
     return (
-        <motion.a
+        <m.a
             href="/contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -32,7 +32,7 @@ const ButtonTrial = () => {
                     d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" 
                 />
             </svg>
-        </motion.a>
+        </m.a>
     );
 };
 

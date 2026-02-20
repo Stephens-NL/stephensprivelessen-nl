@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Language, LanguageSelectorProps } from "@/data";
 
 
@@ -26,7 +26,7 @@ console.log('LanguageSelector loaded');
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, data }) => {
   return (
-    <motion.div
+    <m.div
       key="language-selector"
       variants={variants}
       initial="enter"
@@ -41,7 +41,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, d
       <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
       <div className="flex justify-center space-x-4">
         {['NL', 'EN'].map((lang) => (
-          <motion.button
+          <m.button
             key={lang}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -49,10 +49,10 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, d
             className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
           >
             {lang === 'NL' ? 'Nederlands' : 'English'}
-          </motion.button>
+          </m.button>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

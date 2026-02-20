@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaMapMarkerAlt, FaClock, FaCheck } from 'react-icons/fa';
 import { WeekendLocation } from '@/data/types';
@@ -16,26 +16,26 @@ export function AboutSection({ content }: AboutSectionProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
       id="about"
       className="relative z-10 py-24 px-4"
       style={{
         transform: isInView ? "none" : "translateY(100px)",
         opacity: isInView ? 1 : 0,
-        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+        transition: "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s, opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}
     >
       <div className="max-w-4xl mx-auto">
-        <motion.h2 
+        <m.h2 
           className="text-4xl font-bold text-yellow-300 mb-8"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
         >
           {content.subtitle[language]}
-        </motion.h2>
-        <motion.div 
+        </m.h2>
+        <m.div 
           className="prose prose-lg prose-invert"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -73,8 +73,8 @@ export function AboutSection({ content }: AboutSectionProps) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
-    </motion.section>
+    </m.section>
   );
 } 

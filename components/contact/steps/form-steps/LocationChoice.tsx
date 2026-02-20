@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
 import { useTranslation } from '../../../../hooks/useTranslation';
 
@@ -26,7 +26,7 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                 }))}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
+                <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleLocationChoice(true)}
@@ -40,8 +40,8 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                         EN: "Online Lessons",
                         NL: "Online Lessen"
                     }))}
-                </motion.button>
-                <motion.button
+                </m.button>
+                <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => handleLocationChoice(false)}
@@ -55,7 +55,7 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                         EN: "In-Person Lessons",
                         NL: "Fysieke Lessen"
                     }))}
-                </motion.button>
+                </m.button>
             </div>
         </div>
     );

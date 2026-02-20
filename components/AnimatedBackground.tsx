@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface AnimatedItem {
   icon: string;
@@ -21,9 +21,9 @@ const ImprovedAnimatedBackground: React.FC = () => {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      {items.map((item, index) => (
-        <motion.div
-          key={index}
+      {items.map((item) => (
+        <m.div
+          key={`${item.icon}-${item.rotation}`}
           className="absolute text-4xl opacity-5"
           style={{
             x: `${Math.random() * 100}vw`,
@@ -42,7 +42,7 @@ const ImprovedAnimatedBackground: React.FC = () => {
           }}
         >
           {item.icon}
-        </motion.div>
+        </m.div>
       ))}
     </div>
   );

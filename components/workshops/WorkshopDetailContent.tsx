@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -32,7 +32,7 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
     return (
         <div className={cn("min-h-screen", isCreative ? "bg-purple-50/30" : "bg-blue-50/30")}>
             <div className="container mx-auto px-4 py-12">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -111,8 +111,8 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                                 {String(t({ EN: 'What You\'ll Learn', NL: 'Wat Je Leert' }))}
                             </h2>
                             <ul className="space-y-2">
-                                {workshop.details[language as Language].map((detail: string, index: number) => (
-                                    <li key={index} className="flex items-start">
+                                {workshop.details[language as Language].map((detail: string) => (
+                                    <li key={detail} className="flex items-start">
                                         <span className={`mr-2 text-${baseColorClass}-500`}>•</span>
                                         {detail}
                                     </li>
@@ -155,7 +155,7 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                             {String(t({ EN: 'Schedule Now', NL: 'Plan Nu In' }))}
                         </button>
                     </div>
-                </motion.div>
+                </m.div>
             </div>
         </div>
     );

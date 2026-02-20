@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import InitialChoice from './steps/InitialChoice';
 import { useTranslation } from '../../hooks/useTranslation';
 import LessonForm from './steps/LessonForm';
@@ -66,21 +66,21 @@ const initialFormData: FormData = {
     programmingLanguage: undefined,
 };
 
+type CalendarState = { show: boolean; type: 'trial' | 'regular' };
+
 const Contact = () => {
     const [currentStep, setCurrentStep] = useState<FormStep>('initial');
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const { t } = useTranslation();
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [showCalendar, setShowCalendar] = useState(false);
-    const [appointmentType, setAppointmentType] = useState<'trial' | 'regular'>('trial');
+    const [calendar, setCalendar] = useState<CalendarState>({ show: false, type: 'trial' });
 
     const handleUpdateFormData = (updates: Partial<FormData>) => {
         setFormData(prev => ({ ...prev, ...updates }));
     };
 
     const handleScheduleAppointment = (type: 'trial' | 'regular') => {
-        setAppointmentType(type);
-        setShowCalendar(true);
+        setCalendar({ show: true, type });
     };
 
     const handleSubmit = async () => {
@@ -132,30 +132,30 @@ const Contact = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
-            <motion.div
+            <m.div
                 className="max-w-2xl mx-auto bg-blue-800 rounded-lg shadow-xl overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <div className="p-6">
-                    <motion.h1
+                    <m.h1
                         className="text-3xl font-bold text-center text-yellow-300 mb-6"
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
                         {String(t({ EN: "Let's Get Started!", NL: "Laten We Beginnen!" }))}
-                    </motion.h1>
+                    </m.h1>
 
                     {formData.error && (
-                        <motion.div 
+                        <m.div 
                             className="mb-4 p-4 bg-red-500 text-white rounded"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                         >
                             {formData.error}
-                        </motion.div>
+                        </m.div>
                     )}
 
                     <AnimatePresence mode="wait">
@@ -180,7 +180,7 @@ const Contact = () => {
                             />
                         )}
                         {formData.submitted && (
-                            <motion.div
+                            <m.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
@@ -198,16 +198,16 @@ const Contact = () => {
                                         NL: "We nemen binnenkort contact met je op."
                                     }))}
                                 </p>
-                            </motion.div>
+                            </m.div>
                         )}
                     </AnimatePresence>
                 </div>
-            </motion.div>
+            </m.div>
             
             <GoogleCalendarAppointment
-                isOpen={showCalendar}
-                onClose={() => setShowCalendar(false)}
-                appointmentType={appointmentType}
+                isOpen={calendar.show}
+                onClose={() => setCalendar(prev => ({ ...prev, show: false }))}
+                appointmentType={calendar.type}
                 studentName={formData.name}
                 studentEmail={formData.email}
             />

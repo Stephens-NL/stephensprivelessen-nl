@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { CollapsibleSection } from '@/components/CollapsibleSection';
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -11,21 +11,21 @@ const TermsAndConditions = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
-            <motion.div
+            <m.div
                 className="max-w-4xl mx-auto bg-blue-800 rounded-lg shadow-xl overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <div className="p-6">
-                    <motion.h1
+                    <m.h1
                         className="text-3xl font-bold text-center text-yellow-300 mb-6"
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
                         {String(t({ EN: 'Terms and Conditions', NL: 'Lesvoorwaarden' }))}
-                    </motion.h1>
+                    </m.h1>
 
                     {/* Vooraf Betalen */}
                     <CollapsibleSection title={{ EN: 'Payment in Advance', NL: 'Vooraf Betalen' }}>
@@ -75,7 +75,7 @@ const TermsAndConditions = () => {
                     
                     {/* Add more sections as needed for the rest of your terms */}
                 </div>
-            </motion.div>
+            </m.div>
         </div>
     );
 };

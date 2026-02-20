@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FormStep, FormData } from '../Contact';
 import PersonalDetails from './form-steps/PersonalDetails';
 import SubjectSelection from './form-steps/SubjectSelection';
@@ -132,54 +132,36 @@ const LessonForm = ({
         }
     };
 
-    const renderStep = () => {
+    const stepContent = (() => {
         switch (step) {
             case 'info':
-                return <InfoSection 
-                    onBack={handleBackClick}
-                    onRequestLesson={onNext}
-                />;
+                return <InfoSection onBack={handleBackClick} onRequestLesson={onNext} />;
             case 'personal-details':
-                return <PersonalDetails 
-                    formData={formData} 
-                    onUpdate={onUpdateFormData} 
-                />;
+                return <PersonalDetails formData={formData} onUpdate={onUpdateFormData} />;
             case 'subject-selection':
-                return <SubjectSelection 
-                    formData={formData} 
-                    onUpdate={onUpdateFormData} 
-                />;
+                return <SubjectSelection formData={formData} onUpdate={onUpdateFormData} />;
             case 'goals':
-                return <GoalsSection 
-                    formData={formData} 
-                    onUpdate={onUpdateFormData} 
-                />;
+                return <GoalsSection formData={formData} onUpdate={onUpdateFormData} />;
             case 'schedule':
-                return <ScheduleSelection 
-                    formData={formData} 
-                    onUpdate={onUpdateFormData} 
-                />;
+                return <ScheduleSelection formData={formData} onUpdate={onUpdateFormData} />;
             case 'location':
-                return <LocationChoice 
-                    formData={formData} 
-                    onUpdate={onUpdateFormData} 
-                />;
+                return <LocationChoice formData={formData} onUpdate={onUpdateFormData} />;
             case 'confirmation':
                 return <Confirmation formData={formData} />;
             default:
                 return null;
         }
-    };
+    })();
 
     return (
         <>
-            <motion.div
+            <m.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 className="space-y-6"
             >
-                {renderStep()}
+                {stepContent}
                 {step !== 'info' && (
                     <NavigationButtons 
                         onBack={handleBackClick}
@@ -189,7 +171,7 @@ const LessonForm = ({
                         disabled={!canProceed()}
                     />
                 )}
-            </motion.div>
+            </m.div>
 
             <BackConfirmationDialog 
                 isOpen={showBackConfirmation}

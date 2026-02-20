@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TutoringPage } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -19,15 +19,15 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl font-bold mb-4"
           >
             {t(pricing.title)}
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -35,14 +35,14 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
             className="text-xl text-gray-600"
           >
             {t(pricing.subtitle)}
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {pricing.plans.map((plan, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={String(plan.name?.EN ?? plan.name?.NL ?? index)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -96,7 +96,7 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
                   </Button>
                 </Link>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

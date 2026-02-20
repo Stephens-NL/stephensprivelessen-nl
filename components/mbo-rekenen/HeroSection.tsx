@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight, Calculator, TrendingUp, Users } from 'lucide-react';
 
 export function HeroSection() {
@@ -42,7 +42,7 @@ export function HeroSection() {
       <div className="container mx-auto px-4 relative z-10 max-w-6xl">
         <div className="text-center">
           {/* Main Content */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -75,7 +75,7 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <motion.button
+              <m.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={scrollToContact}
@@ -83,9 +83,9 @@ export function HeroSection() {
               >
                 {language === 'NL' ? 'Start vandaag' : 'Start today'}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </motion.button>
+              </m.button>
               
-              <motion.button
+              <m.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
@@ -95,20 +95,20 @@ export function HeroSection() {
                 className="bg-white border-2 border-gray-200 text-gray-900 px-8 py-4 rounded-xl text-lg font-medium hover:border-gray-900 transition-all duration-300"
               >
                 {language === 'NL' ? 'Bekijk trajecten' : 'View programs'}
-              </motion.button>
+              </m.button>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Stats */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
           >
             {stats.map((stat, index) => (
-              <motion.div
-                key={index}
+              <m.div
+                key={stat.label?.[language] ?? stat.value ?? index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
@@ -123,9 +123,9 @@ export function HeroSection() {
                 <div className="text-gray-600 text-sm">
                   {stat.label[language]}
                 </div>
-              </motion.div>
+              </m.div>
             ))}
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

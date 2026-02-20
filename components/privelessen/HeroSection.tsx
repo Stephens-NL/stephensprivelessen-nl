@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -29,7 +29,7 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -54,8 +54,8 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {content.stats.map((stat, index) => (
-              <motion.div
-                key={index}
+              <m.div
+                key={`${stat.value}-${String(stat.label?.EN ?? stat.label?.NL)}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 * index }}
@@ -67,10 +67,10 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
                 <div className="text-white/80">
                   {t(stat.label)}
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

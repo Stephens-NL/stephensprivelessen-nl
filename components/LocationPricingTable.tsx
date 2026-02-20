@@ -17,8 +17,8 @@ export const LocationPricingTable = ({ pricing, title }: LocationPricingTablePro
                     </tr>
                 </thead>
                 <tbody>
-                    {pricing.map((item, index) => (
-                        <tr key={index}>
+                    {pricing.map((item) => (
+                        <tr key={`${item.duration}-${item.price}`}>
                             <td>{item.duration}</td>
                             <td className="text-right">{item.price}</td>
                         </tr>

@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import { useTranslation } from '../hooks/useTranslation';
 import { m, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
-import { BlogInfo, BlogPost, BlogPosts } from '@/data';
+import { BlogInfo, BlogPost, BlogPosts } from '@/data/blog';
 
 const blogFetcher = (url: string) =>
   fetch(url).then((res) => {
@@ -153,7 +153,7 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
           transition={{ delay: 0.3, duration: 0.3 }}
         >
           {String(t(post.content)).split('\n').map((paragraph, index) => (
-            <p key={index} className="mb-4 text-gray-300">{paragraph}</p>
+            <p key={paragraph ? `${paragraph.slice(0, 30)}-${index}` : `para-${index}`} className="mb-4 text-gray-300">{paragraph}</p>
           ))}
         </m.div>
         <m.div
@@ -276,7 +276,7 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
           className="prose prose-lg prose-invert max-w-none"
         >
           {String(t(post.content)).split('\n').map((paragraph, index) => (
-            <p key={index} className="mb-6">{paragraph.trim()}</p>
+            <p key={paragraph ? `${paragraph.slice(0, 30)}-${index}` : `para-${index}`} className="mb-6">{paragraph.trim()}</p>
           ))}
         </m.div>
         

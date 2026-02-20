@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { PersonalIntermezzo } from '../../data';
 import { useTranslation } from '../../hooks/useTranslation';
 import React from 'react'
@@ -7,7 +7,7 @@ const PersonalIntermezzoComponent: React.FC<{ intermezzo: PersonalIntermezzo }> 
     const { t } = useTranslation();
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -15,7 +15,7 @@ const PersonalIntermezzoComponent: React.FC<{ intermezzo: PersonalIntermezzo }> 
         >
             <h3 className="text-2xl font-semibold mb-4 text-white">{String(t(intermezzo.title))}</h3>
             <p className="text-white">{String(t(intermezzo.content))}</p>
-        </motion.div>
+        </m.div>
     );
 };
 

@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useReducer } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import { FormData } from '../../Contact';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { FaEye } from 'react-icons/fa';
@@ -176,56 +176,71 @@ const subjectNotes: SubjectNote[] = [
     }
 ];
 
+type SubjectState = { showOtherInput: boolean; otherSubject: string; otherInputError: string | null; showProgrammingLanguages: boolean; selectedNote: SubjectNote | null };
+
+function subjectReducer(state: SubjectState, action: { type: string; payload?: unknown }): SubjectState {
+    switch (action.type) {
+        case 'OTHER_INPUT': return { ...state, showOtherInput: (action.payload as boolean) ?? !state.showOtherInput };
+        case 'OTHER_SUBJECT': return { ...state, otherSubject: (action.payload as string) ?? '' };
+        case 'OTHER_ERROR': return { ...state, otherInputError: (action.payload as string | null) ?? null };
+        case 'PROGRAMMING': return { ...state, showProgrammingLanguages: (action.payload as boolean) ?? !state.showProgrammingLanguages };
+        case 'NOTE': return { ...state, selectedNote: (action.payload as SubjectNote | null) ?? null };
+        default: return state;
+    }
+}
+
 const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
     const { t } = useTranslation();
-    const [showOtherInput, setShowOtherInput] = useState(false);
-    const [otherSubject, setOtherSubject] = useState('');
-    const [otherInputError, setOtherInputError] = useState<string | null>(null);
-    const [showProgrammingLanguages, setShowProgrammingLanguages] = useState(false);
+    const [state, dispatch] = useReducer(subjectReducer, {
+        showOtherInput: false,
+        otherSubject: '',
+        otherInputError: null,
+        showProgrammingLanguages: false,
+        selectedNote: null,
+    });
+    const { showOtherInput, otherSubject, otherInputError, showProgrammingLanguages, selectedNote } = state;
     const availableSubjects = subjects[formData.level as keyof typeof subjects] || [];
-    const [selectedNote, setSelectedNote] = useState<SubjectNote | null>(null);
 
     const handleSubjectSelect = (subject: string) => {
         if (subject === 'other') {
-            setShowOtherInput(true);
-            setShowProgrammingLanguages(false);
+            dispatch({ type: 'OTHER_INPUT', payload: true });
+            dispatch({ type: 'PROGRAMMING', payload: false });
             onUpdate({ subject: '', programmingLanguage: undefined });
         } else if (subject === 'Programming' || subject === 'Programmeren') {
-            setShowOtherInput(false);
-            setShowProgrammingLanguages(true);
+            dispatch({ type: 'OTHER_INPUT', payload: false });
+            dispatch({ type: 'PROGRAMMING', payload: true });
             onUpdate({ subject, programmingLanguage: undefined });
         } else {
-            setShowOtherInput(false);
-            setShowProgrammingLanguages(false);
+            dispatch({ type: 'OTHER_INPUT', payload: false });
+            dispatch({ type: 'PROGRAMMING', payload: false });
             onUpdate({ subject, programmingLanguage: undefined });
         }
     };
 
     const handleProgrammingLanguageSelect = (language: string) => {
         if (language === 'other') {
-            setShowOtherInput(true);
+            dispatch({ type: 'OTHER_INPUT', payload: true });
             onUpdate({ programmingLanguage: '' });
         } else {
-            setShowOtherInput(false);
+            dispatch({ type: 'OTHER_INPUT', payload: false });
             onUpdate({ programmingLanguage: language });
         }
     };
 
     const handleOtherInput = (value: string) => {
-        setOtherSubject(value);
-        
+        dispatch({ type: 'OTHER_SUBJECT', payload: value });
         if (value.length < MIN_SUBJECT_LENGTH) {
-            setOtherInputError(String(t({
+            dispatch({ type: 'OTHER_ERROR', payload: String(t({
                 EN: `Subject must be at least ${MIN_SUBJECT_LENGTH} characters long`,
                 NL: `Vak moet minimaal ${MIN_SUBJECT_LENGTH} tekens lang zijn`
-            })));
+            })) });
         } else if (value.length > MAX_SUBJECT_LENGTH) {
-            setOtherInputError(String(t({
+            dispatch({ type: 'OTHER_ERROR', payload: String(t({
                 EN: `Subject cannot be longer than ${MAX_SUBJECT_LENGTH} characters`,
                 NL: `Vak mag niet langer zijn dan ${MAX_SUBJECT_LENGTH} tekens`
-            })));
+            })) });
         } else {
-            setOtherInputError(null);
+            dispatch({ type: 'OTHER_ERROR', payload: null });
             if (showProgrammingLanguages) {
                 onUpdate({ programmingLanguage: value });
             } else {
@@ -235,19 +250,13 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
     };
 
     const handlePreviewNotes = (subject: string) => {
-        console.log('Attempting to preview notes for:', subject);
         const note = subjectNotes.find(n => n.subject === subject);
-        if (note) {
-            console.log('Found note:', note);
-            setSelectedNote(note);
-        } else {
-            console.log('No notes found for subject:', subject);
-        }
+        dispatch({ type: 'NOTE', payload: note ?? null });
     };
 
     const renderSubjectButton = (subject: string) => (
         <div key={subject} className="relative">
-            <motion.button
+            <m.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleSubjectSelect(subject)}
@@ -264,7 +273,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                     }))
                     : subject
                 }
-            </motion.button>
+            </m.button>
             {subjectNotes.some(note => note.subject === subject) && (
                 <button
                     onClick={(e) => {
@@ -305,7 +314,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
 
             <AnimatePresence mode="wait">
                 {!showProgrammingLanguages ? (
-                    <motion.div
+                    <m.div
                         key="subjects"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -313,9 +322,9 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                         className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                     >
                         {availableSubjects.map(subject => renderSubjectButton(subject))}
-                    </motion.div>
+                    </m.div>
                 ) : (
-                    <motion.div
+                    <m.div
                         key="programming-languages"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -323,7 +332,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                         className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                     >
                         {programmingLanguages.map((language) => (
-                            <motion.button
+                            <m.button
                                 key={language}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -341,15 +350,15 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                                     }))
                                     : language
                                 }
-                            </motion.button>
+                            </m.button>
                         ))}
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
 
             <AnimatePresence>
                 {showOtherInput && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
@@ -380,19 +389,18 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                                     ? "Voer de programmeertaal in"
                                     : "Voer de naam van het vak in"
                             }))}
-                            autoFocus
                             maxLength={MAX_SUBJECT_LENGTH}
                         />
                         {otherInputError && (
-                            <motion.p
+                            <m.p
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 className="text-red-500 text-sm"
                             >
                                 {otherInputError}
-                            </motion.p>
+                            </m.p>
                         )}
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
 

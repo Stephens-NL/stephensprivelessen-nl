@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Mail, MessageCircle, Phone, MapPin, Clock } from 'lucide-react';
 
 export function ContactSection() {
@@ -40,7 +40,7 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -55,11 +55,11 @@ export function ContactSection() {
               ? 'Klaar om te starten? Neem contact op voor een gratis kennismakingsgesprek en ontdek hoe we jou kunnen helpen.'
               : 'Ready to start? Contact us for a free introductory meeting and discover how we can help you.'}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Methods */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -71,8 +71,8 @@ export function ContactSection() {
             
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
-                <motion.a
-                  key={index}
+                <m.a
+                  key={info.label?.[language] ?? info.value ?? index}
                   href={info.href}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -96,13 +96,13 @@ export function ContactSection() {
                       </p>
                     </div>
                   </div>
-                </motion.a>
+                </m.a>
               ))}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Info & Availability */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -118,8 +118,8 @@ export function ContactSection() {
                 </h3>
               </div>
               <div className="space-y-3">
-                {availability.map((time, index) => (
-                  <div key={index} className="text-gray-600">
+                {availability.map((time) => (
+                  <div key={time[language]} className="text-gray-600">
                     {time[language]}
                   </div>
                 ))}
@@ -175,7 +175,7 @@ export function ContactSection() {
                 {language === 'NL' ? 'Plan kennismaking' : 'Schedule introduction'}
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { introductionContent } from '@/data/index'; // Adjust path as necessary
 import { useTranslation } from '@/hooks/useTranslation';
 
@@ -44,27 +44,27 @@ const Introductie = () => {
   };
 
   return (
-    <motion.section
+    <m.section
       className="py-10 bg-blue-100 "
       variants={sectionVariants}
       initial="hidden"
       animate="visible"
     >
-      <motion.div className="container mx-auto px-4" variants={textContainerVariants}>
-        <motion.h2
+      <m.div className="container mx-auto px-4" variants={textContainerVariants}>
+        <m.h2
           className="text-3xl font-bold mb-6 text-center"
           variants={textItemVariants}
         >
           {String(t(introductionContent.title))}
-        </motion.h2>
-        <motion.p
+        </m.h2>
+        <m.p
           className="text-lg text-gray-700 leading-relaxed text-center"
           variants={textItemVariants}
         >
           {String(t(introductionContent.description))}
-        </motion.p>
-      </motion.div>
-    </motion.section>
+        </m.p>
+      </m.div>
+    </m.section>
   );
 };
 

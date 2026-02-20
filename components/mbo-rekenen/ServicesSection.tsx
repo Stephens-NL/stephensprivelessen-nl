@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { User, Users, BookOpen, MapPin, Monitor } from 'lucide-react';
 
 const services = [
@@ -69,7 +69,7 @@ export function ServicesSection() {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -84,12 +84,12 @@ export function ServicesSection() {
               ? 'Van individuele begeleiding tot groepslessen - we bieden flexibele oplossingen voor elke leerstijl.'
               : 'From individual guidance to group lessons - we offer flexible solutions for every learning style.'}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={service.title?.en ?? service.title?.nl ?? index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -105,7 +105,7 @@ export function ServicesSection() {
               <p className="text-gray-600 leading-relaxed">
                 {language === 'NL' ? service.description.nl : service.description.en}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

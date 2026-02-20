@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../hooks/useTranslation';
 import { generalContent, services, Service } from '../data';
 import Image from 'next/image';
@@ -13,15 +13,15 @@ const Modal: React.FC<{ service: Service | null, isOpen: boolean, onClose: () =>
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
           onClick={onClose}
         >
-          <motion.div
-            initial={{ scale: 0, opacity: 0, y: 50 }}
+          <m.div
+            initial={{ scale: 0.95, opacity: 0, y: 50 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.5, opacity: 0, y: -50 }}
             transition={{ type: "spring", damping: 25, stiffness: 200, exit: { duration: 0.8 } }}
@@ -46,8 +46,8 @@ const Modal: React.FC<{ service: Service | null, isOpen: boolean, onClose: () =>
             >
               Close
             </button>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );
@@ -76,8 +76,8 @@ const ServicesShort: React.FC = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {randomServices.map((service, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={service.id}
               className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -104,7 +104,7 @@ const ServicesShort: React.FC = () => {
                   {String(t(learnMore))} &rarr;
                 </span>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

@@ -92,7 +92,7 @@ const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSe
         <h2 className="text-3xl font-semibold text-blue-900 mb-4">{heading}</h2>
         {paragraphs.map((paragraph: string, index: number) => (
           <m.p
-            key={index}
+            key={paragraph ? `${paragraph.slice(0, 30)}-${index}` : `para-${index}`}
             className="mb-4 text-blue-800"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '../../../hooks/useTranslation';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
@@ -18,13 +18,13 @@ const BackConfirmationDialog = ({ isOpen, onClose, onConfirm }: BackConfirmation
 
     return (
         <AnimatePresence>
-            <motion.div
+            <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
             >
-                <motion.div
+                <m.div
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
@@ -66,8 +66,8 @@ const BackConfirmationDialog = ({ isOpen, onClose, onConfirm }: BackConfirmation
                             }))}
                         </button>
                     </div>
-                </motion.div>
-            </motion.div>
+                </m.div>
+            </m.div>
         </AnimatePresence>
     );
 };

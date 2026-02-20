@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FaInfoCircle, FaCalendarCheck } from 'react-icons/fa';
 import { useTranslation } from '../../../hooks/useTranslation';
 
@@ -14,7 +14,7 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
     const { t } = useTranslation();
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -28,7 +28,7 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <motion.button
+                <m.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex flex-col items-center p-6 bg-blue-700 rounded-lg text-yellow-300 hover:bg-blue-600 transition-colors border-2 border-blue-600 hover:border-yellow-400"
@@ -47,10 +47,10 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
                             NL: "Leer meer over onze lesmethoden, vakken en tarieven"
                         }))}
                     </p>
-                </motion.button>
+                </m.button>
 
                 <div className="relative">
-                    <motion.button
+                    <m.button
                         whileHover={{ scale: 1.03 }}
                         whileTap={{ scale: 0.98 }}
                         className="flex flex-col items-center p-6 bg-gray-400 rounded-lg text-blue-900 transition-colors border-2 border-gray-500 w-full opacity-50 cursor-not-allowed"
@@ -69,7 +69,7 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
                                 NL: "Plan direct een gratis proefles van 30 minuten"
                             }))}
                         </p>
-                    </motion.button>
+                    </m.button>
                     <div className="absolute inset-0 flex items-center justify-center">
                         <span className="bg-blue-900 text-yellow-300 px-4 py-2 rounded-full font-semibold transform -rotate-12">
                             {String(t({
@@ -80,7 +80,7 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 

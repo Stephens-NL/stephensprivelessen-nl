@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface FadeInTextProps {
   text: string | undefined;
@@ -7,22 +7,28 @@ interface FadeInTextProps {
 }
 
 const FadeInText: React.FC<FadeInTextProps> = ({ text = '', delay = 0 }) => {
-  const words = text.split(' ');
+  const wordsWithKeys = text.split(' ').reduce<{ word: string; key: string; pos: number }[]>(
+    (acc, word, pos) => {
+      acc.push({ word, key: `${word}-${pos}`, pos });
+      return acc;
+    },
+    []
+  );
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay }}>
-      {words.map((word, index) => (
-        <motion.span
-          key={index}
+    <m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay }}>
+      {wordsWithKeys.map(({ word, key, pos }) => (
+        <m.span
+          key={key}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: delay + index * 0.2 }}
+          transition={{ delay: delay + pos * 0.2 }}
           style={{ display: 'inline-block', marginRight: '5px' }}
         >
           {word}
-        </motion.span>
+        </m.span>
       ))}
-    </motion.div>
+    </m.div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from '../../hooks/useTranslation';
 import { Clock, ClipboardList } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -34,7 +34,7 @@ export const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectForm
         {(Object.keys(formTypes) as Array<keyof typeof formTypes>).map((type) => {
           const { title, description, icon: Icon } = formTypes[type];
           return (
-            <motion.button
+            <m.button
               key={type}
               onClick={() => onSelectFormType(type)}
               className="w-full md:w-64 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-left"
@@ -46,7 +46,7 @@ export const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectForm
                 <h3 className="text-xl font-bold text-blue-900">{String(title)}</h3>
               </div>
               <p className="text-gray-600">{String(description)}</p>
-            </motion.button>
+            </m.button>
           );
         })}
       </div>

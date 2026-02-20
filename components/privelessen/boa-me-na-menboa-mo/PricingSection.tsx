@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { WeekendLocation } from '@/data/types';
 
@@ -15,14 +15,14 @@ export function PricingSection({ content }: PricingSectionProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
       id="pricing"
       className="relative z-10 py-24 px-4"
       style={{
         transform: isInView ? "none" : "translateY(100px)",
         opacity: isInView ? 1 : 0,
-        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+        transition: "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s, opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}
     >
       <div className="max-w-6xl mx-auto">
@@ -56,6 +56,6 @@ export function PricingSection({ content }: PricingSectionProps) {
           </div>
         </div>
       </div>
-    </motion.section>
+    </m.section>
   );
 } 

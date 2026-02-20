@@ -55,8 +55,8 @@ const PricingPage = () => {
         {/* Last-minute surcharges */}
         <CollapsibleSection title={String(t({ EN: 'Last-Minute Surcharges', NL: 'Last-Minute Toeslagen' }))}>
           <ul className="list-disc pl-5 text-yellow-100">
-            {prices.lastMinuteSurcharges.map((surcharge, index) => (
-              <li key={index} className="mb-2">
+            {prices.lastMinuteSurcharges.map((surcharge) => (
+              <li key={`${surcharge.timeFrame}-${surcharge.percentage}`} className="mb-2">
                 {surcharge.timeFrame}: {surcharge.percentage}% {String(t({ EN: 'surcharge', NL: 'toeslag' }))}
               </li>
             ))}
@@ -68,11 +68,11 @@ const PricingPage = () => {
           {String(t({ EN: 'Terms and Conditions', NL: 'Lesvoorwaarden' }))}
         </h2>
 
-        {terms.map((term, index) => (
-          <CollapsibleSection key={index} title={term.title[language]}>
+        {terms.map((term) => (
+          <CollapsibleSection key={term.title[language]} title={term.title[language]}>
             <ul className="list-disc pl-5 text-yellow-100">
-              {term.content.map((item, itemIndex) => (
-                <li key={itemIndex} className="mb-2">{item[language]}</li>
+              {term.content.map((item) => (
+                <li key={item[language]} className="mb-2">{item[language]}</li>
               ))}
             </ul>
           </CollapsibleSection>

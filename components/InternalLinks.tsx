@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const InternalLinks: React.FC = () => {
   const locationLinks = [
@@ -80,7 +80,7 @@ const InternalLinks: React.FC = () => {
           <h3 className="text-2xl font-semibold mb-6 text-center">Bijles per Regio</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {locationLinks.map((link, index) => (
-              <motion.div
+              <m.div
                 key={link.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ const InternalLinks: React.FC = () => {
                     Meer info →
                   </span>
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -110,7 +110,7 @@ const InternalLinks: React.FC = () => {
           <h3 className="text-2xl font-semibold mb-6 text-center">Bijles per Vak</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {subjectLinks.map((link, index) => (
-              <motion.div
+              <m.div
                 key={link.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ const InternalLinks: React.FC = () => {
                     Meer info →
                   </span>
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -140,7 +140,7 @@ const InternalLinks: React.FC = () => {
           <h3 className="text-2xl font-semibold mb-6 text-center">Bijles voor Studenten</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {campusLinks.map((link, index) => (
-              <motion.div
+              <m.div
                 key={link.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -160,7 +160,7 @@ const InternalLinks: React.FC = () => {
                     Meer info →
                   </span>
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

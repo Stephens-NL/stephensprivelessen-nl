@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TutoringFeature } from '@/types';
 import { Icon, IconName } from '@/components/ui/icons';
 import { Card } from '@/components/ui/card';
@@ -17,8 +17,8 @@ export function FeaturesSection({ features, t }: FeaturesSectionProps) {
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={String(feature.title?.EN ?? feature.title?.NL ?? feature.icon ?? index)}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -31,7 +31,7 @@ export function FeaturesSection({ features, t }: FeaturesSectionProps) {
                 <h3 className="text-xl font-semibold mb-2">{t(feature.title)}</h3>
                 <p className="text-muted-foreground">{t(feature.description)}</p>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

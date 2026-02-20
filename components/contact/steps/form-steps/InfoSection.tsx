@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaBook } from 'react-icons/fa';
 
@@ -40,14 +40,14 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
     };
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="space-y-8"
         >
             <div className="space-y-6">
-                <motion.div
+                <m.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
@@ -63,24 +63,24 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                         <div>
                             <h4 className="font-semibold mb-2">{String(t({ EN: "Primary Education", NL: "Basisonderwijs" }))}</h4>
                             <ul className="list-disc list-inside pl-4">
-                                {courses.primary.map((course, index) => (
-                                    <li key={index}>{course}</li>
+                                {courses.primary.map((course) => (
+                                    <li key={course}>{course}</li>
                                 ))}
                             </ul>
                         </div>
                         <div>
                             <h4 className="font-semibold mb-2">{String(t({ EN: "Secondary Education", NL: "Voortgezet Onderwijs" }))}</h4>
                             <ul className="list-disc list-inside pl-4">
-                                {courses.secondary.map((course, index) => (
-                                    <li key={index}>{course}</li>
+                                {courses.secondary.map((course) => (
+                                    <li key={course}>{course}</li>
                                 ))}
                             </ul>
                         </div>
                         <div>
                             <h4 className="font-semibold mb-2">{String(t({ EN: "Higher Education", NL: "Hoger Onderwijs" }))}</h4>
                             <ul className="list-disc list-inside pl-4">
-                                {courses.higher.map((course, index) => (
-                                    <li key={index}>{course}</li>
+                                {courses.higher.map((course) => (
+                                    <li key={course}>{course}</li>
                                 ))}
                             </ul>
                         </div>
@@ -91,17 +91,17 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                                 NL: "Verschillende programmeertalen en technologieën waaronder:" 
                             }))}</p>
                             <div className="flex flex-wrap gap-2">
-                                {courses.programming.map((lang, index) => (
-                                    <span key={index} className="bg-blue-600 px-2 py-1 rounded text-sm">
+                                {courses.programming.map((lang) => (
+                                    <span key={lang} className="bg-blue-600 px-2 py-1 rounded text-sm">
                                         {lang}
                                     </span>
                                 ))}
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
@@ -119,9 +119,9 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             NL: "Ik focus op begrip in plaats van uit het hoofd leren. We werken samen aan een sterke basis in het vak, met praktische voorbeelden en heldere uitleg."
                         }))}
                     </p>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
@@ -139,9 +139,9 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             NL: "Lessen duren meestal 1-2 uur, ingepland op tijden die jou uitkomen. We beginnen met een gratis proefles van 30 minuten om je behoeften en doelen te bespreken."
                         }))}
                     </p>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
@@ -159,20 +159,20 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             NL: "Tarieven beginnen vanaf €50 per uur, afhankelijk van het niveau en de frequentie van de lessen. De eerste proefles van 30 minuten is gratis."
                         }))}
                     </p>
-                </motion.div>
+                </m.div>
             </div>
 
             <div className="flex justify-between">
-                <motion.button
+                <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="px-6 py-3 bg-blue-700 text-yellow-300 rounded-lg hover:bg-blue-600"
                     onClick={onBack}
                 >
                     {String(t({ EN: "Back", NL: "Terug" }))}
-                </motion.button>
+                </m.button>
 
-                <motion.button
+                <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center px-6 py-3 bg-yellow-400 text-blue-900 rounded-lg hover:bg-yellow-300"
@@ -183,9 +183,9 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                         NL: "Plan Proefles"
                     }))}
                     <FaArrowRight className="ml-2" />
-                </motion.button>
+                </m.button>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 

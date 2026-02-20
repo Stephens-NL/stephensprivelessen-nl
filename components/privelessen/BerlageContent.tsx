@@ -2,13 +2,11 @@
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useReducer } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import { FaGraduationCap, FaSearch, FaWhatsapp, FaMapMarkerAlt, FaClock, FaCheck } from 'react-icons/fa';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { getBusinessData } from '@/data/businessData';
+import { StudentInfoModal } from './StudentInfoModal';
 import { useTranslation } from 'react-i18next';
 import { config } from '@/data/config';
 
@@ -36,20 +34,136 @@ const OfferVariant = ({ title, description, cta, whatsappMessage }: {
   );
 };
 
+type BerlageEducationLevel = {
+  id: string;
+  titleNL: string;
+  titleEN: string;
+  subjects: Array<{ NL: string; EN: string }>;
+  whatsappIntro: string;
+  hasDiscount: boolean;
+};
+
+function BerlageSubjectsSection({
+  searchTerm,
+  setSearchTerm,
+  selectedLevel,
+  educationLevels,
+  filteredSubjects,
+  handleSubjectClick,
+}: {
+  searchTerm: string;
+  setSearchTerm: (v: string) => void;
+  selectedLevel: string | null;
+  educationLevels: BerlageEducationLevel[];
+  filteredSubjects: (subjects: Array<{ NL: string; EN: string }>) => Array<{ NL: string; EN: string }>;
+  handleSubjectClick: (subject: { NL: string; EN: string }, level: BerlageEducationLevel) => void;
+}) {
+  return (
+    <div className="bg-purple-800 p-8 rounded-2xl mb-12 shadow-xl border border-purple-300/50 relative overflow-hidden">
+      <div className="relative">
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center gap-3">
+            <FaGraduationCap className="text-3xl text-purple-400" />
+            <div>
+              <h2 className="text-2xl font-bold text-purple-400">Available Subjects</h2>
+              <p className="text-purple-200 text-sm">Find your subject and click to ask about it</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative mb-8">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <FaSearch className="text-purple-400" />
+          </div>
+          <input
+            type="text"
+            placeholder="Zoek een vak / Search a subject..."
+            className="w-full pl-10 pr-4 py-3 bg-purple-900 border border-purple-300/50 rounded-xl text-purple-100 placeholder-purple-200/50 focus:outline-none focus:ring-2 focus:ring-purple-400/50"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        <AnimatePresence mode="wait">
+          {selectedLevel && (
+            <m.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            >
+              {filteredSubjects(educationLevels.find(level => level.id === selectedLevel)?.subjects || [])
+                .map((subject, index) => {
+                  const currentLevel = educationLevels.find(level => level.id === selectedLevel);
+                  if (!currentLevel) return null;
+                  return (
+                    <m.div
+                      key={`${selectedLevel}-${subject.NL}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="bg-purple-900 p-4 rounded-xl border border-purple-300/50 hover:border-purple-200/50 
+                               transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer group"
+                      onClick={() => handleSubjectClick(subject, currentLevel)}
+                    >
+                      <div className="font-medium text-purple-100 group-hover:text-purple-400 transition-colors">
+                        {subject.NL}
+                      </div>
+                      <div className="text-sm text-purple-200/75 group-hover:text-purple-300 transition-colors">
+                        {subject.EN}
+                      </div>
+                      <div className="mt-2 pt-2 border-t border-purple-300/30 text-xs text-purple-200/50 group-hover:text-purple-200 transition-colors flex items-center gap-1">
+                        <FaWhatsapp className="text-sm" />
+                        Click to ask about this subject
+                      </div>
+                    </m.div>
+                  );
+                })}
+            </m.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+}
+
+type BerlageFormState = {
+  searchTerm: string;
+  selectedLevel: string | null;
+  showModal: boolean;
+  studentName: string;
+  studentAge: string;
+  selectedSubject: { subject: { NL: string; EN: string }; level: BerlageEducationLevel } | null;
+};
+
+function berlageFormReducer(state: BerlageFormState, action: { type: string; payload?: unknown }): BerlageFormState {
+  switch (action.type) {
+    case 'SEARCH': return { ...state, searchTerm: (action.payload as string) ?? '' };
+    case 'LEVEL': return { ...state, selectedLevel: (action.payload as string | null) ?? null };
+    case 'MODAL': return { ...state, showModal: (action.payload as boolean) ?? !state.showModal };
+    case 'STUDENT_NAME': return { ...state, studentName: (action.payload as string) ?? '' };
+    case 'STUDENT_AGE': return { ...state, studentAge: (action.payload as string) ?? '' };
+    case 'SUBJECT': return { ...state, selectedSubject: (action.payload as BerlageFormState['selectedSubject']) ?? null };
+    case 'RESET': return { ...state, showModal: false, studentName: '', studentAge: '', selectedSubject: null };
+    default: return state;
+  }
+}
+
 export function BerlageContent() {
   const { t } = useTranslation();
   const businessData = getBusinessData(t);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedLevel, setSelectedLevel] = useState<string | null>('voortgezet');
-  const [showModal, setShowModal] = useState(false);
-  const [studentName, setStudentName] = useState('');
-  const [studentAge, setStudentAge] = useState('');
-  const [selectedSubject, setSelectedSubject] = useState<{
-    subject: { NL: string; EN: string };
-    level: typeof educationLevels[0];
-  } | null>(null);
+  const [formState, dispatch] = useReducer(berlageFormReducer, {
+    searchTerm: '',
+    selectedLevel: 'voortgezet',
+    showModal: false,
+    studentName: '',
+    studentAge: '',
+    selectedSubject: null,
+  });
+  const { searchTerm, selectedLevel, showModal, studentName, studentAge, selectedSubject } = formState;
 
-  const educationLevels = [
+  const educationLevels: BerlageEducationLevel[] = [
     {
       id: 'voortgezet',
       titleNL: 'Voortgezet Onderwijs',
@@ -88,9 +202,9 @@ export function BerlageContent() {
     }
   ];
 
-  const handleSubjectClick = (subject: { NL: string; EN: string }, level: typeof educationLevels[0]) => {
-    setSelectedSubject({ subject, level });
-    setShowModal(true);
+  const handleSubjectClick = (subject: { NL: string; EN: string }, level: BerlageEducationLevel) => {
+    dispatch({ type: 'SUBJECT', payload: { subject, level } });
+    dispatch({ type: 'MODAL', payload: true });
   };
 
   const handleSendWhatsApp = () => {
@@ -106,148 +220,13 @@ Subject: ${subject.EN} (${subject.NL})
 Can you tell me more about tutoring for this subject?`;
     
     window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
-    setShowModal(false);
-    setStudentName('');
-    setStudentAge('');
-    setSelectedSubject(null);
+    dispatch({ type: 'RESET' });
   };
-
-  const StudentInfoModal = () => (
-    <Dialog open={showModal} onOpenChange={setShowModal}>
-      <DialogContent className="bg-purple-900 border border-purple-300/50 text-purple-100">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-purple-400">
-            Student Information
-          </DialogTitle>
-          <DialogDescription className="text-purple-200">
-            Please provide some information before we connect via WhatsApp
-          </DialogDescription>
-        </DialogHeader>
-        
-        <div className="space-y-6 py-4">
-          <div className="space-y-2">
-            <Label htmlFor="name" className="text-purple-300">
-              Student Name / Naam
-            </Label>
-            <Input
-              id="name"
-              placeholder="Enter student name..."
-              value={studentName}
-              onChange={(e) => setStudentName(e.target.value)}
-              className="bg-purple-800 border-purple-300/50 text-purple-100 placeholder:text-purple-200/50"
-            />
-          </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="age" className="text-purple-300">
-              Student Age / Leeftijd
-            </Label>
-            <Input
-              id="age"
-              type="number"
-              placeholder="Enter student age..."
-              value={studentAge}
-              onChange={(e) => setStudentAge(e.target.value)}
-              className="bg-purple-800 border-purple-300/50 text-purple-100 placeholder:text-purple-200/50"
-            />
-          </div>
-        </div>
-
-        <div className="flex justify-end gap-4">
-          <Button
-            variant="outline"
-            onClick={() => setShowModal(false)}
-            className="border-purple-300/50 text-purple-200 hover:bg-purple-800 hover:text-purple-100"
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleSendWhatsApp}
-            disabled={!studentName || !studentAge}
-            className="bg-green-500 hover:bg-green-400 text-white flex items-center gap-2"
-          >
-            <FaWhatsapp />
-            Continue to WhatsApp
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-
-  const SubjectsSection = () => (
-    <div className="bg-purple-800 p-8 rounded-2xl mb-12 shadow-xl border border-purple-300/50 relative overflow-hidden">
-      <div className="relative">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <FaGraduationCap className="text-3xl text-purple-400" />
-            <div>
-              <h2 className="text-2xl font-bold text-purple-400">Available Subjects</h2>
-              <p className="text-purple-200 text-sm">Find your subject and click to ask about it</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative mb-8">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <FaSearch className="text-purple-400" />
-          </div>
-          <input
-            type="text"
-            placeholder="Zoek een vak / Search a subject..."
-            className="w-full pl-10 pr-4 py-3 bg-purple-900 border border-purple-300/50 rounded-xl text-purple-100 placeholder-purple-200/50 focus:outline-none focus:ring-2 focus:ring-purple-400/50"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
-        <AnimatePresence mode="wait">
-          {selectedLevel && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-            >
-              {filteredSubjects(educationLevels.find(level => level.id === selectedLevel)?.subjects || [])
-                .map((subject, index) => {
-                  const currentLevel = educationLevels.find(level => level.id === selectedLevel);
-                  if (!currentLevel) return null;
-                  
-                  return (
-                    <motion.div
-                      key={`${selectedLevel}-${subject.NL}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className="bg-purple-900 p-4 rounded-xl border border-purple-300/50 hover:border-purple-200/50 
-                               transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer group"
-                      onClick={() => handleSubjectClick(subject, currentLevel)}
-                    >
-                      <div className="font-medium text-purple-100 group-hover:text-purple-400 transition-colors">
-                        {subject.NL}
-                      </div>
-                      <div className="text-sm text-purple-200/75 group-hover:text-purple-300 transition-colors">
-                        {subject.EN}
-                      </div>
-                      <div className="mt-2 pt-2 border-t border-purple-300/30 text-xs text-purple-200/50 group-hover:text-purple-200 transition-colors flex items-center gap-1">
-                        <FaWhatsapp className="text-sm" />
-                        Click to ask about this subject
-                      </div>
-                    </motion.div>
-                  );
-                })}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </div>
-  );
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-900 to-purple-800 text-white">
       <div className="container mx-auto px-4 py-16 relative">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -271,7 +250,7 @@ Can you tell me more about tutoring for this subject?`;
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-400/5 rounded-full transform -translate-x-32 translate-y-32" />
             
             <div className="relative">
-              <motion.div
+              <m.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5 }}
@@ -288,7 +267,7 @@ Can you tell me more about tutoring for this subject?`;
                     Succeed in Your Studies!
                   </span>
                 </h2>
-              </motion.div>
+              </m.div>
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-purple-900 p-6 rounded-xl border border-purple-300/50">
@@ -318,15 +297,22 @@ Can you tell me more about tutoring for this subject?`;
             </div>
           </div>
 
-          <SubjectsSection />
+          <BerlageSubjectsSection
+            searchTerm={searchTerm}
+            setSearchTerm={(v) => dispatch({ type: 'SEARCH', payload: v })}
+            selectedLevel={selectedLevel}
+            educationLevels={educationLevels}
+            filteredSubjects={filteredSubjects}
+            handleSubjectClick={handleSubjectClick}
+          />
 
           <div className="grid gap-8 md:grid-cols-3 mb-12">
-            {offers.map((offer, index) => (
-              <OfferVariant key={index} {...offer} />
+            {offers.map((offer) => (
+              <OfferVariant key={offer.title} {...offer} />
             ))}
           </div>
 
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -345,10 +331,24 @@ Can you tell me more about tutoring for this subject?`;
                 WhatsApp Now
               </Button>
             </a>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
-      <StudentInfoModal />
+      <StudentInfoModal
+        open={showModal}
+        onOpenChange={(v) => dispatch({ type: 'MODAL', payload: v })}
+        studentName={studentName}
+        setStudentName={(v) => dispatch({ type: 'STUDENT_NAME', payload: v })}
+        studentAge={studentAge}
+        setStudentAge={(v) => dispatch({ type: 'STUDENT_AGE', payload: v })}
+        onSend={handleSendWhatsApp}
+        contentClassName="bg-purple-900 border border-purple-300/50 text-purple-100"
+        titleClassName="text-2xl font-bold text-purple-400"
+        descriptionClassName="text-purple-200"
+        labelClassName="text-purple-300"
+        inputClassName="bg-purple-800 border-purple-300/50 text-purple-100 placeholder:text-purple-200/50"
+        cancelClassName="border-purple-300/50 text-purple-200 hover:bg-purple-800 hover:text-purple-100"
+      />
     </div>
   );
 } 

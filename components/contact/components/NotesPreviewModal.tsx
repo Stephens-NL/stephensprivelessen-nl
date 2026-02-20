@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
 import { useTranslation } from '../../../hooks/useTranslation';
 
@@ -16,25 +16,18 @@ interface NotesPreviewModalProps {
 const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial }: NotesPreviewModalProps) => {
     const { t } = useTranslation();
 
-    useEffect(() => {
-        if (isOpen) {
-            console.log('Opening preview for:', subject);
-            console.log('Note URL:', noteUrl);
-        }
-    }, [isOpen, subject, noteUrl]);
-
     if (!isOpen) return null;
 
     return (
         <AnimatePresence>
-            <motion.div
+            <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
                 onClick={onClose}
             >
-                <motion.div
+                <m.div
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
@@ -78,9 +71,9 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                             />
                             <div className="absolute inset-0 pointer-events-none select-none">
                                 <div className="absolute inset-0 grid grid-cols-3 gap-4 p-8">
-                                    {[...Array(12)].map((_, i) => (
+                                    {['w0','w1','w2','w3','w4','w5','w6','w7','w8','w9','w10','w11'].map((watermarkKey) => (
                                         <div
-                                            key={i}
+                                            key={watermarkKey}
                                             className="flex items-center justify-center"
                                         >
                                             <div className="text-2xl font-bold text-black/[0.07] whitespace-nowrap transform -rotate-[20deg] text-center">
@@ -105,8 +98,8 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                             }))}
                         </button>
                     </div>
-                </motion.div>
-            </motion.div>
+                </m.div>
+            </m.div>
         </AnimatePresence>
     );
 };

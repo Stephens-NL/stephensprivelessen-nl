@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { IconType } from 'react-icons/lib';
 import { getBusinessData } from '@/data/businessData';
@@ -31,7 +31,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ icon, title, content, href })
     const { t } = useTranslation('contact');
 
     return (
-        <motion.div
+        <m.div
             className="flex items-center mb-4 bg-blue-900 rounded-lg p-3 border border-blue-800 hover:border-blue-700"
             whileHover={{ scale: 1.03, boxShadow: "0 5px 10px rgba(0,0,0,0.2)" }}
         >
@@ -49,7 +49,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ icon, title, content, href })
                     {content}
                 </a>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 
@@ -64,17 +64,17 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({ title, children
 
     return (
         <div className="mb-4">
-            <motion.button
+            <m.button
                 className="w-full flex justify-between items-center bg-blue-700 p-3 rounded-lg text-yellow-300 font-semibold"
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.02 }}
             >
                 {t(title)}
                 {isOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </motion.button>
+            </m.button>
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
@@ -82,7 +82,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({ title, children
                         className="bg-blue-800 p-4 rounded-b-lg mt-1"
                     >
                         {children}
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </div>
@@ -100,8 +100,8 @@ const SubjectList: React.FC<SubjectListProps> = ({ subjects, title }) => {
         <div className="mb-4">
             <h3 className="text-lg font-semibold text-yellow-300 mb-2">{t(title)}</h3>
             <ul className="list-disc list-inside text-yellow-100 text-sm">
-                {subjects.map((subject, index) => (
-                    <li key={index}>{t(subject)}</li>
+                {subjects.map((subject) => (
+                    <li key={t(subject)}>{t(subject)}</li>
                 ))}
             </ul>
         </div>
@@ -131,8 +131,8 @@ const PricingTable: React.FC<PricingTableProps> = ({ pricing, title }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {pricing.map((item, index) => (
-                        <tr key={index}>
+                    {pricing.map((item) => (
+                        <tr key={`${item.duration}-${item.price}`}>
                             <td>{t(item.duration)}</td>
                             <td className="text-right">{item.price}</td>
                         </tr>
@@ -150,23 +150,23 @@ const ContactPage: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
-            <motion.div
+            <m.div
                 className="max-w-2xl mx-auto bg-blue-800 rounded-lg shadow-xl overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <div className="p-6">
-                    <motion.h1
+                    <m.h1
                         className="text-3xl font-bold text-center text-yellow-300 mb-6"
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
                         {t('title')}
-                    </motion.h1>
+                    </m.h1>
 
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
@@ -174,9 +174,9 @@ const ContactPage: React.FC = () => {
                         <p className="text-yellow-100 mb-6 text-sm">{t('aboutMe')}</p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            {businessData.contactItems.map((item, index) => (
+                            {businessData.contactItems.map((item) => (
                                 <ContactInfo
-                                    key={index}
+                                    key={item.icon}
                                     icon={item.icon}
                                     title={`contactInfo.${item.title}`}
                                     content={item.content}
@@ -185,7 +185,7 @@ const ContactPage: React.FC = () => {
                             ))}
                         </div>
 
-                        <motion.div
+                        <m.div
                             className="mb-6 text-center"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -199,7 +199,7 @@ const ContactPage: React.FC = () => {
                                 <FaWhatsapp className="mr-2" />
                                 {t('cta.whatsapp')}
                             </a>
-                        </motion.div>
+                        </m.div>
 
                         <CollapsibleSection title="subjects.title">
                             <SubjectList subjects={businessData.subjects.primary} title="subjects.primary" />
@@ -216,9 +216,9 @@ const ContactPage: React.FC = () => {
                         <CollapsibleSection title="aboutLessons.title">
                             <p className="text-yellow-100 text-sm">{t('aboutLessons.content')}</p>
                         </CollapsibleSection>
-                    </motion.div>
+                    </m.div>
                 </div>
-            </motion.div>
+            </m.div>
         </div>
     );
 };

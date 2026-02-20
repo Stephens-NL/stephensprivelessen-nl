@@ -1,5 +1,7 @@
 import { useLanguage } from '../contexts/LanguageContext';
-import { BilingualContent, CustomTranslationFunction, Language } from '../data/types';
+import { Bilingual, CustomTranslationFunction, Language } from '../data/types';
+
+type BilingualContent = string | Bilingual | Record<string, unknown>;
 
 export function useTranslation(): { t: CustomTranslationFunction; language: Language } {
   const { language } = useLanguage();

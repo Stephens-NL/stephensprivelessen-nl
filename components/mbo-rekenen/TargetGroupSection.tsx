@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { GraduationCap, Briefcase, Book, Calculator } from 'lucide-react';
 
 const targetGroups = [
@@ -58,7 +58,7 @@ export function TargetGroupSection() {
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -73,12 +73,12 @@ export function TargetGroupSection() {
               ? 'Onze lessen zijn toegankelijk voor iedereen die moeite heeft met rekenen, ongeacht achtergrond of niveau.'
               : 'Our lessons are accessible to anyone who struggles with mathematics, regardless of background or level.'}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {targetGroups.map((group, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={group.title?.en ?? group.title?.nl ?? index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
@@ -98,12 +98,12 @@ export function TargetGroupSection() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Additional Info */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
@@ -134,7 +134,7 @@ export function TargetGroupSection() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

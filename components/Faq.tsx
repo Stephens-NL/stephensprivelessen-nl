@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/hooks/useTranslation';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
@@ -72,7 +72,7 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
-      <motion.h1
+      <m.h1
         key={language}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -80,9 +80,9 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
         className="text-4xl font-bold text-center mb-8"
       >
         <FadeInText text={String(t(faqInfo.title))} />
-      </motion.h1>
+      </m.h1>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
@@ -98,23 +98,23 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
           />
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white opacity-75" />
         </div>
-      </motion.div>
+      </m.div>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
         className="max-w-3xl mx-auto"
       >
         {filteredItems.map((item, index) => (
-          <motion.div
+          <m.div
             key={`${item.id}-${language}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
             className="mb-4"
           >
-            <motion.button
+            <m.button
               onClick={() => toggleQuestion(index)}
               className="w-full p-4 text-left flex justify-between items-center bg-white bg-opacity-10 backdrop-blur-lg rounded-lg hover:bg-opacity-20 transition-colors duration-300"
               whileHover={{ scale: 1.02 }}
@@ -122,10 +122,10 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
             >
               <span>{String(t(item.question))}</span>
               {activeIndex === index ? <ChevronUp /> : <ChevronDown />}
-            </motion.button>
+            </m.button>
             <AnimatePresence>
               {activeIndex === index && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
@@ -133,29 +133,29 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
                   className="mt-2 p-4 bg-white bg-opacity-5 backdrop-blur-lg rounded-lg"
                 >
                   <p>{String(t(item.answer))}</p>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
 
       {mounted && showBackToTop && (
-        <motion.div
+        <m.div
           className="fixed bottom-8 right-8 flex space-x-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <motion.button
+          <m.button
             onClick={scrollToTop}
             className="bg-white text-blue-900 rounded-full p-4 shadow-lg hover:bg-yellow-300 transition-colors duration-300"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
             <ChevronUp />
-          </motion.button>
-        </motion.div>
+          </m.button>
+        </m.div>
       )}
 
       <FloatingShapes />

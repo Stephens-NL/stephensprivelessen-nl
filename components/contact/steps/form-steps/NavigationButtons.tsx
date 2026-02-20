@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { useTranslation } from '../../../../hooks/useTranslation';
 
@@ -19,7 +19,7 @@ const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: Naviga
     return (
         <div className="flex justify-between mt-8">
             {!isFirst && (
-                <motion.button
+                <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center px-4 py-2 bg-blue-700 text-yellow-300 rounded-lg hover:bg-blue-600 transition-colors"
@@ -27,9 +27,9 @@ const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: Naviga
                 >
                     <FaArrowLeft className="mr-2" />
                     {String(t({ EN: "Back", NL: "Terug" }))}
-                </motion.button>
+                </m.button>
             )}
-            <motion.button
+            <m.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className={`flex items-center px-4 py-2 rounded-lg transition-colors ml-auto ${
@@ -44,7 +44,7 @@ const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: Naviga
                     ? String(t({ EN: "Submit", NL: "Versturen" }))
                     : String(t({ EN: "Next", NL: "Volgende" }))}
                 {!isLast && <FaArrowRight className="ml-2" />}
-            </motion.button>
+            </m.button>
         </div>
     );
 };

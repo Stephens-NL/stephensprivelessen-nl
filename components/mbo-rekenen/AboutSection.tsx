@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { BookOpen, Target, Trophy, Users } from 'lucide-react';
 
 export function AboutSection() {
@@ -33,7 +33,7 @@ export function AboutSection() {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 max-w-6xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -48,12 +48,12 @@ export function AboutSection() {
               ? 'We begrijpen de uitdagingen van MBO-rekenen en bieden de ondersteuning die je nodig hebt om succesvol te zijn.'
               : 'We understand the challenges of MBO math and provide the support you need to succeed.'}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={feature.title?.[language] ?? index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.8 }}
@@ -69,12 +69,12 @@ export function AboutSection() {
               <p className="text-gray-600 leading-relaxed">
                 {feature.description[language]}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Additional Info */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
@@ -105,7 +105,7 @@ export function AboutSection() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -26,20 +26,20 @@ const RatingComponent: React.FC<{
         role="group"
         aria-label={`Rating: ${value} out of ${max}`}
       >
-        {[...Array(max)].map((_, index) => (
+        {Array.from({ length: max }, (_, i) => i + 1).map((ratingValue) => (
           <button
-            key={index}
-            onClick={() => onChange(index + 1)}
+            key={`rating-${ratingValue}`}
+            onClick={() => onChange(ratingValue)}
             className={`
               focus:outline-none 
               transition-colors 
               duration-200 
               hover:scale-110
-              ${index < value ? 'text-yellow-400' : 'text-gray-400'}
+              ${ratingValue <= value ? 'text-yellow-400' : 'text-gray-400'}
             `}
-            aria-label={`Rate ${index + 1} out of ${max}`}
+            aria-label={`Rate ${ratingValue} out of ${max}`}
           >
-            {index + 1}
+            {ratingValue}
             <GraduationCap size={32} />
           </button>
         ))}

@@ -3,17 +3,19 @@ import { Search } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
 import { getBusinessData } from '@/data/businessData';
 
+const EMPTY_VAKKEN: string[] = [];
+
 interface VakkenSelectorProps {
   onChange: (vakken: string[]) => void;
   initialValue?: string[];
   setIsQuestionAnswered: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue = [], setIsQuestionAnswered }) => {
+const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue = EMPTY_VAKKEN, setIsQuestionAnswered }) => {
   const { t } = useTranslation();
   const businessData = getBusinessData(t);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedVakken, setSelectedVakken] = useState<string[]>(initialValue);
+  const [selectedVakken, setSelectedVakken] = useState<string[]>(() => initialValue);
   const [customVak, setCustomVak] = useState('');
 
   // Combine all subjects from businessData

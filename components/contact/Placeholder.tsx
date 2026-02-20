@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { contactData } from '../../data/contactData';
 import { useTranslation } from '../../hooks/useTranslation';
@@ -24,7 +24,7 @@ const ContactInfo = ({ icon, title, content, href: link }: ContactInfoProps) => 
     const { t } = useTranslation();
 
     return (
-        <motion.div
+        <m.div
             className="flex items-center mb-4 bg-blue-900 rounded-lg p-3 border border-blue-800 hover:border-blue-700"
             whileHover={{ scale: 1.03, boxShadow: "0 5px 10px rgba(0,0,0,0.2)" }}
         >
@@ -42,7 +42,7 @@ const ContactInfo = ({ icon, title, content, href: link }: ContactInfoProps) => 
                     {content}
                 </a>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 
@@ -52,17 +52,17 @@ const CollapsibleSection = ({ title, children }: CollapsibleSectionProps) => {
 
     return (
         <div className="mb-4">
-            <motion.button
+            <m.button
                 className="w-full flex justify-between items-center bg-blue-700 p-3 rounded-lg text-yellow-300 font-semibold"
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.02 }}
             >
                 {String(t(title))}
                 {isOpen ? <FaChevronUp /> : <FaChevronDown />}
-            </motion.button>
+            </m.button>
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
@@ -70,7 +70,7 @@ const CollapsibleSection = ({ title, children }: CollapsibleSectionProps) => {
                         className="bg-blue-800 p-4 rounded-b-lg mt-1"
                     >
                         {children}
-                    </motion.div>
+                    </m.div>
                 )}
             </AnimatePresence>
         </div>
@@ -83,8 +83,8 @@ const SubjectList = ({ subjects, title }: SubjectListProps) => {
         <div className="mb-4">
             <h3 className="text-lg font-semibold text-yellow-300 mb-2">{String(t(title))}</h3>
             <ul className="list-disc list-inside text-yellow-100 text-sm">
-                {subjects.map((subject, index) => (
-                    <li key={index}>{String(t(subject))}</li>
+                {subjects.map((subject) => (
+                    <li key={String(t(subject))}>{String(t(subject))}</li>
                 ))}
             </ul>
         </div>
@@ -103,8 +103,8 @@ const PricingTable = ({ pricing, title }: PricingTableProps) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {pricing.map((item, index) => (
-                        <tr key={index}>
+                    {pricing.map((item) => (
+                        <tr key={`${item.duration}-${item.price}`}>
                             <td>{item.duration}</td>
                             <td className="text-right">{item.price}</td>
                         </tr>
@@ -121,23 +121,23 @@ const Placeholder = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
-            <motion.div
+            <m.div
                 className="max-w-2xl mx-auto bg-blue-800 rounded-lg shadow-xl overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <div className="p-6">
-                    <motion.h1
+                    <m.h1
                         className="text-3xl font-bold text-center text-yellow-300 mb-6"
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
                         {String(t(contactData.title))}
-                    </motion.h1>
+                    </m.h1>
 
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
@@ -145,9 +145,9 @@ const Placeholder = () => {
                         <p className="text-yellow-100 mb-6 text-sm">{String(t(contactData.aboutMe))}</p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                            {contactData.contactItems.map((item, index) => (
+                            {contactData.contactItems.map((item) => (
                                 <ContactInfo
-                                    key={index}
+                                    key={item.icon}
                                     icon={item.icon}
                                     title={item.title}
                                     content={item.content}
@@ -156,7 +156,7 @@ const Placeholder = () => {
                             ))}
                         </div>
 
-                        <motion.div
+                        <m.div
                             className="mb-6 text-center"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -170,7 +170,7 @@ const Placeholder = () => {
                                 <FaWhatsapp className="mr-2" />
                                 {String(t({ EN: "Contact via WhatsApp", NL: "Contact via WhatsApp" }))}
                             </a>
-                        </motion.div>
+                        </m.div>
 
                         <CollapsibleSection title={{ EN: "Subjects", NL: "Vakken" }}>
                             <SubjectList subjects={contactData.subjects.primary} title={{ EN: "Primary", NL: "Basisonderwijs" }} />
@@ -187,9 +187,9 @@ const Placeholder = () => {
                         <CollapsibleSection title={{ EN: "About Lessons", NL: "Over de Lessen" }}>
                             <p className="text-yellow-100 text-sm">{String(t(contactData.aboutLessons))}</p>
                         </CollapsibleSection>
-                    </motion.div>
+                    </m.div>
                 </div>
-            </motion.div>
+            </m.div>
         </div>
     );
 };

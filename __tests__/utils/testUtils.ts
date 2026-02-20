@@ -5,7 +5,7 @@ import { Bilingual } from '@/data/types';
  * @param field The bilingual field to test
  * @param path The path to the field (for error messages)
  */
-export function testBilingualContent<T>(field: Bilingual<T>, path: string = ''): void {
+function testBilingualContent<T>(field: Bilingual<T>, path: string = ''): void {
   const errorPrefix = path ? `${path}: ` : '';
   
   // Check if field exists
@@ -36,7 +36,7 @@ export function testBilingualContent<T>(field: Bilingual<T>, path: string = ''):
  * @param obj The object to check
  * @param path The current path (for error messages)
  */
-export function checkAllTranslations(obj: any, path: string = ''): void {
+function checkAllTranslations(obj: any, path: string = ''): void {
   if (!obj) return;
 
   if (typeof obj === 'object' && !Array.isArray(obj)) {

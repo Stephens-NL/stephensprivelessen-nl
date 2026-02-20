@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
+import { m, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { FiMenu, FiX } from 'react-icons/fi'
@@ -46,7 +46,7 @@ const Header = () => {
         <>
             {/* Desktop Header */}
             <AnimatePresence mode="wait">
-                <motion.header 
+                <m.header 
                     className="fixed top-0 w-full z-50 hidden md:block"
                     initial={{
                         opacity: 1,
@@ -62,7 +62,7 @@ const Header = () => {
                     }}
                 >
                     {/* Background shape that morphs based on scroll position */}
-                    <motion.div
+                    <m.div
                         className="absolute inset-x-0 overflow-hidden"
                         animate={{ 
                             height: isAtTop ? '96px' : '64px',
@@ -87,7 +87,7 @@ const Header = () => {
                     >
                         {/* Sheen effect */}
                         {isAtTop && (
-                            <motion.div
+                            <m.div
                                 className="absolute inset-0 pointer-events-none"
                                 initial={{ x: '-100%', opacity: 0.5 }}
                                 animate={{ 
@@ -130,7 +130,7 @@ const Header = () => {
                                         {navigation
                                             .filter(item => ['/privelessen', '/scriptiebegeleiding', '/workshops', '/consultancy', '/services'].includes(item.href))
                                             .map(({ href, label }) => (
-                                                <motion.div
+                                                <m.div
                                                     key={href}
                                                     whileHover={{ 
                                                         scale: 1.05,
@@ -153,11 +153,11 @@ const Header = () => {
                                                         {String(t(label))}
                                                         <span className="absolute inset-x-0 -bottom-0.5 h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                                                     </Link>
-                                                </motion.div>
+                                                </m.div>
                                             ))}
 
                                         {/* Language toggle */}
-                                        <motion.button
+                                        <m.button
                                             onClick={toggleLanguage}
                                             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
                                                 isAtTop
@@ -168,13 +168,13 @@ const Header = () => {
                                             whileTap={{ scale: 0.95 }}
                                         >
                                             {language === 'EN' ? 'Nederlands?' : 'English?'}
-                                        </motion.button>
+                                        </m.button>
 
                                         {/* Info navigation items */}
                                         {navigation
                                             .filter(item => ['/about', '/blog', '/faq', '/contact'].includes(item.href))
                                             .map(({ href, label }) => (
-                                                <motion.div
+                                                <m.div
                                                     key={href}
                                                     whileHover={{ 
                                                         scale: 1.05,
@@ -197,7 +197,7 @@ const Header = () => {
                                                         {String(t(label))}
                                                         <span className="absolute inset-x-0 -bottom-0.5 h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                                                     </Link>
-                                                </motion.div>
+                                                </m.div>
                                             ))}
                                     </div>
 
@@ -206,8 +206,8 @@ const Header = () => {
                                 </div>
                             </div>
                         </nav>
-                    </motion.div>
-                </motion.header>
+                    </m.div>
+                </m.header>
             </AnimatePresence>
 
             {/* Mobile Header */}
@@ -222,14 +222,14 @@ const Header = () => {
                         </Link>
 
                         {/* Language toggle - Centered */}
-                        <motion.button
+                        <m.button
                             onClick={toggleLanguage}
                             className="px-2.5 py-1 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-white/20 mx-2"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             {language === 'EN' ? 'NL' : 'EN'}
-                        </motion.button>
+                        </m.button>
 
                         {/* Mobile Menu Button */}
                         <button
@@ -243,7 +243,7 @@ const Header = () => {
                     {/* Mobile Navigation */}
                     <AnimatePresence>
                         {isOpen && (
-                            <motion.div
+                            <m.div
                                 initial={{ opacity: 0, height: 0 }}
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
@@ -287,7 +287,7 @@ const Header = () => {
                                             </Link>
                                         ))}
                                 </div>
-                            </motion.div>
+                            </m.div>
                         )}
                     </AnimatePresence>
                 </nav>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { RekentrajectenComparison } from './RekentrajectenComparison';
 import { MessageCircle, Phone, Calendar } from 'lucide-react';
 
@@ -39,7 +39,7 @@ export function PricingSection() {
       {/* Individual Lessons Info */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-6xl">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -88,8 +88,8 @@ export function PricingSection() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {contactMethods.map((method, index) => (
-                  <motion.div
-                    key={index}
+                  <m.div
+                    key={method.title?.[language] ?? index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.6 }}
@@ -109,11 +109,11 @@ export function PricingSection() {
                     <div className="text-sm font-medium text-gray-900 group-hover:text-gray-700">
                       {method.action[language]} →
                     </div>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 

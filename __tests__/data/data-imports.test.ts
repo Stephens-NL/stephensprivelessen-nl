@@ -3,6 +3,7 @@ import { services } from '@/data/services'
 import { navigation, siteTitle } from '@/data/navigation'
 import { tutoringPage } from '@/data/tutoringPage'
 import { faqInfo, faqItems } from '@/data/faq'
+import { blogInfo, blogPosts } from '@/data/blog'
 import type { Workshop, Service, NavItem } from '@/data/types'
 
 describe('Data Imports', () => {
@@ -99,6 +100,17 @@ describe('Data Imports', () => {
       expect(siteTitle).toBeDefined()
       expect(siteTitle.EN).toBeDefined()
       expect(siteTitle.NL).toBeDefined()
+    })
+  })
+
+  describe('blog', () => {
+    it('should have valid blogInfo and blogPosts', () => {
+      expect(blogInfo).toBeDefined()
+      expect(blogInfo.title).toBeDefined()
+      expect(blogInfo.title.EN).toBeDefined()
+      expect(blogInfo.title.NL).toBeDefined()
+      expect(blogPosts).toBeDefined()
+      expect(Array.isArray(blogPosts)).toBe(true)
     })
   })
 }) 

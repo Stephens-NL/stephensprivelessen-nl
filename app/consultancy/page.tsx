@@ -1,13 +1,13 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useRouter } from 'next/navigation';
-import Script from 'next/script';
 import { useRef } from 'react';
 import { jsonLd } from './metadata';
+import { JsonLdScript } from '@/components/JsonLdScript';
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -138,10 +138,7 @@ export default function ConsultancyPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLdScript data={jsonLd} />
       <main className="min-h-screen bg-white">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -155,7 +152,7 @@ export default function ConsultancyPage() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-black/50" />
           </div>
-          <motion.div 
+          <m.div 
             className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto"
             initial="initial"
             animate="animate"
@@ -176,12 +173,12 @@ export default function ConsultancyPage() {
                 NL: 'Meer Info & Plan Nu'
               }))}
             </button>
-          </motion.div>
+          </m.div>
         </section>
 
         {/* Services Section */}
         <section className="py-24 px-4 bg-gray-50">
-          <motion.div 
+          <m.div 
             className="max-w-7xl mx-auto"
             initial="initial"
             whileInView="animate"
@@ -193,8 +190,8 @@ export default function ConsultancyPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {content.services.items[language as keyof typeof content.services.items].map((service, index) => (
-                <motion.div
-                  key={index}
+                <m.div
+                  key={service.title}
                   className="bg-white p-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -204,22 +201,22 @@ export default function ConsultancyPage() {
                   <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
                   <p className="text-gray-600 mb-6">{service.description}</p>
                   <ul className="space-y-3">
-                    {service.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start">
+                    {service.items.map((item) => (
+                      <li key={item} className="flex items-start">
                         <span className="mr-2 text-blue-600">•</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </section>
 
         {/* Approach Section */}
         <section className="py-24 px-4">
-          <motion.div 
+          <m.div 
             className="max-w-7xl mx-auto"
             initial="initial"
             whileInView="animate"
@@ -231,8 +228,8 @@ export default function ConsultancyPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {content.approach.steps[language as keyof typeof content.approach.steps].map((step, index) => (
-                <motion.div
-                  key={index}
+                <m.div
+                  key={step.title}
                   className="relative bg-white p-8 rounded-lg shadow-lg border border-gray-100"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -244,15 +241,15 @@ export default function ConsultancyPage() {
                   </div>
                   <h3 className="text-xl font-bold mb-4">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </section>
 
         {/* CTA Section */}
         <section ref={contactSectionRef} className="py-24 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-          <motion.div 
+          <m.div 
             className="max-w-4xl mx-auto text-center"
             initial="initial"
             whileInView="animate"
@@ -280,7 +277,7 @@ export default function ConsultancyPage() {
                 NL: 'Plan Nu In'
               }))}
             </button>
-          </motion.div>
+          </m.div>
         </section>
       </main>
     </>

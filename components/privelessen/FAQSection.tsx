@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TutoringPage } from '@/data/types';
 import {
   Accordion,
@@ -20,17 +20,17 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Section Header */}
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-16"
         >
           {t(faq.title)}
-        </motion.h2>
+        </m.h2>
 
         {/* FAQ Accordion */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -39,7 +39,7 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
           <Accordion type="single" collapsible className="space-y-4">
             {faq.questions.map((item, index) => (
               <AccordionItem
-                key={index}
+                key={String(item.question?.EN ?? item.question?.NL ?? index)}
                 value={`item-${index}`}
                 className="border rounded-lg px-6 py-2 bg-white shadow-sm"
               >
@@ -52,7 +52,7 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
               </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

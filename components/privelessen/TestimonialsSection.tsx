@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { TutoringPage } from '@/types';
 import { Card } from '@/components/ui/card';
@@ -18,15 +18,15 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl font-bold mb-4"
           >
             {t(testimonials.title)}
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -34,14 +34,14 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
             className="text-xl text-gray-600"
           >
             {t(testimonials.subtitle)}
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.slides.map((slide, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={slide.author ?? index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -50,9 +50,9 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
               <Card className="p-8 h-full flex flex-col">
                 {/* Rating */}
                 <div className="flex gap-1 mb-6">
-                  {[...Array(5)].map((_, i) => (
+                  {['star-0', 'star-1', 'star-2', 'star-3', 'star-4'].map((starKey, i) => (
                     <Star
-                      key={i}
+                      key={starKey}
                       className={`w-5 h-5 ${
                         i < slide.rating
                           ? 'text-yellow-400 fill-yellow-400'
@@ -87,7 +87,7 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
                   </div>
                 </div>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

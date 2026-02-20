@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
 import { feedbackFormData } from '../../data';
@@ -14,7 +14,7 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onPrevious, onNex
   const { t } = useTranslation();
 
   return (
-    <motion.div
+    <m.div
       className="mt-8 flex justify-center space-x-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -35,7 +35,7 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onPrevious, onNex
         {String(t(feedbackFormData.navigation.next))}
         <ChevronRight className="ml-2" size={24} />
       </button>
-    </motion.div>
+    </m.div>
   );
 };
 

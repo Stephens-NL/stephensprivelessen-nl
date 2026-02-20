@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { FaClock, FaCalendarAlt, FaBan } from 'react-icons/fa';
@@ -60,7 +60,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
     };
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -78,7 +78,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {weekDays.map((day) => (
-                            <motion.button
+                            <m.button
                                 key={day.value}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -90,7 +90,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 onClick={() => toggleDay(day.value)}
                             >
                                 {String(t({ EN: day.labelEN, NL: day.labelNL }))}
-                            </motion.button>
+                            </m.button>
                         ))}
                     </div>
                     {formData.preferredDays.length === 0 && (
@@ -110,7 +110,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                     </h3>
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
                         {timeSlots.map((time) => (
-                            <motion.button
+                            <m.button
                                 key={time.value}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -122,7 +122,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 onClick={() => toggleTime(time.value)}
                             >
                                 {time.label}
-                            </motion.button>
+                            </m.button>
                         ))}
                     </div>
                     {formData.preferredTimes.length === 0 && (
@@ -142,7 +142,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {weekDays.map((day) => (
-                            <motion.button
+                            <m.button
                                 key={day.value}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -155,12 +155,12 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 disabled={formData.preferredDays.includes(day.value)}
                             >
                                 {String(t({ EN: day.labelEN, NL: day.labelNL }))}
-                            </motion.button>
+                            </m.button>
                         ))}
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 

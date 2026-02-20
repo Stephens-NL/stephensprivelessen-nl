@@ -9,6 +9,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 type BookingType = 'single' | 'packet';
 type SelectedTimes = Record<string, string>;
 
+const TIME_OPTIONS = ['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM'];
+
+function TimeSelector({ date, onTimeSelect }: { date: Date; onTimeSelect: (time: string) => void }) {
+  return (
+    <Select onValueChange={onTimeSelect}>
+      <SelectTrigger className="w-full">
+        <SelectValue placeholder="Select time" />
+      </SelectTrigger>
+      <SelectContent>
+        {TIME_OPTIONS.map((time) => (
+          <SelectItem key={time} value={time}>{time}</SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
+
 const TutoringDatePicker: React.FC = () => {
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [bookingType, setBookingType] = useState<BookingType>('single');
@@ -37,19 +54,6 @@ const TutoringDatePicker: React.FC = () => {
     setSelectedTimes({});
   };
 
-  const renderTimeSelector = (date: Date) => (
-    <Select onValueChange={(value) => handleTimeSelect(date, value)}>
-      <SelectTrigger className="w-full">
-        <SelectValue placeholder="Select time" />
-      </SelectTrigger>
-      <SelectContent>
-        {['9:00 AM', '10:00 AM', '11:00 AM', '1:00 PM', '2:00 PM', '3:00 PM'].map((time) => (
-          <SelectItem key={time} value={time}>{time}</SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
-
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader>
@@ -77,7 +81,7 @@ const TutoringDatePicker: React.FC = () => {
           {selectedDates.map((date) => (
             <div key={date.toDateString()} className="flex items-center space-x-2">
               <span>{date.toDateString()}</span>
-              {renderTimeSelector(date)}
+              <TimeSelector date={date} onTimeSelect={(time) => handleTimeSelect(date, time)} />
             </div>
           ))}
 

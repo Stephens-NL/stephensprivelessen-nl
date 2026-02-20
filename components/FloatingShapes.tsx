@@ -1,7 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const SHAPES = Array.from({ length: 5 }, (_, i) => ({
   id: i,
@@ -15,17 +14,15 @@ const SHAPES = Array.from({ length: 5 }, (_, i) => ({
 }));
 
 const FloatingShapes = () => {
-  const shapes = useMemo(() => SHAPES, []);
-
   return (
-    <motion.div
+    <m.div
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.6, duration: 1 }}
     >
-      {shapes.map((shape) => (
-        <motion.div
+      {SHAPES.map((shape) => (
+        <m.div
           key={shape.id}
           className="absolute bg-white bg-opacity-10 rounded-full"
           style={{
@@ -47,7 +44,7 @@ const FloatingShapes = () => {
           }}
         />
       ))}
-    </motion.div>
+    </m.div>
   );
 };
 

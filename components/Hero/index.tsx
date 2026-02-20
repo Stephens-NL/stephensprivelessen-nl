@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import TextBlock from './TextBlock';
 import ButtonTrial from '../ButtonTrial';
 import SignInHere from './SignInHere';
@@ -19,7 +19,7 @@ const Hero = () => {
     <section className="bg-[#FCF8F1] bg-opacity-30 py-10 sm:py-16 lg:py-24">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="grid items-center grid-cols-1 gap-8 md:gap-12 md:grid-cols-2">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -30,9 +30,9 @@ const Hero = () => {
               <ButtonTrial />
               <SignInHere />
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -47,7 +47,7 @@ const Hero = () => {
               priority
               placeholder="blur"
             />
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

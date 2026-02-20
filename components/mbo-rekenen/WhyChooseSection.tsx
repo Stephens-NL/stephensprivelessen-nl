@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Target, Heart, BookOpenCheck, Lightbulb } from 'lucide-react';
 
 const reasons = [
@@ -58,7 +58,7 @@ export function WhyChooseSection() {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 max-w-6xl">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -75,12 +75,12 @@ export function WhyChooseSection() {
               ? 'Onze aanpak zorgt ervoor dat studenten niet alleen beter worden in rekenen, maar ook meer zelfvertrouwen krijgen.'
               : 'Our approach ensures that students not only improve in mathematics, but also gain more confidence.'}
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {reasons.map((reason, index) => (
-            <motion.div
-              key={index}
+            <m.div
+              key={reason.title?.en ?? reason.title?.nl ?? index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
@@ -100,12 +100,12 @@ export function WhyChooseSection() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Call to Action */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
@@ -131,7 +131,7 @@ export function WhyChooseSection() {
               {language === 'NL' ? 'Neem contact op' : 'Get in touch'}
             </button>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

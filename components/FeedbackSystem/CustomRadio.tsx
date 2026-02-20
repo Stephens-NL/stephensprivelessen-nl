@@ -7,8 +7,17 @@ import { CustomRadioProps } from '../../data';
 const CustomRadio: React.FC<CustomRadioProps> = ({ checked, onChange, label }) => {
     return (
         <div
+            role="radio"
+            aria-checked={checked}
+            tabIndex={0}
             className="flex items-center cursor-pointer"
             onClick={onChange}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onChange();
+                }
+            }}
         >
             <div
                 className={`w-8 h-8 flex items-center justify-center border-2 rounded-full transition-colors duration-300 ${

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useReducer } from 'react';
+import { m, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 import { useTranslation } from '@/hooks/useTranslation';
 import QRCode from 'react-qr-code';
@@ -11,25 +11,41 @@ import { config } from '@/data/config';
 const WHATSAPP_MESSAGE = 'Hallo, ik heb een vraag over je diensten';
 const WHATSAPP_URL = `${config.contact.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
+type UIState = { isModalOpen: boolean; isMobile: boolean; isExpanded: boolean; isHovered: boolean; yPosition: string };
+
+function uiReducer(state: UIState, action: { type: string; payload?: boolean | string }): UIState {
+  switch (action.type) {
+    case 'MODAL': return { ...state, isModalOpen: action.payload ?? !state.isModalOpen };
+    case 'MOBILE': return { ...state, isMobile: action.payload ?? state.isMobile };
+    case 'EXPANDED': return { ...state, isExpanded: action.payload ?? !state.isExpanded };
+    case 'HOVERED': return { ...state, isHovered: action.payload ?? !state.isHovered };
+    case 'Y_POSITION': return { ...state, yPosition: (action.payload as string) ?? state.yPosition };
+    default: return state;
+  }
+}
+
 export default function WhatsAppButton() {
   const { t } = useTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [yPosition, setYPosition] = useState('-50%');
+  const [ui, dispatchUI] = useReducer(uiReducer, {
+    isModalOpen: false,
+    isMobile: true,
+    isExpanded: false,
+    isHovered: false,
+    yPosition: '-50%',
+  });
+  const { isModalOpen, isMobile, isExpanded, isHovered, yPosition } = ui;
   const expandTimeoutRef = useRef<NodeJS.Timeout>(undefined);
   const opacityTimeoutRef = useRef<NodeJS.Timeout>(undefined);
   const pathname = usePathname();
 
   useEffect(() => {
     const checkDevice = () => {
-      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+      dispatchUI({ type: 'MOBILE', payload: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) });
     };
 
     const updateYPosition = () => {
       const isMediumScreen = window.innerWidth >= 768 && window.innerWidth < 1024;
-      setYPosition(isMediumScreen ? '0' : '-50%');
+      dispatchUI({ type: 'Y_POSITION', payload: isMediumScreen ? '0' : '-50%' });
     };
 
     checkDevice();
@@ -59,8 +75,8 @@ export default function WhatsAppButton() {
   if (pathname === '/contact') return null;
 
   const handleMouseEnter = () => {
-    setIsExpanded(true);
-    setIsHovered(true);
+    dispatchUI({ type: 'EXPANDED', payload: true });
+    dispatchUI({ type: 'HOVERED', payload: true });
     if (expandTimeoutRef.current) {
       clearTimeout(expandTimeoutRef.current);
     }
@@ -71,11 +87,11 @@ export default function WhatsAppButton() {
 
   const handleMouseLeave = () => {
     expandTimeoutRef.current = setTimeout(() => {
-      setIsExpanded(false);
+      dispatchUI({ type: 'EXPANDED', payload: false });
     }, 4000);
 
     opacityTimeoutRef.current = setTimeout(() => {
-      setIsHovered(false);
+      dispatchUI({ type: 'HOVERED', payload: false });
     }, 5000);
   };
 
@@ -83,13 +99,13 @@ export default function WhatsAppButton() {
     if (isMobile) {
       window.open(WHATSAPP_URL, '_blank');
     } else {
-      setIsModalOpen(true);
+      dispatchUI({ type: 'MODAL', payload: true });
     }
   };
 
   return (
     <>
-      <motion.button
+      <m.button
         onClick={handleClick}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -109,7 +125,7 @@ export default function WhatsAppButton() {
         whileHover={{ scale: 1.05 }}
       >
         <FaWhatsapp className="text-2xl md:text-3xl" />
-        <motion.span 
+        <m.span 
           className="overflow-hidden whitespace-nowrap text-base md:text-lg"
           initial={{ width: 0, opacity: 0 }}
           animate={{ 
@@ -125,20 +141,20 @@ export default function WhatsAppButton() {
             EN: 'Chat with us',
             NL: 'Chat met ons'
           }))}
-        </motion.span>
-      </motion.button>
+        </m.span>
+      </m.button>
 
       <AnimatePresence>
         {isModalOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="fixed inset-0 bg-black/50 z-40 flex items-center justify-center p-4"
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => dispatchUI({ type: 'MODAL', payload: false })}
           >
-            <motion.div
+            <m.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -147,7 +163,7 @@ export default function WhatsAppButton() {
               onClick={e => e.stopPropagation()}
             >
               <button
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => dispatchUI({ type: 'MODAL', payload: false })}
                 className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
               >
                 <FaTimes className="text-xl" />
@@ -185,8 +201,8 @@ export default function WhatsAppButton() {
                   <span>WhatsApp Web</span>
                 </a>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

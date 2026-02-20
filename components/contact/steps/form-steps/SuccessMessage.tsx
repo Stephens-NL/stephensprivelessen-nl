@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FaCheck, FaWhatsapp } from 'react-icons/fa';
 import { useTranslation } from '../../../../hooks/useTranslation';
 import { FormData } from '../../Contact';
@@ -34,19 +34,19 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
     };
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="text-center space-y-6 py-8"
         >
-            <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+            <m.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", duration: 0.5 }}
                 className="w-20 h-20 bg-green-500 rounded-full mx-auto flex items-center justify-center"
             >
                 <FaCheck className="text-white text-3xl" />
-            </motion.div>
+            </m.div>
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-yellow-300">
@@ -71,7 +71,7 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
                         }))}
                     </p>
 
-                    <motion.div
+                    <m.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
@@ -84,10 +84,10 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
                                 NL: "Meestal binnen 24 uur"
                             }))}
                         </p>
-                    </motion.div>
+                    </m.div>
                 </div>
             </div>
-        </motion.div>
+        </m.div>
     );
 };
 

@@ -2,7 +2,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 type PricingItem = {
   duration: number; // Hours as a number for easier integration
@@ -27,8 +27,8 @@ export const PricingTable = ({ pricing, title }: PricingTableProps) => {
         </thead>
         <tbody>
           {pricing.map((item, index) => (
-            <motion.tr
-              key={index}
+            <m.tr
+              key={`${item.duration}-${item.price}`}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -36,7 +36,7 @@ export const PricingTable = ({ pricing, title }: PricingTableProps) => {
             >
               <td className="py-2 px-4">{item.duration} {item.duration === 1 ? "hour" : "hours"}</td>
               <td className="text-right py-2 px-4">{item.price.toFixed(2)}</td>
-            </motion.tr>
+            </m.tr>
           ))}
         </tbody>
       </table>

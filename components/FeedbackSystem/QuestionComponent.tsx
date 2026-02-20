@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { QuestionComponentProps } from "../../data";
 import { useTranslation } from "../../hooks/useTranslation";
-import VakkenSelector from './VakkenSelector';
-import CustomRadio from "./CustomRadio";
-import RatingComponent from "./RatingComponent";
+import { QuestionInput } from "./QuestionInput";
 import CommentCloud from "./CommentCloud";
 
 const QuestionComponent: React.FC<QuestionComponentProps> = ({
@@ -61,71 +59,6 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
         }
     };
 
-    const renderInput = () => {
-        switch (question.type) {
-            case 'vakkenSelector':
-                return (
-                    <VakkenSelector
-                        onChange={handleVakkenChange}
-                        initialValue={value}
-                        setIsQuestionAnswered={setIsQuestionAnswered}
-                    />
-                );
-            case 'text':
-                return (
-                    <input
-                        ref={inputRef}
-                        type="text"
-                        value={value || ''}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKeyDown}
-                        className="mt-2 p-2 w-full border rounded"
-                    />
-                );
-            case 'textarea':
-                return (
-                    <textarea
-                        ref={textAreaRef}
-                        value={value || ''}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKeyDown}
-                        className="mt-2 p-2 w-full border rounded"
-                        rows={4}
-                    />
-                );
-            case 'number':
-            case 'rating':
-                return (
-                    <RatingComponent
-                        value={value || 0}
-                        onChange={(rating) => {
-                            handleOptionChange(question.id, rating);
-                            onNext(); // Ga automatisch naar de volgende vraag na een beoordeling
-                        }}
-                        max={question.max || 5}
-                    />
-                );
-            case 'multipleChoice':
-                return (
-                    <div className="mb-4" onKeyDown={handleKeyDown}>
-                        {question.options?.map((option) => (
-                            <CustomRadio
-                                key={option.value}
-                                checked={value === option.value}
-                                onChange={() => {
-                                    handleOptionChange(question.id, option.value);
-                                    onNext(); // Ga automatisch naar de volgende vraag na een keuze
-                                }}
-                                label={String(t(option.label))}
-                            />
-                        ))}
-                    </div>
-                );
-            default:
-                return null;
-        }
-    };
-
     return (
         <div className="mb-6 relative">
             {(question.comment || (question.type === 'rating' || question.type === 'number')) && (
@@ -151,7 +84,20 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                     </span>
                 )}
             </label>
-            {renderInput()}
+            <QuestionInput
+                question={question}
+                value={value}
+                onChange={onChange}
+                setIsQuestionAnswered={setIsQuestionAnswered}
+                onNext={onNext}
+                inputRef={inputRef}
+                textAreaRef={textAreaRef}
+                handleInputChange={handleInputChange}
+                handleKeyDown={handleKeyDown}
+                handleOptionChange={handleOptionChange}
+                handleVakkenChange={handleVakkenChange}
+                t={t}
+            />
             {question.required && (
                 <p className="text-yellow-400 text-xs mt-1 italic">
                     {String(t({ EN: 'This field is required', NL: 'Dit veld is verplicht' }))}

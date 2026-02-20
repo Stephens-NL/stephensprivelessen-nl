@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTranslation } from '../../hooks/useTranslation';
 import React from 'react'
 import { Send } from 'lucide-react';
@@ -8,7 +8,7 @@ const SubmitCTA: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
     const { t } = useTranslation();
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
@@ -16,7 +16,7 @@ const SubmitCTA: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
         >
             <h2 className="text-2xl font-bold text-white mb-4">{String(t(feedbackFormData.submitCTA.title))}</h2>
             <p className="text-lg text-white mb-6">{String(t(feedbackFormData.submitCTA.description))}</p>
-            <motion.button
+            <m.button
                 onClick={onSubmit}
                 className="px-8 py-4 bg-yellow-400 text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300 flex items-center"
                 whileHover={{ scale: 1.05 }}
@@ -24,8 +24,8 @@ const SubmitCTA: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
             >
                 {String(t(feedbackFormData.submitCTA.buttonText))}
                 <Send className="ml-2" size={24} />
-            </motion.button>
-        </motion.div>
+            </m.button>
+        </m.div>
     );
 };
 

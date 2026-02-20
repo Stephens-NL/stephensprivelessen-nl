@@ -1,23 +1,41 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { generalQuestions, studentQuestions, guardianQuestions, companyQuestions } from '../../data';
 import { Question, MultipleChoiceQuestion, TextQuestion } from '@/data/types';
 import LanguageSelector from '../../components/contact/questions/LanguageSelector';
 import TextInput from '../../components/contact/questions/TextInput';
 import MultipleChoice from '../../components/contact/questions/MultipleChoice';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { getBusinessData } from '@/data/businessData';
 import { useTranslation } from '@/hooks/useTranslation';
+
+type FormState = { data: Record<string, string>; questionIndex: number; userType: string };
+
+function formReducer(state: FormState, action: { type: string; payload?: unknown }): FormState {
+  switch (action.type) {
+    case 'SET_DATA':
+      return { ...state, data: { ...state.data, ...(action.payload as Record<string, string>) } };
+    case 'SET_FIELD':
+      const { name, value } = action.payload as { name: string; value: string };
+      return {
+        ...state,
+        data: { ...state.data, [name]: value },
+        userType: name === 'userType' ? value : state.userType,
+      };
+    case 'NEXT': return { ...state, questionIndex: Math.min(state.questionIndex + 1, 999) };
+    case 'PREV': return { ...state, questionIndex: Math.max(state.questionIndex - 1, 0) };
+    default: return state;
+  }
+}
 
 const ContactPage: React.FC = () => {
   const { t } = useTranslation();
   const businessData = getBusinessData(t);
   const [language, setLanguage] = useState<'en' | 'nl'>('en');
-  const [formData, setFormData] = useState<Record<string, string>>({});
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [formState, dispatchForm] = useReducer(formReducer, { data: {}, questionIndex: 0, userType: '' });
+  const { data: formData, questionIndex: currentQuestionIndex, userType } = formState;
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [userType, setUserType] = useState<string>('');
 
   const emailContact = businessData.contactItems.find(item => item.icon === "FaEnvelope");
   const phoneContact = businessData.contactItems.find(item => item.icon === "FaPhone");
@@ -36,8 +54,7 @@ const ContactPage: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (name === 'userType') setUserType(value);
+    dispatchForm({ type: 'SET_FIELD', payload: { name, value } });
   };
 
   const renderQuestion = (question: Question) => {
@@ -86,21 +103,17 @@ const ContactPage: React.FC = () => {
   const currentQuestion = allQuestions[currentQuestionIndex];
 
   const goToNextQuestion = () => {
-    if (currentQuestionIndex < allQuestions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    }
+    if (currentQuestionIndex < allQuestions.length - 1) dispatchForm({ type: 'NEXT' });
   };
 
   const goToPreviousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
-    }
+    if (currentQuestionIndex > 0) dispatchForm({ type: 'PREV' });
   };
 
   return (
     <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-yellow-400 text-black'}`}>
       <div className="flex-grow flex flex-col justify-center items-center p-4">
-        <motion.div
+        <m.div
           key={currentQuestionIndex}
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -113,7 +126,7 @@ const ContactPage: React.FC = () => {
               language={language}
               setLanguage={(lang) => {
                 setLanguage(lang);
-                setFormData((prev) => ({ ...prev, language: lang }));
+                dispatchForm({ type: 'SET_DATA', payload: { language: lang } });
               }}
               isDarkMode={isDarkMode}
             />
@@ -140,7 +153,7 @@ const ContactPage: React.FC = () => {
               {language === 'en' ? 'Next' : 'Volgende'}
             </button>
           </div>
-        </motion.div>
+        </m.div>
       </div>
       <div className={`${isDarkMode ? 'bg-blue-800' : 'bg-blue-900'} ${isDarkMode ? 'text-yellow-300' : 'text-yellow-400'} p-4`}>
         <div className="flex justify-center space-x-4">

@@ -1,4 +1,11 @@
-import FeedbackDataViewer from '../../components/FeedbackSystem/FeedbackDataViewer'
+'use client';
+
+import dynamic from 'next/dynamic';
+
+const FeedbackDataViewer = dynamic(
+  () => import('../../components/FeedbackSystem/FeedbackDataViewer'),
+  { ssr: false }
+);
 
 const page = () => {
   return (

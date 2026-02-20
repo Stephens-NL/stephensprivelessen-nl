@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { m, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { WeekendLocation } from '@/data/types';
@@ -26,7 +26,7 @@ export function HeroSection({ content }: HeroSectionProps) {
   const rotateSpring = useSpring(rotate, springConfig);
 
   return (
-    <motion.div
+    <m.div
       className="h-screen relative overflow-hidden flex items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -38,7 +38,7 @@ export function HeroSection({ content }: HeroSectionProps) {
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent" />
       </div>
       
-      <motion.div 
+      <m.div 
         style={{ 
           y,
           opacity,
@@ -47,7 +47,7 @@ export function HeroSection({ content }: HeroSectionProps) {
         }}
         className="relative z-10 text-center px-4 max-w-5xl mx-auto"
       >
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -56,27 +56,27 @@ export function HeroSection({ content }: HeroSectionProps) {
           <span className="text-yellow-300 text-lg font-medium tracking-wider uppercase">
             {content.specialOffer[language]}
           </span>
-        </motion.div>
+        </m.div>
         
-        <motion.h1 
+        <m.h1 
           className="text-7xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 via-yellow-200 to-yellow-400 mb-6 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
           {content.title[language]}
-        </motion.h1>
+        </m.h1>
 
-        <motion.p 
+        <m.p 
           className="text-2xl md:text-4xl text-white/80 mb-12 italic font-light"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
           {content.subtitle[language]}
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
@@ -88,12 +88,12 @@ export function HeroSection({ content }: HeroSectionProps) {
           >
             <Link href="#offers" className="flex items-center gap-2">
               {content.cta.trial[language]}
-              <motion.span
+              <m.span
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
                 →
-              </motion.span>
+              </m.span>
             </Link>
           </Button>
           
@@ -103,22 +103,22 @@ export function HeroSection({ content }: HeroSectionProps) {
           >
             <Link href="#about">{content.cta.whatsapp[language]}</Link>
           </Button>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
 
-      <motion.div
+      <m.div
         className="absolute bottom-12 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
         <div className="w-8 h-14 rounded-full border-2 border-yellow-300/30 flex items-start justify-center p-2">
-          <motion.div
+          <m.div
             className="w-1 h-3 bg-yellow-300 rounded-full"
             animate={{ y: [0, 16, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
         </div>
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 } 

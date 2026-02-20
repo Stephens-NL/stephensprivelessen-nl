@@ -1,9 +1,9 @@
 'use client';
 
-import Script from 'next/script'
 import { useTranslation } from '@/hooks/useTranslation';
+import { JsonLdScript } from '@/components/JsonLdScript';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import Image from 'next/image';
 import { Syne, Space_Grotesk } from "next/font/google";
 import Link from 'next/link';
@@ -146,11 +146,7 @@ export default function ScriptiebegeleidingPage() {
   return (
     <div className={`${syne.variable} ${spaceGrotesk.variable}`}>
       <div className="relative min-h-screen">
-        <Script
-          id="scriptiebegeleiding-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLdScript data={jsonLd} />
         
         {/* Hero Section */}
         <div className="relative h-screen">
@@ -181,8 +177,8 @@ export default function ScriptiebegeleidingPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[content.services.methodology, content.services.dataAnalysis, content.services.guidance].map((service, index) => (
-                <motion.div
-                  key={index}
+                <m.div
+                  key={String(service.title?.EN ?? service.title?.NL ?? index)}
                   className="bg-blue-900/50 backdrop-blur-sm p-6 sm:p-8 lg:p-12 rounded-3xl border border-blue-800/50"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -194,14 +190,14 @@ export default function ScriptiebegeleidingPage() {
                     {String(t(service.title))}
                   </h3>
                   <ul className="space-y-3 lg:space-y-4 font-space-grotesk text-base lg:text-lg text-blue-200">
-                    {service.items[language as keyof typeof service.items].map((item, idx) => (
-                      <li key={idx} className="flex items-start">
+                    {service.items[language as keyof typeof service.items].map((item) => (
+                      <li key={String(item)} className="flex items-start">
                         <span className="mr-3 text-blue-400">—</span>
                         {item}
                       </li>
                     ))}
                   </ul>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -215,8 +211,8 @@ export default function ScriptiebegeleidingPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
               {content.why.items[language as keyof typeof content.why.items].map((item, index) => (
-                <motion.div
-                  key={index}
+                <m.div
+                  key={String(item) || `why-${index}`}
                   className="group"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -225,7 +221,7 @@ export default function ScriptiebegeleidingPage() {
                 >
                   <div className="h-1 w-16 bg-blue-500 mb-6 lg:mb-8 group-hover:w-32 transition-all duration-300"></div>
                   <p className="font-space-grotesk text-lg lg:text-xl text-blue-950">{item}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -248,7 +244,7 @@ export default function ScriptiebegeleidingPage() {
                 }))}
               </p>
               <Link href="/contact">
-                <motion.button 
+                <m.button 
                   className="bg-blue-100 text-blue-950 px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-xl font-space-grotesk hover:bg-white transition-colors duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -257,7 +253,7 @@ export default function ScriptiebegeleidingPage() {
                     EN: 'Get Started',
                     NL: 'Begin Nu'
                   }))}
-                </motion.button>
+                </m.button>
               </Link>
             </div>
           </div>

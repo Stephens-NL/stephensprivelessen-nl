@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
 import { useTranslation } from '../../../../hooks/useTranslation';
 
@@ -66,7 +66,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                     maxLength={MAX_GOALS_LENGTH}
                 />
                 <div className="flex justify-between items-center">
-                    <motion.p
+                    <m.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         className={`text-sm ${error ? 'text-red-500' : 'text-yellow-300'}`}
@@ -75,9 +75,9 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                             EN: `${remainingChars} characters remaining`,
                             NL: `Nog ${remainingChars} tekens beschikbaar`
                         }))}
-                    </motion.p>
+                    </m.p>
                     {formData.goals?.length >= MIN_GOALS_LENGTH && (
-                        <motion.p
+                        <m.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             className="text-sm text-green-400"
@@ -86,7 +86,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                                 EN: "✓ Minimum length reached",
                                 NL: "✓ Minimale lengte bereikt"
                             }))}
-                        </motion.p>
+                        </m.p>
                     )}
                 </div>
             </div>

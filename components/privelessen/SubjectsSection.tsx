@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { SubjectCategory } from '@/types';
 import { Icon, IconName } from '@/components/ui/icons';
 import { Card } from '@/components/ui/card';
@@ -40,7 +40,7 @@ export function SubjectsSection({ subjects, t }: SubjectsSectionProps) {
 
         {/* Subjects Grid */}
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={selectedCategory}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -50,13 +50,13 @@ export function SubjectsSection({ subjects, t }: SubjectsSectionProps) {
           >
             {subjects
               .find((cat) => cat.name.EN === selectedCategory)
-              ?.subjects.map((subject, index) => (
-                <Card key={index} className="p-6">
+              ?.subjects.map((subject) => (
+                <Card key={`${subject.name.EN}-${subject.name.NL}-${subject.level}`} className="p-6">
                   <h3 className="text-xl font-semibold mb-4">{t(subject.name)}</h3>
                   <Badge variant="secondary">{subject.level}</Badge>
                 </Card>
               ))}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </section>
