@@ -24,16 +24,14 @@ export function CustomCursor() {
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mousemove', handleMouseMove);
 
-    // Add hover effect for clickable elements
-    const handleLinkHoverEvents = () => {
-      const links = document.querySelectorAll('a, button, [role="button"]');
-      links.forEach(link => {
-        link.addEventListener('mouseenter', () => setCursorEnlarged(true));
-        link.addEventListener('mouseleave', () => setCursorEnlarged(false));
-      });
-    };
+    const handleLinkEnter = () => setCursorEnlarged(true);
+    const handleLinkLeave = () => setCursorEnlarged(false);
 
-    handleLinkHoverEvents();
+    const links = document.querySelectorAll('a, button, [role="button"]');
+    links.forEach(link => {
+      link.addEventListener('mouseenter', handleLinkEnter);
+      link.addEventListener('mouseleave', handleLinkLeave);
+    });
 
     return () => {
       document.removeEventListener('mouseenter', handleMouseEnter);
@@ -41,6 +39,11 @@ export function CustomCursor() {
       document.removeEventListener('mousedown', handleMouseDown);
       document.removeEventListener('mouseup', handleMouseUp);
       document.removeEventListener('mousemove', handleMouseMove);
+
+      links.forEach(link => {
+        link.removeEventListener('mouseenter', handleLinkEnter);
+        link.removeEventListener('mouseleave', handleLinkLeave);
+      });
     };
   }, []);
 

@@ -254,12 +254,11 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
     if (!question.conditional) return true;
     const { dependsOn, showIf } = question.conditional;
     const dependentValue = formData[dependsOn];
-    try {
-      return new Function('value', `return ${showIf}`)(dependentValue);
-    } catch (error) {
-      console.error('Error in conditional logic:', error);
-      return false;
-    }
+    const conditions = (showIf as string).split('||').map((s: string) => s.trim());
+    return conditions.some((condition: string) => {
+      const match = condition.match(/value\s*===\s*["']([^"']+)["']/);
+      return match ? dependentValue === match[1] : false;
+    });
   };
 
   if (feedbackFormData === null) return null;

@@ -30,8 +30,8 @@ const ContactPage: React.FC = () => {
 
     // Listen for changes in system preference
     const listener = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
-    darkModeMediaQuery.addListener(listener);
-    return () => darkModeMediaQuery.removeListener(listener);
+    darkModeMediaQuery.addEventListener('change', listener);
+    return () => darkModeMediaQuery.removeEventListener('change', listener);
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

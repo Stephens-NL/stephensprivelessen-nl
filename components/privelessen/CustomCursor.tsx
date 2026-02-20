@@ -8,14 +8,16 @@ export function CustomCursor() {
   const [cursorEnlarged, setCursorEnlarged] = useState(false);
 
   useEffect(() => {
-    document.addEventListener('mousemove', (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       }
-    });
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener('mousemove', () => {});
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 

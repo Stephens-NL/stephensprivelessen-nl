@@ -4,9 +4,29 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { navigation, siteTitle } from '@/data/navigation';
 import { useTranslation } from '../hooks/useTranslation';
-import { NavItem } from '../data';
+import { NavItem, Bilingual } from '../data';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronUp, Menu } from 'lucide-react';
+
+type NavLinkProps = NavItem & {
+    pathname: string;
+    t: (key: Bilingual | string | undefined) => string;
+    onClose: () => void;
+};
+
+const NavLink = ({ href, label, pathname, t, onClose }: NavLinkProps) => (
+    <Link
+        href={href}
+        className={`px-3 py-2 text-sm font-medium transition-all duration-300 rounded-md ${
+            pathname === href
+                ? 'text-white bg-white bg-opacity-20'
+                : 'text-white hover:bg-white hover:bg-opacity-10'
+        }`}
+        onClick={onClose}
+    >
+        {String(t(label))}
+    </Link>
+);
 
 const FloatingNavbar = () => {
     const pathname = usePathname();
@@ -36,19 +56,7 @@ const FloatingNavbar = () => {
         setLanguage(newLanguage);
     };
 
-    const NavLink = ({ href, label }: NavItem) => (
-        <Link
-            href={href}
-            className={`px-3 py-2 text-sm font-medium transition-all duration-300 rounded-md ${
-                pathname === href
-                    ? 'text-white bg-white bg-opacity-20'
-                    : 'text-white hover:bg-white hover:bg-opacity-10'
-            }`}
-            onClick={() => setIsMobileMenuOpen(false)}
-        >
-            {String(t(label))}
-        </Link>
-    );
+    const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
     return (
         <>
@@ -84,7 +92,7 @@ const FloatingNavbar = () => {
                                 <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-blue-600 to-transparent pointer-events-none z-10"></div>
                                 <div className="flex items-center space-x-1 px-8">
                                     {navigation.map((item) => (
-                                        <NavLink key={item.href} href={item.href} label={item.label} />
+                                        <NavLink key={item.href} href={item.href} label={item.label} pathname={pathname} t={t} onClose={closeMobileMenu} />
                                     ))}
                                 </div>
                                 <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-blue-600 to-transparent pointer-events-none z-10"></div>
@@ -114,7 +122,7 @@ const FloatingNavbar = () => {
                                     <div className="py-2">
                                         {navigation.map((item) => (
                                             <div key={item.href} className="px-3 py-1">
-                                                <NavLink href={item.href} label={item.label} />
+                                                <NavLink href={item.href} label={item.label} pathname={pathname} t={t} onClose={closeMobileMenu} />
                                             </div>
                                         ))}
                                         <div className="px-3 py-1">
