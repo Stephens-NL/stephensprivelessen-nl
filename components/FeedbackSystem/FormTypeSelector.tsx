@@ -5,7 +5,7 @@ import { Clock, ClipboardList } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { FormTypeSelectorProps, feedbackFormData } from '../../data';
 
-export const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType }) => {
+const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType }) => {
   const { t } = useTranslation();
   // const { language } = useLanguage();
   
