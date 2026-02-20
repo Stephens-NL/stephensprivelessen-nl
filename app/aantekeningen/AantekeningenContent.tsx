@@ -1,6 +1,6 @@
 'use client';
 
-import { useReducer, useEffect, Suspense } from 'react';
+import { useReducer, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -12,7 +12,7 @@ function reducer(state: State, action: { type: 'SET_NAME' | 'SET_REDIRECTING'; p
   return state;
 }
 
-function AantekeningenContent() {
+export function AantekeningenContent() {
   const [state, dispatch] = useReducer(reducer, { studentName: null, isRedirecting: false });
   const { studentName, isRedirecting } = state;
   const searchParams = useSearchParams();
@@ -85,13 +85,5 @@ function AantekeningenContent() {
         </div>
       </div>
     </div>
-  );
-}
-
-export function AantekeningenClient() {
-  return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Laden...</div>}>
-      <AantekeningenContent />
-    </Suspense>
   );
 }

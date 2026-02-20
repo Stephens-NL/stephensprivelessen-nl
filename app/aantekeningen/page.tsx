@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import { AantekeningenClient } from './AantekeningenClient';
+import { AantekeningenContent } from './AantekeningenContent';
 
 type Props = { searchParams: Promise<{ student?: string }> };
 
@@ -56,7 +56,7 @@ function AantekeningenFallback() {
 export default function AantekeningenPage() {
   return (
     <Suspense fallback={<AantekeningenFallback />}>
-      <AantekeningenClient />
+      <AantekeningenContent />
     </Suspense>
   );
 }
