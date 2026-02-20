@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
+import useSWR from 'swr';
+import { AnimatePresence, m } from 'framer-motion';
 import { Hero, Service, generalContent } from '@/data';
 import type { HeroData, ServiceData } from '@/data/types';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -11,49 +12,18 @@ import ButtonLearnMore from './ButtonLearnMore';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 
+const fetcher = (url: string) =>
+  fetch(url).then((res) => {
+    if (!res.ok) throw new Error('Failed to fetch data');
+    return res.json();
+  });
+
 const Services = () => {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const { t } = useTranslation();
-  const [serviceData, setServiceData] = useState<ServiceData | null>(null);
-  const [heroData, setHeroData] = useState<HeroData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchHeroData = async () => {
-      try {
-        const response = await fetch('/api/hero');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data: HeroData = await response.json();
-        setHeroData(data);
-
-        setLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-        setLoading(false);
-      }
-    }
-    const fetchServiceData = async () => {
-      try {
-        const response = await fetch('/api/services');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data: ServiceData = await response.json();
-        setServiceData(data);
-
-        setLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-
-    fetchServiceData();
-    fetchHeroData();
-  }, []);
+  const { data: serviceData, isLoading: loading, error: servicesError } = useSWR<ServiceData>('/api/services', fetcher);
+  const { data: heroData } = useSWR<HeroData>('/api/hero', fetcher);
+  const error = servicesError?.message ?? null;
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -98,34 +68,34 @@ const Services = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Introduction Section */}
         <div className="max-w-4xl mx-auto text-center mb-16">
-          <motion.h2
+          <m.h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             {String(t(ourServices))}
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             className="text-lg sm:text-xl text-white mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {String(t(generalContent.serviceDetails))}
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Services Grid */}
-        <motion.div
+        <m.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {services.map(({ icon, title, shortDescription }: Service, index: number) => (
-            <motion.div
-              key={index}
+          {services.map(({ icon, title, shortDescription }: Service) => (
+            <m.div
+              key={title.EN}
               className="bg-white bg-opacity-90 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col transform hover:-translate-y-2"
               variants={itemVariants}
             >
@@ -144,7 +114,7 @@ const Services = () => {
               <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 text-center flex-grow">
                 {String(t(shortDescription))}
               </p>
-              <motion.div
+              <m.div
                 className="text-center mt-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -176,21 +146,21 @@ const Services = () => {
                 ) : (
                   <ButtonLearnMore t={t} onButtonClick={() => setSelectedService(services[index])} index={index} />
                 )}
-              </motion.div>
-            </motion.div>
+              </m.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
 
       <AnimatePresence>
         {selectedService && (
-          <motion.div
+          <m.div
             className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <motion.div
+            <m.div
               className="bg-white rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto shadow-lg relative"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -221,8 +191,8 @@ const Services = () => {
                   <div className="mb-4 sm:mb-6">
                     <h3 className="text-lg sm:text-xl font-semibold mb-2 text-blue-900">Subjects covered:</h3>
                     <div className="flex flex-wrap justify-center gap-2">
-                      {selectedService.subjectsList.map((subject, index) => (
-                        <span key={index} className="bg-blue-100 text-blue-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
+                      {selectedService.subjectsList.map((subject) => (
+                        <span key={subject} className="bg-blue-100 text-blue-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
                           {subject}
                         </span>
                       ))}
@@ -231,8 +201,8 @@ const Services = () => {
                 )}
                 <ButtonTrial hero={hero} />
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </section>

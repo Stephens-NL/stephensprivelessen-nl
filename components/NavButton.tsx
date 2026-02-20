@@ -35,8 +35,8 @@ const NavButton: React.FC<NavButtonProps> = ({
     }
     // Render as a Next.js Link for internal navigation
     return (
-      <Link href={href}>
-        <a className={combinedClassName}>{children}</a>
+      <Link href={href} className={combinedClassName}>
+        {children}
       </Link>
     );
   }

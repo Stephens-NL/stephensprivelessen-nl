@@ -8,7 +8,7 @@ export const useScrollPosition = (threshold: number = 300): boolean => {
       setShowBackToTop(window.scrollY > threshold);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Initial check
     handleScroll();

@@ -2,7 +2,7 @@
 
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { FaStar, FaClock, FaMapMarkerAlt, FaCheck, FaGraduationCap, FaChevronUp, FaChevronDown, FaCoffee } from 'react-icons/fa';
 import { weekendLocations } from '@/data/weekendTutoring';
 import { WeekendLocation } from '@/data/types';
@@ -28,6 +28,70 @@ import Header from '@/components/Header';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { config } from '@/data/config';
+
+type EducationLevel = {
+  id: string;
+  titleNL: string;
+  titleEN: string;
+  subjects: Array<{ NL: string; EN: string }>;
+};
+
+function StudentInfoDialogContent({ educationLevels, whatsappMessage }: { educationLevels: EducationLevel[]; whatsappMessage: string }) {
+  const { language } = useLanguage();
+  const [studentName, setStudentName] = useState('');
+  const [studentAge, setStudentAge] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState('');
+
+  const handleSubmit = () => {
+    const level = educationLevels.find(l => l.id === selectedLevel);
+    const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
+    const message = `${whatsappMessage}\n- Name: ${studentName}\n- Age: ${studentAge}\n- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}\n- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
+    window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
+  return (
+    <div className="grid gap-4 py-4">
+      <div className="grid gap-2">
+        <Label htmlFor="name">Name</Label>
+        <Input id="name" value={studentName} onChange={(e) => setStudentName(e.target.value)} className="bg-white/10 border-white/20 text-white" placeholder="Enter student's name" />
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="age">Age</Label>
+        <Input id="age" value={studentAge} onChange={(e) => setStudentAge(e.target.value)} className="bg-white/10 border-white/20 text-white" placeholder="Enter student's age" type="number" />
+      </div>
+      <div className="grid gap-2">
+        <Label htmlFor="level">Education Level</Label>
+        <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+          <SelectTrigger className="bg-white/10 border-white/20 text-white"><SelectValue placeholder="Select level" /></SelectTrigger>
+          <SelectContent className="bg-amber-900 text-white">
+            {educationLevels.map((level) => (
+              <SelectItem key={level.id} value={level.id}>{language === 'NL' ? level.titleNL : level.titleEN}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      {selectedLevel && (
+        <div className="grid gap-2">
+          <Label htmlFor="subject">Subject</Label>
+          <Select value={selectedSubject} onValueChange={setSelectedSubject}>
+            <SelectTrigger className="bg-white/10 border-white/20 text-white"><SelectValue placeholder="Select subject" /></SelectTrigger>
+            <SelectContent className="bg-amber-900 text-white">
+              {educationLevels.find(l => l.id === selectedLevel)?.subjects.map((subject) => (
+                <SelectItem key={`${selectedLevel}-${subject.NL}`} value={language === 'NL' ? subject.NL : subject.EN}>
+                  {language === 'NL' ? subject.NL : subject.EN}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+      <Button onClick={handleSubmit} className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4" disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}>
+        Continue to WhatsApp
+      </Button>
+    </div>
+  );
+}
 
 function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educationLevels }: { 
   title: string;
@@ -64,7 +128,7 @@ function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educ
   };
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
@@ -152,7 +216,7 @@ function OfferVariant({ title, titleTwi, description, cta, whatsappMessage, educ
           </div>
         </DialogContent>
       </Dialog>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -179,7 +243,7 @@ function LocationMap() {
 
       <AnimatePresence>
         {showMap && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -193,6 +257,7 @@ function LocationMap() {
               </p>
               <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
                 <iframe
+                  title="Location map"
                   src="https://maps.app.goo.gl/nMBBA9MAaKhDrPmSA?g_st=iwb"
                   width="100%"
                   height="100%"
@@ -212,7 +277,7 @@ function LocationMap() {
                 <span>{language === 'NL' ? 'Dagelijks geopend: 08:00 - 22:00' : 'Open daily: 08:00 - 22:00'}</span>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>
@@ -227,12 +292,6 @@ export default function ZuidoostGhanaPage() {
   const businessData = getBusinessData(t);
   const [selectedLevel, setSelectedLevel] = useState<string>('');
   const [showCourses, setShowCourses] = useState(true);
-
-  // Add state for student information form
-  const [studentName, setStudentName] = useState('');
-  const [studentAge, setStudentAge] = useState('');
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [showModal, setShowModal] = useState(false);
 
   const educationLevels = [
     {
@@ -263,7 +322,7 @@ export default function ZuidoostGhanaPage() {
 
   const renderSubjects = (subjects: Array<{ NL: string, EN: string }>) => {
     return (
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -272,7 +331,7 @@ export default function ZuidoostGhanaPage() {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {subjects.map((subject, index) => (
-            <motion.div 
+            <m.div 
               key={subject.NL}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -289,17 +348,17 @@ export default function ZuidoostGhanaPage() {
             >
               <div className="flex-1 p-4 overflow-hidden">
                 <div className="overflow-hidden">
-                  <motion.span 
+                  <m.span 
                     className="text-white/90 group-hover:text-white font-medium transition-colors inline-block whitespace-nowrap"
                   >
                     {language === 'NL' ? subject.NL : subject.EN}
-                  </motion.span>
+                  </m.span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
-      </motion.div>
+      </m.div>
     );
   };
 
@@ -376,7 +435,7 @@ export default function ZuidoostGhanaPage() {
               {/* Community Rate */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <motion.div 
+                  <m.div 
                     className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 w-full md:w-72 
                              transform hover:scale-105 transition-transform duration-300 cursor-pointer"
                     whileHover={{ scale: 1.05 }}
@@ -390,88 +449,16 @@ export default function ZuidoostGhanaPage() {
                     <div className="bg-yellow-400 text-yellow-900 text-sm font-bold py-1 px-3 rounded-full inline-block">
                       {t(content.pricing.communityRate.savings)}
                     </div>
-                  </motion.div>
+                  </m.div>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
                   <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
                   </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid gap-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        value={studentName}
-                        onChange={(e) => setStudentName(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's name"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="age">Age</Label>
-                      <Input
-                        id="age"
-                        value={studentAge}
-                        onChange={(e) => setStudentAge(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's age"
-                        type="number"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="level">Education Level</Label>
-                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                          <SelectValue placeholder="Select level" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-amber-900 text-white">
-                          {educationLevels.map((level) => (
-                            <SelectItem key={level.id} value={level.id}>
-                              {language === 'NL' ? level.titleNL : level.titleEN}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    {selectedLevel && (
-                      <div className="grid gap-2">
-                        <Label htmlFor="subject">Subject</Label>
-                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                            <SelectValue placeholder="Select subject" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-amber-900 text-white">
-                            {educationLevels
-                              .find(l => l.id === selectedLevel)
-                              ?.subjects.map((subject) => (
-                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
-                                  {language === 'NL' ? subject.NL : subject.EN}
-                                </SelectItem>
-                              ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                    <Button
-                      onClick={() => {
-                        const level = educationLevels.find(l => l.id === selectedLevel);
-                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
-                        
-                        const message = `Hi! I'm interested in the €30/hour Ghanaian tutoring special offer!
-- Name: ${studentName}
-- Age: ${studentAge}
-- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
-- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
-
-                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-                        setShowModal(false);
-                      }}
-                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
-                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
-                    >
-                      Continue to WhatsApp
-                    </Button>
-                  </div>
+                  <StudentInfoDialogContent
+                    educationLevels={educationLevels}
+                    whatsappMessage="Hi! I'm interested in the €30/hour Ghanaian tutoring special offer!"
+                  />
                 </DialogContent>
               </Dialog>
             </div>
@@ -523,7 +510,7 @@ export default function ZuidoostGhanaPage() {
 
               <AnimatePresence>
                 {showCourses && (
-                  <motion.div
+                  <m.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
@@ -533,7 +520,7 @@ export default function ZuidoostGhanaPage() {
                       <div className="flex justify-center">
                         <div className="inline-flex bg-white/10 rounded-2xl p-1.5">
                           {educationLevels.map((level, index) => (
-                            <motion.button
+                            <m.button
                               key={level.id}
                               onClick={() => setSelectedLevel(level.id)}
                               className={`
@@ -546,7 +533,7 @@ export default function ZuidoostGhanaPage() {
                               `}
                             >
                               {selectedLevel === level.id && (
-                                <motion.div
+                                <m.div
                                   layoutId="activeTab"
                                   className="absolute inset-0 bg-white/10 rounded-xl"
                                   initial={false}
@@ -556,7 +543,7 @@ export default function ZuidoostGhanaPage() {
                               <span className="relative z-10">
                                 {language === 'NL' ? level.titleNL : level.titleEN}
                               </span>
-                            </motion.button>
+                            </m.button>
                           ))}
                         </div>
                       </div>
@@ -571,16 +558,16 @@ export default function ZuidoostGhanaPage() {
                         </AnimatePresence>
                       </div>
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
             </div>
 
             {/* Offers Grid */}
             <div className="grid gap-8 md:grid-cols-3 mb-12">
-              {offers.map((offer, index) => (
+              {offers.map((offer) => (
                 <OfferVariant 
-                  key={index} 
+                  key={offer.title} 
                   {...offer} 
                   educationLevels={educationLevels}
                 />
@@ -591,9 +578,7 @@ export default function ZuidoostGhanaPage() {
             <div className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button
-                    className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold py-4 px-8 rounded-full transition-all duration-300"
-                  >
+                  <Button className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold py-4 px-8 rounded-full transition-all duration-300">
                     {t(content.cta.trial)}
                   </Button>
                 </DialogTrigger>
@@ -601,89 +586,15 @@ export default function ZuidoostGhanaPage() {
                   <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
                   </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid gap-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        value={studentName}
-                        onChange={(e) => setStudentName(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's name"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="age">Age</Label>
-                      <Input
-                        id="age"
-                        value={studentAge}
-                        onChange={(e) => setStudentAge(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's age"
-                        type="number"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="level">Education Level</Label>
-                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                          <SelectValue placeholder="Select level" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-amber-900 text-white">
-                          {educationLevels.map((level) => (
-                            <SelectItem key={level.id} value={level.id}>
-                              {language === 'NL' ? level.titleNL : level.titleEN}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    {selectedLevel && (
-                      <div className="grid gap-2">
-                        <Label htmlFor="subject">Subject</Label>
-                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                            <SelectValue placeholder="Select subject" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-amber-900 text-white">
-                            {educationLevels
-                              .find(l => l.id === selectedLevel)
-                              ?.subjects.map((subject) => (
-                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
-                                  {language === 'NL' ? subject.NL : subject.EN}
-                                </SelectItem>
-                              ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                    <Button
-                      onClick={() => {
-                        const level = educationLevels.find(l => l.id === selectedLevel);
-                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
-                        
-                        const message = `Hi! I'm interested in booking a trial lesson for Ghanaian tutoring.
-- Name: ${studentName}
-- Age: ${studentAge}
-- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
-- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
-
-                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-                        setShowModal(false);
-                      }}
-                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
-                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
-                    >
-                      Continue to WhatsApp
-                    </Button>
-                  </div>
+                  <StudentInfoDialogContent
+                    educationLevels={educationLevels}
+                    whatsappMessage="Hi! I'm interested in booking a trial lesson for Ghanaian tutoring."
+                  />
                 </DialogContent>
               </Dialog>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button
-                    className="bg-white/20 hover:bg-white/30 text-white font-bold py-4 px-8 rounded-full transition-all duration-300"
-                  >
+                  <Button className="bg-white/20 hover:bg-white/30 text-white font-bold py-4 px-8 rounded-full transition-all duration-300">
                     {t(content.cta.whatsapp)}
                   </Button>
                 </DialogTrigger>
@@ -691,98 +602,26 @@ export default function ZuidoostGhanaPage() {
                   <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
                   </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid gap-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        value={studentName}
-                        onChange={(e) => setStudentName(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's name"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="age">Age</Label>
-                      <Input
-                        id="age"
-                        value={studentAge}
-                        onChange={(e) => setStudentAge(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's age"
-                        type="number"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="level">Education Level</Label>
-                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                          <SelectValue placeholder="Select level" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-amber-900 text-white">
-                          {educationLevels.map((level) => (
-                            <SelectItem key={level.id} value={level.id}>
-                              {language === 'NL' ? level.titleNL : level.titleEN}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    {selectedLevel && (
-                      <div className="grid gap-2">
-                        <Label htmlFor="subject">Subject</Label>
-                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                            <SelectValue placeholder="Select subject" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-amber-900 text-white">
-                            {educationLevels
-                              .find(l => l.id === selectedLevel)
-                              ?.subjects.map((subject) => (
-                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
-                                  {language === 'NL' ? subject.NL : subject.EN}
-                                </SelectItem>
-                              ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                    <Button
-                      onClick={() => {
-                        const level = educationLevels.find(l => l.id === selectedLevel);
-                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
-                        
-                        const message = `Hi! I'd like to learn more about Ghanaian tutoring.
-- Name: ${studentName}
-- Age: ${studentAge}
-- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
-- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
-
-                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-                        setShowModal(false);
-                      }}
-                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
-                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
-                    >
-                      Continue to WhatsApp
-                    </Button>
-                  </div>
+                  <StudentInfoDialogContent
+                    educationLevels={educationLevels}
+                    whatsappMessage="Hi! I'd like to learn more about Ghanaian tutoring."
+                  />
                 </DialogContent>
               </Dialog>
             </div>
 
             {/* Footer */}
-            <motion.p 
+            <m.p 
               className="text-3xl font-bold text-yellow-300"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
               {t(content.footer)}
-            </motion.p>
+            </m.p>
 
             {/* Contact Section */}
-            <motion.div 
+            <m.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -801,85 +640,13 @@ export default function ZuidoostGhanaPage() {
                   <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
                   </DialogHeader>
-                  <div className="grid gap-4 py-4">
-                    <div className="grid gap-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        value={studentName}
-                        onChange={(e) => setStudentName(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's name"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="age">Age</Label>
-                      <Input
-                        id="age"
-                        value={studentAge}
-                        onChange={(e) => setStudentAge(e.target.value)}
-                        className="bg-white/10 border-white/20 text-white"
-                        placeholder="Enter student's age"
-                        type="number"
-                      />
-                    </div>
-                    <div className="grid gap-2">
-                      <Label htmlFor="level">Education Level</Label>
-                      <Select value={selectedLevel} onValueChange={setSelectedLevel}>
-                        <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                          <SelectValue placeholder="Select level" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-amber-900 text-white">
-                          {educationLevels.map((level) => (
-                            <SelectItem key={level.id} value={level.id}>
-                              {language === 'NL' ? level.titleNL : level.titleEN}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    {selectedLevel && (
-                      <div className="grid gap-2">
-                        <Label htmlFor="subject">Subject</Label>
-                        <Select value={selectedSubject} onValueChange={setSelectedSubject}>
-                          <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                            <SelectValue placeholder="Select subject" />
-                          </SelectTrigger>
-                          <SelectContent className="bg-amber-900 text-white">
-                            {educationLevels
-                              .find(l => l.id === selectedLevel)
-                              ?.subjects.map((subject) => (
-                                <SelectItem key={subject.NL} value={language === 'NL' ? subject.NL : subject.EN}>
-                                  {language === 'NL' ? subject.NL : subject.EN}
-                                </SelectItem>
-                              ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    )}
-                    <Button
-                      onClick={() => {
-                        const level = educationLevels.find(l => l.id === selectedLevel);
-                        const subject = level?.subjects.find(s => s.NL === selectedSubject || s.EN === selectedSubject);
-                        
-                        const message = `Hi! I have some questions about Ghanaian tutoring.
-- Name: ${studentName}
-- Age: ${studentAge}
-- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
-- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
-
-                        window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-                        setShowModal(false);
-                      }}
-                      className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
-                      disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
-                    >
-                      Continue to WhatsApp
-                    </Button>
-                  </div>
+                  <StudentInfoDialogContent
+                    educationLevels={educationLevels}
+                    whatsappMessage="Hi! I have some questions about Ghanaian tutoring."
+                  />
                 </DialogContent>
               </Dialog>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </main>

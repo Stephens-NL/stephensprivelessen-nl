@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 // Helper function to format dates (client-side safe)
 function formatDate(dateString?: string): string {
   if (!dateString) return '';
@@ -40,39 +40,22 @@ interface NotesResultsProps {
   folder: StudentFolder;
 }
 
+const notesFetcher = (url: string, folderId: string) =>
+  fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ folderId }),
+  }).then((res) => {
+    if (!res.ok) return res.json().then((d: { error?: string }) => { throw new Error(d.error || "Failed to load files"); });
+    return res.json();
+  });
+
 export default function NotesResults({ folder }: NotesResultsProps) {
-  const [files, setFiles] = useState<DriveFile[] | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function loadFiles() {
-      setLoading(true);
-      setError(null);
-      
-      try {
-        const res = await fetch("/api/aantekeningen/list", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ folderId: folder.id }),
-        });
-        
-        if (!res.ok) {
-          const errorData = await res.json();
-          throw new Error(errorData.error || 'Failed to load files');
-        }
-        
-        const data = await res.json();
-        setFiles(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Er is een fout opgetreden');
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadFiles();
-  }, [folder.id]);
+  const { data: files, isLoading: loading, error: swrError } = useSWR<DriveFile[]>(
+    ["/api/aantekeningen/list", folder.id],
+    ([url, id]) => notesFetcher(url, id)
+  );
+  const error = swrError ? (swrError instanceof Error ? swrError.message : "Er is een fout opgetreden") : null;
 
   if (loading) {
     return (

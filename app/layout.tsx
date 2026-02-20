@@ -4,6 +4,7 @@ import { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { Anton } from 'next/font/google';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import { MotionProvider } from '@/components/MotionProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Analytics } from '@vercel/analytics/react';
@@ -338,12 +339,14 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
-          <Header />
-          <WhatsAppButton />
-          <main className="pt-14 md:pt-24">{children}</main>
-          <Footer />
-          <Analytics />
-          <SpeedInsights/>
+          <MotionProvider>
+            <Header />
+            <WhatsAppButton />
+            <main className="pt-14 md:pt-24">{children}</main>
+            <Footer />
+            <Analytics />
+            <SpeedInsights/>
+          </MotionProvider>
         </LanguageProvider>
       </body>
     </html>

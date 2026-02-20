@@ -1,38 +1,24 @@
 // src/components/Footer.tsx
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import useSWR from 'swr';
 import { useTranslation } from '../hooks/useTranslation';
 import { FooterData } from '../data';
 import { getBusinessData } from '@/data/businessData';
 
+const footerFetcher = (url: string) =>
+  fetch(url).then((res) => {
+    if (!res.ok) throw new Error('Failed to fetch footer data');
+    return res.json();
+  });
+
 const Footer = () => {
   const { t } = useTranslation();
-  const [footerData, setFooterData] = useState<FooterData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const { data: footerData, isLoading, error } = useSWR<FooterData>('/api/footer', footerFetcher);
   const currentYear = new Date().getFullYear();
   const businessData = getBusinessData(t);
-
-  useEffect(() => {
-    const fetchFooter = async () => {
-      try {
-        const response = await fetch('/api/footer');
-        if (!response.ok) {
-          throw new Error('Failed to fetch footer data');
-        }
-        const footerData: FooterData = await response.json();
-        setFooterData(footerData);
-      } catch (err) {
-        setError(err instanceof Error ? err : new Error('An error occurred'));
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchFooter();
-  }, []);
 
   if (isLoading) return <div>{t({ EN: "Loading...", NL: "Laden..." })}</div>;
   if (error) return <div>{t({ EN: "Error loading footer data", NL: "Fout bij het laden van footer gegevens" })}</div>;

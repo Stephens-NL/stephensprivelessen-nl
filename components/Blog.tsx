@@ -1,15 +1,22 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import useSWR from 'swr';
 import { useTranslation } from '../hooks/useTranslation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
 import { BlogInfo, BlogPost, BlogPosts } from '@/data';
+
+const blogFetcher = (url: string) =>
+  fetch(url).then((res) => {
+    if (!res.ok) throw new Error('Failed to fetch blog data');
+    return res.json();
+  });
 
 const BlogPostSummary: React.FC<{ post: BlogPost; onClick: () => void }> = ({ post, onClick }) => {
   const { t } = useTranslation();
   return (
-    <motion.div
+    <m.div
       className="bg-gray-900 shadow-md rounded-lg p-6 mb-6 border border-gray-800 hover:border-gray-700 cursor-pointer"
       whileHover={{ scale: 1.03, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
       whileTap={{ scale: 0.98 }}
@@ -27,49 +34,26 @@ const BlogPostSummary: React.FC<{ post: BlogPost; onClick: () => void }> = ({ po
       <span className="text-primary hover:text-cyan-400 transition-colors duration-300">Lees meer</span>
       <div className="mt-4">
         {post.tags.map(tag => (
-          <motion.span
+          <m.span
             key={tag}
             className="inline-block bg-gray-800 rounded-full px-3 py-1 text-xs font-semibold text-gray-300 mr-2 mb-2"
             whileHover={{ backgroundColor: "#374151", scale: 1.05 }}
           >
             {tag}
-          </motion.span>
+          </m.span>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 
 export const BlogList: React.FC = () => {
   const { t } = useTranslation();
-  const [posts, setPosts] = useState<BlogPosts>([]);
-  const [blogInfo, setBlogInfo] = useState<BlogInfo | null>(null);
+  const { data, isLoading, error: swrError } = useSWR<{ blogPosts: BlogPosts; blogInfo: BlogInfo }>('/api/blog', blogFetcher);
+  const posts = data?.blogPosts ?? [];
+  const blogInfo = data?.blogInfo ?? null;
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchBlogData = async () => {
-      try {
-        const response = await fetch('/api/blog');
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog data');
-        }
-
-        const data = await response.json();
-        setPosts(data.blogPosts);
-        setBlogInfo(data.blogInfo);
-        setIsLoading(false);
-      } catch (err) {
-        console.error('Error fetching blog data:', err);
-        setError('Failed to load blog posts');
-        setIsLoading(false);
-      }
-    };
-
-    fetchBlogData();
-  }, []);
+  const error = swrError ? 'Failed to load blog posts' : null;
 
   const handleClose = () => {
     setSelectedPost(null);
@@ -78,7 +62,6 @@ export const BlogList: React.FC = () => {
   if (isLoading) {
     return <p className="text-gray-300">Loading...</p>;
   }
-
   if (error) {
     return <p className="text-red-500">{error}</p>;
   }
@@ -104,26 +87,26 @@ export const BlogList: React.FC = () => {
 
   return (
     <div className="mx-auto px-4 py-8 bg-gradient-to-br from-blue-100 to-gray-950">
-      <motion.h1
+      <m.h1
         className="text-4xl font-bold text-center text-white mb-8"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {blogInfo ? String(t(blogInfo.title)) : 'Blog'} 
-      </motion.h1>
-      <motion.div
+      </m.h1>
+      <m.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         variants={container}
         initial="hidden"
         animate="show"
       >
         {posts.map((post) => (
-          <motion.div key={post.id} variants={item}>
+          <m.div key={post.id} variants={item}>
             <BlogPostSummary post={post} onClick={() => setSelectedPost(post)} />
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
       <AnimatePresence>
         {selectedPost && (
           <Modal isOpen={!!selectedPost} onClose={handleClose}>
@@ -139,7 +122,7 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
   const { t } = useTranslation();
 
   return (
-    <motion.div
+    <m.div
       className="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-800 max-h-[90vh] overflow-y-auto w-full max-w-3xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -147,23 +130,23 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
       transition={{ duration: 0.3 }}
     >
       <div className="p-8">
-        <motion.h1
+        <m.h1
           className="text-4xl font-bold text-white mb-4"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1, duration: 0.3 }}
         >
           {String(t(post.title))}
-        </motion.h1>
-        <motion.p
+        </m.h1>
+        <m.p
           className="text-sm text-gray-400 mb-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.3 }}
         >
           by {post.author} on {new Date(post.date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </motion.p>
-        <motion.div
+        </m.p>
+        <m.div
           className="prose prose-invert max-w-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -172,8 +155,8 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
           {String(t(post.content)).split('\n').map((paragraph, index) => (
             <p key={index} className="mb-4 text-gray-300">{paragraph}</p>
           ))}
-        </motion.div>
-        <motion.div
+        </m.div>
+        <m.div
           className="mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -182,10 +165,10 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
           {post.tags.map(tag => (
             <span key={tag} className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-gray-300 mr-2 mb-2 hover:bg-gray-700 transition-colors duration-300">{tag}</span>
           ))}
-        </motion.div>
+        </m.div>
       </div>
       {onClose && (
-        <motion.div
+        <m.div
           className="mt-8 text-center pb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -197,9 +180,9 @@ const FullBlogPostModal: React.FC<{ post: BlogPost; onClose?: () => void }> = ({
           >
             {t({ EN: "Back to all blogs", NL: "Terug naar alle blogs" })}
           </button>
-        </motion.div>
+        </m.div>
       )}
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -217,14 +200,14 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
   if (loadingErrorState.isLoading) {
     return (
       <div className="h-screen w-full flex items-center justify-center bg-gray-900 text-white">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           className="text-2xl font-semibold"
         >
           {t({ EN: "Loading...", NL: "Laden..." })}
-        </motion.div>
+        </m.div>
       </div>
     );
   }
@@ -232,14 +215,14 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
   if (loadingErrorState.error) {
     return (
       <div className="h-screen w-full flex items-center justify-center bg-gray-900 text-white">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-xl text-red-400"
         >
           Error: {loadingErrorState.error}
-        </motion.div>
+        </m.div>
       </div>
     );
   }
@@ -247,46 +230,46 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
   if (!post) {
     return (
       <div className="h-screen w-full flex items-center justify-center bg-gray-900 text-white">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="text-xl"
         >
           {t({ EN: "No post data available.", NL: "Geen berichtgegevens beschikbaar." })}
-        </motion.div>
+        </m.div>
       </div>
     );
   }
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <motion.article
+      <m.article
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="max-w-3xl mx-auto"
       >
         <header className="mb-8">
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-4xl sm:text-5xl font-bold text-white mb-4"
           >
             {String(t(post.title))}
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
             className="text-lg text-gray-400"
           >
             {String(t({EN: 'By', NL: 'Door'}))} {post.author} • {new Date(post.date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </motion.p>
+          </m.p>
         </header>
         
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
@@ -295,9 +278,9 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
           {String(t(post.content)).split('\n').map((paragraph, index) => (
             <p key={index} className="mb-6">{paragraph.trim()}</p>
           ))}
-        </motion.div>
+        </m.div>
         
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
@@ -305,17 +288,17 @@ export const FullPageBlogPost: React.FC<FullPageBlogPostProps> = ({ post, loadin
         >
           <h3 className="text-xl font-semibold mb-4 text-cyan-400">Tags:</h3>
           <div className="flex flex-wrap gap-2">
-            {post.tags.map((tag, index) => (
+            {post.tags.map((tag) => (
               <span
-                key={index}
+                key={tag}
                 className="bg-gray-800 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium hover:bg-gray-700 transition-colors duration-300"
               >
                 {tag}
               </span>
             ))}
           </div>
-        </motion.div>
-      </motion.article>
+        </m.div>
+      </m.article>
     </div>
   );
 };

@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import React, { useCallback, useReducer } from 'react';
+import useSWR from 'swr';
+import { m, AnimatePresence, PanInfo } from 'framer-motion';
 import { useTranslation } from '../../hooks/useTranslation';
 import { FeedbackForm, FeedbackFormDataImportProps, Language, PersonalIntermezzo, QuestionGroup } from '../../data';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -14,39 +15,143 @@ import FarewellScreen from './FarewellScreen';
 import NavigationButtons from './NavigationButtons';
 import FeedbackSummary from './FeedbackSummary';
 
+type FormState = {
+  currentStep: number;
+  currentQuestionIndex: number;
+  formData: Record<string, any>;
+  selectedForm: FeedbackForm | null;
+  isSubmitted: boolean;
+  isQuestionAnswered: boolean;
+  showSummary: boolean;
+  direction: number;
+  contentHeight: string;
+  isLastStep: boolean;
+  showFarewell: boolean;
+};
+
+type FormAction =
+  | { type: 'SET_STEP'; step: number }
+  | { type: 'SET_QUESTION_INDEX'; index: number }
+  | { type: 'NEXT_QUESTION' }
+  | { type: 'PREV_QUESTION' }
+  | { type: 'SET_FORM_DATA'; id: string; value: any }
+  | { type: 'SET_SELECTED_FORM'; form: FeedbackForm | null }
+  | { type: 'SET_QUESTION_ANSWERED'; value: boolean }
+  | { type: 'SET_SHOW_SUMMARY'; value: boolean }
+  | { type: 'SET_DIRECTION'; value: number }
+  | { type: 'SET_LAST_STEP'; value: boolean }
+  | { type: 'SET_SHOW_FAREWELL'; value: boolean }
+  | { type: 'RESET' };
+
+const initialFormState: FormState = {
+  currentStep: -2,
+  currentQuestionIndex: 0,
+  formData: {},
+  selectedForm: null,
+  isSubmitted: false,
+  isQuestionAnswered: false,
+  showSummary: false,
+  direction: 0,
+  contentHeight: 'auto',
+  isLastStep: false,
+  showFarewell: false,
+};
+
+function formReducer(state: FormState, action: FormAction): FormState {
+  switch (action.type) {
+    case 'SET_STEP': return { ...state, currentStep: action.step };
+    case 'SET_QUESTION_INDEX': return { ...state, currentQuestionIndex: action.index };
+    case 'NEXT_QUESTION': return { ...state, currentQuestionIndex: state.currentQuestionIndex + 1 };
+    case 'PREV_QUESTION': return { ...state, currentQuestionIndex: state.currentQuestionIndex - 1 };
+    case 'SET_FORM_DATA': return { ...state, formData: { ...state.formData, [action.id]: action.value } };
+    case 'SET_SELECTED_FORM': return { ...state, selectedForm: action.form };
+    case 'SET_QUESTION_ANSWERED': return { ...state, isQuestionAnswered: action.value };
+    case 'SET_SHOW_SUMMARY': return { ...state, showSummary: action.value };
+    case 'SET_DIRECTION': return { ...state, direction: action.value };
+    case 'SET_LAST_STEP': return { ...state, isLastStep: action.value };
+    case 'SET_SHOW_FAREWELL': return { ...state, showFarewell: action.value };
+    case 'RESET': return initialFormState;
+    default: return state;
+  }
+}
+
+type FeedbackContentProps = {
+  currentStep: number;
+  currentQuestionIndex: number;
+  selectedForm: FeedbackForm | null;
+  formData: Record<string, any>;
+  feedbackFormData: FeedbackFormDataImportProps | undefined;
+  handleLanguageSelect: (lang: Language) => void;
+  handleFormTypeSelect: (formType: 'short' | 'long') => void;
+  shouldShowQuestion: (question: any) => boolean;
+  handleChange: (id: string, value: any, skipToNext?: boolean) => void;
+  setIsQuestionAnswered: (value: boolean) => void;
+  nextStep: () => void;
+  t: (key: any) => any;
+};
+
+const FeedbackContent: React.FC<FeedbackContentProps> = ({
+  currentStep,
+  currentQuestionIndex,
+  selectedForm,
+  formData,
+  feedbackFormData,
+  handleLanguageSelect,
+  handleFormTypeSelect,
+  shouldShowQuestion,
+  handleChange,
+  setIsQuestionAnswered,
+  nextStep,
+  t,
+}) => {
+  if (currentStep === -2 && feedbackFormData) {
+    return <LanguageSelector onSelectLanguage={handleLanguageSelect} data={feedbackFormData.feedbackFormData.languageSelection} />;
+  }
+  if (currentStep === -1) return <FormTypeSelector onSelectFormType={handleFormTypeSelect} />;
+
+  if (selectedForm) {
+    const currentSection = selectedForm.sections[currentStep];
+
+    if ('questions' in currentSection) {
+      const questionGroup = currentSection as QuestionGroup;
+      const currentQuestion = questionGroup.questions[currentQuestionIndex];
+      return (
+        <>
+          <h2>{String(t(questionGroup.title))}</h2>
+          {currentQuestion && shouldShowQuestion(currentQuestion) && (
+            <QuestionComponent
+              key={currentQuestion.id}
+              question={currentQuestion}
+              onChange={handleChange}
+              value={formData[currentQuestion.id] || ''}
+              onNext={nextStep}
+              formData={formData}
+              setIsQuestionAnswered={setIsQuestionAnswered}
+            />
+          )}
+        </>
+      );
+    } else if ('content' in currentSection) {
+      const personalIntermezzo = currentSection as PersonalIntermezzo;
+      return <PersonalIntermezzoComponent intermezzo={personalIntermezzo} />;
+    }
+  }
+  return null;
+};
+
+const feedbackFetcher = (url: string) =>
+  fetch(url).then((res) => {
+    if (!res.ok) throw new Error('Failed to fetch data');
+    return res.json();
+  });
+
 export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion: FeedbackForm }> = ({ longVersion, shortVersion }) => {
-  const [currentStep, setCurrentStep] = useState(-2);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [state, dispatch] = useReducer(formReducer, initialFormState);
+  const { currentStep, currentQuestionIndex, formData, selectedForm, isQuestionAnswered, showSummary, direction, isLastStep, showFarewell, contentHeight } = state;
   const { t } = useTranslation();
   const { language, setLanguage } = useLanguage();
-  const [selectedForm, setSelectedForm] = useState<FeedbackForm | null>(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
-  const [showSummary, setShowSummary] = useState(false);
-  const [feedbackFormData, setFeedbackFormData] = useState<FeedbackFormDataImportProps | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-  const [direction, setDirection] = useState(0);
-  const [contentHeight, setContentHeight] = useState('auto');
-  const [isLastStep, setIsLastStep] = useState(false);
-  const [showFarewell, setShowFarewell] = useState(false);
-
-  useEffect(() => {
-    const fetchFeedbackFormData = async () => {
-      try {
-        const response = await fetch('/api/feedback');
-        if (!response.ok) throw new Error('Failed to fetch data');
-        const data: FeedbackFormDataImportProps = await response.json();
-        setFeedbackFormData(data);
-        setLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchFeedbackFormData();
-  }, []);
+  const { data: feedbackFormData, isLoading: loading, error: swrError } = useSWR<FeedbackFormDataImportProps>('/api/feedback', feedbackFetcher);
+  const error = swrError ?? null;
 
   const nextStep = useCallback(() => {
     if (!selectedForm) return;
@@ -55,33 +160,30 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
 
     if ('questions' in currentSection) {
       if (currentQuestionIndex < currentSection.questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        dispatch({ type: 'NEXT_QUESTION' });
       } else {
         if (currentStep < selectedForm.sections.length - 1) {
-          setCurrentStep(currentStep + 1);
-          setCurrentQuestionIndex(0);
+          dispatch({ type: 'SET_STEP', step: currentStep + 1 });
+          dispatch({ type: 'SET_QUESTION_INDEX', index: 0 });
         } else {
-          setIsLastStep(true);
+          dispatch({ type: 'SET_LAST_STEP', value: true });
         }
       }
     } else {
       if (currentStep < selectedForm.sections.length - 1) {
-        setCurrentStep(currentStep + 1);
-        setCurrentQuestionIndex(0);
+        dispatch({ type: 'SET_STEP', step: currentStep + 1 });
+        dispatch({ type: 'SET_QUESTION_INDEX', index: 0 });
       } else {
-        setIsLastStep(true);
+        dispatch({ type: 'SET_LAST_STEP', value: true });
       }
     }
 
-    setDirection(1);
+    dispatch({ type: 'SET_DIRECTION', value: 1 });
   }, [selectedForm, currentStep, currentQuestionIndex]);
 
   const handleChange = useCallback((id: string, value: any, skipToNext: boolean = false) => {
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-    setIsQuestionAnswered(value !== '' && value !== undefined);
+    dispatch({ type: 'SET_FORM_DATA', id, value });
+    dispatch({ type: 'SET_QUESTION_ANSWERED', value: value !== '' && value !== undefined });
 
     if (skipToNext) {
       nextStep();
@@ -100,52 +202,44 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(feedbackData),
       });
-      setIsSubmitted(true);
-      setShowFarewell(true);
+      dispatch({ type: 'SET_SHOW_FAREWELL', value: true });
     } catch (error) {
       console.error('Error submitting feedback:', error);
     }
   };
 
   const resetForm = () => {
-    setIsSubmitted(false);
-    setShowFarewell(false);
-    setCurrentStep(-2);
-    setSelectedForm(null);
-    setFormData({});
-    setShowSummary(false);
-    setIsLastStep(false);
-    setCurrentQuestionIndex(0);
+    dispatch({ type: 'RESET' });
   };
 
   const handleLanguageSelect = (lang: Language) => {
     setLanguage(lang);
-    setCurrentStep(-1);
-    setDirection(1);
+    dispatch({ type: 'SET_STEP', step: -1 });
+    dispatch({ type: 'SET_DIRECTION', value: 1 });
   };
 
   const previousStep = () => {
     if (!selectedForm) return;
 
     if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      dispatch({ type: 'PREV_QUESTION' });
     } else if (currentStep > 0) {
       const previousSection = selectedForm.sections[currentStep - 1];
-      setCurrentStep(currentStep - 1);
+      dispatch({ type: 'SET_STEP', step: currentStep - 1 });
       if ('questions' in previousSection) {
-        setCurrentQuestionIndex(previousSection.questions.length - 1);
+        dispatch({ type: 'SET_QUESTION_INDEX', index: previousSection.questions.length - 1 });
       } else {
-        setCurrentQuestionIndex(0);
+        dispatch({ type: 'SET_QUESTION_INDEX', index: 0 });
       }
     }
 
-    setDirection(-1);
+    dispatch({ type: 'SET_DIRECTION', value: -1 });
   };
 
   const handleFormTypeSelect = (formType: 'short' | 'long') => {
-    setSelectedForm(formType === 'long' ? longVersion : shortVersion);
-    setCurrentStep(0);
-    setDirection(1);
+    dispatch({ type: 'SET_SELECTED_FORM', form: formType === 'long' ? longVersion : shortVersion });
+    dispatch({ type: 'SET_STEP', step: 0 });
+    dispatch({ type: 'SET_DIRECTION', value: 1 });
   };
 
   const handleSwipe = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
@@ -170,40 +264,6 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
 
   if (feedbackFormData === null) return null;
 
-  const renderContent = () => {
-    if (currentStep === -2) return <LanguageSelector onSelectLanguage={handleLanguageSelect} data={feedbackFormData.feedbackFormData.languageSelection} />;
-    if (currentStep === -1) return <FormTypeSelector onSelectFormType={handleFormTypeSelect} />;
-
-    if (selectedForm) {
-      const currentSection = selectedForm.sections[currentStep];
-
-      if ('questions' in currentSection) {
-        const questionGroup = currentSection as QuestionGroup;
-        const currentQuestion = questionGroup.questions[currentQuestionIndex];
-        return (
-          <>
-            <h2>{String(t(questionGroup.title))}</h2>
-            {currentQuestion && shouldShowQuestion(currentQuestion) && (
-              <QuestionComponent
-                key={currentQuestion.id}
-                question={currentQuestion}
-                onChange={handleChange}
-                value={formData[currentQuestion.id] || ''}
-                onNext={nextStep}
-                formData={formData}
-                setIsQuestionAnswered={setIsQuestionAnswered}
-              />
-            )}
-          </>
-        );
-      } else if ('content' in currentSection) {
-        const personalIntermezzo = currentSection as PersonalIntermezzo;
-        return <PersonalIntermezzoComponent intermezzo={personalIntermezzo} />;
-      }
-    }
-    return null;
-  };
-
   const variants = {
     enter: (direction: number) => ({ x: direction > 0 ? 1000 : -1000, opacity: 0 }),
     center: { x: 0, opacity: 1 },
@@ -223,7 +283,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
             onClose={resetForm}
           />
         ) : (
-          <motion.div
+          <m.div
             key={`${currentStep}-${currentQuestionIndex}`}
             custom={direction}
             variants={variants}
@@ -245,19 +305,32 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
             <h1 className="text-3xl font-bold text-white mb-6">
               {currentStep !== -2 && <FadeInText text={String(t(selectedForm ? selectedForm.title : feedbackFormData.feedbackFormData.lengthSelection.title))} />}
             </h1>
-            {renderContent()}
+            <FeedbackContent
+              currentStep={currentStep}
+              currentQuestionIndex={currentQuestionIndex}
+              selectedForm={selectedForm}
+              formData={formData}
+              feedbackFormData={feedbackFormData}
+              handleLanguageSelect={handleLanguageSelect}
+              handleFormTypeSelect={handleFormTypeSelect}
+              shouldShowQuestion={shouldShowQuestion}
+              handleChange={handleChange}
+              setIsQuestionAnswered={(value) => dispatch({ type: 'SET_QUESTION_ANSWERED', value })}
+              nextStep={nextStep}
+              t={t}
+            />
             {isLastStep && (
               showSummary ? (
                 <FeedbackSummary
                   formData={formData}
                   onSubmit={handleSubmit}
-                  onEdit={() => setShowSummary(false)}
+                  onEdit={() => dispatch({ type: 'SET_SHOW_SUMMARY', value: false })}
                 />
               ) : (
-                <SubmitCTA onSubmit={() => setShowSummary(true)} />
+                <SubmitCTA onSubmit={() => dispatch({ type: 'SET_SHOW_SUMMARY', value: true })} />
               )
             )}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
       {currentStep >= 0 && selectedForm && !isLastStep && !showFarewell && (

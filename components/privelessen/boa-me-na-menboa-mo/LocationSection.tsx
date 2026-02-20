@@ -1,7 +1,7 @@
 'use client';
 
 import { useLanguage } from '@/contexts/LanguageContext';
-import { motion, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaMapMarkerAlt, FaClock, FaCoffee } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
@@ -18,14 +18,14 @@ export function LocationSection({ content }: LocationSectionProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
       id="location"
       className="py-24 px-4"
       style={{
         transform: isInView ? "none" : "translateY(100px)",
         opacity: isInView ? 1 : 0,
-        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+        transition: "opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s, transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}
     >
       <div className="max-w-6xl mx-auto">
@@ -97,6 +97,7 @@ export function LocationSection({ content }: LocationSectionProps) {
 
           <div className="relative aspect-video rounded-2xl overflow-hidden">
             <iframe
+              title="Tutoring location map"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2438.7374633546367!2d4.945661776676655!3d52.31198427198029!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c60b96d0c5e6cf%3A0x39396e72efb3a37e!2sDouwe%20Egberts%20Cafe!5e0!3m2!1sen!2snl!4v1709924607943!5m2!1sen!2snl"
               width="100%"
               height="100%"
@@ -108,6 +109,6 @@ export function LocationSection({ content }: LocationSectionProps) {
           </div>
         </div>
       </div>
-    </motion.section>
+    </m.section>
   );
 } 
