@@ -1,5 +1,6 @@
 // app/services/page.tsx
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import Services from '@/components/Services';
 import { metadata as servicesMetadata, jsonLd } from './metadata';
 
@@ -8,10 +9,9 @@ export const metadata: Metadata = servicesMetadata;
 export default function ServicesPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <Script id="services-ld+json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(jsonLd)}
+      </Script>
       <Services />
     </>
   );

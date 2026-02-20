@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { TutoringPage } from '@/components/privelessen';
 import { notFound } from 'next/navigation';
 import { generateServiceStructuredData } from '@/lib/structured-data';
@@ -164,10 +165,9 @@ export default async function LocationPage(props: LocationParams) {
 
   return (
     <React.Fragment>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
-      />
+      <Script id="location-ld+json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(serviceJsonLd)}
+      </Script>
       <main>
         <TutoringPage 
           locationSpecific={{

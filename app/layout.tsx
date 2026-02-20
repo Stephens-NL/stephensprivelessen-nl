@@ -1,6 +1,7 @@
 // app/layout.tsx
 import './globals.css';
 import { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { Inter } from 'next/font/google';
 import { Anton } from 'next/font/google';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -327,17 +328,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nl" className={`${inter.variable} ${anton.variable} font-sans`} suppressHydrationWarning>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-      </head>
+      <head />
       <body>
+        <Script id="organization-ld+json" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(organizationSchema)}
+        </Script>
+        <Script id="website-ld+json" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(websiteSchema)}
+        </Script>
         <LanguageProvider>
           <MotionProvider>
             <Header />

@@ -1,22 +1,12 @@
 'use client';
 
-import React from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  PieChart as RePieChart,
-  Pie,
-  Cell,
-} from 'recharts';
+import dynamic from 'next/dynamic';
 import { ChartDataPoint, ChartType, PieChartDataPoint } from '../../data';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
+const FeedbackChartsInner = dynamic(
+  () => import('./FeedbackChartsInner').then((mod) => mod.FeedbackChartsInner),
+  { ssr: false, loading: () => <div className="h-[300px] flex items-center justify-center text-gray-500">Loading chart...</div> }
+);
 
 interface FeedbackChartsProps {
   chartData: ChartDataPoint[];
@@ -29,53 +19,11 @@ export function FeedbackCharts({
   pieChartData,
   selectedChart,
 }: FeedbackChartsProps) {
-  if (selectedChart === 'line') {
-    return (
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis yAxisId="left" />
-          <YAxis yAxisId="right" orientation="right" />
-          <Tooltip />
-          <Legend />
-          <Line
-            yAxisId="left"
-            type="monotone"
-            dataKey="count"
-            stroke="#8884d8"
-            name="Feedback Count"
-          />
-          <Line
-            yAxisId="right"
-            type="monotone"
-            dataKey="avgRating"
-            stroke="#82ca9d"
-            name="Avg Rating"
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    );
-  }
-
   return (
-    <ResponsiveContainer width="100%" height={300}>
-      <RePieChart>
-        <Pie
-          data={pieChartData}
-          cx="50%"
-          cy="50%"
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
-          label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-        >
-          {pieChartData.map((entry, index) => (
-            <Cell key={`cell-${entry.name}-${entry.value}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </RePieChart>
-    </ResponsiveContainer>
+    <FeedbackChartsInner
+      chartData={chartData}
+      pieChartData={pieChartData}
+      selectedChart={selectedChart}
+    />
   );
 }

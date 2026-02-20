@@ -1,8 +1,9 @@
 import { Metadata } from "next";
+import Script from "next/script";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateStructuredData } from "@/lib/structured-data";
-import Script from "next/script";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -49,11 +50,9 @@ const structuredData = generateStructuredData({
 export default function AmsterdamBijlesPage() {
   return (
     <>
-      <Script
-        id="structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <Script id="amsterdam-ld+json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(structuredData)}
+      </Script>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-6">
@@ -77,7 +76,7 @@ export default function AmsterdamBijlesPage() {
                   <li>Scriptie ondersteuning</li>
                 </ul>
                 <Button className="mt-4" asChild>
-                  <a href="/bijles/onderwerp/statistiek/psychologie">Meer info</a>
+                  <Link href="/bijles/onderwerp/statistiek/psychologie">Meer info</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -94,7 +93,7 @@ export default function AmsterdamBijlesPage() {
                   <li>Toegepaste wiskunde</li>
                 </ul>
                 <Button className="mt-4" asChild>
-                  <a href="/bijles/onderwerp/calculus">Meer info</a>
+                  <Link href="/bijles/onderwerp/calculus">Meer info</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -111,7 +110,7 @@ export default function AmsterdamBijlesPage() {
                   <li>Data visualisatie</li>
                 </ul>
                 <Button className="mt-4" asChild>
-                  <a href="/bijles/onderwerp/programmeren">Meer info</a>
+                  <Link href="/bijles/onderwerp/programmeren">Meer info</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -128,10 +127,10 @@ export default function AmsterdamBijlesPage() {
                 </ul>
                 <div className="mt-4 space-x-2">
                   <Button asChild>
-                    <a href="/bijles/campus/uva">Info UvA</a>
+                    <Link href="/bijles/campus/uva">Info UvA</Link>
                   </Button>
                   <Button asChild>
-                    <a href="/bijles/campus/vu">Info VU</a>
+                    <Link href="/bijles/campus/vu">Info VU</Link>
                   </Button>
                 </div>
               </CardContent>

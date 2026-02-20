@@ -1,9 +1,9 @@
 import { Metadata } from "next";
+import Script from "next/script";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateCampusStructuredData } from "@/lib/structured-data";
-import Script from "next/script";
-import Link from "next/link";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -47,11 +47,9 @@ const structuredData = generateCampusStructuredData({
 export default function VUBijlesPage() {
   return (
     <>
-      <Script
-        id="structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <Script id="vu-ld+json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(structuredData)}
+      </Script>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-6">
@@ -128,7 +126,7 @@ export default function VUBijlesPage() {
 
           <div className="mt-8">
             <Button size="lg" asChild>
-              <a href="/contact">Boek een proefles</a>
+              <Link href="/contact">Boek een proefles</Link>
             </Button>
           </div>
         </div>

@@ -1,17 +1,29 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useReducer, useEffect } from 'react';
+
+type CursorState = { visible: boolean; enlarged: boolean };
+
+function cursorReducer(state: CursorState, action: { type: 'SHOW' | 'HIDE' | 'ENLARGE' | 'SHRINK' }): CursorState {
+  switch (action.type) {
+    case 'SHOW': return { ...state, visible: true };
+    case 'HIDE': return { ...state, visible: false };
+    case 'ENLARGE': return { ...state, enlarged: true };
+    case 'SHRINK': return { ...state, enlarged: false };
+    default: return state;
+  }
+}
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
-  const [cursorVisible, setCursorVisible] = useState(false);
-  const [cursorEnlarged, setCursorEnlarged] = useState(false);
+  const [state, dispatch] = useReducer(cursorReducer, { visible: false, enlarged: false });
+  const { visible: cursorVisible, enlarged: cursorEnlarged } = state;
 
   useEffect(() => {
-    const handleMouseEnter = () => setCursorVisible(true);
-    const handleMouseLeave = () => setCursorVisible(false);
-    const handleMouseDown = () => setCursorEnlarged(true);
-    const handleMouseUp = () => setCursorEnlarged(false);
+    const handleMouseEnter = () => dispatch({ type: 'SHOW' });
+    const handleMouseLeave = () => dispatch({ type: 'HIDE' });
+    const handleMouseDown = () => dispatch({ type: 'ENLARGE' });
+    const handleMouseUp = () => dispatch({ type: 'SHRINK' });
     const handleMouseMove = (e: MouseEvent) => {
       if (cursorRef.current) {
         cursorRef.current.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
@@ -24,8 +36,8 @@ export function CustomCursor() {
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('mousemove', handleMouseMove);
 
-    const handleLinkEnter = () => setCursorEnlarged(true);
-    const handleLinkLeave = () => setCursorEnlarged(false);
+    const handleLinkEnter = () => dispatch({ type: 'ENLARGE' });
+    const handleLinkLeave = () => dispatch({ type: 'SHRINK' });
 
     const links = document.querySelectorAll('a, button, [role="button"]');
     links.forEach(link => {

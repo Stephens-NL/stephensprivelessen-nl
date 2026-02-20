@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import WorkshopsContent from '@/components/workshops/WorkshopsContent';
 import { metadata as workshopsMetadata, jsonLd } from './metadata';
 
@@ -7,10 +8,9 @@ export const metadata: Metadata = workshopsMetadata;
 export default function WorkshopsPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <Script id="workshops-ld+json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(jsonLd)}
+      </Script>
       <WorkshopsContent />
     </>
   );

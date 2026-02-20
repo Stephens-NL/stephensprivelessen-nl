@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { TutoringPage } from '@/components/privelessen/TutoringPage';
 import { generateStructuredData } from '@/lib/structured-data';
 import { tutoringPage } from '@/data/tutoringPage';
@@ -62,10 +63,9 @@ export default function BijlesPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <Script id="privelessen-ld+json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(structuredData)}
+      </Script>
       <TutoringPage />
     </>
   );

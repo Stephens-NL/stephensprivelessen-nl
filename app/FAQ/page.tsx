@@ -1,5 +1,6 @@
 // app/faq/page.tsx
 import { Metadata } from 'next';
+import Script from 'next/script';
 import FAQPage from '@/components/Faq';
 import faqData from '@/data/faq.json';
 
@@ -72,10 +73,9 @@ export default function FaqPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <Script id="faq-ld+json" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(faqJsonLd)}
+      </Script>
       <FAQPage faqInfo={faqData.faqInfo} faqItems={faqData.faqItems} />
     </>
   );
