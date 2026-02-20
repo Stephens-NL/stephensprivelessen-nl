@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { Metadata } from 'next';
 import { AantekeningenContent } from './AantekeningenContent';
 
@@ -37,26 +36,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   };
 }
 
-function AantekeningenFallback() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center">
-        <div className="mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-3xl">📚</span>
-          </div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">Aantekeningen</h1>
-          <p className="text-gray-600">Laden...</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function AantekeningenPage() {
-  return (
-    <Suspense fallback={<AantekeningenFallback />}>
-      <AantekeningenContent />
-    </Suspense>
-  );
+export default async function AantekeningenPage({ searchParams }: Props) {
+  const { student } = await searchParams;
+  return <AantekeningenContent student={student ?? undefined} />;
 }

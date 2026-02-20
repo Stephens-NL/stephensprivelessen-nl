@@ -2,7 +2,6 @@
 
 import { useReducer, useEffect } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 
 type State = { studentName: string | null; isRedirecting: boolean };
 
@@ -12,10 +11,16 @@ function reducer(state: State, action: { type: 'SET_NAME' | 'SET_REDIRECTING'; p
   return state;
 }
 
-export function AantekeningenContent() {
-  const [state, dispatch] = useReducer(reducer, { studentName: null, isRedirecting: false });
+interface AantekeningenContentProps {
+  student?: string;
+}
+
+export function AantekeningenContent({ student: initialStudent }: AantekeningenContentProps) {
+  const [state, dispatch] = useReducer(reducer, {
+    studentName: initialStudent ?? null,
+    isRedirecting: false,
+  });
   const { studentName, isRedirecting } = state;
-  const searchParams = useSearchParams();
 
   const baseAantekeningenAppURL = process.env.NEXT_PUBLIC_AANTEKENINGEN_APP_URL;
   if (!baseAantekeningenAppURL) {
@@ -26,14 +31,13 @@ export function AantekeningenContent() {
     : baseAantekeningenAppURL;
 
   useEffect(() => {
-    const name = searchParams.get('student');
-    if (name) dispatch({ type: 'SET_NAME', payload: name });
+    dispatch({ type: 'SET_NAME', payload: initialStudent ?? null });
     dispatch({ type: 'SET_REDIRECTING', payload: true });
     const timer = setTimeout(() => {
       window.location.href = redirectUrl;
     }, 2000);
     return () => clearTimeout(timer);
-  }, [searchParams, redirectUrl]);
+  }, [initialStudent, redirectUrl]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
