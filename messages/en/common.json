@@ -14,5 +14,29 @@
     "faq": "FAQ",
     "contact": "Contact"
   },
-  "languageSwitcher": "NL"
+  "languageSwitcher": "NL",
+  "footer": {
+    "title": "Stephen's Private Lessons",
+    "description": "Professional guidance in mathematics and programming for all levels.",
+    "servicesLabel": "Services",
+    "services": {
+      "tutoring": "Tutoring",
+      "thesisSupervision": "Thesis Supervision",
+      "workshops": "Workshops",
+      "consultancy": "Consultancy",
+      "services": "Services"
+    },
+    "infoLabel": "Information",
+    "info": {
+      "about": "About",
+      "blog": "Blog",
+      "faq": "FAQ",
+      "contact": "Contact"
+    },
+    "contactLabel": "Contact",
+    "copyright": "All rights reserved."
+  },
+  "scheduleTrialSession": "Schedule a Free Trial Session",
+  "learnMore": "Learn More",
+  "whatsappLabel": "Contact via WhatsApp"
 }

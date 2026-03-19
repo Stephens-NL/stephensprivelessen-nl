@@ -1,1 +1,27 @@
-{}
+{
+  "hero": {
+    "title": "Ontgrendel Je Potentieel",
+    "subtitle": "Uitblinken met Expert Begeleiding",
+    "subtitle2": "Verbeter je vaardigheden met op maat gemaakte lessen en topdocenten.",
+    "alreadyEnrolled": "Al ingeschreven?",
+    "signInHere": "Hier inloggen",
+    "schedulefreetrial": "Plan een Gratis Proefles",
+    "imgAlt": "Illustratie van gepersonaliseerde lessen"
+  },
+  "testimonials": {
+    "items": [
+      {
+        "text": "Dankzij Stephen's bijlessen heb ik mijn wiskundetentamen met een 9 gehaald!",
+        "author": "Emma, VWO 5 student"
+      },
+      {
+        "text": "De programmeerlessen hebben me geholpen om mijn eerste app te bouwen. Geweldig!",
+        "author": "Liam, Informatica student"
+      },
+      {
+        "text": "Stephen's geduld en duidelijke uitleg maken complexe onderwerpen begrijpelijk.",
+        "author": "Sophie, Universitair student"
+      }
+    ]
+  }
+}

@@ -1,1 +1,27 @@
-{}
+{
+  "hero": {
+    "title": "Unlock Your Potential",
+    "subtitle": "Excel with Expert Guidance",
+    "subtitle2": "Enhance your skills with tailored lessons and top-tier teaching.",
+    "alreadyEnrolled": "Already enrolled?",
+    "signInHere": "Sign in",
+    "schedulefreetrial": "Schedule a Free Trial Session",
+    "imgAlt": "Illustration of personalized lessons"
+  },
+  "testimonials": {
+    "items": [
+      {
+        "text": "Thanks to Stephen's tutoring, I scored a 9 on my math exam!",
+        "author": "Emma, VWO 5 student"
+      },
+      {
+        "text": "The programming lessons helped me build my first app. Amazing!",
+        "author": "Liam, Informatica student"
+      },
+      {
+        "text": "Stephen's patience and clear explanations make complex topics understandable.",
+        "author": "Sophie, Universitair student"
+      }
+    ]
+  }
+}

@@ -1,1 +1,43 @@
-{}
+{
+  "ourServices": "Our Services",
+  "serviceDetails": "Explore our range of tutoring and education services, designed to help you excel in mathematics, programming, and more.",
+  "learnMore": "Learn More",
+  "items": [
+    {
+      "id": "mathematics-tutoring",
+      "title": "Mathematics & General Tutoring",
+      "shortDescription": "Comprehensive tutoring for all levels, including CCVX and adult education.",
+      "longDescription": "Our tutoring services cover a wide range of subjects for students of all ages and levels, from elementary school to university and adult education. Whether you need help with basic arithmetic, advanced calculus, exam preparation (including CCVX), or professional certifications, we offer tailored lessons to meet your needs. Our experienced tutors provide personalized plans to help you achieve your educational goals."
+    },
+    {
+      "id": "programming-lessons",
+      "title": "Programming Lessons",
+      "shortDescription": "Learn coding in Python, Java, and more.",
+      "longDescription": "Our programming courses cover a wide range of languages and skills, including Python, Java, C++, and web development. Whether you're a beginner or an advanced student, our lessons are tailored to your needs. We offer hands-on projects, real-world applications, and guidance on best practices in coding. Ideal for students, professionals, or hobbyists seeking to enhance their technical skills."
+    },
+    {
+      "id": "creative-workshops",
+      "title": "Creative Workshops",
+      "shortDescription": "Explore creativity through music, photography, and more.",
+      "longDescription": "Our creative workshops offer hands-on learning in a range of artistic fields, including music production, DJ skills, and photography. Perfect for both beginners and advanced learners, these workshops can be tailored to suit children, adults, or professionals looking for a unique team-building experience or a creative day out."
+    },
+    {
+      "id": "non-creative-workshops",
+      "title": "Non-Creative Workshops",
+      "shortDescription": "Practical, skill-based workshops for various fields.",
+      "longDescription": "Our non-creative workshops focus on developing practical skills in areas such as data analysis, AI tools, and professional certifications. These workshops are ideal for professionals seeking to enhance their skills, students preparing for advanced studies, or teams looking to improve their technical capabilities. Workshops can be customized for various age groups and professional needs."
+    },
+    {
+      "id": "consultancy",
+      "title": "Consultancy & Advisory",
+      "shortDescription": "Expert guidance for businesses and individuals.",
+      "longDescription": "We offer consultancy and advisory services for businesses and individuals seeking expertise in data analysis, AI, and software development. Our tailored solutions help you tackle complex problems and implement effective strategies. Whether you need short-term advice or long-term project management, our services are designed to meet your specific needs."
+    },
+    {
+      "id": "custom-solutions",
+      "title": "Custom Solutions",
+      "shortDescription": "Tailored solutions for unique challenges.",
+      "longDescription": "If you have a unique problem or project that requires a specialized solution, we offer custom services to meet your specific needs. Whether it's a data analysis challenge, software development project, or educational requirement, we'll work with you to create a solution that fits perfectly. Let's discuss your needs and develop a plan that works for you."
+    }
+  ]
+}

@@ -1,1 +1,150 @@
-{}
+{
+  "formData": {
+    "languageSelection": {
+      "title": "Select Your Language / Kies Je Taal"
+    },
+    "welcome": {
+      "title": "Welkom bij Stephen's Feedbackformulier",
+      "description": "Jouw inzichten zijn waardevol om mijn onderwijsmethoden te verbeteren en aan te passen.",
+      "startButtonText": "Start Feedback"
+    },
+    "lengthSelection": {
+      "title": "Kies Jouw Feedbackformulier",
+      "shortOption": "Kort (1-2 min) - Snel en Eenvoudig",
+      "longOption": "Lang (8-10 min) - Meer Diepgang"
+    },
+    "navigation": {
+      "back": "Terug",
+      "next": "Volgende",
+      "submit": "Versturen"
+    },
+    "submitCTA": {
+      "title": "Klaar om je feedback in te dienen?",
+      "description": "Bedankt dat je de tijd hebt genomen om je waardevolle feedback te geven.",
+      "buttonText": "Feedback Indienen"
+    },
+    "farewell": {
+      "title": "Bedankt!",
+      "message": "Je feedback is succesvol ingediend. We waarderen je bijdrage!",
+      "closeButtonText": "Sluiten"
+    }
+  },
+  "shortVersion": {
+    "title": "Stephen's Jaarlijkse Korte Feedbackformulier",
+    "description": "Een snelle manier om je gedachten te delen over onze sessies. Je feedback helpt me te verbeteren en onze toekomstige lessen aan te passen!",
+    "conclusion": "Bedankt voor je waardevolle feedback! Je inzichten helpen me mijn bijlesdiensten te verbeteren en aan te passen. Ik waardeer je tijd en kijk uit naar mogelijke toekomstige samenwerkingen.",
+    "sections": {
+      "respondentType": { "title": "Informatie over de respondent" },
+      "general": { "title": "Algemene Informatie" },
+      "experience": { "title": "Ervaring met de bijles" },
+      "futurePreferences": { "title": "Toekomstige Voorkeuren" },
+      "testimonial": { "title": "Getuigenis" }
+    },
+    "questions": {
+      "relationship": "Wat is je relatie tot de bijlesdiensten?",
+      "studentName": "Naam van de student",
+      "companyName": "Bedrijfsnaam",
+      "subject": "Vak of onderwerp",
+      "sessionPeriod": "Wanneer heb je bijles gehad?",
+      "overallRating": "Algemene beoordeling van de bijlessessies (1-5)",
+      "progressSatisfaction": "Hoe tevreden ben je met de geboekte vooruitgang?",
+      "mostValuable": "Wat was het meest waardevolle aspect van de bijlessessies?",
+      "improvementAreas": "Zijn er gebieden waar de bijles volgens jou kan verbeteren?",
+      "futurePlans": "Ben je van plan in de toekomst door te gaan met bijles?",
+      "topicPreference": "Zijn er specifieke onderwerpen waar je in toekomstige sessies op wilt focussen?",
+      "learningStyle": "Welke leerstijl werkt het beste voor jou/de student?",
+      "sessionFrequency": "Voorkeursfrequentie voor toekomstige sessies",
+      "quoteConsent": "Wil je een getuigenis geven over je ervaring?",
+      "quoteText": "Schrijf hier je getuigenis:",
+      "nameConsent": "Hoe wil je dat je naam verschijnt bij de getuigenis?"
+    },
+    "options": {
+      "currentStudent": "Huidige student",
+      "formerStudent": "Voormalige student",
+      "parentGuardian": "Ouder/Voogd",
+      "company": "Bedrijfsvertegenwoordiger",
+      "thisYear": "Dit jaar",
+      "lastYear": "Vorig jaar",
+      "moreThanAYear": "Meer dan een jaar geleden",
+      "verySatisfied": "Zeer tevreden",
+      "satisfied": "Tevreden",
+      "neutral": "Neutraal",
+      "dissatisfied": "Ontevreden",
+      "veryDissatisfied": "Zeer ontevreden",
+      "yes": "Ja",
+      "maybe": "Misschien",
+      "no": "Nee",
+      "visual": "Visuele hulpmiddelen en diagrammen",
+      "practical": "Praktische voorbeelden en oefeningen",
+      "discussion": "Discussies en uitleg",
+      "mixed": "Een mix van stijlen",
+      "moreOften": "Vaker",
+      "sameFrequency": "Dezelfde frequentie",
+      "lessOften": "Minder vaak",
+      "fullName": "Volledige naam",
+      "firstNameLastInitial": "Voornaam en eerste letter achternaam",
+      "initials": "Alleen initialen",
+      "anonymous": "Anoniem"
+    }
+  },
+  "longVersion": {
+    "title": "Stephen's Uitgebreid Jaarlijks Feedbackformulier",
+    "description": "Welkom bij mijn uitgebreide jaarlijkse feedbackformulier. Jouw inzichten zijn onmisbaar om mijn onderwijsmethoden te verbeteren en aan te passen voor het komende jaar. Bedankt dat je de tijd neemt om je gedachten te delen!",
+    "conclusion": "Bedankt dat je de tijd hebt genomen om deze waardevolle feedback te geven over ons jaar samen. Jouw inzichten zullen me helpen mijn onderwijsmethoden te verbeteren en aan te passen voor het komende jaar. Ik kijk uit naar onze voortgezette samenwerking!",
+    "sections": {
+      "general": { "title": "Algemene Informatie" },
+      "yearlyExperience": { "title": "Jaarlijkse Ervaring" },
+      "specificFeedback": { "title": "Specifieke Feedback en Suggesties" },
+      "learningPreferences": { "title": "Leervoorkeuren voor Volgend Jaar" },
+      "personalQuote": { "title": "Persoonlijke Quote en Toestemming" }
+    },
+    "questions": {
+      "learnerName": "Naam van de leerling",
+      "subject": "Vak of onderwerp",
+      "overallQuality": "Algehele kwaliteit van de lessen/begeleiding dit jaar",
+      "expectationsMet": "In hoeverre voldeed de inhoud aan je verwachtingen dit jaar?",
+      "clarity": "Duidelijkheid van de uitleg gedurende het jaar",
+      "effectiveness": "Effectiviteit in het verbeteren van je vaardigheden/kennis dit jaar",
+      "interaction": "Kwaliteit van interactie en communicatie tijdens de lessen dit jaar",
+      "accessibility": "Toegankelijkheid en behulpzaamheid van de docent gedurende het jaar",
+      "mostValuable": "Wat vond je het meest waardevol aan de lessen/begeleiding dit jaar?",
+      "improvements": "Zijn er specifieke onderdelen die volgens jou verbeterd kunnen worden voor volgend jaar?",
+      "suggestions": "Heb je suggesties voor onderwerpen of methodes die je volgend jaar zou willen zien?",
+      "dataApproach": "Hoe sta je tegenover het integreren van meer datagedreven benaderingen in onze lessen volgend jaar?",
+      "preferredLearningStyle": "Welke leerstijl zou je prefereren voor volgend jaar?",
+      "preferredPace": "Welk tempo zou je prefereren voor onze sessies volgend jaar?",
+      "preferredFrequency": "Hoe vaak zou je sessies willen hebben volgend jaar?",
+      "quoteConsent": "Zou je een quote willen geven over je ervaring dit jaar voor mijn website?",
+      "quoteText": "Als ja, schrijf hier je quote:",
+      "nameConsent": "Hoe wil je dat je naam verschijnt bij de quote?",
+      "photoConsent": "Zou je je quote willen posten met een foto op de website of sociale media?",
+      "photoChoice": "Zo ja, wil je zelf een foto aanleveren of mag er een foto van onze sessies gebruikt worden?"
+    },
+    "options": {
+      "visualLearning": "Visueel leren met diagrammen en grafieken",
+      "auditoryLearning": "Auditief leren door discussies",
+      "kinestheticLearning": "Praktisch leren met oefeningen",
+      "mixedLearning": "Een mix van verschillende stijlen",
+      "faster": "Sneller dan dit jaar",
+      "same": "Hetzelfde als dit jaar",
+      "slower": "Langzamer dan dit jaar",
+      "moreOften": "Vaker dan dit jaar",
+      "sameFrequency": "Dezelfde frequentie als dit jaar",
+      "lessOften": "Minder vaak dan dit jaar",
+      "ownPhoto": "Ik stuur zelf een foto op",
+      "sessionPhoto": "Gebruik een foto van onze sessies"
+    }
+  },
+  "intermezzi": {
+    "short": {
+      "intro": { "title": "Welkom", "content": "Ik heb je onlangs mogen helpen, en ik zou graag je snelle feedback willen hebben. Dit formulier is onderdeel van mijn nieuwe websiteproject - ik heb het helemaal zelf gebouwd met Next.js!" },
+      "funFact": { "title": "Een Leuk Weetje", "content": "Wist je dit? Naast jouw docent ben ik ook model, analoog fotograaf, muzikant (DJ, pianist, bassist, gitarist), muziekproducer, evenementplanner en grafisch ontwerper. Ik doe bijna alles onder een andere alias - voor anderen verwarrend, voor mij lekker duidelijk!" }
+    },
+    "long": {
+      "intro": { "title": "Welkom bij Mijn Feedbackformulier", "content": "In de afgelopen 2 jaar heb ik velen van jullie mogen helpen, vaak met groot succes. Nu verzamel ik feedback om een centraal beeld te krijgen van hoe ik het doe. Ik heb dit formulier zorgvuldig opgesteld om zo goed mogelijk bij jou te passen - het is voor jou, maar ook voor mij. Dit formulier is volledig from scratch gebouwd met Next.js, een framework voor webontwikkeling. Het maakt deel uit van mijn nieuwe website, die ik ontwerp om te laten zien dat ik niet alleen een gekke wiskundige ben, maar ook een echte techneut. Ik werk tegelijkertijd aan mijn data-cv, en dit formulier is daar onderdeel van." },
+      "hobbies": { "title": "Mijn Vele Petten", "content": "Naast wiskundige en privédocent draag ik vele petten: ik ben model, strikt analoog fotograaf, DJ, pianist, bassist, gitarist, muziekproducer, releasing artist, evenementplanner, grafisch ontwerper, en ik was zelfs heel even schrijver. Het gekke is dat ik bijna alles onder een ander alias doe. Voor anderen verwarrend, voor mij lekker duidelijk. Momenteel ben ik agressief mijn datavaardigheden en -mogelijkheden aan het verkennen en uitbreiden." },
+      "photos": { "title": "Een Kijkje in Mijn Wereld", "content": "Ik heb verschillende foto's van mijn werk als fotograaf en model over de afgelopen 10 jaar. Voor gevallen waarbij er sprake is van een jong kind of een ouder van een kind onder de 15, zou ik ergens een jeugdfoto van mezelf kunnen toevoegen om te laten zien hoe normaal ik ben. Het is een leuke manier om een connectie te maken en een andere kant van mezelf te laten zien." },
+      "conclusion": { "title": "Reflecties en Toekomstplannen", "content": "Ik heb echt genoten van het geven van deze lessen. Toen ik twee jaar geleden Stephen's Privélessen begon als een poging om de bijlessen, examentrainingen en huiswerkbegeleiding die ik al jaren deed te formaliseren, had ik stiekem niet gedacht het zo lang vol te houden en er steeds nieuwe mogelijkheden in te zien. Ik heb lesgeven altijd leuk gevonden en jouw les geven was natuurlijk het aller aller aller leukst (knipoog). Ik wil vanaf dit jaar het plannen van lessen steeds meer via een portaal/datumprikker doen om schermtijd te verminderen, maar verder staan mijn WhatsApp en e-mail altijd open voor vragen of een babbeltje. Lobie!" }
+    }
+  }
+}

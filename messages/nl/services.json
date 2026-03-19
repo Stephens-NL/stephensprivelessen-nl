@@ -1,1 +1,43 @@
-{}
+{
+  "ourServices": "Onze Diensten",
+  "serviceDetails": "Ontdek ons aanbod van bijlessen en onderwijsdiensten, ontworpen om je te helpen uitblinken in wiskunde, programmeren, en meer.",
+  "learnMore": "Meer Informatie",
+  "items": [
+    {
+      "id": "mathematics-tutoring",
+      "title": "Wiskunde & Algemene Bijles",
+      "shortDescription": "Uitgebreide bijlessen voor alle niveaus, inclusief CCVX en volwassenenonderwijs.",
+      "longDescription": "Onze bijlessen dekken een breed scala aan vakken voor studenten van alle leeftijden en niveaus, van basisschool tot universiteit en volwassenenonderwijs. Of je nu hulp nodig hebt met basisrekenen, gevorderde calculus, examentraining (inclusief CCVX), of professionele certificeringen, wij bieden op maat gemaakte lessen die aan jouw behoeften voldoen. Onze ervaren docenten bieden gepersonaliseerde plannen om je te helpen je educatieve doelen te bereiken."
+    },
+    {
+      "id": "programming-lessons",
+      "title": "Programmeerlessen",
+      "shortDescription": "Leer coderen in Python, Java, en meer.",
+      "longDescription": "Onze programmeercursussen dekken een breed scala aan talen en vaardigheden, waaronder Python, Java, C++, en webontwikkeling. Of je nu een beginner bent of een gevorderde student, onze lessen zijn afgestemd op jouw behoeften. We bieden praktische projecten, real-world toepassingen en begeleiding bij de beste praktijken in coderen. Ideaal voor studenten, professionals of hobbyisten die hun technische vaardigheden willen verbeteren."
+    },
+    {
+      "id": "creative-workshops",
+      "title": "Creatieve Workshops",
+      "shortDescription": "Ontdek creativiteit door muziek, fotografie, en meer.",
+      "longDescription": "Onze creatieve workshops bieden hands-on leren in verschillende artistieke vakgebieden, waaronder muziekproductie, DJ-vaardigheden en fotografie. Perfect voor zowel beginners als gevorderden, kunnen deze workshops worden aangepast voor kinderen, volwassenen of professionals die op zoek zijn naar een unieke teambuilding-ervaring of een creatieve dag uit."
+    },
+    {
+      "id": "non-creative-workshops",
+      "title": "Niet-Creatieve Workshops",
+      "shortDescription": "Praktische, vaardigheidsgerichte workshops voor verschillende vakgebieden.",
+      "longDescription": "Onze niet-creatieve workshops richten zich op het ontwikkelen van praktische vaardigheden op gebieden zoals data-analyse, AI-tools en professionele certificeringen. Deze workshops zijn ideaal voor professionals die hun vaardigheden willen verbeteren, studenten die zich voorbereiden op gevorderde studies, of teams die hun technische capaciteiten willen verbeteren. Workshops kunnen worden aangepast voor verschillende leeftijdsgroepen en professionele behoeften."
+    },
+    {
+      "id": "consultancy",
+      "title": "Consultancy & Advies",
+      "shortDescription": "Deskundig advies voor bedrijven en individuen.",
+      "longDescription": "We bieden consultancy en adviesdiensten voor bedrijven en individuen die op zoek zijn naar expertise in data-analyse, AI en softwareontwikkeling. Onze op maat gemaakte oplossingen helpen je bij het aanpakken van complexe problemen en het implementeren van effectieve strategieën. Of je nu behoefte hebt aan kortetermijnadvies of langdurig projectmanagement, onze diensten zijn ontworpen om aan jouw specifieke behoeften te voldoen."
+    },
+    {
+      "id": "custom-solutions",
+      "title": "Maatwerkoplossingen",
+      "shortDescription": "Maatwerkoplossingen voor unieke uitdagingen.",
+      "longDescription": "Als je een uniek probleem of project hebt dat een gespecialiseerde oplossing vereist, bieden we maatwerkdiensten aan om aan jouw specifieke behoeften te voldoen. Of het nu gaat om een data-analyse-uitdaging, softwareontwikkelingsproject of onderwijsbehoefte, we werken met je samen om een oplossing te creëren die perfect past. Laten we jouw behoeften bespreken en een plan ontwikkelen dat voor jou werkt."
+    }
+  ]
+}

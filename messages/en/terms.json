@@ -1,1 +1,22 @@
-{}
+{
+  "items": [
+    {
+      "title": "Payment in Advance",
+      "content": [
+        "Payment must be made in advance.",
+        "Payment can be made via bank transfer or cash.",
+        "If payment is not made on time, the lesson may be cancelled."
+      ]
+    },
+    {
+      "title": "Cancellation and Rescheduling",
+      "content": [
+        "Cancellation is free up to 24 hours before the start of the lesson.",
+        "For cancellations within 24 hours before the start, 50% will be charged.",
+        "In case of no-show, the full amount will be charged.",
+        "Rescheduling a lesson is possible in consultation.",
+        "In case of illness, a new appointment will be made in consultation."
+      ]
+    }
+  ]
+}

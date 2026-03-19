@@ -1,1 +1,120 @@
-{}
+{
+  "hero": {
+    "title": "Transform Your Learning Journey",
+    "subtitle": "Expert tutoring in mathematics, statistics, and programming with personalized attention and proven results.",
+    "stats": [
+      { "label": "Student Satisfaction" },
+      { "label": "Students Helped" },
+      { "label": "Average Rating" }
+    ],
+    "ctaPrimary": "Schedule Free Trial",
+    "ctaSecondary": "View Subjects"
+  },
+  "features": [
+    {
+      "title": "Personalized Learning",
+      "description": "Tailored lessons that adapt to your learning style and pace."
+    },
+    {
+      "title": "Expert Support",
+      "description": "Learn from experienced tutors with proven track records."
+    },
+    {
+      "title": "Flexible Scheduling",
+      "description": "Book sessions at times that work best for you."
+    }
+  ],
+  "subjects": {
+    "mathematics": {
+      "name": "Mathematics",
+      "items": ["Calculus", "Linear Algebra", "Statistics"]
+    },
+    "programming": {
+      "name": "Programming",
+      "items": ["Python", "JavaScript", "Java"]
+    },
+    "dataScience": {
+      "name": "Data Science",
+      "items": ["Machine Learning", "Data Analysis", "R Programming"]
+    }
+  },
+  "process": {
+    "title": "Your Learning Journey",
+    "steps": [
+      { "title": "Initial Consultation", "description": "We discuss your goals and assess your current level." },
+      { "title": "Customized Plan", "description": "We create a learning plan tailored to your needs." },
+      { "title": "Regular Sessions", "description": "Engage in interactive learning sessions with your tutor." },
+      { "title": "Progress Tracking", "description": "Monitor your improvement with regular assessments." }
+    ]
+  },
+  "testimonials": {
+    "title": "Student Success Stories",
+    "subtitle": "Hear from our students about their experience.",
+    "slides": [
+      {
+        "quote": "The personalized approach helped me master calculus in just a few months.",
+        "role": "Mathematics Student",
+        "subject": "Calculus"
+      },
+      {
+        "quote": "Finally understood programming concepts that had been confusing me for years.",
+        "role": "Computer Science Student",
+        "subject": "Python Programming"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Tutoring Packages",
+    "subtitle": "Quality tutoring starting from €75 per hour - Online or at Science Park",
+    "plans": [
+      {
+        "name": "Individual Tutoring",
+        "price": "From €75",
+        "interval": "per hour",
+        "features": ["Personalized attention", "All subjects available", "Flexible scheduling", "Online or Science Park"],
+        "cta": "Schedule Trial"
+      },
+      {
+        "name": "Group Lessons (2 persons)",
+        "price": "From €55",
+        "interval": "per hour per person",
+        "features": ["Shared learning experience", "Reduced cost per person", "Interactive group dynamics", "Online or Science Park"],
+        "cta": "Get Started"
+      },
+      {
+        "name": "Thesis & Research",
+        "price": "From €90",
+        "interval": "per hour",
+        "features": ["Statistics & Research", "Data Science & AI", "Advanced SPSS/R/Python", "Complete thesis support"],
+        "cta": "Contact Us"
+      },
+      {
+        "name": "Weekend Programs",
+        "price": "From €30",
+        "interval": "per hour",
+        "features": ["Special community rates", "Weekend availability", "Zuidoost Amsterdam", "Home tutoring available"],
+        "cta": "Discuss Options"
+      }
+    ]
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      { "question": "How long are the tutoring sessions?", "answer": "Standard sessions are 1 hour long, but we can accommodate longer sessions if needed." },
+      { "question": "Can I change my tutor if I'm not satisfied?", "answer": "Yes, we want you to have the best learning experience. You can request a different tutor at any time." },
+      { "question": "Do you offer online sessions?", "answer": "Yes, we offer both online and in-person tutoring sessions to accommodate your preferences." }
+    ]
+  },
+  "contact": {
+    "title": "Start Your Learning Journey",
+    "subtitle": "Fill out the form below and we'll get back to you within 24 hours.",
+    "form": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "subjectLabel": "Subject of Interest",
+      "subjectOptions": ["Mathematics", "Programming", "Statistics", "Data Science"],
+      "message": "Your Message",
+      "submit": "Send Message"
+    }
+  }
+}

@@ -1,1 +1,22 @@
-{}
+{
+  "items": [
+    {
+      "title": "Vooraf Betalen",
+      "content": [
+        "Betaling dient vooraf te geschieden.",
+        "Betaling kan via bankoverschrijving of contant.",
+        "Bij niet tijdige betaling kan de les worden geannuleerd."
+      ]
+    },
+    {
+      "title": "Annulering en Verplaatsing",
+      "content": [
+        "Annulering is kosteloos tot 24 uur voor aanvang van de les.",
+        "Bij annulering binnen 24 uur voor aanvang wordt 50% in rekening gebracht.",
+        "Bij no-show wordt het volledige bedrag in rekening gebracht.",
+        "Verplaatsen van een les is mogelijk in overleg.",
+        "Bij ziekte wordt in overleg een nieuwe afspraak gemaakt."
+      ]
+    }
+  ]
+}

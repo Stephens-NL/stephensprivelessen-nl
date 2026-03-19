@@ -1,1 +1,42 @@
-{}
+{
+  "hero": {
+    "title": "Data & Statistiek Consultancy",
+    "subtitle": "Expert begeleiding in data-analyse, statistiek en onderzoeksmethodologie. Transformeer uw data naar bruikbare inzichten.",
+    "cta": "Meer Info & Plan Nu"
+  },
+  "services": {
+    "title": "Onze Expertise",
+    "items": [
+      {
+        "title": "Data Analyse",
+        "description": "Geavanceerde statistische analyse en data interpretatie",
+        "items": ["Statistisch Modelleren", "Hypothese Toetsing", "Regressie Analyse", "Tijdreeks Analyse"]
+      },
+      {
+        "title": "Onderzoeksmethodologie",
+        "description": "Expert begeleiding in onderzoeksopzet en methodologie",
+        "items": ["Onderzoeksopzet", "Steekproefmethoden", "Survey Ontwikkeling", "Experimenteel Design"]
+      },
+      {
+        "title": "Machine Learning",
+        "description": "Moderne machine learning oplossingen voor bedrijfsproblemen",
+        "items": ["Predictive Analytics", "Classificatie Modellen", "Clustering Analyse", "Deep Learning"]
+      }
+    ]
+  },
+  "approach": {
+    "title": "Onze Aanpak",
+    "steps": [
+      { "title": "Eerste Gesprek", "description": "We beginnen met een grondig begrip van uw behoeften en doelstellingen" },
+      { "title": "Data Evaluatie", "description": "Uitgebreide evaluatie van uw data en vereisten" },
+      { "title": "Oplossing Ontwerp", "description": "Ontwikkeling van op maat gemaakte analytische oplossingen" },
+      { "title": "Implementatie", "description": "Deskundige uitvoering van de voorgestelde oplossingen" },
+      { "title": "Kennisoverdracht", "description": "Zorgen dat uw team de oplossingen begrijpt en kan onderhouden" }
+    ]
+  },
+  "cta": {
+    "title": "Klaar om Uw Data te Transformeren?",
+    "subtitle": "Neem vandaag nog contact op om te bespreken hoe wij u kunnen helpen uw data beter te benutten voor besluitvorming.",
+    "button": "Plan Nu In"
+  }
+}

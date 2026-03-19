@@ -1,1 +1,45 @@
-{}
+{
+  "title": "Weekend Tutoring Zuidoost",
+  "subtitle": "Weekend Tutoring in Amsterdam Zuidoost",
+  "specialOffer": "SPECIAL WEEKEND OFFER",
+  "discount": {
+    "text": "SAVE 50%",
+    "subtext": "(Limited spots available)"
+  },
+  "pricing": {
+    "regularPrice": { "label": "Regular Price", "perHour": "per hour" },
+    "weekendRate": { "label": "Weekend Rate", "perHour": "per hour", "savings": "SAVE €30 EVERY HOUR!" }
+  },
+  "features": {
+    "location": { "title": "Location", "text": "At Douwe Egberts (Dubbelink 2) or home tutoring in Gein" },
+    "availability": { "title": "Availability", "text": "Saturdays and Sundays, flexible hours" },
+    "extras": { "title": "Extras", "text": "Free 30-minute trial lesson" }
+  },
+  "cta": {
+    "trial": "Book Free Trial",
+    "whatsapp": "WhatsApp Us"
+  },
+  "programOffers": {
+    "weekendTutoring": {
+      "title": "Weekend Tutoring",
+      "description": "Special weekend discount! Only €30 per hour (regular €60). Home tutoring available in Gein. Start with a free 30-minute trial lesson!",
+      "whatsappMessage": "Hi! I'm interested in the weekend tutoring program. Can I book a trial lesson?"
+    },
+    "personalCoaching": {
+      "title": "Personal Coaching",
+      "description": "Need guidance with your studies? Available weekends for €30/hour in Zuidoost. First 30-minute consultation is free!",
+      "whatsappMessage": "Hi! I'm interested in personal coaching. Can you tell me more?"
+    },
+    "flexibleSupport": {
+      "title": "Flexible Support",
+      "description": "Whether it's math, coaching, or just discussing your studies - I'm here to help! Special rate of €30/hour (save €30). Home service in Gein.",
+      "whatsappMessage": "Hi! I'm interested in flexible study support. I'd like to learn more about the possibilities."
+    }
+  },
+  "location": {
+    "name": "Douwe Egberts Café",
+    "description": "Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.",
+    "hours": "Open daily: 08:00 - 22:00"
+  },
+  "footer": "Let's learn together!"
+}

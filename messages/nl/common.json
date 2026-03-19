@@ -14,5 +14,29 @@
     "faq": "Vragen",
     "contact": "Contact"
   },
-  "languageSwitcher": "EN"
+  "languageSwitcher": "EN",
+  "footer": {
+    "title": "Stephen's Privélessen",
+    "description": "Professionele begeleiding in wiskunde en programmeren voor alle niveaus.",
+    "servicesLabel": "Diensten",
+    "services": {
+      "tutoring": "Privélessen",
+      "thesisSupervision": "Scriptiebegeleiding",
+      "workshops": "Workshops",
+      "consultancy": "Consultancy",
+      "services": "Diensten"
+    },
+    "infoLabel": "Informatie",
+    "info": {
+      "about": "Over Ons",
+      "blog": "Blog",
+      "faq": "Vragen",
+      "contact": "Contact"
+    },
+    "contactLabel": "Contact",
+    "copyright": "Alle rechten voorbehouden."
+  },
+  "scheduleTrialSession": "Plan een Gratis Proefles",
+  "learnMore": "Meer Informatie",
+  "whatsappLabel": "Contact via WhatsApp"
 }

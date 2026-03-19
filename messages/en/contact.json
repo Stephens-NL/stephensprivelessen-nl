@@ -1,1 +1,72 @@
-{}
+{
+  "title": "Stephen's Private Lessons",
+  "aboutMe": "I'm Stephen, a master's student from Amsterdam who turned negative advice into top grades. With a decade of programming experience, I know how to help you. Book a free trial lesson and rediscover the joy in mathematics and programming. See you soon!",
+  "aboutLessons": "With an average score of 8.5 for exam trainings, I know how to help others learn, including programming thanks to my minor during my Master's in Mathematics. Struggling with programming or theory? We focus on what you know and don't know, and make a plan for your assignment. With only one hour available, we make it count, and I offer a week of support via WhatsApp or Messages after our lesson. Let's start soon!",
+  "subjects": {
+    "primary": ["Arithmetic", "Language"],
+    "secondary": ["Mathematics A/B/C/D", "Physics", "Chemistry", "English"],
+    "higher": ["Business Statistics", "Calculus", "Economics", "Statistics", "Probability Theory", "Linear Algebra", "Set Theory", "Programming (C, C#, C++, CSS, HTML, Java, Javascript, MATLAB, Python, R, React, SPSS, SQL, etc.)"]
+  },
+  "examTraining": {
+    "description": "I offer guidance for mathematics exams, including a preparatory exam to analyze where help is needed, after which I create a specific study plan."
+  },
+  "contactItems": {
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location"
+  },
+  "infoSection": {
+    "communicationNote": "I prefer to keep communication personal and direct through WhatsApp or email. This allows me to give you my full attention and provide the best possible support for your learning journey.",
+    "availableCourses": "Available Courses",
+    "primaryEducation": "Primary Education",
+    "secondaryEducation": "Secondary Education",
+    "higherEducation": "Higher Education",
+    "previewNotes": "Preview Notes",
+    "back": "Back",
+    "contactWhatsApp": "Contact via WhatsApp",
+    "contactEmail": "Contact via Email",
+    "teachingMethod": "Teaching Method",
+    "teachingMethodDescription": "I focus on understanding rather than memorization. We'll work together to build a strong foundation in the subject, using practical examples and clear explanations.",
+    "lessonStructure": "Lesson Structure",
+    "standardSession": "A standard session is 60 minutes. For group lessons with 3 or more students, I recommend 1.5-hour sessions to ensure everyone gets sufficient attention.",
+    "trialLesson": "We start with a free 30-minute trial lesson to assess your needs and goals. For thesis supervision, the first consultation includes preparation time.",
+    "individualSessions": "Individual Sessions",
+    "rates": "Rates start at €60 per hour. First trial lesson (30 min) is free!",
+    "ratesNote": "A standard session is 60 minutes. Longer sessions are possible on request. All rates for individuals include VAT (21%).",
+    "groupSessions": "Group Sessions",
+    "groupSessionsDescription": "Study together and save! Group rates for 2-4 students. For optimal learning, I recommend 1.5-hour sessions for groups of 3-4 students. All rates for individuals include VAT (21%), business rates exclude VAT.",
+    "thesisSupervision": "Thesis Supervision",
+    "thesisDescription": "Professional support for your thesis. First consultation includes preparation time.",
+    "servicesInclude": "Services include:",
+    "thesisServices": {
+      "researchMethodology": "Research methodology and design",
+      "dataAnalysis": "Data analysis and statistics",
+      "proofreading": "Proofreading and feedback",
+      "softwareSupport": "Software support (R, Python, SPSS)"
+    },
+    "thesisPackageNote": "A standard session is 60 minutes. All packages include WhatsApp support for quick questions between sessions. The 10 sessions package is recommended for comprehensive thesis support.",
+    "showExample": "Show example calculation (1.5-hour session)",
+    "costComparison": "Cost comparison for 4 {level} students:",
+    "whatsappSupport": "4 sessions includes WhatsApp support for quick questions up to a week after each lesson.",
+    "freeTrialNote": "First trial lesson (30 minutes) is always free"
+  },
+  "pricing": {
+    "title": "Complete Overview – Math Programs",
+    "subtitle": "Group lessons, max. 4 students",
+    "courses": {
+      "spoedpakket": { "name": "Rush Package", "duration": "1 week", "lessons": "4 hrs (2–3 sessions)", "personalSupport": "—", "contactHours": "4 hrs", "refundPolicy": "n/a", "highlight": "Highest student hourly rate", "description": "Intensive week program for urgent help" },
+      "korteCursus": { "name": "Short Course", "duration": "4 weeks", "lessons": "4 hrs (1 hr/week)", "personalSupport": "—", "contactHours": "4 hrs", "refundPolicy": "n/a", "highlight": "Lowest entry price", "description": "Gradual build-up within one period" },
+      "volledigCommit": { "name": "Complete – Commit", "duration": "12 weeks", "lessons": "10–11 hrs lessons", "personalSupport": "15 min per person/week (3 hrs)", "contactHours": "13–14 hrs", "refundPolicy": "No refund; transferable", "highlight": "25% cheaper than Flex", "description": "Full commitment, paid upfront" },
+      "volledigFlex": { "name": "Complete – Flex", "duration": "12 weeks", "lessons": "10–11 hrs lessons", "personalSupport": "15 min per person/week (3 hrs)", "contactHours": "13–14 hrs", "refundPolicy": "Cancellable every 4 weeks", "highlight": "Flexibility for premium price", "description": "Maximum flexibility for students" }
+    },
+    "features": {
+      "duration": { "label": "Duration", "short": "Duration" },
+      "lessons": { "label": "Lesson sessions", "short": "Lessons" },
+      "personalSupport": { "label": "Personal office hours", "short": "Office hrs" },
+      "contactHours": { "label": "Student contact hours", "short": "Contact" },
+      "pricePerPerson": { "label": "Price per person", "short": "Price" },
+      "pricePerLessonHour": { "label": "€ / lesson hour student", "short": "€/hr" },
+      "refundPolicy": { "label": "Refund policy", "short": "Refund" }
+    }
+  }
+}

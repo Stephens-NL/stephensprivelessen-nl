@@ -1,1 +1,42 @@
-{}
+{
+  "hero": {
+    "title": "Data & Statistics Consultancy",
+    "subtitle": "Expert guidance in data analysis, statistics, and research methodology. Transform your data into actionable insights.",
+    "cta": "More Info & Schedule Now"
+  },
+  "services": {
+    "title": "Our Expertise",
+    "items": [
+      {
+        "title": "Data Analysis",
+        "description": "Advanced statistical analysis and data interpretation",
+        "items": ["Statistical Modeling", "Hypothesis Testing", "Regression Analysis", "Time Series Analysis"]
+      },
+      {
+        "title": "Research Methodology",
+        "description": "Expert guidance in research design and methodology",
+        "items": ["Research Design", "Sampling Methods", "Survey Development", "Experimental Design"]
+      },
+      {
+        "title": "Machine Learning",
+        "description": "Modern machine learning solutions for business problems",
+        "items": ["Predictive Analytics", "Classification Models", "Clustering Analysis", "Deep Learning"]
+      }
+    ]
+  },
+  "approach": {
+    "title": "Our Approach",
+    "steps": [
+      { "title": "Initial Consultation", "description": "We start with a thorough understanding of your needs and objectives" },
+      { "title": "Data Assessment", "description": "Comprehensive evaluation of your data and requirements" },
+      { "title": "Solution Design", "description": "Development of tailored analytical solutions" },
+      { "title": "Implementation", "description": "Expert execution of the proposed solutions" },
+      { "title": "Knowledge Transfer", "description": "Ensuring your team understands and can maintain the solutions" }
+    ]
+  },
+  "cta": {
+    "title": "Ready to Transform Your Data?",
+    "subtitle": "Contact us today to discuss how we can help you leverage your data for better decision-making.",
+    "button": "Schedule Now"
+  }
+}

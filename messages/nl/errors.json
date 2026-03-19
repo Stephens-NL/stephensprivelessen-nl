@@ -1,1 +1,16 @@
-{}
+{
+  "error": {
+    "title": "Oeps! Er is iets misgegaan",
+    "defaultMessage": "Er is een onverwachte fout opgetreden",
+    "tryAgain": "Probeer Opnieuw"
+  },
+  "notFound": {
+    "title": "404 - Pagina Niet Gevonden",
+    "description": "We konden de pagina die je zoekt niet vinden.",
+    "returnHome": "Terug naar Home"
+  },
+  "loading": {
+    "title": "Laden...",
+    "description": "Even geduld terwijl we je content voorbereiden."
+  }
+}

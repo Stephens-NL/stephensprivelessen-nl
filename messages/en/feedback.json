@@ -1,1 +1,150 @@
-{}
+{
+  "formData": {
+    "languageSelection": {
+      "title": "Select Your Language / Kies Je Taal"
+    },
+    "welcome": {
+      "title": "Welcome to Stephen's Feedback Form",
+      "description": "Your insights are valuable in helping me improve and tailor my teaching methods.",
+      "startButtonText": "Start Feedback"
+    },
+    "lengthSelection": {
+      "title": "Choose Your Feedback Form",
+      "shortOption": "Short (1-2 min) - Quick and Easy",
+      "longOption": "Long (8-10 min) - More In-Depth"
+    },
+    "navigation": {
+      "back": "Back",
+      "next": "Next",
+      "submit": "Submit"
+    },
+    "submitCTA": {
+      "title": "Ready to submit your feedback?",
+      "description": "Thank you for taking the time to provide your valuable feedback.",
+      "buttonText": "Submit Feedback"
+    },
+    "farewell": {
+      "title": "Thank You!",
+      "message": "Your feedback has been successfully submitted. We appreciate your input!",
+      "closeButtonText": "Close"
+    }
+  },
+  "shortVersion": {
+    "title": "Stephen's Annual Quick Feedback Form",
+    "description": "A quick way to share your thoughts on our sessions. Your feedback helps me improve and tailor our future lessons!",
+    "conclusion": "Thank you for your valuable feedback! Your insights help me improve and tailor my tutoring services. I appreciate your time and look forward to potential future collaborations.",
+    "sections": {
+      "respondentType": { "title": "Respondent Information" },
+      "general": { "title": "General Information" },
+      "experience": { "title": "Tutoring Experience" },
+      "futurePreferences": { "title": "Future Preferences" },
+      "testimonial": { "title": "Testimonial" }
+    },
+    "questions": {
+      "relationship": "What is your relationship to the tutoring services?",
+      "studentName": "Student's name",
+      "companyName": "Company name",
+      "subject": "Subject or Topic",
+      "sessionPeriod": "When did you receive tutoring?",
+      "overallRating": "Overall rating of the tutoring sessions (1-5)",
+      "progressSatisfaction": "How satisfied are you with the progress made?",
+      "mostValuable": "What was the most valuable aspect of the tutoring sessions?",
+      "improvementAreas": "Are there any areas where you think the tutoring could improve?",
+      "futurePlans": "Are you planning to continue with tutoring in the future?",
+      "topicPreference": "Are there any specific topics you'd like to focus on in future sessions?",
+      "learningStyle": "Which learning style works best for you/the student?",
+      "sessionFrequency": "Preferred frequency of future sessions",
+      "quoteConsent": "Would you like to provide a testimonial about your experience?",
+      "quoteText": "Please write your testimonial here:",
+      "nameConsent": "How would you like your name to appear with the testimonial?"
+    },
+    "options": {
+      "currentStudent": "Current student",
+      "formerStudent": "Former student",
+      "parentGuardian": "Parent/Guardian",
+      "company": "Company representative",
+      "thisYear": "This year",
+      "lastYear": "Last year",
+      "moreThanAYear": "More than a year ago",
+      "verySatisfied": "Very satisfied",
+      "satisfied": "Satisfied",
+      "neutral": "Neutral",
+      "dissatisfied": "Dissatisfied",
+      "veryDissatisfied": "Very dissatisfied",
+      "yes": "Yes",
+      "maybe": "Maybe",
+      "no": "No",
+      "visual": "Visual aids and diagrams",
+      "practical": "Practical examples and exercises",
+      "discussion": "Discussions and explanations",
+      "mixed": "A mix of styles",
+      "moreOften": "More often",
+      "sameFrequency": "Same frequency",
+      "lessOften": "Less often",
+      "fullName": "Full name",
+      "firstNameLastInitial": "First name and last initial",
+      "initials": "Initials only",
+      "anonymous": "Anonymous"
+    }
+  },
+  "longVersion": {
+    "title": "Stephen's Detailed Annual Feedback Form",
+    "description": "Welcome to my detailed annual feedback form. Your insights are invaluable in helping me improve and tailor my teaching methods for the coming year. Thank you for taking the time to share your thoughts!",
+    "conclusion": "Thank you for taking the time to provide this valuable feedback on our year together. Your insights will help me improve and tailor my teaching methods for the coming year. I look forward to our continued collaboration!",
+    "sections": {
+      "general": { "title": "General Information" },
+      "yearlyExperience": { "title": "Yearly Experience" },
+      "specificFeedback": { "title": "Specific Feedback and Suggestions" },
+      "learningPreferences": { "title": "Learning Preferences for Next Year" },
+      "personalQuote": { "title": "Personal Quote and Permission" }
+    },
+    "questions": {
+      "learnerName": "Learner's Name",
+      "subject": "Subject or Topic",
+      "overallQuality": "Overall quality of the lessons/guidance this year",
+      "expectationsMet": "How well did the content meet your expectations this year?",
+      "clarity": "Clarity of explanations throughout the year",
+      "effectiveness": "Effectiveness in improving your skills/knowledge this year",
+      "interaction": "Quality of interaction and communication during lessons this year",
+      "accessibility": "Accessibility and helpfulness of the tutor throughout the year",
+      "mostValuable": "What did you find most valuable about the lessons/guidance this year?",
+      "improvements": "Are there any areas that you think could be improved for next year?",
+      "suggestions": "Do you have any suggestions for topics or methods you'd like to see next year?",
+      "dataApproach": "How do you feel about incorporating more data-driven approaches in our lessons next year?",
+      "preferredLearningStyle": "Which learning style would you prefer for next year?",
+      "preferredPace": "What pace would you prefer for our sessions next year?",
+      "preferredFrequency": "How often would you like to have sessions next year?",
+      "quoteConsent": "Would you like to provide a quote about your experience this year for my website?",
+      "quoteText": "If yes, please write your quote here:",
+      "nameConsent": "How would you like your name to appear with the quote?",
+      "photoConsent": "Would you like your quote to be posted with a photo on the website or social media?",
+      "photoChoice": "If yes, would you prefer to provide your own photo or use one from our sessions?"
+    },
+    "options": {
+      "visualLearning": "Visual learning with diagrams and charts",
+      "auditoryLearning": "Auditory learning through discussions",
+      "kinestheticLearning": "Hands-on learning with practical exercises",
+      "mixedLearning": "A mix of different styles",
+      "faster": "Faster than this year",
+      "same": "Same as this year",
+      "slower": "Slower than this year",
+      "moreOften": "More often than this year",
+      "sameFrequency": "Same frequency as this year",
+      "lessOften": "Less often than this year",
+      "ownPhoto": "I will provide my own photo",
+      "sessionPhoto": "Use a photo from our sessions"
+    }
+  },
+  "intermezzi": {
+    "short": {
+      "intro": { "title": "Welcome", "content": "I've had the pleasure of helping you recently, and I'd love to get your quick feedback. This form is part of my new website project - I built it from scratch using Next.js!" },
+      "funFact": { "title": "A Quick Fun Fact", "content": "Did you know? Besides being your tutor, I'm also a model, analog photographer, musician (DJ, pianist, bassist, guitarist), music producer, event planner, and graphic designer. I do almost everything under a different alias - confusing for others, but clear for me!" }
+    },
+    "long": {
+      "intro": { "title": "Welcome to My Feedback Form", "content": "Over the past 2 years, I've had the pleasure of helping many of you, often with great success. Now, I'm collecting feedback to get a central view of how I'm doing. I've carefully crafted this form to fit you as best as possible - it's for you, but also for me. This form is built from scratch using Next.js, a web development framework. It's part of my new website, which I'm designing to showcase that I'm not just a wacky mathematician, but a genuine techie. I'm simultaneously working on my data CV, and this form is a part of that journey." },
+      "hobbies": { "title": "My Many Hats", "content": "Besides being a mathematician and private tutor, I wear many hats: I'm a model, strictly analog photographer, DJ, pianist, bassist, guitarist, music producer, releasing artist, event planner, graphic designer, and I was briefly even a writer. The funny thing is, I do almost everything under a different alias. It's confusing for others, but clear to me. Currently, I'm aggressively exploring and expanding my data skills and possibilities." },
+      "photos": { "title": "A Glimpse into My World", "content": "I have various photos from my work as a photographer and model over the past 10 years. For cases involving a young child or a parent of a child under 15, I might include a childhood photo of myself to show how normal I am. It's a fun way to connect and show a different side of me." },
+      "conclusion": { "title": "Reflections and Future Plans", "content": "I've truly enjoyed giving these lessons. When I started Stephen's Private Lessons two years ago, formalizing the tutoring, exam training, and homework guidance I'd been doing for years, I honestly didn't think I'd keep at it this long or continue to see so many possibilities in it. I've always loved teaching, and teaching you was, of course, the absolute best (wink). Starting this year, I'm planning to schedule lessons more through a portal/date-picker to reduce screen time, but my WhatsApp and email are always open for questions or a chat. Lobie!" }
+    }
+  }
+}

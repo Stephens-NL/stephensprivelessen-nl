@@ -1,1 +1,16 @@
-{}
+{
+  "error": {
+    "title": "Oops! Something went wrong",
+    "defaultMessage": "An unexpected error occurred",
+    "tryAgain": "Try Again"
+  },
+  "notFound": {
+    "title": "404 - Page Not Found",
+    "description": "We couldn't find the page you're looking for.",
+    "returnHome": "Return Home"
+  },
+  "loading": {
+    "title": "Loading...",
+    "description": "Please wait while we prepare your content."
+  }
+}

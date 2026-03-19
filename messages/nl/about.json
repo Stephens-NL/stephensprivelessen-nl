@@ -1,1 +1,73 @@
-{}
+{
+  "title": "Over Ons",
+  "introduction": {
+    "heading": "Onze Reis en Visie",
+    "paragraphs": [
+      "Stephen's reis in het onderwijs begon al op de basisschool, waar hij uitblonk in wiskunde. Echter, tijdens de middelbare school werd wiskunde een grote uitdaging. Na het derde jaar af te sluiten met een gemiddeld cijfer van een vijf, besloot Stephen een nieuwe aanpak te proberen. Ondanks aanvankelijke twijfels van leraren, besloot hij alle opgegeven taken nauwgezet te maken en te laten controleren. Deze inspanning leidde tot verrassende resultaten, te beginnen met een 9,8 op de eerste toets. Dit markeerde het begin van een opmerkelijke ommekeer in zijn academische prestaties.",
+      "Door op deze manier door te gaan, behaalde Stephen consistent hoge cijfers en handhaafde uiteindelijk een gemiddelde van een 10 in het vierde en vijfde jaar. Echter, in het zesde jaar bracht een uitdagende toets over bewijzen zijn gemiddelde naar beneden, met als eindresultaat een 8,45. Ondanks dat hij net geen negen behaalde, inspireerde deze reis hem om bijles te gaan geven, eerst aan zijn medeleerlingen en later als een professionele dienst. Wij, als team, delen deze passie en streven ernaar om studenten te ondersteunen bij het overwinnen van academische uitdagingen. Voor ons is dit niet alleen een baan, maar een kans om een positieve impact te hebben op het leven van onze studenten."
+    ],
+    "altText": "Stephen's portret"
+  },
+  "philosophyTitle": "Onze Filosofie",
+  "philosophyPoints": [
+    {
+      "title": "Persoonlijke Aanpak",
+      "description": "Wij passen onze lessen aan op de unieke behoeften en leerstijlen van elke student, zodat iedereen de ondersteuning krijgt die hij of zij nodig heeft om te slagen."
+    },
+    {
+      "title": "Brede Expertise",
+      "description": "De diverse achtergrond van ons team stelt ons in staat om verbinding te maken met studenten uit verschillende disciplines, waardoor complexe onderwerpen toegankelijk en boeiend worden."
+    },
+    {
+      "title": "Flexibel Leren",
+      "description": "Wij bieden flexibele planningen en ondersteuning via verschillende kanalen, waaronder WhatsApp, om de drukke levens van onze studenten te accommoderen."
+    }
+  ],
+  "cta": {
+    "title": "Doe Met Ons Mee",
+    "description": "Klaar om je vaardigheden te verbeteren en je academische doelen te bereiken? Neem vandaag nog contact met ons op om te beginnen.",
+    "buttonText": "Contacteer Ons"
+  },
+  "detailedTitle": "Gedetailleerde Informatie",
+  "detailedInfo": {
+    "items": [
+      {
+        "question": "Wat inspireerde ons om bijles en onderwijs aan te bieden?",
+        "answer": "Stephen's reis in het onderwijs begon met uitdagingen op de middelbare school, maar door doorzettingsvermogen en een strategische aanpak excelleerde hij. Deze ervaring wakkerde een passie aan om anderen te helpen soortgelijke obstakels te overwinnen."
+      },
+      {
+        "question": "Hoe omschrijven wij onze onderwijsaanpak en -methoden?",
+        "answer": "Onze aanpak is persoonlijk en adaptief, gericht op de individuele behoeften van elke student. We maken gebruik van technologie, zoals iPad-aantekeningen en WhatsApp-ondersteuning, om het leren te verbeteren en voortdurende ondersteuning te bieden."
+      },
+      {
+        "question": "Wat maakt onze bijlessen uniek in vergelijking met andere aanbieders?",
+        "answer": "Onze diverse achtergrond in wiskunde, programmeren, muziek en fotografie stelt ons in staat een breed perspectief te bieden. We creëren een relatable en boeiende leeromgeving, waardoor complexe onderwerpen toegankelijk worden."
+      },
+      {
+        "question": "Hoe gaan wij om met verschillende leerstijlen en niveaus van studenten?",
+        "answer": "We gebruiken verschillende differentiatie technieken, waaronder scaffolding, om studenten op verschillende niveaus te ondersteunen. Onze flexibele en interactieve lessen zijn afgestemd op visuele, auditieve en kinesthetische leerlingen."
+      },
+      {
+        "question": "Welke resultaten en successen hebben wij gezien bij onze studenten?",
+        "answer": "We hebben veel studenten geholpen hun cijfers en zelfvertrouwen te verbeteren, van het overwinnen van academische uitdagingen tot het excelleren in examens. Onze focus ligt op het bieden van efficiënte en waardevolle hulp, zelfs in slechts een paar sessies."
+      }
+    ]
+  },
+  "introductionContent": {
+    "title": "Onze Aanpak",
+    "sections": [
+      {
+        "title": "Welkom",
+        "content": "Welkom bij onze bijlessen en cursussen! Wij geloven in een persoonlijke en flexibele benadering, afgestemd op de unieke behoeften van elke student. Onze ervaren docenten bieden ondersteuning op maat, van basisvaardigheden tot geavanceerde onderwerpen, in een vriendelijke en stimulerende leeromgeving. Of je nu studeert voor een examen, je vaardigheden wilt verbeteren of een nieuwe taal wilt leren, wij staan voor je klaar om je te helpen slagen."
+      },
+      {
+        "title": "Persoonlijk Leren",
+        "content": "We passen onze onderwijsmethoden aan op jouw leerstijl en tempo. Elke student is uniek, en we passen onze aanpak daarop aan."
+      },
+      {
+        "title": "Expert Ondersteuning",
+        "content": "Onze ervaren docenten bieden begeleiding in verschillende vakken, zodat je hoogwaardig onderwijs en ondersteuning krijgt."
+      }
+    ]
+  }
+}

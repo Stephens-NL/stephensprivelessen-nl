@@ -1,1 +1,72 @@
-{}
+{
+  "title": "Stephen's Privelessen",
+  "aboutMe": "Ik ben Stephen, een masterstudent uit Amsterdam die zich omdraaide van een negatief advies naar topcijfers. Met een decennium ervaring in programmeren, weet ik hoe ik je moet helpen. Boek een gratis proefles en vind de lol in wiskunde en programmeren terug. Tot snel!",
+  "aboutLessons": "Met een gemiddelde score van 8.5 voor examentrainingen, weet ik hoe ik anderen kan helpen leren, ook in programmeren dankzij mijn minor tijdens mijn Master Wiskunde. Struggle je met programmeren of theorie? We focussen op wat je kent en wat niet, en maken een plan voor je opdracht. Met slechts een uur beschikbaar, zorgen we dat het telt, en ik bied een week lang ondersteuning via WhatsApp of Messages na onze les. Laten we snel beginnen!",
+  "subjects": {
+    "primary": ["Rekenen", "Taal"],
+    "secondary": ["Wiskunde A/B/C/D", "Natuurkunde", "Scheikunde", "Engels"],
+    "higher": ["Bedrijfsstatistiek", "Calculus", "Economie", "Statistiek", "Kansberekening", "Lineaire Algebra", "Verzamelingenleer", "Programmeren (C, C#, C++, CSS, HTML, Java, Javascript, MATLAB, Python, R, React, SPSS, SQL, etc.)"]
+  },
+  "examTraining": {
+    "description": "Ik bied begeleiding bij wiskunde-examens, inclusief een voorbereidend examen om te analyseren waar hulp nodig is, waarna ik een specifiek studieplan opstel."
+  },
+  "contactItems": {
+    "phone": "Telefoon",
+    "email": "E-mail",
+    "location": "Locatie"
+  },
+  "infoSection": {
+    "communicationNote": "Ik houd de communicatie graag persoonlijk en direct via WhatsApp of email. Zo kan ik je mijn volledige aandacht geven en de beste ondersteuning bieden voor je leertraject.",
+    "availableCourses": "Beschikbare Vakken",
+    "primaryEducation": "Basisonderwijs",
+    "secondaryEducation": "Voortgezet Onderwijs",
+    "higherEducation": "Hoger Onderwijs",
+    "previewNotes": "Bekijk Notities",
+    "back": "Terug",
+    "contactWhatsApp": "Contact via WhatsApp",
+    "contactEmail": "Contact via Email",
+    "teachingMethod": "Lesmethode",
+    "teachingMethodDescription": "Ik focus op begrip in plaats van uit het hoofd leren. We werken samen aan een sterke basis in het vak, met praktische voorbeelden en heldere uitleg.",
+    "lessonStructure": "Lesstructuur",
+    "standardSession": "Een standaard sessie duurt 60 minuten. Voor groepslessen met 3 of meer studenten raad ik sessies van 1,5 uur aan voor voldoende persoonlijke aandacht.",
+    "trialLesson": "We beginnen met een gratis proefles van 30 minuten om je behoeften en doelen te bespreken. Voor scriptiebegeleiding is het eerste consult inclusief voorbereidingstijd.",
+    "individualSessions": "Individuele Sessies",
+    "rates": "Tarieven vanaf €60 per uur. Eerste proefles (30 min) is gratis!",
+    "ratesNote": "Een standaard sessie duurt 60 minuten. Langere sessies zijn mogelijk op aanvraag. Alle tarieven voor particulieren zijn inclusief BTW (21%).",
+    "groupSessions": "Groepssessies",
+    "groupSessionsDescription": "Samen studeren en besparen! Groepstarieven voor 2-4 studenten. Voor optimaal leren raad ik sessies van 1,5 uur aan voor groepen van 3-4 studenten. Alle tarieven voor particulieren zijn inclusief BTW (21%), zakelijke tarieven zijn exclusief BTW.",
+    "thesisSupervision": "Scriptiebegeleiding",
+    "thesisDescription": "Professionele ondersteuning voor je scriptie. Eerste consult inclusief voorbereidingstijd.",
+    "servicesInclude": "Diensten omvatten:",
+    "thesisServices": {
+      "researchMethodology": "Onderzoeksmethodologie en opzet",
+      "dataAnalysis": "Data-analyse en statistiek",
+      "proofreading": "Proeflezen en feedback",
+      "softwareSupport": "Software ondersteuning (R, Python, SPSS)"
+    },
+    "thesisPackageNote": "Een standaard sessie duurt 60 minuten. Alle pakketten inclusief WhatsApp ondersteuning voor korte vragen tussen sessies door. Het pakket van 10 sessies wordt aanbevolen voor uitgebreide scriptiebegeleiding.",
+    "showExample": "Toon rekenvoorbeeld (1,5 uur sessie)",
+    "costComparison": "Kostenvergelijking voor 4 {level} studenten:",
+    "whatsappSupport": "4 sessies inclusief WhatsApp ondersteuning voor korte vragen tot een week na elke les.",
+    "freeTrialNote": "Eerste proefles (30 minuten) is altijd gratis"
+  },
+  "pricing": {
+    "title": "Totaaloverzicht – Rekentrajecten",
+    "subtitle": "Groepslessen, max. 4 leerlingen",
+    "courses": {
+      "spoedpakket": { "name": "Spoedpakket", "duration": "1 week", "lessons": "4 u (2–3 sessies)", "personalSupport": "—", "contactHours": "4 u", "refundPolicy": "n.v.t.", "highlight": "Hoogste leerling-uurprijs", "description": "Intensief weekprogramma voor acute hulp" },
+      "korteCursus": { "name": "Korte cursus", "duration": "4 weken", "lessons": "4 u (1 u/wk)", "personalSupport": "—", "contactHours": "4 u", "refundPolicy": "n.v.t.", "highlight": "Laagste instapprijs", "description": "Rustige opbouw binnen één periode" },
+      "volledigCommit": { "name": "Volledig – Commit", "duration": "12 weken", "lessons": "10–11 u les", "personalSupport": "15 min p.p./wk (3 u)", "contactHours": "13–14 u", "refundPolicy": "Géén restitutie; overdraagbaar", "highlight": "25% goedkoper dan Flex", "description": "Volledige commitment, vooraf betaald" },
+      "volledigFlex": { "name": "Volledig – Flex", "duration": "12 weken", "lessons": "10–11 u les", "personalSupport": "15 min p.p./wk (3 u)", "contactHours": "13–14 u", "refundPolicy": "Na elke 4 wk opzegbaar", "highlight": "Flexibiliteit tegen meerprijs", "description": "Maximum flexibiliteit voor studenten" }
+    },
+    "features": {
+      "duration": { "label": "Duur", "short": "Duur" },
+      "lessons": { "label": "Lesmomenten", "short": "Lessen" },
+      "personalSupport": { "label": "Persoonlijk spreekuur", "short": "Spreekuur" },
+      "contactHours": { "label": "Contact-uren leerling", "short": "Contact" },
+      "pricePerPerson": { "label": "Prijs p.p.", "short": "Prijs" },
+      "pricePerLessonHour": { "label": "€ / leeruur leerling", "short": "€/uur" },
+      "refundPolicy": { "label": "Refund-beleid", "short": "Refund" }
+    }
+  }
+}

@@ -1,1 +1,35 @@
-{}
+{
+  "title": "Thesis Supervision Amsterdam",
+  "subtitle": "Professional guidance for your thesis or dissertation. Expert in statistics, methodology and data analysis. Personal approach for bachelor and master students.",
+  "services": {
+    "title": "Our Services",
+    "methodology": {
+      "title": "Methodology",
+      "items": ["Research Design", "Research Questions", "Hypothesis Formulation", "Methodological Foundation"]
+    },
+    "dataAnalysis": {
+      "title": "Data Analysis",
+      "items": ["Statistical Analysis", "SPSS & R Studio", "Python for Data Science", "Result Interpretation"]
+    },
+    "guidance": {
+      "title": "Guidance",
+      "items": ["Personal Feedback", "Structure Advice", "Planning & Deadlines", "Final Editing"]
+    }
+  },
+  "why": {
+    "title": "Why Choose Our Thesis Supervision?",
+    "items": [
+      "Experienced supervisor with academic background",
+      "Specialization in statistics and methodology",
+      "Personal one-on-one guidance",
+      "Flexible appointments (online or on location)",
+      "Expertise in various analysis software",
+      "Focus on independent learning and understanding"
+    ]
+  },
+  "cta": {
+    "title": "Ready to Excel?",
+    "subtitle": "Contact us today to discuss how we can help you achieve academic excellence.",
+    "button": "Get Started"
+  }
+}

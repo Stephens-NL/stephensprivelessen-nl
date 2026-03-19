@@ -1,1 +1,45 @@
-{}
+{
+  "title": "Weekend Bijles Zuidoost",
+  "subtitle": "Weekend Bijles in Amsterdam Zuidoost",
+  "specialOffer": "SPECIAAL WEEKEND AANBOD",
+  "discount": {
+    "text": "50% KORTING",
+    "subtext": "(Beperkt aantal plekken)"
+  },
+  "pricing": {
+    "regularPrice": { "label": "Normale Prijs", "perHour": "per uur" },
+    "weekendRate": { "label": "Weekend Tarief", "perHour": "per uur", "savings": "BESPAAR €30 PER UUR!" }
+  },
+  "features": {
+    "location": { "title": "Locatie", "text": "Bij Douwe Egberts (Dubbelink 2) of bijles aan huis in Gein" },
+    "availability": { "title": "Beschikbaarheid", "text": "Zaterdag en zondag, flexibele tijden" },
+    "extras": { "title": "Extra's", "text": "Gratis proefles van 30 minuten" }
+  },
+  "cta": {
+    "trial": "Boek Gratis Proefles",
+    "whatsapp": "WhatsApp Ons"
+  },
+  "programOffers": {
+    "weekendTutoring": {
+      "title": "Weekend Bijles",
+      "description": "Speciale weekendkorting! Slechts €30 per uur (normaal €60). Bijles aan huis in Gein. Begin met een gratis proefles van 30 minuten!",
+      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in het weekend bijlesprogramma. Kan ik een proefles boeken?"
+    },
+    "personalCoaching": {
+      "title": "Persoonlijke Coaching",
+      "description": "Hulp nodig met je studie? Beschikbaar in het weekend voor €30/uur in Zuidoost. Eerste 30 minuten gesprek is gratis!",
+      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in persoonlijke coaching. Kun je me meer vertellen?"
+    },
+    "flexibleSupport": {
+      "title": "Flexibele Ondersteuning",
+      "description": "Of het nu gaat om wiskunde, coaching of gewoon je studie bespreken - ik help je graag! Speciaal tarief van €30/uur (bespaar €30). Service aan huis in Gein.",
+      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in flexibele studieondersteuning. Ik zou graag meer willen weten over de mogelijkheden."
+    }
+  },
+  "location": {
+    "name": "Douwe Egberts Café",
+    "description": "Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.",
+    "hours": "Dagelijks geopend: 08:00 - 22:00"
+  },
+  "footer": "Samen leren we meer!"
+}
