@@ -1,12 +1,13 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { BookOpen, Target, Trophy, Users } from 'lucide-react';
 
 export function AboutSection() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('mbo');
 
   const features = [
     {
@@ -42,12 +43,10 @@ export function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
-            {language === 'NL' ? 'Waarom kiezen voor ons?' : 'Why choose us?'}
+            {t('form.whyChooseUs')}
           </h2>
           <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
-            {language === 'NL'
-              ? 'We begrijpen de uitdagingen van MBO-rekenen en bieden de ondersteuning die je nodig hebt om succesvol te zijn.'
-              : 'We understand the challenges of MBO math and provide the support you need to succeed.'}
+            {t('form.weUnderstandTheChallengesOfMboMathAndProvideTheSup')}
           </p>
         </m.div>
 
@@ -84,25 +83,23 @@ export function AboutSection() {
         >
           <div className="bg-[var(--ink)] rounded-2xl p-8 text-[var(--cream)]">
             <h3 className="text-2xl font-display font-light mb-4">
-              {language === 'NL' ? 'Klaar voor jouw rekentoets?' : 'Ready for your math test?'}
+              {t('form.readyForYourMathTest')}
             </h3>
             <p className="text-[var(--cream-dark)] mb-6 max-w-2xl mx-auto">
-              {language === 'NL'
-                ? 'Sluit je aan bij honderden studenten die al succesvol hun MBO-rekentoets hebben gehaald met onze begeleiding.'
-                : 'Join hundreds of students who have successfully passed their MBO math test with our guidance.'}
+              {t('form.joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe')}
             </p>
             <div className="inline-flex items-center gap-4 text-sm text-[var(--cream-dark)]">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
-                {language === 'NL' ? 'Kleine groepen' : 'Small groups'}
+                {t('form.smallGroups')}
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
-                {language === 'NL' ? 'Flexibele tijden' : 'Flexible times'}
+                {t('form.flexibleTimes')}
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
-                {language === 'NL' ? 'Online & offline' : 'Online & offline'}
+                {t('form.onlineOffline')}
               </div>
             </div>
           </div>

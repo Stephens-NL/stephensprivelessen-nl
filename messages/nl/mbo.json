@@ -18,10 +18,22 @@
     "title": "Waarom kiezen voor ons?",
     "subtitle": "We begrijpen de uitdagingen van MBO-rekenen en bieden de ondersteuning die je nodig hebt om succesvol te zijn.",
     "features": [
-      { "title": "Gerichte aanpak", "description": "Persoonlijke begeleiding afgestemd op jouw niveau en doelen" },
-      { "title": "Bewezen methoden", "description": "Effectieve lesmaterialen en technieken voor optimaal leerresultaat" },
-      { "title": "Hoog slagingspercentage", "description": "95% van onze studenten slaagt voor hun rekentoets" },
-      { "title": "Ervaren docenten", "description": "Gespecialiseerd in MBO-rekenen met jarenlange ervaring" }
+      {
+        "title": "Gerichte aanpak",
+        "description": "Persoonlijke begeleiding afgestemd op jouw niveau en doelen"
+      },
+      {
+        "title": "Bewezen methoden",
+        "description": "Effectieve lesmaterialen en technieken voor optimaal leerresultaat"
+      },
+      {
+        "title": "Hoog slagingspercentage",
+        "description": "95% van onze studenten slaagt voor hun rekentoets"
+      },
+      {
+        "title": "Ervaren docenten",
+        "description": "Gespecialiseerd in MBO-rekenen met jarenlange ervaring"
+      }
     ],
     "ctaTitle": "Klaar voor jouw rekentoets?",
     "ctaSubtitle": "Sluit je aan bij honderden studenten die al succesvol hun MBO-rekentoets hebben gehaald met onze begeleiding.",
@@ -33,21 +45,48 @@
     "title": "Onze diensten",
     "subtitle": "Van individuele begeleiding tot groepslessen - we bieden flexibele oplossingen voor elke leerstijl.",
     "items": [
-      { "title": "Persoonlijke begeleiding", "description": "Individuele lessen op maat, afgestemd op jouw tempo en behoeften." },
-      { "title": "Kleine groepjes", "description": "Je kunt ook samen met maximaal 3 medestudenten les volgen. Dit is voordeliger én gezellig." },
-      { "title": "Specifieke examenvoorbereiding", "description": "We oefenen specifiek op de vaardigheden en kennis die nodig zijn voor het mbo-rekenexamen." },
-      { "title": "Flexibiliteit in locatie", "description": "Lessen kunnen plaatsvinden in Amsterdam-Oost. Voor groepen van 3 à 4 studenten kom ik ook op locatie binnen de regio Amsterdam." },
-      { "title": "Online lessen", "description": "Wil je liever vanuit huis leren? Dat kan, tegen een gereduceerd tarief." }
+      {
+        "title": "Persoonlijke begeleiding",
+        "description": "Individuele lessen op maat, afgestemd op jouw tempo en behoeften."
+      },
+      {
+        "title": "Kleine groepjes",
+        "description": "Je kunt ook samen met maximaal 3 medestudenten les volgen. Dit is voordeliger én gezellig."
+      },
+      {
+        "title": "Specifieke examenvoorbereiding",
+        "description": "We oefenen specifiek op de vaardigheden en kennis die nodig zijn voor het mbo-rekenexamen."
+      },
+      {
+        "title": "Flexibiliteit in locatie",
+        "description": "Lessen kunnen plaatsvinden in Amsterdam-Oost. Voor groepen van 3 à 4 studenten kom ik ook op locatie binnen de regio Amsterdam."
+      },
+      {
+        "title": "Online lessen",
+        "description": "Wil je liever vanuit huis leren? Dat kan, tegen een gereduceerd tarief."
+      }
     ]
   },
   "targetGroups": {
     "title": "Voor wie is dit geschikt?",
     "subtitle": "Onze lessen zijn toegankelijk voor iedereen die moeite heeft met rekenen, ongeacht achtergrond of niveau.",
     "items": [
-      { "title": "MBO-studenten niveau 2, 3 en 4", "description": "Die moeite hebben met rekenen en extra ondersteuning nodig hebben." },
-      { "title": "BBL-studenten", "description": "Die naast hun werk moeite hebben met het rekenonderdeel van hun opleiding." },
-      { "title": "Volwassenen", "description": "Die terug naar school zijn gegaan en rekenen als obstakel ervaren." },
-      { "title": "Studenten met dyscalculie", "description": "Of andere rekenproblemen die speciale aandacht vereisen." }
+      {
+        "title": "MBO-studenten niveau 2, 3 en 4",
+        "description": "Die moeite hebben met rekenen en extra ondersteuning nodig hebben."
+      },
+      {
+        "title": "BBL-studenten",
+        "description": "Die naast hun werk moeite hebben met het rekenonderdeel van hun opleiding."
+      },
+      {
+        "title": "Volwassenen",
+        "description": "Die terug naar school zijn gegaan en rekenen als obstakel ervaren."
+      },
+      {
+        "title": "Studenten met dyscalculie",
+        "description": "Of andere rekenproblemen die speciale aandacht vereisen."
+      }
     ],
     "stillUnsure": "Twijfel je nog?",
     "stillUnsureText": "Geen probleem! We bieden een gratis kennismakingsgesprek aan om te kijken of onze aanpak bij jou past.",
@@ -59,10 +98,22 @@
     "title": "Waarom kiezen studenten voor ons?",
     "subtitle": "Onze aanpak zorgt ervoor dat studenten niet alleen beter worden in rekenen, maar ook meer zelfvertrouwen krijgen.",
     "reasons": [
-      { "title": "Rustige en duidelijke uitleg", "description": "Zonder haast, met alle tijd voor jouw vragen en begrip." },
-      { "title": "Geduldig en ondersteunend", "description": "We werken samen aan jouw zelfvertrouwen in rekenen." },
-      { "title": "Ruime ervaring", "description": "Met verschillende onderwijsniveaus en diverse doelgroepen." },
-      { "title": "Praktisch en begrijpelijk", "description": "Ik maak rekenen praktisch en begrijpelijk, zodat je het direct kunt toepassen." }
+      {
+        "title": "Rustige en duidelijke uitleg",
+        "description": "Zonder haast, met alle tijd voor jouw vragen en begrip."
+      },
+      {
+        "title": "Geduldig en ondersteunend",
+        "description": "We werken samen aan jouw zelfvertrouwen in rekenen."
+      },
+      {
+        "title": "Ruime ervaring",
+        "description": "Met verschillende onderwijsniveaus en diverse doelgroepen."
+      },
+      {
+        "title": "Praktisch en begrijpelijk",
+        "description": "Ik maak rekenen praktisch en begrijpelijk, zodat je het direct kunt toepassen."
+      }
     ],
     "ctaTitle": "Klaar om te beginnen?",
     "ctaSubtitle": "Laat je niet tegenhouden door rekenen. Met de juiste begeleiding kun je het wel!",
@@ -77,9 +128,21 @@
     "available": "beschikbaar",
     "allOptions": "Alle opties",
     "contactMethods": {
-      "whatsapp": { "title": "WhatsApp", "description": "Direct contact voor snelle vragen", "action": "Stuur bericht" },
-      "phone": { "title": "Telefonisch", "description": "Persoonlijk gesprek over jouw situatie", "action": "Bel nu" },
-      "meetGreet": { "title": "Kennismaking", "description": "Gratis intakegesprek op locatie", "action": "Plan afspraak" }
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Direct contact voor snelle vragen",
+        "action": "Stuur bericht"
+      },
+      "phone": {
+        "title": "Telefonisch",
+        "description": "Persoonlijk gesprek over jouw situatie",
+        "action": "Bel nu"
+      },
+      "meetGreet": {
+        "title": "Kennismaking",
+        "description": "Gratis intakegesprek op locatie",
+        "action": "Plan afspraak"
+      }
     }
   },
   "contact": {
@@ -87,9 +150,18 @@
     "subtitle": "Klaar om te starten? Neem contact op voor een gratis kennismakingsgesprek en ontdek hoe we jou kunnen helpen.",
     "getInTouch": "Neem contact op",
     "contactInfo": {
-      "whatsapp": { "label": "WhatsApp", "description": "Snelste manier voor contact" },
-      "email": { "label": "E-mail", "description": "Voor uitgebreidere vragen" },
-      "phone": { "label": "Telefoon", "description": "Persoonlijk gesprek" }
+      "whatsapp": {
+        "label": "WhatsApp",
+        "description": "Snelste manier voor contact"
+      },
+      "email": {
+        "label": "E-mail",
+        "description": "Voor uitgebreidere vragen"
+      },
+      "phone": {
+        "label": "Telefoon",
+        "description": "Persoonlijk gesprek"
+      }
     },
     "availability": "Beschikbaarheid",
     "availabilityTimes": [
@@ -105,5 +177,53 @@
     "freeIntro": "Gratis kennismaking",
     "freeIntroDesc": "Geen verplichtingen, gewoon kennismaken en kijken of we bij elkaar passen.",
     "scheduleIntro": "Plan kennismaking"
+  },
+  "form": {
+    "whyChooseUs": "Waarom kiezen voor ons?",
+    "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "We begrijpen de uitdagingen van MBO-rekenen en bieden de ondersteuning die je nodig hebt om succesvol te zijn.",
+    "readyForYourMathTest": "Klaar voor jouw rekentoets?",
+    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Sluit je aan bij honderden studenten die al succesvol hun MBO-rekentoets hebben gehaald met onze begeleiding.",
+    "smallGroups": "Kleine groepen",
+    "flexibleTimes": "Flexibele tijden",
+    "onlineOffline": "Online & offline",
+    "let": "Laten we kennismaken",
+    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Klaar om te starten? Neem contact op voor een gratis kennismakingsgesprek en ontdek hoe we jou kunnen helpen.",
+    "getInTouch": "Neem contact op",
+    "availability": "Beschikbaarheid",
+    "locations": "Locaties",
+    "amsterdamSurroundings": "Amsterdam & omgeving",
+    "flexibleLocationsAtHomeAtSchoolLibraryOrOnline": "Flexibele locaties: thuis, op school, bibliotheek of online",
+    "onlineLessons": "Online lessen",
+    "availableForAllProgramsViaZoomOrTeams": "Mogelijk voor alle trajecten via Zoom of Teams",
+    "freeIntroduction": "Gratis kennismaking",
+    "noObligationsJustGettingToKnowEachOtherAndSeeIfWe": "Geen verplichtingen, gewoon kennismaken en kijken of we bij elkaar passen.",
+    "scheduleIntroduction": "Plan kennismaking",
+    "mboMathSupport": "MBO Rekenondersteuning",
+    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Sinds rekenen verplicht werd voor het MBO-diploma, helpen wij studenten met gerichte begeleiding en bewezen methoden om succesvol te slagen.",
+    "startToday": "Start vandaag",
+    "viewPrograms": "Bekijk trajecten",
+    "flexibleGuidance": "Flexibele begeleiding",
+    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "Naast onze groepstrajecten bieden we ook individuele lessen aan voor persoonlijke begeleiding.",
+    "perHour": "per uur",
+    "individualLessons": "Individuele lessen",
+    "groupLessons24People": "Groepslessen (2-4 personen)",
+    "available": "beschikbaar",
+    "allOptions": "Alle opties",
+    "ourServices": "Onze diensten",
+    "fromIndividualGuidanceToGroupLessonsWeOfferFlexibl": "Van individuele begeleiding tot groepslessen - we bieden flexibele oplossingen voor elke leerstijl.",
+    "whoIsThisSuitableFor": "Voor wie is dit geschikt?",
+    "ourLessonsAreAccessibleToAnyoneWhoStrugglesWithMat": "Onze lessen zijn toegankelijk voor iedereen die moeite heeft met rekenen, ongeacht achtergrond of niveau.",
+    "stillUnsure": "Twijfel je nog?",
+    "noProblemWeOfferAFreeIntroductoryMeetingToSeeIfOur": "Geen probleem! We bieden een gratis kennismakingsgesprek aan om te kijken of onze aanpak bij jou past.",
+    "noObligations": "Geen verplichtingen",
+    "personalAdvice": "Persoonlijk advies",
+    "freeIntake": "Gratis intake",
+    "whyDoStudentsChooseUs": "Waarom kiezen studenten voor ons?",
+    "ourApproachEnsuresThatStudentsNotOnlyImproveInMath": "Onze aanpak zorgt ervoor dat studenten niet alleen beter worden in rekenen, maar ook meer zelfvertrouwen krijgen.",
+    "readyToGetStarted": "Klaar om te beginnen?",
+    "don": "Laat je niet tegenhouden door rekenen. Met de juiste begeleiding kun je het wel!",
+    "letsGetInTouch": "Laten we kennismaken",
+    "noObligationsGoodMatch": "Vrijblijvend. Gewoon even kennismaken en kijken of er een klik is.",
+    "dontLetMathHoldYouBack": "Laat wiskunde je niet tegenhouden. Met de juiste begeleiding kun je het!"
   }
 }

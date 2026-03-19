@@ -18,10 +18,22 @@
     "title": "Why choose us?",
     "subtitle": "We understand the challenges of MBO math and provide the support you need to succeed.",
     "features": [
-      { "title": "Targeted approach", "description": "Personal guidance tailored to your level and goals" },
-      { "title": "Proven methods", "description": "Effective teaching materials and techniques for optimal learning results" },
-      { "title": "High success rate", "description": "95% of our students pass their math test" },
-      { "title": "Experienced teachers", "description": "Specialized in MBO math with years of experience" }
+      {
+        "title": "Targeted approach",
+        "description": "Personal guidance tailored to your level and goals"
+      },
+      {
+        "title": "Proven methods",
+        "description": "Effective teaching materials and techniques for optimal learning results"
+      },
+      {
+        "title": "High success rate",
+        "description": "95% of our students pass their math test"
+      },
+      {
+        "title": "Experienced teachers",
+        "description": "Specialized in MBO math with years of experience"
+      }
     ],
     "ctaTitle": "Ready for your math test?",
     "ctaSubtitle": "Join hundreds of students who have successfully passed their MBO math test with our guidance.",
@@ -33,21 +45,48 @@
     "title": "Our services",
     "subtitle": "From individual guidance to group lessons - we offer flexible solutions for every learning style.",
     "items": [
-      { "title": "Personal guidance", "description": "Individual lessons tailored to your pace and needs." },
-      { "title": "Small groups", "description": "You can also take lessons together with up to 3 fellow students. This is more affordable and fun." },
-      { "title": "Specific exam preparation", "description": "We practice specifically on the skills and knowledge needed for the MBO math exam." },
-      { "title": "Location flexibility", "description": "Lessons can take place in Amsterdam-East. For groups of 3-4 students, I also come to your location within the Amsterdam region." },
-      { "title": "Online lessons", "description": "Would you prefer to learn from home? That's possible, at a reduced rate." }
+      {
+        "title": "Personal guidance",
+        "description": "Individual lessons tailored to your pace and needs."
+      },
+      {
+        "title": "Small groups",
+        "description": "You can also take lessons together with up to 3 fellow students. This is more affordable and fun."
+      },
+      {
+        "title": "Specific exam preparation",
+        "description": "We practice specifically on the skills and knowledge needed for the MBO math exam."
+      },
+      {
+        "title": "Location flexibility",
+        "description": "Lessons can take place in Amsterdam-East. For groups of 3-4 students, I also come to your location within the Amsterdam region."
+      },
+      {
+        "title": "Online lessons",
+        "description": "Would you prefer to learn from home? That's possible, at a reduced rate."
+      }
     ]
   },
   "targetGroups": {
     "title": "Who is this suitable for?",
     "subtitle": "Our lessons are accessible to anyone who struggles with mathematics, regardless of background or level.",
     "items": [
-      { "title": "MBO students level 2, 3 and 4", "description": "Who struggle with mathematics and need additional support." },
-      { "title": "BBL students", "description": "Who struggle with the mathematics component of their education alongside their work." },
-      { "title": "Adults", "description": "Who have returned to school and find mathematics as an obstacle." },
-      { "title": "Students with dyscalculia", "description": "Or other mathematics difficulties that require special attention." }
+      {
+        "title": "MBO students level 2, 3 and 4",
+        "description": "Who struggle with mathematics and need additional support."
+      },
+      {
+        "title": "BBL students",
+        "description": "Who struggle with the mathematics component of their education alongside their work."
+      },
+      {
+        "title": "Adults",
+        "description": "Who have returned to school and find mathematics as an obstacle."
+      },
+      {
+        "title": "Students with dyscalculia",
+        "description": "Or other mathematics difficulties that require special attention."
+      }
     ],
     "stillUnsure": "Still unsure?",
     "stillUnsureText": "No problem! We offer a free introductory meeting to see if our approach suits you.",
@@ -59,10 +98,22 @@
     "title": "Why do students choose us?",
     "subtitle": "Our approach ensures that students not only improve in mathematics, but also gain more confidence.",
     "reasons": [
-      { "title": "Calm and clear explanation", "description": "Without rushing, with all the time for your questions and understanding." },
-      { "title": "Patient and supportive", "description": "We work together on your confidence in mathematics." },
-      { "title": "Extensive experience", "description": "With different education levels and diverse target groups." },
-      { "title": "Practical and understandable", "description": "I make mathematics practical and understandable, so you can apply it immediately." }
+      {
+        "title": "Calm and clear explanation",
+        "description": "Without rushing, with all the time for your questions and understanding."
+      },
+      {
+        "title": "Patient and supportive",
+        "description": "We work together on your confidence in mathematics."
+      },
+      {
+        "title": "Extensive experience",
+        "description": "With different education levels and diverse target groups."
+      },
+      {
+        "title": "Practical and understandable",
+        "description": "I make mathematics practical and understandable, so you can apply it immediately."
+      }
     ],
     "ctaTitle": "Ready to get started?",
     "ctaSubtitle": "Don't let mathematics hold you back. With the right guidance, you can do it!",
@@ -77,9 +128,21 @@
     "available": "available",
     "allOptions": "All options",
     "contactMethods": {
-      "whatsapp": { "title": "WhatsApp", "description": "Direct contact for quick questions", "action": "Send message" },
-      "phone": { "title": "Phone call", "description": "Personal conversation about your situation", "action": "Call now" },
-      "meetGreet": { "title": "Meet & Greet", "description": "Free intake meeting on location", "action": "Schedule meeting" }
+      "whatsapp": {
+        "title": "WhatsApp",
+        "description": "Direct contact for quick questions",
+        "action": "Send message"
+      },
+      "phone": {
+        "title": "Phone call",
+        "description": "Personal conversation about your situation",
+        "action": "Call now"
+      },
+      "meetGreet": {
+        "title": "Meet & Greet",
+        "description": "Free intake meeting on location",
+        "action": "Schedule meeting"
+      }
     }
   },
   "contact": {
@@ -87,9 +150,18 @@
     "subtitle": "Ready to start? Contact us for a free introductory meeting and discover how we can help you.",
     "getInTouch": "Get in touch",
     "contactInfo": {
-      "whatsapp": { "label": "WhatsApp", "description": "Fastest way to contact" },
-      "email": { "label": "Email", "description": "For more detailed questions" },
-      "phone": { "label": "Phone", "description": "Personal conversation" }
+      "whatsapp": {
+        "label": "WhatsApp",
+        "description": "Fastest way to contact"
+      },
+      "email": {
+        "label": "Email",
+        "description": "For more detailed questions"
+      },
+      "phone": {
+        "label": "Phone",
+        "description": "Personal conversation"
+      }
     },
     "availability": "Availability",
     "availabilityTimes": [
@@ -105,5 +177,53 @@
     "freeIntro": "Free introduction",
     "freeIntroDesc": "No obligations, just getting to know each other and see if we're a good match.",
     "scheduleIntro": "Schedule introduction"
+  },
+  "form": {
+    "whyChooseUs": "Why choose us?",
+    "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "We understand the challenges of MBO math and provide the support you need to succeed.",
+    "readyForYourMathTest": "Ready for your math test?",
+    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Join hundreds of students who have successfully passed their MBO math test with our guidance.",
+    "smallGroups": "Small groups",
+    "flexibleTimes": "Flexible times",
+    "onlineOffline": "Online & offline",
+    "let": "Let\\",
+    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Ready to start? Contact us for a free introductory meeting and discover how we can help you.",
+    "getInTouch": "Get in touch",
+    "availability": "Availability",
+    "locations": "Locations",
+    "amsterdamSurroundings": "Amsterdam & surroundings",
+    "flexibleLocationsAtHomeAtSchoolLibraryOrOnline": "Flexible locations: at home, at school, library or online",
+    "onlineLessons": "Online lessons",
+    "availableForAllProgramsViaZoomOrTeams": "Available for all programs via Zoom or Teams",
+    "freeIntroduction": "Free introduction",
+    "noObligationsJustGettingToKnowEachOtherAndSeeIfWe": "No obligations, just getting to know each other and see if we\\",
+    "scheduleIntroduction": "Schedule introduction",
+    "mboMathSupport": "MBO Math Support",
+    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Since math became mandatory for the MBO diploma, we help students with targeted guidance and proven methods to succeed.",
+    "startToday": "Start today",
+    "viewPrograms": "View programs",
+    "flexibleGuidance": "Flexible guidance",
+    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "In addition to our group programs, we also offer individual lessons for personal guidance.",
+    "perHour": "per hour",
+    "individualLessons": "Individual lessons",
+    "groupLessons24People": "Group lessons (2-4 people)",
+    "available": "available",
+    "allOptions": "All options",
+    "ourServices": "Our services",
+    "fromIndividualGuidanceToGroupLessonsWeOfferFlexibl": "From individual guidance to group lessons - we offer flexible solutions for every learning style.",
+    "whoIsThisSuitableFor": "Who is this suitable for?",
+    "ourLessonsAreAccessibleToAnyoneWhoStrugglesWithMat": "Our lessons are accessible to anyone who struggles with mathematics, regardless of background or level.",
+    "stillUnsure": "Still unsure?",
+    "noProblemWeOfferAFreeIntroductoryMeetingToSeeIfOur": "No problem! We offer a free introductory meeting to see if our approach suits you.",
+    "noObligations": "No obligations",
+    "personalAdvice": "Personal advice",
+    "freeIntake": "Free intake",
+    "whyDoStudentsChooseUs": "Why do students choose us?",
+    "ourApproachEnsuresThatStudentsNotOnlyImproveInMath": "Our approach ensures that students not only improve in mathematics, but also gain more confidence.",
+    "readyToGetStarted": "Ready to get started?",
+    "don": "Don\\",
+    "letsGetInTouch": "Let's get in touch",
+    "noObligationsGoodMatch": "No obligations. Just getting to know each other and see if we're a good match.",
+    "dontLetMathHoldYouBack": "Don't let mathematics hold you back. With the right guidance, you can do it!"
   }
 }

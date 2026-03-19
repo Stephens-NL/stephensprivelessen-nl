@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { User, Users, BookOpen, MapPin, Monitor } from 'lucide-react';
 
@@ -65,7 +65,8 @@ const services = [
 
 export function ServicesSection() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('mbo');
 
   return (
     <section className="py-20 bg-[var(--cream-dark)]">
@@ -78,12 +79,10 @@ export function ServicesSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
-            {language === 'NL' ? 'Onze diensten' : 'Our services'}
+            {t('form.ourServices')}
           </h2>
           <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
-            {language === 'NL'
-              ? 'Van individuele begeleiding tot groepslessen - we bieden flexibele oplossingen voor elke leerstijl.'
-              : 'From individual guidance to group lessons - we offer flexible solutions for every learning style.'}
+            {t('form.fromIndividualGuidanceToGroupLessonsWeOfferFlexibl')}
           </p>
         </m.div>
 

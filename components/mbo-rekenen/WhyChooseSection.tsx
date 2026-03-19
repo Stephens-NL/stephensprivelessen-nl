@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { Target, Heart, BookOpenCheck, Lightbulb } from 'lucide-react';
 
@@ -54,7 +54,8 @@ const reasons = [
 
 export function WhyChooseSection() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('mbo');
 
   return (
     <section className="py-20 bg-[var(--cream)]">
@@ -67,14 +68,10 @@ export function WhyChooseSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
-            {language === 'NL' 
-              ? 'Waarom kiezen studenten voor ons?' 
-              : 'Why do students choose us?'}
+            {t('form.whyDoStudentsChooseUs')}
           </h2>
           <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
-            {language === 'NL'
-              ? 'Onze aanpak zorgt ervoor dat studenten niet alleen beter worden in rekenen, maar ook meer zelfvertrouwen krijgen.'
-              : 'Our approach ensures that students not only improve in mathematics, but also gain more confidence.'}
+            {t('form.ourApproachEnsuresThatStudentsNotOnlyImproveInMath')}
           </p>
         </m.div>
 
@@ -115,12 +112,10 @@ export function WhyChooseSection() {
         >
           <div className="bg-[var(--ink)] rounded-2xl p-8 text-[var(--cream)] max-w-4xl mx-auto">
             <h3 className="text-2xl font-display font-light mb-4">
-              {language === 'NL' ? 'Klaar om te beginnen?' : 'Ready to get started?'}
+              {t('form.readyToGetStarted')}
             </h3>
             <p className="text-[var(--cream-dark)] mb-6 leading-relaxed">
-              {language === 'NL'
-                ? 'Laat je niet tegenhouden door rekenen. Met de juiste begeleiding kun je het wel!'
-                : 'Don\'t let mathematics hold you back. With the right guidance, you can do it!'}
+              {t('form.dontLetMathHoldYouBack')}
             </p>
             <button
               onClick={() => {
@@ -129,7 +124,7 @@ export function WhyChooseSection() {
               }}
               className="bg-[var(--cream)] text-[var(--ink)] px-8 py-4 rounded-xl font-medium hover:bg-[var(--cream-dark)] transition-colors duration-300"
             >
-              {language === 'NL' ? 'Neem contact op' : 'Get in touch'}
+              {t('form.getInTouch')}
             </button>
           </div>
         </m.div>

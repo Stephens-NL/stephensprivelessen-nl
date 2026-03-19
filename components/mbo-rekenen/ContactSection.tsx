@@ -1,12 +1,13 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { Mail, MessageCircle, Phone, MapPin, Clock } from 'lucide-react';
 
 export function ContactSection() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('mbo');
 
   const contactInfo = [
     {
@@ -49,12 +50,10 @@ export function ContactSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
-            {language === 'NL' ? 'Laten we kennismaken' : 'Let\'s get in touch'}
+            {t('form.letsGetInTouch')}
           </h2>
           <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
-            {language === 'NL'
-              ? 'Klaar om te starten? Neem contact op voor een gratis kennismakingsgesprek en ontdek hoe we jou kunnen helpen.'
-              : 'Ready to start? Contact us for a free introductory meeting and discover how we can help you.'}
+            {t('form.readyToStartContactUsForAFreeIntroductoryMeetingAn')}
           </p>
         </m.div>
 
@@ -67,7 +66,7 @@ export function ContactSection() {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-display font-light text-[var(--ink)] mb-8">
-              {language === 'NL' ? 'Neem contact op' : 'Get in touch'}
+              {t('form.getInTouch')}
             </h3>
             
             <div className="space-y-6">
@@ -115,7 +114,7 @@ export function ContactSection() {
               <div className="flex items-center gap-3 mb-6">
                 <Clock className="w-6 h-6 text-[var(--warm-text)]" />
                 <h3 className="text-xl font-medium text-[var(--ink)]">
-                  {language === 'NL' ? 'Beschikbaarheid' : 'Availability'}
+                  {t('form.availability')}
                 </h3>
               </div>
               <div className="space-y-3">
@@ -132,28 +131,24 @@ export function ContactSection() {
               <div className="flex items-center gap-3 mb-6">
                 <MapPin className="w-6 h-6 text-[var(--warm-text)]" />
                 <h3 className="text-xl font-medium text-[var(--ink)]">
-                  {language === 'NL' ? 'Locaties' : 'Locations'}
+                  {t('form.locations')}
                 </h3>
               </div>
               <div className="space-y-4">
                 <div>
                   <h4 className="font-medium text-[var(--ink)] mb-2">
-                    {language === 'NL' ? 'Amsterdam & omgeving' : 'Amsterdam & surroundings'}
+                    {t('form.amsterdamSurroundings')}
                   </h4>
                   <p className="text-[var(--muted-text)] text-sm">
-                    {language === 'NL' 
-                      ? 'Flexibele locaties: thuis, op school, bibliotheek of online'
-                      : 'Flexible locations: at home, at school, library or online'}
+                    {t('form.flexibleLocationsAtHomeAtSchoolLibraryOrOnline')}
                   </p>
                 </div>
                 <div>
                   <h4 className="font-medium text-[var(--ink)] mb-2">
-                    {language === 'NL' ? 'Online lessen' : 'Online lessons'}
+                    {t('form.onlineLessons')}
                   </h4>
                   <p className="text-[var(--muted-text)] text-sm">
-                    {language === 'NL'
-                      ? 'Mogelijk voor alle trajecten via Zoom of Teams'
-                      : 'Available for all programs via Zoom or Teams'}
+                    {t('form.availableForAllProgramsViaZoomOrTeams')}
                   </p>
                 </div>
               </div>
@@ -162,18 +157,16 @@ export function ContactSection() {
             {/* CTA */}
             <div className="bg-[var(--ink)] rounded-2xl p-8 text-[var(--cream)] text-center">
               <h3 className="text-xl font-display font-light mb-4">
-                {language === 'NL' ? 'Gratis kennismaking' : 'Free introduction'}
+                {t('form.freeIntroduction')}
               </h3>
               <p className="text-[var(--cream-dark)] text-sm mb-6">
-                {language === 'NL'
-                  ? 'Geen verplichtingen, gewoon kennismaken en kijken of we bij elkaar passen.'
-                  : 'No obligations, just getting to know each other and see if we\'re a good match.'}
+                {t('form.noObligationsGoodMatch')}
               </p>
               <a
                 href="https://wa.me/31612345678"
                 className="inline-block bg-[var(--cream)] text-[var(--ink)] px-6 py-3 rounded-xl font-medium hover:bg-[var(--cream-dark)] transition-colors duration-300"
               >
-                {language === 'NL' ? 'Plan kennismaking' : 'Schedule introduction'}
+                {t('form.scheduleIntroduction')}
               </a>
             </div>
           </m.div>

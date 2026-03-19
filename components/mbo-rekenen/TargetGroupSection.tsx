@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { GraduationCap, Briefcase, Book, Calculator } from 'lucide-react';
 
@@ -54,7 +54,8 @@ const targetGroups = [
 
 export function TargetGroupSection() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('mbo');
 
   return (
     <section className="py-20 bg-[var(--cream-dark)]">
@@ -67,12 +68,10 @@ export function TargetGroupSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
-            {language === 'NL' ? 'Voor wie is dit geschikt?' : 'Who is this suitable for?'}
+            {t('form.whoIsThisSuitableFor')}
           </h2>
           <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
-            {language === 'NL'
-              ? 'Onze lessen zijn toegankelijk voor iedereen die moeite heeft met rekenen, ongeacht achtergrond of niveau.'
-              : 'Our lessons are accessible to anyone who struggles with mathematics, regardless of background or level.'}
+            {t('form.ourLessonsAreAccessibleToAnyoneWhoStrugglesWithMat')}
           </p>
         </m.div>
 
@@ -113,25 +112,23 @@ export function TargetGroupSection() {
         >
           <div className="bg-[var(--cream)] rounded-2xl border border-[var(--border-warm)] p-8 text-center">
             <h3 className="text-2xl font-display font-light text-[var(--ink)] mb-4">
-              {language === 'NL' ? 'Twijfel je nog?' : 'Still unsure?'}
+              {t('form.stillUnsure')}
             </h3>
             <p className="text-[var(--muted-text)] mb-6 max-w-2xl mx-auto leading-relaxed">
-              {language === 'NL'
-                ? 'Geen probleem! We bieden een gratis kennismakingsgesprek aan om te kijken of onze aanpak bij jou past.'
-                : 'No problem! We offer a free introductory meeting to see if our approach suits you.'}
+              {t('form.noProblemWeOfferAFreeIntroductoryMeetingToSeeIfOur')}
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm text-[var(--muted-text)]">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
-                {language === 'NL' ? 'Geen verplichtingen' : 'No obligations'}
+                {t('form.noObligations')}
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
-                {language === 'NL' ? 'Persoonlijk advies' : 'Personal advice'}
+                {t('form.personalAdvice')}
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
-                {language === 'NL' ? 'Gratis intake' : 'Free intake'}
+                {t('form.freeIntake')}
               </div>
             </div>
           </div>

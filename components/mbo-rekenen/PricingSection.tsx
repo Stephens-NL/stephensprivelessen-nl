@@ -1,13 +1,14 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { RekentrajectenComparison } from './RekentrajectenComparison';
 import { MessageCircle, Phone, Calendar } from 'lucide-react';
 
 export function PricingSection() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('mbo');
 
   const scrollToContact = () => {
     const element = document.getElementById('contact');
@@ -48,12 +49,10 @@ export function PricingSection() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
-              {language === 'NL' ? 'Flexibele begeleiding' : 'Flexible guidance'}
+              {t('form.flexibleGuidance')}
             </h2>
             <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed mb-12">
-              {language === 'NL'
-                ? 'Naast onze groepstrajecten bieden we ook individuele lessen aan voor persoonlijke begeleiding.'
-                : 'In addition to our group programs, we also offer individual lessons for personal guidance.'}
+              {t('form.inAdditionToOurGroupProgramsWeAlsoOfferIndividualL')}
             </p>
 
             <div className="bg-[var(--cream-dark)] rounded-2xl p-8 max-w-4xl mx-auto">
@@ -61,28 +60,28 @@ export function PricingSection() {
                 <div className="text-center">
                   <div className="text-3xl font-light text-[var(--ink)] mb-2">€50</div>
                   <div className="text-[var(--muted-text)]">
-                    {language === 'NL' ? 'per uur' : 'per hour'}
+                    {t('form.perHour')}
                   </div>
                   <div className="text-sm text-[var(--muted-text)] mt-1">
-                    {language === 'NL' ? 'Individuele lessen' : 'Individual lessons'}
+                    {t('form.individualLessons')}
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-light text-[var(--ink)] mb-2">€35</div>
                   <div className="text-[var(--muted-text)]">
-                    {language === 'NL' ? 'per uur' : 'per hour'}
+                    {t('form.perHour')}
                   </div>
                   <div className="text-sm text-[var(--muted-text)] mt-1">
-                    {language === 'NL' ? 'Groepslessen (2-4 personen)' : 'Group lessons (2-4 people)'}
+                    {t('form.groupLessons24People')}
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-light text-[var(--ink)] mb-2">Online</div>
                   <div className="text-[var(--muted-text)]">
-                    {language === 'NL' ? 'beschikbaar' : 'available'}
+                    {t('form.available')}
                   </div>
                   <div className="text-sm text-[var(--muted-text)] mt-1">
-                    {language === 'NL' ? 'Alle opties' : 'All options'}
+                    {t('form.allOptions')}
                   </div>
                 </div>
               </div>

@@ -1,12 +1,13 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { ArrowRight, Calculator, TrendingUp, Users } from 'lucide-react';
 
 export function HeroSection() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('mbo');
 
   const scrollToContact = () => {
     const element = document.getElementById('contact');
@@ -51,7 +52,7 @@ export function HeroSection() {
           >
             <div className="inline-flex items-center gap-2 bg-[var(--cream-dark)] text-[var(--warm-text)] px-4 py-2 rounded-full text-sm font-medium mb-8">
               <Calculator className="w-4 h-4" />
-              {language === 'NL' ? 'MBO Rekenondersteuning' : 'MBO Math Support'}
+              {t('form.mboMathSupport')}
             </div>
             
             <h1 className="text-5xl md:text-7xl font-display font-light text-[var(--ink)] mb-8 tracking-tight leading-tight">
@@ -69,9 +70,7 @@ export function HeroSection() {
             </h1>
             
             <p className="text-xl md:text-2xl text-[var(--muted-text)] mb-12 max-w-4xl mx-auto leading-relaxed">
-              {language === 'NL' 
-                ? 'Sinds rekenen verplicht werd voor het MBO-diploma, helpen wij studenten met gerichte begeleiding en bewezen methoden om succesvol te slagen.'
-                : 'Since math became mandatory for the MBO diploma, we help students with targeted guidance and proven methods to succeed.'}
+              {t('form.sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud')}
             </p>
 
             {/* CTA Buttons */}
@@ -82,7 +81,7 @@ export function HeroSection() {
                 onClick={scrollToContact}
                 className="group bg-[var(--ink)] text-[var(--cream)] px-8 py-4 rounded-xl text-lg font-medium hover:bg-[var(--ink-light)] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
               >
-                {language === 'NL' ? 'Start vandaag' : 'Start today'}
+                {t('form.startToday')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </m.button>
               
@@ -95,7 +94,7 @@ export function HeroSection() {
                 }}
                 className="bg-[var(--cream)] border-2 border-[var(--border-warm)] text-[var(--ink)] px-8 py-4 rounded-xl text-lg font-medium hover:border-[var(--ink)] transition-all duration-300"
               >
-                {language === 'NL' ? 'Bekijk trajecten' : 'View programs'}
+                {t('form.viewPrograms')}
               </m.button>
             </div>
           </m.div>
