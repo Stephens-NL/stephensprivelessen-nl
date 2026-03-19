@@ -38,13 +38,13 @@ export function RekentrajectenCard({
       className={`group relative cursor-pointer ${index % 2 === 0 ? 'lg:mt-0' : 'lg:mt-12'}`}
     >
       <div
-        className={`relative h-full bg-white/70 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl shadow-black/5 transition-all duration-700 group-hover:scale-[1.02] group-hover:shadow-3xl group-hover:shadow-black/10 overflow-hidden ${
-          course.featured ? 'ring-2 ring-purple-500/30' : ''
+        className={`relative h-full bg-[var(--cream)]/70 backdrop-blur-xl rounded-3xl border border-[var(--border-warm)] shadow-2xl shadow-black/5 transition-all duration-700 group-hover:scale-[1.02] group-hover:shadow-3xl group-hover:shadow-black/10 overflow-hidden ${
+          course.featured ? 'ring-2 ring-[var(--amber)]/30' : ''
         }`}
       >
         {course.featured && (
           <div className="absolute -top-3 -right-3 z-20">
-            <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-2xl text-sm font-bold flex items-center gap-2 shadow-lg">
+            <div className="bg-[var(--amber)] text-[var(--cream)] px-6 py-3 rounded-2xl text-sm font-bold flex items-center gap-2 shadow-lg">
               <Star className="w-4 h-4 fill-current" />
               AANBEVOLEN
             </div>
@@ -54,30 +54,30 @@ export function RekentrajectenCard({
         <div className="relative z-10 p-8 h-full flex flex-col">
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-3xl font-black text-gray-900 tracking-tight">{course.name[language]}</h3>
+              <h3 className="text-3xl font-black text-[var(--ink)] tracking-tight">{course.name[language]}</h3>
               <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${course.color} flex items-center justify-center`}>
                 <Zap className="w-6 h-6 text-white" />
               </div>
             </div>
-            <div className="text-5xl font-black text-gray-900 mb-2">{course.pricePerPerson}</div>
-            <p className="text-gray-600 font-medium">{course.description[language]}</p>
+            <div className="text-5xl font-black text-[var(--ink)] mb-2">{course.pricePerPerson}</div>
+            <p className="text-[var(--muted-text)] font-medium">{course.description[language]}</p>
           </div>
           <div className="space-y-4 mb-8 flex-grow">
             <div className="flex items-center gap-4">
-              <div className="w-2 h-2 bg-purple-500 rounded-full" />
-              <span className="font-medium text-gray-700">{course.duration[language]}</span>
+              <div className="w-2 h-2 bg-[var(--amber)] rounded-full" />
+              <span className="font-medium text-[var(--warm-text)]">{course.duration[language]}</span>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-2 h-2 bg-blue-500 rounded-full" />
-              <span className="font-medium text-gray-700">{course.lessons[language]}</span>
+              <div className="w-2 h-2 bg-[var(--ink)] rounded-full" />
+              <span className="font-medium text-[var(--warm-text)]">{course.lessons[language]}</span>
             </div>
             <div className="flex items-center gap-4">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full" />
-              <span className="font-medium text-gray-700">{course.pricePerLessonHour} per uur</span>
+              <div className="w-2 h-2 bg-[var(--sage)] rounded-full" />
+              <span className="font-medium text-[var(--warm-text)]">{course.pricePerLessonHour} per uur</span>
             </div>
           </div>
           <div className={`bg-gradient-to-r ${course.color} bg-opacity-10 rounded-2xl p-4 mb-6`}>
-            <p className="text-sm font-bold text-gray-900">💡 {course.highlight[language]}</p>
+            <p className="text-sm font-bold text-[var(--ink)]">💡 {course.highlight[language]}</p>
           </div>
           <Button
             onClick={onSelect}

@@ -14,14 +14,14 @@ export function ContactPricingTable() {
     <m.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-blue-600/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/30"
+      className="bg-[var(--ink)]/30 backdrop-blur-sm rounded-2xl p-6 border border-[var(--sage)]/30"
     >
       <div className="flex justify-center mb-4">
-        <div className="inline-flex bg-blue-600/20 rounded-xl p-1">
+        <div className="inline-flex bg-[var(--ink)]/20 rounded-xl p-1">
           <button
             onClick={() => setSelectedLevel('middelbaar')}
             className={`px-4 py-2 rounded-lg text-sm transition-all ${
-              selectedLevel === 'middelbaar' ? 'bg-blue-500/30 text-yellow-300' : 'text-yellow-100 hover:text-yellow-200'
+              selectedLevel === 'middelbaar' ? 'bg-[var(--sage)]/30 text-[var(--amber)]' : 'text-[var(--cream)] hover:text-[var(--amber-hover)]'
             }`}
           >
             {t(translations.secondaryEducation)}
@@ -29,7 +29,7 @@ export function ContactPricingTable() {
           <button
             onClick={() => setSelectedLevel('hoger')}
             className={`px-4 py-2 rounded-lg text-sm transition-all ${
-              selectedLevel === 'hoger' ? 'bg-blue-500/30 text-yellow-300' : 'text-yellow-100 hover:text-yellow-200'
+              selectedLevel === 'hoger' ? 'bg-[var(--sage)]/30 text-[var(--amber)]' : 'text-[var(--cream)] hover:text-[var(--amber-hover)]'
             }`}
           >
             {t(translations.higherEducation)}
@@ -39,17 +39,17 @@ export function ContactPricingTable() {
       <div className="overflow-x-auto">
         <table className="w-full min-w-full">
           <thead>
-            <tr className="border-b border-blue-600/50">
-              <th className="text-left py-2 text-yellow-100 font-medium">Type</th>
+            <tr className="border-b border-[var(--sage)]/30">
+              <th className="text-left py-2 text-[var(--cream)] font-medium">Type</th>
               {selectedLevel === 'middelbaar' ? (
                 <>
-                  <th className="text-right py-2 text-yellow-100 font-medium">Tot 20 jaar</th>
-                  <th className="text-right py-2 text-yellow-100 font-medium">Vanaf 20 jaar</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">Tot 20 jaar</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">Vanaf 20 jaar</th>
                 </>
               ) : (
                 <>
-                  <th className="text-right py-2 text-yellow-100 font-medium">Bachelor</th>
-                  <th className="text-right py-2 text-yellow-100 font-medium">Master</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">Bachelor</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">Master</th>
                 </>
               )}
             </tr>
@@ -60,17 +60,17 @@ export function ContactPricingTable() {
               { type: { EN: "2 sessions", NL: "2 sessies" }, ms20minus: "€130", ms20plus: "€135", bachelor: "€135", master: "€140" },
               { type: { EN: "4 sessions", NL: "4 sessies" }, ms20minus: "€200", ms20plus: "€230", bachelor: "€230", master: "€250" },
             ].map((row) => (
-              <tr key={row.type.NL} className="border-b border-blue-600/50 last:border-0">
-                <td className="py-2 text-yellow-100">{t(row.type)}</td>
+              <tr key={row.type.NL} className="border-b border-[var(--sage)]/30 last:border-0">
+                <td className="py-2 text-[var(--cream)]">{t(row.type)}</td>
                 {selectedLevel === 'middelbaar' ? (
                   <>
-                    <td className="py-2 text-yellow-300 font-semibold text-right">{row.ms20minus}</td>
-                    <td className="py-2 text-yellow-300 font-semibold text-right">{row.ms20plus}</td>
+                    <td className="py-2 text-[var(--amber)] font-semibold text-right">{row.ms20minus}</td>
+                    <td className="py-2 text-[var(--amber)] font-semibold text-right">{row.ms20plus}</td>
                   </>
                 ) : (
                   <>
-                    <td className="py-2 text-yellow-300 font-semibold text-right">{row.bachelor}</td>
-                    <td className="py-2 text-yellow-300 font-semibold text-right">{row.master}</td>
+                    <td className="py-2 text-[var(--amber)] font-semibold text-right">{row.bachelor}</td>
+                    <td className="py-2 text-[var(--amber)] font-semibold text-right">{row.master}</td>
                   </>
                 )}
               </tr>
@@ -78,7 +78,7 @@ export function ContactPricingTable() {
           </tbody>
         </table>
       </div>
-      <p className="mt-4 text-sm text-yellow-100 italic">{t(translations.whatsappSupport)}</p>
+      <p className="mt-4 text-sm text-[var(--cream)] italic">{t(translations.whatsappSupport)}</p>
     </m.div>
   );
 }

@@ -48,10 +48,10 @@ const GoogleCalendarAppointment = ({
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="bg-blue-800 rounded-lg w-full max-w-4xl h-[80vh] flex flex-col"
+                className="bg-[var(--ink)] rounded-lg w-full max-w-4xl h-[80vh] flex flex-col"
             >
-                <div className="p-4 border-b border-blue-700 flex justify-between items-center">
-                    <h2 className="text-xl font-semibold text-yellow-300">
+                <div className="p-4 border-b border-[var(--ink-light)] flex justify-between items-center">
+                    <h2 className="text-xl font-semibold text-[var(--amber)]">
                         {String(t({
                             EN: appointmentType === 'trial' 
                                 ? "Schedule Trial Lesson" 
@@ -63,7 +63,7 @@ const GoogleCalendarAppointment = ({
                     </h2>
                     <button
                         onClick={onClose}
-                        className="text-yellow-300 hover:text-yellow-400 p-2"
+                        className="text-[var(--amber)] hover:text-[var(--amber)] p-2"
                     >
                         ×
                     </button>

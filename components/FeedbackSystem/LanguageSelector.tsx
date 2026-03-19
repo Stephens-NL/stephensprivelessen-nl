@@ -46,7 +46,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, d
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onSelectLanguage(lang as Language)}
-            className="px-6 py-3 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
+            className="px-6 py-3 bg-[var(--cream)] text-[var(--ink)] rounded-full text-xl font-bold hover:bg-[var(--amber)] transition-colors duration-300"
           >
             {lang === 'NL' ? 'Nederlands' : 'English'}
           </m.button>

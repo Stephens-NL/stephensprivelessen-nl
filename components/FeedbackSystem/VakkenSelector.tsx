@@ -68,9 +68,9 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
           placeholder={String(t({ EN: 'Search a subject', NL: 'Zoek een vak' }))}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 bg-white text-blue-900 rounded-md pl-10"
+          className="w-full px-4 py-2 bg-[var(--cream)] text-[var(--ink)] rounded-md pl-10"
         />
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-900" size={20} />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--ink)]" size={20} />
       </div>
       <div className="grid grid-cols-3 gap-4">
         {filteredVakken.map((vak) => (
@@ -78,7 +78,7 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
             key={vak}
             onClick={() => handleToggleVak(vak)}
             className={`px-4 py-2 rounded-md transition-colors duration-300 ${
-              selectedVakken.includes(vak) ? 'bg-yellow-400 text-blue-900' : 'bg-white text-blue-900 hover:bg-yellow-300'
+              selectedVakken.includes(vak) ? 'bg-[var(--amber)] text-[var(--ink)]' : 'bg-[var(--cream)] text-[var(--ink)] hover:bg-[var(--amber)]'
             }`}
           >
             {vak}
@@ -92,18 +92,18 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
           value={customVak}
           onChange={(e) => setCustomVak(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="flex-grow px-4 py-2 bg-white text-blue-900 rounded-l-md"
+          className="flex-grow px-4 py-2 bg-[var(--cream)] text-[var(--ink)] rounded-l-md"
         />
         <button
           onClick={handleAddCustomVak}
-          className="px-4 py-2 bg-yellow-400 text-blue-900 rounded-r-md hover:bg-yellow-300 transition-colors duration-300"
+          className="px-4 py-2 bg-[var(--amber)] text-[var(--ink)] rounded-r-md hover:bg-[var(--amber)] transition-colors duration-300"
         >
           {String(t({ EN: 'Add', NL: 'Toevoegen' }))}
         </button>
       </div>
       <div className="flex flex-wrap justify-center gap-2">
         {selectedVakken.map((vak) => (
-          <div key={vak} className="bg-yellow-400 text-blue-900 px-3 py-1 rounded-full flex items-center">
+          <div key={vak} className="bg-[var(--amber)] text-[var(--ink)] px-3 py-1 rounded-full flex items-center">
             {vak}
             <button onClick={() => handleToggleVak(vak)} className="ml-2 focus:outline-none">
               ✕

@@ -11,7 +11,7 @@ export const CollapsibleSection = ({ title, children }: { title: string | { EN: 
     return (
         <div className="mb-4">
             <m.button
-                className="w-full flex justify-between items-center bg-blue-700 p-3 rounded-lg text-yellow-300 font-semibold"
+                className="w-full flex justify-between items-center bg-[var(--ink)] p-3 rounded-lg text-[var(--amber)] font-semibold"
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.02 }}
             >
@@ -25,7 +25,7 @@ export const CollapsibleSection = ({ title, children }: { title: string | { EN: 
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="bg-blue-800 p-4 rounded-b-lg mt-1"
+                        className="bg-[var(--ink-light)] p-4 rounded-b-lg mt-1"
                     >
                         {children}
                     </m.div>

@@ -47,7 +47,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                 }))}
             </h2>
             
-            <p className="text-yellow-300 text-center">
+            <p className="text-[var(--amber)] text-center">
                 {String(t({
                     EN: "Please describe what you would like to achieve",
                     NL: "Beschrijf wat je wilt bereiken"
@@ -58,9 +58,9 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                 <textarea
                     value={formData.goals}
                     onChange={(e) => handleGoalsChange(e.target.value)}
-                    className={`w-full h-48 p-4 rounded-lg bg-blue-700 text-white border ${
-                        error ? 'border-red-500' : 'border-blue-600'
-                    } focus:border-yellow-400 focus:outline-none resize-none`}
+                    className={`w-full h-48 p-4 rounded-lg bg-[var(--ink-light)] text-white border ${
+                        error ? 'border-red-500' : 'border-[var(--ink-light)]'
+                    } focus:border-[var(--amber)] focus:outline-none resize-none`}
                     placeholder={String(t({
                         EN: "Example: I want to improve my understanding of calculus, especially derivatives and integrals...",
                         NL: "Bijvoorbeeld: Ik wil mijn begrip van calculus verbeteren, vooral afgeleiden en integralen..."
@@ -71,7 +71,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                     <m.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className={`text-sm ${error ? 'text-red-500' : 'text-yellow-300'}`}
+                        className={`text-sm ${error ? 'text-red-500' : 'text-[var(--amber)]'}`}
                     >
                         {error || String(t({
                             EN: `${remainingChars} characters remaining`,
@@ -82,7 +82,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                         <m.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            className="text-sm text-green-400"
+                            className="text-sm text-[var(--sage)]"
                         >
                             {String(t({
                                 EN: "✓ Minimum length reached",

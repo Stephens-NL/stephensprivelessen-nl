@@ -59,7 +59,7 @@ export default function StatistiekPsychologiePage() {
             Statistiek bijles voor psychologie studenten
           </h1>
           <div className="mb-6">
-            <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
+            <Link href="/bijles/amsterdam" className="text-[var(--ink)] hover:underline">
               &laquo; Terug naar Bijles Amsterdam Overzicht
             </Link>
           </div>
@@ -100,7 +100,7 @@ export default function StatistiekPsychologiePage() {
             </Card>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-4">Scriptie hulp nodig?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -155,24 +155,24 @@ export default function StatistiekPsychologiePage() {
             </div>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-6">Veelgestelde Vragen - Statistiek</h2>
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold text-lg mb-2">Welke statistische tests behandelen jullie?</h3>
-                <p className="text-gray-700">We behandelen alle gangbare tests: t-toetsen, ANOVA, chi-kwadraat toetsen, correlaties, regressie-analyses, factor analyses en non-parametrische tests.</p>
+                <p className="text-[var(--warm-text)]">We behandelen alle gangbare tests: t-toetsen, ANOVA, chi-kwadraat toetsen, correlaties, regressie-analyses, factor analyses en non-parametrische tests.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Hoe help je me met SPSS?</h3>
-                <p className="text-gray-700">Van data invoer tot output interpretatie. We leren je stap voor stap hoe je analyses uitvoert en hoe je de resultaten correct interpreteert en rapporteert.</p>
+                <p className="text-[var(--warm-text)]">Van data invoer tot output interpretatie. We leren je stap voor stap hoe je analyses uitvoert en hoe je de resultaten correct interpreteert en rapporteert.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Wat als ik helemaal geen wiskunde achtergrond heb?</h3>
-                <p className="text-gray-700">Geen probleem! We beginnen bij de absolute basis en bouwen stap voor stap op. We focussen op begrip en praktische toepassing, niet op ingewikkelde formules.</p>
+                <p className="text-[var(--warm-text)]">Geen probleem! We beginnen bij de absolute basis en bouwen stap voor stap op. We focussen op begrip en praktische toepassing, niet op ingewikkelde formules.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Kunnen jullie ook helpen met mijn scriptie statistiek?</h3>
-                <p className="text-gray-700">Ja, we helpen je met de volledige statistische analyse voor je scriptie: van onderzoeksvraag tot resultaten en interpretatie. We begeleiden je door het hele proces.</p>
+                <p className="text-[var(--warm-text)]">Ja, we helpen je met de volledige statistische analyse voor je scriptie: van onderzoeksvraag tot resultaten en interpretatie. We begeleiden je door het hele proces.</p>
               </div>
             </div>
           </div>

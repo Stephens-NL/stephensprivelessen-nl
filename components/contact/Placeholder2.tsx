@@ -34,19 +34,19 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ icon, title, content, href })
 
     return (
         <m.div
-            className="flex items-center mb-4 bg-blue-900 rounded-lg p-3 border border-blue-800 hover:border-blue-700"
+            className="flex items-center mb-4 bg-[var(--ink)] rounded-lg p-3 border border-[var(--ink)] hover:border-[var(--ink-light)]"
             whileHover={{ scale: 1.03, boxShadow: "0 5px 10px rgba(0,0,0,0.2)" }}
         >
-            <div className="text-yellow-400 text-xl mr-3">
+            <div className="text-[var(--amber)] text-xl mr-3">
                 <IconComponent />
             </div>
             <div>
-                <h3 className="text-sm font-semibold text-yellow-100">{t(title)}</h3>
+                <h3 className="text-sm font-semibold text-[var(--cream)]">{t(title)}</h3>
                 <a
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-yellow-200 hover:text-yellow-400 transition-colors duration-300 text-sm"
+                    className="text-[var(--cream)] hover:text-[var(--amber)] transition-colors duration-300 text-sm"
                 >
                     {content}
                 </a>
@@ -69,7 +69,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({ title, children
     return (
         <div className="mb-4">
             <m.button
-                className="w-full flex justify-between items-center bg-blue-700 p-3 rounded-lg text-yellow-300 font-semibold"
+                className="w-full flex justify-between items-center bg-[var(--ink-light)] p-3 rounded-lg text-[var(--amber)] font-semibold"
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.02 }}
             >
@@ -83,7 +83,7 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({ title, children
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="bg-blue-800 p-4 rounded-b-lg mt-1"
+                        className="bg-[var(--ink)] p-4 rounded-b-lg mt-1"
                     >
                         {children}
                     </m.div>
@@ -104,8 +104,8 @@ const SubjectList: React.FC<SubjectListProps> = ({ subjects, title }) => {
     const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     return (
         <div className="mb-4">
-            <h3 className="text-lg font-semibold text-yellow-300 mb-2">{t(title)}</h3>
-            <ul className="list-disc list-inside text-yellow-100 text-sm">
+            <h3 className="text-lg font-semibold text-[var(--amber)] mb-2">{t(title)}</h3>
+            <ul className="list-disc list-inside text-[var(--cream)] text-sm">
                 {subjects.map((subject) => (
                     <li key={t(subject)}>{t(subject)}</li>
                 ))}
@@ -130,8 +130,8 @@ const PricingTable: React.FC<PricingTableProps> = ({ pricing, title }) => {
     const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     return (
         <div className="mb-4">
-            <h3 className="text-lg font-semibold text-yellow-300 mb-2">{t(title)}</h3>
-            <table className="w-full text-yellow-100 text-sm">
+            <h3 className="text-lg font-semibold text-[var(--amber)] mb-2">{t(title)}</h3>
+            <table className="w-full text-[var(--cream)] text-sm">
                 <thead>
                     <tr>
                         <th className="text-left">{t('duration')}</th>
@@ -159,16 +159,16 @@ const ContactPage: React.FC = () => {
     const whatsappLink = `https://wa.me/${businessData.contactItems[0].content.replace(/\s+/g, '')}`;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)] py-12 px-4 sm:px-6 lg:px-8">
             <m.div
-                className="max-w-2xl mx-auto bg-blue-800 rounded-lg shadow-xl overflow-hidden"
+                className="max-w-2xl mx-auto bg-[var(--ink)] rounded-lg shadow-xl overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <div className="p-6">
                     <m.h1
-                        className="text-3xl font-bold text-center text-yellow-300 mb-6"
+                        className="text-3xl font-bold text-center text-[var(--amber)] mb-6"
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
@@ -181,7 +181,7 @@ const ContactPage: React.FC = () => {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
                     >
-                        <p className="text-yellow-100 mb-6 text-sm">{t('aboutMe')}</p>
+                        <p className="text-[var(--cream)] mb-6 text-sm">{t('aboutMe')}</p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                             {businessData.contactItems.map((item) => (
@@ -204,7 +204,7 @@ const ContactPage: React.FC = () => {
                                 href={whatsappLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-[var(--ink)] bg-[var(--amber)] hover:bg-[var(--amber-hover)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--amber)]"
                             >
                                 <FaWhatsapp className="mr-2" />
                                 {t('cta.whatsapp')}
@@ -224,7 +224,7 @@ const ContactPage: React.FC = () => {
                         </CollapsibleSection>
 
                         <CollapsibleSection title="aboutLessons.title">
-                            <p className="text-yellow-100 text-sm">{t('aboutLessons.content')}</p>
+                            <p className="text-[var(--cream)] text-sm">{t('aboutLessons.content')}</p>
                         </CollapsibleSection>
                     </m.div>
                 </div>

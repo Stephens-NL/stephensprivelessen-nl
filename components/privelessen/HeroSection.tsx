@@ -14,10 +14,10 @@ interface HeroSectionProps {
 
 export const HeroSection = ({ content, t }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-[var(--ink)] via-[var(--ink-light)] to-[var(--ink)]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/90 to-blue-900/80 backdrop-blur-sm z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink)]/90 to-[var(--ink)]/80 backdrop-blur-sm z-10" />
         <Image
           src="/images/tutoring-hero.jpg"
           alt="Students learning"
@@ -36,17 +36,17 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
           transition={{ duration: 0.8 }}
           className="max-w-4xl"
         >
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+          <h1 className="text-5xl md:text-7xl font-display font-bold text-[var(--cream)] mb-6">
             {t(content.title)}
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-2xl">
+          <p className="text-xl md:text-2xl text-[var(--cream)]/90 mb-8 max-w-2xl">
             {t(content.subtitle)}
           </p>
           
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 mb-16">
             <Link href={content.cta.primary.href}>
-              <Button size="lg" className="bg-yellow-400 text-blue-900 hover:bg-yellow-300 font-semibold text-lg px-8 py-6">
+              <Button size="lg" className="bg-[var(--amber)] text-[var(--ink)] hover:bg-[var(--amber-hover)] font-semibold text-lg px-8 py-6">
                 {t(content.cta.primary.text)}
               </Button>
             </Link>
@@ -60,12 +60,12 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 * index }}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-6 text-center"
+                className="bg-[var(--cream)]/10 backdrop-blur-sm rounded-lg p-6 text-center"
               >
-                <div className="text-4xl font-bold text-white mb-2">
+                <div className="text-4xl font-bold text-[var(--cream)] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-white/80">
+                <div className="text-[var(--cream)]/80">
                   {t(stat.label)}
                 </div>
               </m.div>

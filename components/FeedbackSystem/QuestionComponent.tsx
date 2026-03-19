@@ -77,11 +77,11 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
             <label className="text-lg font-medium text-white mb-2 flex items-center">
                 {String(t(question.label))}
                 {question.required ? (
-                    <span className="text-yellow-400 ml-2 text-sm font-bold animate-pulse" title="This field is required">
+                    <span className="text-[var(--amber)] ml-2 text-sm font-bold animate-pulse" title="This field is required">
                         *
                     </span>
                 ) : (
-                    <span className="text-gray-300 ml-2 text-sm italic">
+                    <span className="text-[var(--muted-text)] ml-2 text-sm italic">
                         ({String(t({ EN: 'Optional', NL: 'Optioneel' }))})
                     </span>
                 )}
@@ -101,12 +101,12 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                 t={t}
             />
             {question.required && (
-                <p className="text-yellow-400 text-xs mt-1 italic">
+                <p className="text-[var(--amber)] text-xs mt-1 italic">
                     {String(t({ EN: 'This field is required', NL: 'Dit veld is verplicht' }))}
                 </p>
             )}
             {(question.type === 'text' || question.type === 'textarea') && (
-                <p className="text-gray-300 text-xs mt-1">
+                <p className="text-[var(--muted-text)] text-xs mt-1">
                     {String(t({ EN: 'Press Enter to go to the next question', NL: 'Druk op Enter om naar de volgende vraag te gaan' }))}
                 </p>
             )}

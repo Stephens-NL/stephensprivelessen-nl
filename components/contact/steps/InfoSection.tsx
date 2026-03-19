@@ -85,15 +85,15 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="bg-blue-700 p-6 rounded-lg"
+                className="bg-[var(--ink-light)] p-6 rounded-lg"
             >
-                <div className="flex items-center text-yellow-300 mb-3">
+                <div className="flex items-center text-[var(--amber)] mb-3">
                     <FaGraduationCap className="text-2xl mr-3" />
                     <h3 className="text-lg font-semibold">
                         {t(translations.teachingMethod)}
                     </h3>
                 </div>
-                <p className="text-yellow-100">
+                <p className="text-[var(--cream)]">
                     {t(translations.teachingMethodDescription)}
                 </p>
             </m.div>
@@ -102,9 +102,9 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="bg-blue-700 p-6 rounded-lg"
+                className="bg-[var(--ink-light)] p-6 rounded-lg"
             >
-                <div className="flex items-center justify-between text-yellow-300 mb-3">
+                <div className="flex items-center justify-between text-[var(--amber)] mb-3">
                     <div className="flex items-center">
                         <FaClock className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
@@ -113,16 +113,16 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     </div>
                     <button
                         onClick={() => dispatch({ type: 'TOGGLE_PRICING' })}
-                        className="text-yellow-300 hover:text-yellow-400"
+                        className="text-[var(--amber)] hover:text-[var(--amber)]"
                     >
                         {showPricing ? <FaChevronUp /> : <FaChevronDown />}
                     </button>
                 </div>
                 <div className="space-y-2">
-                    <p className="text-yellow-100">
+                    <p className="text-[var(--cream)]">
                         {t(translations.standardSession)}
                     </p>
-                    <p className="text-yellow-100">
+                    <p className="text-[var(--cream)]">
                         {t(translations.trialLesson)}
                     </p>
                 </div>
@@ -145,9 +145,9 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="bg-blue-700 p-6 rounded-lg"
+                className="bg-[var(--ink-light)] p-6 rounded-lg"
             >
-                <div className="flex items-center justify-between text-yellow-300 mb-3">
+                <div className="flex items-center justify-between text-[var(--amber)] mb-3">
                     <div className="flex items-center">
                         <FaEuroSign className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
@@ -156,12 +156,12 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     </div>
                     <button
                         onClick={() => dispatch({ type: 'TOGGLE_GROUP_PRICING' })}
-                        className="text-yellow-300 hover:text-yellow-400"
+                        className="text-[var(--amber)] hover:text-[var(--amber)]"
                     >
                         {showGroupPricing ? <FaChevronUp /> : <FaChevronDown />}
                     </button>
                 </div>
-                <p className="text-yellow-100">
+                <p className="text-[var(--cream)]">
                     {t(translations.groupSessionsDescription)}
                 </p>
 
@@ -178,7 +178,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                             <m.p 
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="text-sm text-yellow-200 text-center mt-4"
+                                className="text-sm text-[var(--cream)] text-center mt-4"
                             >
                                 {t(translations.freeTrialNote)}
                             </m.p>
@@ -191,9 +191,9 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.6 }}
-                className="bg-blue-700 p-6 rounded-lg"
+                className="bg-[var(--ink-light)] p-6 rounded-lg"
             >
-                <div className="flex items-center justify-between text-yellow-300 mb-3">
+                <div className="flex items-center justify-between text-[var(--amber)] mb-3">
                     <div className="flex items-center">
                         <FaGraduationCap className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
@@ -202,12 +202,12 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     </div>
                     <button
                         onClick={() => dispatch({ type: 'TOGGLE_THESIS' })}
-                        className="text-yellow-300 hover:text-yellow-400"
+                        className="text-[var(--amber)] hover:text-[var(--amber)]"
                     >
                         {showThesis ? <FaChevronUp /> : <FaChevronDown />}
                     </button>
                 </div>
-                <p className="text-yellow-100">
+                <p className="text-[var(--cream)]">
                     {t(translations.thesisDescription)}
                 </p>
 
@@ -219,42 +219,42 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                             exit={{ height: 0, opacity: 0 }}
                             className="mt-6 space-y-4"
                         >
-                            <p className="text-yellow-100 mb-4">
+                            <p className="text-[var(--cream)] mb-4">
                                 {t(translations.servicesInclude)}
                             </p>
-                            <ul className="list-disc list-inside text-yellow-100 mb-4 space-y-1">
+                            <ul className="list-disc list-inside text-[var(--cream)] mb-4 space-y-1">
                                 <li>{t({ EN: "Research methodology and design", NL: "Onderzoeksmethodologie en opzet" })}</li>
                                 <li>{t({ EN: "Data analysis and statistics", NL: "Data-analyse en statistiek" })}</li>
                                 <li>{t({ EN: "Proofreading and feedback", NL: "Proeflezen en feedback" })}</li>
                                 <li>{t({ EN: "Software support (R, Python, SPSS)", NL: "Software ondersteuning (R, Python, SPSS)" })}</li>
                             </ul>
 
-                            <div className="bg-blue-600/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-500/30">
+                            <div className="bg-[var(--ink-light)]/30 backdrop-blur-sm rounded-2xl p-6 border border-[var(--ink)]/30">
                                 <table className="w-full">
                                     <thead>
-                                        <tr className="border-b border-blue-600/50">
-                                            <th className="text-left py-2 text-yellow-100 font-medium">Type</th>
-                                            <th className="text-right py-2 text-yellow-100 font-medium">Tarief</th>
+                                        <tr className="border-b border-[var(--ink-light)]/50">
+                                            <th className="text-left py-2 text-[var(--cream)] font-medium">Type</th>
+                                            <th className="text-right py-2 text-[var(--cream)] font-medium">Tarief</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr className="border-b border-blue-600/50">
-                                            <td className="py-2 text-yellow-100">Eenmalig consult</td>
-                                            <td className="py-2 text-yellow-300 font-semibold text-right">€100</td>
+                                        <tr className="border-b border-[var(--ink-light)]/50">
+                                            <td className="py-2 text-[var(--cream)]">Eenmalig consult</td>
+                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">€100</td>
                                         </tr>
-                                        <tr className="border-b border-blue-600/50">
-                                            <td className="py-2 text-yellow-100">4 sessies</td>
-                                            <td className="py-2 text-yellow-300 font-semibold text-right">€250</td>
+                                        <tr className="border-b border-[var(--ink-light)]/50">
+                                            <td className="py-2 text-[var(--cream)]">4 sessies</td>
+                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">€250</td>
                                         </tr>
                                         <tr>
-                                            <td className="py-2 text-yellow-100">10 sessies</td>
-                                            <td className="py-2 text-yellow-300 font-semibold text-right">€550</td>
+                                            <td className="py-2 text-[var(--cream)]">10 sessies</td>
+                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">€550</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <p className="mt-4 text-sm text-yellow-100 italic">
+                            <p className="mt-4 text-sm text-[var(--cream)] italic">
                                 {t(translations.thesisPackageNote)}
                             </p>
                         </m.div>
@@ -268,7 +268,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={onBack}
-                        className="px-6 py-3 bg-blue-700 text-white rounded-lg hover:bg-blue-600 w-full sm:w-auto"
+                        className="px-6 py-3 bg-[var(--ink-light)] text-white rounded-lg hover:bg-[var(--ink-light)] w-full sm:w-auto"
                     >
                         {t(translations.back)}
                     </m.button>
@@ -279,7 +279,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 w-full sm:w-auto min-w-[200px]"
+                        className="flex items-center justify-center px-6 py-3 bg-[var(--sage)] text-white rounded-lg hover:bg-[var(--sage)] w-full sm:w-auto min-w-[200px]"
                     >
                         <FaWhatsapp className="mr-2" />
                         {t(translations.contactWhatsApp)}
@@ -289,7 +289,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         href={contactLinks.email}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center justify-center px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 w-full sm:w-auto min-w-[200px]"
+                        className="flex items-center justify-center px-6 py-3 bg-[var(--ink)] text-white rounded-lg hover:bg-[var(--ink-light)] w-full sm:w-auto min-w-[200px]"
                     >
                         <FaEnvelope className="mr-2" />
                         {t(translations.contactEmail)}
@@ -299,7 +299,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 <m.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-yellow-100 text-sm italic max-w-2xl text-center px-4"
+                    className="text-[var(--cream)] text-sm italic max-w-2xl text-center px-4"
                 >
                     {t(translations.communicationNote)}
                 </m.div>

@@ -26,14 +26,14 @@ export function AgeStep({
       className="space-y-4"
       onSubmit={onSubmit}
     >
-      <label className="block text-yellow-300 mb-2">
+      <label className="block text-[var(--amber)] mb-2">
         {String(t({ EN: "What's your age?", NL: "Wat is je leeftijd?" }))} *
       </label>
       <input
         type="number"
         value={age || ''}
         onChange={(e) => onAgeChange(parseInt(e.target.value) || 0)}
-        className="w-full p-3 rounded-lg bg-blue-700 text-white border border-blue-600 focus:border-yellow-400 focus:outline-none"
+        className="w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border border-[var(--ink-light)] focus:border-[var(--amber)] focus:outline-none"
         min={0}
         required
       />
@@ -41,7 +41,7 @@ export function AgeStep({
         type="submit"
         disabled={!isComplete}
         className={`w-full p-3 rounded-lg transition-colors ${
-          isComplete ? 'bg-yellow-400 text-blue-900 hover:bg-yellow-300' : 'bg-gray-700 text-gray-400 cursor-not-allowed'
+          isComplete ? 'bg-[var(--amber)] text-[var(--ink)] hover:bg-[var(--amber)]' : 'bg-[var(--muted-text)] text-[var(--muted-text)] cursor-not-allowed'
         }`}
       >
         {String(t({ EN: "Next", NL: "Volgende" }))}

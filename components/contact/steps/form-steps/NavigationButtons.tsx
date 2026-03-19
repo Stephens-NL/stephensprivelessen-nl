@@ -24,7 +24,7 @@ const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: Naviga
                 <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center px-4 py-2 bg-blue-700 text-yellow-300 rounded-lg hover:bg-blue-600 transition-colors"
+                    className="flex items-center px-4 py-2 bg-[var(--ink-light)] text-[var(--amber)] rounded-lg hover:bg-[var(--ink-light)] transition-colors"
                     onClick={onBack}
                 >
                     <FaArrowLeft className="mr-2" />
@@ -36,8 +36,8 @@ const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: Naviga
                 whileTap={{ scale: 0.95 }}
                 className={`flex items-center px-4 py-2 rounded-lg transition-colors ml-auto ${
                     disabled
-                        ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
-                        : 'bg-yellow-400 text-blue-900 hover:bg-yellow-300'
+                        ? 'bg-[var(--cream)]0 text-[var(--muted-text)] cursor-not-allowed'
+                        : 'bg-[var(--amber)] text-[var(--ink)] hover:bg-[var(--amber)]'
                 }`}
                 onClick={onNext}
                 disabled={disabled}

@@ -34,8 +34,8 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                     onClick={() => handleLocationChoice(true)}
                     className={`px-6 py-4 rounded-lg transition-colors ${
                         formData.isOnline 
-                            ? 'bg-yellow-400 text-blue-900' 
-                            : 'bg-blue-700 text-white hover:bg-blue-600'
+                            ? 'bg-[var(--amber)] text-[var(--ink)]' 
+                            : 'bg-[var(--ink-light)] text-white hover:bg-[var(--ink-light)]'
                     }`}
                 >
                     {String(t({
@@ -49,8 +49,8 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                     onClick={() => handleLocationChoice(false)}
                     className={`px-6 py-4 rounded-lg transition-colors ${
                         formData.isOnline === false 
-                            ? 'bg-yellow-400 text-blue-900' 
-                            : 'bg-blue-700 text-white hover:bg-blue-600'
+                            ? 'bg-[var(--amber)] text-[var(--ink)]' 
+                            : 'bg-[var(--ink-light)] text-white hover:bg-[var(--ink-light)]'
                     }`}
                 >
                     {String(t({

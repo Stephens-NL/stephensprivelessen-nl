@@ -151,12 +151,12 @@ export function SubjectsSection({
           <div className="w-full max-w-xl">
             <div className="relative">
               <Input
-                className="w-full bg-white/5 border-yellow-500/20 text-white placeholder:text-white/50 pl-12 py-6 text-lg"
+                className="w-full bg-white/5 border-[var(--amber)]/20 text-white placeholder:text-white/50 pl-12 py-6 text-lg"
                 placeholder={language === 'NL' ? 'Zoek een vak of voer je eigen vak in...' : 'Search a subject or enter your own...'}
                 value={searchQuery}
                 onChange={(e) => dispatch({ type: 'SEARCH', payload: e.target.value })}
               />
-              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-yellow-500/50" />
+              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--amber)]/50" />
             </div>
           </div>
 
@@ -169,7 +169,7 @@ export function SubjectsSection({
                   className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 relative ${
                     activeLevel === level.id 
                       ? 'text-amber-950' 
-                      : 'text-white hover:text-yellow-200'
+                      : 'text-white hover:text-[var(--cream)]'
                   }`}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -215,30 +215,30 @@ export function SubjectsSection({
                         educationLevels.find(level => level.id === activeLevel)?.color
                       } opacity-0 group-hover:opacity-100 rounded-xl transition-all duration-300 blur-sm`} />
                       
-                      <div className="relative h-full bg-[#4B2E1D] group-hover:bg-[#5B3E2D] backdrop-blur-sm rounded-xl border border-yellow-500/20 group-hover:border-yellow-500 transition-all duration-300 overflow-hidden shadow-lg group-hover:shadow-yellow-500/20">
+                      <div className="relative h-full bg-[#4B2E1D] group-hover:bg-[#5B3E2D] backdrop-blur-sm rounded-xl border border-[var(--amber)]/20 group-hover:border-[var(--amber)] transition-all duration-300 overflow-hidden shadow-lg group-hover:shadow-[var(--amber)]/20">
                         <div className="p-6 h-full flex flex-col justify-between">
                           <div>
-                            <h3 className="text-2xl font-bold text-yellow-300 group-hover:text-yellow-200 transition-colors">
+                            <h3 className="text-2xl font-bold text-[var(--amber)] group-hover:text-[var(--cream)] transition-colors">
                               {language === 'NL' ? subject.NL : subject.EN}
                             </h3>
                             <p className="text-base text-white/80 group-hover:text-white/90 mt-2 font-medium">
                               {language === 'NL' ? subject.EN : subject.NL}
                             </p>
                           </div>
-                          <div className="flex items-center gap-2 mt-4 text-sm text-yellow-200/75 group-hover:text-yellow-200">
-                            <FaHandPointer className="text-yellow-300 group-hover:text-yellow-400" />
+                          <div className="flex items-center gap-2 mt-4 text-sm text-[var(--cream)]/75 group-hover:text-[var(--cream)]">
+                            <FaHandPointer className="text-[var(--amber)] group-hover:text-[var(--amber)]" />
                             <p>{language === 'NL' ? 'Tik voor gratis proefles' : 'Tap for free trial'}</p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </DialogTrigger>
-                  <DialogContent className="bg-amber-950/90 backdrop-blur-xl border border-yellow-500/20">
+                  <DialogContent className="bg-amber-950/90 backdrop-blur-xl border border-[var(--amber)]/20">
                     <DialogHeader>
-                      <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
+                      <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)]">
                         {language === 'NL' ? 'Even je gegevens' : 'Your details'}
                       </DialogTitle>
-                      <DialogDescription className="text-yellow-200/80">
+                      <DialogDescription className="text-[var(--cream)]/80">
                         {language === 'NL' 
                           ? 'Vul je gegevens in en kies wat je wilt doen' 
                           : 'Fill in your details and choose what you want to do'}

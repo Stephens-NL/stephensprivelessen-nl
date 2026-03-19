@@ -6,8 +6,8 @@ import { feedbackFormData, FeedbackSummaryProps, RenderSummaryItemProps } from '
 
 function SummaryItem({ label, value }: RenderSummaryItemProps) {
   return (
-    <div className="mb-4 bg-white bg-opacity-10 rounded-lg p-4">
-      <span className="font-semibold text-yellow-300">{label}:</span>
+    <div className="mb-4 bg-[var(--cream)] bg-opacity-10 rounded-lg p-4">
+      <span className="font-semibold text-[var(--amber)]">{label}:</span>
       <p className="mt-1 text-white">{value}</p>
     </div>
   );
@@ -23,11 +23,11 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
-      className="w-full max-w-2xl mx-auto bg-blue-800 bg-opacity-70 backdrop-blur-lg rounded-lg p-8 shadow-lg"
+      className="w-full max-w-2xl mx-auto bg-[var(--ink)] bg-opacity-70 backdrop-blur-lg rounded-lg p-8 shadow-lg"
     >
-      <h2 className="text-3xl font-bold text-yellow-300 mb-6">{String(t({ EN: 'Feedback Summary', NL: 'Feedback Samenvatting' }))}</h2>
+      <h2 className="text-3xl font-bold text-[var(--amber)] mb-6">{String(t({ EN: 'Feedback Summary', NL: 'Feedback Samenvatting' }))}</h2>
 
-      <div className="space-y-6 mb-8 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-yellow-400 scrollbar-track-blue-900 pr-4">
+      <div className="space-y-6 mb-8 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--amber)] scrollbar-track-[var(--ink)] pr-4">
         <div>
           <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'General Information', NL: 'Algemene Informatie' }))}</h3>
           <SummaryItem label={String(t({ EN: 'Name', NL: 'Naam' }))} value={formData.learnerName} />
@@ -60,7 +60,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
       <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
         <m.button
           onClick={onEdit}
-          className="px-6 py-3 bg-blue-600 text-white rounded-full text-lg font-bold hover:bg-blue-500 transition-colors duration-300 flex items-center"
+          className="px-6 py-3 bg-[var(--ink-light)] text-white rounded-full text-lg font-bold hover:bg-[var(--ink)] transition-colors duration-300 flex items-center"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -69,7 +69,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
         </m.button>
         <m.button
           onClick={onSubmit}
-          className="px-6 py-3 bg-yellow-400 text-blue-900 rounded-full text-lg font-bold hover:bg-yellow-300 transition-colors duration-300 flex items-center"
+          className="px-6 py-3 bg-[var(--amber)] text-[var(--ink)] rounded-full text-lg font-bold hover:bg-[var(--amber)] transition-colors duration-300 flex items-center"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

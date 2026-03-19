@@ -113,7 +113,7 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-yellow-400 text-black'}`}>
+    <div className={`min-h-screen flex flex-col ${isDarkMode ? 'bg-[var(--ink)] text-[var(--cream)]' : 'bg-[var(--cream)] text-[var(--warm-text)]'}`}>
       <div className="flex-grow flex flex-col justify-center items-center p-4">
         <m.div
           key={currentQuestionIndex}
@@ -121,7 +121,7 @@ const ContactPage: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
           transition={{ duration: 0.5 }}
-          className={`rounded-lg shadow-lg p-6 max-w-md w-full ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}
+          className={`rounded-lg shadow-lg p-6 max-w-md w-full ${isDarkMode ? 'bg-[var(--ink-light)]' : 'bg-[var(--cream)]'}`}
         >
           {currentQuestion.type === 'language' ? (
             <LanguageSelector
@@ -142,7 +142,7 @@ const ContactPage: React.FC = () => {
               type="button"
               onClick={goToPreviousQuestion}
               disabled={currentQuestionIndex === 0}
-              className={`${isDarkMode ? 'bg-blue-700 hover:bg-blue-600' : 'bg-blue-900 hover:bg-blue-800'} ${isDarkMode ? 'text-yellow-300' : 'text-yellow-400'} px-4 py-2 rounded transition duration-300`}
+              className={`${isDarkMode ? 'bg-[var(--ink)] hover:bg-[var(--ink-light)]' : 'bg-[var(--ink)] hover:bg-[var(--ink-light)]'} ${isDarkMode ? 'text-[var(--amber)]' : 'text-[var(--amber)]'} px-4 py-2 rounded transition duration-300`}
             >
               {language === 'en' ? 'Previous' : 'Vorige'}
             </button>
@@ -150,14 +150,14 @@ const ContactPage: React.FC = () => {
               type="button"
               onClick={goToNextQuestion}
               disabled={currentQuestionIndex === allQuestions.length - 1}
-              className={`${isDarkMode ? 'bg-blue-700 hover:bg-blue-600' : 'bg-blue-900 hover:bg-blue-800'} ${isDarkMode ? 'text-yellow-300' : 'text-yellow-400'} px-4 py-2 rounded transition duration-300`}
+              className={`${isDarkMode ? 'bg-[var(--ink)] hover:bg-[var(--ink-light)]' : 'bg-[var(--ink)] hover:bg-[var(--ink-light)]'} ${isDarkMode ? 'text-[var(--amber)]' : 'text-[var(--amber)]'} px-4 py-2 rounded transition duration-300`}
             >
               {language === 'en' ? 'Next' : 'Volgende'}
             </button>
           </div>
         </m.div>
       </div>
-      <div className={`${isDarkMode ? 'bg-blue-800' : 'bg-blue-900'} ${isDarkMode ? 'text-yellow-300' : 'text-yellow-400'} p-4`}>
+      <div className={`${isDarkMode ? 'bg-[var(--ink)]' : 'bg-[var(--ink)]'} ${isDarkMode ? 'text-[var(--amber)]' : 'text-[var(--amber)]'} p-4`}>
         <div className="flex justify-center space-x-4">
           {phoneContact && (
             <a href={phoneContact.href} className="flex items-center hover:underline">

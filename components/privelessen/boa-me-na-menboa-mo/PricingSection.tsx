@@ -30,7 +30,7 @@ export function PricingSection({ content }: PricingSectionProps) {
         <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
           {/* Regular Price */}
           <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm w-full md:w-64">
-            <h3 className="text-lg font-medium text-yellow-200 mb-2">
+            <h3 className="text-lg font-medium text-[var(--cream)] mb-2">
               {content.pricing.regularPrice.label[language]}
             </h3>
             <div className="text-3xl font-bold mb-1 line-through text-white/70">
@@ -42,16 +42,16 @@ export function PricingSection({ content }: PricingSectionProps) {
           </div>
 
           {/* Arrow */}
-          <div className="text-4xl text-yellow-300">→</div>
+          <div className="text-4xl text-[var(--amber)]">→</div>
 
           {/* Community Rate */}
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 w-full md:w-72">
+          <div className="bg-gradient-to-br from-[var(--amber)] to-[var(--amber-hover)] rounded-xl p-6 w-full md:w-72">
             <h3 className="text-lg font-medium text-white mb-2">
               {content.pricing.communityRate.label[language]}
             </h3>
             <div className="text-5xl font-bold mb-1">€{content.pricing.communityRate.amount}</div>
             <div className="text-sm mb-2">{content.pricing.communityRate.perHour[language]}</div>
-            <div className="bg-yellow-400 text-yellow-900 text-sm font-bold py-1 px-3 rounded-full inline-block">
+            <div className="bg-[var(--amber)] text-[var(--ink)] text-sm font-bold py-1 px-3 rounded-full inline-block">
               {content.pricing.communityRate.savings[language]}
             </div>
           </div>

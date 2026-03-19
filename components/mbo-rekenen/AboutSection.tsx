@@ -32,7 +32,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[var(--cream)]">
       <div className="container mx-auto px-4 max-w-6xl">
         <m.div
           initial={{ opacity: 0, y: 30 }}
@@ -41,10 +41,10 @@ export function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
             {language === 'NL' ? 'Waarom kiezen voor ons?' : 'Why choose us?'}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
             {language === 'NL'
               ? 'We begrijpen de uitdagingen van MBO-rekenen en bieden de ondersteuning die je nodig hebt om succesvol te zijn.'
               : 'We understand the challenges of MBO math and provide the support you need to succeed.'}
@@ -59,15 +59,15 @@ export function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15, duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 group"
+              className="bg-[var(--cream-dark)] rounded-2xl p-8 hover:shadow-lg transition-all duration-300 group"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 bg-white rounded-xl mb-6 group-hover:bg-gray-900 group-hover:text-white transition-all duration-300 shadow-sm">
+              <div className="inline-flex items-center justify-center w-14 h-14 bg-[var(--cream)] rounded-xl mb-6 group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300 shadow-sm">
                 <feature.icon className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-4">
+              <h3 className="text-xl font-medium text-[var(--ink)] mb-4">
                 {feature.title[language]}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-[var(--muted-text)] leading-relaxed">
                 {feature.description[language]}
               </p>
             </m.div>
@@ -82,26 +82,26 @@ export function AboutSection() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gray-900 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-light mb-4">
+          <div className="bg-[var(--ink)] rounded-2xl p-8 text-[var(--cream)]">
+            <h3 className="text-2xl font-display font-light mb-4">
               {language === 'NL' ? 'Klaar voor jouw rekentoets?' : 'Ready for your math test?'}
             </h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+            <p className="text-[var(--cream-dark)] mb-6 max-w-2xl mx-auto">
               {language === 'NL'
                 ? 'Sluit je aan bij honderden studenten die al succesvol hun MBO-rekentoets hebben gehaald met onze begeleiding.'
                 : 'Join hundreds of students who have successfully passed their MBO math test with our guidance.'}
             </p>
-            <div className="inline-flex items-center gap-4 text-sm text-gray-400">
+            <div className="inline-flex items-center gap-4 text-sm text-[var(--cream-dark)]">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
                 {language === 'NL' ? 'Kleine groepen' : 'Small groups'}
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
                 {language === 'NL' ? 'Flexibele tijden' : 'Flexible times'}
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-[var(--sage)] rounded-full"></div>
                 {language === 'NL' ? 'Online & offline' : 'Online & offline'}
               </div>
             </div>

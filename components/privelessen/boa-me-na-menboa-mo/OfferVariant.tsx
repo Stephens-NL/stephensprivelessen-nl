@@ -97,15 +97,15 @@ export function OfferVariant({
       transition={{ duration: 0.5 }}
       className="relative"
     >
-      <div className="bg-[#4B2E1D] backdrop-blur-sm rounded-xl border border-yellow-500/20 overflow-hidden shadow-lg">
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-300 to-yellow-500 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
-        <div className="relative bg-amber-950/50 backdrop-blur-xl rounded-2xl p-8 ring-1 ring-white/10 hover:ring-yellow-300/50 transition duration-300">
+      <div className="bg-[#4B2E1D] backdrop-blur-sm rounded-xl border border-[var(--amber)]/20 overflow-hidden shadow-lg">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)] rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+        <div className="relative bg-amber-950/50 backdrop-blur-xl rounded-2xl p-8 ring-1 ring-white/10 hover:ring-[var(--amber)]/50 transition duration-300">
           <div className="h-full flex flex-col">
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 mb-2">
+            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)] mb-2">
               {offer.title[language]}
             </h3>
             {offer.titleTwi && (
-              <p className="text-lg text-yellow-200/80 mb-4 italic font-light">
+              <p className="text-lg text-[var(--cream)]/80 mb-4 italic font-light">
                 {offer.titleTwi}
               </p>
             )}
@@ -114,19 +114,19 @@ export function OfferVariant({
             </p>
             <Dialog open={showModal} onOpenChange={(v) => dispatch({ type: 'MODAL', payload: v })}>
               <DialogTrigger asChild>
-                <Button className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold">
+                <Button className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold">
                   {ctaText}
                 </Button>
               </DialogTrigger>
               <DialogContent 
-                className="bg-amber-950/90 backdrop-blur-xl border border-yellow-500/20"
+                className="bg-amber-950/90 backdrop-blur-xl border border-[var(--amber)]/20"
                 onClick={(e) => e.stopPropagation()}
               >
                 <DialogHeader>
-                  <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
+                  <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)]">
                     {offer.title[language]}
                   </DialogTitle>
-                  <DialogDescription className="text-yellow-200/80">
+                  <DialogDescription className="text-[var(--cream)]/80">
                     {language === 'NL' 
                       ? 'Vul je gegevens in en kies wat je wilt doen' 
                       : 'Fill in your details and choose what you want to do'}

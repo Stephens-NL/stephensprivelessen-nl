@@ -18,7 +18,7 @@ export function ZuidoostLocationMap() {
     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-12">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
-          <FaCoffee className="text-3xl text-yellow-300" />
+          <FaCoffee className="text-3xl text-[var(--amber)]" />
           <h2 className="text-2xl font-bold text-white">
             {language === 'NL' ? 'Locatie: Douwe Egberts Café' : 'Location: Douwe Egberts Café'}
           </h2>
@@ -28,7 +28,7 @@ export function ZuidoostLocationMap() {
           onClick={() => dispatch({ type: 'TOGGLE' })}
           className="p-3 hover:bg-white/10 rounded-xl transition-colors"
         >
-          {showMap ? <FaChevronUp className="text-yellow-300" /> : <FaChevronDown className="text-yellow-300" />}
+          {showMap ? <FaChevronUp className="text-[var(--amber)]" /> : <FaChevronDown className="text-[var(--amber)]" />}
         </button>
       </div>
 
@@ -60,11 +60,11 @@ export function ZuidoostLocationMap() {
                 />
               </div>
               <div className="flex items-center gap-2 text-white/90 mt-4">
-                <FaMapMarkerAlt className="text-yellow-300" />
+                <FaMapMarkerAlt className="text-[var(--amber)]" />
                 <span>Bijlmerplein 888, 1102 MG Amsterdam</span>
               </div>
               <div className="flex items-center gap-2 text-white/90">
-                <FaClock className="text-yellow-300" />
+                <FaClock className="text-[var(--amber)]" />
                 <span>{language === 'NL' ? 'Dagelijks geopend: 08:00 - 22:00' : 'Open daily: 08:00 - 22:00'}</span>
               </div>
             </div>

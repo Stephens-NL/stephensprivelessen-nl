@@ -13,7 +13,7 @@ const LanguageSelector: React.FC<Props> = ({ language, setLanguage, isDarkMode }
       <select 
         value={language} 
         onChange={(e) => setLanguage(e.target.value as 'en' | 'nl')}
-        className={`w-full p-2 rounded ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-white text-black'} border ${isDarkMode ? 'border-gray-600' : 'border-gray-300'}`}
+        className={`w-full p-2 rounded ${isDarkMode ? 'bg-[var(--ink-light)] text-white' : 'bg-[var(--cream)] text-black'} border ${isDarkMode ? 'border-[var(--ink-light)]' : 'border-[var(--border-warm)]'}`}
       >
         <option value="en">English</option>
         <option value="nl">Nederlands</option>

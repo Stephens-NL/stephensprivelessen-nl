@@ -28,7 +28,7 @@ export const rekentrajectenComparison = {
       refundPolicy: { NL: "n.v.t.", EN: "n/a" },
       highlight: { NL: "Hoogste leerling-uurprijs", EN: "Highest student hourly rate" },
       description: { NL: "Intensief weekprogramma voor acute hulp", EN: "Intensive week program for urgent help" },
-      color: "from-red-500 to-orange-500",
+      color: "from-[var(--terracotta)] to-[var(--amber)]",
       featured: false
     },
     {
@@ -46,7 +46,7 @@ export const rekentrajectenComparison = {
       refundPolicy: { NL: "n.v.t.", EN: "n/a" },
       highlight: { NL: "Laagste instapprijs", EN: "Lowest entry price" },
       description: { NL: "Rustige opbouw binnen één periode", EN: "Gradual build-up within one period" },
-      color: "from-blue-500 to-cyan-500",
+      color: "from-[var(--ink)] to-[var(--ink-light)]",
       featured: false
     },
     {
@@ -64,7 +64,7 @@ export const rekentrajectenComparison = {
       refundPolicy: { NL: "Géén restitutie; overdraagbaar", EN: "No refund; transferable" },
       highlight: { NL: "25% goedkoper dan Flex", EN: "25% cheaper than Flex" },
       description: { NL: "Volledige commitment, vooraf betaald", EN: "Full commitment, paid upfront" },
-      color: "from-purple-500 to-pink-500",
+      color: "from-[var(--amber)] to-[var(--amber-hover)]",
       featured: true
     },
     {
@@ -82,7 +82,7 @@ export const rekentrajectenComparison = {
       refundPolicy: { NL: "Na elke 4 wk opzegbaar", EN: "Cancellable every 4 weeks" },
       highlight: { NL: "Flexibiliteit tegen meerprijs", EN: "Flexibility for premium price" },
       description: { NL: "Maximum flexibiliteit voor studenten", EN: "Maximum flexibility for students" },
-      color: "from-emerald-500 to-teal-500",
+      color: "from-[var(--sage)] to-[var(--sage-light)]",
       featured: false
     }
   ],

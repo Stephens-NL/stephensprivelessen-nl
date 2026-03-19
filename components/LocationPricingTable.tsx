@@ -8,8 +8,8 @@ import { LocationPricingTableProps } from '../data'
 const LocationPricingTable = ({ pricing, title }: LocationPricingTableProps) => {
     return (
         <div className="mb-4">
-            <h3 className="text-lg font-semibold text-yellow-300 mb-2">{title}</h3>
-            <table className="w-full text-yellow-100 text-sm">
+            <h3 className="text-lg font-semibold text-[var(--amber)] mb-2">{title}</h3>
+            <table className="w-full text-[var(--cream)] text-sm">
                 <thead>
                     <tr>
                         <th className="text-left">Location</th>

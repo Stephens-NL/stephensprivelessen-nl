@@ -264,8 +264,8 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                 onClick={() => handleSubjectSelect(subject)}
                 className={`w-full p-4 rounded-lg border-2 transition-colors ${
                     formData.subject === subject
-                        ? 'bg-yellow-400 text-blue-900 border-yellow-500'
-                        : 'bg-blue-700 text-white border-blue-600 hover:border-yellow-400'
+                        ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
+                        : 'bg-[var(--ink-light)] text-white border-[var(--ink-light)] hover:border-[var(--amber)]'
                 }`}
             >
                 {subject === 'other' 
@@ -282,7 +282,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                         e.stopPropagation();  // Prevent triggering the subject selection
                         handlePreviewNotes(subject);
                     }}
-                    className="absolute top-2 right-2 p-2 bg-blue-800 rounded-full text-yellow-300 hover:text-yellow-400 hover:bg-blue-700 transition-colors"
+                    className="absolute top-2 right-2 p-2 bg-[var(--ink)] rounded-full text-[var(--amber)] hover:text-[var(--amber)] hover:bg-[var(--ink-light)] transition-colors"
                     title={String(t({
                         EN: "Preview Notes",
                         NL: "Bekijk Notities"
@@ -303,7 +303,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                 }))}
             </h2>
             
-            <p className="text-yellow-300 text-center">
+            <p className="text-[var(--amber)] text-center">
                 {String(t({
                     EN: showProgrammingLanguages 
                         ? "Select a programming language to continue"
@@ -341,8 +341,8 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                                 onClick={() => handleProgrammingLanguageSelect(language)}
                                 className={`p-4 rounded-lg border-2 transition-colors ${
                                     (language === 'other' ? showOtherInput : formData.programmingLanguage === language)
-                                        ? 'bg-yellow-400 text-blue-900 border-yellow-500'
-                                        : 'bg-blue-700 text-white border-blue-600 hover:border-yellow-400'
+                                        ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
+                                        : 'bg-[var(--ink-light)] text-white border-[var(--ink-light)] hover:border-[var(--amber)]'
                                 }`}
                             >
                                 {language === 'other'
@@ -366,7 +366,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                         exit={{ opacity: 0, height: 0 }}
                         className="space-y-2"
                     >
-                        <label className="block text-yellow-300">
+                        <label className="block text-[var(--amber)]">
                             {String(t({
                                 EN: showProgrammingLanguages 
                                     ? "Please specify the programming language"
@@ -380,9 +380,9 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                             type="text"
                             value={otherSubject}
                             onChange={(e) => handleOtherInput(e.target.value)}
-                            className={`w-full p-3 rounded-lg bg-blue-700 text-white border ${
-                                otherInputError ? 'border-red-500' : 'border-blue-600'
-                            } focus:border-yellow-400 focus:outline-none`}
+                            className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
+                                otherInputError ? 'border-red-500' : 'border-[var(--ink-light)]'
+                            } focus:border-[var(--amber)] focus:outline-none`}
                             placeholder={String(t({
                                 EN: showProgrammingLanguages
                                     ? "Enter the programming language"

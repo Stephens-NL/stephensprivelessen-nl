@@ -53,15 +53,15 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-blue-700 p-6 rounded-lg"
+                    className="bg-[var(--ink-light)] p-6 rounded-lg"
                 >
-                    <div className="flex items-center text-yellow-300 mb-3">
+                    <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaBook className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
                             {String(t({ EN: "Available Subjects", NL: "Beschikbare Vakken" }))}
                         </h3>
                     </div>
-                    <div className="text-yellow-100 space-y-4">
+                    <div className="text-[var(--cream)] space-y-4">
                         <div>
                             <h4 className="font-semibold mb-2">{String(t({ EN: "Primary Education", NL: "Basisonderwijs" }))}</h4>
                             <ul className="list-disc list-inside pl-4">
@@ -94,7 +94,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             }))}</p>
                             <div className="flex flex-wrap gap-2">
                                 {courses.programming.map((lang) => (
-                                    <span key={lang} className="bg-blue-600 px-2 py-1 rounded text-sm">
+                                    <span key={lang} className="bg-[var(--ink-light)] px-2 py-1 rounded text-sm">
                                         {lang}
                                     </span>
                                 ))}
@@ -107,15 +107,15 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-blue-700 p-6 rounded-lg"
+                    className="bg-[var(--ink-light)] p-6 rounded-lg"
                 >
-                    <div className="flex items-center text-yellow-300 mb-3">
+                    <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaGraduationCap className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
                             {String(t({ EN: "Teaching Method", NL: "Lesmethode" }))}
                         </h3>
                     </div>
-                    <p className="text-yellow-100">
+                    <p className="text-[var(--cream)]">
                         {String(t({
                             EN: "I focus on understanding rather than memorization. We'll work together to build a strong foundation in the subject, using practical examples and clear explanations.",
                             NL: "Ik focus op begrip in plaats van uit het hoofd leren. We werken samen aan een sterke basis in het vak, met praktische voorbeelden en heldere uitleg."
@@ -127,15 +127,15 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-blue-700 p-6 rounded-lg"
+                    className="bg-[var(--ink-light)] p-6 rounded-lg"
                 >
-                    <div className="flex items-center text-yellow-300 mb-3">
+                    <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaClock className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
                             {String(t({ EN: "Lesson Structure", NL: "Lesstructuur" }))}
                         </h3>
                     </div>
-                    <p className="text-yellow-100">
+                    <p className="text-[var(--cream)]">
                         {String(t({
                             EN: "Lessons are typically 1-2 hours long, scheduled at your convenience. We start with a free 30-minute trial lesson to assess your needs and goals.",
                             NL: "Lessen duren meestal 1-2 uur, ingepland op tijden die jou uitkomen. We beginnen met een gratis proefles van 30 minuten om je behoeften en doelen te bespreken."
@@ -147,15 +147,15 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="bg-blue-700 p-6 rounded-lg"
+                    className="bg-[var(--ink-light)] p-6 rounded-lg"
                 >
-                    <div className="flex items-center text-yellow-300 mb-3">
+                    <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaEuroSign className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
                             {String(t({ EN: "Pricing", NL: "Tarieven" }))}
                         </h3>
                     </div>
-                    <p className="text-yellow-100">
+                    <p className="text-[var(--cream)]">
                         {String(t({
                             EN: "Rates start at €50 per hour, depending on the subject level and frequency of lessons. The first 30-minute trial lesson is free.",
                             NL: "Tarieven beginnen vanaf €50 per uur, afhankelijk van het niveau en de frequentie van de lessen. De eerste proefles van 30 minuten is gratis."
@@ -168,7 +168,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-blue-700 text-yellow-300 rounded-lg hover:bg-blue-600"
+                    className="px-6 py-3 bg-[var(--ink-light)] text-[var(--amber)] rounded-lg hover:bg-[var(--ink-light)]"
                     onClick={onBack}
                 >
                     {String(t({ EN: "Back", NL: "Terug" }))}
@@ -177,7 +177,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 <m.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center px-6 py-3 bg-yellow-400 text-blue-900 rounded-lg hover:bg-yellow-300"
+                    className="flex items-center px-6 py-3 bg-[var(--amber)] text-[var(--ink)] rounded-lg hover:bg-[var(--amber)]"
                     onClick={onRequestLesson}
                 >
                     {String(t({

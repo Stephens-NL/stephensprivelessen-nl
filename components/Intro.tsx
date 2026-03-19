@@ -44,20 +44,20 @@ const Introductie = () => {
 
   return (
     <m.section
-      className="py-10 bg-blue-100 "
+      className="py-10 bg-[var(--cream-dark)]"
       variants={sectionVariants}
       initial="hidden"
       animate="visible"
     >
       <m.div className="container mx-auto px-4" variants={textContainerVariants}>
         <m.h2
-          className="text-3xl font-bold mb-6 text-center"
+          className="text-3xl font-bold font-display mb-6 text-center text-[var(--ink)]"
           variants={textItemVariants}
         >
           {t('introductionContent.title')}
         </m.h2>
         <m.p
-          className="text-lg text-gray-700 leading-relaxed text-center"
+          className="text-lg text-[var(--warm-text)] leading-relaxed text-center"
           variants={textItemVariants}
         >
           {t('introductionContent.sections.0.content')}

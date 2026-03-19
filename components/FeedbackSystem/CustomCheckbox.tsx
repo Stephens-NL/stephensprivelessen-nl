@@ -7,7 +7,7 @@ const CustomCheckbox: React.FC<{ checked: boolean; onChange: () => void }> = ({ 
             role="checkbox"
             aria-checked={checked}
             tabIndex={0}
-            className={`w-8 h-8 flex items-center justify-center border-2 rounded-md cursor-pointer transition-colors duration-300 ${checked ? 'bg-yellow-400 border-yellow-400' : 'bg-white border-gray-400'}`}
+            className={`w-8 h-8 flex items-center justify-center border-2 rounded-md cursor-pointer transition-colors duration-300 ${checked ? 'bg-[var(--amber)] border-[var(--amber)]' : 'bg-[var(--cream)] border-[var(--border-warm)]'}`}
             onClick={onChange}
             onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {

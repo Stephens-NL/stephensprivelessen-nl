@@ -16,7 +16,7 @@ const {learnMore} = generalContent;
   return (
     <button
                   onClick={() => onButtonClick(services[index])}
-                  className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300"
+                  className="inline-block bg-[var(--ink)] text-[var(--cream)] font-bold py-2 px-4 rounded-full hover:bg-[var(--ink-light)] transition-colors duration-300"
                 >
                   {String(t(learnMore))} &rarr;
                 </button>

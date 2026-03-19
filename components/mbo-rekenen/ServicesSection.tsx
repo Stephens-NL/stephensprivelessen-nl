@@ -68,7 +68,7 @@ export function ServicesSection() {
   const language = locale.toUpperCase() as 'EN' | 'NL';
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-[var(--cream-dark)]">
       <div className="container mx-auto px-4 max-w-6xl">
         <m.div
           initial={{ opacity: 0, y: 30 }}
@@ -77,10 +77,10 @@ export function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
             {language === 'NL' ? 'Onze diensten' : 'Our services'}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
             {language === 'NL'
               ? 'Van individuele begeleiding tot groepslessen - we bieden flexibele oplossingen voor elke leerstijl.'
               : 'From individual guidance to group lessons - we offer flexible solutions for every learning style.'}
@@ -95,15 +95,15 @@ export function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-gray-200"
+              className="bg-[var(--cream)] rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-[var(--border-warm)]"
             >
-                             <div className="inline-flex items-center justify-center w-14 h-14 bg-gray-100 rounded-xl mb-6 group-hover:bg-gray-900 group-hover:text-white transition-all duration-300">
+                             <div className="inline-flex items-center justify-center w-14 h-14 bg-[var(--cream-dark)] rounded-xl mb-6 group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300">
                  {React.createElement(service.icon, { className: "w-7 h-7" })}
                </div>
-              <h3 className="text-xl font-medium text-gray-900 mb-4">
+              <h3 className="text-xl font-medium text-[var(--ink)] mb-4">
                 {language === 'NL' ? service.title.nl : service.title.en}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-[var(--muted-text)] leading-relaxed">
                 {language === 'NL' ? service.description.nl : service.description.en}
               </p>
             </m.div>

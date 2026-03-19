@@ -30,12 +30,12 @@ export function StudentInfoModal({
   studentAge,
   setStudentAge,
   onSend,
-  contentClassName = 'bg-blue-900 border border-blue-300/50 text-blue-100',
-  titleClassName = 'text-2xl font-bold text-blue-400',
-  descriptionClassName = 'text-blue-200',
-  labelClassName = 'text-blue-300',
-  inputClassName = 'bg-blue-800 border-blue-300/50 text-blue-100 placeholder:text-blue-200/50',
-  cancelClassName = 'border-blue-300/50 text-blue-200 hover:bg-blue-800 hover:text-blue-100',
+  contentClassName = 'bg-[var(--ink)] border border-[var(--amber)]/30 text-[var(--cream)]',
+  titleClassName = 'text-2xl font-bold text-[var(--amber)]',
+  descriptionClassName = 'text-[var(--cream-dark)]',
+  labelClassName = 'text-[var(--amber)]',
+  inputClassName = 'bg-[var(--ink-light)] border-[var(--amber)]/30 text-[var(--cream)] placeholder:text-[var(--cream-dark)]/50',
+  cancelClassName = 'border-[var(--amber)]/30 text-[var(--cream-dark)] hover:bg-[var(--ink-light)] hover:text-[var(--cream)]',
 }: StudentInfoModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -89,7 +89,7 @@ export function StudentInfoModal({
           <Button
             onClick={onSend}
             disabled={!studentName || !studentAge}
-            className="bg-green-500 hover:bg-green-400 text-white flex items-center gap-2"
+            className="bg-[var(--sage)] hover:bg-[var(--sage)]/90 text-white flex items-center gap-2"
           >
             <FaWhatsapp />
             Continue to WhatsApp

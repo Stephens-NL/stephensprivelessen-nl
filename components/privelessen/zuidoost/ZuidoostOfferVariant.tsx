@@ -92,16 +92,16 @@ export function ZuidoostOfferVariant({
       animate={{ opacity: 1, y: 0 }}
       className="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
     >
-      <h3 className="text-xl font-bold text-yellow-300 mb-2">{title}</h3>
-      {titleTwi && <p className="text-lg text-yellow-200/80 mb-4 italic">{titleTwi}</p>}
+      <h3 className="text-xl font-bold text-[var(--amber)] mb-2">{title}</h3>
+      {titleTwi && <p className="text-lg text-[var(--cream)]/80 mb-4 italic">{titleTwi}</p>}
       <p className="text-white/90 mb-6">{description}</p>
       <Dialog open={showModal} onOpenChange={(v) => dispatch({ type: 'MODAL', payload: v })}>
         <DialogTrigger asChild>
-          <Button className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold">{cta}</Button>
+          <Button className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold">{cta}</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-yellow-300 mb-4">Student Information</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-[var(--amber)] mb-4">Student Information</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
@@ -161,7 +161,7 @@ export function ZuidoostOfferVariant({
             )}
             <Button
               onClick={handleSubmit}
-              className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+              className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold mt-4"
               disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
             >
               Continue to WhatsApp

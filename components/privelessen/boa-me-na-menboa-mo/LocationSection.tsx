@@ -31,7 +31,7 @@ export function LocationSection({ content }: LocationSectionProps) {
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 mb-4">
+          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)] mb-4">
             {content.features.location.title[language]}
           </h2>
           <p className="text-white/80 text-lg">
@@ -43,10 +43,10 @@ export function LocationSection({ content }: LocationSectionProps) {
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="mt-1">
-                <FaMapMarkerAlt className="text-yellow-500 text-2xl" />
+                <FaMapMarkerAlt className="text-[var(--amber)] text-2xl" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-yellow-200 mb-2">
+                <h3 className="text-xl font-semibold text-[var(--cream)] mb-2">
                   {content.location.name[language]}
                 </h3>
                 <p className="text-white/80">
@@ -57,10 +57,10 @@ export function LocationSection({ content }: LocationSectionProps) {
 
             <div className="flex items-start gap-4">
               <div className="mt-1">
-                <FaClock className="text-yellow-500 text-2xl" />
+                <FaClock className="text-[var(--amber)] text-2xl" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-yellow-200 mb-2">
+                <h3 className="text-xl font-semibold text-[var(--cream)] mb-2">
                   {language === 'NL' ? 'Openingstijden' : 'Opening Hours'}
                 </h3>
                 <p className="text-white/80">
@@ -71,10 +71,10 @@ export function LocationSection({ content }: LocationSectionProps) {
 
             <div className="flex items-start gap-4">
               <div className="mt-1">
-                <FaCoffee className="text-yellow-500 text-2xl" />
+                <FaCoffee className="text-[var(--amber)] text-2xl" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-yellow-200 mb-2">
+                <h3 className="text-xl font-semibold text-[var(--cream)] mb-2">
                   {language === 'NL' ? 'Faciliteiten' : 'Facilities'}
                 </h3>
                 <p className="text-white/80">
@@ -87,7 +87,7 @@ export function LocationSection({ content }: LocationSectionProps) {
             </div>
 
             <Button
-              className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+              className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold mt-4"
               asChild
             >
               <Link href={content.location.mapUrl} target="_blank">

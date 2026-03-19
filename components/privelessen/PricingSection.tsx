@@ -15,7 +15,7 @@ interface PricingSectionProps {
 
 export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
   return (
-    <section className="py-24 bg-gradient-to-b from-blue-50 to-white">
+    <section className="py-24 bg-gradient-to-b from-[var(--cream-dark)] to-[var(--cream)]">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -23,7 +23,7 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl font-bold mb-4"
+            className="text-4xl font-display font-bold mb-4 text-[var(--ink)]"
           >
             {t(pricing.title)}
           </m.h2>
@@ -32,7 +32,7 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-600"
+            className="text-xl text-[var(--muted-text)]"
           >
             {t(pricing.subtitle)}
           </m.p>
@@ -52,14 +52,14 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
               <Card
                 className={`p-8 flex flex-col flex-grow ${
                   plan.popular
-                    ? 'border-blue-500 shadow-blue-100 shadow-lg scale-105'
+                    ? 'border-[var(--amber)] shadow-sm scale-105'
                     : ''
                 }`}
               >
                 {/* Popular Badge */}
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    <span className="bg-[var(--amber)] text-[var(--ink)] px-4 py-1 rounded-full text-sm font-medium">
                       Most Popular
                     </span>
                   </div>
@@ -68,18 +68,18 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
                 {/* Plan Header */}
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold mb-2">{t(plan.name)}</h3>
-                  <div className="text-4xl font-bold text-blue-600 mb-2">
+                  <div className="text-4xl font-bold text-[var(--amber)] mb-2">
                     {t(plan.price)}
                   </div>
-                  <div className="text-gray-600">{t(plan.interval)}</div>
+                  <div className="text-[var(--muted-text)]">{t(plan.interval)}</div>
                 </div>
 
                 {/* Features List */}
                 <ul className="space-y-4 mb-8 flex-grow">
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
-                      <span className="text-gray-600">{t(feature)}</span>
+                      <Check className="w-5 h-5 text-[var(--sage)] mt-1 flex-shrink-0" />
+                      <span className="text-[var(--muted-text)]">{t(feature)}</span>
                     </li>
                   ))}
                 </ul>
@@ -88,7 +88,7 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
                 <Link href="/contact" className="mt-auto">
                   <Button
                     className={`w-full ${
-                      plan.popular ? 'bg-blue-600 hover:bg-blue-700' : ''
+                      plan.popular ? 'bg-[var(--ink)] text-[var(--cream)] hover:bg-[var(--ink-light)]' : ''
                     }`}
                     variant={plan.popular ? 'default' : 'outline'}
                   >

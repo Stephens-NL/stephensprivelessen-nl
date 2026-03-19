@@ -57,7 +57,7 @@ export function WhyChooseSection() {
   const language = locale.toUpperCase() as 'EN' | 'NL';
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[var(--cream)]">
       <div className="container mx-auto px-4 max-w-6xl">
         <m.div
           initial={{ opacity: 0, y: 30 }}
@@ -66,12 +66,12 @@ export function WhyChooseSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
             {language === 'NL' 
               ? 'Waarom kiezen studenten voor ons?' 
               : 'Why do students choose us?'}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
             {language === 'NL'
               ? 'Onze aanpak zorgt ervoor dat studenten niet alleen beter worden in rekenen, maar ook meer zelfvertrouwen krijgen.'
               : 'Our approach ensures that students not only improve in mathematics, but also gain more confidence.'}
@@ -86,17 +86,17 @@ export function WhyChooseSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
               viewport={{ once: true }}
-              className="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-all duration-300 group"
+              className="bg-[var(--cream-dark)] rounded-2xl p-8 hover:shadow-lg transition-all duration-300 group"
             >
               <div className="flex items-start gap-6">
-                                 <div className="inline-flex items-center justify-center w-14 h-14 bg-white rounded-xl group-hover:bg-gray-900 group-hover:text-white transition-all duration-300 shadow-sm flex-shrink-0">
+                                 <div className="inline-flex items-center justify-center w-14 h-14 bg-[var(--cream)] rounded-xl group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300 shadow-sm flex-shrink-0">
                    {React.createElement(reason.icon, { className: "w-7 h-7" })}
                  </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-medium text-gray-900 mb-3">
+                  <h3 className="text-xl font-medium text-[var(--ink)] mb-3">
                     {language === 'NL' ? reason.title.nl : reason.title.en}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-[var(--muted-text)] leading-relaxed">
                     {language === 'NL' ? reason.description.nl : reason.description.en}
                   </p>
                 </div>
@@ -113,11 +113,11 @@ export function WhyChooseSection() {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gray-900 rounded-2xl p-8 text-white max-w-4xl mx-auto">
-            <h3 className="text-2xl font-light mb-4">
+          <div className="bg-[var(--ink)] rounded-2xl p-8 text-[var(--cream)] max-w-4xl mx-auto">
+            <h3 className="text-2xl font-display font-light mb-4">
               {language === 'NL' ? 'Klaar om te beginnen?' : 'Ready to get started?'}
             </h3>
-            <p className="text-gray-300 mb-6 leading-relaxed">
+            <p className="text-[var(--cream-dark)] mb-6 leading-relaxed">
               {language === 'NL'
                 ? 'Laat je niet tegenhouden door rekenen. Met de juiste begeleiding kun je het wel!'
                 : 'Don\'t let mathematics hold you back. With the right guidance, you can do it!'}
@@ -127,7 +127,7 @@ export function WhyChooseSection() {
                 const element = document.getElementById('contact');
                 element?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium hover:bg-gray-100 transition-colors duration-300"
+              className="bg-[var(--cream)] text-[var(--ink)] px-8 py-4 rounded-xl font-medium hover:bg-[var(--cream-dark)] transition-colors duration-300"
             >
               {language === 'NL' ? 'Neem contact op' : 'Get in touch'}
             </button>

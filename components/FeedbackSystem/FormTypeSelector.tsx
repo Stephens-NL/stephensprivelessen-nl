@@ -37,15 +37,15 @@ const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType })
             <m.button
               key={type}
               onClick={() => onSelectFormType(type)}
-              className="w-full md:w-64 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-left"
+              className="w-full md:w-64 p-6 bg-[var(--cream)] rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 text-left"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <div className="flex items-center mb-2">
-                <Icon className="mr-2 text-blue-900" size={24} />
-                <h3 className="text-xl font-bold text-blue-900">{String(title)}</h3>
+                <Icon className="mr-2 text-[var(--ink)]" size={24} />
+                <h3 className="text-xl font-bold text-[var(--ink)]">{String(title)}</h3>
               </div>
-              <p className="text-gray-600">{String(description)}</p>
+              <p className="text-[var(--muted-text)]">{String(description)}</p>
             </m.button>
           );
         })}

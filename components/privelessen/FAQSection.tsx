@@ -17,7 +17,7 @@ interface FAQSectionProps {
 
 export const FAQSection = ({ faq, t }: FAQSectionProps) => {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-[var(--cream)]">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Section Header */}
         <m.h2
@@ -41,12 +41,12 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
               <AccordionItem
                 key={String(item.question?.EN ?? item.question?.NL ?? index)}
                 value={`item-${index}`}
-                className="border rounded-lg px-6 py-2 bg-white shadow-sm"
+                className="border border-[var(--border-warm)] rounded-lg px-6 py-2 bg-[var(--cream)] shadow-sm"
               >
-                <AccordionTrigger className="text-lg font-semibold hover:text-blue-600 transition-colors">
+                <AccordionTrigger className="text-lg font-semibold text-[var(--ink)] hover:text-[var(--amber)] transition-colors">
                   {t(item.question)}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed pt-2">
+                <AccordionContent className="text-[var(--muted-text)] leading-relaxed pt-2">
                   {t(item.answer)}
                 </AccordionContent>
               </AccordionItem>

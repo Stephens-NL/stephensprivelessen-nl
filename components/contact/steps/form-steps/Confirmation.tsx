@@ -24,7 +24,7 @@ const Confirmation = ({ formData }: ConfirmationProps) => {
             
             <div className="space-y-4">
                 <div>
-                    <h3 className="font-semibold text-yellow-300">
+                    <h3 className="font-semibold text-[var(--amber)]">
                         {String(t({
                             EN: "Personal Details",
                             NL: "Persoonlijke Gegevens"
@@ -45,7 +45,7 @@ const Confirmation = ({ formData }: ConfirmationProps) => {
                 </div>
 
                 <div>
-                    <h3 className="font-semibold text-yellow-300">
+                    <h3 className="font-semibold text-[var(--amber)]">
                         {String(t({
                             EN: "Lesson Details",
                             NL: "Les Details"
@@ -70,7 +70,7 @@ const Confirmation = ({ formData }: ConfirmationProps) => {
 
                 {formData.age < 18 && (
                     <div>
-                        <h3 className="font-semibold text-yellow-300">
+                        <h3 className="font-semibold text-[var(--amber)]">
                             {String(t({
                                 EN: "Parent/Guardian Details",
                                 NL: "Ouder/Verzorger Details"

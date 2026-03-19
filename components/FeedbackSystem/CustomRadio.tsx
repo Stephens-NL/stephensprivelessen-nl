@@ -21,7 +21,7 @@ const CustomRadio: React.FC<CustomRadioProps> = ({ checked, onChange, label }) =
         >
             <div
                 className={`w-8 h-8 flex items-center justify-center border-2 rounded-full transition-colors duration-300 ${
-                    checked ? 'bg-yellow-400 border-yellow-400' : 'bg-white border-gray-400'
+                    checked ? 'bg-[var(--amber)] border-[var(--amber)]' : 'bg-[var(--cream)] border-[var(--border-warm)]'
                 }`}
             >
                 <GraduationCap size={24} color={checked ? "#1e3a8a" : "#ffffff"} />

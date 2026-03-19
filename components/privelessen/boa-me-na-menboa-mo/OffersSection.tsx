@@ -26,13 +26,13 @@ export function OffersSection({ content, educationLevels, activeLevel, subject }
     <section id="offers" className="py-24 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 mb-4">
+          <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)] mb-4">
             {content.specialOffer[language]}
           </h2>
-          <div className="flex items-center justify-center gap-2 text-lg text-yellow-200">
-            <FaStar className="text-yellow-500" />
+          <div className="flex items-center justify-center gap-2 text-lg text-[var(--cream)]">
+            <FaStar className="text-[var(--amber)]" />
             <span>{content.discount.text[language]}</span>
-            <FaStar className="text-yellow-500" />
+            <FaStar className="text-[var(--amber)]" />
           </div>
           <p className="text-white/60">
             {content.discount.subtext[language]}

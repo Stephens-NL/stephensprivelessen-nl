@@ -40,13 +40,13 @@ export function WorkshopsFilterPanel({
   return (
     <>
       <div className="flex justify-between items-center mb-4">
-        <h3 className="font-medium text-gray-900">
+        <h3 className="font-medium text-[var(--ink)]">
           {String(t({ EN: 'Filter Options', NL: 'Filter Opties' }))}
         </h3>
         {hasActiveFilters && (
           <button
             onClick={onReset}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+            className="flex items-center gap-2 text-[var(--amber)] hover:text-[var(--amber-hover)] text-sm font-medium"
           >
             <FiRotateCcw className="w-4 h-4" />
             {String(t({ EN: 'Reset Filters', NL: 'Filters Resetten' }))}

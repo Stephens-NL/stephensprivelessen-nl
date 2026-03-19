@@ -59,7 +59,7 @@ export default function ProgrammerenBijlesPage() {
             Programmeren bijles voor niet-bèta studenten
           </h1>
           <div className="mb-6">
-            <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
+            <Link href="/bijles/amsterdam" className="text-[var(--ink)] hover:underline">
               &laquo; Terug naar Bijles Amsterdam Overzicht
             </Link>
           </div>
@@ -101,7 +101,7 @@ export default function ProgrammerenBijlesPage() {
             </Card>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-4">Onze aanpak</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -126,12 +126,12 @@ export default function ProgrammerenBijlesPage() {
 
             <h2>Wat zeggen studenten?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <blockquote className="border-l-4 border-blue-500 pl-4">
+              <blockquote className="border-l-4 border-[var(--ink)] pl-4">
                 "De Python begeleiding heeft me echt geholpen met mijn data science project. 
                 Eindelijk begrijp ik hoe ik data kan analyseren!"
                 <footer className="mt-2 text-sm">- Sarah, Psychologie</footer>
               </blockquote>
-              <blockquote className="border-l-4 border-blue-500 pl-4">
+              <blockquote className="border-l-4 border-[var(--ink)] pl-4">
                 "R Studio is nu een stuk duidelijker. De praktijkvoorbeelden uit mijn 
                 vakgebied maken het veel begrijpelijker."
                 <footer className="mt-2 text-sm">- Mark, Business Analytics</footer>
@@ -139,24 +139,24 @@ export default function ProgrammerenBijlesPage() {
             </div>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-6">Veelgestelde Vragen - Python & R</h2>
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold text-lg mb-2">Moet ik al kunnen programmeren voor deze bijles?</h3>
-                <p className="text-gray-700">Nee, we beginnen bij de basis. We leren je Python en R vanaf het begin, speciaal gericht op data science en statistiek voor jouw vakgebied.</p>
+                <p className="text-[var(--warm-text)]">Nee, we beginnen bij de basis. We leren je Python en R vanaf het begin, speciaal gericht op data science en statistiek voor jouw vakgebied.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Wat is het verschil tussen Python en R?</h3>
-                <p className="text-gray-700">Python is veelzijdiger en populair in data science, machine learning en business analytics. R is specifiek ontwikkeld voor statistiek en wordt veel gebruikt in psychologie en life sciences onderzoek.</p>
+                <p className="text-[var(--warm-text)]">Python is veelzijdiger en populair in data science, machine learning en business analytics. R is specifiek ontwikkeld voor statistiek en wordt veel gebruikt in psychologie en life sciences onderzoek.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Welke tools gebruiken jullie tijdens de lessen?</h3>
-                <p className="text-gray-700">We gebruiken Jupyter Notebooks voor Python, R Studio voor R, en werken met echte datasets uit jouw vakgebied. Je krijgt ook toegang tot onze oefenmaterialen.</p>
+                <p className="text-[var(--warm-text)]">We gebruiken Jupyter Notebooks voor Python, R Studio voor R, en werken met echte datasets uit jouw vakgebied. Je krijgt ook toegang tot onze oefenmaterialen.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Kan ik ook hulp krijgen met mijn scriptie data analyse?</h3>
-                <p className="text-gray-700">Ja, we helpen je graag met data analyse voor je scriptie. Van data cleaning tot statistische analyses en visualisaties - we begeleiden je door het hele proces.</p>
+                <p className="text-[var(--warm-text)]">Ja, we helpen je graag met data analyse voor je scriptie. Van data cleaning tot statistische analyses en visualisaties - we begeleiden je door het hele proces.</p>
               </div>
             </div>
           </div>

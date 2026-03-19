@@ -31,8 +31,8 @@ export function CustomCursor() {
       }`}
     >
       <div className="relative w-8 h-8">
-        <div className="absolute inset-0 rounded-full bg-yellow-300/30 animate-ping" />
-        <div className="absolute inset-2 rounded-full bg-yellow-300" />
+        <div className="absolute inset-0 rounded-full bg-[var(--amber)]/30 animate-ping" />
+        <div className="absolute inset-2 rounded-full bg-[var(--amber)]" />
       </div>
     </div>
   );

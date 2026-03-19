@@ -17,14 +17,14 @@ export function EmailInput({
 }) {
   return (
     <div>
-      <label className="block text-yellow-300 mb-2">{label} *</label>
+      <label className="block text-[var(--amber)] mb-2">{label} *</label>
       <input
         type="email"
         value={value}
         onChange={onChange}
-        className={`w-full p-3 rounded-lg bg-blue-700 text-white border ${
-          error ? 'border-red-500' : 'border-blue-600'
-        } focus:border-yellow-400 focus:outline-none`}
+        className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
+          error ? 'border-red-500' : 'border-[var(--ink-light)]'
+        } focus:border-[var(--amber)] focus:outline-none`}
         required
       />
       {error && (
@@ -50,7 +50,7 @@ export function PhoneInput({
   const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   return (
     <div>
-      <label className="block text-yellow-300 mb-2">
+      <label className="block text-[var(--amber)] mb-2">
         {String(t({ EN: "Phone Number", NL: "Telefoonnummer" }))} *
       </label>
       <input
@@ -58,9 +58,9 @@ export function PhoneInput({
         value={value}
         onChange={onChange}
         placeholder={config.contact.display.phone}
-        className={`w-full p-3 rounded-lg bg-blue-700 text-white border ${
-          error ? 'border-red-500' : 'border-blue-600'
-        } focus:border-yellow-400 focus:outline-none`}
+        className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
+          error ? 'border-red-500' : 'border-[var(--ink-light)]'
+        } focus:border-[var(--amber)] focus:outline-none`}
         required
       />
       {error && (

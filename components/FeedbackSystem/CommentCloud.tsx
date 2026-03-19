@@ -9,7 +9,7 @@ const CommentCloud: React.FC<CommentCloudProps> = ({ children, className = '' })
   return (
     <div className={`
       relative 
-      bg-white bg-opacity-20 
+      bg-[var(--cream)] bg-opacity-20 
       backdrop-blur-sm 
       text-white
       p-3 
@@ -48,7 +48,7 @@ const CommentCloud: React.FC<CommentCloudProps> = ({ children, className = '' })
         -translate-x-1/2 
         w-4 
         h-4 
-        bg-white 
+        bg-[var(--cream)] 
         bg-opacity-20 
         rotate-45
       " />

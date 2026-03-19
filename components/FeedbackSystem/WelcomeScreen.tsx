@@ -34,7 +34,7 @@ const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void 
             </m.p>
             <m.button
                 onClick={onContinue}
-                className="px-8 py-4 bg-white text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300"
+                className="px-8 py-4 bg-[var(--cream)] text-[var(--ink)] rounded-full text-xl font-bold hover:bg-[var(--amber)] transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >

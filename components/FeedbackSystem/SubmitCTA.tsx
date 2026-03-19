@@ -20,7 +20,7 @@ const SubmitCTA: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
             <p className="text-lg text-white mb-6">{String(t(feedbackFormData.submitCTA.description))}</p>
             <m.button
                 onClick={onSubmit}
-                className="px-8 py-4 bg-yellow-400 text-blue-900 rounded-full text-xl font-bold hover:bg-yellow-300 transition-colors duration-300 flex items-center"
+                className="px-8 py-4 bg-[var(--amber)] text-[var(--ink)] rounded-full text-xl font-bold hover:bg-[var(--amber)] transition-colors duration-300 flex items-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >

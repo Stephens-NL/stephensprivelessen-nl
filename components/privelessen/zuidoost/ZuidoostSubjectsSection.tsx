@@ -30,7 +30,7 @@ export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: 
     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 mb-12">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
-          <FaGraduationCap className="text-3xl text-yellow-300" />
+          <FaGraduationCap className="text-3xl text-[var(--amber)]" />
           <h2 className="text-2xl font-bold text-white">Available Subjects</h2>
         </div>
         <button
@@ -38,7 +38,7 @@ export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: 
           onClick={() => dispatch({ type: 'TOGGLE' })}
           className="p-3 hover:bg-white/10 rounded-xl transition-colors"
         >
-          {showCourses ? <FaChevronUp className="text-yellow-300" /> : <FaChevronDown className="text-yellow-300" />}
+          {showCourses ? <FaChevronUp className="text-[var(--amber)]" /> : <FaChevronDown className="text-[var(--amber)]" />}
         </button>
       </div>
 
@@ -59,7 +59,7 @@ export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: 
                       type="button"
                       onClick={() => dispatch({ type: 'LEVEL', payload: level.id })}
                       className={`relative px-8 py-3 rounded-xl text-center transition-all duration-200 ${
-                        selectedLevel === level.id ? 'text-yellow-300' : 'text-white/70 hover:text-white'
+                        selectedLevel === level.id ? 'text-[var(--amber)]' : 'text-white/70 hover:text-white'
                       } ${index !== educationLevels.length - 1 ? 'mr-1' : ''}`}
                     >
                       {selectedLevel === level.id && (

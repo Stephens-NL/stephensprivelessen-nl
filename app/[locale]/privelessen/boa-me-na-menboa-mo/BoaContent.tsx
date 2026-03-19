@@ -46,21 +46,21 @@ export default function BoaContent() {
       title: language === 'NL' ? 'Basisonderwijs' : 'Primary Education',
       subjects: businessData.subjects.primary,
       icon: '🎓',
-      color: 'from-amber-400 to-yellow-400'
+      color: 'from-amber-400 to-[var(--amber-hover)]'
     },
     {
       id: 'voortgezet',
       title: language === 'NL' ? 'Voortgezet Onderwijs' : 'Secondary Education',
       subjects: businessData.subjects.secondary,
       icon: '📚',
-      color: 'from-yellow-400 to-yellow-500'
+      color: 'from-[var(--amber)] to-[var(--amber-hover)]'
     },
     {
       id: 'hoger',
       title: language === 'NL' ? 'Hoger Onderwijs' : 'Higher Education',
       subjects: [...businessData.subjects.higher, ...businessData.subjects.programming],
       icon: '🎯',
-      color: 'from-yellow-500 to-amber-500'
+      color: 'from-[var(--amber)] to-amber-500'
     }
   ];
 

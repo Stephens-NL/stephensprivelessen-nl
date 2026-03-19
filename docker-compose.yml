@@ -1,0 +1,16 @@
+services:
+  stephensprivelessen-nl:
+    build: .
+    container_name: stephensprivelessen-nl
+    restart: unless-stopped
+    ports:
+      - "4302:4302"
+    environment:
+      - NODE_ENV=production
+      - PORT=4302
+      - HOSTNAME=0.0.0.0
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://localhost:4302/').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3

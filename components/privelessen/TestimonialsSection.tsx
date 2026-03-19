@@ -14,7 +14,7 @@ interface TestimonialsSectionProps {
 
 export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProps) => {
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-24 bg-[var(--cream)] overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -31,7 +31,7 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-600"
+            className="text-xl text-[var(--muted-text)]"
           >
             {t(testimonials.subtitle)}
           </m.p>
@@ -55,15 +55,15 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
                       key={starKey}
                       className={`w-5 h-5 ${
                         i < slide.rating
-                          ? 'text-yellow-400 fill-yellow-400'
-                          : 'text-gray-300'
+                          ? 'text-[var(--amber)] fill-[var(--amber)]'
+                          : 'text-[var(--border-warm)]'
                       }`}
                     />
                   ))}
                 </div>
 
                 {/* Quote */}
-                <blockquote className="text-gray-600 mb-6 flex-grow">
+                <blockquote className="text-[var(--muted-text)] mb-6 flex-grow">
                   &ldquo;{t(slide.quote)}&rdquo;
                 </blockquote>
 
@@ -82,7 +82,7 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
                   )}
                   <div>
                     <div className="font-semibold">{slide.author}</div>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-[var(--muted-text)]">
                       {t(slide.role)} • {t(slide.subject)}
                     </div>
                   </div>

@@ -32,7 +32,7 @@ export function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-[var(--cream)] to-[var(--cream-dark)]">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -49,12 +49,12 @@ export function HeroSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="mb-12"
           >
-            <div className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
+            <div className="inline-flex items-center gap-2 bg-[var(--cream-dark)] text-[var(--warm-text)] px-4 py-2 rounded-full text-sm font-medium mb-8">
               <Calculator className="w-4 h-4" />
               {language === 'NL' ? 'MBO Rekenondersteuning' : 'MBO Math Support'}
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-light text-gray-900 mb-8 tracking-tight leading-tight">
+            <h1 className="text-5xl md:text-7xl font-display font-light text-[var(--ink)] mb-8 tracking-tight leading-tight">
               {language === 'NL' ? (
                 <>
                   Jouw <span className="italic">rekentoets</span><br />
@@ -68,7 +68,7 @@ export function HeroSection() {
               )}
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-[var(--muted-text)] mb-12 max-w-4xl mx-auto leading-relaxed">
               {language === 'NL' 
                 ? 'Sinds rekenen verplicht werd voor het MBO-diploma, helpen wij studenten met gerichte begeleiding en bewezen methoden om succesvol te slagen.'
                 : 'Since math became mandatory for the MBO diploma, we help students with targeted guidance and proven methods to succeed.'}
@@ -80,7 +80,7 @@ export function HeroSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={scrollToContact}
-                className="group bg-gray-900 text-white px-8 py-4 rounded-xl text-lg font-medium hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
+                className="group bg-[var(--ink)] text-[var(--cream)] px-8 py-4 rounded-xl text-lg font-medium hover:bg-[var(--ink-light)] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
               >
                 {language === 'NL' ? 'Start vandaag' : 'Start today'}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -93,7 +93,7 @@ export function HeroSection() {
                   const element = document.querySelector('[data-section="pricing"]');
                   element?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="bg-white border-2 border-gray-200 text-gray-900 px-8 py-4 rounded-xl text-lg font-medium hover:border-gray-900 transition-all duration-300"
+                className="bg-[var(--cream)] border-2 border-[var(--border-warm)] text-[var(--ink)] px-8 py-4 rounded-xl text-lg font-medium hover:border-[var(--ink)] transition-all duration-300"
               >
                 {language === 'NL' ? 'Bekijk trajecten' : 'View programs'}
               </m.button>
@@ -113,15 +113,15 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
-                className="bg-white rounded-2xl border border-gray-200 p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="bg-[var(--cream)] rounded-2xl border border-[var(--border-warm)] p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl mb-4 group-hover:bg-gray-900 group-hover:text-white transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-[var(--cream-dark)] rounded-xl mb-4 group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300">
                   <stat.icon className="w-6 h-6" />
                 </div>
-                <div className="text-3xl font-light text-gray-900 mb-2">
+                <div className="text-3xl font-light text-[var(--ink)] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-gray-600 text-sm">
+                <div className="text-[var(--muted-text)] text-sm">
                   {stat.label[language]}
                 </div>
               </m.div>

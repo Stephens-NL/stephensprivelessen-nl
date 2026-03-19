@@ -137,7 +137,7 @@ export default function AmsterdamBijlesPage() {
             </Card>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-4">Spoed hulp nodig?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>

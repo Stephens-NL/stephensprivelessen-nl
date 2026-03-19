@@ -19,7 +19,7 @@ const NavButton: React.FC<NavButtonProps> = ({
   isExternal = false,
 }) => {
   // Determine the active and hover styles
-  const activeClass = isActive ? 'bg-green-500 text-white' : 'text-gray-700 hover:bg-green-100';
+  const activeClass = isActive ? 'bg-[var(--sage)] text-white' : 'text-[var(--warm-text)] hover:bg-[var(--cream-dark)]';
   // Combine base styles with active state styles and any additional classes passed via props
   const combinedClassName = `px-2 py-2 lg:px-3 rounded-md text-sm font-medium transition ${activeClass} ${className}`;
 

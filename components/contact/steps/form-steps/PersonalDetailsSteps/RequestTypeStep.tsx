@@ -30,8 +30,8 @@ export function RequestTypeStep({
           onClick={() => onSelect('self')}
           className={`p-4 rounded-lg border-2 transition-colors ${
             requestType === 'self'
-              ? 'bg-yellow-400 text-blue-900 border-yellow-500'
-              : 'bg-blue-700 text-white border-blue-600 hover:border-yellow-400'
+              ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
+              : 'bg-[var(--ink-light)] text-white border-[var(--ink-light)] hover:border-[var(--amber)]'
           }`}
         >
           {String(t({ EN: "For myself", NL: "Voor mezelf" }))}
@@ -41,8 +41,8 @@ export function RequestTypeStep({
           onClick={() => onSelect('other')}
           className={`p-4 rounded-lg border-2 transition-colors ${
             requestType === 'other'
-              ? 'bg-yellow-400 text-blue-900 border-yellow-500'
-              : 'bg-blue-700 text-white border-blue-600 hover:border-yellow-400'
+              ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
+              : 'bg-[var(--ink-light)] text-white border-[var(--ink-light)] hover:border-[var(--amber)]'
           }`}
         >
           {String(t({ EN: "For someone else", NL: "Voor iemand anders" }))}

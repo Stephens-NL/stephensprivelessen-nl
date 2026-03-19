@@ -274,7 +274,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
   if (!feedbackFormData) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 flex flex-col justify-center items-center p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] flex flex-col justify-center items-center p-8">
       <AnimatePresence custom={direction} mode="wait">
         {showFarewell ? (
           <FarewellScreen
@@ -298,7 +298,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
             onDragEnd={handleSwipe}
-            className="w-full max-w-3xl mx-auto bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-8 overflow-hidden"
+            className="w-full max-w-3xl mx-auto bg-[var(--cream)] bg-opacity-10 backdrop-blur-lg rounded-lg p-8 overflow-hidden"
             style={{ height: contentHeight }}
           >
             <h1 className="text-3xl font-bold text-white mb-6">

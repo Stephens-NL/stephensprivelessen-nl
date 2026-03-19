@@ -16,11 +16,11 @@ type PricingTableProps = {
 
 const PricingTable = ({ pricing, title }: PricingTableProps) => {
   return (
-    <div className="mb-8 p-6 bg-blue-800 rounded-lg shadow-lg">
-      <h3 className="text-2xl font-semibold text-yellow-300 mb-4 text-center">{title}</h3>
-      <table className="w-full table-auto text-yellow-100 text-sm">
+    <div className="mb-8 p-6 bg-[var(--ink)] rounded-lg shadow-lg">
+      <h3 className="text-2xl font-semibold font-display text-[var(--amber)] mb-4 text-center">{title}</h3>
+      <table className="w-full table-auto text-[var(--cream)] text-sm">
         <thead>
-          <tr className="border-b border-yellow-400">
+          <tr className="border-b border-[var(--amber)]">
             <th className="text-left py-2 px-4">Duration (hours)</th>
             <th className="text-right py-2 px-4">Price (€)</th>
           </tr>
@@ -32,7 +32,7 @@ const PricingTable = ({ pricing, title }: PricingTableProps) => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="border-b border-yellow-600 hover:bg-blue-700 transition-colors duration-200"
+              className="border-b border-[var(--border-warm)] hover:bg-[var(--ink-light)] transition-colors duration-200"
             >
               <td className="py-2 px-4">{item.duration} {item.duration === 1 ? "hour" : "hours"}</td>
               <td className="text-right py-2 px-4">{item.price.toFixed(2)}</td>

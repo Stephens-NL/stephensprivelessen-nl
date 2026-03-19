@@ -21,10 +21,10 @@ export function RekentrajectenComparison() {
 
   return (
     <section className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-200/30 to-cyan-200/30 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2" />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-emerald-200/20 to-teal-200/20 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--cream-dark)] via-[var(--cream)] to-[var(--cream-dark)]">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[var(--amber)]/10 to-[var(--amber)]/5 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[var(--sage)]/10 to-[var(--sage)]/5 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2" />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-[var(--sage-light)]/10 to-[var(--sage)]/5 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 max-w-7xl">
@@ -36,12 +36,12 @@ export function RekentrajectenComparison() {
           className="text-center mb-20"
         >
           <div className="inline-block relative">
-            <h2 className="text-6xl md:text-8xl font-black bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-4 leading-none tracking-tighter">
+            <h2 className="text-6xl md:text-8xl font-display font-black bg-gradient-to-r from-[var(--ink)] via-[var(--ink-light)] to-[var(--ink)] bg-clip-text text-transparent mb-4 leading-none tracking-tighter">
               REKENTRAJECTEN
             </h2>
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-pulse" />
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-[var(--amber)] rounded-full animate-pulse" />
           </div>
-          <p className="text-xl md:text-2xl text-gray-600 font-light tracking-wide max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-[var(--muted-text)] font-light tracking-wide max-w-2xl mx-auto">
             {rekentrajectenComparison.subtitle[language]}
           </p>
         </m.div>
@@ -69,7 +69,7 @@ export function RekentrajectenComparison() {
             onClick={() => setShowDetails(!showDetails)}
             variant="outline"
             size="lg"
-            className="px-8 py-4 text-lg font-bold border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 rounded-2xl"
+            className="px-8 py-4 text-lg font-bold border-2 border-[var(--ink)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--cream)] transition-all duration-300 rounded-2xl"
           >
             {showDetails ? 'VERBERG DETAILS' : 'TOON DETAILS'}
             <Info className="w-5 h-5 ml-2" />

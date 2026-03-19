@@ -35,7 +35,7 @@ const RatingComponent: React.FC<{
               transition-colors 
               duration-200 
               hover:scale-110
-              ${ratingValue <= value ? 'text-yellow-400' : 'text-gray-400'}
+              ${ratingValue <= value ? 'text-[var(--amber)]' : 'text-[var(--muted-text)]'}
             `}
             aria-label={`Rate ${ratingValue} out of ${max}`}
           >

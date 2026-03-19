@@ -24,7 +24,7 @@ export function FeedbackChartsRecharts({
 
   if (!Recharts) {
     return (
-      <div className="h-[300px] flex items-center justify-center text-gray-500">
+      <div className="h-[300px] flex items-center justify-center text-[var(--muted-text)]">
         Loading chart...
       </div>
     );

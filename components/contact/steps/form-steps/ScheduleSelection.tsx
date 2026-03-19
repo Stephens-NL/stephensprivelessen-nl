@@ -68,13 +68,13 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
             exit={{ opacity: 0 }}
             className="space-y-8"
         >
-            <h2 className="text-2xl font-semibold text-yellow-300 mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--amber)] mb-4">
                 {String(t({ EN: "Schedule Preferences", NL: "Roostervoorkeuren" }))}
             </h2>
 
             <div className="space-y-6">
                 <div>
-                    <h3 className="flex items-center text-lg text-yellow-200 mb-3">
+                    <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
                         <FaCalendarAlt className="mr-2" />
                         {String(t({ EN: "Preferred Days", NL: "Voorkeursdagen" }))}
                     </h3>
@@ -86,8 +86,8 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 whileTap={{ scale: 0.98 }}
                                 className={`p-3 rounded-lg border-2 transition-colors ${
                                     formData.preferredDays.includes(day.value)
-                                        ? 'bg-yellow-400 text-blue-900 border-yellow-500'
-                                        : 'bg-blue-700 text-yellow-300 border-blue-600 hover:border-yellow-400'
+                                        ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
+                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-[var(--amber)]'
                                 }`}
                                 onClick={() => toggleDay(day.value)}
                             >
@@ -106,7 +106,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                 </div>
 
                 <div>
-                    <h3 className="flex items-center text-lg text-yellow-200 mb-3">
+                    <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
                         <FaClock className="mr-2" />
                         {String(t({ EN: "Preferred Times", NL: "Voorkeurstijden" }))}
                     </h3>
@@ -118,8 +118,8 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 whileTap={{ scale: 0.98 }}
                                 className={`p-3 rounded-lg border-2 transition-colors ${
                                     formData.preferredTimes.includes(time.value)
-                                        ? 'bg-yellow-400 text-blue-900 border-yellow-500'
-                                        : 'bg-blue-700 text-yellow-300 border-blue-600 hover:border-yellow-400'
+                                        ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
+                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-[var(--amber)]'
                                 }`}
                                 onClick={() => toggleTime(time.value)}
                             >
@@ -138,7 +138,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                 </div>
 
                 <div>
-                    <h3 className="flex items-center text-lg text-yellow-200 mb-3">
+                    <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
                         <FaBan className="mr-2" />
                         {String(t({ EN: "Unavailable Days", NL: "Niet Beschikbaar" }))}
                     </h3>
@@ -150,8 +150,8 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 whileTap={{ scale: 0.98 }}
                                 className={`p-3 rounded-lg border-2 transition-colors ${
                                     formData.unavailableDays.includes(day.value)
-                                        ? 'bg-red-400 text-blue-900 border-red-500'
-                                        : 'bg-blue-700 text-yellow-300 border-blue-600 hover:border-red-400'
+                                        ? 'bg-red-400 text-[var(--ink)] border-red-500'
+                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-red-400'
                                 }`}
                                 onClick={() => toggleUnavailableDay(day.value)}
                                 disabled={formData.preferredDays.includes(day.value)}

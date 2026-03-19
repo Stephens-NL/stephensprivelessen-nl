@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
     const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
     
     return (
-        <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div className="bg-[var(--ink)] text-[var(--cream)]">
             <div className="container mx-auto px-4 py-16 md:py-24">
                 <m.div
                     initial={{ opacity: 0, y: 20 }}
@@ -57,25 +57,25 @@ const HeroSection: React.FC = () => {
                     transition={{ duration: 0.5 }}
                     className="max-w-3xl mx-auto text-center"
                 >
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                    <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight">
                         {String(t({ EN: 'Interactive Workshops', NL: 'Interactieve Workshops' }))}
                     </h1>
-                    <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
+                    <p className="text-xl md:text-2xl text-[var(--cream-dark)] mb-8 leading-relaxed">
                         {String(t({
                             EN: 'Discover our specialized workshops designed to enhance learning through practical experience and expert guidance.',
                             NL: 'Ontdek onze gespecialiseerde workshops ontworpen om leren te verbeteren door praktijkervaring en deskundige begeleiding.'
                         }))}
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center items-center">
-                        <div className="flex items-center bg-white/10 rounded-full px-6 py-3">
+                        <div className="flex items-center bg-[var(--cream)]/10 rounded-full px-6 py-3">
                             <FiUsers className="mr-2" />
                             <span>{String(t({ EN: 'Small Groups', NL: 'Kleine Groepen' }))}</span>
                         </div>
-                        <div className="flex items-center bg-white/10 rounded-full px-6 py-3">
+                        <div className="flex items-center bg-[var(--cream)]/10 rounded-full px-6 py-3">
                             <FiClock className="mr-2" />
                             <span>{String(t({ EN: 'Flexible Scheduling', NL: 'Flexibele Planning' }))}</span>
                         </div>
-                        <div className="flex items-center bg-white/10 rounded-full px-6 py-3">
+                        <div className="flex items-center bg-[var(--cream)]/10 rounded-full px-6 py-3">
                             <FiBookOpen className="mr-2" />
                             <span>{String(t({ EN: 'Expert Guidance', NL: 'Expert Begeleiding' }))}</span>
                         </div>
@@ -99,17 +99,17 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
     const router = useRouter()
 
     const isCreative = workshop.type === 'creative'
-    const gradientClasses = isCreative 
-        ? 'from-purple-900/0 to-purple-900/90 group-hover:from-purple-900/50 group-hover:to-purple-900/90'
-        : 'from-blue-900/0 to-blue-900/90 group-hover:from-blue-900/50 group-hover:to-blue-900/90'
-    
+    const gradientClasses = isCreative
+        ? 'from-[var(--sage)]/0 to-[var(--sage)]/90 group-hover:from-[var(--sage)]/50 group-hover:to-[var(--sage)]/90'
+        : 'from-[var(--ink)]/0 to-[var(--ink)]/90 group-hover:from-[var(--ink)]/50 group-hover:to-[var(--ink)]/90'
+
     const tagBgClasses = isCreative
-        ? 'bg-purple-50 text-purple-700'
-        : 'bg-blue-50 text-blue-700'
+        ? 'bg-[var(--cream-dark)] text-[var(--sage)]'
+        : 'bg-[var(--cream-dark)] text-[var(--ink)]'
 
     const buttonClasses = isCreative
-        ? 'from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800'
-        : 'from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800'
+        ? 'from-[var(--sage)] to-[var(--sage-light)] hover:from-[var(--sage-light)] hover:to-[var(--sage)]'
+        : 'from-[var(--ink)] to-[var(--ink-light)] hover:from-[var(--ink-light)] hover:to-[var(--ink)]'
 
     const handleCardClick = () => {
         router.push(`/workshops/${workshop.id}`);
@@ -132,12 +132,12 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                 tabIndex={0}
                 onClick={handleCardClick}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCardClick(); } }}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 relative group transform hover:-translate-y-1 flex flex-col h-full cursor-pointer"
+                className="bg-[var(--cream)] backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 relative group transform hover:-translate-y-1 flex flex-col h-full cursor-pointer border border-[var(--border-warm)]"
             >
                 {/* Hover overlay - only visible on desktop */}
                 <div className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${gradientClasses} transition-all duration-300 hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100`}>
                     <div className="text-center px-6 py-8">
-                        <p className="font-anton text-3xl uppercase tracking-wider mb-2 text-white">
+                        <p className="font-display text-3xl uppercase tracking-wider mb-2 text-white">
                             {String(t({ 
                                 EN: 'Click for Details', 
                                 NL: 'Klik voor Details' 
@@ -164,13 +164,13 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                                 }))}
                             </span>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        <h3 className="text-xl font-bold text-[var(--ink)] mb-3">
                             {String(t(workshop.title))}
                         </h3>
-                        <p className="text-gray-600 mb-6 line-clamp-3">
+                        <p className="text-[var(--muted-text)] mb-6 line-clamp-3">
                             {String(t(workshop.description))}
                         </p>
-                        <div className="space-y-3 text-sm text-gray-500">
+                        <div className="space-y-3 text-sm text-[var(--muted-text)]">
                             <div className="flex items-center">
                                 <FiClock className="mr-2 flex-shrink-0" />
                                 <span className="line-clamp-1">{String(t(workshop.durationText))}</span>
@@ -190,7 +190,7 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                             )}
                         </div>
                     </div>
-                    <div className="px-6 py-4 bg-gray-50 border-t relative space-y-2">
+                    <div className="px-6 py-4 bg-[var(--cream-dark)] border-t border-[var(--border-warm)] relative space-y-2">
                         {/* More Info button - only visible on mobile */}
                         <button 
                             className={`md:hidden w-full bg-gradient-to-r ${buttonClasses} bg-opacity-80 text-white py-2.5 px-4 rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md flex items-center justify-center gap-2`}
@@ -222,15 +222,15 @@ const CustomWorkshopCTA: React.FC<CustomWorkshopCTAProps> = ({ onContactUs }) =>
     const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
 
     return (
-        <div className="mt-16 bg-gradient-to-r from-yellow-100 to-yellow-50 rounded-2xl p-8 md:p-12">
+        <div className="mt-16 bg-[var(--cream-dark)] rounded-2xl p-8 md:p-12 border border-[var(--border-warm)]">
             <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4">
+                <h2 className="text-2xl md:text-3xl font-display font-bold text-[var(--ink)] mb-4">
                     {String(t({
                         EN: 'Looking for a Custom Workshop?',
                         NL: 'Op Zoek naar een Workshop op Maat?'
                     }))}
                 </h2>
-                <p className="text-gray-700 mb-8 text-lg">
+                <p className="text-[var(--warm-text)] mb-8 text-lg">
                     {String(t({
                         EN: "We can create a tailored program that perfectly matches your organization's needs and goals.",
                         NL: "We kunnen een programma op maat maken dat perfect aansluit bij de behoeften en doelen van jouw organisatie."
@@ -238,7 +238,7 @@ const CustomWorkshopCTA: React.FC<CustomWorkshopCTAProps> = ({ onContactUs }) =>
                 </p>
                 <button 
                     onClick={onContactUs}
-                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-blue-900 py-3 px-8 rounded-xl hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                    className="bg-[var(--amber)] text-[var(--cream)] py-3 px-8 rounded-xl hover:bg-[var(--amber-hover)] transition-all duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                 >
                     {String(t({ EN: 'Contact Us', NL: 'Neem Contact Op' }))}
                 </button>
@@ -437,7 +437,7 @@ const WorkshopsContent: React.FC = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-warm-gray-50 to-warm-gray-100/50 backdrop-blur">
+        <div className="min-h-screen bg-gradient-to-b from-[var(--cream)] to-[var(--cream-dark)]/50 backdrop-blur">
             <HeroSection />
             <div className="container mx-auto px-4 py-16">
                 <m.div
@@ -449,12 +449,12 @@ const WorkshopsContent: React.FC = () => {
                     <div className="md:hidden mb-6">
                         <button
                             onClick={() => dispatchFilter({ type: 'TOGGLE_MOBILE' })}
-                            className="w-full flex items-center justify-center gap-2 bg-white/80 backdrop-blur-sm border border-warm-gray-200 rounded-xl py-3 px-4 text-gray-600 shadow-sm"
+                            className="w-full flex items-center justify-center gap-2 bg-[var(--cream)]/80 backdrop-blur-sm border border-[var(--border-warm)] rounded-xl py-3 px-4 text-[var(--muted-text)] shadow-sm"
                         >
                             <FiFilter />
                             {String(t({ EN: 'Filter Workshops', NL: 'Filter Workshops' }))}
                             {hasActiveFilters && (
-                                <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full ml-2">
+                                <span className="bg-[var(--amber)] text-[var(--cream)] text-xs px-2 py-1 rounded-full ml-2">
                                     {String(t({ EN: 'Active', NL: 'Actief' }))}
                                 </span>
                             )}
@@ -463,7 +463,7 @@ const WorkshopsContent: React.FC = () => {
 
                     {/* Type Filter Tabs - Static position */}
                     <div className="mb-6 -mx-4 px-4">
-                        <div className="flex gap-2 p-1 bg-warm-gray-100/50 backdrop-blur-sm rounded-xl overflow-x-auto">
+                        <div className="flex gap-2 p-1 bg-[var(--cream-dark)]/50 backdrop-blur-sm rounded-xl overflow-x-auto">
                             <Tab 
                                 isActive={typeFilter === 'all'} 
                                 onClick={() => dispatchFilter({ type: 'SET_TYPE', payload: 'all' })}
@@ -492,15 +492,15 @@ const WorkshopsContent: React.FC = () => {
                     <div className="hidden md:block mb-8">
                         <button
                             onClick={() => dispatchFilter({ type: 'TOGGLE_DESKTOP' })}
-                            className="w-full flex items-center justify-between bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-sm mb-2"
+                            className="w-full flex items-center justify-between bg-[var(--cream)]/80 backdrop-blur-sm p-4 rounded-xl shadow-sm mb-2"
                         >
                             <div className="flex items-center gap-2">
-                                <FiFilter className="text-gray-500" />
-                                <span className="font-medium text-gray-900">
+                                <FiFilter className="text-[var(--muted-text)]" />
+                                <span className="font-medium text-[var(--ink)]">
                                     {String(t({ EN: 'Filter Workshops', NL: 'Filter Workshops' }))}
                                 </span>
                                 {hasActiveFilters && (
-                                    <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full ml-2">
+                                    <span className="bg-[var(--amber)] text-[var(--cream)] text-xs px-2 py-1 rounded-full ml-2">
                                         {String(t({ EN: 'Active', NL: 'Actief' }))}
                                     </span>
                                 )}
@@ -518,7 +518,7 @@ const WorkshopsContent: React.FC = () => {
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
                                     transition={{ duration: 0.2 }}
-                                    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm overflow-hidden"
+                                    className="bg-[var(--cream)]/80 backdrop-blur-sm p-6 rounded-xl shadow-sm overflow-hidden"
                                 >
                                     {filterContent}
                                 </m.div>
@@ -571,7 +571,7 @@ const WorkshopsContent: React.FC = () => {
                             transition={{ duration: 0.2 }}
                             className="text-center py-12"
                         >
-                            <p className="text-gray-500 text-lg">
+                            <p className="text-[var(--muted-text)] text-lg">
                                 {String(t({
                                     EN: 'No workshops found matching your filters.',
                                     NL: 'Geen workshops gevonden die aan je filters voldoen.'

@@ -28,25 +28,25 @@ export function MinorForm({
 
   return (
     <m.div key="minorMessage" {...fadeInUp} className="space-y-4">
-      <div className="p-4 bg-yellow-400/10 rounded-lg text-yellow-300">
+      <div className="p-4 bg-[var(--amber)]/10 rounded-lg text-[var(--amber)]">
         {String(t({
           EN: "Since you are under 18, this form needs to be filled out by a parent or guardian.",
           NL: "Omdat je jonger bent dan 18, moet dit formulier door een ouder of voogd worden ingevuld."
         }))}
       </div>
-      <h3 className="text-lg font-semibold text-yellow-300">
+      <h3 className="text-lg font-semibold text-[var(--amber)]">
         {String(t({ EN: "Parent/Guardian Information", NL: "Ouder/Voogd Gegevens" }))}
       </h3>
       <div className="space-y-4">
         <div>
-          <label className="block text-yellow-300 mb-2">
+          <label className="block text-[var(--amber)] mb-2">
             {String(t({ EN: "Parent/Guardian Name", NL: "Naam Ouder/Voogd" }))} *
           </label>
           <input
             type="text"
             value={formData.requesterName || ''}
             onChange={(e) => onUpdate({ requesterName: e.target.value })}
-            className="w-full p-3 rounded-lg bg-blue-700 text-white border border-blue-600 focus:border-yellow-400 focus:outline-none"
+            className="w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border border-[var(--ink-light)] focus:border-[var(--amber)] focus:outline-none"
             required
           />
         </div>
@@ -67,13 +67,13 @@ export function MinorForm({
         )}
         {isFieldComplete(formData.relationship) && (
           <m.div {...fadeInUp}>
-            <label className="block text-yellow-300 mb-2">
+            <label className="block text-[var(--amber)] mb-2">
               {String(t({ EN: "Relationship to Student", NL: "Relatie tot Leerling" }))} *
             </label>
             <select
               value={formData.relationship || ''}
               onChange={(e) => onUpdate({ relationship: e.target.value })}
-              className="w-full p-3 rounded-lg bg-blue-700 text-white border border-blue-600 focus:border-yellow-400 focus:outline-none"
+              className="w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border border-[var(--ink-light)] focus:border-[var(--amber)] focus:outline-none"
               required
             >
               <option value="">{String(t({ EN: "Select relationship", NL: "Kies relatie" }))}</option>

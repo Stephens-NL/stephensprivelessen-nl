@@ -13,7 +13,7 @@ import { ContactSection } from '@/components/mbo-rekenen/ContactSection';
 
 export default function MboRekenenContent() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-[var(--cream)] text-[var(--ink)]">
       <CustomCursor />
       <Header />
       <HeroSection />

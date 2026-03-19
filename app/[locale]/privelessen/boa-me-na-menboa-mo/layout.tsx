@@ -3,7 +3,7 @@ import { Space_Grotesk } from 'next/font/google';
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-display',
 });
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function Layout({
 }) {
   return (
     <div className={`${spaceGrotesk.variable} font-sans`}>
-      <div className="fixed inset-0 bg-gradient-to-br from-amber-950 via-amber-900 to-yellow-900 -z-10" />
+      <div className="fixed inset-0 bg-gradient-to-br from-amber-950 via-amber-900 to-amber-900 -z-10" />
       <div className="min-h-screen">
         {children}
       </div>

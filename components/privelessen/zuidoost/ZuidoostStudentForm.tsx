@@ -121,7 +121,7 @@ export function ZuidoostStudentForm({
       )}
       <Button
         onClick={handleSubmit}
-        className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4"
+        className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold mt-4"
         disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
       >
         Continue to WhatsApp

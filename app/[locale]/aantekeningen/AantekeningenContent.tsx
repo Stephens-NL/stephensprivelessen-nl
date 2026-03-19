@@ -40,16 +40,16 @@ export function AantekeningenContent({ student: initialStudent }: AantekeningenC
   }, [initialStudent, redirectUrl]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center">
+    <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center p-4">
+      <div className="max-w-md w-full bg-[var(--cream-dark)] rounded-2xl shadow-xl p-8 text-center border border-[var(--border-warm)]">
         <div className="mb-8">
-          <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="w-20 h-20 bg-[var(--ink)] rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="text-3xl">📚</span>
           </div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">
+          <h1 className="text-2xl font-bold font-display text-[var(--ink)] mb-2">
             {studentName ? `${studentName}'s Aantekeningen` : 'Aantekeningen'}
           </h1>
-          <p className="text-gray-600">
+          <p className="text-[var(--muted-text)]">
             {studentName
               ? `Je wordt doorgestuurd naar ${studentName}'s aantekeningen...`
               : 'Je wordt doorgestuurd naar het nieuwe aantekeningen dashboard...'}
@@ -57,24 +57,24 @@ export function AantekeningenContent({ student: initialStudent }: AantekeningenC
         </div>
 
         <div className="mb-8">
-          <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-600 text-sm">
+          <div className="w-16 h-16 border-4 border-[var(--border-warm)] border-t-[var(--amber)] rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[var(--muted-text)] text-sm">
             {isRedirecting ? 'Doorsturen naar nieuwe app...' : 'Voorbereiden...'}
           </p>
         </div>
 
         <div className="space-y-4">
-          <p className="text-sm text-gray-500">Als je niet automatisch wordt doorgestuurd:</p>
+          <p className="text-sm text-[var(--muted-text)]">Als je niet automatisch wordt doorgestuurd:</p>
           <a
             href={redirectUrl}
-            className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+            className="inline-block bg-[var(--ink)] text-[var(--cream)] px-6 py-3 rounded-lg font-medium hover:bg-[var(--ink-light)] transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             🚀 Ga naar Aantekeningen App
           </a>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gray-200">
-          <div className="flex items-center justify-center gap-4 text-xs text-gray-500">
+        <div className="mt-8 pt-6 border-t border-[var(--border-warm)]">
+          <div className="flex items-center justify-center gap-4 text-xs text-[var(--muted-text)]">
             <span>🔒 Privacy veilig</span>
             <span>•</span>
             <span>⚡ Snelle zoekresultaten</span>
@@ -82,7 +82,7 @@ export function AantekeningenContent({ student: initialStudent }: AantekeningenC
             <span>📱 Mobiel vriendelijk</span>
           </div>
           <div className="mt-3">
-            <Link href="/" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+            <Link href="/" className="text-[var(--amber)] hover:text-[var(--amber-hover)] text-sm font-medium">
               ← Terug naar hoofdsite
             </Link>
           </div>

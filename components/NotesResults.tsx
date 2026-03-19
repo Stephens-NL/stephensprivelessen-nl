@@ -59,13 +59,13 @@ export default function NotesResults({ folder }: NotesResultsProps) {
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-[var(--cream)] rounded-lg border border-[var(--border-warm)] p-6">
+        <h2 className="text-xl font-semibold text-[var(--ink)] mb-4 flex items-center gap-2">
           📁 {folder.name}
         </h2>
         <div className="flex items-center justify-center py-8">
-          <div className="flex items-center gap-3 text-gray-500">
-            <div className="w-5 h-5 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin"></div>
+          <div className="flex items-center gap-3 text-[var(--muted-text)]">
+            <div className="w-5 h-5 border-2 border-[var(--border-warm)] border-t-[var(--amber)] rounded-full animate-spin"></div>
             <span>Bestanden laden...</span>
           </div>
         </div>
@@ -75,14 +75,14 @@ export default function NotesResults({ folder }: NotesResultsProps) {
 
   if (error) {
     return (
-      <div className="bg-white rounded-lg border border-red-200 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+      <div className="bg-[var(--cream)] rounded-lg border border-[var(--terracotta)]/30 p-6">
+        <h2 className="text-xl font-semibold text-[var(--ink)] mb-4 flex items-center gap-2">
           📁 {folder.name}
         </h2>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-[var(--terracotta)]/10 border border-[var(--terracotta)]/30 rounded-lg p-4">
           <div className="flex items-center gap-2">
-            <span className="text-red-600">❌</span>
-            <p className="text-red-800">{error}</p>
+            <span className="text-[var(--terracotta)]">❌</span>
+            <p className="text-[var(--terracotta)]">{error}</p>
           </div>
         </div>
       </div>
@@ -90,36 +90,36 @@ export default function NotesResults({ folder }: NotesResultsProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-      <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+    <div className="bg-[var(--cream)] rounded-lg border border-[var(--border-warm)] p-6">
+      <h2 className="text-xl font-semibold text-[var(--ink)] mb-4 flex items-center gap-2">
         📁 {folder.name}
       </h2>
-      
+
       {!files || files.length === 0 ? (
-        <div className="text-center py-8 text-gray-500">
+        <div className="text-center py-8 text-[var(--muted-text)]">
           <div className="text-4xl mb-2">📄</div>
           <p className="text-lg font-medium mb-1">Geen bestanden gevonden</p>
           <p className="text-sm">Er zijn nog geen notities beschikbaar in deze map.</p>
         </div>
       ) : (
         <div className="space-y-4">
-          <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+          <div className="flex items-center justify-between text-sm text-[var(--muted-text)] mb-4">
             <span>📄 {files.length} bestand{files.length !== 1 ? 'en' : ''}</span>
             <span>📅 Sorteerd op: Nieuwste eerst</span>
           </div>
           
           {files.map((file) => (
-            <div key={file.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:shadow-sm transition-all">
+            <div key={file.id} className="border border-[var(--border-warm)] rounded-lg p-4 hover:border-[var(--amber)] hover:shadow-sm transition-all">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="text-lg">{file.fileType}</span>
-                    <h3 className="font-medium text-gray-900 truncate">
+                    <h3 className="font-medium text-[var(--ink)] truncate">
                       {file.sessionInfo.displayName}
                     </h3>
                   </div>
                   
-                  <div className="text-sm text-gray-500 space-y-1">
+                  <div className="text-sm text-[var(--muted-text)] space-y-1">
                     {file.sessionInfo.date && (
                       <div className="flex items-center gap-1">
                         <span>📅</span>
@@ -146,14 +146,14 @@ export default function NotesResults({ folder }: NotesResultsProps) {
                     href={file.viewUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+                    className="px-3 py-2 bg-[var(--ink)] text-[var(--cream)] text-sm font-medium rounded-md hover:bg-[var(--ink-light)] focus:ring-2 focus:ring-[var(--amber)] focus:ring-offset-2 transition-colors"
                   >
                     👁️ Bekijken
                   </a>
                   <a
                     href={file.dlUrl}
                     download={file.name}
-                    className="px-3 py-2 bg-gray-600 text-white text-sm font-medium rounded-md hover:bg-gray-700 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+                    className="px-3 py-2 bg-[var(--muted-text)] text-[var(--cream)] text-sm font-medium rounded-md hover:bg-[var(--warm-text)] focus:ring-2 focus:ring-[var(--muted-text)] focus:ring-offset-2 transition-colors"
                   >
                     ⬇️ Download
                   </a>

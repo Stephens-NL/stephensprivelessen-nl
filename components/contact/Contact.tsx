@@ -133,16 +133,16 @@ const Contact = () => {
     console.log('Current step:', currentStep);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)] py-12 px-4 sm:px-6 lg:px-8">
             <m.div
-                className="max-w-2xl mx-auto bg-blue-800 rounded-lg shadow-xl overflow-hidden"
+                className="max-w-2xl mx-auto bg-[var(--ink)] rounded-lg shadow-xl overflow-hidden border border-[var(--amber)]/30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
                 <div className="p-6">
                     <m.h1
-                        className="text-3xl font-bold text-center text-yellow-300 mb-6"
+                        className="text-3xl font-bold text-center text-[var(--amber)] mb-6"
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}

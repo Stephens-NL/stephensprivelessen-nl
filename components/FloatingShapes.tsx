@@ -24,7 +24,7 @@ const FloatingShapes = () => {
       {SHAPES.map((shape) => (
         <m.div
           key={shape.id}
-          className="absolute bg-white bg-opacity-10 rounded-full"
+          className="absolute bg-[var(--cream)] bg-opacity-10 rounded-full"
           style={{
             width: shape.width,
             height: shape.height,

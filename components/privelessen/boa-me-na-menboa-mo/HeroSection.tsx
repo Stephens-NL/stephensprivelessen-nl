@@ -33,10 +33,10 @@ export function HeroSection({ content }: HeroSectionProps) {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-950 via-amber-900 to-yellow-900 opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-amber-950 via-amber-900 to-amber-900 opacity-50" />
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[url('/patterns/noise.png')] opacity-[0.03] mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--amber)]/10 to-transparent" />
       </div>
       
       <m.div 
@@ -54,13 +54,13 @@ export function HeroSection({ content }: HeroSectionProps) {
           transition={{ duration: 1, delay: 0.2 }}
           className="mb-8"
         >
-          <span className="text-yellow-300 text-lg font-medium tracking-wider uppercase">
+          <span className="text-[var(--amber)] text-lg font-medium tracking-wider uppercase">
             {content.specialOffer[language]}
           </span>
         </m.div>
         
         <m.h1 
-          className="text-7xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 via-yellow-200 to-yellow-400 mb-6 leading-tight"
+          className="text-7xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[var(--amber)] via-[var(--cream)] to-[var(--amber-hover)] mb-6 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
@@ -84,7 +84,7 @@ export function HeroSection({ content }: HeroSectionProps) {
           className="flex gap-6 justify-center"
         >
           <Button
-            className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+            className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold text-lg px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
             asChild
           >
             <Link href="#offers" className="flex items-center gap-2">
@@ -112,9 +112,9 @@ export function HeroSection({ content }: HeroSectionProps) {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <div className="w-8 h-14 rounded-full border-2 border-yellow-300/30 flex items-start justify-center p-2">
+        <div className="w-8 h-14 rounded-full border-2 border-[var(--amber)]/30 flex items-start justify-center p-2">
           <m.div
-            className="w-1 h-3 bg-yellow-300 rounded-full"
+            className="w-1 h-3 bg-[var(--amber)] rounded-full"
             animate={{ y: [0, 16, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           />

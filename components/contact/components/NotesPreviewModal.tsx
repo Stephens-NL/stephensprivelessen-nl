@@ -33,12 +33,12 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
-                    className="bg-blue-800 rounded-lg w-full max-w-5xl flex flex-col h-[90vh]"
+                    className="bg-[var(--ink)] rounded-lg w-full max-w-5xl flex flex-col h-[90vh]"
                     onClick={e => e.stopPropagation()}
                 >
-                    <div className="p-6 pb-4 flex-shrink-0 flex items-center justify-between border-b border-blue-700">
+                    <div className="p-6 pb-4 flex-shrink-0 flex items-center justify-between border-b border-[var(--ink-light)]">
                         <div>
-                            <h3 className="text-xl font-semibold text-yellow-300">
+                            <h3 className="text-xl font-semibold text-[var(--amber)]">
                                 {String(t({
                                     EN: `Example Notes: ${subject}`,
                                     NL: `Voorbeeldnotities: ${subject}`
@@ -53,7 +53,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                         </div>
                         <button
                             onClick={onClose}
-                            className="p-2 hover:bg-blue-700/50 text-yellow-300 hover:text-yellow-400 rounded-lg transition-all duration-200 ml-4"
+                            className="p-2 hover:bg-[var(--ink-light)]/50 text-[var(--amber)] hover:text-[var(--amber)] rounded-lg transition-all duration-200 ml-4"
                             title={String(t({
                                 EN: "Close",
                                 NL: "Sluiten"
@@ -64,7 +64,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                     </div>
 
                     <div className="flex-grow overflow-hidden p-6 pt-0">
-                        <div className="w-full h-full bg-white rounded-lg relative">
+                        <div className="w-full h-full bg-[var(--cream)] rounded-lg relative">
                             <iframe
                                 src={noteUrl}
                                 className="w-full h-full rounded-lg"
@@ -89,10 +89,10 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                         </div>
                     </div>
 
-                    <div className="p-6 pt-4 flex justify-end border-t border-blue-700 flex-shrink-0">
+                    <div className="p-6 pt-4 flex justify-end border-t border-[var(--ink-light)] flex-shrink-0">
                         <button
                             onClick={onClose}
-                            className="px-6 py-3 bg-blue-700 text-yellow-300 rounded-lg hover:bg-blue-600 transition-colors"
+                            className="px-6 py-3 bg-[var(--ink-light)] text-[var(--amber)] rounded-lg hover:bg-[var(--ink-light)] transition-colors"
                         >
                             {String(t({
                                 EN: "Close Preview",

@@ -61,22 +61,22 @@ export function TrialLessonForm({
     <div className="grid gap-6 py-4">
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="grid gap-4">
-          <Label htmlFor="name" className="text-yellow-200 flex items-center gap-2">
-            <span className="text-yellow-500">1.</span>
+          <Label htmlFor="name" className="text-[var(--cream)] flex items-center gap-2">
+            <span className="text-[var(--amber)]">1.</span>
             {language === 'NL' ? 'Naam' : 'Name'}
             <span className="text-red-400">*</span>
           </Label>
           <Input
             id="name"
             value={studentName}
-            className="bg-white/5 border-yellow-500/20 text-white focus:border-yellow-500 transition-colors"
+            className="bg-white/5 border-[var(--amber)]/20 text-white focus:border-[var(--amber)] transition-colors"
             onChange={(e) => onStudentNameChange(e.target.value)}
             placeholder={language === 'NL' ? 'Jouw naam' : 'Your name'}
           />
         </div>
         <div className="grid gap-4">
-          <Label htmlFor="age" className="text-yellow-200 flex items-center gap-2">
-            <span className="text-yellow-500">2.</span>
+          <Label htmlFor="age" className="text-[var(--cream)] flex items-center gap-2">
+            <span className="text-[var(--amber)]">2.</span>
             {language === 'NL' ? 'Leeftijd' : 'Age'}
             <span className="text-red-400">*</span>
           </Label>
@@ -84,7 +84,7 @@ export function TrialLessonForm({
             id="age"
             value={studentAge}
             onChange={(e) => onStudentAgeChange(e.target.value)}
-            className="w-full p-3 rounded-lg bg-[#4B2E1D] text-white border border-yellow-500/20 focus:outline-none focus:border-yellow-500 hover:border-yellow-500/50 transition-colors"
+            className="w-full p-3 rounded-lg bg-[#4B2E1D] text-white border border-[var(--amber)]/20 focus:outline-none focus:border-[var(--amber)] hover:border-[var(--amber)]/50 transition-colors"
           >
             <option value="" disabled className="bg-[#2A1810]">
               {language === 'NL' ? 'Selecteer leeftijd' : 'Select age'}
@@ -117,28 +117,28 @@ export function TrialLessonForm({
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="grid gap-4">
-          <Label className="text-yellow-200 flex items-center gap-2">
-            <span className="text-yellow-500">3.</span>
+          <Label className="text-[var(--cream)] flex items-center gap-2">
+            <span className="text-[var(--amber)]">3.</span>
             {language === 'NL' ? 'Niveau' : 'Level'}
           </Label>
-          <div className="bg-white/5 border border-yellow-500/20 text-white rounded-md px-3 py-2">
+          <div className="bg-white/5 border border-[var(--amber)]/20 text-white rounded-md px-3 py-2">
             {levelTitle}
           </div>
         </div>
         <div className="grid gap-4">
-          <Label className="text-yellow-200 flex items-center gap-2">
-            <span className="text-yellow-500">4.</span>
+          <Label className="text-[var(--cream)] flex items-center gap-2">
+            <span className="text-[var(--amber)]">4.</span>
             {language === 'NL' ? 'Vak' : 'Subject'}
           </Label>
-          <div className="bg-white/5 border border-yellow-500/20 text-white rounded-md px-3 py-2">
+          <div className="bg-white/5 border border-[var(--amber)]/20 text-white rounded-md px-3 py-2">
             {subjectDisplay}
           </div>
         </div>
       </div>
 
       <div className="grid gap-4">
-        <Label className="text-yellow-200 flex items-center gap-2">
-          <span className="text-yellow-500">5.</span>
+        <Label className="text-[var(--cream)] flex items-center gap-2">
+          <span className="text-[var(--amber)]">5.</span>
           {language === 'NL' ? 'Wat wil je doen?' : 'What would you like to do?'}
           <span className="text-red-400">*</span>
         </Label>
@@ -148,8 +148,8 @@ export function TrialLessonForm({
             tabIndex={0}
             className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all cursor-pointer ${
               intent === 'info'
-                ? 'border-yellow-500 bg-yellow-500/10'
-                : 'border-yellow-500/20 bg-yellow-500/5 hover:border-yellow-500/50'
+                ? 'border-[var(--amber)] bg-[var(--amber-hover)]/10'
+                : 'border-[var(--amber)]/20 bg-[var(--amber-hover)]/5 hover:border-[var(--amber)]/50'
             }`}
             onClick={() => onIntentChange('info')}
             onKeyDown={(e) => {
@@ -169,8 +169,8 @@ export function TrialLessonForm({
             tabIndex={0}
             className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all cursor-pointer ${
               intent === 'trial'
-                ? 'border-yellow-500 bg-yellow-500/10'
-                : 'border-yellow-500/20 bg-yellow-500/5 hover:border-yellow-500/50'
+                ? 'border-[var(--amber)] bg-[var(--amber-hover)]/10'
+                : 'border-[var(--amber)]/20 bg-[var(--amber-hover)]/5 hover:border-[var(--amber)]/50'
             }`}
             onClick={() => onIntentChange('trial')}
             onKeyDown={(e) => {
@@ -191,14 +191,14 @@ export function TrialLessonForm({
       {intent === 'trial' && (
         <div className="grid gap-4">
           <div className="flex flex-col sm:flex-row justify-between gap-4">
-            <Label htmlFor="time" className="text-yellow-200 flex items-center gap-2">
-              <span className="text-yellow-500">6.</span>
+            <Label htmlFor="time" className="text-[var(--cream)] flex items-center gap-2">
+              <span className="text-[var(--amber)]">6.</span>
               {language === 'NL'
                 ? 'Kies drie voorkeuren voor je proefles (30 min)'
                 : 'Choose three preferences for your trial lesson (30 min)'}
               <span className="text-red-400">*</span>
             </Label>
-            <div className="text-center text-yellow-200/90 text-sm whitespace-nowrap">
+            <div className="text-center text-[var(--cream)]/90 text-sm whitespace-nowrap">
               {selectedTime.length === 0
                 ? language === 'NL'
                   ? 'Kies drie voorkeuren'
@@ -233,16 +233,16 @@ export function TrialLessonForm({
                   }}
                   className={`relative flex flex-col items-center p-2 sm:p-3 rounded-lg border transition-all ${
                     selectedTime.includes(time)
-                      ? 'border-yellow-400 bg-yellow-400/20 text-yellow-100'
+                      ? 'border-[var(--amber)] bg-[var(--amber)]/20 text-[var(--cream)]'
                       : selectedTime.length >= 3 && !selectedTime.includes(time)
-                        ? 'border-yellow-500/20 bg-yellow-500/5 opacity-50 cursor-not-allowed text-yellow-200/50'
-                        : 'border-yellow-500/20 bg-yellow-500/5 hover:border-yellow-400/50 hover:bg-yellow-400/10 text-yellow-200'
+                        ? 'border-[var(--amber)]/20 bg-[var(--amber-hover)]/5 opacity-50 cursor-not-allowed text-[var(--cream)]/50'
+                        : 'border-[var(--amber)]/20 bg-[var(--amber-hover)]/5 hover:border-[var(--amber)]/50 hover:bg-[var(--amber)]/10 text-[var(--cream)]'
                   }`}
                   disabled={selectedTime.length >= 3 && !selectedTime.includes(time)}
                 >
                   <div className="text-sm sm:text-base font-medium">{time}</div>
                   {selectedTime.includes(time) && (
-                    <div className="absolute -top-1.5 -right-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-yellow-400 text-amber-900 flex items-center justify-center text-xs font-bold shadow-lg">
+                    <div className="absolute -top-1.5 -right-1.5 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[var(--amber)] text-amber-900 flex items-center justify-center text-xs font-bold shadow-lg">
                       {selectedTime.indexOf(time) + 1}
                     </div>
                   )}
@@ -254,23 +254,23 @@ export function TrialLessonForm({
       )}
 
       <div className="grid gap-4">
-        <Label className="text-yellow-200 flex items-center gap-2">
-          <span className="text-yellow-500">{intent === 'trial' ? '7.' : '6.'}</span>
+        <Label className="text-[var(--cream)] flex items-center gap-2">
+          <span className="text-[var(--amber)]">{intent === 'trial' ? '7.' : '6.'}</span>
           {language === 'NL' ? 'Extra opties' : 'Extra options'}
         </Label>
-        <div className="flex items-center gap-3 p-3 rounded-xl border border-yellow-500/20 bg-yellow-500/5">
+        <div className="flex items-center gap-3 p-3 rounded-xl border border-[var(--amber)]/20 bg-[var(--amber-hover)]/5">
           <div className="flex items-center gap-2">
             <input
               type="checkbox"
               id="homeTutoring"
-              className="w-4 h-4 rounded border-yellow-500/20 bg-yellow-500/5 text-yellow-500 focus:ring-yellow-500/20"
+              className="w-4 h-4 rounded border-[var(--amber)]/20 bg-[var(--amber-hover)]/5 text-[var(--amber)] focus:ring-[var(--amber)]/20"
               onChange={(e) => onHomeTutoringChange(e.target.checked)}
             />
-            <Label htmlFor="homeTutoring" className="text-yellow-200/90 cursor-pointer">
+            <Label htmlFor="homeTutoring" className="text-[var(--cream)]/90 cursor-pointer">
               {language === 'NL' ? 'Bijles aan huis' : 'Home tutoring'}
             </Label>
           </div>
-          <span className="text-yellow-200/60 text-sm">
+          <span className="text-[var(--cream)]/60 text-sm">
             {language === 'NL'
               ? '(alleen beschikbaar in Gein en Reigersbos)'
               : '(only available in Gein and Reigersbos)'}
@@ -280,7 +280,7 @@ export function TrialLessonForm({
 
       <Button
         onClick={onSend}
-        className="bg-yellow-500 hover:bg-yellow-400 text-yellow-900 font-bold mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={!isFormValid}
       >
         {!isFormValid

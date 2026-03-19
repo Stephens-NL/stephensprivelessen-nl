@@ -45,13 +45,13 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ type: "spring", duration: 0.5 }}
-                className="w-20 h-20 bg-green-500 rounded-full mx-auto flex items-center justify-center"
+                className="w-20 h-20 bg-[var(--sage)] rounded-full mx-auto flex items-center justify-center"
             >
                 <FaCheck className="text-white text-3xl" />
             </m.div>
 
             <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-yellow-300">
+                <h2 className="text-2xl font-bold text-[var(--amber)]">
                     {String(t({
                         EN: "Great! I've Received Your Request",
                         NL: "Super! Ik heb je aanvraag ontvangen"
@@ -59,7 +59,7 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
                 </h2>
 
                 <div className="space-y-2">
-                    <p className="text-yellow-100">
+                    <p className="text-[var(--cream)]">
                         {String(t({
                             EN: "I'll contact",
                             NL: "Ik zal"
@@ -77,7 +77,7 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
-                        className="flex items-center justify-center text-green-400 mt-4"
+                        className="flex items-center justify-center text-[var(--sage)] mt-4"
                     >
                         <FaWhatsapp className="text-2xl mr-2" />
                         <p className="text-sm">

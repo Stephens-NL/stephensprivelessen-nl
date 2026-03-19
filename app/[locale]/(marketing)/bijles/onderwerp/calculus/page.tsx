@@ -59,7 +59,7 @@ export default function CalculusBijlesPage() {
             Calculus bijles voor niet-bèta studenten
           </h1>
           <div className="mb-6">
-            <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
+            <Link href="/bijles/amsterdam" className="text-[var(--ink)] hover:underline">
               &laquo; Terug naar Bijles Amsterdam Overzicht
             </Link>
           </div>
@@ -101,7 +101,7 @@ export default function CalculusBijlesPage() {
             </Card>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-4">Onze aanpak</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -126,35 +126,35 @@ export default function CalculusBijlesPage() {
 
             <h2>Wat zeggen studenten?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <blockquote className="border-l-4 border-blue-500 pl-4">
+              <blockquote className="border-l-4 border-[var(--ink)] pl-4">
                 "Eindelijk begrijp ik differentiëren! De praktijkvoorbeelden uit mijn vakgebied helpen enorm."
                 <footer className="mt-2 text-sm">- Lisa, Life Sciences</footer>
               </blockquote>
-              <blockquote className="border-l-4 border-blue-500 pl-4">
+              <blockquote className="border-l-4 border-[var(--ink)] pl-4">
                 "De stapsgewijze aanpak heeft me door mijn calculus tentamen geholpen. Zeer aan te raden!"
                 <footer className="mt-2 text-sm">- Thomas, Economie</footer>
               </blockquote>
             </div>
           </div>
 
-          <div className="bg-blue-50 p-6 rounded-lg mb-8">
+          <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-6">Veelgestelde Vragen - Calculus</h2>
             <div className="space-y-4">
               <div>
                 <h3 className="font-semibold text-lg mb-2">Wat is calculus en waarom is het belangrijk?</h3>
-                <p className="text-gray-700">Calculus is de wiskunde van verandering en beweging. Het is essentieel voor life sciences (groei van populaties, medicijnconcentraties) en economie (marginale kosten, optimalisatie).</p>
+                <p className="text-[var(--warm-text)]">Calculus is de wiskunde van verandering en beweging. Het is essentieel voor life sciences (groei van populaties, medicijnconcentraties) en economie (marginale kosten, optimalisatie).</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Hoe lang duurt het om calculus onder de knie te krijgen?</h3>
-                <p className="text-gray-700">Met onze 1-op-1 begeleiding zien studenten meestal binnen 4-6 lessen significante verbetering. Het hangt af van je basiskennis en hoeveel tijd je erin steekt.</p>
+                <p className="text-[var(--warm-text)]">Met onze 1-op-1 begeleiding zien studenten meestal binnen 4-6 lessen significante verbetering. Het hangt af van je basiskennis en hoeveel tijd je erin steekt.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Welke calculus onderwerpen behandelen jullie?</h3>
-                <p className="text-gray-700">We behandelen differentiëren (afgeleiden, kettingregel), integreren (bepaalde/onbepaalde integralen, substitutie) en toegepaste calculus voor jouw vakgebied.</p>
+                <p className="text-[var(--warm-text)]">We behandelen differentiëren (afgeleiden, kettingregel), integreren (bepaalde/onbepaalde integralen, substitutie) en toegepaste calculus voor jouw vakgebied.</p>
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">Is calculus bijles ook geschikt voor beginners?</h3>
-                <p className="text-gray-700">Ja, we beginnen altijd bij jouw niveau. Of je nu helemaal opnieuw wilt beginnen of specifieke onderwerpen wilt oefenen - we passen ons aan.</p>
+                <p className="text-[var(--warm-text)]">Ja, we beginnen altijd bij jouw niveau. Of je nu helemaal opnieuw wilt beginnen of specifieke onderwerpen wilt oefenen - we passen ons aan.</p>
               </div>
             </div>
           </div>

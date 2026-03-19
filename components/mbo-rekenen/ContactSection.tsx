@@ -39,7 +39,7 @@ export function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-[var(--cream-dark)]">
       <div className="container mx-auto px-4 max-w-6xl">
         <m.div
           initial={{ opacity: 0, y: 30 }}
@@ -48,10 +48,10 @@ export function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
             {language === 'NL' ? 'Laten we kennismaken' : 'Let\'s get in touch'}
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-[var(--muted-text)] max-w-3xl mx-auto leading-relaxed">
             {language === 'NL'
               ? 'Klaar om te starten? Neem contact op voor een gratis kennismakingsgesprek en ontdek hoe we jou kunnen helpen.'
               : 'Ready to start? Contact us for a free introductory meeting and discover how we can help you.'}
@@ -66,7 +66,7 @@ export function ContactSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-light text-gray-900 mb-8">
+            <h3 className="text-2xl font-display font-light text-[var(--ink)] mb-8">
               {language === 'NL' ? 'Neem contact op' : 'Get in touch'}
             </h3>
             
@@ -79,20 +79,20 @@ export function ContactSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="block bg-white rounded-2xl p-6 hover:shadow-lg transition-all duration-300 group border border-gray-200"
+                  className="block bg-[var(--cream)] rounded-2xl p-6 hover:shadow-lg transition-all duration-300 group border border-[var(--border-warm)]"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl group-hover:bg-gray-900 group-hover:text-white transition-all duration-300">
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-[var(--cream-dark)] rounded-xl group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300">
                       <info.icon className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium text-gray-900 mb-1">
+                      <h4 className="font-medium text-[var(--ink)] mb-1">
                         {info.label[language]}
                       </h4>
-                      <p className="text-gray-900 font-mono text-sm mb-2">
+                      <p className="text-[var(--ink)] font-mono text-sm mb-2">
                         {info.value}
                       </p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-[var(--muted-text)] text-sm">
                         {info.description[language]}
                       </p>
                     </div>
@@ -111,16 +111,16 @@ export function ContactSection() {
             className="space-y-8"
           >
             {/* Availability */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200">
+            <div className="bg-[var(--cream)] rounded-2xl p-8 border border-[var(--border-warm)]">
               <div className="flex items-center gap-3 mb-6">
-                <Clock className="w-6 h-6 text-gray-700" />
-                <h3 className="text-xl font-medium text-gray-900">
+                <Clock className="w-6 h-6 text-[var(--warm-text)]" />
+                <h3 className="text-xl font-medium text-[var(--ink)]">
                   {language === 'NL' ? 'Beschikbaarheid' : 'Availability'}
                 </h3>
               </div>
               <div className="space-y-3">
                 {availability.map((time) => (
-                  <div key={time[language]} className="text-gray-600">
+                  <div key={time[language]} className="text-[var(--muted-text)]">
                     {time[language]}
                   </div>
                 ))}
@@ -128,29 +128,29 @@ export function ContactSection() {
             </div>
 
             {/* Location */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200">
+            <div className="bg-[var(--cream)] rounded-2xl p-8 border border-[var(--border-warm)]">
               <div className="flex items-center gap-3 mb-6">
-                <MapPin className="w-6 h-6 text-gray-700" />
-                <h3 className="text-xl font-medium text-gray-900">
+                <MapPin className="w-6 h-6 text-[var(--warm-text)]" />
+                <h3 className="text-xl font-medium text-[var(--ink)]">
                   {language === 'NL' ? 'Locaties' : 'Locations'}
                 </h3>
               </div>
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">
+                  <h4 className="font-medium text-[var(--ink)] mb-2">
                     {language === 'NL' ? 'Amsterdam & omgeving' : 'Amsterdam & surroundings'}
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-[var(--muted-text)] text-sm">
                     {language === 'NL' 
                       ? 'Flexibele locaties: thuis, op school, bibliotheek of online'
                       : 'Flexible locations: at home, at school, library or online'}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">
+                  <h4 className="font-medium text-[var(--ink)] mb-2">
                     {language === 'NL' ? 'Online lessen' : 'Online lessons'}
                   </h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-[var(--muted-text)] text-sm">
                     {language === 'NL'
                       ? 'Mogelijk voor alle trajecten via Zoom of Teams'
                       : 'Available for all programs via Zoom or Teams'}
@@ -160,18 +160,18 @@ export function ContactSection() {
             </div>
 
             {/* CTA */}
-            <div className="bg-gray-900 rounded-2xl p-8 text-white text-center">
-              <h3 className="text-xl font-light mb-4">
+            <div className="bg-[var(--ink)] rounded-2xl p-8 text-[var(--cream)] text-center">
+              <h3 className="text-xl font-display font-light mb-4">
                 {language === 'NL' ? 'Gratis kennismaking' : 'Free introduction'}
               </h3>
-              <p className="text-gray-300 text-sm mb-6">
+              <p className="text-[var(--cream-dark)] text-sm mb-6">
                 {language === 'NL'
                   ? 'Geen verplichtingen, gewoon kennismaken en kijken of we bij elkaar passen.'
                   : 'No obligations, just getting to know each other and see if we\'re a good match.'}
               </p>
               <a
                 href="https://wa.me/31612345678"
-                className="inline-block bg-white text-gray-900 px-6 py-3 rounded-xl font-medium hover:bg-gray-100 transition-colors duration-300"
+                className="inline-block bg-[var(--cream)] text-[var(--ink)] px-6 py-3 rounded-xl font-medium hover:bg-[var(--cream-dark)] transition-colors duration-300"
               >
                 {language === 'NL' ? 'Plan kennismaking' : 'Schedule introduction'}
               </a>

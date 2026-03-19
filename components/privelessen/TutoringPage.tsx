@@ -41,11 +41,11 @@ export function TutoringPage({ locationSpecific }: TutoringPageProps) {
   } : tutoringPage.hero;
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <main className="min-h-screen bg-gradient-to-br from-[var(--cream)] via-[var(--cream-dark)] to-[var(--cream)]">
       <HeroSection content={heroContent} t={t} />
       <div className="relative">
         {/* Decorative Elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#93c5fd,transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,var(--border-warm),transparent)]" />
         <div className="relative">
           <FeaturesSection features={tutoringPage.features} t={t} />
           <SubjectsSection subjects={tutoringPage.subjects} t={t} />

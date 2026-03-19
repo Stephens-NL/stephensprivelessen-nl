@@ -56,7 +56,7 @@ export default function VUBijlesPage() {
             Bijles voor VU studenten
           </h1>
           <div className="mb-6">
-            <Link href="/bijles/amsterdam" className="text-blue-600 hover:underline">
+            <Link href="/bijles/amsterdam" className="text-[var(--ink)] hover:underline">
               « Terug naar Bijles Amsterdam Overzicht
             </Link>
           </div>

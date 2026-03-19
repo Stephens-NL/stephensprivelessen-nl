@@ -139,7 +139,7 @@ export default function ConsultancyContent() {
   return (
     <>
       <JsonLdScript data={jsonLd} />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-[var(--cream)]">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -151,7 +151,7 @@ export default function ConsultancyContent() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-black/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--ink)]/90 to-black/50" />
           </div>
           <m.div 
             className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto"
@@ -159,7 +159,7 @@ export default function ConsultancyContent() {
             animate="animate"
             variants={fadeIn}
           >
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 font-anton">
+            <h1 className="text-6xl md:text-7xl font-bold mb-6 font-display">
               {String(t(content.hero.title))}
             </h1>
             <p className="text-xl md:text-2xl leading-relaxed mb-8">
@@ -167,7 +167,7 @@ export default function ConsultancyContent() {
             </p>
             <button
               onClick={() => handleContactClick(true)}
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors duration-300"
+              className="bg-[var(--amber)] text-[var(--ink)] px-8 py-4 rounded-lg text-lg font-bold hover:bg-[var(--amber-hover)] transition-colors duration-300"
             >
               {String(t({
                 EN: 'More Info & Schedule Now',
@@ -178,7 +178,7 @@ export default function ConsultancyContent() {
         </section>
 
         {/* Services Section */}
-        <section className="py-24 px-4 bg-gray-50">
+        <section className="py-24 px-4 bg-[var(--cream-dark)]">
           <m.div 
             className="max-w-7xl mx-auto"
             initial="initial"
@@ -186,25 +186,25 @@ export default function ConsultancyContent() {
             viewport={{ once: true }}
             variants={fadeIn}
           >
-            <h2 className="text-4xl font-bold text-center mb-16 font-anton">
+            <h2 className="text-4xl font-bold text-center mb-16 font-display text-[var(--ink)]">
               {String(t(content.services.title))}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {content.services.items[language as keyof typeof content.services.items].map((service, index) => (
                 <m.div
                   key={service.title}
-                  className="bg-white p-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+                  className="bg-[var(--cream)] border border-[var(--border-warm)] p-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
                 >
-                  <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <h3 className="text-2xl font-bold font-display text-[var(--ink)] mb-4">{service.title}</h3>
+                  <p className="text-[var(--muted-text)] mb-6">{service.description}</p>
                   <ul className="space-y-3">
                     {service.items.map((item) => (
                       <li key={item} className="flex items-start">
-                        <span className="mr-2 text-blue-600">•</span>
+                        <span className="mr-2 text-[var(--amber)]">•</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -224,24 +224,24 @@ export default function ConsultancyContent() {
             viewport={{ once: true }}
             variants={fadeIn}
           >
-            <h2 className="text-4xl font-bold text-center mb-16 font-anton">
+            <h2 className="text-4xl font-bold text-center mb-16 font-display text-[var(--ink)]">
               {String(t(content.approach.title))}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {content.approach.steps[language as keyof typeof content.approach.steps].map((step, index) => (
                 <m.div
                   key={step.title}
-                  className="relative bg-white p-8 rounded-lg shadow-lg border border-gray-100"
+                  className="relative bg-[var(--cream)] p-8 rounded-lg shadow-lg border border-[var(--border-warm)]"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                  <div className="absolute -top-4 -left-4 w-8 h-8 bg-[var(--amber)] text-[var(--ink)] rounded-full flex items-center justify-center font-bold">
                     {index + 1}
                   </div>
-                  <h3 className="text-xl font-bold mb-4">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <h3 className="text-xl font-bold font-display text-[var(--ink)] mb-4">{step.title}</h3>
+                  <p className="text-[var(--muted-text)]">{step.description}</p>
                 </m.div>
               ))}
             </div>
@@ -249,7 +249,7 @@ export default function ConsultancyContent() {
         </section>
 
         {/* CTA Section */}
-        <section ref={contactSectionRef} className="py-24 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <section ref={contactSectionRef} className="py-24 px-4 bg-[var(--ink)] text-[var(--cream)]">
           <m.div 
             className="max-w-4xl mx-auto text-center"
             initial="initial"
@@ -257,7 +257,7 @@ export default function ConsultancyContent() {
             viewport={{ once: true }}
             variants={fadeIn}
           >
-            <h2 className="text-4xl font-bold mb-8 font-anton">
+            <h2 className="text-4xl font-bold mb-8 font-display">
               {String(t({
                 EN: 'Ready to Transform Your Data?',
                 NL: 'Klaar om Uw Data te Transformeren?'
@@ -271,7 +271,7 @@ export default function ConsultancyContent() {
             </p>
             <button
               onClick={() => handleContactClick(false)}
-              className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-50 transition-colors duration-300"
+              className="bg-[var(--amber)] text-[var(--ink)] px-8 py-4 rounded-lg text-lg font-bold hover:bg-[var(--amber-hover)] transition-colors duration-300"
             >
               {String(t({
                 EN: 'Schedule Now',

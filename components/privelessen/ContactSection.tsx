@@ -15,7 +15,7 @@ interface ContactSectionProps {
 
 export const ContactSection = ({ contact, t }: ContactSectionProps) => {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-blue-50">
+    <section className="py-24 bg-gradient-to-b from-[var(--cream)] to-[var(--cream-dark)]">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -32,7 +32,7 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-gray-600"
+            className="text-xl text-[var(--muted-text)]"
           >
             {t(contact.subtitle)}
           </m.p>
@@ -44,12 +44,12 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="bg-white rounded-2xl p-8 shadow-lg"
+          className="bg-[var(--cream)] rounded-2xl p-8 shadow-lg border border-[var(--border-warm)]"
         >
           <form className="space-y-6">
             {/* Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[var(--muted-text)] mb-2">
                 {t(contact.form.name)}
               </label>
               <Input
@@ -61,7 +61,7 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[var(--muted-text)] mb-2">
                 {t(contact.form.email)}
               </label>
               <Input
@@ -73,7 +73,7 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
 
             {/* Subject */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[var(--muted-text)] mb-2">
                 {t(contact.form.subject.label)}
               </label>
               <Select>
@@ -92,7 +92,7 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
 
             {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[var(--muted-text)] mb-2">
                 {t(contact.form.message)}
               </label>
               <Textarea
@@ -102,7 +102,7 @@ export const ContactSection = ({ contact, t }: ContactSectionProps) => {
             </div>
 
             {/* Submit Button */}
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
+            <Button type="submit" className="w-full bg-[var(--ink)] text-[var(--cream)] hover:bg-[var(--ink-light)]">
               {t(contact.form.submit)}
             </Button>
           </form>

@@ -55,7 +55,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ isActive, onClick, children
   <button
     onClick={onClick}
     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-      isActive ? 'bg-blue-600 text-white shadow-md transform scale-105' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+      isActive ? 'bg-[var(--ink)] text-[var(--cream)] shadow-md transform scale-105' : 'bg-[var(--cream-dark)] text-[var(--muted-text)] hover:bg-[var(--border-warm)]'
     }`}
   >
     {children}
@@ -80,7 +80,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
   const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   return (
     <div className="mb-6">
-      <h3 className="text-sm font-medium text-gray-500 mb-3">{title}</h3>
+      <h3 className="text-sm font-medium text-[var(--muted-text)] mb-3">{title}</h3>
       <div className="flex flex-wrap gap-2">
         {options.map((option) => (
           <FilterButton
@@ -122,7 +122,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, 
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 h-full w-[85%] max-w-md bg-white z-50 p-6 overflow-y-auto"
+            className="fixed right-0 top-0 h-full w-[85%] max-w-md bg-[var(--cream)] z-50 p-6 overflow-y-auto"
           >
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold">
@@ -133,7 +133,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, 
               </button>
             </div>
             {children}
-            <button onClick={onClose} className="w-full bg-blue-600 text-white py-3 rounded-xl mt-6">
+            <button onClick={onClose} className="w-full bg-[var(--ink)] text-[var(--cream)] py-3 rounded-xl mt-6 hover:bg-[var(--ink-light)]">
               {String(t({ EN: 'Apply Filters', NL: 'Filters Toepassen' }))}
             </button>
           </m.div>
@@ -154,13 +154,13 @@ export const Tab: React.FC<TabProps> = ({ isActive, onClick, children, count }) 
   <button
     onClick={onClick}
     className={`flex items-center gap-2 px-6 py-3 font-medium rounded-xl transition-all duration-200 ${
-      isActive ? 'bg-white shadow-md text-gray-900' : 'text-gray-600 hover:bg-white/50'
+      isActive ? 'bg-[var(--cream)] shadow-md text-[var(--ink)]' : 'text-[var(--muted-text)] hover:bg-[var(--cream)]/50'
     }`}
   >
     <span>{children}</span>
     <span
       className={`text-sm px-2 py-0.5 rounded-full ${
-        isActive ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-600'
+        isActive ? 'bg-[var(--amber)]/20 text-[var(--amber)]' : 'bg-[var(--cream-dark)] text-[var(--muted-text)]'
       }`}
     >
       {count}
