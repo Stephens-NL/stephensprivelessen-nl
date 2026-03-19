@@ -21,25 +21,53 @@
   },
   "programOffers": {
     "weekendTutoring": {
-      "title": "Weekend Bijles",
-      "description": "Speciale weekendkorting! Slechts €30 per uur (normaal €60). Bijles aan huis in Gein. Begin met een gratis proefles van 30 minuten!",
-      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in het weekend bijlesprogramma. Kan ik een proefles boeken?"
+      "title": "Weekend Bijles voor Studenten",
+      "description": "Speciale gemeenschapskorting voor studenten in Zuidoost! Slechts €30 per uur (normaal €60). Bijles aan huis in Gein of bij Douwe Egberts. Begin met een gratis proefles van 30 minuten!",
+      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in de weekend bijles aanbieding (€30/uur). Ik wil graag een gratis proefles plannen.",
+      "cta": "Boek Gratis Proefles"
     },
     "personalCoaching": {
-      "title": "Persoonlijke Coaching",
-      "description": "Hulp nodig met je studie? Beschikbaar in het weekend voor €30/uur in Zuidoost. Eerste 30 minuten gesprek is gratis!",
-      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in persoonlijke coaching. Kun je me meer vertellen?"
+      "title": "Persoonlijke Coaching & Studiebegeleiding",
+      "description": "Hulp nodig met je studie of persoonlijke ontwikkeling? Beschikbaar in het weekend voor €30/uur in Zuidoost. Eerste consult van 30 minuten is gratis.",
+      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in persoonlijke coaching/studiebegeleiding (€30/uur weekendaanbod). Kun je me meer vertellen?",
+      "cta": "Meer Info"
     },
     "flexibleSupport": {
-      "title": "Flexibele Ondersteuning",
-      "description": "Of het nu gaat om wiskunde, coaching of gewoon je studie bespreken - ik help je graag! Speciaal tarief van €30/uur (bespaar €30). Service aan huis in Gein.",
-      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in flexibele studieondersteuning. Ik zou graag meer willen weten over de mogelijkheden."
+      "title": "Flexibele Weekend Ondersteuning",
+      "description": "Of het nu gaat om wiskunde, coaching of gewoon je studie bespreken - ik ben er om te helpen! Speciaal tarief van €30/uur (bespaar €30). Beschikbaar bij Douwe Egberts of bijles aan huis in Gein.",
+      "whatsappMessage": "Hoi! Ik ben geïnteresseerd in flexibele weekendondersteuning (€30/uur). Ik zou graag meer willen weten over de mogelijkheden.",
+      "cta": "Start Nu"
     }
   },
   "location": {
+    "title": "Locatie: Douwe Egberts Café",
     "name": "Douwe Egberts Café",
     "description": "Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.",
     "hours": "Dagelijks geopend: 08:00 - 22:00"
   },
-  "footer": "Samen leren we meer!"
+  "footer": "Samen leren we meer!",
+  "subjects": {
+    "title": "Beschikbare Vakken"
+  },
+  "educationLevels": {
+    "primary": "Basisonderwijs",
+    "secondary": "Voortgezet Onderwijs",
+    "higher": "Hoger Onderwijs"
+  },
+  "form": {
+    "studentInfo": "Leerling Gegevens",
+    "name": "Naam",
+    "namePlaceholder": "Naam van de leerling",
+    "age": "Leeftijd",
+    "agePlaceholder": "Leeftijd van de leerling",
+    "educationLevel": "Onderwijsniveau",
+    "selectLevel": "Selecteer niveau",
+    "subject": "Vak",
+    "selectSubject": "Selecteer vak",
+    "continueWhatsApp": "Verder via WhatsApp",
+    "contactUs": "Neem Nu Contact Op",
+    "questionsText": "Heb je vragen? Neem gerust contact op voor meer informatie.",
+    "questionsWhatsApp": "Hoi! Ik heb wat vragen over weekend bijles.",
+    "trialWhatsApp": "Hoi! Ik ben geïnteresseerd in het €30/uur weekend bijles aanbod!"
+  }
 }

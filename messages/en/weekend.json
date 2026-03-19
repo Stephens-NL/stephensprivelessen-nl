@@ -21,25 +21,53 @@
   },
   "programOffers": {
     "weekendTutoring": {
-      "title": "Weekend Tutoring",
-      "description": "Special weekend discount! Only €30 per hour (regular €60). Home tutoring available in Gein. Start with a free 30-minute trial lesson!",
-      "whatsappMessage": "Hi! I'm interested in the weekend tutoring program. Can I book a trial lesson?"
+      "title": "Weekend Tutoring for Students",
+      "description": "Special community discount for students in Zuidoost! Only €30 per hour (regular €60). Home tutoring available in Gein or at Douwe Egberts. Start with a free 30-minute trial lesson!",
+      "whatsappMessage": "Hi! I'm interested in the weekend tutoring special offer (€30/hour). I'd like to schedule a free trial lesson.",
+      "cta": "Book Free Trial"
     },
     "personalCoaching": {
-      "title": "Personal Coaching",
-      "description": "Need guidance with your studies? Available weekends for €30/hour in Zuidoost. First 30-minute consultation is free!",
-      "whatsappMessage": "Hi! I'm interested in personal coaching. Can you tell me more?"
+      "title": "Personal Coaching & Study Support",
+      "description": "Need guidance with your studies or personal development? Available weekends for €30/hour in Zuidoost. First 30-minute consultation is free.",
+      "whatsappMessage": "Hi! I'm interested in personal coaching/study support (€30/hour weekend offer). Can you tell me more?",
+      "cta": "Get Info"
     },
     "flexibleSupport": {
-      "title": "Flexible Support",
-      "description": "Whether it's math, coaching, or just discussing your studies - I'm here to help! Special rate of €30/hour (save €30). Home service in Gein.",
-      "whatsappMessage": "Hi! I'm interested in flexible study support. I'd like to learn more about the possibilities."
+      "title": "Flexible Weekend Support",
+      "description": "Whether it's math, coaching, or just discussing your studies - I'm here to help! Special rate of €30/hour (save €30). Available at Douwe Egberts or home tutoring in Gein.",
+      "whatsappMessage": "Hi! I'm interested in the flexible weekend support (€30/hour). I'd like to learn more about the possibilities.",
+      "cta": "Start Now"
     }
   },
   "location": {
+    "title": "Location: Douwe Egberts Café",
     "name": "Douwe Egberts Café",
     "description": "Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.",
     "hours": "Open daily: 08:00 - 22:00"
   },
-  "footer": "Let's learn together!"
+  "footer": "Let's learn together!",
+  "subjects": {
+    "title": "Available Subjects"
+  },
+  "educationLevels": {
+    "primary": "Primary Education",
+    "secondary": "Secondary Education",
+    "higher": "Higher Education"
+  },
+  "form": {
+    "studentInfo": "Student Information",
+    "name": "Name",
+    "namePlaceholder": "Enter student's name",
+    "age": "Age",
+    "agePlaceholder": "Enter student's age",
+    "educationLevel": "Education Level",
+    "selectLevel": "Select level",
+    "subject": "Subject",
+    "selectSubject": "Select subject",
+    "continueWhatsApp": "Continue to WhatsApp",
+    "contactUs": "Contact Us Now",
+    "questionsText": "Have questions? Feel free to contact us for more information.",
+    "questionsWhatsApp": "Hi! I have some questions about weekend tutoring.",
+    "trialWhatsApp": "Hi! I'm interested in the €30/hour weekend tutoring special offer!"
+  }
 }

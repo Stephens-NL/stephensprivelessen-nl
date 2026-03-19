@@ -1,14 +1,13 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaGraduationCap, FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 type EducationLevel = {
   id: string;
-  titleNL: string;
-  titleEN: string;
+  title: string;
   subjects: Array<{ NL: string; EN: string }>;
 };
 
@@ -20,7 +19,8 @@ function reducer(state: { selectedLevel: string; showCourses: boolean }, action:
 
 export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: EducationLevel[] }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const language = locale === 'nl' ? 'NL' : 'EN';
+  const t = useTranslations('weekend');
   const [state, dispatch] = useReducer(reducer, { selectedLevel: '', showCourses: true });
   const { selectedLevel, showCourses } = state;
 
@@ -31,7 +31,7 @@ export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: 
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
           <FaGraduationCap className="text-3xl text-[var(--amber)]" />
-          <h2 className="text-2xl font-bold text-white">Available Subjects</h2>
+          <h2 className="text-2xl font-bold text-white">{t('subjects.title')}</h2>
         </div>
         <button
           type="button"
@@ -70,7 +70,7 @@ export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: 
                           transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                         />
                       )}
-                      <span className="relative z-10">{language === 'NL' ? level.titleNL : level.titleEN}</span>
+                      <span className="relative z-10">{level.title}</span>
                     </m.button>
                   ))}
                 </div>

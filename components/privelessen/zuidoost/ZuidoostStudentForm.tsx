@@ -1,7 +1,7 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -16,8 +16,7 @@ import { config } from '@/data/config';
 
 type EducationLevel = {
   id: string;
-  titleNL: string;
-  titleEN: string;
+  title: string;
   subjects: Array<{ NL: string; EN: string }>;
 };
 
@@ -46,7 +45,8 @@ export function ZuidoostStudentForm({
   whatsappMessage: string;
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const language = locale === 'nl' ? 'NL' : 'EN';
+  const t = useTranslations('weekend.form');
   const [state, dispatch] = useReducer(formReducer, {
     studentName: '',
     studentAge: '',
@@ -58,43 +58,43 @@ export function ZuidoostStudentForm({
   const handleSubmit = () => {
     const level = educationLevels.find((l) => l.id === selectedLevel);
     const subject = level?.subjects.find((s) => s.NL === selectedSubject || s.EN === selectedSubject);
-    const message = `${whatsappMessage}\n- Name: ${studentName}\n- Age: ${studentAge}\n- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}\n- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
+    const message = `${whatsappMessage}\n- Name: ${studentName}\n- Age: ${studentAge}\n- Level: ${level?.title}\n- Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
     window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
     <div className="grid gap-4 py-4">
       <div className="grid gap-2">
-        <Label htmlFor="name">Name</Label>
+        <Label htmlFor="name">{t('name')}</Label>
         <Input
           id="name"
           value={studentName}
           onChange={(e) => dispatch({ type: 'NAME', payload: e.target.value })}
           className="bg-white/10 border-white/20 text-white"
-          placeholder="Enter student's name"
+          placeholder={t('namePlaceholder')}
         />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="age">Age</Label>
+        <Label htmlFor="age">{t('age')}</Label>
         <Input
           id="age"
           value={studentAge}
           onChange={(e) => dispatch({ type: 'AGE', payload: e.target.value })}
           className="bg-white/10 border-white/20 text-white"
-          placeholder="Enter student's age"
+          placeholder={t('agePlaceholder')}
           type="number"
         />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="level">Education Level</Label>
+        <Label htmlFor="level">{t('educationLevel')}</Label>
         <Select value={selectedLevel} onValueChange={(v) => dispatch({ type: 'LEVEL', payload: v })}>
           <SelectTrigger className="bg-white/10 border-white/20 text-white">
-            <SelectValue placeholder="Select level" />
+            <SelectValue placeholder={t('selectLevel')} />
           </SelectTrigger>
           <SelectContent className="bg-amber-900 text-white">
             {educationLevels.map((level) => (
               <SelectItem key={level.id} value={level.id}>
-                {language === 'NL' ? level.titleNL : level.titleEN}
+                {level.title}
               </SelectItem>
             ))}
           </SelectContent>
@@ -102,10 +102,10 @@ export function ZuidoostStudentForm({
       </div>
       {selectedLevel && (
         <div className="grid gap-2">
-          <Label htmlFor="subject">Subject</Label>
+          <Label htmlFor="subject">{t('subject')}</Label>
           <Select value={selectedSubject} onValueChange={(v) => dispatch({ type: 'SUBJECT', payload: v })}>
             <SelectTrigger className="bg-white/10 border-white/20 text-white">
-              <SelectValue placeholder="Select subject" />
+              <SelectValue placeholder={t('selectSubject')} />
             </SelectTrigger>
             <SelectContent className="bg-amber-900 text-white">
               {educationLevels
@@ -124,7 +124,7 @@ export function ZuidoostStudentForm({
         className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold mt-4"
         disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
       >
-        Continue to WhatsApp
+        {t('continueWhatsApp')}
       </Button>
     </div>
   );

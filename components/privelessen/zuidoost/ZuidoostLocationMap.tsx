@@ -1,7 +1,7 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaCoffee, FaMapMarkerAlt, FaClock, FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
@@ -10,8 +10,7 @@ function mapReducer(state: { showMap: boolean }, action: { type: 'TOGGLE' }) {
 }
 
 export function ZuidoostLocationMap() {
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = useTranslations('weekend');
   const [{ showMap }, dispatch] = useReducer(mapReducer, { showMap: true });
 
   return (
@@ -20,7 +19,7 @@ export function ZuidoostLocationMap() {
         <div className="flex items-center gap-3">
           <FaCoffee className="text-3xl text-[var(--amber)]" />
           <h2 className="text-2xl font-bold text-white">
-            {language === 'NL' ? 'Locatie: Douwe Egberts Café' : 'Location: Douwe Egberts Café'}
+            {t('location.title')}
           </h2>
         </div>
         <button
@@ -42,9 +41,7 @@ export function ZuidoostLocationMap() {
           >
             <div className="space-y-4">
               <p className="text-white/90 text-lg mb-4">
-                {language === 'NL'
-                  ? 'Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.'
-                  : 'Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.'}
+                {t('location.description')}
               </p>
               <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
                 <iframe
@@ -65,7 +62,7 @@ export function ZuidoostLocationMap() {
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <FaClock className="text-[var(--amber)]" />
-                <span>{language === 'NL' ? 'Dagelijks geopend: 08:00 - 22:00' : 'Open daily: 08:00 - 22:00'}</span>
+                <span>{t('location.hours')}</span>
               </div>
             </div>
           </m.div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,8 +24,7 @@ import { config } from '@/data/config';
 
 type EducationLevel = {
   id: string;
-  titleNL: string;
-  titleEN: string;
+  title: string;
   subjects: Array<{ NL: string; EN: string }>;
 };
 
@@ -49,22 +48,15 @@ function formReducer(state: FormState, action: { type: string; payload?: string 
 }
 
 export function ZuidoostOfferVariant({
-  title,
-  titleTwi,
-  description,
-  cta,
-  whatsappMessage,
+  offerKey,
   educationLevels,
 }: {
-  title: string;
-  titleTwi?: string;
-  description: string;
-  cta: string;
-  whatsappMessage: string;
+  offerKey: string;
   educationLevels: EducationLevel[];
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const language = locale === 'nl' ? 'NL' : 'EN';
+  const t = useTranslations('weekend');
   const [state, dispatch] = useReducer(formReducer, {
     showModal: false,
     studentName: '',
@@ -77,10 +69,10 @@ export function ZuidoostOfferVariant({
   const handleSubmit = () => {
     const level = educationLevels.find((l) => l.id === selectedLevel);
     const subject = level?.subjects.find((s) => s.NL === selectedSubject || s.EN === selectedSubject);
-    const fullMessage = `${whatsappMessage}
+    const fullMessage = `${t(`programOffers.${offerKey}.whatsappMessage`)}
 - Name: ${studentName}
 - Age: ${studentAge}
-- Level: ${language === 'NL' ? level?.titleNL : level?.titleEN}
+- Level: ${level?.title}
 - Subject: ${language === 'NL' ? subject?.NL : subject?.EN}`;
     window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(fullMessage)}`, '_blank');
     dispatch({ type: 'MODAL', payload: false });
@@ -92,49 +84,48 @@ export function ZuidoostOfferVariant({
       animate={{ opacity: 1, y: 0 }}
       className="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
     >
-      <h3 className="text-xl font-bold text-[var(--amber)] mb-2">{title}</h3>
-      {titleTwi && <p className="text-lg text-[var(--cream)]/80 mb-4 italic">{titleTwi}</p>}
-      <p className="text-white/90 mb-6">{description}</p>
+      <h3 className="text-xl font-bold text-[var(--amber)] mb-2">{t(`programOffers.${offerKey}.title`)}</h3>
+      <p className="text-white/90 mb-6">{t(`programOffers.${offerKey}.description`)}</p>
       <Dialog open={showModal} onOpenChange={(v) => dispatch({ type: 'MODAL', payload: v })}>
         <DialogTrigger asChild>
-          <Button className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold">{cta}</Button>
+          <Button className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold">{t(`programOffers.${offerKey}.cta`)}</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-amber-900 text-white">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-[var(--amber)] mb-4">Student Information</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-[var(--amber)] mb-4">{t('form.studentInfo')}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">{t('form.name')}</Label>
               <Input
                 id="name"
                 value={studentName}
                 onChange={(e) => dispatch({ type: 'NAME', payload: e.target.value })}
                 className="bg-white/10 border-white/20 text-white"
-                placeholder="Enter student's name"
+                placeholder={t('form.namePlaceholder')}
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="age">Age</Label>
+              <Label htmlFor="age">{t('form.age')}</Label>
               <Input
                 id="age"
                 value={studentAge}
                 onChange={(e) => dispatch({ type: 'AGE', payload: e.target.value })}
                 className="bg-white/10 border-white/20 text-white"
-                placeholder="Enter student's age"
+                placeholder={t('form.agePlaceholder')}
                 type="number"
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="level">Education Level</Label>
+              <Label htmlFor="level">{t('form.educationLevel')}</Label>
               <Select value={selectedLevel} onValueChange={(v) => dispatch({ type: 'LEVEL', payload: v })}>
                 <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                  <SelectValue placeholder="Select level" />
+                  <SelectValue placeholder={t('form.selectLevel')} />
                 </SelectTrigger>
                 <SelectContent className="bg-amber-900 text-white">
                   {educationLevels.map((level) => (
                     <SelectItem key={level.id} value={level.id}>
-                      {language === 'NL' ? level.titleNL : level.titleEN}
+                      {level.title}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -142,10 +133,10 @@ export function ZuidoostOfferVariant({
             </div>
             {selectedLevel && (
               <div className="grid gap-2">
-                <Label htmlFor="subject">Subject</Label>
+                <Label htmlFor="subject">{t('form.subject')}</Label>
                 <Select value={selectedSubject} onValueChange={(v) => dispatch({ type: 'SUBJECT', payload: v })}>
                   <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                    <SelectValue placeholder="Select subject" />
+                    <SelectValue placeholder={t('form.selectSubject')} />
                   </SelectTrigger>
                   <SelectContent className="bg-amber-900 text-white">
                     {educationLevels
@@ -164,7 +155,7 @@ export function ZuidoostOfferVariant({
               className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold mt-4"
               disabled={!studentName || !studentAge || !selectedLevel || !selectedSubject}
             >
-              Continue to WhatsApp
+              {t('form.continueWhatsApp')}
             </Button>
           </div>
         </DialogContent>

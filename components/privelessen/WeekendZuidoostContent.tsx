@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaGraduationCap, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { getBusinessData } from '@/data/businessData';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { WeekendZuidoostHero } from './WeekendZuidoostHero';
 
 const OfferVariant = ({ title, description, cta }: { title: string; description: string; cta: string }) => (
@@ -26,32 +26,27 @@ const OfferVariant = ({ title, description, cta }: { title: string; description:
 
 export function WeekendZuidoostContent() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
-  const businessData = getBusinessData(t);
+  const language = locale === 'nl' ? 'NL' : 'EN';
+  const t = useTranslations('weekend');
+  const legacyT = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+  const businessData = getBusinessData(legacyT);
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [showCourses, setShowCourses] = useState(true);
 
   const educationLevels = [
     {
       id: 'basis',
-      titleNL: 'Basisonderwijs',
-      titleEN: 'Primary Education',
+      title: t('educationLevels.primary'),
       subjects: businessData.subjects.primary,
-      whatsappIntro: "Hi! I&apos;m looking for primary school tutoring",
-      hasDiscount: true
     },
     {
       id: 'voortgezet',
-      titleNL: 'Voortgezet Onderwijs',
-      titleEN: 'Secondary Education',
+      title: t('educationLevels.secondary'),
       subjects: businessData.subjects.secondary,
-      whatsappIntro: "Hi! I&apos;m looking for high school tutoring",
-      hasDiscount: true
     },
     {
       id: 'hoger',
-      title: 'Hoger Onderwijs',
+      title: t('educationLevels.higher'),
       subjects: [...businessData.subjects.higher, ...businessData.subjects.programming]
     }
   ];
@@ -67,27 +62,27 @@ export function WeekendZuidoostContent() {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {subjects.map((subject, index) => (
-            <m.div 
+            <m.div
               key={`${selectedLevel}-${subject.NL}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
+              transition={{
                 duration: 0.3,
                 delay: index * 0.05,
                 ease: "easeOut"
               }}
               className="group relative flex items-center bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)]
-                       rounded-xl transition-all duration-300 
+                       rounded-xl transition-all duration-300
                        border border-[var(--amber)]/30 hover:border-[var(--amber)]
                        transform hover:-translate-y-1 overflow-hidden h-[60px] w-full
                        hover:shadow-lg hover:shadow-[var(--ink)]/20"
             >
               <div className="flex-1 p-4 overflow-hidden">
                 <div className="overflow-hidden">
-                  <m.span 
+                  <m.span
                     className="text-[var(--cream)] group-hover:text-[var(--amber)] font-medium transition-colors inline-block whitespace-nowrap"
                   >
-                    {subject.NL}
+                    {language === 'NL' ? subject.NL : subject.EN}
                   </m.span>
                 </div>
               </div>
@@ -98,26 +93,7 @@ export function WeekendZuidoostContent() {
     );
   };
 
-  const offers = [
-    {
-      title: "Weekend Tutoring for Students",
-      description: "🎓 Special community discount for students in Zuidoost! Only €30 per hour (regular €60). Home tutoring available in Gein 3 & 4. Start with a free 30-minute trial lesson!",
-      cta: "WhatsApp for Trial Lesson",
-      whatsappMessage: "Hi! I&apos;m interested in the weekend tutoring special offer (€30/hour). I&apos;d like to schedule a free trial lesson."
-    },
-    {
-      title: "Personal Coaching & Study Support",
-      description: "💡 Need guidance with your studies or personal development? Available weekends for €30/hour in Zuidoost. First 30-minute consultation is free.",
-      cta: "WhatsApp for Info",
-      whatsappMessage: "Hi! I&apos;m interested in personal coaching/study support (€30/hour weekend offer). Can you tell me more?"
-    },
-    {
-      title: "Flexible Weekend Support",
-      description: "✨ Whether it&apos;s math, coaching, or just discussing your studies - I&apos;m here to help! Special rate of €30/hour (save €30). Home service in Gein 3 & 4 (limited spots).",
-      cta: "WhatsApp to Start",
-      whatsappMessage: "Hi! I&apos;m interested in the flexible weekend support (€30/hour). I&apos;d like to learn more about the possibilities."
-    }
-  ];
+  const offerKeys = ['weekendTutoring', 'personalCoaching', 'flexibleSupport'] as const;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[var(--ink)] to-[var(--ink-light)] text-white">
@@ -127,7 +103,7 @@ export function WeekendZuidoostContent() {
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <FaGraduationCap className="text-3xl text-[var(--amber)]" />
-              <h2 className="text-2xl font-bold text-white">Beschikbare Vakken</h2>
+              <h2 className="text-2xl font-bold text-white">{t('subjects.title')}</h2>
             </div>
             <button
               onClick={() => setShowCourses(!showCourses)}
@@ -154,8 +130,8 @@ export function WeekendZuidoostContent() {
                           onClick={() => setSelectedLevel(level.id)}
                           className={`
                             relative px-8 py-3 rounded-xl text-center transition-all duration-200
-                            ${selectedLevel === level.id 
-                              ? 'text-[var(--amber)]' 
+                            ${selectedLevel === level.id
+                              ? 'text-[var(--amber)]'
                               : 'text-[var(--cream-dark)] hover:text-[var(--cream)]'
                             }
                             ${index !== educationLevels.length - 1 ? 'mr-1' : ''}
@@ -169,7 +145,7 @@ export function WeekendZuidoostContent() {
                               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                             />
                           )}
-                          <span className="relative z-10">{level.titleNL}</span>
+                          <span className="relative z-10">{level.title}</span>
                         </m.button>
                       ))}
                     </div>
@@ -191,27 +167,32 @@ export function WeekendZuidoostContent() {
         </div>
 
         <div className="grid gap-8 md:grid-cols-3 mb-12">
-          {offers.map((offer) => (
-            <OfferVariant key={offer.title} {...offer} />
+          {offerKeys.map((key) => (
+            <OfferVariant
+              key={key}
+              title={t(`programOffers.${key}.title`)}
+              description={t(`programOffers.${key}.description`)}
+              cta={t(`programOffers.${key}.cta`)}
+            />
           ))}
         </div>
 
-        <m.div 
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
           className="mt-16 text-center"
         >
           <p className="text-xl text-[var(--cream)] mb-6">
-            Heb je vragen? Neem gerust contact op voor meer informatie.
+            {t('form.questionsText')}
           </p>
           <Link href="/contact">
             <Button size="lg" className="bg-[var(--amber)] hover:bg-[var(--amber-hover)] text-[var(--ink)] font-semibold px-8 py-6 text-lg">
-              Direct Contact Opnemen
+              {t('form.contactUs')}
             </Button>
           </Link>
         </m.div>
       </div>
     </div>
   );
-} 
+}
