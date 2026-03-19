@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { FiRotateCcw } from 'react-icons/fi';
 import {
   FilterSection,
@@ -34,14 +34,14 @@ export function WorkshopsFilterPanel({
   onReset,
 }: WorkshopsFilterPanelProps) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('workshops');
 
   return (
     <>
       <div className="flex justify-between items-center mb-4">
         <h3 className="font-medium text-[var(--ink)]">
-          {String(t({ EN: 'Filter Options', NL: 'Filter Opties' }))}
+          {t('form.filterOptions')}
         </h3>
         {hasActiveFilters && (
           <button
@@ -49,36 +49,36 @@ export function WorkshopsFilterPanel({
             className="flex items-center gap-2 text-[var(--amber)] hover:text-[var(--amber-hover)] text-sm font-medium"
           >
             <FiRotateCcw className="w-4 h-4" />
-            {String(t({ EN: 'Reset Filters', NL: 'Filters Resetten' }))}
+            {t('form.resetFilters')}
           </button>
         )}
       </div>
       <FilterSection
-        title={String(t({ EN: 'Workshop Type', NL: 'Workshop Type' }))}
+        title={t('form.workshopType')}
         options={typeFilters}
         activeFilter={typeFilter}
         onFilterChange={(v) => onFilterChange('SET_TYPE', v)}
       />
       <FilterSection
-        title={String(t({ EN: 'Target Audience', NL: 'Doelgroep' }))}
+        title={t('form.targetAudience')}
         options={audienceFilters}
         activeFilter={audienceFilter}
         onFilterChange={(v) => onFilterChange('SET_AUDIENCE', v)}
       />
       <FilterSection
-        title={String(t({ EN: 'Group Size', NL: 'Groepsgrootte' }))}
+        title={t('form.groupSize')}
         options={sizeFilters}
         activeFilter={sizeFilter}
         onFilterChange={(v) => onFilterChange('SET_SIZE', v)}
       />
       <FilterSection
-        title={String(t({ EN: 'Duration', NL: 'Tijdsduur' }))}
+        title={t('form.duration')}
         options={durationFilters}
         activeFilter={durationFilter}
         onFilterChange={(v) => onFilterChange('SET_DURATION', v)}
       />
       <FilterSection
-        title={String(t({ EN: 'Schedule', NL: 'Rooster' }))}
+        title={t('form.schedule')}
         options={scheduleFilters}
         activeFilter={scheduleFilter}
         onFilterChange={(v) => onFilterChange('SET_SCHEDULE', v)}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { FiX, FiRotateCcw } from 'react-icons/fi';
 
 export interface FilterOption {
@@ -76,8 +76,8 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
   onFilterChange,
 }) => {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('workshops');
   return (
     <div className="mb-6">
       <h3 className="text-sm font-medium text-[var(--muted-text)] mb-3">{title}</h3>
@@ -88,7 +88,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
             isActive={activeFilter === option.id}
             onClick={() => onFilterChange(option.id)}
           >
-            {String(t({ EN: option.labelEN, NL: option.labelNL }))}
+            {locale === 'nl' ? option.labelNL : option.labelEN}
           </FilterButton>
         ))}
       </div>
@@ -104,8 +104,8 @@ interface MobileFilterDrawerProps {
 
 export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, onClose, children }) => {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('workshops');
   return (
     <AnimatePresence>
       {isOpen && (
@@ -126,7 +126,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, 
           >
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold">
-                {String(t({ EN: 'Filter Workshops', NL: 'Filter Workshops' }))}
+                {t('form.filterWorkshops')}
               </h2>
               <button onClick={onClose} className="p-2">
                 <FiX className="w-6 h-6" />
@@ -134,7 +134,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, 
             </div>
             {children}
             <button onClick={onClose} className="w-full bg-[var(--ink)] text-[var(--cream)] py-3 rounded-xl mt-6 hover:bg-[var(--ink-light)]">
-              {String(t({ EN: 'Apply Filters', NL: 'Filters Toepassen' }))}
+              {t('form.applyFilters')}
             </button>
           </m.div>
         </>

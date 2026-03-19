@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import type { Workshop, Language } from '@/data/types';
@@ -13,8 +13,8 @@ interface WorkshopDetailContentProps {
 
 export default function WorkshopDetailContent({ workshop }: WorkshopDetailContentProps) {
     const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('workshops');
     const router = useRouter();
     const contactSectionRef = useRef<HTMLDivElement>(null);
 
@@ -48,13 +48,13 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                                 onClick={() => handleRequestInfo(true)}
                                 className="px-8 py-3 rounded-full bg-[var(--ink)] text-[var(--cream)] hover:bg-[var(--ink-light)] transition-colors"
                             >
-                                {String(t({ EN: 'More Info & Schedule Now', NL: 'Meer Info & Plan Nu' }))}
+                                {t('form.moreInfoScheduleNow')}
                             </button>
                             <button
                                 onClick={() => router.push('/workshops')}
                                 className="px-8 py-3 rounded-full bg-[var(--cream-dark)] text-[var(--warm-text)] hover:bg-[var(--border-warm)] transition-colors"
                             >
-                                {String(t({ EN: 'Back to Workshops', NL: 'Terug naar Workshops' }))}
+                                {t('form.backToWorkshops')}
                             </button>
                         </div>
                     </div>
@@ -63,40 +63,34 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                     <div className="grid md:grid-cols-2 gap-8 mb-12">
                         <div className="p-6 rounded-xl bg-[var(--cream)] shadow-lg border border-[var(--border-warm)]">
                             <h2 className="text-2xl font-display font-semibold mb-4 text-[var(--ink)]">
-                                {String(t({ EN: 'Workshop Details', NL: 'Workshop Details' }))}
+                                {t('form.workshopDetails')}
                             </h2>
                             <ul className="space-y-3">
                                 <li className="flex items-center text-[var(--warm-text)]">
-                                    <span className="font-medium mr-2">{String(t({ EN: 'Duration:', NL: 'Duur:' }))}</span>
+                                    <span className="font-medium mr-2">{t('form.duration')}</span>
                                     {workshop.durationText[language as Language]}
                                 </li>
                                 <li className="flex items-center text-[var(--warm-text)]">
-                                    <span className="font-medium mr-2">{String(t({ EN: 'Level:', NL: 'Niveau:' }))}</span>
-                                    {String(t({
-                                        EN: workshop.level.charAt(0).toUpperCase() + workshop.level.slice(1),
-                                        NL: workshop.level === 'beginner' ? 'Beginner' :
+                                    <span className="font-medium mr-2">{t('form.level')}</span>
+                                    {(locale === 'nl' ? workshop.level === 'beginner' ? 'Beginner' :
                                             workshop.level === 'intermediate' ? 'Gevorderd' :
                                             workshop.level === 'advanced' ? 'Vergevorderd' :
-                                            workshop.level === 'professional' ? 'Professional' : 'Alle Niveaus'
-                                    }))}
+                                            workshop.level === 'professional' ? 'Professional' : 'Alle Niveaus' : workshop.level.charAt(0).toUpperCase() + workshop.level.slice(1))}
                                 </li>
                                 <li className="flex items-center text-[var(--warm-text)]">
-                                    <span className="font-medium mr-2">{String(t({ EN: 'Format:', NL: 'Format:' }))}</span>
-                                    {String(t({
-                                        EN: workshop.format.charAt(0).toUpperCase() + workshop.format.slice(1),
-                                        NL: workshop.format === 'interactive' ? 'Interactief' :
+                                    <span className="font-medium mr-2">{t('form.format')}</span>
+                                    {(locale === 'nl' ? workshop.format === 'interactive' ? 'Interactief' :
                                             workshop.format === 'hands-on' ? 'Praktisch' :
                                             workshop.format === 'technical' ? 'Technisch' :
                                             workshop.format === 'creative' ? 'Creatief' :
                                             workshop.format === 'professional' ? 'Professioneel' :
                                             workshop.format === 'media' ? 'Media' :
                                             workshop.format === 'flexible' ? 'Flexibel' :
-                                            workshop.format === 'wellness' ? 'Welzijn' : workshop.format
-                                    }))}
+                                            workshop.format === 'wellness' ? 'Welzijn' : workshop.format : workshop.format.charAt(0).toUpperCase() + workshop.format.slice(1))}
                                 </li>
                                 {workshop.totalSessions && (
                                     <li className="flex items-center text-[var(--warm-text)]">
-                                        <span className="font-medium mr-2">{String(t({ EN: 'Total Sessions:', NL: 'Totaal Sessies:' }))}</span>
+                                        <span className="font-medium mr-2">{t('form.totalSessions')}</span>
                                         {workshop.totalSessions}
                                     </li>
                                 )}
@@ -105,7 +99,7 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
 
                         <div className="p-6 rounded-xl bg-[var(--cream)] shadow-lg border border-[var(--border-warm)]">
                             <h2 className="text-2xl font-display font-semibold mb-4 text-[var(--ink)]">
-                                {String(t({ EN: 'What You\'ll Learn', NL: 'Wat Je Leert' }))}
+                                {t('form.whatYoullLearn')}
                             </h2>
                             <ul className="space-y-2">
                                 {workshop.details[language as Language].map((detail: string) => (
@@ -121,23 +115,23 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                     {/* Additional Information */}
                     <div className="p-6 rounded-xl bg-[var(--cream)] shadow-lg border border-[var(--border-warm)] mb-12">
                         <h2 className="text-2xl font-display font-semibold mb-4 text-[var(--ink)]">
-                            {String(t({ EN: 'Additional Information', NL: 'Aanvullende Informatie' }))}
+                            {t('form.additionalInformation')}
                         </h2>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div>
-                                <h3 className="font-medium mb-2">{String(t({ EN: 'Prerequisites', NL: 'Voorvereisten' }))}</h3>
+                                <h3 className="font-medium mb-2">{t('form.prerequisites')}</h3>
                                 <p className="text-[var(--warm-text)]">{workshop.prerequisites[language as Language]}</p>
                             </div>
                             <div>
-                                <h3 className="font-medium mb-2">{String(t({ EN: 'Materials', NL: 'Materialen' }))}</h3>
+                                <h3 className="font-medium mb-2">{t('form.materials')}</h3>
                                 <p className="text-[var(--warm-text)]">{workshop.materials[language as Language]}</p>
                             </div>
                             <div>
-                                <h3 className="font-medium mb-2">{String(t({ EN: 'Location', NL: 'Locatie' }))}</h3>
+                                <h3 className="font-medium mb-2">{t('form.location')}</h3>
                                 <p className="text-[var(--warm-text)]">{workshop.location[language as Language]}</p>
                             </div>
                             <div>
-                                <h3 className="font-medium mb-2">{String(t({ EN: 'Price', NL: 'Prijs' }))}</h3>
+                                <h3 className="font-medium mb-2">{t('form.price')}</h3>
                                 <p className="text-[var(--warm-text)]">{workshop.price[language as Language]}</p>
                             </div>
                         </div>
@@ -149,7 +143,7 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                             onClick={() => handleRequestInfo(false)}
                             className="px-8 py-3 rounded-full bg-[var(--ink)] text-[var(--cream)] hover:bg-[var(--ink-light)] transition-colors"
                         >
-                            {String(t({ EN: 'Schedule Now', NL: 'Plan Nu In' }))}
+                            {t('form.scheduleNow')}
                         </button>
                     </div>
                 </m.div>
