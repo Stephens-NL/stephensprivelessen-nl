@@ -2,44 +2,28 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import useSWR from 'swr';
-import { useTranslation } from '../hooks/useTranslation';
-import { FooterData } from '../data';
-import { getBusinessData } from '@/data/businessData';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
+import { config } from '@/data/config';
 
-const footerFetcher = (url: string) =>
-  fetch(url).then((res) => {
-    if (!res.ok) throw new Error('Failed to fetch footer data');
-    return res.json();
-  });
+const serviceLinks = [
+    { href: '/privelessen' as const, key: 'services.tutoring' },
+    { href: '/scriptiebegeleiding' as const, key: 'services.thesisSupervision' },
+    { href: '/workshops' as const, key: 'services.workshops' },
+    { href: '/consultancy' as const, key: 'services.consultancy' },
+    { href: '/services' as const, key: 'services.services' },
+] as const;
+
+const infoLinks = [
+    { href: '/about' as const, key: 'info.about' },
+    { href: '/blog' as const, key: 'info.blog' },
+    { href: '/faq' as const, key: 'info.faq' },
+    { href: '/contact' as const, key: 'info.contact' },
+] as const;
 
 const Footer = () => {
-  const { t } = useTranslation();
-  const { data: footerData, isLoading, error } = useSWR<FooterData>('/api/footer', footerFetcher);
+  const t = useTranslations('common');
   const currentYear = new Date().getFullYear();
-  const businessData = getBusinessData(t);
-
-  if (isLoading) return <div>{t({ EN: "Loading...", NL: "Laden..." })}</div>;
-  if (error) return <div>{t({ EN: "Error loading footer data", NL: "Fout bij het laden van footer gegevens" })}</div>;
-  if (!footerData) return null;
-  const footer = footerData.footer;
-
-  const {
-    title,
-    description,
-    servicesLabel,
-    services,
-    infoLabel,
-    info,
-    contactLabel,
-    copyright
-  } = footer;
-
-  // Get contact info from businessData
-  const emailContact = businessData.contactItems.find(item => item.icon === "FaEnvelope");
-  const phoneContact = businessData.contactItems.find(item => item.icon === "FaPhone");
-  const locationContact = businessData.contactItems.find(item => item.icon === "FaMapMarkerAlt");
 
   return (
     <footer className="bg-gray-800 text-white py-8">
@@ -47,18 +31,18 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Title and Description */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">{String(t(title))}</h3>
-            <p className="text-gray-400">{String(t(description))}</p>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.title')}</h3>
+            <p className="text-gray-400">{t('footer.description')}</p>
           </div>
 
           {/* Services Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">{String(t(servicesLabel))}</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.servicesLabel')}</h3>
             <ul className="space-y-2">
-              {services.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-gray-400 hover:text-white transition">
-                    {String(t(link.label))}
+              {serviceLinks.map(({ href, key }) => (
+                <li key={href}>
+                  <Link href={href} className="text-gray-400 hover:text-white transition">
+                    {t(`footer.${key}`)}
                   </Link>
                 </li>
               ))}
@@ -67,12 +51,12 @@ const Footer = () => {
 
           {/* Info Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">{String(t(infoLabel))}</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('footer.infoLabel')}</h3>
             <ul className="space-y-2">
-              {info.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-gray-400 hover:text-white transition">
-                    {String(t(link.label))}
+              {infoLinks.map(({ href, key }) => (
+                <li key={href}>
+                  <Link href={href} className="text-gray-400 hover:text-white transition">
+                    {t(`footer.${key}`)}
                   </Link>
                 </li>
               ))}
@@ -81,22 +65,16 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">{String(t(contactLabel))}</h3>
-            {emailContact && (
-              <a href={emailContact.href} className="block text-gray-400 hover:text-white transition">
-                Email: {emailContact.content}
-              </a>
-            )}
-            {phoneContact && (
-              <a href={phoneContact.href} className="block text-gray-400 hover:text-white transition">
-                Tel: {phoneContact.content}
-              </a>
-            )}
-            {locationContact && (
-              <a href={locationContact.href} className="block text-gray-400 hover:text-white transition mt-2">
-                {locationContact.content}
-              </a>
-            )}
+            <h3 className="text-lg font-semibold mb-4">{t('footer.contactLabel')}</h3>
+            <a href={`mailto:${config.contact.email}`} className="block text-gray-400 hover:text-white transition">
+              Email: {config.contact.email}
+            </a>
+            <a href={config.contact.display.href} className="block text-gray-400 hover:text-white transition">
+              Tel: {config.contact.display.phone}
+            </a>
+            <a href={config.business.mainOffice.googleMapsUrl} className="block text-gray-400 hover:text-white transition mt-2">
+              {config.business.mainOffice.address}, {config.business.mainOffice.postalCode} {config.business.mainOffice.city}
+            </a>
             <div className="mt-4 flex space-x-4">
               {/* Social Media Icons */}
               <a href="http://instagram.com/stephensprivelessen" className="text-gray-400 hover:text-white transition">
@@ -116,7 +94,7 @@ const Footer = () => {
         {/* Footer Bottom Section */}
         <div className="mt-8 border-t border-gray-700 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; {currentYear} {String(t(title))}. {String(t(copyright))}
+            &copy; {currentYear} {t('footer.title')}. {t('footer.copyright')}
           </p>
         </div>
       </div>

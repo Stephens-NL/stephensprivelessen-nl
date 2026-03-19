@@ -1,22 +1,34 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
 import { m, AnimatePresence } from 'framer-motion';
-import { navigation, siteTitle } from '@/data/navigation';
-import { useTranslation } from '../hooks/useTranslation';
-import { NavItem, Bilingual } from '../data';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { ChevronUp, Menu } from 'lucide-react';
 
-type NavLinkProps = NavItem & {
+const navItems = [
+    { href: '/' as const, key: 'home' },
+    { href: '/privelessen' as const, key: 'privelessen' },
+    { href: '/mbo-rekenen' as const, key: 'mboRekenen' },
+    { href: '/scriptiebegeleiding' as const, key: 'scriptiebegeleiding' },
+    { href: '/about' as const, key: 'about' },
+    { href: '/services' as const, key: 'services' },
+    { href: '/workshops' as const, key: 'workshops' },
+    { href: '/consultancy' as const, key: 'consultancy' },
+    { href: '/blog' as const, key: 'blog' },
+    { href: '/faq' as const, key: 'faq' },
+    { href: '/contact' as const, key: 'contact' },
+] as const;
+
+type NavLinkProps = {
+    href: string;
+    navKey: string;
     pathname: string;
-    t: (key: Bilingual | string | undefined) => string;
+    t: (key: string) => string;
     onClose: () => void;
 };
 
-const NavLink = ({ href, label, pathname, t, onClose }: NavLinkProps) => (
+const NavLink = ({ href, navKey, pathname, t, onClose }: NavLinkProps) => (
     <Link
-        href={href}
+        href={href as any}
         className={`px-3 py-2 text-sm font-medium transition-all duration-300 rounded-md ${
             pathname === href
                 ? 'text-white bg-white bg-opacity-20'
@@ -24,7 +36,7 @@ const NavLink = ({ href, label, pathname, t, onClose }: NavLinkProps) => (
         }`}
         onClick={onClose}
     >
-        {String(t(label))}
+        {t(`nav.${navKey}`)}
     </Link>
 );
 
@@ -33,8 +45,9 @@ const FloatingNavbar = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const { setLanguage, language } = useLanguage();
-    const { t } = useTranslation();
+    const t = useTranslations('common');
+    const locale = useLocale();
+    const otherLocale = locale === 'nl' ? 'en' : 'nl';
 
     const handleScroll = useCallback(() => {
         const currentScrollY = window.scrollY;
@@ -50,11 +63,6 @@ const FloatingNavbar = () => {
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, [handleScroll]);
-
-    const toggleLanguage = () => {
-        const newLanguage = language === 'EN' ? 'NL' : 'EN';
-        setLanguage(newLanguage);
-    };
 
     const closeMobileMenu = useCallback(() => setIsMobileMenuOpen(false), []);
 
@@ -86,22 +94,23 @@ const FloatingNavbar = () => {
                         <div className="bg-blue-600 backdrop-blur-md rounded-lg shadow-lg flex items-center justify-between">
                             <div className="flex items-center space-x-2 py-3 pl-4 shrink-0">
                                 <ChevronUp className="text-white" size={18} />
-                                <span className="text-white font-semibold text-lg">{String(t(siteTitle))}</span>
+                                <span className="text-white font-semibold text-lg">{t('siteTitle')}</span>
                             </div>
                             <div className="hidden md:flex items-center space-x-1 pr-2 overflow-x-auto relative scrollbar-hide">
                                 <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-blue-600 to-transparent pointer-events-none z-10"></div>
                                 <div className="flex items-center space-x-1 px-8">
-                                    {navigation.map((item) => (
-                                        <NavLink key={item.href} href={item.href} label={item.label} pathname={pathname} t={t} onClose={closeMobileMenu} />
+                                    {navItems.map((item) => (
+                                        <NavLink key={item.href} href={item.href} navKey={item.key} pathname={pathname} t={t} onClose={closeMobileMenu} />
                                     ))}
                                 </div>
                                 <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-blue-600 to-transparent pointer-events-none z-10"></div>
-                                <button
-                                    onClick={toggleLanguage}
+                                <Link
+                                    href={pathname as any}
+                                    locale={otherLocale}
                                     className="px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 rounded-md ml-2 shrink-0"
                                 >
-                                    {language === 'EN' ? 'NL' : 'EN'}
-                                </button>
+                                    {otherLocale.toUpperCase()}
+                                </Link>
                             </div>
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -120,18 +129,19 @@ const FloatingNavbar = () => {
                                     className="md:hidden mt-2 bg-blue-600 bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg overflow-hidden"
                                 >
                                     <div className="py-2">
-                                        {navigation.map((item) => (
+                                        {navItems.map((item) => (
                                             <div key={item.href} className="px-3 py-1">
-                                                <NavLink href={item.href} label={item.label} pathname={pathname} t={t} onClose={closeMobileMenu} />
+                                                <NavLink href={item.href} navKey={item.key} pathname={pathname} t={t} onClose={closeMobileMenu} />
                                             </div>
                                         ))}
                                         <div className="px-3 py-1">
-                                            <button
-                                                onClick={toggleLanguage}
-                                                className="w-full px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 text-left rounded-md"
+                                            <Link
+                                                href={pathname as any}
+                                                locale={otherLocale}
+                                                className="w-full px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 text-left rounded-md block"
                                             >
-                                                {language === 'EN' ? t({ EN: 'Switch to Dutch', NL: 'Schakel naar Nederlands' }) : t({ EN: 'Switch to English', NL: 'Schakel naar Engels' })}
-                                            </button>
+                                                {locale === 'nl' ? 'Switch to English' : 'Schakel naar Nederlands'}
+                                            </Link>
                                         </div>
                                     </div>
                                 </m.div>

@@ -1,21 +1,35 @@
 'use client';
 
 import { useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
+import { Link, usePathname } from '@/i18n/navigation'
 import { m, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
-import { useTranslation } from '@/hooks/useTranslation'
-import { useLanguage } from '@/contexts/LanguageContext'
 import { FiMenu, FiX } from 'react-icons/fi'
-import { siteTitle, navigation } from '@/data/navigation'
+
+const navItems = [
+    { href: '/privelessen' as const, key: 'privelessen' },
+    { href: '/scriptiebegeleiding' as const, key: 'scriptiebegeleiding' },
+    { href: '/workshops' as const, key: 'workshops' },
+    { href: '/consultancy' as const, key: 'consultancy' },
+    { href: '/services' as const, key: 'services' },
+] as const;
+
+const infoItems = [
+    { href: '/about' as const, key: 'about' },
+    { href: '/blog' as const, key: 'blog' },
+    { href: '/faq' as const, key: 'faq' },
+    { href: '/contact' as const, key: 'contact' },
+] as const;
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [visible, setVisible] = useState(true)
     const { scrollY, scrollYProgress } = useScroll()
     const pathname = usePathname()
-    const { t } = useTranslation()
-    const { language, setLanguage } = useLanguage()
+    const t = useTranslations('common')
+    const locale = useLocale()
+    const otherLocale = locale === 'nl' ? 'en' : 'nl'
 
     useMotionValueEvent(scrollYProgress, "change", (current) => {
         if (typeof current === "number") {
@@ -35,10 +49,6 @@ const Header = () => {
     });
 
     const closeMenu = () => setIsOpen(false)
-    
-    const toggleLanguage = () => {
-        setLanguage(language === 'EN' ? 'NL' : 'EN')
-    }
 
     const isAtTop = scrollY.get() < 20;
 
@@ -46,7 +56,7 @@ const Header = () => {
         <>
             {/* Desktop Header */}
             <AnimatePresence mode="wait">
-                <m.header 
+                <m.header
                     className="fixed top-0 w-full z-50 hidden md:block"
                     initial={{
                         opacity: 1,
@@ -64,19 +74,19 @@ const Header = () => {
                     {/* Background shape that morphs based on scroll position */}
                     <m.div
                         className="absolute inset-x-0 overflow-hidden"
-                        animate={{ 
+                        animate={{
                             height: isAtTop ? '96px' : '64px',
                             width: isAtTop ? '100%' : 'clamp(min(90%, 900px), 85%, 95%)',
                             borderRadius: isAtTop ? '0px' : '32px',
                             left: isAtTop ? '0%' : '50%',
                             x: isAtTop ? '0%' : '-50%',
                             backgroundColor: isAtTop ? '#1E40AF' : 'white',
-                            boxShadow: isAtTop 
+                            boxShadow: isAtTop
                                 ? 'none'
                                 : '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
                             y: isAtTop ? 0 : 10,
                         }}
-                        transition={{ 
+                        transition={{
                             duration: 0.5,
                             ease: [0.22, 1, 0.36, 1],
                             backgroundColor: {
@@ -90,49 +100,47 @@ const Header = () => {
                             <m.div
                                 className="absolute inset-0 pointer-events-none"
                                 initial={{ x: '-100%', opacity: 0.5 }}
-                                animate={{ 
+                                animate={{
                                     x: '200%',
                                     opacity: [0.3, 0.5, 0.3],
                                     background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
                                     backgroundSize: '200% 100%',
                                 }}
-                                transition={{ 
+                                transition={{
                                     repeat: Infinity,
                                     duration: 4,
                                     ease: [0.22, 1, 0.36, 1],
                                 }}
                             />
                         )}
-                        
+
                         {/* Content */}
                         <nav className={`h-full mx-auto ${
-                            isAtTop 
-                                ? 'max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-12' 
+                            isAtTop
+                                ? 'max-w-[1400px] px-4 sm:px-6 md:px-8 lg:px-12'
                                 : 'px-4 sm:px-5'
                         }`}>
                             <div className="flex items-center justify-between h-full">
-                                <Link 
-                                    href="/" 
+                                <Link
+                                    href="/"
                                     className={`text-lg sm:text-xl font-bold whitespace-nowrap transition-all duration-500 ${
                                         isAtTop ? 'text-white' : 'text-gray-900'
                                     }`}
                                 >
-                                    {String(t(siteTitle))}
+                                    {t('siteTitle')}
                                 </Link>
 
                                 {/* Navigation items - Now with overflow handling */}
                                 <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 overflow-x-auto no-scrollbar relative">
                                     {/* Left shadow */}
                                     <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none z-10 transition-opacity duration-300" style={{ opacity: isAtTop ? 0 : 1 }} />
-                                    
+
                                     <div className="flex items-center gap-2 lg:gap-4 xl:gap-6 px-8">
                                         {/* Service navigation items */}
-                                        {navigation
-                                            .filter(item => ['/privelessen', '/scriptiebegeleiding', '/workshops', '/consultancy', '/services'].includes(item.href))
-                                            .map(({ href, label }) => (
+                                        {navItems.map(({ href, key }) => (
                                                 <m.div
                                                     key={href}
-                                                    whileHover={{ 
+                                                    whileHover={{
                                                         scale: 1.05,
                                                         transition: { duration: 0.2 }
                                                     }}
@@ -150,33 +158,30 @@ const Header = () => {
                                                                     : 'text-gray-600 hover:text-blue-600'
                                                         }`}
                                                     >
-                                                        {String(t(label))}
+                                                        {t(`nav.${key}`)}
                                                         <span className="absolute inset-x-0 -bottom-0.5 h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                                                     </Link>
                                                 </m.div>
                                             ))}
 
                                         {/* Language toggle */}
-                                        <m.button
-                                            onClick={toggleLanguage}
+                                        <Link
+                                            href={pathname}
+                                            locale={otherLocale}
                                             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap ${
                                                 isAtTop
                                                     ? 'bg-white/10 text-white hover:bg-white/20'
                                                     : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
                                             }`}
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
                                         >
-                                            {language === 'EN' ? 'Nederlands?' : 'English?'}
-                                        </m.button>
+                                            {locale === 'nl' ? 'English?' : 'Nederlands?'}
+                                        </Link>
 
                                         {/* Info navigation items */}
-                                        {navigation
-                                            .filter(item => ['/about', '/blog', '/faq', '/contact'].includes(item.href))
-                                            .map(({ href, label }) => (
+                                        {infoItems.map(({ href, key }) => (
                                                 <m.div
                                                     key={href}
-                                                    whileHover={{ 
+                                                    whileHover={{
                                                         scale: 1.05,
                                                         transition: { duration: 0.2 }
                                                     }}
@@ -194,7 +199,7 @@ const Header = () => {
                                                                     : 'text-gray-600 hover:text-blue-600'
                                                         }`}
                                                     >
-                                                        {String(t(label))}
+                                                        {t(`nav.${key}`)}
                                                         <span className="absolute inset-x-0 -bottom-0.5 h-[2px] bg-current transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                                                     </Link>
                                                 </m.div>
@@ -214,22 +219,21 @@ const Header = () => {
             <header className="fixed top-0 w-full z-50 bg-blue-900 shadow-lg md:hidden">
                 <nav>
                     <div className="flex items-center justify-between h-14 px-4">
-                        <Link 
-                            href="/" 
+                        <Link
+                            href="/"
                             className="text-base sm:text-lg font-bold text-white whitespace-nowrap"
                         >
-                            {String(t(siteTitle))}
+                            {t('siteTitle')}
                         </Link>
 
                         {/* Language toggle - Centered */}
-                        <m.button
-                            onClick={toggleLanguage}
+                        <Link
+                            href={pathname}
+                            locale={otherLocale}
                             className="px-2.5 py-1 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-white/20 mx-2"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
                         >
-                            {language === 'EN' ? 'NL' : 'EN'}
-                        </m.button>
+                            {otherLocale.toUpperCase()}
+                        </Link>
 
                         {/* Mobile Menu Button */}
                         <button
@@ -252,38 +256,34 @@ const Header = () => {
                             >
                                 <div className="py-1">
                                     {/* Service navigation items */}
-                                    {navigation
-                                        .filter(item => ['/privelessen', '/scriptiebegeleiding', '/workshops', '/consultancy', '/services'].includes(item.href))
-                                        .map(({ href, label }) => (
+                                    {navItems.map(({ href, key }) => (
                                             <Link
                                                 key={href}
                                                 href={href}
                                                 onClick={closeMenu}
                                                 className={`block px-4 py-2 text-base font-medium transition-colors ${
-                                                    pathname === href 
-                                                        ? 'text-white bg-white/10' 
+                                                    pathname === href
+                                                        ? 'text-white bg-white/10'
                                                         : 'text-blue-100 hover:text-white hover:bg-white/5'
                                                 }`}
                                             >
-                                                {String(t(label))}
+                                                {t(`nav.${key}`)}
                                             </Link>
                                         ))}
 
                                     {/* Info navigation items */}
-                                    {navigation
-                                        .filter(item => ['/about', '/blog', '/faq', '/contact'].includes(item.href))
-                                        .map(({ href, label }) => (
+                                    {infoItems.map(({ href, key }) => (
                                             <Link
                                                 key={href}
                                                 href={href}
                                                 onClick={closeMenu}
                                                 className={`block px-4 py-2 text-base font-medium transition-colors ${
-                                                    pathname === href 
-                                                        ? 'text-white bg-white/10' 
+                                                    pathname === href
+                                                        ? 'text-white bg-white/10'
                                                         : 'text-blue-100 hover:text-white hover:bg-white/5'
                                                 }`}
                                             >
-                                                {String(t(label))}
+                                                {t(`nav.${key}`)}
                                             </Link>
                                         ))}
                                 </div>
