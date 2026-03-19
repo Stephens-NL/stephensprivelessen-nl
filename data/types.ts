@@ -2,29 +2,12 @@
 
 import { LucideIcon } from "lucide-react";
 import { IconType } from 'react-icons/lib';
-import { TFunction } from 'i18next';
-
 // Base Types
 export type Language = 'EN' | 'NL';
 
 export type Bilingual<T = string> = {
   [key in Language]: T;
 };
-
-export interface LanguageContextType {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-}
-
-// Custom translation type that's compatible with both our bilingual structure and i18next
-export type CustomTranslationFunction = {
-  (key: Bilingual | string | undefined): string;
-  (key: string, defaultValue: string): string;
-  (key: string, options: object): string;
-} & TFunction;
-
-// Re-export TFunction for places where we need the full i18next type
-export type { TFunction };
 
 // Base Interfaces
 export interface BaseEntity {
