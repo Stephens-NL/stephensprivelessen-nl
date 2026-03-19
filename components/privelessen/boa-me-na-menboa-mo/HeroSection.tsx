@@ -1,27 +1,21 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { m, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { WeekendLocation } from '@/data/types';
 
-interface HeroSectionProps {
-  content: WeekendLocation;
-}
-
-export function HeroSection({ content }: HeroSectionProps) {
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+export function HeroSection() {
+  const t = useTranslations('boa');
   const { scrollYProgress } = useScroll({
     offset: ["start start", "end start"]
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, -10]);
-  
+
   const springConfig = { stiffness: 100, damping: 30, restDelta: 0.001 };
   const scaleSpring = useSpring(scale, springConfig);
   const rotateSpring = useSpring(rotate, springConfig);
@@ -38,9 +32,9 @@ export function HeroSection({ content }: HeroSectionProps) {
         <div className="absolute inset-0 bg-[url('/patterns/noise.png')] opacity-[0.03] mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--amber)]/10 to-transparent" />
       </div>
-      
-      <m.div 
-        style={{ 
+
+      <m.div
+        style={{
           y,
           opacity,
           scale: scaleSpring,
@@ -55,26 +49,26 @@ export function HeroSection({ content }: HeroSectionProps) {
           className="mb-8"
         >
           <span className="text-[var(--amber)] text-lg font-medium tracking-wider uppercase">
-            {content.specialOffer[language]}
+            {t('specialOffer')}
           </span>
         </m.div>
-        
-        <m.h1 
+
+        <m.h1
           className="text-7xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[var(--amber)] via-[var(--cream)] to-[var(--amber-hover)] mb-6 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
         >
-          {content.title[language]}
+          {t('title')}
         </m.h1>
 
-        <m.p 
+        <m.p
           className="text-2xl md:text-4xl text-white/80 mb-12 italic font-light"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          {content.subtitle[language]}
+          {t('subtitle')}
         </m.p>
 
         <m.div
@@ -88,7 +82,7 @@ export function HeroSection({ content }: HeroSectionProps) {
             asChild
           >
             <Link href="#offers" className="flex items-center gap-2">
-              {content.cta.trial[language]}
+              {t('cta.trial')}
               <m.span
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1, repeat: Infinity }}
@@ -97,12 +91,12 @@ export function HeroSection({ content }: HeroSectionProps) {
               </m.span>
             </Link>
           </Button>
-          
+
           <Button
             className="bg-white/10 hover:bg-white/20 text-white font-bold text-lg px-8 py-6 rounded-full backdrop-blur-sm transition-all duration-300"
             asChild
           >
-            <Link href="#about">{content.cta.whatsapp[language]}</Link>
+            <Link href="#about">{t('cta.whatsapp')}</Link>
           </Button>
         </m.div>
       </m.div>
@@ -122,4 +116,4 @@ export function HeroSection({ content }: HeroSectionProps) {
       </m.div>
     </m.div>
   );
-} 
+}

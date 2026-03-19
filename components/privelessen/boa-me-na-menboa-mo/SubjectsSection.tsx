@@ -80,12 +80,11 @@ export function SubjectsSection({
   setSubject
 }: SubjectsSectionProps) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const language = locale === 'nl' ? 'NL' : 'EN';
   const t = useTranslations('boa');
 
-  // businessData still needs the old-style t for its internal keys (pricing etc.)
-  const legacyT = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
-  const businessData = getBusinessData(legacyT);
+  // businessData subjects are data objects with NL/EN keys - not UI translations
+  const businessData = getBusinessData((obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '');
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
   const { searchQuery, hoveredSubject, studentName, studentAge, wantsHomeTutoring, intent, selectedTime, showModal, selectedSubject } = formState;
   const ref = useRef(null);

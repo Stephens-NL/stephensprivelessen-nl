@@ -1,15 +1,15 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 
 const AGE_GROUPS = [
-  { range: '8-12', label: { NL: 'Basisschool', EN: 'Primary School' } },
-  { range: '12-16', label: { NL: 'Middelbare School', EN: 'High School' } },
-  { range: '16-18', label: { NL: 'Bovenbouw', EN: 'Upper Secondary' } },
-  { range: '18+', label: { NL: 'Hoger Onderwijs', EN: 'Higher Education' } },
+  { range: '8-12', labelKey: 'primarySchool' as const },
+  { range: '12-16', labelKey: 'highSchool' as const },
+  { range: '16-18', labelKey: 'upperSecondary' as const },
+  { range: '18+', labelKey: 'higherEducation' as const },
 ] as const;
 
 const TIME_SLOTS = [
@@ -50,8 +50,7 @@ export function TrialLessonForm({
   onSend,
   title,
 }: TrialLessonFormProps) {
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = useTranslations('boa.form');
   const isFormValid =
     studentName.trim() !== '' &&
     studentAge.trim() !== '' &&
@@ -63,7 +62,7 @@ export function TrialLessonForm({
         <div className="grid gap-4">
           <Label htmlFor="name" className="text-[var(--cream)] flex items-center gap-2">
             <span className="text-[var(--amber)]">1.</span>
-            {language === 'NL' ? 'Naam' : 'Name'}
+            {t('name')}
             <span className="text-red-400">*</span>
           </Label>
           <Input
@@ -71,13 +70,13 @@ export function TrialLessonForm({
             value={studentName}
             className="bg-white/5 border-[var(--amber)]/20 text-white focus:border-[var(--amber)] transition-colors"
             onChange={(e) => onStudentNameChange(e.target.value)}
-            placeholder={language === 'NL' ? 'Jouw naam' : 'Your name'}
+            placeholder={t('namePlaceholder')}
           />
         </div>
         <div className="grid gap-4">
           <Label htmlFor="age" className="text-[var(--cream)] flex items-center gap-2">
             <span className="text-[var(--amber)]">2.</span>
-            {language === 'NL' ? 'Leeftijd' : 'Age'}
+            {t('age')}
             <span className="text-red-400">*</span>
           </Label>
           <select
@@ -87,12 +86,12 @@ export function TrialLessonForm({
             className="w-full p-3 rounded-lg bg-[#4B2E1D] text-white border border-[var(--amber)]/20 focus:outline-none focus:border-[var(--amber)] hover:border-[var(--amber)]/50 transition-colors"
           >
             <option value="" disabled className="bg-[#2A1810]">
-              {language === 'NL' ? 'Selecteer leeftijd' : 'Select age'}
+              {t('selectAge')}
             </option>
             {AGE_GROUPS.map((group) => (
               <optgroup
                 key={group.range}
-                label={`${group.range} ${language === 'NL' ? 'jaar' : 'years'} - ${language === 'NL' ? group.label.NL : group.label.EN}`}
+                label={`${group.range} ${t('years')} - ${t(`ageGroups.${group.labelKey}`)}`}
                 className="bg-[#2A1810]"
               >
                 {Array.from(
@@ -106,7 +105,7 @@ export function TrialLessonForm({
                     group.range === '18+' ? i + 18 : parseInt(group.range.split('-')[0]) + i
                 ).map((age) => (
                   <option key={age} value={age} className="bg-[#2A1810]">
-                    {age} {language === 'NL' ? 'jaar' : 'years'}
+                    {age} {t('years')}
                   </option>
                 ))}
               </optgroup>
@@ -119,7 +118,7 @@ export function TrialLessonForm({
         <div className="grid gap-4">
           <Label className="text-[var(--cream)] flex items-center gap-2">
             <span className="text-[var(--amber)]">3.</span>
-            {language === 'NL' ? 'Niveau' : 'Level'}
+            {t('level')}
           </Label>
           <div className="bg-white/5 border border-[var(--amber)]/20 text-white rounded-md px-3 py-2">
             {levelTitle}
@@ -128,7 +127,7 @@ export function TrialLessonForm({
         <div className="grid gap-4">
           <Label className="text-[var(--cream)] flex items-center gap-2">
             <span className="text-[var(--amber)]">4.</span>
-            {language === 'NL' ? 'Vak' : 'Subject'}
+            {t('subject')}
           </Label>
           <div className="bg-white/5 border border-[var(--amber)]/20 text-white rounded-md px-3 py-2">
             {subjectDisplay}
@@ -139,7 +138,7 @@ export function TrialLessonForm({
       <div className="grid gap-4">
         <Label className="text-[var(--cream)] flex items-center gap-2">
           <span className="text-[var(--amber)]">5.</span>
-          {language === 'NL' ? 'Wat wil je doen?' : 'What would you like to do?'}
+          {t('whatToDo')}
           <span className="text-red-400">*</span>
         </Label>
         <div className="grid grid-cols-2 gap-3">
@@ -161,7 +160,7 @@ export function TrialLessonForm({
           >
             <span className="text-2xl">💡</span>
             <Label className="text-white text-center cursor-pointer">
-              {language === 'NL' ? 'Meer informatie' : 'More information'}
+              {t('moreInfo')}
             </Label>
           </div>
           <div
@@ -182,7 +181,7 @@ export function TrialLessonForm({
           >
             <span className="text-2xl">📚</span>
             <Label className="text-white text-center cursor-pointer">
-              {language === 'NL' ? 'Proefles plannen' : 'Schedule trial'}
+              {t('scheduleTrial')}
             </Label>
           </div>
         </div>
@@ -193,23 +192,15 @@ export function TrialLessonForm({
           <div className="flex flex-col sm:flex-row justify-between gap-4">
             <Label htmlFor="time" className="text-[var(--cream)] flex items-center gap-2">
               <span className="text-[var(--amber)]">6.</span>
-              {language === 'NL'
-                ? 'Kies drie voorkeuren voor je proefles (30 min)'
-                : 'Choose three preferences for your trial lesson (30 min)'}
+              {t('chooseThreePreferences')}
               <span className="text-red-400">*</span>
             </Label>
             <div className="text-center text-[var(--cream)]/90 text-sm whitespace-nowrap">
               {selectedTime.length === 0
-                ? language === 'NL'
-                  ? 'Kies drie voorkeuren'
-                  : 'Choose three preferences'
+                ? t('chooseThree')
                 : selectedTime.length < 3
-                  ? language === 'NL'
-                    ? `Nog ${3 - selectedTime.length}`
-                    : `${3 - selectedTime.length} more`
-                  : language === 'NL'
-                    ? '✓ Opgeslagen'
-                    : '✓ Saved'}
+                  ? t('more', { count: 3 - selectedTime.length })
+                  : `✓ ${t('saved')}`}
             </div>
           </div>
           <div
@@ -256,7 +247,7 @@ export function TrialLessonForm({
       <div className="grid gap-4">
         <Label className="text-[var(--cream)] flex items-center gap-2">
           <span className="text-[var(--amber)]">{intent === 'trial' ? '7.' : '6.'}</span>
-          {language === 'NL' ? 'Extra opties' : 'Extra options'}
+          {t('extraOptions')}
         </Label>
         <div className="flex items-center gap-3 p-3 rounded-xl border border-[var(--amber)]/20 bg-[var(--amber-hover)]/5">
           <div className="flex items-center gap-2">
@@ -267,13 +258,11 @@ export function TrialLessonForm({
               onChange={(e) => onHomeTutoringChange(e.target.checked)}
             />
             <Label htmlFor="homeTutoring" className="text-[var(--cream)]/90 cursor-pointer">
-              {language === 'NL' ? 'Bijles aan huis' : 'Home tutoring'}
+              {t('homeTutoring')}
             </Label>
           </div>
           <span className="text-[var(--cream)]/60 text-sm">
-            {language === 'NL'
-              ? '(alleen beschikbaar in Gein en Reigersbos)'
-              : '(only available in Gein and Reigersbos)'}
+            {t('homeTutoringArea')}
           </span>
         </div>
       </div>
@@ -283,13 +272,7 @@ export function TrialLessonForm({
         className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={!isFormValid}
       >
-        {!isFormValid
-          ? language === 'NL'
-            ? 'Vul alle verplichte velden in (*)'
-            : 'Fill in all required fields (*)'
-          : language === 'NL'
-            ? 'Verstuur via WhatsApp'
-            : 'Send via WhatsApp'}
+        {!isFormValid ? t('fillRequired') : t('sendWhatsApp')}
       </Button>
     </div>
   );

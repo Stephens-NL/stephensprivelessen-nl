@@ -51,7 +51,7 @@ export function OfferVariant({
   subject
 }: OfferVariantProps) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const language = locale === 'nl' ? 'NL' : 'EN';
   const t = useTranslations('boa');
   const [state, dispatch] = useReducer(offerFormReducer, {
     showModal: false,

@@ -1,20 +1,18 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaMapMarkerAlt, FaClock, FaCoffee } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { weekendLocations } from '@/data/weekendTutoring';
 import { WeekendLocation } from '@/data/types';
 
-interface LocationSectionProps {
-  content: WeekendLocation;
-}
+const content = weekendLocations.find(loc => loc.id === 'boa-me-na-menboa-mo') as WeekendLocation;
 
-export function LocationSection({ content }: LocationSectionProps) {
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+export function LocationSection() {
+  const t = useTranslations('boa');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -32,10 +30,10 @@ export function LocationSection({ content }: LocationSectionProps) {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)] mb-4">
-            {content.features.location.title[language]}
+            {t('features.location.title')}
           </h2>
           <p className="text-white/80 text-lg">
-            {content.location.description[language]}
+            {t('location.description')}
           </p>
         </div>
 
@@ -47,7 +45,7 @@ export function LocationSection({ content }: LocationSectionProps) {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-[var(--cream)] mb-2">
-                  {content.location.name[language]}
+                  {t('location.name')}
                 </h3>
                 <p className="text-white/80">
                   {content.location.address}
@@ -61,10 +59,10 @@ export function LocationSection({ content }: LocationSectionProps) {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-[var(--cream)] mb-2">
-                  {language === 'NL' ? 'Openingstijden' : 'Opening Hours'}
+                  {t('location.openingHours')}
                 </h3>
                 <p className="text-white/80">
-                  {content.location.hours[language]}
+                  {t('location.hours')}
                 </p>
               </div>
             </div>
@@ -75,13 +73,10 @@ export function LocationSection({ content }: LocationSectionProps) {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-[var(--cream)] mb-2">
-                  {language === 'NL' ? 'Faciliteiten' : 'Facilities'}
+                  {t('location.facilities')}
                 </h3>
                 <p className="text-white/80">
-                  {language === 'NL' 
-                    ? 'Rustige studieomgeving, gratis WiFi, koffie en thee beschikbaar'
-                    : 'Quiet study environment, free WiFi, coffee and tea available'
-                  }
+                  {t('location.facilitiesText')}
                 </p>
               </div>
             </div>
@@ -91,7 +86,7 @@ export function LocationSection({ content }: LocationSectionProps) {
               asChild
             >
               <Link href={content.location.mapUrl} target="_blank">
-                {language === 'NL' ? 'Open in Google Maps' : 'Open in Google Maps'}
+                {t('location.openInMaps')}
               </Link>
             </Button>
           </div>
@@ -112,4 +107,4 @@ export function LocationSection({ content }: LocationSectionProps) {
       </div>
     </m.section>
   );
-} 
+}

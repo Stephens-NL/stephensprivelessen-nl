@@ -1,17 +1,15 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { weekendLocations } from '@/data/weekendTutoring';
 import { WeekendLocation } from '@/data/types';
 
-interface PricingSectionProps {
-  content: WeekendLocation;
-}
+const content = weekendLocations.find(loc => loc.id === 'boa-me-na-menboa-mo') as WeekendLocation;
 
-export function PricingSection({ content }: PricingSectionProps) {
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
+export function PricingSection() {
+  const t = useTranslations('boa');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -31,13 +29,13 @@ export function PricingSection({ content }: PricingSectionProps) {
           {/* Regular Price */}
           <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm w-full md:w-64">
             <h3 className="text-lg font-medium text-[var(--cream)] mb-2">
-              {content.pricing.regularPrice.label[language]}
+              {t('pricing.regularPrice.label')}
             </h3>
             <div className="text-3xl font-bold mb-1 line-through text-white/70">
               €{content.pricing.regularPrice.amount}
             </div>
             <div className="text-sm text-white/60">
-              {content.pricing.regularPrice.perHour[language]}
+              {t('pricing.regularPrice.perHour')}
             </div>
           </div>
 
@@ -47,16 +45,16 @@ export function PricingSection({ content }: PricingSectionProps) {
           {/* Community Rate */}
           <div className="bg-gradient-to-br from-[var(--amber)] to-[var(--amber-hover)] rounded-xl p-6 w-full md:w-72">
             <h3 className="text-lg font-medium text-white mb-2">
-              {content.pricing.communityRate.label[language]}
+              {t('pricing.communityRate.label')}
             </h3>
             <div className="text-5xl font-bold mb-1">€{content.pricing.communityRate.amount}</div>
-            <div className="text-sm mb-2">{content.pricing.communityRate.perHour[language]}</div>
+            <div className="text-sm mb-2">{t('pricing.communityRate.perHour')}</div>
             <div className="bg-[var(--amber)] text-[var(--ink)] text-sm font-bold py-1 px-3 rounded-full inline-block">
-              {content.pricing.communityRate.savings[language]}
+              {t('pricing.communityRate.savings')}
             </div>
           </div>
         </div>
       </div>
     </m.section>
   );
-} 
+}
