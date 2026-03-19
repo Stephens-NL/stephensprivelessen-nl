@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import { FaStar, FaMapMarkerAlt, FaClock, FaCheck } from 'react-icons/fa';
 import { weekendLocations } from '@/data/weekendTutoring';
@@ -15,7 +15,9 @@ import { ZuidoostSubjectsSection } from '@/components/privelessen/zuidoost/Zuido
 import { config } from '@/data/config';
 
 export default function ZuidoostWeekendContent() {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const content = weekendLocations.find((loc) => loc.id === 'zuidoost-weekend');
   if (!content) throw new Error('Content not found for zuidoost-weekend');
   const businessData = getBusinessData(t);

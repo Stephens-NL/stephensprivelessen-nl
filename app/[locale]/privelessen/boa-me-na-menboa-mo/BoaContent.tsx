@@ -1,7 +1,7 @@
 'use client';
 
-import { useTranslation } from '@/hooks/useTranslation';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { weekendLocations } from '@/data/weekendTutoring';
 import { WeekendLocation, Bilingual, EducationLevel } from '@/data/types';
 import { CustomCursor } from '../../../components/shared/CustomCursor';
@@ -19,8 +19,11 @@ const content = weekendLocations.find(loc => loc.id === 'boa-me-na-menboa-mo') a
 if (!content) throw new Error('Content not found for boa-me-na-menboa-mo');
 
 export default function BoaContent() {
-  const { language } = useLanguage();
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const businessData = getBusinessData(t);
   const [activeLevel, setActiveLevel] = useState<string>('basis');
   const [subject, setSubject] = useState<Bilingual>(businessData.subjects.primary[0]);

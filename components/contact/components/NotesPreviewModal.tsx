@@ -3,7 +3,7 @@
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 
 interface NotesPreviewModalProps {
     isOpen: boolean;
@@ -14,7 +14,9 @@ interface NotesPreviewModalProps {
 }
 
 const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial }: NotesPreviewModalProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     if (!isOpen) return null;
 

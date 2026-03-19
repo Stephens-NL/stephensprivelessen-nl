@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import { User, Users, BookOpen, MapPin, Monitor } from 'lucide-react';
 
@@ -64,7 +64,8 @@ const services = [
 ];
 
 export function ServicesSection() {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   return (
     <section className="py-20 bg-gray-50">

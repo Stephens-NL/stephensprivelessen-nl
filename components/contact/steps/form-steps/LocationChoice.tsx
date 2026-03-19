@@ -3,7 +3,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
-import { useTranslation } from '../../../../hooks/useTranslation';
+
 
 interface LocationChoiceProps {
     formData: FormData;
@@ -11,7 +11,9 @@ interface LocationChoiceProps {
 }
 
 const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     const handleLocationChoice = (isOnline: boolean) => {
         onUpdate({ isOnline });

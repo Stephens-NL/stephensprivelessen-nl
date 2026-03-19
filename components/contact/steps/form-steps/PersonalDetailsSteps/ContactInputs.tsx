@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { config } from '@/data/config';
 
 export function EmailInput({
@@ -45,7 +45,9 @@ export function PhoneInput({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error: string | null;
 }) {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   return (
     <div>
       <label className="block text-yellow-300 mb-2">

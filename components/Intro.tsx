@@ -2,11 +2,10 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
-import { introductionContent } from '@/data/index'; // Adjust path as necessary
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 
 const Introductie = () => {
-  const { t } = useTranslation();
+  const t = useTranslations('about');
 
   // Animation variants for the entire section
   const sectionVariants = {
@@ -55,13 +54,13 @@ const Introductie = () => {
           className="text-3xl font-bold mb-6 text-center"
           variants={textItemVariants}
         >
-          {String(t(introductionContent.title))}
+          {t('introductionContent.title')}
         </m.h2>
         <m.p
           className="text-lg text-gray-700 leading-relaxed text-center"
           variants={textItemVariants}
         >
-          {String(t(introductionContent.description))}
+          {t('introductionContent.sections.0.content')}
         </m.p>
       </m.div>
     </m.section>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useReducer, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 type State = { studentName: string | null; isRedirecting: boolean };
 

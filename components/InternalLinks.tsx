@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { m } from 'framer-motion';
 
 const InternalLinks: React.FC = () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { FaStar } from 'react-icons/fa';
 import { WeekendLocation, Bilingual } from '@/data/types';
 import { OfferVariant } from './OfferVariant';
@@ -19,7 +19,8 @@ interface OffersSectionProps {
 }
 
 export function OffersSection({ content, educationLevels, activeLevel, subject }: OffersSectionProps) {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   return (
     <section id="offers" className="py-24 px-4">

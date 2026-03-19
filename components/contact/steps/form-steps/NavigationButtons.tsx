@@ -3,7 +3,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { useTranslation } from '../../../../hooks/useTranslation';
+
 
 interface NavigationButtonsProps {
     onBack: () => void;
@@ -14,7 +14,9 @@ interface NavigationButtonsProps {
 }
 
 const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: NavigationButtonsProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <div className="flex justify-between mt-8">

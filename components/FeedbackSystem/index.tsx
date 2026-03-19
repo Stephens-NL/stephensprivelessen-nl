@@ -1,9 +1,9 @@
 import React, { useCallback, useReducer } from 'react';
 import useSWR from 'swr';
 import { m, AnimatePresence, PanInfo } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { FeedbackForm, FeedbackFormDataImportProps, Language, PersonalIntermezzo, QuestionGroup } from '../../data';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 
 import FadeInText from './FadeInText';
 import LanguageSelector from './LanguageSelector';
@@ -148,8 +148,11 @@ const feedbackFetcher = (url: string) =>
 export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion: FeedbackForm }> = ({ longVersion, shortVersion }) => {
   const [state, dispatch] = useReducer(formReducer, initialFormState);
   const { currentStep, currentQuestionIndex, formData, selectedForm, isQuestionAnswered, showSummary, direction, isLastStep, showFarewell, contentHeight } = state;
-  const { t } = useTranslation();
-  const { language, setLanguage } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const { data: feedbackFormData, isLoading: loading, error: swrError } = useSWR<FeedbackFormDataImportProps>('/api/feedback', feedbackFetcher);
   const error = swrError ?? null;
 

@@ -3,7 +3,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { FaInfoCircle, FaCalendarCheck } from 'react-icons/fa';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 
 interface InitialChoiceProps {
     onChooseInfo: () => void;
@@ -11,7 +11,9 @@ interface InitialChoiceProps {
 }
 
 const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <m.div

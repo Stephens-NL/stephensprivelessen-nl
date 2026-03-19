@@ -11,7 +11,9 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     setIsQuestionAnswered,
     onNext,
 }) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     const inputRef = useRef<HTMLInputElement>(null);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 

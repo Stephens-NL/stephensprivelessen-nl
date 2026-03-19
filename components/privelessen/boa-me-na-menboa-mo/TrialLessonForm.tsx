@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
@@ -50,7 +50,8 @@ export function TrialLessonForm({
   onSend,
   title,
 }: TrialLessonFormProps) {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const isFormValid =
     studentName.trim() !== '' &&
     studentAge.trim() !== '' &&

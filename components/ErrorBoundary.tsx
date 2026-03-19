@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from './ui/button';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;
@@ -24,14 +24,13 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // You can log the error to an error reporting service here
     console.error('ErrorBoundary caught an error:', error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       return (
-        <ErrorBoundaryContent 
+        <ErrorBoundaryContent
           error={this.state.error}
           onRefresh={() => window.location.reload()}
           onHome={() => window.location.href = '/'}
@@ -50,19 +49,16 @@ interface ErrorBoundaryContentProps {
 }
 
 const ErrorBoundaryContent: React.FC<ErrorBoundaryContentProps> = ({ error, onRefresh, onHome }) => {
-  const { t } = useTranslation();
-  
+  const t = useTranslations('errors');
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50">
       <div className="text-center p-8 max-w-md">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">
-          {t({ EN: "Oops! Something went wrong.", NL: "Oeps! Er ging iets mis." })}
+          {t('error.title')}
         </h1>
         <p className="text-gray-600 mb-6">
-          {t({ 
-            EN: "An unexpected error occurred. Try refreshing the page or go back to the homepage.", 
-            NL: "Er is een onverwachte fout opgetreden. Probeer de pagina te verversen of ga terug naar de homepagina." 
-          })}
+          {t('error.defaultMessage')}
         </p>
         {error && (
           <pre className="bg-gray-100 p-4 rounded-lg text-sm text-gray-700 mb-6 overflow-auto">
@@ -74,15 +70,15 @@ const ErrorBoundaryContent: React.FC<ErrorBoundaryContentProps> = ({ error, onRe
             onClick={onRefresh}
             variant="outline"
           >
-            {t({ EN: "Refresh page", NL: "Pagina verversen" })}
+            {t('error.tryAgain')}
           </Button>
           <Button
             onClick={onHome}
           >
-            {t({ EN: "Go to homepage", NL: "Naar homepagina" })}
+            {t('notFound.returnHome')}
           </Button>
         </div>
       </div>
     </div>
   );
-}; 
+};

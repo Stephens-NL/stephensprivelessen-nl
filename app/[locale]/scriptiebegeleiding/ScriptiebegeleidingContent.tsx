@@ -1,12 +1,12 @@
 'use client';
 
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { JsonLdScript } from '@/components/JsonLdScript';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import { Syne, Space_Grotesk } from "next/font/google";
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 const syne = Syne({ 
     subsets: ['latin'],
@@ -69,8 +69,11 @@ const fadeIn = {
 };
 
 export default function ScriptiebegeleidingContent() {
-  const { t } = useTranslation();
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   const content = {
     title: {

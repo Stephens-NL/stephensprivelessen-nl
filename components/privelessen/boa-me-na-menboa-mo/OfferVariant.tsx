@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import { useReducer } from 'react';
 import { Button } from '@/components/ui/button';
@@ -50,7 +50,8 @@ export function OfferVariant({
   activeLevel,
   subject
 }: OfferVariantProps) {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const [state, dispatch] = useReducer(offerFormReducer, {
     showModal: false,
     studentName: '',

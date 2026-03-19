@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { WeekendLocation } from '@/data/types';
@@ -10,7 +10,8 @@ interface PricingSectionProps {
 }
 
 export function PricingSection({ content }: PricingSectionProps) {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 

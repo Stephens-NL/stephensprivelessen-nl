@@ -1,11 +1,12 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import { BookOpen, Target, Trophy, Users } from 'lucide-react';
 
 export function AboutSection() {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   const features = [
     {

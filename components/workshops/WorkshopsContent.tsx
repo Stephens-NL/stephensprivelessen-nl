@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef, useSyncExternalStore, useReducer } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
-import { useTranslation } from '@/hooks/useTranslation'
+import { useLocale } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import workshopsData from '@/data/workshopsData'
 import type { Workshop, WorkshopLevel, WorkshopFormat, Workshops } from '@/data/types'
@@ -44,7 +44,9 @@ const getFormatTranslation = (format?: WorkshopFormat): Bilingual => {
 };
 
 const HeroSection: React.FC = () => {
-    const { t } = useTranslation()
+    const locale = useLocale()
+    const language = locale.toUpperCase() as 'EN' | 'NL'
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
     
     return (
         <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white">
@@ -91,7 +93,9 @@ interface WorkshopCardProps {
 }
 
 const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestInfo }) => {
-    const { t } = useTranslation()
+    const locale = useLocale()
+    const language = locale.toUpperCase() as 'EN' | 'NL'
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
     const router = useRouter()
 
     const isCreative = workshop.type === 'creative'
@@ -213,7 +217,9 @@ interface CustomWorkshopCTAProps {
 }
 
 const CustomWorkshopCTA: React.FC<CustomWorkshopCTAProps> = ({ onContactUs }) => {
-    const { t } = useTranslation()
+    const locale = useLocale()
+    const language = locale.toUpperCase() as 'EN' | 'NL'
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
 
     return (
         <div className="mt-16 bg-gradient-to-r from-yellow-100 to-yellow-50 rounded-2xl p-8 md:p-12">
@@ -299,7 +305,9 @@ function filterReducer(state: FilterState, action: { type: string; payload?: str
 
 const WorkshopsContent: React.FC = () => {
     const router = useRouter();
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     const [filters, dispatchFilter] = useReducer(filterReducer, initialFilterState);
     const { type: typeFilter, audience: audienceFilter, size: sizeFilter, duration: durationFilter, schedule: scheduleFilter, isMobileOpen: isMobileFilterOpen, isDesktopOpen: isDesktopFilterOpen } = filters;
     const randomSeed = useSyncExternalStore(

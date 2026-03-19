@@ -3,7 +3,7 @@
 import React, { useReducer } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FormData } from '../../Contact';
-import { useTranslation } from '../../../../hooks/useTranslation';
+
 import { FaEye } from 'react-icons/fa';
 import NotesPreviewModal from '../../components/NotesPreviewModal';
 
@@ -190,7 +190,9 @@ function subjectReducer(state: SubjectState, action: { type: string; payload?: u
 }
 
 const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     const [state, dispatch] = useReducer(subjectReducer, {
         showOtherInput: false,
         otherSubject: '',

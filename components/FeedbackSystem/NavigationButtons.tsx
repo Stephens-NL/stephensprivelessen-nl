@@ -1,7 +1,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { feedbackFormData } from '../../data';
 
 interface NavigationButtonsProps {
@@ -11,7 +11,9 @@ interface NavigationButtonsProps {
 }
 
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onPrevious, onNext, isNextDisabled }) => {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
   return (
     <m.div

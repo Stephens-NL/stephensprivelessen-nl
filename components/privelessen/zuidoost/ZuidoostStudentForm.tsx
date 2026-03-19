@@ -1,7 +1,7 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -45,7 +45,8 @@ export function ZuidoostStudentForm({
   educationLevels: EducationLevel[];
   whatsappMessage: string;
 }) {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const [state, dispatch] = useReducer(formReducer, {
     studentName: '',
     studentAge: '',

@@ -1,13 +1,16 @@
 import React from 'react';
 import { m } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { Clock, ClipboardList } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { FormTypeSelectorProps, feedbackFormData } from '../../data';
 
 const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType }) => {
-  const { t } = useTranslation();
-  // const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+  // const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   
   const formTypes = {
     short: {

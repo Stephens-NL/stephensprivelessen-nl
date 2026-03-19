@@ -2,8 +2,8 @@
 
 import { m } from 'framer-motion';
 import Image from 'next/image';
-import { useTranslation } from '@/hooks/useTranslation';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { jsonLd } from './metadata';
@@ -16,8 +16,11 @@ const fadeIn = {
 };
 
 export default function ConsultancyContent() {
-  const { t } = useTranslation();
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const router = useRouter();
   const contactSectionRef = useRef<HTMLDivElement>(null);
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 
 interface GoogleCalendarAppointmentProps {
     isOpen: boolean;
@@ -19,7 +19,9 @@ const GoogleCalendarAppointment = ({
     studentName,
     studentEmail 
 }: GoogleCalendarAppointmentProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     if (!isOpen) return null;
 

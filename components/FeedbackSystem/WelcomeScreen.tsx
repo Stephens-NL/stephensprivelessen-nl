@@ -1,10 +1,12 @@
 import { WelcomeScreenData } from '../../data';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import React from 'react'
 
 const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void }> = ({ data, onContinue }) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <m.div

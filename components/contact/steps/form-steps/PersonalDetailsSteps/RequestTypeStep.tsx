@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 
 export function RequestTypeStep({
   requestType,
@@ -10,7 +10,9 @@ export function RequestTypeStep({
   requestType: string;
   onSelect: (type: 'self' | 'other') => void;
 }) {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   return (
     <m.div
       key="requestType"

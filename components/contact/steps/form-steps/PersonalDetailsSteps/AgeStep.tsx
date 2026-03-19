@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 
 export function AgeStep({
   age,
@@ -14,7 +14,9 @@ export function AgeStep({
   onSubmit: (e?: React.FormEvent) => void;
   isComplete: boolean;
 }) {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   return (
     <m.form
       key="age"

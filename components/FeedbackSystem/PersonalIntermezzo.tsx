@@ -1,10 +1,12 @@
 import { m } from 'framer-motion';
 import { PersonalIntermezzo } from '../../data';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import React from 'react'
 
 const PersonalIntermezzoComponent: React.FC<{ intermezzo: PersonalIntermezzo }> = ({ intermezzo }) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <m.div

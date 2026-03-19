@@ -2,17 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import useSWR from 'swr';
-import { PhilosophyCardProps, QuestionAnswer, IntroSectionProps, AboutData, Bilingual } from '../data/types';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { AnimatePresence, m } from 'framer-motion';
-import { useTranslation } from '../hooks/useTranslation';
-
-const fetcher = (url: string) => fetch(url).then((res) => {
-  if (!res.ok) throw new Error('Failed to fetch data');
-  return res.json();
-});
-
 
 const PhilosophyCard = ({ title, description }: {title: string, description: string}) => (
   <m.div
@@ -28,7 +20,7 @@ const PhilosophyCard = ({ title, description }: {title: string, description: str
   </m.div>
 );
 
-const DetailedInfoAccordion = ({ question, answer }: QuestionAnswer) => {
+const DetailedInfoAccordion = ({ question, answer }: { question: string; answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -46,7 +38,7 @@ const DetailedInfoAccordion = ({ question, answer }: QuestionAnswer) => {
         <m.span
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-        >▼</m.span>
+        >&#9660;</m.span>
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -64,104 +56,58 @@ const DetailedInfoAccordion = ({ question, answer }: QuestionAnswer) => {
   );
 };
 
-const IntroSection = ({ title, heading, paragraphs, imageSrc, altText }: IntroSectionProps) => (
-  <div className="container mx-auto px-4">
-    <m.h1
-      className="text-4xl font-bold text-center text-blue-900 mb-12"
-      initial={{ opacity: 0, y: -30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-    >
-      {title}
-    </m.h1>
-    <div className="flex flex-col md:flex-row items-center">
-      <m.div
-        className="md:w-1/2 mb-8 md:mb-0"
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-      >
-        <Image src={imageSrc} alt={altText} width={400} height={400} className="rounded-full shadow-lg" />
-      </m.div>
-      <m.div
-        className="md:w-1/2 md:pl-8"
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
-      >
-        <h2 className="text-3xl font-semibold text-blue-900 mb-4">{heading}</h2>
-        {paragraphs.map((paragraph: string, index: number) => (
-          <m.p
-            key={paragraph ? `${paragraph.slice(0, 30)}-${index}` : `para-${index}`}
-            className="mb-4 text-blue-800"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 + index * 0.1 }}
-          >
-            {paragraph}
-          </m.p>
-        ))}
-      </m.div>
-    </div>
-  </div>
-);
-
 const About = () => {
-  const { t, language } = useTranslation();
-  const { data: aboutData, isLoading: loading, error: swrError } = useSWR<AboutData>('/api/about', fetcher);
-  const error = swrError?.message ?? null;
+  const t = useTranslations('about');
 
-  if (loading) return <div>{t({ EN: "Loading...", NL: "Laden..." })}</div>;
-  if (error) return <div>{t({ EN: "Error: ", NL: "Fout: " })}{error}</div>;
-  if (!aboutData) return null;
-
-  // Destructure 'about' first
-  const {
-    title,
-    introduction: { heading, paragraphs, altText, imageSrc },
-    philosophyTitle,
-    cta: { title: ctaTitle, description: ctaDescription, buttonText, buttonLink },
-    detailedTitle,
-    detailedInfo,
-    philosophyPoints
-  } = aboutData.about;
-
-  interface ContentType {
-    pageTitle: string;
-    introHeading: string;
-    introParagraphs: string[];
-    philosophyTitle: string;
-    ctaTitle: string;
-    ctaDescription: string;
-    ctaButtonText: string;
-    detailedTitle: string;
-    detailedInfo: QuestionAnswer[];
-    altText: string;
-  }
-
-  const content: ContentType = {
-    pageTitle: String(t(title)),
-    introHeading: String(t(heading)),
-    introParagraphs: paragraphs[language] || [],
-    philosophyTitle: String(t(philosophyTitle)),
-    ctaTitle: String(t(ctaTitle)),
-    ctaDescription: String(t(ctaDescription)),
-    ctaButtonText: String(t(buttonText)),
-    detailedTitle: String(t(detailedTitle)),
-    detailedInfo: detailedInfo[language] || [],
-    altText: String(t(altText)),
-  };
+  // Get philosophy points count (3 from JSON)
+  const philosophyPoints = [0, 1, 2];
+  // Get detailed info count (5 from JSON)
+  const detailedInfoItems = [0, 1, 2, 3, 4];
+  // Get paragraphs count (2 from JSON)
+  const paragraphs = [0, 1];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-100 to-blue-100">
       <section className="py-20">
-        <IntroSection
-          title={content.pageTitle}
-          heading={content.introHeading}
-          paragraphs={content.introParagraphs}
-          imageSrc={imageSrc}
-          altText={content.altText}
-        />
+        <div className="container mx-auto px-4">
+          <m.h1
+            className="text-4xl font-bold text-center text-blue-900 mb-12"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            {t('title')}
+          </m.h1>
+          <div className="flex flex-col md:flex-row items-center">
+            <m.div
+              className="md:w-1/2 mb-8 md:mb-0"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            >
+              <Image src="/images/jpeg/portrait.jpeg" alt={t('introduction.altText')} width={400} height={400} className="rounded-full shadow-lg" />
+            </m.div>
+            <m.div
+              className="md:w-1/2 md:pl-8"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            >
+              <h2 className="text-3xl font-semibold text-blue-900 mb-4">{t('introduction.heading')}</h2>
+              {paragraphs.map((index) => (
+                <m.p
+                  key={index}
+                  className="mb-4 text-blue-800"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 + index * 0.1 }}
+                >
+                  {t(`introduction.paragraphs.${index}`)}
+                </m.p>
+              ))}
+            </m.div>
+          </div>
+        </div>
       </section>
 
       <section className="py-20 bg-blue-50 bg-opacity-50">
@@ -172,11 +118,15 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {content.philosophyTitle}
+            {t('philosophyTitle')}
           </m.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {philosophyPoints.map((point: {title: Bilingual; description: Bilingual}) => (
-              <PhilosophyCard key={point.title.EN} title={String(t(point.title))} description={String(t(point.description))} />
+            {philosophyPoints.map((index) => (
+              <PhilosophyCard
+                key={index}
+                title={t(`philosophyPoints.${index}.title`)}
+                description={t(`philosophyPoints.${index}.description`)}
+              />
             ))}
           </div>
         </div>
@@ -190,12 +140,15 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {String(t(detailedTitle))}
+            {t('detailedTitle')}
           </m.h2>
-          {Array.isArray(content.detailedInfo) &&
-            content.detailedInfo.map((info) => (
-              <DetailedInfoAccordion key={info.question} question={info.question} answer={info.answer} />
-            ))}
+          {detailedInfoItems.map((index) => (
+            <DetailedInfoAccordion
+              key={index}
+              question={t(`detailedInfo.items.${index}.question`)}
+              answer={t(`detailedInfo.items.${index}.answer`)}
+            />
+          ))}
         </div>
       </section>
 
@@ -207,15 +160,15 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {content.ctaTitle}
+            {t('cta.title')}
           </m.h2>
-          <p className="mb-8">{content.ctaDescription}</p>
+          <p className="mb-8">{t('cta.description')}</p>
           <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
-              href={buttonLink}
+              href="/contact"
               className="inline-block bg-white text-blue-900 font-semibold py-3 px-8 rounded-full hover:bg-yellow-100 transition-colors duration-300"
             >
-              {content.ctaButtonText}
+              {t('cta.buttonText')}
             </Link>
           </m.div>
         </div>

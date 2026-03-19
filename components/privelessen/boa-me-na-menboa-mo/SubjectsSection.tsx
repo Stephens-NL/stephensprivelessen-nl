@@ -1,7 +1,7 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
+
 import { m, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useReducer } from 'react';
 import { FaHandPointer, FaSearch } from 'react-icons/fa';
@@ -79,8 +79,9 @@ export function SubjectsSection({
   subject,
   setSubject
 }: SubjectsSectionProps) {
-  const { language } = useLanguage();
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  
   const businessData = getBusinessData(t);
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
   const { searchQuery, hoveredSubject, studentName, studentAge, wantsHomeTutoring, intent, selectedTime, showModal, selectedSubject } = formState;

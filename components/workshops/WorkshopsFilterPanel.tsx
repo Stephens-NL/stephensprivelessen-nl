@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { FiRotateCcw } from 'react-icons/fi';
 import {
   FilterSection,
@@ -33,7 +33,9 @@ export function WorkshopsFilterPanel({
   onFilterChange,
   onReset,
 }: WorkshopsFilterPanelProps) {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
   return (
     <>

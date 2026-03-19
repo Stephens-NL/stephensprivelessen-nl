@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { contactData } from '../../data/contactData';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { CollapsibleSectionProps, ContactInfoProps, PricingTableProps, Subject, SubjectListProps } from '@/data';
 import { IconType } from 'react-icons/lib';
 
@@ -21,7 +21,9 @@ const IconMap: IconMap = {
 
 const ContactInfo = ({ icon, title, content, href: link }: ContactInfoProps) => {
     const IconComponent = IconMap[icon];
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <m.div
@@ -48,7 +50,9 @@ const ContactInfo = ({ icon, title, content, href: link }: ContactInfoProps) => 
 
 const CollapsibleSection = ({ title, children }: CollapsibleSectionProps) => {
     const [isOpen, setIsOpen] = useState(false);
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <div className="mb-4">
@@ -78,7 +82,9 @@ const CollapsibleSection = ({ title, children }: CollapsibleSectionProps) => {
 };
 
 const SubjectList = ({ subjects, title }: SubjectListProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold text-yellow-300 mb-2">{String(t(title))}</h3>
@@ -117,7 +123,9 @@ const PricingTable = ({ pricing, title }: PricingTableProps) => {
 
 const Placeholder = () => {
     const whatsappLink = `https://wa.me/${contactData.contactItems[0].content.replace(/\s+/g, '')}`;
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">

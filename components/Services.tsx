@@ -2,37 +2,42 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import useSWR from 'swr';
 import { AnimatePresence, m } from 'framer-motion';
-import { Hero, Service, generalContent } from '@/data';
-import type { HeroData, ServiceData } from '@/data/types';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import ButtonTrial from './ButtonTrial';
-import ButtonLearnMore from './ButtonLearnMore';
 import { X } from 'lucide-react';
-import Link from 'next/link';
 
-const fetcher = (url: string) =>
-  fetch(url).then((res) => {
-    if (!res.ok) throw new Error('Failed to fetch data');
-    return res.json();
-  });
+// Service icon imports - these are non-translatable config
+import mathIcon from '@/public/images/svg/math.svg';
+import programmingIcon from '@/public/images/svg/programming.svg';
+import creativeIcon from '@/public/images/svg/creative.svg';
+import nonCreativeIcon from '@/public/images/svg/noncreative.svg';
+import consultancyIcon from '@/public/images/svg/consultancy.svg';
+import customIcon from '@/public/images/svg/custom.svg';
+
+const serviceIcons = [mathIcon, programmingIcon, creativeIcon, nonCreativeIcon, consultancyIcon, customIcon];
+
+const serviceIds = [
+  'mathematics-tutoring',
+  'programming-lessons',
+  'creative-workshops',
+  'non-creative-workshops',
+  'consultancy',
+  'custom-solutions',
+];
+
+const serviceLinkMap: Record<string, string> = {
+  'mathematics-tutoring': '/privelessen',
+  'programming-lessons': '/privelessen',
+  'creative-workshops': '/workshops?type=creative',
+  'non-creative-workshops': '/workshops?type=academic',
+  'consultancy': '/consultancy',
+};
 
 const Services = () => {
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const { t } = useTranslation();
-  const { data: serviceData, isLoading: loading, error: servicesError } = useSWR<ServiceData>('/api/services', fetcher);
-  const { data: heroData } = useSWR<HeroData>('/api/hero', fetcher);
-  const error = servicesError?.message ?? null;
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!serviceData) return null;
-  if (!heroData) return null;
-
-  const { services } = serviceData;
-  const { hero } = heroData;
-  const { ourServices, learnMore } = generalContent;
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const t = useTranslations('services');
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -74,7 +79,7 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {String(t(ourServices))}
+            {t('ourServices')}
           </m.h2>
           <m.p
             className="text-lg sm:text-xl text-white mb-8"
@@ -82,7 +87,7 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {String(t(generalContent.serviceDetails))}
+            {t('serviceDetails')}
           </m.p>
         </div>
 
@@ -93,58 +98,45 @@ const Services = () => {
           initial="hidden"
           animate="visible"
         >
-          {services.map(({ icon, title, shortDescription }: Service) => (
+          {serviceIds.map((id, index) => (
             <m.div
-              key={title.EN}
+              key={id}
               className="bg-white bg-opacity-90 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col transform hover:-translate-y-2"
               variants={itemVariants}
             >
               <div className="flex justify-center mb-4 sm:mb-6">
                 <Image
-                  src={icon}
-                  alt={String(t(title))}
+                  src={serviceIcons[index]}
+                  alt={t(`items.${index}.title`)}
                   width={60}
                   height={60}
                   className="text-blue-500 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
                 />
               </div>
               <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-center text-blue-900">
-                {String(t(title))}
+                {t(`items.${index}.title`)}
               </h3>
               <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 text-center flex-grow">
-                {String(t(shortDescription))}
+                {t(`items.${index}.shortDescription`)}
               </p>
               <m.div
                 className="text-center mt-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {services[index].title.EN === "Mathematics & General Tutoring" || services[index].title.EN === "Programming Lessons" ? (
-                  <Link href="/privelessen">
+                {serviceLinkMap[id] ? (
+                  <Link href={serviceLinkMap[id] as any}>
                     <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
-                      {String(t(learnMore))} &rarr;
-                    </button>
-                  </Link>
-                ) : services[index].title.EN === "Creative Workshops" ? (
-                  <Link href="/workshops?type=creative">
-                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
-                      {String(t(learnMore))} &rarr;
-                    </button>
-                  </Link>
-                ) : services[index].title.EN === "Non-Creative Workshops" ? (
-                  <Link href="/workshops?type=academic">
-                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
-                      {String(t(learnMore))} &rarr;
-                    </button>
-                  </Link>
-                ) : services[index].title.EN === "Consultancy & Advisory" ? (
-                  <Link href="/consultancy">
-                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
-                      {String(t(learnMore))} &rarr;
+                      {t('learnMore')} &rarr;
                     </button>
                   </Link>
                 ) : (
-                  <ButtonLearnMore t={t} onButtonClick={() => setSelectedService(services[index])} index={index} />
+                  <button
+                    onClick={() => setSelectedIndex(index)}
+                    className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300"
+                  >
+                    {t('learnMore')} &rarr;
+                  </button>
                 )}
               </m.div>
             </m.div>
@@ -153,7 +145,7 @@ const Services = () => {
       </div>
 
       <AnimatePresence>
-        {selectedService && (
+        {selectedIndex !== null && (
           <m.div
             className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
@@ -168,38 +160,26 @@ const Services = () => {
               transition={{ type: 'spring', damping: 20, stiffness: 300 }}
             >
               <button
-                onClick={() => setSelectedService(null)}
+                onClick={() => setSelectedIndex(null)}
                 className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700"
               >
                 <X size={24} />
               </button>
               <div className="text-center">
                 <Image
-                  src={selectedService.icon}
-                  alt={String(t(selectedService.title))}
+                  src={serviceIcons[selectedIndex]}
+                  alt={t(`items.${selectedIndex}.title`)}
                   width={80}
                   height={80}
                   className="mx-auto mb-4 sm:mb-6 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
                 />
                 <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-blue-900">
-                  {String(t(selectedService.title))}
+                  {t(`items.${selectedIndex}.title`)}
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6">
-                  {String(t(selectedService.longDescription))}
+                  {t(`items.${selectedIndex}.longDescription`)}
                 </p>
-                {selectedService.subjectsList && (
-                  <div className="mb-4 sm:mb-6">
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2 text-blue-900">Subjects covered:</h3>
-                    <div className="flex flex-wrap justify-center gap-2">
-                      {selectedService.subjectsList.map((subject) => (
-                        <span key={subject} className="bg-blue-100 text-blue-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">
-                          {subject}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                <ButtonTrial hero={hero} />
+                <ButtonTrial />
               </div>
             </m.div>
           </m.div>

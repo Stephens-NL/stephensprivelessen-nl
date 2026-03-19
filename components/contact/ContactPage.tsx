@@ -8,7 +8,7 @@ import TextInput from '../../components/contact/questions/TextInput';
 import MultipleChoice from '../../components/contact/questions/MultipleChoice';
 import { m } from 'framer-motion';
 import { getBusinessData } from '@/data/businessData';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 
 type FormState = { data: Record<string, string>; questionIndex: number; userType: string };
 
@@ -30,7 +30,9 @@ function formReducer(state: FormState, action: { type: string; payload?: unknown
 }
 
 const ContactPage: React.FC = () => {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const businessData = getBusinessData(t);
   const [language, setLanguage] = useState<'en' | 'nl'>('en');
   const [formState, dispatchForm] = useReducer(formReducer, { data: {}, questionIndex: 0, userType: '' });

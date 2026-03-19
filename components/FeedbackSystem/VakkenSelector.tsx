@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, KeyboardEvent } from 'react';
 import { Search } from 'lucide-react';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { getBusinessData } from '@/data/businessData';
 
 const EMPTY_VAKKEN: string[] = [];
@@ -12,7 +12,9 @@ interface VakkenSelectorProps {
 }
 
 const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue = EMPTY_VAKKEN, setIsQuestionAnswered }) => {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const businessData = getBusinessData(t);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedVakken, setSelectedVakken] = useState<string[]>(() => initialValue);

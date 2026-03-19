@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaMapMarkerAlt, FaClock, FaCheck } from 'react-icons/fa';
@@ -11,7 +11,8 @@ interface AboutSectionProps {
 }
 
 export function AboutSection({ content }: AboutSectionProps) {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 

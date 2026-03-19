@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useTranslation } from 'next-i18next';
+import { useLocale } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { IconType } from 'react-icons/lib';
@@ -28,7 +28,9 @@ interface ContactInfoProps {
 
 const ContactInfo: React.FC<ContactInfoProps> = ({ icon, title, content, href }) => {
     const IconComponent = IconMap[icon];
-    const { t } = useTranslation('contact');
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <m.div
@@ -60,7 +62,9 @@ interface CollapsibleSectionProps {
 
 const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({ title, children }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const { t } = useTranslation('contact');
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     return (
         <div className="mb-4">
@@ -95,7 +99,9 @@ interface SubjectListProps {
 }
 
 const SubjectList: React.FC<SubjectListProps> = ({ subjects, title }) => {
-    const { t } = useTranslation('contact');
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold text-yellow-300 mb-2">{t(title)}</h3>
@@ -119,7 +125,9 @@ interface PricingTableProps {
 }
 
 const PricingTable: React.FC<PricingTableProps> = ({ pricing, title }) => {
-    const { t } = useTranslation('contact');
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold text-yellow-300 mb-2">{t(title)}</h3>
@@ -144,7 +152,9 @@ const PricingTable: React.FC<PricingTableProps> = ({ pricing, title }) => {
 };
 
 const ContactPage: React.FC = () => {
-    const { t } = useTranslation('contact');
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     const businessData = getBusinessData(t);
     const whatsappLink = `https://wa.me/${businessData.contactItems[0].content.replace(/\s+/g, '')}`;
 

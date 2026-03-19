@@ -1,7 +1,7 @@
 'use client';
 
-import { useTranslation } from '@/hooks/useTranslation';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { CustomCursor } from '@/components/shared/CustomCursor';
 import Header from '@/components/Header';
 import { HeroSection } from '@/components/mbo-rekenen/HeroSection';

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import { Target, Heart, BookOpenCheck, Lightbulb } from 'lucide-react';
 
@@ -53,7 +53,8 @@ const reasons = [
 ];
 
 export function WhyChooseSection() {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   return (
     <section className="py-20 bg-white">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -11,7 +11,8 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ content }: HeroSectionProps) {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const { scrollYProgress } = useScroll({
     offset: ["start start", "end start"]
   });

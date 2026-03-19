@@ -6,7 +6,7 @@ import { TutoringPage } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Check } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 interface PricingSectionProps {
   pricing: TutoringPage['pricing'];

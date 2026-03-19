@@ -2,11 +2,13 @@
 
 import React, { useState } from 'react';
 import { m } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { infoSectionTranslations as translations } from '@/data/infoSection';
 
 export function ContactPricingTable() {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const [selectedLevel, setSelectedLevel] = useState<'middelbaar' | 'hoger'>('middelbaar');
   return (
     <m.div

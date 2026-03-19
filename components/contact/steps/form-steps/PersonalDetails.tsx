@@ -3,7 +3,7 @@
 import React, { useReducer } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { FormData } from '../../Contact';
-import { useTranslation } from '../../../../hooks/useTranslation';
+
 import { getEmailError, getPhoneNumberError, formatPhoneNumber } from '../../../../lib/validation';
 import { AgeStep } from './PersonalDetailsSteps/AgeStep';
 import { RequestTypeStep } from './PersonalDetailsSteps/RequestTypeStep';
@@ -42,7 +42,9 @@ function isFieldComplete(value: unknown): boolean {
 }
 
 const PersonalDetails = ({ formData, onUpdate }: PersonalDetailsProps) => {
-  const { t } = useTranslation();
+  const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const [state, dispatch] = useReducer(detailsReducer, {
     age: formData.age,
     showRequestType: false,

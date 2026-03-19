@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { infoSectionTranslations as translations, groupPricingTiers } from '@/data/infoSection';
 
 export function ContactGroupPricingTable() {
-  const { t, language } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const [showExample, setShowExample] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState<'middelbaar' | 'hoger'>('middelbaar');
   return (

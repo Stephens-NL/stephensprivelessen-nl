@@ -1,7 +1,7 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaCoffee, FaMapMarkerAlt, FaClock, FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
@@ -10,7 +10,8 @@ function mapReducer(state: { showMap: boolean }, action: { type: 'TOGGLE' }) {
 }
 
 export function ZuidoostLocationMap() {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const [{ showMap }, dispatch] = useReducer(mapReducer, { showMap: true });
 
   return (

@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { EmailInput, PhoneInput } from './ContactInputs';
 
 export function MinorForm({
@@ -21,7 +21,9 @@ export function MinorForm({
   onPhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isFieldComplete: (v: unknown) => boolean;
 }) {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -20 } };
 
   return (

@@ -1,11 +1,12 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import { Mail, MessageCircle, Phone, MapPin, Clock } from 'lucide-react';
 
 export function ContactSection() {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   const contactInfo = [
     {

@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { FaWhatsapp, FaTimes } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslations } from 'next-intl';
 import { Textarea } from "@/components/ui/textarea";
 import { config } from '@/data/config';
 
@@ -18,9 +18,9 @@ interface WhatsAppCTAButtonProps {
   modalTitle?: string;
   modalDescription?: string;
   children?: React.ReactNode;
-  onSubmit?: (formData: { 
-    name: string; 
-    age: string; 
+  onSubmit?: (formData: {
+    name: string;
+    age: string;
     requestType: 'trial' | 'info';
     message?: string;
     preferredTimes?: string[];
@@ -39,7 +39,7 @@ export default function WhatsAppCTAButton({
   onSubmit,
   customFormFields
 }: WhatsAppCTAButtonProps) {
-  const { t } = useTranslation();
+  const t = useTranslations('contact');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -63,31 +63,30 @@ export default function WhatsAppCTAButton({
     });
   };
 
-  const isFormValid = formData.name.trim() !== '' && 
-    formData.age.trim() !== '' && 
-    (formData.requestType === 'info' || 
+  const isFormValid = formData.name.trim() !== '' &&
+    formData.age.trim() !== '' &&
+    (formData.requestType === 'info' ||
       (formData.requestType === 'trial' && formData.preferredTimes.length === 3));
 
   const handleSubmit = () => {
     if (onSubmit) {
       onSubmit(formData);
     } else {
-      // Default behavior
       const message = `${prefilledMessage}
 - Name: ${formData.name}
 - Age: ${formData.age}
 - Request Type: ${formData.requestType === 'trial' ? 'Trial Lesson' : 'Information'}${
-  formData.requestType === 'trial' 
+  formData.requestType === 'trial'
     ? `\n- Preferred Times:\n  1. ${formData.preferredTimes[0]}\n  2. ${formData.preferredTimes[1]}\n  3. ${formData.preferredTimes[2]}`
     : ''
 }${formData.message ? `\n\nAdditional Message:\n${formData.message}` : ''}`;
-      
+
       window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
     }
     setIsModalOpen(false);
-    setFormData({ 
-      name: '', 
-      age: '', 
+    setFormData({
+      name: '',
+      age: '',
       requestType: 'info',
       message: '',
       preferredTimes: []
@@ -103,10 +102,7 @@ export default function WhatsAppCTAButton({
         {children || (
           <>
             <FaWhatsapp className="text-xl" />
-            <span>{buttonText || String(t({
-              EN: 'Contact via WhatsApp',
-              NL: 'Contact via WhatsApp'
-            }))}</span>
+            <span>{buttonText || 'Contact via WhatsApp'}</span>
           </>
         )}
       </button>
@@ -115,55 +111,37 @@ export default function WhatsAppCTAButton({
         <DialogContent className="bg-blue-900 border border-blue-300/50 text-blue-100">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-blue-400">
-              {modalTitle || String(t({
-                EN: 'Student Information',
-                NL: 'Student Informatie'
-              }))}
+              {modalTitle || 'Student Informatie'}
             </DialogTitle>
             <DialogDescription className="text-blue-200">
-              {modalDescription || String(t({
-                EN: 'Please provide some information before we connect via WhatsApp',
-                NL: 'Vul alstublieft wat informatie in voordat we verbinden via WhatsApp'
-              }))}
+              {modalDescription || 'Vul alstublieft wat informatie in voordat we verbinden via WhatsApp'}
             </DialogDescription>
           </DialogHeader>
-          
+
           <div className="space-y-6 py-4">
             {customFormFields || (
               <>
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-blue-300">
-                    {String(t({
-                      EN: 'Student Name',
-                      NL: 'Naam Student'
-                    }))}
+                    Naam Student
                   </Label>
                   <Input
                     id="name"
-                    placeholder={String(t({
-                      EN: 'Enter student name...',
-                      NL: 'Vul naam student in...'
-                    }))}
+                    placeholder="Vul naam student in..."
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     className="bg-blue-800 border-blue-300/50 text-blue-100 placeholder:text-blue-200/50"
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="age" className="text-blue-300">
-                    {String(t({
-                      EN: 'Student Age',
-                      NL: 'Leeftijd Student'
-                    }))}
+                    Leeftijd Student
                   </Label>
                   <Input
                     id="age"
                     type="number"
-                    placeholder={String(t({
-                      EN: 'Enter student age...',
-                      NL: 'Vul leeftijd student in...'
-                    }))}
+                    placeholder="Vul leeftijd student in..."
                     value={formData.age}
                     onChange={(e) => setFormData(prev => ({ ...prev, age: e.target.value }))}
                     className="bg-blue-800 border-blue-300/50 text-blue-100 placeholder:text-blue-200/50"
@@ -172,10 +150,7 @@ export default function WhatsAppCTAButton({
 
                 <div className="space-y-2">
                   <Label className="text-blue-300">
-                    {String(t({
-                      EN: 'What would you like to do?',
-                      NL: 'Wat wil je doen?'
-                    }))}
+                    Wat wil je doen?
                   </Label>
                   <div className="grid grid-cols-2 gap-3">
                     <button
@@ -188,13 +163,7 @@ export default function WhatsAppCTAButton({
                       }`}
                     >
                       <div className="flex flex-col items-center gap-2">
-                        <span className="text-2xl">💡</span>
-                        <span className="text-center">
-                          {String(t({
-                            EN: 'More Information',
-                            NL: 'Meer Informatie'
-                          }))}
-                        </span>
+                        <span className="text-center">Meer Informatie</span>
                       </div>
                     </button>
                     <button
@@ -207,13 +176,7 @@ export default function WhatsAppCTAButton({
                       }`}
                     >
                       <div className="flex flex-col items-center gap-2">
-                        <span className="text-2xl">📚</span>
-                        <span className="text-center">
-                          {String(t({
-                            EN: 'Trial Lesson',
-                            NL: 'Proefles'
-                          }))}
-                        </span>
+                        <span className="text-center">Proefles</span>
                       </div>
                     </button>
                   </div>
@@ -223,10 +186,7 @@ export default function WhatsAppCTAButton({
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
                       <Label className="text-blue-300">
-                        {String(t({
-                          EN: 'Choose three preferred times',
-                          NL: 'Kies drie voorkeurstijden'
-                        }))}
+                        Kies drie voorkeurstijden
                       </Label>
                       <span className="text-sm text-blue-200">
                         {formData.preferredTimes.length}/3
@@ -234,7 +194,7 @@ export default function WhatsAppCTAButton({
                     </div>
                     <div className="grid grid-cols-4 gap-2">
                       {[
-                        "12:00", "12:30", "13:00", "13:30", 
+                        "12:00", "12:30", "13:00", "13:30",
                         "14:00", "14:30", "15:00", "15:30",
                         "16:00", "16:30", "17:00", "17:30"
                       ].map((time) => (
@@ -260,17 +220,11 @@ export default function WhatsAppCTAButton({
 
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-blue-300">
-                    {String(t({
-                      EN: 'Additional Message (Optional)',
-                      NL: 'Extra Bericht (Optioneel)'
-                    }))}
+                    Extra Bericht (Optioneel)
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder={String(t({
-                      EN: 'Any specific questions or requirements...',
-                      NL: 'Specifieke vragen of wensen...'
-                    }))}
+                    placeholder="Specifieke vragen of wensen..."
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                     className="bg-blue-800 border-blue-300/50 text-blue-100 placeholder:text-blue-200/50 min-h-[100px]"
@@ -286,10 +240,7 @@ export default function WhatsAppCTAButton({
               onClick={() => setIsModalOpen(false)}
               className="border-blue-300/50 text-blue-200 hover:bg-blue-800 hover:text-blue-100"
             >
-              {String(t({
-                EN: 'Cancel',
-                NL: 'Annuleren'
-              }))}
+              Annuleren
             </Button>
             <Button
               onClick={handleSubmit}
@@ -297,14 +248,11 @@ export default function WhatsAppCTAButton({
               className="bg-green-500 hover:bg-green-400 text-white flex items-center gap-2"
             >
               <FaWhatsapp />
-              {String(t({
-                EN: 'Continue to WhatsApp',
-                NL: 'Ga door naar WhatsApp'
-              }))}
+              Ga door naar WhatsApp
             </Button>
           </div>
         </DialogContent>
       </Dialog>
     </>
   );
-} 
+}

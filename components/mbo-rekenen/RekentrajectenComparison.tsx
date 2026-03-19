@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import { rekentrajectenComparison } from '@/data/pricingData';
 import { Button } from '@/components/ui/button';
@@ -11,7 +11,8 @@ import { RekentrajectenComparisonTable } from './RekentrajectenComparisonTable';
 import { RekentrajectenCTA } from './RekentrajectenCTA';
 
 export function RekentrajectenComparison() {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
   const [showDetails, setShowDetails] = useState(false);
 
   const scrollToContact = () => {

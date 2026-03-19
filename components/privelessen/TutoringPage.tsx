@@ -9,7 +9,7 @@ import { ProcessSection } from './ProcessSection';
 import { TestimonialsSection } from './TestimonialsSection';
 import { PricingSection } from './PricingSection';
 import { FAQSection } from './FAQSection';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { tutoringPage } from '@/data/tutoringPage';
 
 interface LocationSpecific {
@@ -23,7 +23,9 @@ interface TutoringPageProps {
 }
 
 export function TutoringPage({ locationSpecific }: TutoringPageProps) {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
   // Customize hero content for location-specific pages
   const heroContent = locationSpecific ? {

@@ -3,17 +3,14 @@
 import React from 'react';
 import Image from 'next/image';
 import { m } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import TextBlock from './TextBlock';
 import ButtonTrial from '../ButtonTrial';
 import SignInHere from './SignInHere';
-import { useTranslation } from '../../hooks/useTranslation';
-import { hero } from '@/data/hero';
 import portrait2 from '@/public/images/jpeg/portrait2.jpeg';
 
 const Hero = () => {
-  const { t } = useTranslation();
-  const { img } = hero;
-  const { imageSrc, altern } = img;
+  const t = useTranslations('home');
 
   return (
     <section className="bg-[#FCF8F1] bg-opacity-30 py-10 sm:py-16 lg:py-24">
@@ -40,7 +37,7 @@ const Hero = () => {
           >
             <Image
               src={portrait2}
-              alt={String(t(altern))}
+              alt={t('hero.imgAlt')}
               width={600}
               height={400}
               className="rounded-xl shadow-lg"

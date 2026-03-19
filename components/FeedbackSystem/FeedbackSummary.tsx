@@ -1,6 +1,6 @@
 import React from 'react';
 import { m } from 'framer-motion';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { Send, Edit2 } from 'lucide-react';
 import { feedbackFormData, FeedbackSummaryProps, RenderSummaryItemProps } from '../../data';
 
@@ -14,7 +14,9 @@ function SummaryItem({ label, value }: RenderSummaryItemProps) {
 }
 
 const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) => {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
   return (
     <m.div

@@ -2,28 +2,23 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslations, useLocale } from 'next-intl';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
-import { useLanguage } from '@/contexts/LanguageContext';
 import FloatingShapes from './FloatingShapes';
 import FadeInText from './FadeInText';
-import { FAQInfo, FAQItems } from '@/data/types';
 
-interface FaqProps {
-  faqInfo: FAQInfo;
-  faqItems: FAQItems;
-}
+// FAQ items count from JSON (20 items)
+const FAQ_COUNT = 20;
 
-const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
+const Faq: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const { t } = useTranslation();
-  const { language } = useLanguage();
+  const t = useTranslations('faq');
+  const locale = useLocale();
   const showBackToTop = useScrollPosition(300);
 
-  // Ensure hydration consistency
   React.useEffect(() => {
     setMounted(true);
   }, []);
@@ -36,31 +31,33 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const filteredItems = useMemo(() => {
-    if (!mounted) return faqItems;
-    
-    return faqItems.filter((item) => {
-      const questionText = String(t(item.question));
-      const answerText = String(t(item.answer));
+  const allIndices = useMemo(() => Array.from({ length: FAQ_COUNT }, (_, i) => i), []);
+
+  const filteredIndices = useMemo(() => {
+    if (!mounted) return allIndices;
+
+    return allIndices.filter((index) => {
+      const questionText = t(`items.${index}.question`);
+      const answerText = t(`items.${index}.answer`);
 
       return (
         questionText.toLowerCase().includes(searchTerm.toLowerCase()) ||
         answerText.toLowerCase().includes(searchTerm.toLowerCase())
       );
     });
-  }, [searchTerm, t, mounted, faqItems]);
+  }, [searchTerm, t, mounted, allIndices]);
 
   if (!mounted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
         <h1 className="text-4xl font-bold text-center mb-8">
-          {String(t(faqInfo.title))}
+          {t('title')}
         </h1>
         <div className="max-w-3xl mx-auto">
-          {faqItems.map((item) => (
-            <div key={item.id} className="mb-4">
+          {allIndices.map((index) => (
+            <div key={index} className="mb-4">
               <button className="w-full p-4 text-left flex justify-between items-center bg-white bg-opacity-10 backdrop-blur-lg rounded-lg">
-                <span>{String(t(item.question))}</span>
+                <span>{t(`items.${index}.question`)}</span>
                 <ChevronDown />
               </button>
             </div>
@@ -73,13 +70,13 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
       <m.h1
-        key={language}
+        key={locale}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="text-4xl font-bold text-center mb-8"
       >
-        <FadeInText text={String(t(faqInfo.title))} />
+        <FadeInText text={t('title')} />
       </m.h1>
 
       <m.div
@@ -91,7 +88,7 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
         <div className="relative">
           <input
             type="text"
-            placeholder={String(t(faqInfo.searchPlaceholder))}
+            placeholder={t('searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-4 pl-12 rounded-full bg-white bg-opacity-20 backdrop-blur-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-yellow-300"
@@ -106,12 +103,12 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
         transition={{ delay: 0.4 }}
         className="max-w-3xl mx-auto"
       >
-        {filteredItems.map((item, index) => (
+        {filteredIndices.map((index, displayIndex) => (
           <m.div
-            key={`${item.id}-${language}`}
+            key={`${index}-${locale}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
+            transition={{ delay: displayIndex * 0.1 }}
             className="mb-4"
           >
             <m.button
@@ -120,7 +117,7 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span>{String(t(item.question))}</span>
+              <span>{t(`items.${index}.question`)}</span>
               {activeIndex === index ? <ChevronUp /> : <ChevronDown />}
             </m.button>
             <AnimatePresence>
@@ -132,7 +129,7 @@ const Faq: React.FC<FaqProps> = ({ faqInfo, faqItems }) => {
                   transition={{ duration: 0.3 }}
                   className="mt-2 p-4 bg-white bg-opacity-5 backdrop-blur-lg rounded-lg"
                 >
-                  <p>{String(t(item.answer))}</p>
+                  <p>{t(`items.${index}.answer`)}</p>
                 </m.div>
               )}
             </AnimatePresence>

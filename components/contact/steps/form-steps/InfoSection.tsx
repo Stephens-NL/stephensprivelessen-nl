@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
-import { useTranslation } from '../../../../hooks/useTranslation';
+
 import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaBook } from 'react-icons/fa';
 
 interface InfoSectionProps {
@@ -11,7 +11,9 @@ interface InfoSectionProps {
 }
 
 const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     const courses = {
         primary: [

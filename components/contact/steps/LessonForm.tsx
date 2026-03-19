@@ -11,7 +11,7 @@ import LocationChoice from './form-steps/LocationChoice';
 import Confirmation from './form-steps/Confirmation';
 import NavigationButtons from './form-steps/NavigationButtons';
 import InfoSection from './InfoSection';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import BackConfirmationDialog from '../components/BackConfirmationDialog';
 import { isValidEmail, isValidPhoneNumber } from '../../../lib/validation';
 
@@ -35,7 +35,9 @@ const LessonForm = ({
     onNext, 
     isSubmitting 
 }: LessonFormProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     const [showBackConfirmation, setShowBackConfirmation] = useState(false);
 
     const canProceed = () => {

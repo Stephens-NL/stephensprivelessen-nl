@@ -2,12 +2,12 @@
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaGraduationCap, FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { getBusinessData } from '@/data/businessData';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { WeekendZuidoostHero } from './WeekendZuidoostHero';
 
 const OfferVariant = ({ title, description, cta }: { title: string; description: string; cta: string }) => (
@@ -25,7 +25,9 @@ const OfferVariant = ({ title, description, cta }: { title: string; description:
 );
 
 export function WeekendZuidoostContent() {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const businessData = getBusinessData(t);
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
   const [showCourses, setShowCourses] = useState(true);

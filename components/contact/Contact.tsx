@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import InitialChoice from './steps/InitialChoice';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import LessonForm from './steps/LessonForm';
 import { sendContactForm } from '../../lib/api';
 import GoogleCalendarAppointment from './components/GoogleCalendarAppointment';
@@ -71,7 +71,9 @@ type CalendarState = { show: boolean; type: 'trial' | 'regular' };
 const Contact = () => {
     const [currentStep, setCurrentStep] = useState<FormStep>('initial');
     const [formData, setFormData] = useState<FormData>(initialFormData);
-    const { t } = useTranslation();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [calendar, setCalendar] = useState<CalendarState>({ show: false, type: 'trial' });
 

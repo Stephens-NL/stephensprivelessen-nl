@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { FiX, FiRotateCcw } from 'react-icons/fi';
 
 export interface FilterOption {
@@ -75,7 +75,9 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
   activeFilter,
   onFilterChange,
 }) => {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   return (
     <div className="mb-6">
       <h3 className="text-sm font-medium text-gray-500 mb-3">{title}</h3>
@@ -101,7 +103,9 @@ interface MobileFilterDrawerProps {
 }
 
 export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, onClose, children }) => {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   return (
     <AnimatePresence>
       {isOpen && (

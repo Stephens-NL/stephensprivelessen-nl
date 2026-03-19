@@ -3,9 +3,9 @@
 import { useState, useEffect, useRef, useReducer } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaTimes } from 'react-icons/fa';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useTranslations } from 'next-intl';
+import { usePathname } from '@/i18n/navigation';
 import QRCode from 'react-qr-code';
-import { usePathname } from 'next/navigation';
 import { config } from '@/data/config';
 
 const WHATSAPP_MESSAGE = 'Hallo, ik heb een vraag over je diensten';
@@ -25,7 +25,7 @@ function uiReducer(state: UIState, action: { type: string; payload?: boolean | s
 }
 
 export default function WhatsAppButton() {
-  const { t } = useTranslation();
+  const t = useTranslations('common');
   const [ui, dispatchUI] = useReducer(uiReducer, {
     isModalOpen: false,
     isMobile: true,
@@ -111,12 +111,12 @@ export default function WhatsAppButton() {
         onMouseLeave={handleMouseLeave}
         className="fixed left-6 top-1/2 md:bottom-6 md:top-auto lg:top-1/2 lg:bottom-auto -translate-y-1/2 md:translate-y-0 lg:-translate-y-1/2 z-30 bg-green-500 text-white p-4 md:p-5 rounded-full shadow-lg hover:bg-green-600 transition-all duration-700 flex items-center gap-3 group"
         initial={{ y: -1000, opacity: 0 }}
-        animate={{ 
+        animate={{
           y: yPosition,
           opacity: isHovered ? 1 : 0.3,
           transition: {
             y: { duration: 3, ease: [0.4, 0, 0.2, 1] },
-            opacity: { 
+            opacity: {
               duration: 0.5,
               delay: isHovered ? 0 : 0.5
             }
@@ -125,22 +125,19 @@ export default function WhatsAppButton() {
         whileHover={{ scale: 1.05 }}
       >
         <FaWhatsapp className="text-2xl md:text-3xl" />
-        <m.span 
+        <m.span
           className="overflow-hidden whitespace-nowrap text-base md:text-lg"
           initial={{ width: 0, opacity: 0 }}
-          animate={{ 
+          animate={{
             width: isExpanded ? 'auto' : 0,
             opacity: isExpanded ? 1 : 0
           }}
-          transition={{ 
+          transition={{
             duration: 0.8,
             ease: 'easeInOut'
           }}
         >
-          {String(t({
-            EN: 'Chat with us',
-            NL: 'Chat met ons'
-          }))}
+          {t('whatsappLabel')}
         </m.span>
       </m.button>
 
@@ -170,10 +167,7 @@ export default function WhatsAppButton() {
               </button>
 
               <h3 className="text-2xl font-bold text-center mb-6">
-                {String(t({
-                  EN: 'Connect on WhatsApp',
-                  NL: 'Contact via WhatsApp'
-                }))}
+                {t('whatsappLabel')}
               </h3>
 
               <div className="flex flex-col items-center gap-6">
@@ -182,12 +176,6 @@ export default function WhatsAppButton() {
                 </div>
 
                 <div className="text-center">
-                  <p className="text-gray-600 mb-2">
-                    {String(t({
-                      EN: 'Scan with your phone or click below',
-                      NL: 'Scan met je telefoon of klik hieronder'
-                    }))}
-                  </p>
                   <p className="font-mono text-gray-800 mb-4">{config.contact.display.phone}</p>
                 </div>
 
@@ -207,4 +195,4 @@ export default function WhatsAppButton() {
       </AnimatePresence>
     </>
   );
-} 
+}

@@ -1,11 +1,12 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import { ArrowRight, Calculator, TrendingUp, Users } from 'lucide-react';
 
 export function HeroSection() {
-  const { language } = useLanguage();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   const scrollToContact = () => {
     const element = document.getElementById('contact');

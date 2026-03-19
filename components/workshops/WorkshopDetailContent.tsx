@@ -2,9 +2,9 @@
 
 import React, { useRef } from 'react';
 import { m } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type { Workshop, Language } from '@/data/types';
 
@@ -13,8 +13,11 @@ interface WorkshopDetailContentProps {
 }
 
 export default function WorkshopDetailContent({ workshop }: WorkshopDetailContentProps) {
-    const { t } = useTranslation();
-    const { language } = useLanguage();
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
     const router = useRouter();
     const contactSectionRef = useRef<HTMLDivElement>(null);
 

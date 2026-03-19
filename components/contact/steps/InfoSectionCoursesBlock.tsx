@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useTranslation } from '@/hooks/useTranslation';
+import { useLocale } from 'next-intl';
 import { FaGraduationCap, FaChevronDown, FaChevronUp, FaEye } from 'react-icons/fa';
 import { getBusinessData } from '@/data/businessData';
 import { subjectNotes, infoSectionTranslations as translations } from '@/data/infoSection';
@@ -22,7 +22,9 @@ export function InfoSectionCoursesBlock({
   onSetLevel,
   onPreviewNotes,
 }: InfoSectionCoursesBlockProps) {
-  const { t } = useTranslation();
+  const locale = useLocale();
+  const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
   const businessData = getBusinessData(t);
 
   const educationLevels = [

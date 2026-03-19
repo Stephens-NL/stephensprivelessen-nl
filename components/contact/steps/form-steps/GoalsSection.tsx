@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
-import { useTranslation } from '../../../../hooks/useTranslation';
+
 
 interface GoalsSectionProps {
     formData: FormData;
@@ -14,7 +14,9 @@ const MIN_GOALS_LENGTH = 10;
 const MAX_GOALS_LENGTH = 500;
 
 const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
     const [error, setError] = useState<string | null>(null);
 
     const handleGoalsChange = (value: string) => {

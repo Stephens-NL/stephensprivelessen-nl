@@ -3,7 +3,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { FaCheck, FaWhatsapp } from 'react-icons/fa';
-import { useTranslation } from '../../../../hooks/useTranslation';
+
 import { FormData } from '../../Contact';
 
 interface SuccessMessageProps {
@@ -11,7 +11,9 @@ interface SuccessMessageProps {
 }
 
 const SuccessMessage = ({ formData }: SuccessMessageProps) => {
-    const { t } = useTranslation();
+    const locale = useLocale();
+    const language = locale.toUpperCase() as 'EN' | 'NL';
+    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
 
     const getContactPerson = () => {
         if (formData.age < 18) {
