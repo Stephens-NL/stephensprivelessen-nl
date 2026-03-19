@@ -1,0 +1,18 @@
+{
+  "siteTitle": "Stephen's Private Lessons",
+  "nav": {
+    "home": "Home",
+    "privelessen": "Tutoring",
+    "mboRekenen": "MBO Math",
+    "scriptiebegeleiding": "Thesis Supervision",
+    "aantekeningen": "Course Notes",
+    "about": "About",
+    "services": "Services",
+    "workshops": "Workshops",
+    "consultancy": "Consultancy",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "languageSwitcher": "NL"
+}

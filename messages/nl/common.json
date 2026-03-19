@@ -1,0 +1,18 @@
+{
+  "siteTitle": "Stephen's Privélessen",
+  "nav": {
+    "home": "Home",
+    "privelessen": "Privelessen",
+    "mboRekenen": "MBO Rekenen",
+    "scriptiebegeleiding": "Scriptiebegeleiding",
+    "aantekeningen": "Aantekeningen",
+    "about": "Over Ons",
+    "services": "Diensten",
+    "workshops": "Workshops",
+    "consultancy": "Consultancy",
+    "blog": "Blog",
+    "faq": "Vragen",
+    "contact": "Contact"
+  },
+  "languageSwitcher": "EN"
+}
