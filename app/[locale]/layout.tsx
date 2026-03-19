@@ -9,8 +9,6 @@ import {Viewport} from 'next';
 import {MotionProvider} from '@/components/MotionProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import {Analytics} from '@vercel/analytics/react';
-import {SpeedInsights} from '@vercel/speed-insights/next';
 import WhatsAppButton from '@/components/shared/WhatsAppButton';
 import {organizationSchema, websiteSchema} from '@/lib/structured-data';
 import {config} from '@/data/config';
@@ -374,8 +372,6 @@ export default async function LocaleLayout({children, params}: Props) {
             <WhatsAppButton />
             <main className="pt-14 md:pt-24">{children}</main>
             <Footer />
-            <Analytics />
-            <SpeedInsights />
           </MotionProvider>
         </NextIntlClientProvider>
       </body>
