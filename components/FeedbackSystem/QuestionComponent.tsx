@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { QuestionComponentProps } from "../../data";
-import { useTranslation } from "../../hooks/useTranslation";
+
 import { QuestionInput } from "./QuestionInput";
 import CommentCloud from "./CommentCloud";
 
