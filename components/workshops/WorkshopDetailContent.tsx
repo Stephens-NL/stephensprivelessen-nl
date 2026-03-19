@@ -4,7 +4,6 @@ import React, { useRef } from 'react';
 import { m } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type { Workshop, Language } from '@/data/types';
 
@@ -16,8 +15,6 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
     const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
   const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
-    const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
     const router = useRouter();
     const contactSectionRef = useRef<HTMLDivElement>(null);
 

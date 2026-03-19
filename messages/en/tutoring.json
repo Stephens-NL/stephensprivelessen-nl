@@ -63,6 +63,13 @@
       }
     ]
   },
+  "infoSection": {
+    "individualSessions": "Individual Sessions",
+    "groupSessions": "Group Sessions (2 persons)",
+    "thesisSupervision": "Thesis & Research Support",
+    "rates": "Flexibility Premium",
+    "ratesNote": "Travel Costs"
+  },
   "pricing": {
     "title": "Tutoring Packages",
     "subtitle": "Quality tutoring starting from €75 per hour - Online or at Science Park",

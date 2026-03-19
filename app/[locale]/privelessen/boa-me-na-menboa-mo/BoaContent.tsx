@@ -1,16 +1,15 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useLocale } from 'next-intl';
 import { weekendLocations } from '@/data/weekendTutoring';
 import { WeekendLocation, Bilingual, EducationLevel } from '@/data/types';
-import { CustomCursor } from '../../../components/shared/CustomCursor';
-import { HeroSection } from '../../../components/privelessen/boa-me-na-menboa-mo/HeroSection';
-import { AboutSection } from '../../../components/privelessen/boa-me-na-menboa-mo/AboutSection';
-import { SubjectsSection } from '../../../components/privelessen/boa-me-na-menboa-mo/SubjectsSection';
-import { PricingSection } from '../../../components/privelessen/boa-me-na-menboa-mo/PricingSection';
-import { LocationSection } from '../../../components/privelessen/boa-me-na-menboa-mo/LocationSection';
-import { OffersSection } from '../../../components/privelessen/boa-me-na-menboa-mo/OffersSection';
+import { CustomCursor } from '@/components/shared/CustomCursor';
+import { HeroSection } from '@/components/privelessen/boa-me-na-menboa-mo/HeroSection';
+import { AboutSection } from '@/components/privelessen/boa-me-na-menboa-mo/AboutSection';
+import { SubjectsSection } from '@/components/privelessen/boa-me-na-menboa-mo/SubjectsSection';
+import { PricingSection } from '@/components/privelessen/boa-me-na-menboa-mo/PricingSection';
+import { LocationSection } from '@/components/privelessen/boa-me-na-menboa-mo/LocationSection';
+import { OffersSection } from '@/components/privelessen/boa-me-na-menboa-mo/OffersSection';
 import Header from '@/components/Header';
 import { getBusinessData } from '@/data/businessData';
 import { useState } from 'react';
@@ -19,8 +18,6 @@ const content = weekendLocations.find(loc => loc.id === 'boa-me-na-menboa-mo') a
 if (!content) throw new Error('Content not found for boa-me-na-menboa-mo');
 
 export default function BoaContent() {
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
   const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
   const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';

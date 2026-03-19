@@ -3,7 +3,6 @@
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
-import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { jsonLd } from './metadata';
@@ -19,8 +18,6 @@ export default function ConsultancyContent() {
   const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
   const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
   const router = useRouter();
   const contactSectionRef = useRef<HTMLDivElement>(null);
 

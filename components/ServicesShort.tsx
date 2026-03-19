@@ -6,9 +6,9 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 // Service icon imports
-import mathIcon from '@/public/images/svg/math.svg';
-import programmingIcon from '@/public/images/svg/programming.svg';
-import creativeIcon from '@/public/images/svg/creative.svg';
+import mathIcon from '@/public/images/svg/math-icon.svg';
+import programmingIcon from '@/public/images/svg/programming-icon.svg';
+import creativeIcon from '@/public/images/svg/creative-workshop-icon.svg';
 
 const serviceIcons = [mathIcon, programmingIcon, creativeIcon];
 

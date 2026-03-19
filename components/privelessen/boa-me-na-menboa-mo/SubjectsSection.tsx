@@ -81,7 +81,8 @@ export function SubjectsSection({
 }: SubjectsSectionProps) {
   const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
-  
+  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+
   const businessData = getBusinessData(t);
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
   const { searchQuery, hoveredSubject, studentName, studentAge, wantsHomeTutoring, intent, selectedTime, showModal, selectedSubject } = formState;

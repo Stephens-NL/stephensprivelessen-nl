@@ -63,6 +63,13 @@
       }
     ]
   },
+  "infoSection": {
+    "individualSessions": "Individuele Sessies",
+    "groupSessions": "Groepslessen (2 personen)",
+    "thesisSupervision": "Scriptie & Onderzoeksbegeleiding",
+    "rates": "Flexibiliteitstoeslag",
+    "ratesNote": "Reiskosten"
+  },
   "pricing": {
     "title": "Bijlespakketten",
     "subtitle": "Kwaliteitsbijles vanaf €75 per uur - Online of op Science Park",

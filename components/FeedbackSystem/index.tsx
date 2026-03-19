@@ -3,7 +3,6 @@ import useSWR from 'swr';
 import { m, AnimatePresence, PanInfo } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { FeedbackForm, FeedbackFormDataImportProps, Language, PersonalIntermezzo, QuestionGroup } from '../../data';
-import { useLocale } from 'next-intl';
 
 import FadeInText from './FadeInText';
 import LanguageSelector from './LanguageSelector';
@@ -151,8 +150,6 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
   const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
   const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
   const { data: feedbackFormData, isLoading: loading, error: swrError } = useSWR<FeedbackFormDataImportProps>('/api/feedback', feedbackFetcher);
   const error = swrError ?? null;
 

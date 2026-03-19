@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import About from '../../components/About'
+import About from '@/components/About'
 import React from 'react'
 
 export const metadata: Metadata = {

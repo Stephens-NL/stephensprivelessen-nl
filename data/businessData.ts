@@ -1,8 +1,9 @@
 // src/data/businessData.ts
-import { TFunction } from 'next-i18next';
 import { config } from './config';
 
-export const getBusinessData = (t: TFunction) => ({
+type TranslateFunction = (key: string | Record<string, string>) => string;
+
+export const getBusinessData = (t: TranslateFunction) => ({
   title: t('common:siteName'),
   subjects: {
     primary: [

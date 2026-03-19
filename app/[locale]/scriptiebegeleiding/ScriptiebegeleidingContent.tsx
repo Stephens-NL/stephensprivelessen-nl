@@ -2,7 +2,6 @@
 
 import { useLocale } from 'next-intl';
 import { JsonLdScript } from '@/components/JsonLdScript';
-import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import Image from 'next/image';
 import { Syne, Space_Grotesk } from "next/font/google";
@@ -72,8 +71,6 @@ export default function ScriptiebegeleidingContent() {
   const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
   const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
-  const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
 
   const content = {
     title: {

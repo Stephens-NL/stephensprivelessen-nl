@@ -9,12 +9,12 @@ import ButtonTrial from './ButtonTrial';
 import { X } from 'lucide-react';
 
 // Service icon imports - these are non-translatable config
-import mathIcon from '@/public/images/svg/math.svg';
-import programmingIcon from '@/public/images/svg/programming.svg';
-import creativeIcon from '@/public/images/svg/creative.svg';
-import nonCreativeIcon from '@/public/images/svg/noncreative.svg';
-import consultancyIcon from '@/public/images/svg/consultancy.svg';
-import customIcon from '@/public/images/svg/custom.svg';
+import mathIcon from '@/public/images/svg/math-icon.svg';
+import programmingIcon from '@/public/images/svg/programming-icon.svg';
+import creativeIcon from '@/public/images/svg/creative-workshop-icon.svg';
+import nonCreativeIcon from '@/public/images/svg/workshop-icon.svg';
+import consultancyIcon from '@/public/images/svg/consultancy-icon.svg';
+import customIcon from '@/public/images/svg/custom-icon.svg';
 
 const serviceIcons = [mathIcon, programmingIcon, creativeIcon, nonCreativeIcon, consultancyIcon, customIcon];
 

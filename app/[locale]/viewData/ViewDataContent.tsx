@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 
 const FeedbackDataViewer = dynamic(
-  () => import('../../components/FeedbackSystem/FeedbackDataViewer'),
+  () => import('@/components/FeedbackSystem/FeedbackDataViewer'),
   { ssr: false }
 );
 

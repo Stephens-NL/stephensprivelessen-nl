@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
-import Hero from '../components/Hero';
+import Hero from '@/components/Hero';
 import ServicesShort from '@/components/ServicesShort';
 import Testimonials from '@/components/Testimonials';
 import InternalLinks from '@/components/InternalLinks';
