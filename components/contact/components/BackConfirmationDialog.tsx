@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 interface BackConfirmationDialogProps {
@@ -13,8 +13,8 @@ interface BackConfirmationDialogProps {
 
 const BackConfirmationDialog = ({ isOpen, onClose, onConfirm }: BackConfirmationDialogProps) => {
     const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
 
     if (!isOpen) return null;
 
@@ -35,16 +35,10 @@ const BackConfirmationDialog = ({ isOpen, onClose, onConfirm }: BackConfirmation
                     <div className="text-center mb-6">
                         <FaExclamationTriangle className="text-[var(--amber)] text-4xl mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-[var(--amber)] mb-2">
-                            {String(t({
-                                EN: "Are you sure you want to leave?",
-                                NL: "Weet je zeker dat je wilt stoppen?"
-                            }))}
+                            {t('form.areYouSureYouWantToLeave')}
                         </h3>
                         <p className="text-[var(--cream)]">
-                            {String(t({
-                                EN: "Your progress will be lost if you leave now.",
-                                NL: "Je voortgang gaat verloren als je nu stopt."
-                            }))}
+                            {t('form.yourProgressWillBeLostIfYouLeaveNow')}
                         </p>
                     </div>
 
@@ -53,19 +47,13 @@ const BackConfirmationDialog = ({ isOpen, onClose, onConfirm }: BackConfirmation
                             onClick={onClose}
                             className="flex-1 px-4 py-2 bg-[var(--ink-light)] text-[var(--amber)] rounded-lg hover:bg-[var(--ink-light)] transition-colors"
                         >
-                            {String(t({
-                                EN: "Continue Form",
-                                NL: "Formulier Voortzetten"
-                            }))}
+                            {t('form.continueForm')}
                         </button>
                         <button
                             onClick={onConfirm}
                             className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
                         >
-                            {String(t({
-                                EN: "Leave",
-                                NL: "Stoppen"
-                            }))}
+                            {t('form.leave')}
                         </button>
                     </div>
                 </m.div>

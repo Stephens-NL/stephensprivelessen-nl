@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextQuestion } from '../../../data';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 type Props = {
   question: TextQuestion;
   value: string;
@@ -11,8 +11,8 @@ type Props = {
 
 const TextInput: React.FC<Props> = ({ question, value, onChange, language, isDarkMode }) => {
   const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
   return (
     <div className={`mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
       <label htmlFor={question.id} className="block mb-2">{String(t(question.label))}</label>

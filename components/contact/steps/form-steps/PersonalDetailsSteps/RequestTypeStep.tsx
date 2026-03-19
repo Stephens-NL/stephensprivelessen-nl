@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export function RequestTypeStep({
   requestType,
@@ -11,8 +11,8 @@ export function RequestTypeStep({
   onSelect: (type: 'self' | 'other') => void;
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
   return (
     <m.div
       key="requestType"
@@ -22,7 +22,7 @@ export function RequestTypeStep({
       className="space-y-4"
     >
       <h2 className="text-lg font-semibold text-white">
-        {String(t({ EN: "Who is requesting the lesson?", NL: "Wie vraagt de les aan?" }))}
+        {t('form.whoIsRequestingTheLesson')}
       </h2>
       <div className="flex flex-col gap-4">
         <button
@@ -34,7 +34,7 @@ export function RequestTypeStep({
               : 'bg-[var(--ink-light)] text-white border-[var(--ink-light)] hover:border-[var(--amber)]'
           }`}
         >
-          {String(t({ EN: "For myself", NL: "Voor mezelf" }))}
+          {t('form.forMyself')}
         </button>
         <button
           type="button"
@@ -45,7 +45,7 @@ export function RequestTypeStep({
               : 'bg-[var(--ink-light)] text-white border-[var(--ink-light)] hover:border-[var(--amber)]'
           }`}
         >
-          {String(t({ EN: "For someone else", NL: "Voor iemand anders" }))}
+          {t('form.forSomeoneElse')}
         </button>
       </div>
     </m.div>

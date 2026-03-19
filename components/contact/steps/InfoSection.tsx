@@ -2,7 +2,7 @@
 
 import React, { useReducer } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaWhatsapp, FaChevronDown, FaChevronUp, FaEye, FaEnvelope } from 'react-icons/fa';
 import NotesPreviewModal from '../components/NotesPreviewModal';
 import { getBusinessData } from '@/data/businessData';
@@ -51,8 +51,8 @@ function infoReducer(state: InfoState, action: InfoAction): InfoState {
 
 const InfoSection = ({ onBack }: InfoSectionProps) => {
     const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
     const businessData = getBusinessData(t);
     const [state, dispatch] = useReducer(infoReducer, {
         showPricing: false,
@@ -223,10 +223,10 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                                 {t(translations.servicesInclude)}
                             </p>
                             <ul className="list-disc list-inside text-[var(--cream)] mb-4 space-y-1">
-                                <li>{t({ EN: "Research methodology and design", NL: "Onderzoeksmethodologie en opzet" })}</li>
-                                <li>{t({ EN: "Data analysis and statistics", NL: "Data-analyse en statistiek" })}</li>
-                                <li>{t({ EN: "Proofreading and feedback", NL: "Proeflezen en feedback" })}</li>
-                                <li>{t({ EN: "Software support (R, Python, SPSS)", NL: "Software ondersteuning (R, Python, SPSS)" })}</li>
+                                <li>{t('form.researchMethodologyAndDesign')}</li>
+                                <li>{t('form.dataAnalysisAndStatistics')}</li>
+                                <li>{t('form.proofreadingAndFeedback')}</li>
+                                <li>{t('form.softwareSupportRPythonSpss')}</li>
                             </ul>
 
                             <div className="bg-[var(--ink-light)]/30 backdrop-blur-sm rounded-2xl p-6 border border-[var(--ink)]/30">

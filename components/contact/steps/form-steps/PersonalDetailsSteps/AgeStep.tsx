@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 export function AgeStep({
   age,
@@ -15,8 +15,8 @@ export function AgeStep({
   isComplete: boolean;
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
   return (
     <m.form
       key="age"
@@ -27,7 +27,7 @@ export function AgeStep({
       onSubmit={onSubmit}
     >
       <label className="block text-[var(--amber)] mb-2">
-        {String(t({ EN: "What's your age?", NL: "Wat is je leeftijd?" }))} *
+        {t('form.whatsYourAge')} *
       </label>
       <input
         type="number"
@@ -44,7 +44,7 @@ export function AgeStep({
           isComplete ? 'bg-[var(--amber)] text-[var(--ink)] hover:bg-[var(--amber)]' : 'bg-[var(--muted-text)] text-[var(--muted-text)] cursor-not-allowed'
         }`}
       >
-        {String(t({ EN: "Next", NL: "Volgende" }))}
+        {t('form.next')}
       </m.button>
     </m.form>
   );

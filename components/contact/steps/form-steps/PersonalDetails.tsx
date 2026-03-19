@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React, { useReducer } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { FormData } from '../../Contact';
@@ -42,9 +43,7 @@ function isFieldComplete(value: unknown): boolean {
 }
 
 const PersonalDetails = ({ formData, onUpdate }: PersonalDetailsProps) => {
-  const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
   const [state, dispatch] = useReducer(detailsReducer, {
     age: formData.age,
     showRequestType: false,

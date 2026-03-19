@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { FormData } from '../../Contact';
 
@@ -9,61 +10,50 @@ interface ConfirmationProps {
 }
 
 const Confirmation = ({ formData }: ConfirmationProps) => {
-    const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
 
     return (
         <div className="space-y-6 text-white">
             <h2 className="text-2xl font-semibold text-center mb-6">
-                {String(t({
-                    EN: "Please review your information",
-                    NL: "Controleer je gegevens"
-                }))}
+                {t('form.pleaseReviewYourInformation')}
             </h2>
             
             <div className="space-y-4">
                 <div>
                     <h3 className="font-semibold text-[var(--amber)]">
-                        {String(t({
-                            EN: "Personal Details",
-                            NL: "Persoonlijke Gegevens"
-                        }))}
+                        {t('form.personalDetails')}
                     </h3>
                     <p>
-                        <strong>{String(t({ EN: "Name", NL: "Naam" }))}: </strong>
+                        <strong>{t('form.name')}: </strong>
                         {formData.name}
                     </p>
                     <p>
-                        <strong>{String(t({ EN: "Email", NL: "E-mail" }))}: </strong>
+                        <strong>{t('form.email')}: </strong>
                         {formData.email}
                     </p>
                     <p>
-                        <strong>{String(t({ EN: "Age", NL: "Leeftijd" }))}: </strong>
+                        <strong>{t('form.age')}: </strong>
                         {formData.age}
                     </p>
                 </div>
 
                 <div>
                     <h3 className="font-semibold text-[var(--amber)]">
-                        {String(t({
-                            EN: "Lesson Details",
-                            NL: "Les Details"
-                        }))}
+                        {t('form.lessonDetails')}
                     </h3>
                     <p>
-                        <strong>{String(t({ EN: "Subject", NL: "Vak" }))}: </strong>
+                        <strong>{t('form.subject')}: </strong>
                         {formData.subject}
                     </p>
                     <p>
-                        <strong>{String(t({ EN: "Level", NL: "Niveau" }))}: </strong>
+                        <strong>{t('form.level')}: </strong>
                         {formData.level}
                     </p>
                     <p>
-                        <strong>{String(t({ EN: "Location", NL: "Locatie" }))}: </strong>
+                        <strong>{t('form.location')}: </strong>
                         {formData.isOnline 
-                            ? String(t({ EN: "Online", NL: "Online" }))
-                            : String(t({ EN: "In-Person", NL: "Fysiek" }))
+                            ? t('form.online')
+                            : t('form.inperson')
                         }
                     </p>
                 </div>
@@ -71,22 +61,19 @@ const Confirmation = ({ formData }: ConfirmationProps) => {
                 {formData.age < 18 && (
                     <div>
                         <h3 className="font-semibold text-[var(--amber)]">
-                            {String(t({
-                                EN: "Parent/Guardian Details",
-                                NL: "Ouder/Verzorger Details"
-                            }))}
+                            {t('form.parentguardianDetails')}
                         </h3>
                         <p>
-                            <strong>{String(t({ EN: "Name", NL: "Naam" }))}: </strong>
+                            <strong>{t('form.name')}: </strong>
                             {formData.parentName}
                         </p>
                         <p>
-                            <strong>{String(t({ EN: "Email", NL: "E-mail" }))}: </strong>
+                            <strong>{t('form.email')}: </strong>
                             {formData.parentEmail}
                         </p>
                         {formData.parentPhone && (
                             <p>
-                                <strong>{String(t({ EN: "Phone", NL: "Telefoon" }))}: </strong>
+                                <strong>{t('form.phone')}: </strong>
                                 {formData.parentPhone}
                             </p>
                         )}

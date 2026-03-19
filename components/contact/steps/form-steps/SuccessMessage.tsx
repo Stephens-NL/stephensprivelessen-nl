@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 import { m } from 'framer-motion';
 import { FaCheck, FaWhatsapp } from 'react-icons/fa';
@@ -12,27 +13,20 @@ interface SuccessMessageProps {
 
 const SuccessMessage = ({ formData }: SuccessMessageProps) => {
     const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
 
     const getContactPerson = () => {
         if (formData.age < 18) {
             switch (formData.contactPreference) {
                 case 'parent':
-                    return String(t({
-                        EN: `your parent/guardian (${formData.parentName})`,
-                        NL: `je ouder/verzorger (${formData.parentName})`
-                    }));
+                    return locale === 'nl' ? `je ouder/verzorger (${formData.parentName})` : `your parent/guardian (${formData.parentName})`;
                 case 'both':
-                    return String(t({
-                        EN: "both you and your parent/guardian",
-                        NL: "zowel jou als je ouder/verzorger"
-                    }));
+                    return t('form.bothYouAndYourParentguardian');
                 default:
-                    return String(t({ EN: "you", NL: "je" }));
+                    return t('form.you');
             }
         }
-        return String(t({ EN: "you", NL: "je" }));
+        return t('form.you');
     };
 
     return (
@@ -52,25 +46,16 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-[var(--amber)]">
-                    {String(t({
-                        EN: "Great! I've Received Your Request",
-                        NL: "Super! Ik heb je aanvraag ontvangen"
-                    }))}
+                    {t('form.greatIveReceivedYourRequest')}
                 </h2>
 
                 <div className="space-y-2">
                     <p className="text-[var(--cream)]">
-                        {String(t({
-                            EN: "I'll contact",
-                            NL: "Ik zal"
-                        }))}
+                        {t('form.illContact')}
                         {" "}
                         {getContactPerson()}
                         {" "}
-                        {String(t({
-                            EN: "via WhatsApp as soon as possible to schedule your free trial lesson!",
-                            NL: "zo snel mogelijk via WhatsApp contacteren om je gratis proefles in te plannen!"
-                        }))}
+                        {t('form.viaWhatsappAsSoonAsPossibleToScheduleYourFreeTrial')}
                     </p>
 
                     <m.div
@@ -81,10 +66,7 @@ const SuccessMessage = ({ formData }: SuccessMessageProps) => {
                     >
                         <FaWhatsapp className="text-2xl mr-2" />
                         <p className="text-sm">
-                            {String(t({
-                                EN: "Usually within 24 hours",
-                                NL: "Meestal binnen 24 uur"
-                            }))}
+                            {t('form.usuallyWithin24Hours')}
                         </p>
                     </m.div>
                 </div>

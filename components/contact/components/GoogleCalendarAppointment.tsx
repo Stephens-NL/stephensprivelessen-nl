@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface GoogleCalendarAppointmentProps {
     isOpen: boolean;
@@ -20,8 +20,8 @@ const GoogleCalendarAppointment = ({
     studentEmail 
 }: GoogleCalendarAppointmentProps) => {
     const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
 
     if (!isOpen) return null;
 
@@ -52,14 +52,11 @@ const GoogleCalendarAppointment = ({
             >
                 <div className="p-4 border-b border-[var(--ink-light)] flex justify-between items-center">
                     <h2 className="text-xl font-semibold text-[var(--amber)]">
-                        {String(t({
-                            EN: appointmentType === 'trial' 
-                                ? "Schedule Trial Lesson" 
-                                : "Schedule Regular Lesson",
-                            NL: appointmentType === 'trial'
+                        {(locale === 'nl' ? appointmentType === 'trial'
                                 ? "Plan Proefles"
-                                : "Plan Reguliere Les"
-                        }))}
+                                : "Plan Reguliere Les" : appointmentType === 'trial' 
+                                ? "Schedule Trial Lesson" 
+                                : "Schedule Regular Lesson")}
                     </h2>
                     <button
                         onClick={onClose}
@@ -73,10 +70,7 @@ const GoogleCalendarAppointment = ({
                         src={appointmentUrl}
                         className="w-full h-full"
                         frameBorder="0"
-                        title={String(t({
-                            EN: "Appointment Scheduling",
-                            NL: "Afspraak Plannen"
-                        }))}
+                        title={t('form.appointmentScheduling')}
                     />
                 </div>
             </m.div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { EmailInput } from './ContactInputs';
 
 export function RequesterForm({
@@ -18,19 +18,19 @@ export function RequesterForm({
   isFieldComplete: (v: unknown) => boolean;
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -20 } };
 
   return (
     <m.div key="requesterInfo" {...fadeInUp} className="space-y-4">
       <h3 className="text-lg font-semibold text-[var(--amber)]">
-        {String(t({ EN: "Your Information", NL: "Jouw Gegevens" }))}
+        {t('form.yourInformation')}
       </h3>
       <div className="space-y-4">
         <div>
           <label className="block text-[var(--amber)] mb-2">
-            {String(t({ EN: "Your Name", NL: "Jouw Naam" }))} *
+            {t('form.yourName')} *
           </label>
           <input
             type="text"
@@ -46,14 +46,14 @@ export function RequesterForm({
               value={formData.requesterEmail || ''}
               onChange={onEmailChange}
               error={emailError}
-              label={String(t({ EN: "Your Email", NL: "Jouw E-mail" }))}
+              label={t('form.yourEmail')}
             />
           </m.div>
         )}
         {isFieldComplete(formData.requesterEmail) && (
           <m.div {...fadeInUp}>
             <label className="block text-[var(--amber)] mb-2">
-              {String(t({ EN: "Relationship", NL: "Relatie" }))} *
+              {t('form.relationship')} *
             </label>
             <select
               value={formData.relationship || ''}
@@ -61,11 +61,11 @@ export function RequesterForm({
               className="w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border border-[var(--ink-light)] focus:border-[var(--amber)] focus:outline-none"
               required
             >
-              <option value="">{String(t({ EN: "Select relationship", NL: "Kies relatie" }))}</option>
-              <option value="parent">{String(t({ EN: "Parent", NL: "Ouder" }))}</option>
-              <option value="guardian">{String(t({ EN: "Guardian", NL: "Verzorger" }))}</option>
-              <option value="family">{String(t({ EN: "Family member", NL: "Familielid" }))}</option>
-              <option value="other">{String(t({ EN: "Other", NL: "Anders" }))}</option>
+              <option value="">{t('form.selectRelationship')}</option>
+              <option value="parent">{t('form.parent')}</option>
+              <option value="guardian">{t('form.guardian')}</option>
+              <option value="family">{t('form.familyMember')}</option>
+              <option value="other">{t('form.other')}</option>
             </select>
           </m.div>
         )}

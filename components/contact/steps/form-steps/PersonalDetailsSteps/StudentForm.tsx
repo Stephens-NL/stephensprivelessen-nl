@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { EmailInput } from './ContactInputs';
 
 export function StudentForm({
@@ -18,19 +18,19 @@ export function StudentForm({
   isFieldComplete: (v: unknown) => boolean;
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -20 } };
 
   return (
     <m.div key="studentInfo" {...fadeInUp} className="space-y-4">
       <h3 className="text-lg font-semibold text-[var(--amber)]">
-        {String(t({ EN: "Student Information", NL: "Gegevens Leerling" }))}
+        {t('form.studentInformation')}
       </h3>
       <div className="space-y-4">
         <div>
           <label className="block text-[var(--amber)] mb-2">
-            {String(t({ EN: "Name", NL: "Naam" }))} *
+            {t('form.name')} *
           </label>
           <input
             type="text"
@@ -46,14 +46,14 @@ export function StudentForm({
               value={formData.email || ''}
               onChange={onEmailChange}
               error={emailError}
-              label={String(t({ EN: "Email", NL: "E-mail" }))}
+              label={t('form.email')}
             />
           </m.div>
         )}
         {isFieldComplete(formData.email) && (
           <m.div {...fadeInUp}>
             <label className="block text-[var(--amber)] mb-2">
-              {String(t({ EN: "Level", NL: "Niveau" }))} *
+              {t('form.level')} *
             </label>
             <select
               value={formData.level}
@@ -61,8 +61,8 @@ export function StudentForm({
               className="w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border border-[var(--ink-light)] focus:border-[var(--amber)] focus:outline-none"
               required
             >
-              <option value="">{String(t({ EN: "Select level", NL: "Kies niveau" }))}</option>
-              <option value="university">{String(t({ EN: "University", NL: "Universiteit" }))}</option>
+              <option value="">{t('form.selectLevel')}</option>
+              <option value="university">{t('form.university')}</option>
               <option value="hbo">HBO</option>
               <option value="vwo">VWO</option>
               <option value="havo">HAVO</option>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { m } from 'framer-motion';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
@@ -14,9 +15,7 @@ interface NavigationButtonsProps {
 }
 
 const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: NavigationButtonsProps) => {
-    const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
 
     return (
         <div className="flex justify-between mt-8">
@@ -28,7 +27,7 @@ const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: Naviga
                     onClick={onBack}
                 >
                     <FaArrowLeft className="mr-2" />
-                    {String(t({ EN: "Back", NL: "Terug" }))}
+                    {t('form.back')}
                 </m.button>
             )}
             <m.button
@@ -43,8 +42,8 @@ const NavigationButtons = ({ onBack, onNext, isFirst, isLast, disabled }: Naviga
                 disabled={disabled}
             >
                 {isLast 
-                    ? String(t({ EN: "Submit", NL: "Versturen" }))
-                    : String(t({ EN: "Next", NL: "Volgende" }))}
+                    ? t('form.submit')
+                    : t('form.next')}
                 {!isLast && <FaArrowRight className="ml-2" />}
             </m.button>
         </div>

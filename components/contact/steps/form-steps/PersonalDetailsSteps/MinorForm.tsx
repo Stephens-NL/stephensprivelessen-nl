@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { EmailInput, PhoneInput } from './ContactInputs';
 
 export function MinorForm({
@@ -22,25 +22,22 @@ export function MinorForm({
   isFieldComplete: (v: unknown) => boolean;
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -20 } };
 
   return (
     <m.div key="minorMessage" {...fadeInUp} className="space-y-4">
       <div className="p-4 bg-[var(--amber)]/10 rounded-lg text-[var(--amber)]">
-        {String(t({
-          EN: "Since you are under 18, this form needs to be filled out by a parent or guardian.",
-          NL: "Omdat je jonger bent dan 18, moet dit formulier door een ouder of voogd worden ingevuld."
-        }))}
+        {t('form.sinceYouAreUnder18ThisFormNeedsToBeFilledOutByAPar')}
       </div>
       <h3 className="text-lg font-semibold text-[var(--amber)]">
-        {String(t({ EN: "Parent/Guardian Information", NL: "Ouder/Voogd Gegevens" }))}
+        {t('form.parentguardianInformation')}
       </h3>
       <div className="space-y-4">
         <div>
           <label className="block text-[var(--amber)] mb-2">
-            {String(t({ EN: "Parent/Guardian Name", NL: "Naam Ouder/Voogd" }))} *
+            {t('form.parentguardianName')} *
           </label>
           <input
             type="text"
@@ -56,7 +53,7 @@ export function MinorForm({
               value={formData.parentEmail || ''}
               onChange={onEmailChange}
               error={parentEmailError}
-              label={String(t({ EN: "Parent/Guardian Email", NL: "E-mail Ouder/Voogd" }))}
+              label={t('form.parentguardianEmail')}
             />
           </m.div>
         )}
@@ -68,7 +65,7 @@ export function MinorForm({
         {isFieldComplete(formData.relationship) && (
           <m.div {...fadeInUp}>
             <label className="block text-[var(--amber)] mb-2">
-              {String(t({ EN: "Relationship to Student", NL: "Relatie tot Leerling" }))} *
+              {t('form.relationshipToStudent')} *
             </label>
             <select
               value={formData.relationship || ''}
@@ -76,9 +73,9 @@ export function MinorForm({
               className="w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border border-[var(--ink-light)] focus:border-[var(--amber)] focus:outline-none"
               required
             >
-              <option value="">{String(t({ EN: "Select relationship", NL: "Kies relatie" }))}</option>
-              <option value="parent">{String(t({ EN: "Parent", NL: "Ouder" }))}</option>
-              <option value="guardian">{String(t({ EN: "Guardian", NL: "Voogd" }))}</option>
+              <option value="">{t('form.selectRelationship')}</option>
+              <option value="parent">{t('form.parent')}</option>
+              <option value="guardian">{t('form.guardian')}</option>
             </select>
           </m.div>
         )}

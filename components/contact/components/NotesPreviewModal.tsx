@@ -3,7 +3,7 @@
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 interface NotesPreviewModalProps {
     isOpen: boolean;
@@ -15,8 +15,8 @@ interface NotesPreviewModalProps {
 
 const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial }: NotesPreviewModalProps) => {
     const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
 
     if (!isOpen) return null;
 
@@ -39,25 +39,16 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                     <div className="p-6 pb-4 flex-shrink-0 flex items-center justify-between border-b border-[var(--ink-light)]">
                         <div>
                             <h3 className="text-xl font-semibold text-[var(--amber)]">
-                                {String(t({
-                                    EN: `Example Notes: ${subject}`,
-                                    NL: `Voorbeeldnotities: ${subject}`
-                                }))}
+                                {locale === 'nl' ? `Voorbeeldnotities: ${subject}` : `Example Notes: ${subject}`}
                             </h3>
                             <p className="text-white/80 text-sm mt-1">
-                                {String(t({
-                                    EN: "These are example notes to demonstrate teaching style and methodology",
-                                    NL: "Dit zijn voorbeeldnotities om de lesstijl en methodologie te demonstreren"
-                                }))}
+                                {t('form.theseAreExampleNotesToDemonstrateTeachingStyleAndM')}
                             </p>
                         </div>
                         <button
                             onClick={onClose}
                             className="p-2 hover:bg-[var(--ink-light)]/50 text-[var(--amber)] hover:text-[var(--amber)] rounded-lg transition-all duration-200 ml-4"
-                            title={String(t({
-                                EN: "Close",
-                                NL: "Sluiten"
-                            }))}
+                            title={t('form.close')}
                         >
                             <FaTimes className="w-5 h-5" />
                         </button>
@@ -94,10 +85,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                             onClick={onClose}
                             className="px-6 py-3 bg-[var(--ink-light)] text-[var(--amber)] rounded-lg hover:bg-[var(--ink-light)] transition-colors"
                         >
-                            {String(t({
-                                EN: "Close Preview",
-                                NL: "Sluit Voorbeeld"
-                            }))}
+                            {t('form.closePreview')}
                         </button>
                     </div>
                 </m.div>

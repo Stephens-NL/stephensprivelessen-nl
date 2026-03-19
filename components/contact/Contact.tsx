@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import InitialChoice from './steps/InitialChoice';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import LessonForm from './steps/LessonForm';
 import { sendContactForm } from '../../lib/api';
 import GoogleCalendarAppointment from './components/GoogleCalendarAppointment';
@@ -72,8 +72,8 @@ const Contact = () => {
     const [currentStep, setCurrentStep] = useState<FormStep>('initial');
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [calendar, setCalendar] = useState<CalendarState>({ show: false, type: 'trial' });
 
@@ -89,17 +89,11 @@ const Contact = () => {
         setIsSubmitting(true);
         try {
             if (!formData.email || !formData.name) {
-                throw new Error(String(t({ 
-                    EN: 'Please fill in all required fields', 
-                    NL: 'Vul alle verplichte velden in' 
-                })));
+                throw new Error(t('form.pleaseFillInAllRequiredFields'));
             }
 
             if (formData.age < 18 && !formData.parentEmail) {
-                throw new Error(String(t({ 
-                    EN: 'Parent contact information is required for students under 18', 
-                    NL: 'Contactgegevens van ouders zijn verplicht voor studenten onder de 18' 
-                })));
+                throw new Error(t('form.parentContactInformationIsRequiredForStudentsUnder'));
             }
 
             const response = await fetch('/api/submit-form', {
@@ -123,7 +117,7 @@ const Contact = () => {
         } catch (error) {
             console.error('Form submission error:', error);
             handleUpdateFormData({ 
-                error: error instanceof Error ? error.message : t({ EN: 'Something went wrong', NL: 'Er is iets misgegaan' }) 
+                error: error instanceof Error ? error.message : t('form.somethingWentWrong') 
             });
         } finally {
             setIsSubmitting(false);
@@ -147,7 +141,7 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
-                        {String(t({ EN: "Let's Get Started!", NL: "Laten We Beginnen!" }))}
+                        {t('form.letsGetStarted')}
                     </m.h1>
 
                     {formData.error && (
@@ -189,16 +183,10 @@ const Contact = () => {
                                 className="text-center text-white"
                             >
                                 <h2 className="text-2xl font-bold mb-4">
-                                    {String(t({
-                                        EN: "Thank you for your submission!",
-                                        NL: "Bedankt voor je aanmelding!"
-                                    }))}
+                                    {t('form.thankYouForYourSubmission')}
                                 </h2>
                                 <p>
-                                    {String(t({
-                                        EN: "We'll contact you soon.",
-                                        NL: "We nemen binnenkort contact met je op."
-                                    }))}
+                                    {t('form.wellContactYouSoon')}
                                 </p>
                             </m.div>
                         )}

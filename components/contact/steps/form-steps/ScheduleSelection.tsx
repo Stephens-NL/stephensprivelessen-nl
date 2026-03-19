@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
@@ -37,8 +38,7 @@ const timeSlots = [
 
 const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
     const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
 
     const toggleDay = (day: string) => {
         const updatedDays = formData.preferredDays.includes(day)
@@ -69,14 +69,14 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
             className="space-y-8"
         >
             <h2 className="text-2xl font-semibold text-[var(--amber)] mb-4">
-                {String(t({ EN: "Schedule Preferences", NL: "Roostervoorkeuren" }))}
+                {t('form.schedulePreferences')}
             </h2>
 
             <div className="space-y-6">
                 <div>
                     <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
                         <FaCalendarAlt className="mr-2" />
-                        {String(t({ EN: "Preferred Days", NL: "Voorkeursdagen" }))}
+                        {t('form.preferredDays')}
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {weekDays.map((day) => (
@@ -91,16 +91,13 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 }`}
                                 onClick={() => toggleDay(day.value)}
                             >
-                                {String(t({ EN: day.labelEN, NL: day.labelNL }))}
+                                {locale === 'nl' ? day.labelNL : day.labelEN}
                             </m.button>
                         ))}
                     </div>
                     {formData.preferredDays.length === 0 && (
                         <p className="text-red-400 text-sm mt-2">
-                            {String(t({
-                                EN: "Please select at least one preferred day",
-                                NL: "Selecteer ten minste één voorkeursdag"
-                            }))}
+                            {t('form.pleaseSelectAtLeastOnePreferredDay')}
                         </p>
                     )}
                 </div>
@@ -108,7 +105,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                 <div>
                     <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
                         <FaClock className="mr-2" />
-                        {String(t({ EN: "Preferred Times", NL: "Voorkeurstijden" }))}
+                        {t('form.preferredTimes')}
                     </h3>
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
                         {timeSlots.map((time) => (
@@ -129,10 +126,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                     </div>
                     {formData.preferredTimes.length === 0 && (
                         <p className="text-red-400 text-sm mt-2">
-                            {String(t({
-                                EN: "Please select at least one preferred time",
-                                NL: "Selecteer ten minste één voorkeurstijd"
-                            }))}
+                            {t('form.pleaseSelectAtLeastOnePreferredTime')}
                         </p>
                     )}
                 </div>
@@ -140,7 +134,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                 <div>
                     <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
                         <FaBan className="mr-2" />
-                        {String(t({ EN: "Unavailable Days", NL: "Niet Beschikbaar" }))}
+                        {t('form.unavailableDays')}
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         {weekDays.map((day) => (
@@ -156,7 +150,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 onClick={() => toggleUnavailableDay(day.value)}
                                 disabled={formData.preferredDays.includes(day.value)}
                             >
-                                {String(t({ EN: day.labelEN, NL: day.labelNL }))}
+                                {locale === 'nl' ? day.labelNL : day.labelEN}
                             </m.button>
                         ))}
                     </div>

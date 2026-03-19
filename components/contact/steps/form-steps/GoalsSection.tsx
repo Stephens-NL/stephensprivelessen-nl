@@ -1,5 +1,6 @@
 'use client';
 
+import { useLocale, useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
@@ -15,21 +16,14 @@ const MAX_GOALS_LENGTH = 500;
 
 const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
     const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
     const [error, setError] = useState<string | null>(null);
 
     const handleGoalsChange = (value: string) => {
         if (value.length < MIN_GOALS_LENGTH) {
-            setError(String(t({
-                EN: `Please provide at least ${MIN_GOALS_LENGTH} characters describing your goals`,
-                NL: `Geef minimaal ${MIN_GOALS_LENGTH} tekens op om je doelen te beschrijven`
-            })));
+            setError(locale === 'nl' ? `Geef minimaal ${MIN_GOALS_LENGTH} tekens op om je doelen te beschrijven` : `Please provide at least ${MIN_GOALS_LENGTH} characters describing your goals`);
         } else if (value.length > MAX_GOALS_LENGTH) {
-            setError(String(t({
-                EN: `Goals description cannot exceed ${MAX_GOALS_LENGTH} characters`,
-                NL: `Doelomschrijving mag niet langer zijn dan ${MAX_GOALS_LENGTH} tekens`
-            })));
+            setError(locale === 'nl' ? `Doelomschrijving mag niet langer zijn dan ${MAX_GOALS_LENGTH} tekens` : `Goals description cannot exceed ${MAX_GOALS_LENGTH} characters`);
         } else {
             setError(null);
         }
@@ -41,17 +35,11 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
     return (
         <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-white text-center">
-                {String(t({
-                    EN: "What are your learning goals?",
-                    NL: "Wat zijn je leerdoelen?"
-                }))}
+                {t('form.whatAreYourLearningGoals')}
             </h2>
             
             <p className="text-[var(--amber)] text-center">
-                {String(t({
-                    EN: "Please describe what you would like to achieve",
-                    NL: "Beschrijf wat je wilt bereiken"
-                }))}
+                {t('form.pleaseDescribeWhatYouWouldLikeToAchieve')}
             </p>
 
             <div className="space-y-2">
@@ -61,10 +49,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                     className={`w-full h-48 p-4 rounded-lg bg-[var(--ink-light)] text-white border ${
                         error ? 'border-red-500' : 'border-[var(--ink-light)]'
                     } focus:border-[var(--amber)] focus:outline-none resize-none`}
-                    placeholder={String(t({
-                        EN: "Example: I want to improve my understanding of calculus, especially derivatives and integrals...",
-                        NL: "Bijvoorbeeld: Ik wil mijn begrip van calculus verbeteren, vooral afgeleiden en integralen..."
-                    }))}
+                    placeholder={t('form.exampleIWantToImproveMyUnderstandingOfCalculusEspe')}
                     maxLength={MAX_GOALS_LENGTH}
                 />
                 <div className="flex justify-between items-center">
@@ -73,10 +58,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                         animate={{ opacity: 1 }}
                         className={`text-sm ${error ? 'text-red-500' : 'text-[var(--amber)]'}`}
                     >
-                        {error || String(t({
-                            EN: `${remainingChars} characters remaining`,
-                            NL: `Nog ${remainingChars} tekens beschikbaar`
-                        }))}
+                        {error || (locale === 'nl' ? `Nog ${remainingChars} tekens beschikbaar` : `${remainingChars} characters remaining`)}
                     </m.p>
                     {formData.goals?.length >= MIN_GOALS_LENGTH && (
                         <m.p
@@ -84,10 +66,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                             animate={{ opacity: 1 }}
                             className="text-sm text-[var(--sage)]"
                         >
-                            {String(t({
-                                EN: "✓ Minimum length reached",
-                                NL: "✓ Minimale lengte bereikt"
-                            }))}
+                            {t('form.minimumLengthReached')}
                         </m.p>
                     )}
                 </div>

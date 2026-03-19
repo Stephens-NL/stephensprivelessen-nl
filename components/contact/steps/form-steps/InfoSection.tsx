@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { m } from 'framer-motion';
 
@@ -11,9 +12,7 @@ interface InfoSectionProps {
 }
 
 const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
-    const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
 
     const courses = {
         primary: [
@@ -58,12 +57,12 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaBook className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
-                            {String(t({ EN: "Available Subjects", NL: "Beschikbare Vakken" }))}
+                            {t('form.availableSubjects')}
                         </h3>
                     </div>
                     <div className="text-[var(--cream)] space-y-4">
                         <div>
-                            <h4 className="font-semibold mb-2">{String(t({ EN: "Primary Education", NL: "Basisonderwijs" }))}</h4>
+                            <h4 className="font-semibold mb-2">{t('form.primaryEducation')}</h4>
                             <ul className="list-disc list-inside pl-4">
                                 {courses.primary.map((course) => (
                                     <li key={course}>{course}</li>
@@ -71,7 +70,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="font-semibold mb-2">{String(t({ EN: "Secondary Education", NL: "Voortgezet Onderwijs" }))}</h4>
+                            <h4 className="font-semibold mb-2">{t('form.secondaryEducation')}</h4>
                             <ul className="list-disc list-inside pl-4">
                                 {courses.secondary.map((course) => (
                                     <li key={course}>{course}</li>
@@ -79,7 +78,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="font-semibold mb-2">{String(t({ EN: "Higher Education", NL: "Hoger Onderwijs" }))}</h4>
+                            <h4 className="font-semibold mb-2">{t('form.higherEducation')}</h4>
                             <ul className="list-disc list-inside pl-4">
                                 {courses.higher.map((course) => (
                                     <li key={course}>{course}</li>
@@ -87,11 +86,8 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="font-semibold mb-2">{String(t({ EN: "Programming", NL: "Programmeren" }))}</h4>
-                            <p className="mb-2">{String(t({ 
-                                EN: "Various programming languages and technologies including:", 
-                                NL: "Verschillende programmeertalen en technologieën waaronder:" 
-                            }))}</p>
+                            <h4 className="font-semibold mb-2">{t('form.programming')}</h4>
+                            <p className="mb-2">{t('form.variousProgrammingLanguagesAndTechnologiesIncludin')}</p>
                             <div className="flex flex-wrap gap-2">
                                 {courses.programming.map((lang) => (
                                     <span key={lang} className="bg-[var(--ink-light)] px-2 py-1 rounded text-sm">
@@ -112,14 +108,11 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaGraduationCap className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
-                            {String(t({ EN: "Teaching Method", NL: "Lesmethode" }))}
+                            {t('form.teachingMethod')}
                         </h3>
                     </div>
                     <p className="text-[var(--cream)]">
-                        {String(t({
-                            EN: "I focus on understanding rather than memorization. We'll work together to build a strong foundation in the subject, using practical examples and clear explanations.",
-                            NL: "Ik focus op begrip in plaats van uit het hoofd leren. We werken samen aan een sterke basis in het vak, met praktische voorbeelden en heldere uitleg."
-                        }))}
+                        {t('form.iFocusOnUnderstandingRatherThan')}
                     </p>
                 </m.div>
 
@@ -132,14 +125,11 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaClock className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
-                            {String(t({ EN: "Lesson Structure", NL: "Lesstructuur" }))}
+                            {t('form.lessonStructure')}
                         </h3>
                     </div>
                     <p className="text-[var(--cream)]">
-                        {String(t({
-                            EN: "Lessons are typically 1-2 hours long, scheduled at your convenience. We start with a free 30-minute trial lesson to assess your needs and goals.",
-                            NL: "Lessen duren meestal 1-2 uur, ingepland op tijden die jou uitkomen. We beginnen met een gratis proefles van 30 minuten om je behoeften en doelen te bespreken."
-                        }))}
+                        {t('form.lessonsAreTypically12HoursLongScheduledAtYourConve')}
                     </p>
                 </m.div>
 
@@ -152,14 +142,11 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaEuroSign className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
-                            {String(t({ EN: "Pricing", NL: "Tarieven" }))}
+                            {t('form.pricing')}
                         </h3>
                     </div>
                     <p className="text-[var(--cream)]">
-                        {String(t({
-                            EN: "Rates start at €50 per hour, depending on the subject level and frequency of lessons. The first 30-minute trial lesson is free.",
-                            NL: "Tarieven beginnen vanaf €50 per uur, afhankelijk van het niveau en de frequentie van de lessen. De eerste proefles van 30 minuten is gratis."
-                        }))}
+                        {t('form.ratesStartAt50PerHourDependingOnTheSubjectLevelAnd')}
                     </p>
                 </m.div>
             </div>
@@ -171,7 +158,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     className="px-6 py-3 bg-[var(--ink-light)] text-[var(--amber)] rounded-lg hover:bg-[var(--ink-light)]"
                     onClick={onBack}
                 >
-                    {String(t({ EN: "Back", NL: "Terug" }))}
+                    {t('form.back')}
                 </m.button>
 
                 <m.button
@@ -180,10 +167,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                     className="flex items-center px-6 py-3 bg-[var(--amber)] text-[var(--ink)] rounded-lg hover:bg-[var(--amber)]"
                     onClick={onRequestLesson}
                 >
-                    {String(t({
-                        EN: "Schedule Trial Lesson",
-                        NL: "Plan Proefles"
-                    }))}
+                    {t('form.scheduleTrialLesson')}
                     <FaArrowRight className="ml-2" />
                 </m.button>
             </div>

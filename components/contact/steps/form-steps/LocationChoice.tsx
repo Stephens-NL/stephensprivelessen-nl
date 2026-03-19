@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
@@ -11,9 +12,7 @@ interface LocationChoiceProps {
 }
 
 const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
-    const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('contact');
 
     const handleLocationChoice = (isOnline: boolean) => {
         onUpdate({ isOnline });
@@ -22,10 +21,7 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
     return (
         <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-white text-center">
-                {String(t({
-                    EN: "Do you prefer online or in-person lessons?",
-                    NL: "Heb je voorkeur voor online of fysieke lessen?"
-                }))}
+                {t('form.doYouPreferOnlineOrInpersonLessons')}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <m.button
@@ -38,10 +34,7 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                             : 'bg-[var(--ink-light)] text-white hover:bg-[var(--ink-light)]'
                     }`}
                 >
-                    {String(t({
-                        EN: "Online Lessons",
-                        NL: "Online Lessen"
-                    }))}
+                    {t('form.onlineLessons')}
                 </m.button>
                 <m.button
                     whileHover={{ scale: 1.05 }}
@@ -53,10 +46,7 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                             : 'bg-[var(--ink-light)] text-white hover:bg-[var(--ink-light)]'
                     }`}
                 >
-                    {String(t({
-                        EN: "In-Person Lessons",
-                        NL: "Fysieke Lessen"
-                    }))}
+                    {t('form.inpersonLessons')}
                 </m.button>
             </div>
         </div>

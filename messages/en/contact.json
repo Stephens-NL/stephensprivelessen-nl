@@ -3,9 +3,26 @@
   "aboutMe": "I'm Stephen, a master's student from Amsterdam who turned negative advice into top grades. With a decade of programming experience, I know how to help you. Book a free trial lesson and rediscover the joy in mathematics and programming. See you soon!",
   "aboutLessons": "With an average score of 8.5 for exam trainings, I know how to help others learn, including programming thanks to my minor during my Master's in Mathematics. Struggling with programming or theory? We focus on what you know and don't know, and make a plan for your assignment. With only one hour available, we make it count, and I offer a week of support via WhatsApp or Messages after our lesson. Let's start soon!",
   "subjects": {
-    "primary": ["Arithmetic", "Language"],
-    "secondary": ["Mathematics A/B/C/D", "Physics", "Chemistry", "English"],
-    "higher": ["Business Statistics", "Calculus", "Economics", "Statistics", "Probability Theory", "Linear Algebra", "Set Theory", "Programming (C, C#, C++, CSS, HTML, Java, Javascript, MATLAB, Python, R, React, SPSS, SQL, etc.)"]
+    "primary": [
+      "Arithmetic",
+      "Language"
+    ],
+    "secondary": [
+      "Mathematics A/B/C/D",
+      "Physics",
+      "Chemistry",
+      "English"
+    ],
+    "higher": [
+      "Business Statistics",
+      "Calculus",
+      "Economics",
+      "Statistics",
+      "Probability Theory",
+      "Linear Algebra",
+      "Set Theory",
+      "Programming (C, C#, C++, CSS, HTML, Java, Javascript, MATLAB, Python, R, React, SPSS, SQL, etc.)"
+    ]
   },
   "examTraining": {
     "description": "I offer guidance for mathematics exams, including a preparatory exam to analyze where help is needed, after which I create a specific study plan."
@@ -54,19 +71,173 @@
     "title": "Complete Overview – Math Programs",
     "subtitle": "Group lessons, max. 4 students",
     "courses": {
-      "spoedpakket": { "name": "Rush Package", "duration": "1 week", "lessons": "4 hrs (2–3 sessions)", "personalSupport": "—", "contactHours": "4 hrs", "refundPolicy": "n/a", "highlight": "Highest student hourly rate", "description": "Intensive week program for urgent help" },
-      "korteCursus": { "name": "Short Course", "duration": "4 weeks", "lessons": "4 hrs (1 hr/week)", "personalSupport": "—", "contactHours": "4 hrs", "refundPolicy": "n/a", "highlight": "Lowest entry price", "description": "Gradual build-up within one period" },
-      "volledigCommit": { "name": "Complete – Commit", "duration": "12 weeks", "lessons": "10–11 hrs lessons", "personalSupport": "15 min per person/week (3 hrs)", "contactHours": "13–14 hrs", "refundPolicy": "No refund; transferable", "highlight": "25% cheaper than Flex", "description": "Full commitment, paid upfront" },
-      "volledigFlex": { "name": "Complete – Flex", "duration": "12 weeks", "lessons": "10–11 hrs lessons", "personalSupport": "15 min per person/week (3 hrs)", "contactHours": "13–14 hrs", "refundPolicy": "Cancellable every 4 weeks", "highlight": "Flexibility for premium price", "description": "Maximum flexibility for students" }
+      "spoedpakket": {
+        "name": "Rush Package",
+        "duration": "1 week",
+        "lessons": "4 hrs (2–3 sessions)",
+        "personalSupport": "—",
+        "contactHours": "4 hrs",
+        "refundPolicy": "n/a",
+        "highlight": "Highest student hourly rate",
+        "description": "Intensive week program for urgent help"
+      },
+      "korteCursus": {
+        "name": "Short Course",
+        "duration": "4 weeks",
+        "lessons": "4 hrs (1 hr/week)",
+        "personalSupport": "—",
+        "contactHours": "4 hrs",
+        "refundPolicy": "n/a",
+        "highlight": "Lowest entry price",
+        "description": "Gradual build-up within one period"
+      },
+      "volledigCommit": {
+        "name": "Complete – Commit",
+        "duration": "12 weeks",
+        "lessons": "10–11 hrs lessons",
+        "personalSupport": "15 min per person/week (3 hrs)",
+        "contactHours": "13–14 hrs",
+        "refundPolicy": "No refund; transferable",
+        "highlight": "25% cheaper than Flex",
+        "description": "Full commitment, paid upfront"
+      },
+      "volledigFlex": {
+        "name": "Complete – Flex",
+        "duration": "12 weeks",
+        "lessons": "10–11 hrs lessons",
+        "personalSupport": "15 min per person/week (3 hrs)",
+        "contactHours": "13–14 hrs",
+        "refundPolicy": "Cancellable every 4 weeks",
+        "highlight": "Flexibility for premium price",
+        "description": "Maximum flexibility for students"
+      }
     },
     "features": {
-      "duration": { "label": "Duration", "short": "Duration" },
-      "lessons": { "label": "Lesson sessions", "short": "Lessons" },
-      "personalSupport": { "label": "Personal office hours", "short": "Office hrs" },
-      "contactHours": { "label": "Student contact hours", "short": "Contact" },
-      "pricePerPerson": { "label": "Price per person", "short": "Price" },
-      "pricePerLessonHour": { "label": "€ / lesson hour student", "short": "€/hr" },
-      "refundPolicy": { "label": "Refund policy", "short": "Refund" }
+      "duration": {
+        "label": "Duration",
+        "short": "Duration"
+      },
+      "lessons": {
+        "label": "Lesson sessions",
+        "short": "Lessons"
+      },
+      "personalSupport": {
+        "label": "Personal office hours",
+        "short": "Office hrs"
+      },
+      "contactHours": {
+        "label": "Student contact hours",
+        "short": "Contact"
+      },
+      "pricePerPerson": {
+        "label": "Price per person",
+        "short": "Price"
+      },
+      "pricePerLessonHour": {
+        "label": "€ / lesson hour student",
+        "short": "€/hr"
+      },
+      "refundPolicy": {
+        "label": "Refund policy",
+        "short": "Refund"
+      }
     }
+  },
+  "form": {
+    "pleaseFillInAllRequiredFields": "Please fill in all required fields",
+    "parentContactInformationIsRequiredForStudentsUnder": "Parent contact information is required for students under 18",
+    "thankYouForYourSubmission": "Thank you for your submission!",
+    "somethingWentWrong": "Something went wrong",
+    "areYouSureYouWantToLeave": "Are you sure you want to leave?",
+    "yourProgressWillBeLostIfYouLeaveNow": "Your progress will be lost if you leave now.",
+    "continueForm": "Continue Form",
+    "leave": "Leave",
+    "appointmentScheduling": "Appointment Scheduling",
+    "theseAreExampleNotesToDemonstrateTeachingStyleAndM": "These are example notes to demonstrate teaching style and methodology",
+    "close": "Close",
+    "closePreview": "Close Preview",
+    "researchMethodologyAndDesign": "Research methodology and design",
+    "dataAnalysisAndStatistics": "Data analysis and statistics",
+    "proofreadingAndFeedback": "Proofreading and feedback",
+    "softwareSupportRPythonSpss": "Software support (R, Python, SPSS)",
+    "wouldYouLikeToLearnMoreAboutOurTeachingMethodsOrSc": "Would you like to learn more about our teaching methods or schedule a trial lesson right away?",
+    "moreInformation": "More Information",
+    "learnAboutOurTeachingMethodsSubjectsAndPricing": "Learn about our teaching methods, subjects, and pricing",
+    "scheduleTrialLesson": "Schedule Trial Lesson",
+    "bookAFree30minuteTrialLessonNow": "Book a free 30-minute trial lesson now",
+    "comingSoon": "Coming Soon",
+    "pleaseReviewYourInformation": "Please review your information",
+    "personalDetails": "Personal Details",
+    "name": "Name",
+    "email": "Email",
+    "age": "Age",
+    "lessonDetails": "Lesson Details",
+    "subject": "Subject",
+    "level": "Level",
+    "location": "Location",
+    "online": "Online",
+    "inperson": "In-Person",
+    "parentguardianDetails": "Parent/Guardian Details",
+    "phone": "Phone",
+    "whatAreYourLearningGoals": "What are your learning goals?",
+    "pleaseDescribeWhatYouWouldLikeToAchieve": "Please describe what you would like to achieve",
+    "exampleIWantToImproveMyUnderstandingOfCalculusEspe": "Example: I want to improve my understanding of calculus, especially derivatives and integrals...",
+    "minimumLengthReached": "✓ Minimum length reached",
+    "availableSubjects": "Available Subjects",
+    "primaryEducation": "Primary Education",
+    "secondaryEducation": "Secondary Education",
+    "higherEducation": "Higher Education",
+    "programming": "Programming",
+    "variousProgrammingLanguagesAndTechnologiesIncludin": "Various programming languages and technologies including:",
+    "teachingMethod": "Teaching Method",
+    "lessonStructure": "Lesson Structure",
+    "lessonsAreTypically12HoursLongScheduledAtYourConve": "Lessons are typically 1-2 hours long, scheduled at your convenience. We start with a free 30-minute trial lesson to assess your needs and goals.",
+    "ratesStartAt50PerHourDependingOnTheSubjectLevelAnd": "Rates start at €50 per hour, depending on the subject level and frequency of lessons. The first 30-minute trial lesson is free.",
+    "back": "Back",
+    "doYouPreferOnlineOrInpersonLessons": "Do you prefer online or in-person lessons?",
+    "onlineLessons": "Online Lessons",
+    "inpersonLessons": "In-Person Lessons",
+    "submit": "Submit",
+    "next": "Next",
+    "phoneNumber": "Phone Number",
+    "sinceYouAreUnder18ThisFormNeedsToBeFilledOutByAPar": "Since you are under 18, this form needs to be filled out by a parent or guardian.",
+    "parentguardianInformation": "Parent/Guardian Information",
+    "parentguardianName": "Parent/Guardian Name",
+    "parentguardianEmail": "Parent/Guardian Email",
+    "relationshipToStudent": "Relationship to Student",
+    "selectRelationship": "Select relationship",
+    "parent": "Parent",
+    "guardian": "Guardian",
+    "whoIsRequestingTheLesson": "Who is requesting the lesson?",
+    "forMyself": "For myself",
+    "forSomeoneElse": "For someone else",
+    "yourInformation": "Your Information",
+    "yourName": "Your Name",
+    "yourEmail": "Your Email",
+    "relationship": "Relationship",
+    "familyMember": "Family member",
+    "other": "Other",
+    "studentInformation": "Student Information",
+    "selectLevel": "Select level",
+    "university": "University",
+    "schedulePreferences": "Schedule Preferences",
+    "preferredDays": "Preferred Days",
+    "pleaseSelectAtLeastOnePreferredDay": "Please select at least one preferred day",
+    "preferredTimes": "Preferred Times",
+    "pleaseSelectAtLeastOnePreferredTime": "Please select at least one preferred time",
+    "unavailableDays": "Unavailable Days",
+    "otherSubject": "Other Subject",
+    "previewNotes": "Preview Notes",
+    "otherLanguage": "Other Language",
+    "bothYouAndYourParentguardian": "both you and your parent/guardian",
+    "you": "you",
+    "viaWhatsappAsSoonAsPossibleToScheduleYourFreeTrial": "via WhatsApp as soon as possible to schedule your free trial lesson!",
+    "usuallyWithin24Hours": "Usually within 24 hours",
+    "letsGetStarted": "Let's Get Started!",
+    "wellContactYouSoon": "We'll contact you soon.",
+    "iFocusOnUnderstandingRatherThan": "I focus on understanding rather than memorization. We'll work together to build a strong foundation in the subject, using practical examples and clear explanations.",
+    "whatsYourAge": "What's your age?",
+    "greatIveReceivedYourRequest": "Great! I've Received Your Request",
+    "illContact": "I'll contact"
   }
 }

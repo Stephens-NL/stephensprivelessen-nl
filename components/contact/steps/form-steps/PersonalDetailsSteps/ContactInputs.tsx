@@ -1,7 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { config } from '@/data/config';
 
 export function EmailInput({
@@ -46,12 +46,12 @@ export function PhoneInput({
   error: string | null;
 }) {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('contact');
   return (
     <div>
       <label className="block text-[var(--amber)] mb-2">
-        {String(t({ EN: "Phone Number", NL: "Telefoonnummer" }))} *
+        {t('form.phoneNumber')} *
       </label>
       <input
         type="tel"
