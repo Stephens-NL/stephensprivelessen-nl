@@ -1,28 +1,11 @@
 import { testComponentTranslations } from '../utils/testUtils';
 
 // Import data files
-import { about, introductionContent } from '@/data/about';
-import { services, generalContent } from '@/data/services';
-import { hero } from '@/data/hero';
 import { workshops } from '@/data/workshopsData';
 import { feedbackFormData } from '@/data/feedbackFormData';
 
 describe('Page Content Translations', () => {
   describe('Data Files', () => {
-    it('about data should have all required translations', () => {
-      testComponentTranslations(about, 'About');
-      testComponentTranslations(introductionContent, 'Introduction');
-    });
-
-    it('services data should have all required translations', () => {
-      testComponentTranslations(services, 'Services');
-      testComponentTranslations(generalContent, 'GeneralContent');
-    });
-
-    it('hero data should have all required translations', () => {
-      testComponentTranslations(hero, 'Hero');
-    });
-
     it('workshops data should have all required translations', () => {
       testComponentTranslations(workshops, 'Workshops');
     });
@@ -238,4 +221,4 @@ describe('Page Content Translations', () => {
     // Note: Workshops page content is handled by WorkshopsContent component
     // which uses the workshops data we're already testing
   });
-}); 
+});

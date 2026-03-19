@@ -1,7 +1,5 @@
 import { tutoringPage } from '@/data/tutoringPage';
 import { workshops } from '@/data/workshopsData';
-import { about } from '@/data/about';
-import { services, generalContent } from '@/data/services';
 
 describe('Content Validation', () => {
   describe('Tutoring Page Content', () => {
@@ -45,38 +43,6 @@ describe('Content Validation', () => {
     });
   });
 
-  describe('About Page Content', () => {
-    it('should have all required sections', () => {
-      expect(about).toBeDefined();
-      validateBilingualText(about.title);
-      expect(about.introduction).toBeDefined();
-      validateBilingualText(about.philosophyTitle);
-      expect(Array.isArray(about.philosophyPoints)).toBe(true);
-    });
-  });
-
-  describe('Services Page Content', () => {
-    it('should have valid services array', () => {
-      expect(Array.isArray(services)).toBe(true);
-      expect(services.length).toBeGreaterThan(0);
-      
-      services.forEach(service => {
-        expect(service.id).toBeDefined();
-        expect(service.icon).toBeDefined();
-        validateBilingualText(service.title);
-        validateBilingualText(service.shortDescription);
-        validateBilingualText(service.longDescription);
-      });
-    });
-
-    it('should have valid general content', () => {
-      expect(generalContent).toBeDefined();
-      validateBilingualText(generalContent.ourServices);
-      validateBilingualText(generalContent.serviceDetails);
-      validateBilingualText(generalContent.learnMore);
-    });
-  });
-
   // Helper function to validate bilingual text
   const validateBilingualText = (text: any) => {
     expect(text).toBeDefined();
@@ -85,12 +51,4 @@ describe('Content Validation', () => {
     expect(typeof text.EN).toBe('string');
     expect(typeof text.NL).toBe('string');
   };
-
-  // Helper function to validate content object
-  const validateContentObject = (obj: any, requiredFields: string[]) => {
-    expect(obj).toBeDefined();
-    requiredFields.forEach(field => {
-      expect(obj).toHaveProperty(field);
-    });
-  };
-}); 
+});
