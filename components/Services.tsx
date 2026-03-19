@@ -62,19 +62,19 @@ const Services = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-blue-100 to-blue-800 overflow-hidden relative">
+    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[var(--cream-dark)] to-[var(--ink)] overflow-hidden relative">
       {/* Background graphics */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute -top-20 -left-20 sm:-top-40 sm:-left-40 w-40 h-40 sm:w-80 sm:h-80 bg-blue-300 rounded-full opacity-20 mix-blend-multiply"></div>
-        <div className="absolute top-10 right-10 sm:top-20 sm:right-20 w-30 h-30 sm:w-60 sm:h-60 bg-yellow-300 rounded-full opacity-20 mix-blend-multiply"></div>
-        <div className="absolute bottom-20 -left-10 sm:bottom-40 sm:-left-20 w-50 h-50 sm:w-100 sm:h-100 bg-pink-300 rounded-full opacity-20 mix-blend-multiply"></div>
+        <div className="absolute -top-20 -left-20 sm:-top-40 sm:-left-40 w-40 h-40 sm:w-80 sm:h-80 bg-[var(--sage)] rounded-full opacity-20 mix-blend-multiply"></div>
+        <div className="absolute top-10 right-10 sm:top-20 sm:right-20 w-30 h-30 sm:w-60 sm:h-60 bg-[var(--amber)] rounded-full opacity-20 mix-blend-multiply"></div>
+        <div className="absolute bottom-20 -left-10 sm:bottom-40 sm:-left-20 w-50 h-50 sm:w-100 sm:h-100 bg-[var(--terracotta)] rounded-full opacity-20 mix-blend-multiply"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Introduction Section */}
         <div className="max-w-4xl mx-auto text-center mb-16">
           <m.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white"
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-8 text-[var(--cream)]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -82,7 +82,7 @@ const Services = () => {
             {t('ourServices')}
           </m.h2>
           <m.p
-            className="text-lg sm:text-xl text-white mb-8"
+            className="text-lg sm:text-xl text-[var(--cream)] mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -101,7 +101,7 @@ const Services = () => {
           {serviceIds.map((id, index) => (
             <m.div
               key={id}
-              className="bg-white bg-opacity-90 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col transform hover:-translate-y-2"
+              className="bg-[var(--cream)] bg-opacity-90 p-6 sm:p-8 rounded-xl border border-[var(--border-warm)] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col transform hover:-translate-y-2"
               variants={itemVariants}
             >
               <div className="flex justify-center mb-4 sm:mb-6">
@@ -110,13 +110,13 @@ const Services = () => {
                   alt={t(`items.${index}.title`)}
                   width={60}
                   height={60}
-                  className="text-blue-500 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
+                  className="text-[var(--amber)] w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
                 />
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-center text-blue-900">
+              <h3 className="text-xl sm:text-2xl font-display font-semibold mb-3 sm:mb-4 text-center text-[var(--ink)]">
                 {t(`items.${index}.title`)}
               </h3>
-              <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 text-center flex-grow">
+              <p className="text-sm sm:text-base text-[var(--muted-text)] mb-4 sm:mb-6 text-center flex-grow">
                 {t(`items.${index}.shortDescription`)}
               </p>
               <m.div
@@ -126,14 +126,14 @@ const Services = () => {
               >
                 {serviceLinkMap[id] ? (
                   <Link href={serviceLinkMap[id] as any}>
-                    <button className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300">
+                    <button className="inline-block bg-[var(--ink)] text-[var(--cream)] font-bold py-2 px-4 rounded-full hover:bg-[var(--ink-light)] transition-colors duration-300">
                       {t('learnMore')} &rarr;
                     </button>
                   </Link>
                 ) : (
                   <button
                     onClick={() => setSelectedIndex(index)}
-                    className="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition-colors duration-300"
+                    className="inline-block bg-[var(--ink)] text-[var(--cream)] font-bold py-2 px-4 rounded-full hover:bg-[var(--ink-light)] transition-colors duration-300"
                   >
                     {t('learnMore')} &rarr;
                   </button>
@@ -153,7 +153,7 @@ const Services = () => {
             exit={{ opacity: 0 }}
           >
             <m.div
-              className="bg-white rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto shadow-lg relative"
+              className="bg-[var(--cream)] rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto shadow-sm border border-[var(--border-warm)] relative"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -161,7 +161,7 @@ const Services = () => {
             >
               <button
                 onClick={() => setSelectedIndex(null)}
-                className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-500 hover:text-gray-700"
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 text-[var(--muted-text)] hover:text-[var(--warm-text)]"
               >
                 <X size={24} />
               </button>
@@ -173,10 +173,10 @@ const Services = () => {
                   height={80}
                   className="mx-auto mb-4 sm:mb-6 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"
                 />
-                <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-blue-900">
+                <h2 className="text-2xl sm:text-3xl font-display font-bold mb-3 sm:mb-4 text-[var(--ink)]">
                   {t(`items.${selectedIndex}.title`)}
                 </h2>
-                <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6">
+                <p className="text-sm sm:text-base md:text-lg text-[var(--muted-text)] mb-4 sm:mb-6">
                   {t(`items.${selectedIndex}.longDescription`)}
                 </p>
                 <ButtonTrial />

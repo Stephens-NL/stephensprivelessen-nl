@@ -11,15 +11,13 @@ import { config } from '@/data/config';
 const WHATSAPP_MESSAGE = 'Hallo, ik heb een vraag over je diensten';
 const WHATSAPP_URL = `${config.contact.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
-type UIState = { isModalOpen: boolean; isMobile: boolean; isExpanded: boolean; isHovered: boolean; yPosition: string };
+type UIState = { isModalOpen: boolean; isMobile: boolean; isHovered: boolean };
 
-function uiReducer(state: UIState, action: { type: string; payload?: boolean | string }): UIState {
+function uiReducer(state: UIState, action: { type: string; payload?: boolean }): UIState {
   switch (action.type) {
     case 'MODAL': return { ...state, isModalOpen: action.payload ?? !state.isModalOpen };
     case 'MOBILE': return { ...state, isMobile: action.payload ?? state.isMobile };
-    case 'EXPANDED': return { ...state, isExpanded: action.payload ?? !state.isExpanded };
     case 'HOVERED': return { ...state, isHovered: action.payload ?? !state.isHovered };
-    case 'Y_POSITION': return { ...state, yPosition: (action.payload as string) ?? state.yPosition };
     default: return state;
   }
 }
@@ -29,71 +27,17 @@ export default function WhatsAppButton() {
   const [ui, dispatchUI] = useReducer(uiReducer, {
     isModalOpen: false,
     isMobile: true,
-    isExpanded: false,
     isHovered: false,
-    yPosition: '-50%',
   });
-  const { isModalOpen, isMobile, isExpanded, isHovered, yPosition } = ui;
-  const expandTimeoutRef = useRef<NodeJS.Timeout>(undefined);
-  const opacityTimeoutRef = useRef<NodeJS.Timeout>(undefined);
+  const { isModalOpen, isMobile, isHovered } = ui;
   const pathname = usePathname();
 
   useEffect(() => {
-    const checkDevice = () => {
-      dispatchUI({ type: 'MOBILE', payload: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) });
-    };
-
-    const updateYPosition = () => {
-      const isMediumScreen = window.innerWidth >= 768 && window.innerWidth < 1024;
-      dispatchUI({ type: 'Y_POSITION', payload: isMediumScreen ? '0' : '-50%' });
-    };
-
-    checkDevice();
-    updateYPosition();
-
-    const handleResize = () => {
-      checkDevice();
-      updateYPosition();
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (expandTimeoutRef.current) {
-        clearTimeout(expandTimeoutRef.current);
-      }
-      if (opacityTimeoutRef.current) {
-        clearTimeout(opacityTimeoutRef.current);
-      }
-    };
+    dispatchUI({ type: 'MOBILE', payload: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) });
   }, []);
 
   // Don't show on contact page
   if (pathname === '/contact') return null;
-
-  const handleMouseEnter = () => {
-    dispatchUI({ type: 'EXPANDED', payload: true });
-    dispatchUI({ type: 'HOVERED', payload: true });
-    if (expandTimeoutRef.current) {
-      clearTimeout(expandTimeoutRef.current);
-    }
-    if (opacityTimeoutRef.current) {
-      clearTimeout(opacityTimeoutRef.current);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    expandTimeoutRef.current = setTimeout(() => {
-      dispatchUI({ type: 'EXPANDED', payload: false });
-    }, 4000);
-
-    opacityTimeoutRef.current = setTimeout(() => {
-      dispatchUI({ type: 'HOVERED', payload: false });
-    }, 5000);
-  };
 
   const handleClick = () => {
     if (isMobile) {
@@ -105,88 +49,75 @@ export default function WhatsAppButton() {
 
   return (
     <>
+      {/* Floating button -- bottom right, minimal pill shape */}
       <m.button
         onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className="fixed left-6 top-1/2 md:bottom-6 md:top-auto lg:top-1/2 lg:bottom-auto -translate-y-1/2 md:translate-y-0 lg:-translate-y-1/2 z-30 bg-green-500 text-white p-4 md:p-5 rounded-full shadow-lg hover:bg-green-600 transition-all duration-700 flex items-center gap-3 group"
-        initial={{ y: -1000, opacity: 0 }}
-        animate={{
-          y: yPosition,
-          opacity: isHovered ? 1 : 0.3,
-          transition: {
-            y: { duration: 3, ease: [0.4, 0, 0.2, 1] },
-            opacity: {
-              duration: 0.5,
-              delay: isHovered ? 0 : 0.5
-            }
-          }
-        }}
-        whileHover={{ scale: 1.05 }}
+        onMouseEnter={() => dispatchUI({ type: 'HOVERED', payload: true })}
+        onMouseLeave={() => dispatchUI({ type: 'HOVERED', payload: false })}
+        className="fixed bottom-6 right-6 z-30 flex items-center gap-2.5 bg-[var(--ink)] text-[var(--cream)] pl-4 pr-5 py-3 rounded-full shadow-lg shadow-black/15 hover:shadow-xl hover:shadow-black/20 transition-all duration-300"
+        initial={{ y: 80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
       >
-        <FaWhatsapp className="text-2xl md:text-3xl" />
+        <FaWhatsapp className="text-lg text-[#25D366]" />
         <m.span
-          className="overflow-hidden whitespace-nowrap text-base md:text-lg"
+          className="text-sm font-medium overflow-hidden whitespace-nowrap"
+          animate={{ width: isHovered ? 'auto' : 0, opacity: isHovered ? 1 : 0 }}
           initial={{ width: 0, opacity: 0 }}
-          animate={{
-            width: isExpanded ? 'auto' : 0,
-            opacity: isExpanded ? 1 : 0
-          }}
-          transition={{
-            duration: 0.8,
-            ease: 'easeInOut'
-          }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
           {t('whatsappLabel')}
         </m.span>
       </m.button>
 
+      {/* QR Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/50 z-40 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-[var(--ink)]/60 backdrop-blur-sm z-40 flex items-center justify-center p-4"
             onClick={() => dispatchUI({ type: 'MODAL', payload: false })}
           >
             <m.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-xl p-6 max-w-md w-full relative"
+              initial={{ scale: 0.95, opacity: 0, y: 10 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 10 }}
+              transition={{ duration: 0.25 }}
+              className="bg-[var(--cream)] rounded-xl p-8 max-w-sm w-full relative border border-[var(--border-warm)]"
               onClick={e => e.stopPropagation()}
             >
               <button
                 onClick={() => dispatchUI({ type: 'MODAL', payload: false })}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                className="absolute top-4 right-4 text-[var(--muted-text)] hover:text-[var(--ink)] transition-colors"
               >
-                <FaTimes className="text-xl" />
+                <FaTimes className="text-lg" />
               </button>
 
-              <h3 className="text-2xl font-bold text-center mb-6">
+              <h3 className="font-display text-2xl font-semibold text-[var(--ink)] text-center mb-6">
                 {t('whatsappLabel')}
               </h3>
 
               <div className="flex flex-col items-center gap-6">
-                <div className="bg-white p-4 rounded-lg">
-                  <QRCode value={WHATSAPP_URL} size={200} />
+                <div className="p-4 bg-[var(--cream)] rounded-lg border border-[var(--border-warm)]">
+                  <QRCode value={WHATSAPP_URL} size={180} bgColor="#ffffff" fgColor="#0D2818" />
                 </div>
 
                 <div className="text-center">
-                  <p className="font-mono text-gray-800 mb-4">{config.contact.display.phone}</p>
+                  <p className="text-sm font-medium text-[var(--ink)] font-mono">{config.contact.display.phone}</p>
                 </div>
 
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-colors duration-300 flex items-center gap-2"
+                  className="w-full flex items-center justify-center gap-2 bg-[var(--ink)] text-[var(--cream)] px-6 py-3 rounded-lg hover:bg-[var(--ink-light)] transition-colors text-sm font-semibold"
                 >
-                  <FaWhatsapp className="text-xl" />
-                  <span>WhatsApp Web</span>
+                  <FaWhatsapp className="text-lg text-[#25D366]" />
+                  WhatsApp Web
                 </a>
               </div>
             </m.div>

@@ -13,39 +13,92 @@ const Hero = () => {
   const t = useTranslations('home');
 
   return (
-    <section className="bg-[#FCF8F1] bg-opacity-30 py-10 sm:py-16 lg:py-24">
-      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="grid items-center grid-cols-1 gap-8 md:gap-12 md:grid-cols-2">
+    <section className="relative overflow-hidden">
+      {/* Background with subtle pattern */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--cream)] via-[var(--cream)] to-[var(--cream-dark)]" />
+      <div className="absolute inset-0 opacity-[0.03]" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, var(--ink) 1px, transparent 0)`,
+        backgroundSize: '40px 40px',
+      }} />
+
+      <div className="relative px-6 mx-auto max-w-7xl lg:px-12 py-16 sm:py-20 lg:py-28">
+        <div className="grid items-center grid-cols-1 gap-12 lg:gap-20 lg:grid-cols-2">
+          {/* Text side */}
           <m.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="space-y-8 max-w-xl"
           >
             <TextBlock />
-            <div className="space-y-4">
+            <m.div
+              className="space-y-4 pt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
               <ButtonTrial />
               <SignInHere />
-            </div>
+            </m.div>
           </m.div>
 
+          {/* Image side */}
           <m.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative w-full max-w-lg mx-auto"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-full max-w-lg mx-auto lg:max-w-none"
           >
-            <Image
-              src={portrait2}
-              alt={t('hero.imgAlt')}
-              width={600}
-              height={400}
-              className="rounded-xl shadow-lg"
-              priority
-              placeholder="blur"
-            />
+            {/* Decorative frame */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-[var(--ink)]/5 to-[var(--amber)]/10 rounded-2xl -rotate-2" />
+            <div className="absolute -inset-4 border border-[var(--border-warm)] rounded-2xl rotate-1" />
+
+            <div className="relative rounded-xl overflow-hidden shadow-2xl shadow-black/10">
+              <Image
+                src={portrait2}
+                alt={t('hero.imgAlt')}
+                width={600}
+                height={500}
+                className="w-full h-auto object-cover"
+                priority
+                placeholder="blur"
+              />
+              {/* Subtle overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/20 via-transparent to-transparent" />
+            </div>
           </m.div>
         </div>
+
+        {/* Trust indicators */}
+        <m.div
+          className="mt-16 lg:mt-24 pt-10 border-t border-[var(--border-warm)]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { value: '500+', labelKey: 'hero.stats.studentsHelped' },
+              { value: '\u20AC75', labelKey: 'hero.stats.perHour' },
+              { value: 'UvA & VU', labelKey: 'hero.stats.campusNetwork' },
+              { value: '5\u2605', labelKey: 'hero.stats.averageRating' },
+            ].map((stat, i) => (
+              <m.div
+                key={stat.value}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
+              >
+                <div className="font-display text-2xl sm:text-3xl font-semibold text-[var(--ink)]">
+                  {stat.value}
+                </div>
+                <div className="text-sm text-[var(--muted-text)] mt-1">
+                  {t(stat.labelKey)}
+                </div>
+              </m.div>
+            ))}
+          </div>
+        </m.div>
       </div>
     </section>
   );

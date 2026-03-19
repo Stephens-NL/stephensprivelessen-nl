@@ -26,13 +26,13 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-800 text-white py-8">
+    <footer className="bg-[var(--ink)] text-[var(--cream)] py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Title and Description */}
           <div>
             <h3 className="text-lg font-semibold mb-4">{t('footer.title')}</h3>
-            <p className="text-gray-400">{t('footer.description')}</p>
+            <p className="text-[var(--cream-dark)]">{t('footer.description')}</p>
           </div>
 
           {/* Services Links */}
@@ -41,7 +41,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {serviceLinks.map(({ href, key }) => (
                 <li key={href}>
-                  <Link href={href} className="text-gray-400 hover:text-white transition">
+                  <Link href={href} className="text-[var(--cream-dark)] hover:text-[var(--amber)] transition">
                     {t(`footer.${key}`)}
                   </Link>
                 </li>
@@ -55,7 +55,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {infoLinks.map(({ href, key }) => (
                 <li key={href}>
-                  <Link href={href} className="text-gray-400 hover:text-white transition">
+                  <Link href={href} className="text-[var(--cream-dark)] hover:text-[var(--amber)] transition">
                     {t(`footer.${key}`)}
                   </Link>
                 </li>
@@ -66,18 +66,18 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4">{t('footer.contactLabel')}</h3>
-            <a href={`mailto:${config.contact.email}`} className="block text-gray-400 hover:text-white transition">
+            <a href={`mailto:${config.contact.email}`} className="block text-[var(--cream-dark)] hover:text-[var(--amber)] transition">
               Email: {config.contact.email}
             </a>
-            <a href={config.contact.display.href} className="block text-gray-400 hover:text-white transition">
+            <a href={config.contact.display.href} className="block text-[var(--cream-dark)] hover:text-[var(--amber)] transition">
               Tel: {config.contact.display.phone}
             </a>
-            <a href={config.business.mainOffice.googleMapsUrl} className="block text-gray-400 hover:text-white transition mt-2">
+            <a href={config.business.mainOffice.googleMapsUrl} className="block text-[var(--cream-dark)] hover:text-[var(--amber)] transition mt-2">
               {config.business.mainOffice.address}, {config.business.mainOffice.postalCode} {config.business.mainOffice.city}
             </a>
             <div className="mt-4 flex space-x-4">
               {/* Social Media Icons */}
-              <a href="http://instagram.com/stephensprivelessen" className="text-gray-400 hover:text-white transition">
+              <a href="http://instagram.com/stephensprivelessen" className="text-[var(--cream-dark)] hover:text-[var(--amber)] transition">
                 <span className="sr-only">Instagram</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path
@@ -92,8 +92,8 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom Section */}
-        <div className="mt-8 border-t border-gray-700 pt-8 text-center">
-          <p className="text-gray-400">
+        <div className="mt-8 border-t border-[var(--ink-light)] pt-8 text-center">
+          <p className="text-[var(--cream-dark)]">
             &copy; {currentYear} {t('footer.title')}. {t('footer.copyright')}
           </p>
         </div>

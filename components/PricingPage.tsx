@@ -11,10 +11,10 @@ const PricingPage = () => {
   const t = useTranslations('tutoring');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-6 sm:px-8 lg:px-12">
-      <div className="max-w-6xl mx-auto bg-blue-800 p-8 rounded-lg shadow-lg">
+    <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)] py-12 px-6 sm:px-8 lg:px-12">
+      <div className="max-w-6xl mx-auto bg-[var(--ink)] p-8 rounded-lg shadow-sm border border-[var(--sage)]/20">
         {/* Header */}
-        <h1 className="text-4xl font-bold text-center text-yellow-300 mb-12">
+        <h1 className="text-4xl font-display font-bold text-center text-[var(--amber)] mb-12">
           {t('pricing.title')}
         </h1>
 

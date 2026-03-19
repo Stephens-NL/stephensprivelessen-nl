@@ -7,13 +7,13 @@ const SignInHere = () => {
     const t = useTranslations('home');
 
     return (
-        <p className="mt-5 text-gray-600 text-sm sm:text-base">
+        <p className="text-[var(--muted-text)] text-sm">
             {t('hero.alreadyEnrolled')}
             <a
-                href="https://elo.stephensprivelessen.nl"
+                href="https://dash.stephensprivelessen.nl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black transition-all duration-200 hover:underline ml-1"
+                className="text-[var(--ink)] font-medium hover:text-[var(--amber)] transition-colors ml-1 underline underline-offset-2 decoration-[var(--border-warm)] hover:decoration-[var(--amber)]"
             >
                 {t('hero.signInHere')}
             </a>

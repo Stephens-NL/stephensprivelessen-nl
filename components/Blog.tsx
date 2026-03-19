@@ -11,18 +11,18 @@ const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ ind
   const t = useTranslations('blog');
   return (
     <m.div
-      className="bg-gray-900 shadow-md rounded-lg p-6 mb-6 border border-gray-800 hover:border-gray-700 cursor-pointer"
+      className="bg-[var(--cream)] shadow-md rounded-lg p-6 mb-6 border border-[var(--border-warm)] hover:border-[var(--amber)] cursor-pointer"
       whileHover={{ scale: 1.03, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
     >
-      <h2 className="text-2xl font-bold text-gray-100 mb-4 hover:text-cyan-400 transition-colors duration-300">
+      <h2 className="text-2xl font-bold font-display text-[var(--ink)] mb-4 hover:text-[var(--amber)] transition-colors duration-300">
         {t(`items.${index}.title`)}
       </h2>
-      <div className="text-balance text-gray-300 mb-4">
+      <div className="text-balance text-[var(--warm-text)] mb-4">
         {t(`items.${index}.content`).substring(0, 150)}...
       </div>
-      <span className="text-primary hover:text-cyan-400 transition-colors duration-300">Lees meer</span>
+      <span className="text-[var(--amber)] hover:text-[var(--amber-hover)] transition-colors duration-300">Lees meer</span>
     </m.div>
   );
 };
@@ -51,9 +51,9 @@ export const BlogList: React.FC = () => {
   };
 
   return (
-    <div className="mx-auto px-4 py-8 bg-gradient-to-br from-blue-100 to-gray-950">
+    <div className="mx-auto px-4 py-8 bg-[var(--cream)]">
       <m.h1
-        className="text-4xl font-bold text-center text-white mb-8"
+        className="text-4xl font-bold text-center font-display text-[var(--ink)] mb-8"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
@@ -88,7 +88,7 @@ const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ 
 
   return (
     <m.div
-      className="bg-gray-900 rounded-lg shadow-xl overflow-hidden border border-gray-800 max-h-[90vh] overflow-y-auto w-full max-w-3xl mx-auto"
+      className="bg-[var(--cream)] rounded-lg shadow-xl overflow-hidden border border-[var(--border-warm)] max-h-[90vh] overflow-y-auto w-full max-w-3xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
@@ -96,7 +96,7 @@ const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ 
     >
       <div className="p-8">
         <m.h1
-          className="text-4xl font-bold text-white mb-4"
+          className="text-4xl font-bold font-display text-[var(--ink)] mb-4"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.1, duration: 0.3 }}
@@ -104,13 +104,13 @@ const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ 
           {t(`items.${index}.title`)}
         </m.h1>
         <m.div
-          className="prose prose-invert max-w-none"
+          className="prose prose-neutral max-w-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.3 }}
         >
           {t(`items.${index}.content`).split('\n').map((paragraph, pIndex) => (
-            <p key={paragraph ? `${paragraph.slice(0, 30)}-${pIndex}` : `para-${pIndex}`} className="mb-4 text-gray-300">{paragraph}</p>
+            <p key={paragraph ? `${paragraph.slice(0, 30)}-${pIndex}` : `para-${pIndex}`} className="mb-4 text-[var(--warm-text)]">{paragraph}</p>
           ))}
         </m.div>
       </div>
@@ -123,7 +123,7 @@ const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ 
         >
           <button
             onClick={onClose}
-            className="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-cyan-400 transition-colors duration-300"
+            className="inline-block bg-[var(--ink)] text-[var(--cream)] px-6 py-3 rounded-lg hover:bg-[var(--ink-light)] transition-colors duration-300"
           >
             Terug naar alle blogs
           </button>
@@ -137,7 +137,7 @@ export const FullPageBlogPost: React.FC<{ index: number }> = ({ index }) => {
   const t = useTranslations('blog');
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[var(--cream)] text-[var(--warm-text)] py-12 px-4 sm:px-6 lg:px-8">
       <m.article
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -149,7 +149,7 @@ export const FullPageBlogPost: React.FC<{ index: number }> = ({ index }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-4xl sm:text-5xl font-bold text-white mb-4"
+            className="text-4xl sm:text-5xl font-bold font-display text-[var(--ink)] mb-4"
           >
             {t(`items.${index}.title`)}
           </m.h1>
@@ -159,7 +159,7 @@ export const FullPageBlogPost: React.FC<{ index: number }> = ({ index }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="prose prose-lg prose-invert max-w-none"
+          className="prose prose-lg prose-neutral max-w-none"
         >
           {t(`items.${index}.content`).split('\n').map((paragraph, pIndex) => (
             <p key={paragraph ? `${paragraph.slice(0, 30)}-${pIndex}` : `para-${pIndex}`} className="mb-6">{paragraph.trim()}</p>

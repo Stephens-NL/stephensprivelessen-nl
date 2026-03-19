@@ -9,13 +9,13 @@ const TextBlock = () => {
 
   return (
     <>
-      <p className="text-sm sm:text-base font-semibold tracking-wider text-blue-600 uppercase">
+      <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber)]">
         {t('hero.title')}
       </p>
-      <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-black lg:mt-8">
+      <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[var(--ink)] leading-[1.05] tracking-tight">
         {t('hero.subtitle')}
       </h1>
-      <p className="mt-4 text-sm sm:text-base md:text-lg text-black lg:mt-8">
+      <p className="text-base sm:text-lg text-[var(--muted-text)] leading-relaxed max-w-md">
         {t('hero.subtitle2')}
       </p>
     </>

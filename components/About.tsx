@@ -8,15 +8,15 @@ import { AnimatePresence, m } from 'framer-motion';
 
 const PhilosophyCard = ({ title, description }: {title: string, description: string}) => (
   <m.div
-    className="bg-white bg-opacity-80 backdrop-blur-lg rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300"
+    className="bg-[var(--cream)] border border-[var(--border-warm)] backdrop-blur-lg rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300"
     whileHover={{ scale: 1.03, transition: { duration: 0.2, ease: "easeInOut" } }}
     whileTap={{ scale: 0.98 }}
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, ease: "easeOut" }}
   >
-    <h3 className="text-xl font-semibold text-blue-900 mb-3">{title}</h3>
-    <p className="text-blue-800">{description}</p>
+    <h3 className="text-xl font-semibold text-[var(--ink)] mb-3">{title}</h3>
+    <p className="text-[var(--warm-text)]">{description}</p>
   </m.div>
 );
 
@@ -25,13 +25,13 @@ const DetailedInfoAccordion = ({ question, answer }: { question: string; answer:
 
   return (
     <m.div
-      className="border-b border-blue-200 py-4"
+      className="border-b border-[var(--border-warm)] py-4"
       initial={false}
       animate={{ backgroundColor: isOpen ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0)" }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
     >
       <button
-        className="flex justify-between items-center w-full text-left text-blue-900"
+        className="flex justify-between items-center w-full text-left text-[var(--ink)]"
         onClick={() => setIsOpen(!isOpen)}
       >
         <h3 className="text-lg font-semibold">{question}</h3>
@@ -48,7 +48,7 @@ const DetailedInfoAccordion = ({ question, answer }: { question: string; answer:
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <p className="mt-2 text-blue-800">{answer}</p>
+            <p className="mt-2 text-[var(--warm-text)]">{answer}</p>
           </m.div>
         )}
       </AnimatePresence>
@@ -67,11 +67,11 @@ const About = () => {
   const paragraphs = [0, 1];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-100 to-blue-100">
+    <div className="min-h-screen bg-[var(--cream)]">
       <section className="py-20">
         <div className="container mx-auto px-4">
           <m.h1
-            className="text-4xl font-bold text-center text-blue-900 mb-12"
+            className="text-4xl font-bold text-center font-display text-[var(--ink)] mb-12"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -93,11 +93,11 @@ const About = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
             >
-              <h2 className="text-3xl font-semibold text-blue-900 mb-4">{t('introduction.heading')}</h2>
+              <h2 className="text-3xl font-semibold font-display text-[var(--ink)] mb-4">{t('introduction.heading')}</h2>
               {paragraphs.map((index) => (
                 <m.p
                   key={index}
-                  className="mb-4 text-blue-800"
+                  className="mb-4 text-[var(--warm-text)]"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 + index * 0.1 }}
@@ -110,10 +110,10 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-blue-50 bg-opacity-50">
+      <section className="py-20 bg-[var(--cream-dark)] bg-opacity-50">
         <div className="container mx-auto px-4">
           <m.h2
-            className="text-3xl font-semibold text-center text-blue-900 mb-12"
+            className="text-3xl font-semibold text-center font-display text-[var(--ink)] mb-12"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -135,7 +135,7 @@ const About = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <m.h2
-            className="text-3xl font-semibold text-center text-blue-900 mb-12"
+            className="text-3xl font-semibold text-center font-display text-[var(--ink)] mb-12"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -152,7 +152,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-[var(--ink)] text-[var(--cream)]">
         <div className="container mx-auto px-4 text-center">
           <m.h2
             className="text-3xl font-semibold mb-4"
@@ -166,7 +166,7 @@ const About = () => {
           <m.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/contact"
-              className="inline-block bg-white text-blue-900 font-semibold py-3 px-8 rounded-full hover:bg-yellow-100 transition-colors duration-300"
+              className="inline-block bg-[var(--cream)] text-[var(--ink)] font-semibold py-3 px-8 rounded-full hover:bg-[var(--cream-dark)] transition-colors duration-300"
             >
               {t('cta.buttonText')}
             </Link>

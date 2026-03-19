@@ -52,16 +52,16 @@ const ErrorBoundaryContent: React.FC<ErrorBoundaryContentProps> = ({ error, onRe
   const t = useTranslations('errors');
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--cream)]">
       <div className="text-center p-8 max-w-md">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">
+        <h1 className="text-2xl font-bold font-display text-[var(--ink)] mb-4">
           {t('error.title')}
         </h1>
-        <p className="text-gray-600 mb-6">
+        <p className="text-[var(--muted-text)] mb-6">
           {t('error.defaultMessage')}
         </p>
         {error && (
-          <pre className="bg-gray-100 p-4 rounded-lg text-sm text-gray-700 mb-6 overflow-auto">
+          <pre className="bg-[var(--cream-dark)] p-4 rounded-lg text-sm text-[var(--warm-text)] mb-6 overflow-auto">
             {error.message}
           </pre>
         )}

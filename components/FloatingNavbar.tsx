@@ -29,10 +29,10 @@ type NavLinkProps = {
 const NavLink = ({ href, navKey, pathname, t, onClose }: NavLinkProps) => (
     <Link
         href={href as any}
-        className={`px-3 py-2 text-sm font-medium transition-all duration-300 rounded-md ${
+        className={`px-3 py-2 text-sm font-body font-medium transition-all duration-300 rounded-md ${
             pathname === href
-                ? 'text-white bg-white bg-opacity-20'
-                : 'text-white hover:bg-white hover:bg-opacity-10'
+                ? 'text-[var(--cream)] bg-[var(--cream)] bg-opacity-20'
+                : 'text-[var(--cream)] hover:bg-[var(--cream)] hover:bg-opacity-10'
         }`}
         onClick={onClose}
     >
@@ -77,7 +77,7 @@ const FloatingNavbar = () => {
             >
                 <button
                     onClick={() => setIsVisible(true)}
-                    className="bg-blue-600 text-white p-2 rounded-full shadow-lg hover:bg-blue-700 transition-colors duration-300"
+                    className="bg-[var(--ink)] text-[var(--cream)] p-2 rounded-full shadow-sm hover:bg-[var(--ink-light)] transition-colors duration-300"
                 >
                     <Menu size={24} />
                 </button>
@@ -91,30 +91,30 @@ const FloatingNavbar = () => {
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                         className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-screen-md px-4"
                     >
-                        <div className="bg-blue-600 backdrop-blur-md rounded-lg shadow-lg flex items-center justify-between">
+                        <div className="bg-[var(--ink)] backdrop-blur-md rounded-lg shadow-sm flex items-center justify-between">
                             <div className="flex items-center space-x-2 py-3 pl-4 shrink-0">
-                                <ChevronUp className="text-white" size={18} />
-                                <span className="text-white font-semibold text-lg">{t('siteTitle')}</span>
+                                <ChevronUp className="text-[var(--cream)]" size={18} />
+                                <span className="text-[var(--cream)] font-display font-semibold text-lg">{t('siteTitle')}</span>
                             </div>
                             <div className="hidden md:flex items-center space-x-1 pr-2 overflow-x-auto relative scrollbar-hide">
-                                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-blue-600 to-transparent pointer-events-none z-10"></div>
+                                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[var(--ink)] to-transparent pointer-events-none z-10"></div>
                                 <div className="flex items-center space-x-1 px-8">
                                     {navItems.map((item) => (
                                         <NavLink key={item.href} href={item.href} navKey={item.key} pathname={pathname} t={t} onClose={closeMobileMenu} />
                                     ))}
                                 </div>
-                                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-blue-600 to-transparent pointer-events-none z-10"></div>
+                                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--ink)] to-transparent pointer-events-none z-10"></div>
                                 <Link
                                     href={pathname as any}
                                     locale={otherLocale}
-                                    className="px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 rounded-md ml-2 shrink-0"
+                                    className="px-3 py-2 text-sm font-body font-medium text-[var(--cream)] hover:bg-[var(--cream)] hover:bg-opacity-10 transition-all duration-300 rounded-md ml-2 shrink-0"
                                 >
                                     {otherLocale.toUpperCase()}
                                 </Link>
                             </div>
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="md:hidden px-4 py-3 text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 shrink-0"
+                                className="md:hidden px-4 py-3 text-[var(--cream)] hover:bg-[var(--cream)] hover:bg-opacity-10 transition-all duration-300 shrink-0"
                             >
                                 <Menu size={24} />
                             </button>
@@ -126,7 +126,7 @@ const FloatingNavbar = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.2 }}
-                                    className="md:hidden mt-2 bg-blue-600 bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg overflow-hidden"
+                                    className="md:hidden mt-2 bg-[var(--ink)] bg-opacity-90 backdrop-blur-md rounded-lg shadow-sm overflow-hidden"
                                 >
                                     <div className="py-2">
                                         {navItems.map((item) => (
@@ -138,7 +138,7 @@ const FloatingNavbar = () => {
                                             <Link
                                                 href={pathname as any}
                                                 locale={otherLocale}
-                                                className="w-full px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10 transition-all duration-300 text-left rounded-md block"
+                                                className="w-full px-3 py-2 text-sm font-body font-medium text-[var(--cream)] hover:bg-[var(--cream)] hover:bg-opacity-10 transition-all duration-300 text-left rounded-md block"
                                             >
                                                 {locale === 'nl' ? 'Switch to English' : 'Schakel naar Nederlands'}
                                             </Link>

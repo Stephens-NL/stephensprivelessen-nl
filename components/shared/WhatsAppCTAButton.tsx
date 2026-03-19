@@ -32,7 +32,7 @@ export default function WhatsAppCTAButton({
   phoneNumber = config.contact.whatsapp,
   prefilledMessage = '',
   buttonText,
-  buttonClassName = "bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2",
+  buttonClassName = "bg-[var(--sage)] hover:bg-[var(--sage-light)] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2",
   modalTitle,
   modalDescription,
   children,
@@ -108,12 +108,12 @@ export default function WhatsAppCTAButton({
       </button>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="bg-blue-900 border border-blue-300/50 text-blue-100">
+        <DialogContent className="bg-[var(--ink)] border border-[var(--border-warm)]/50 text-[var(--cream)]">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-blue-400">
+            <DialogTitle className="text-2xl font-bold text-[var(--amber)]">
               {modalTitle || 'Student Informatie'}
             </DialogTitle>
-            <DialogDescription className="text-blue-200">
+            <DialogDescription className="text-[var(--cream)]">
               {modalDescription || 'Vul alstublieft wat informatie in voordat we verbinden via WhatsApp'}
             </DialogDescription>
           </DialogHeader>
@@ -122,7 +122,7 @@ export default function WhatsAppCTAButton({
             {customFormFields || (
               <>
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-blue-300">
+                  <Label htmlFor="name" className="text-[var(--cream)]">
                     Naam Student
                   </Label>
                   <Input
@@ -130,12 +130,12 @@ export default function WhatsAppCTAButton({
                     placeholder="Vul naam student in..."
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="bg-blue-800 border-blue-300/50 text-blue-100 placeholder:text-blue-200/50"
+                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-[var(--cream)] placeholder:text-[var(--cream)]/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="age" className="text-blue-300">
+                  <Label htmlFor="age" className="text-[var(--cream)]">
                     Leeftijd Student
                   </Label>
                   <Input
@@ -144,12 +144,12 @@ export default function WhatsAppCTAButton({
                     placeholder="Vul leeftijd student in..."
                     value={formData.age}
                     onChange={(e) => setFormData(prev => ({ ...prev, age: e.target.value }))}
-                    className="bg-blue-800 border-blue-300/50 text-blue-100 placeholder:text-blue-200/50"
+                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-[var(--cream)] placeholder:text-[var(--cream)]/50"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-blue-300">
+                  <Label className="text-[var(--cream)]">
                     Wat wil je doen?
                   </Label>
                   <div className="grid grid-cols-2 gap-3">
@@ -158,8 +158,8 @@ export default function WhatsAppCTAButton({
                       onClick={() => setFormData(prev => ({ ...prev, requestType: 'info' }))}
                       className={`p-4 rounded-xl border-2 transition-all ${
                         formData.requestType === 'info'
-                          ? 'border-blue-400 bg-blue-400/10'
-                          : 'border-blue-300/20 hover:border-blue-300/50'
+                          ? 'border-[var(--amber)] bg-[var(--amber)]/10'
+                          : 'border-[var(--border-warm)]/20 hover:border-[var(--border-warm)]/50'
                       }`}
                     >
                       <div className="flex flex-col items-center gap-2">
@@ -171,8 +171,8 @@ export default function WhatsAppCTAButton({
                       onClick={() => setFormData(prev => ({ ...prev, requestType: 'trial' }))}
                       className={`p-4 rounded-xl border-2 transition-all ${
                         formData.requestType === 'trial'
-                          ? 'border-blue-400 bg-blue-400/10'
-                          : 'border-blue-300/20 hover:border-blue-300/50'
+                          ? 'border-[var(--amber)] bg-[var(--amber)]/10'
+                          : 'border-[var(--border-warm)]/20 hover:border-[var(--border-warm)]/50'
                       }`}
                     >
                       <div className="flex flex-col items-center gap-2">
@@ -185,10 +185,10 @@ export default function WhatsAppCTAButton({
                 {formData.requestType === 'trial' && (
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <Label className="text-blue-300">
+                      <Label className="text-[var(--cream)]">
                         Kies drie voorkeurstijden
                       </Label>
-                      <span className="text-sm text-blue-200">
+                      <span className="text-sm text-[var(--cream)]">
                         {formData.preferredTimes.length}/3
                       </span>
                     </div>
@@ -205,10 +205,10 @@ export default function WhatsAppCTAButton({
                           disabled={formData.preferredTimes.length >= 3 && !formData.preferredTimes.includes(time)}
                           className={`p-2 rounded-lg border transition-all ${
                             formData.preferredTimes.includes(time)
-                              ? 'border-blue-400 bg-blue-400/20'
+                              ? 'border-[var(--amber)] bg-[var(--amber)]/20'
                               : formData.preferredTimes.length >= 3
-                                ? 'border-blue-300/20 opacity-50 cursor-not-allowed'
-                                : 'border-blue-300/20 hover:border-blue-300/50'
+                                ? 'border-[var(--border-warm)]/20 opacity-50 cursor-not-allowed'
+                                : 'border-[var(--border-warm)]/20 hover:border-[var(--border-warm)]/50'
                           }`}
                         >
                           {time}
@@ -219,7 +219,7 @@ export default function WhatsAppCTAButton({
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-blue-300">
+                  <Label htmlFor="message" className="text-[var(--cream)]">
                     Extra Bericht (Optioneel)
                   </Label>
                   <Textarea
@@ -227,7 +227,7 @@ export default function WhatsAppCTAButton({
                     placeholder="Specifieke vragen of wensen..."
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                    className="bg-blue-800 border-blue-300/50 text-blue-100 placeholder:text-blue-200/50 min-h-[100px]"
+                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-[var(--cream)] placeholder:text-[var(--cream)]/50 min-h-[100px]"
                   />
                 </div>
               </>
@@ -238,14 +238,14 @@ export default function WhatsAppCTAButton({
             <Button
               variant="outline"
               onClick={() => setIsModalOpen(false)}
-              className="border-blue-300/50 text-blue-200 hover:bg-blue-800 hover:text-blue-100"
+              className="border-[var(--border-warm)]/50 text-[var(--cream)] hover:bg-[var(--ink)] hover:text-[var(--cream)]"
             >
               Annuleren
             </Button>
             <Button
               onClick={handleSubmit}
               disabled={!isFormValid}
-              className="bg-green-500 hover:bg-green-400 text-white flex items-center gap-2"
+              className="bg-[var(--sage)] hover:bg-[var(--sage-light)] text-white flex items-center gap-2"
             >
               <FaWhatsapp />
               Ga door naar WhatsApp

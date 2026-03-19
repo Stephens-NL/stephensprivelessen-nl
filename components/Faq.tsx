@@ -49,14 +49,14 @@ const Faq: React.FC = () => {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
+      <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] text-[var(--cream)] p-8">
         <h1 className="text-4xl font-bold text-center mb-8">
           {t('title')}
         </h1>
         <div className="max-w-3xl mx-auto">
           {allIndices.map((index) => (
             <div key={index} className="mb-4">
-              <button className="w-full p-4 text-left flex justify-between items-center bg-white bg-opacity-10 backdrop-blur-lg rounded-lg">
+              <button className="w-full p-4 text-left flex justify-between items-center bg-[var(--cream)] bg-opacity-10 backdrop-blur-lg rounded-lg">
                 <span>{t(`items.${index}.question`)}</span>
                 <ChevronDown />
               </button>
@@ -68,7 +68,7 @@ const Faq: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-yellow-400 text-white p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] text-[var(--cream)] p-8">
       <m.h1
         key={locale}
         initial={{ opacity: 0, y: -50 }}
@@ -91,9 +91,9 @@ const Faq: React.FC = () => {
             placeholder={t('searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full p-4 pl-12 rounded-full bg-white bg-opacity-20 backdrop-blur-lg text-white placeholder-white placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-yellow-300"
+            className="w-full p-4 pl-12 rounded-full bg-[var(--cream)] bg-opacity-20 backdrop-blur-lg text-[var(--cream)] placeholder-[var(--cream)] placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-[var(--amber)]"
           />
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white opacity-75" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--cream)] opacity-75" />
         </div>
       </m.div>
 
@@ -113,7 +113,7 @@ const Faq: React.FC = () => {
           >
             <m.button
               onClick={() => toggleQuestion(index)}
-              className="w-full p-4 text-left flex justify-between items-center bg-white bg-opacity-10 backdrop-blur-lg rounded-lg hover:bg-opacity-20 transition-colors duration-300"
+              className="w-full p-4 text-left flex justify-between items-center bg-[var(--cream)] bg-opacity-10 backdrop-blur-lg rounded-lg hover:bg-opacity-20 transition-colors duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -127,7 +127,7 @@ const Faq: React.FC = () => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="mt-2 p-4 bg-white bg-opacity-5 backdrop-blur-lg rounded-lg"
+                  className="mt-2 p-4 bg-[var(--cream)] bg-opacity-5 backdrop-blur-lg rounded-lg"
                 >
                   <p>{t(`items.${index}.answer`)}</p>
                 </m.div>
@@ -146,7 +146,7 @@ const Faq: React.FC = () => {
         >
           <m.button
             onClick={scrollToTop}
-            className="bg-white text-blue-900 rounded-full p-4 shadow-lg hover:bg-yellow-300 transition-colors duration-300"
+            className="bg-[var(--cream)] text-[var(--ink)] rounded-full p-4 shadow-sm hover:bg-[var(--amber)] transition-colors duration-300"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
