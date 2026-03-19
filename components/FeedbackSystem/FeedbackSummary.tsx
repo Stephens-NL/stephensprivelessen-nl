@@ -1,6 +1,6 @@
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Send, Edit2 } from 'lucide-react';
 import { feedbackFormData, FeedbackSummaryProps, RenderSummaryItemProps } from '../../data';
 
@@ -15,8 +15,8 @@ function SummaryItem({ label, value }: RenderSummaryItemProps) {
 
 const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) => {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('feedback');
 
   return (
     <m.div
@@ -25,34 +25,34 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
       exit={{ opacity: 0, y: -50 }}
       className="w-full max-w-2xl mx-auto bg-[var(--ink)] bg-opacity-70 backdrop-blur-lg rounded-lg p-8 shadow-lg"
     >
-      <h2 className="text-3xl font-bold text-[var(--amber)] mb-6">{String(t({ EN: 'Feedback Summary', NL: 'Feedback Samenvatting' }))}</h2>
+      <h2 className="text-3xl font-bold text-[var(--amber)] mb-6">{t('form.feedbackSummary')}</h2>
 
       <div className="space-y-6 mb-8 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[var(--amber)] scrollbar-track-[var(--ink)] pr-4">
         <div>
-          <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'General Information', NL: 'Algemene Informatie' }))}</h3>
-          <SummaryItem label={String(t({ EN: 'Name', NL: 'Naam' }))} value={formData.learnerName} />
-          <SummaryItem label={String(t({ EN: 'Subjects', NL: 'Onderwerpen' }))} value={formData.subject?.join(', ') ?? ''} />
+          <h3 className="font-semibold text-xl text-white mb-4">{t('form.generalInformation')}</h3>
+          <SummaryItem label={t('form.name')} value={formData.learnerName} />
+          <SummaryItem label={t('form.subjects')} value={formData.subject?.join(', ') ?? ''} />
         </div>
 
         {formData.overallRating && (
           <div>
-            <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'Ratings', NL: 'Beoordelingen' }))}</h3>
-            <SummaryItem label={String(t({ EN: 'Overall Rating', NL: 'Algemene Beoordeling' }))} value={formData.overallRating ?? ''} />
+            <h3 className="font-semibold text-xl text-white mb-4">{t('form.ratings')}</h3>
+            <SummaryItem label={t('form.overallRating')} value={formData.overallRating ?? ''} />
           </div>
         )}
 
         {(formData.mostValuable || formData.quickImprovement) && (
           <div>
-            <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'Open Feedback', NL: 'Open Feedback' }))}</h3>
-            {formData.mostValuable && <SummaryItem label={String(t({ EN: 'Most Valuable Aspect', NL: 'Meest Waardevolle Aspect' }))} value={formData.mostValuable} />}
-            {formData.quickImprovement && <SummaryItem label={String(t({ EN: 'Suggestion for Improvement', NL: 'Verbeteringsvoorstel' }))} value={formData.quickImprovement} />}
+            <h3 className="font-semibold text-xl text-white mb-4">{t('form.openFeedback')}</h3>
+            {formData.mostValuable && <SummaryItem label={t('form.mostValuableAspect')} value={formData.mostValuable} />}
+            {formData.quickImprovement && <SummaryItem label={t('form.suggestionForImprovement')} value={formData.quickImprovement} />}
           </div>
         )}
 
         {formData.quoteConsent === 'yes' && (
           <div>
-            <h3 className="font-semibold text-xl text-white mb-4">{String(t({ EN: 'Quote', NL: 'Citaat' }))}</h3>
-            <SummaryItem label={String(t({ EN: 'Quote Text', NL: 'Citaattekst' }))} value={formData.quoteText ?? ''} />
+            <h3 className="font-semibold text-xl text-white mb-4">{t('form.quote')}</h3>
+            <SummaryItem label={t('form.quoteText')} value={formData.quoteText ?? ''} />
           </div>
         )}
       </div>
@@ -64,7 +64,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {String(t({ EN: 'Edit Feedback', NL: 'Feedback Bewerken' }))}
+          {t('form.editFeedback')}
           <Edit2 className="ml-2" size={20} />
         </m.button>
         <m.button
@@ -73,7 +73,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {String(t({ EN: feedbackFormData.submitCTA.buttonText, NL: feedbackFormData.submitCTA.buttonText }))}
+          {feedbackFormData.submitCTA.buttonText[language]}
           <Send className="ml-2" size={20} />
         </m.button>
       </div>

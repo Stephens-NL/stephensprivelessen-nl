@@ -1,12 +1,12 @@
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import React from 'react'
 import { feedbackFormData } from '../../data';
 
 const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('feedback');
 
     return (
         <m.div

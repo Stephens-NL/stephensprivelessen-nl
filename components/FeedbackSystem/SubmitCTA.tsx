@@ -1,13 +1,13 @@
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react'
 import { Send } from 'lucide-react';
 import { feedbackFormData } from '../../data';
 
 const SubmitCTA: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
     const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('feedback');
 
     return (
         <m.div

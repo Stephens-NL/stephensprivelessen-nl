@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, KeyboardEvent } from 'react';
 import { Search } from 'lucide-react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { getBusinessData } from '@/data/businessData';
 
 const EMPTY_VAKKEN: string[] = [];
@@ -13,8 +13,8 @@ interface VakkenSelectorProps {
 
 const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue = EMPTY_VAKKEN, setIsQuestionAnswered }) => {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('feedback');
   const businessData = getBusinessData(t);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedVakken, setSelectedVakken] = useState<string[]>(() => initialValue);
@@ -61,11 +61,11 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
 
   return (
     <div className="flex flex-col items-center justify-center space-y-6">
-      <h2 className="text-3xl font-bold text-white mb-4">{String(t({ EN: 'Choose one or more subjects', NL: 'Kies een of meerdere vakken' }))}</h2>
+      <h2 className="text-3xl font-bold text-white mb-4">{t('form.chooseOneOrMoreSubjects')}</h2>
       <div className="relative w-full max-w-md mb-4">
         <input
           type="text"
-          placeholder={String(t({ EN: 'Search a subject', NL: 'Zoek een vak' }))}
+          placeholder={t('form.searchASubject')}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full px-4 py-2 bg-[var(--cream)] text-[var(--ink)] rounded-md pl-10"
@@ -88,7 +88,7 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
       <div className="flex w-full max-w-md">
         <input
           type="text"
-          placeholder={String(t({ EN: 'Other, namely...', NL: 'Anders, namelijk...' }))}
+          placeholder={t('form.otherNamely')}
           value={customVak}
           onChange={(e) => setCustomVak(e.target.value)}
           onKeyDown={handleKeyDown}
@@ -98,7 +98,7 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
           onClick={handleAddCustomVak}
           className="px-4 py-2 bg-[var(--amber)] text-[var(--ink)] rounded-r-md hover:bg-[var(--amber)] transition-colors duration-300"
         >
-          {String(t({ EN: 'Add', NL: 'Toevoegen' }))}
+          {t('form.add')}
         </button>
       </div>
       <div className="flex flex-wrap justify-center gap-2">

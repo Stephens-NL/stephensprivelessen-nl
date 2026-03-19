@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef } from "react";
+import { useTranslations } from 'next-intl';
 import { QuestionComponentProps } from "../../data";
 
 import { QuestionInput } from "./QuestionInput";
@@ -11,9 +12,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     setIsQuestionAnswered,
     onNext,
 }) => {
-    const locale = useLocale();
-    const language = locale.toUpperCase() as 'EN' | 'NL';
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('feedback');
     const inputRef = useRef<HTMLInputElement>(null);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -69,7 +68,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                         <p className="text-sm">
                             {String(question.comment
                                 ? t(question.comment)
-                                : t({ EN: 'You can also type to vote!', NL: 'Je kan ook typen om te stemmen!' }))}
+                                : t('form.youCanAlsoTypeToVote'))}
                         </p>
                     </CommentCloud>
                 </div>
@@ -82,7 +81,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                     </span>
                 ) : (
                     <span className="text-[var(--muted-text)] ml-2 text-sm italic">
-                        ({String(t({ EN: 'Optional', NL: 'Optioneel' }))})
+                        ({t('form.optional')})
                     </span>
                 )}
             </label>
@@ -102,12 +101,12 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
             />
             {question.required && (
                 <p className="text-[var(--amber)] text-xs mt-1 italic">
-                    {String(t({ EN: 'This field is required', NL: 'Dit veld is verplicht' }))}
+                    {t('form.thisFieldIsRequired')}
                 </p>
             )}
             {(question.type === 'text' || question.type === 'textarea') && (
                 <p className="text-[var(--muted-text)] text-xs mt-1">
-                    {String(t({ EN: 'Press Enter to go to the next question', NL: 'Druk op Enter om naar de volgende vraag te gaan' }))}
+                    {t('form.pressEnterToGoToTheNextQuestion')}
                 </p>
             )}
         </div>

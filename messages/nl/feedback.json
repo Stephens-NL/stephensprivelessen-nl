@@ -34,11 +34,21 @@
     "description": "Een snelle manier om je gedachten te delen over onze sessies. Je feedback helpt me te verbeteren en onze toekomstige lessen aan te passen!",
     "conclusion": "Bedankt voor je waardevolle feedback! Je inzichten helpen me mijn bijlesdiensten te verbeteren en aan te passen. Ik waardeer je tijd en kijk uit naar mogelijke toekomstige samenwerkingen.",
     "sections": {
-      "respondentType": { "title": "Informatie over de respondent" },
-      "general": { "title": "Algemene Informatie" },
-      "experience": { "title": "Ervaring met de bijles" },
-      "futurePreferences": { "title": "Toekomstige Voorkeuren" },
-      "testimonial": { "title": "Getuigenis" }
+      "respondentType": {
+        "title": "Informatie over de respondent"
+      },
+      "general": {
+        "title": "Algemene Informatie"
+      },
+      "experience": {
+        "title": "Ervaring met de bijles"
+      },
+      "futurePreferences": {
+        "title": "Toekomstige Voorkeuren"
+      },
+      "testimonial": {
+        "title": "Getuigenis"
+      }
     },
     "questions": {
       "relationship": "Wat is je relatie tot de bijlesdiensten?",
@@ -92,11 +102,21 @@
     "description": "Welkom bij mijn uitgebreide jaarlijkse feedbackformulier. Jouw inzichten zijn onmisbaar om mijn onderwijsmethoden te verbeteren en aan te passen voor het komende jaar. Bedankt dat je de tijd neemt om je gedachten te delen!",
     "conclusion": "Bedankt dat je de tijd hebt genomen om deze waardevolle feedback te geven over ons jaar samen. Jouw inzichten zullen me helpen mijn onderwijsmethoden te verbeteren en aan te passen voor het komende jaar. Ik kijk uit naar onze voortgezette samenwerking!",
     "sections": {
-      "general": { "title": "Algemene Informatie" },
-      "yearlyExperience": { "title": "Jaarlijkse Ervaring" },
-      "specificFeedback": { "title": "Specifieke Feedback en Suggesties" },
-      "learningPreferences": { "title": "Leervoorkeuren voor Volgend Jaar" },
-      "personalQuote": { "title": "Persoonlijke Quote en Toestemming" }
+      "general": {
+        "title": "Algemene Informatie"
+      },
+      "yearlyExperience": {
+        "title": "Jaarlijkse Ervaring"
+      },
+      "specificFeedback": {
+        "title": "Specifieke Feedback en Suggesties"
+      },
+      "learningPreferences": {
+        "title": "Leervoorkeuren voor Volgend Jaar"
+      },
+      "personalQuote": {
+        "title": "Persoonlijke Quote en Toestemming"
+      }
     },
     "questions": {
       "learnerName": "Naam van de leerling",
@@ -137,14 +157,54 @@
   },
   "intermezzi": {
     "short": {
-      "intro": { "title": "Welkom", "content": "Ik heb je onlangs mogen helpen, en ik zou graag je snelle feedback willen hebben. Dit formulier is onderdeel van mijn nieuwe websiteproject - ik heb het helemaal zelf gebouwd met Next.js!" },
-      "funFact": { "title": "Een Leuk Weetje", "content": "Wist je dit? Naast jouw docent ben ik ook model, analoog fotograaf, muzikant (DJ, pianist, bassist, gitarist), muziekproducer, evenementplanner en grafisch ontwerper. Ik doe bijna alles onder een andere alias - voor anderen verwarrend, voor mij lekker duidelijk!" }
+      "intro": {
+        "title": "Welkom",
+        "content": "Ik heb je onlangs mogen helpen, en ik zou graag je snelle feedback willen hebben. Dit formulier is onderdeel van mijn nieuwe websiteproject - ik heb het helemaal zelf gebouwd met Next.js!"
+      },
+      "funFact": {
+        "title": "Een Leuk Weetje",
+        "content": "Wist je dit? Naast jouw docent ben ik ook model, analoog fotograaf, muzikant (DJ, pianist, bassist, gitarist), muziekproducer, evenementplanner en grafisch ontwerper. Ik doe bijna alles onder een andere alias - voor anderen verwarrend, voor mij lekker duidelijk!"
+      }
     },
     "long": {
-      "intro": { "title": "Welkom bij Mijn Feedbackformulier", "content": "In de afgelopen 2 jaar heb ik velen van jullie mogen helpen, vaak met groot succes. Nu verzamel ik feedback om een centraal beeld te krijgen van hoe ik het doe. Ik heb dit formulier zorgvuldig opgesteld om zo goed mogelijk bij jou te passen - het is voor jou, maar ook voor mij. Dit formulier is volledig from scratch gebouwd met Next.js, een framework voor webontwikkeling. Het maakt deel uit van mijn nieuwe website, die ik ontwerp om te laten zien dat ik niet alleen een gekke wiskundige ben, maar ook een echte techneut. Ik werk tegelijkertijd aan mijn data-cv, en dit formulier is daar onderdeel van." },
-      "hobbies": { "title": "Mijn Vele Petten", "content": "Naast wiskundige en privédocent draag ik vele petten: ik ben model, strikt analoog fotograaf, DJ, pianist, bassist, gitarist, muziekproducer, releasing artist, evenementplanner, grafisch ontwerper, en ik was zelfs heel even schrijver. Het gekke is dat ik bijna alles onder een ander alias doe. Voor anderen verwarrend, voor mij lekker duidelijk. Momenteel ben ik agressief mijn datavaardigheden en -mogelijkheden aan het verkennen en uitbreiden." },
-      "photos": { "title": "Een Kijkje in Mijn Wereld", "content": "Ik heb verschillende foto's van mijn werk als fotograaf en model over de afgelopen 10 jaar. Voor gevallen waarbij er sprake is van een jong kind of een ouder van een kind onder de 15, zou ik ergens een jeugdfoto van mezelf kunnen toevoegen om te laten zien hoe normaal ik ben. Het is een leuke manier om een connectie te maken en een andere kant van mezelf te laten zien." },
-      "conclusion": { "title": "Reflecties en Toekomstplannen", "content": "Ik heb echt genoten van het geven van deze lessen. Toen ik twee jaar geleden Stephen's Privélessen begon als een poging om de bijlessen, examentrainingen en huiswerkbegeleiding die ik al jaren deed te formaliseren, had ik stiekem niet gedacht het zo lang vol te houden en er steeds nieuwe mogelijkheden in te zien. Ik heb lesgeven altijd leuk gevonden en jouw les geven was natuurlijk het aller aller aller leukst (knipoog). Ik wil vanaf dit jaar het plannen van lessen steeds meer via een portaal/datumprikker doen om schermtijd te verminderen, maar verder staan mijn WhatsApp en e-mail altijd open voor vragen of een babbeltje. Lobie!" }
+      "intro": {
+        "title": "Welkom bij Mijn Feedbackformulier",
+        "content": "In de afgelopen 2 jaar heb ik velen van jullie mogen helpen, vaak met groot succes. Nu verzamel ik feedback om een centraal beeld te krijgen van hoe ik het doe. Ik heb dit formulier zorgvuldig opgesteld om zo goed mogelijk bij jou te passen - het is voor jou, maar ook voor mij. Dit formulier is volledig from scratch gebouwd met Next.js, een framework voor webontwikkeling. Het maakt deel uit van mijn nieuwe website, die ik ontwerp om te laten zien dat ik niet alleen een gekke wiskundige ben, maar ook een echte techneut. Ik werk tegelijkertijd aan mijn data-cv, en dit formulier is daar onderdeel van."
+      },
+      "hobbies": {
+        "title": "Mijn Vele Petten",
+        "content": "Naast wiskundige en privédocent draag ik vele petten: ik ben model, strikt analoog fotograaf, DJ, pianist, bassist, gitarist, muziekproducer, releasing artist, evenementplanner, grafisch ontwerper, en ik was zelfs heel even schrijver. Het gekke is dat ik bijna alles onder een ander alias doe. Voor anderen verwarrend, voor mij lekker duidelijk. Momenteel ben ik agressief mijn datavaardigheden en -mogelijkheden aan het verkennen en uitbreiden."
+      },
+      "photos": {
+        "title": "Een Kijkje in Mijn Wereld",
+        "content": "Ik heb verschillende foto's van mijn werk als fotograaf en model over de afgelopen 10 jaar. Voor gevallen waarbij er sprake is van een jong kind of een ouder van een kind onder de 15, zou ik ergens een jeugdfoto van mezelf kunnen toevoegen om te laten zien hoe normaal ik ben. Het is een leuke manier om een connectie te maken en een andere kant van mezelf te laten zien."
+      },
+      "conclusion": {
+        "title": "Reflecties en Toekomstplannen",
+        "content": "Ik heb echt genoten van het geven van deze lessen. Toen ik twee jaar geleden Stephen's Privélessen begon als een poging om de bijlessen, examentrainingen en huiswerkbegeleiding die ik al jaren deed te formaliseren, had ik stiekem niet gedacht het zo lang vol te houden en er steeds nieuwe mogelijkheden in te zien. Ik heb lesgeven altijd leuk gevonden en jouw les geven was natuurlijk het aller aller aller leukst (knipoog). Ik wil vanaf dit jaar het plannen van lessen steeds meer via een portaal/datumprikker doen om schermtijd te verminderen, maar verder staan mijn WhatsApp en e-mail altijd open voor vragen of een babbeltje. Lobie!"
+      }
     }
+  },
+  "form": {
+    "feedbackSummary": "Feedback Samenvatting",
+    "generalInformation": "Algemene Informatie",
+    "name": "Naam",
+    "subjects": "Onderwerpen",
+    "ratings": "Beoordelingen",
+    "overallRating": "Algemene Beoordeling",
+    "openFeedback": "Open Feedback",
+    "mostValuableAspect": "Meest Waardevolle Aspect",
+    "suggestionForImprovement": "Verbeteringsvoorstel",
+    "quote": "Citaat",
+    "quoteText": "Citaattekst",
+    "editFeedback": "Feedback Bewerken",
+    "optional": "Optioneel",
+    "thisFieldIsRequired": "Dit veld is verplicht",
+    "pressEnterToGoToTheNextQuestion": "Druk op Enter om naar de volgende vraag te gaan",
+    "youCanAlsoTypeToVote": "Je kan ook typen om te stemmen!",
+    "chooseOneOrMoreSubjects": "Kies een of meerdere vakken",
+    "searchASubject": "Zoek een vak",
+    "otherNamely": "Anders, namelijk...",
+    "add": "Toevoegen"
   }
 }

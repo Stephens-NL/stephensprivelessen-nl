@@ -34,11 +34,21 @@
     "description": "A quick way to share your thoughts on our sessions. Your feedback helps me improve and tailor our future lessons!",
     "conclusion": "Thank you for your valuable feedback! Your insights help me improve and tailor my tutoring services. I appreciate your time and look forward to potential future collaborations.",
     "sections": {
-      "respondentType": { "title": "Respondent Information" },
-      "general": { "title": "General Information" },
-      "experience": { "title": "Tutoring Experience" },
-      "futurePreferences": { "title": "Future Preferences" },
-      "testimonial": { "title": "Testimonial" }
+      "respondentType": {
+        "title": "Respondent Information"
+      },
+      "general": {
+        "title": "General Information"
+      },
+      "experience": {
+        "title": "Tutoring Experience"
+      },
+      "futurePreferences": {
+        "title": "Future Preferences"
+      },
+      "testimonial": {
+        "title": "Testimonial"
+      }
     },
     "questions": {
       "relationship": "What is your relationship to the tutoring services?",
@@ -92,11 +102,21 @@
     "description": "Welcome to my detailed annual feedback form. Your insights are invaluable in helping me improve and tailor my teaching methods for the coming year. Thank you for taking the time to share your thoughts!",
     "conclusion": "Thank you for taking the time to provide this valuable feedback on our year together. Your insights will help me improve and tailor my teaching methods for the coming year. I look forward to our continued collaboration!",
     "sections": {
-      "general": { "title": "General Information" },
-      "yearlyExperience": { "title": "Yearly Experience" },
-      "specificFeedback": { "title": "Specific Feedback and Suggestions" },
-      "learningPreferences": { "title": "Learning Preferences for Next Year" },
-      "personalQuote": { "title": "Personal Quote and Permission" }
+      "general": {
+        "title": "General Information"
+      },
+      "yearlyExperience": {
+        "title": "Yearly Experience"
+      },
+      "specificFeedback": {
+        "title": "Specific Feedback and Suggestions"
+      },
+      "learningPreferences": {
+        "title": "Learning Preferences for Next Year"
+      },
+      "personalQuote": {
+        "title": "Personal Quote and Permission"
+      }
     },
     "questions": {
       "learnerName": "Learner's Name",
@@ -137,14 +157,54 @@
   },
   "intermezzi": {
     "short": {
-      "intro": { "title": "Welcome", "content": "I've had the pleasure of helping you recently, and I'd love to get your quick feedback. This form is part of my new website project - I built it from scratch using Next.js!" },
-      "funFact": { "title": "A Quick Fun Fact", "content": "Did you know? Besides being your tutor, I'm also a model, analog photographer, musician (DJ, pianist, bassist, guitarist), music producer, event planner, and graphic designer. I do almost everything under a different alias - confusing for others, but clear for me!" }
+      "intro": {
+        "title": "Welcome",
+        "content": "I've had the pleasure of helping you recently, and I'd love to get your quick feedback. This form is part of my new website project - I built it from scratch using Next.js!"
+      },
+      "funFact": {
+        "title": "A Quick Fun Fact",
+        "content": "Did you know? Besides being your tutor, I'm also a model, analog photographer, musician (DJ, pianist, bassist, guitarist), music producer, event planner, and graphic designer. I do almost everything under a different alias - confusing for others, but clear for me!"
+      }
     },
     "long": {
-      "intro": { "title": "Welcome to My Feedback Form", "content": "Over the past 2 years, I've had the pleasure of helping many of you, often with great success. Now, I'm collecting feedback to get a central view of how I'm doing. I've carefully crafted this form to fit you as best as possible - it's for you, but also for me. This form is built from scratch using Next.js, a web development framework. It's part of my new website, which I'm designing to showcase that I'm not just a wacky mathematician, but a genuine techie. I'm simultaneously working on my data CV, and this form is a part of that journey." },
-      "hobbies": { "title": "My Many Hats", "content": "Besides being a mathematician and private tutor, I wear many hats: I'm a model, strictly analog photographer, DJ, pianist, bassist, guitarist, music producer, releasing artist, event planner, graphic designer, and I was briefly even a writer. The funny thing is, I do almost everything under a different alias. It's confusing for others, but clear to me. Currently, I'm aggressively exploring and expanding my data skills and possibilities." },
-      "photos": { "title": "A Glimpse into My World", "content": "I have various photos from my work as a photographer and model over the past 10 years. For cases involving a young child or a parent of a child under 15, I might include a childhood photo of myself to show how normal I am. It's a fun way to connect and show a different side of me." },
-      "conclusion": { "title": "Reflections and Future Plans", "content": "I've truly enjoyed giving these lessons. When I started Stephen's Private Lessons two years ago, formalizing the tutoring, exam training, and homework guidance I'd been doing for years, I honestly didn't think I'd keep at it this long or continue to see so many possibilities in it. I've always loved teaching, and teaching you was, of course, the absolute best (wink). Starting this year, I'm planning to schedule lessons more through a portal/date-picker to reduce screen time, but my WhatsApp and email are always open for questions or a chat. Lobie!" }
+      "intro": {
+        "title": "Welcome to My Feedback Form",
+        "content": "Over the past 2 years, I've had the pleasure of helping many of you, often with great success. Now, I'm collecting feedback to get a central view of how I'm doing. I've carefully crafted this form to fit you as best as possible - it's for you, but also for me. This form is built from scratch using Next.js, a web development framework. It's part of my new website, which I'm designing to showcase that I'm not just a wacky mathematician, but a genuine techie. I'm simultaneously working on my data CV, and this form is a part of that journey."
+      },
+      "hobbies": {
+        "title": "My Many Hats",
+        "content": "Besides being a mathematician and private tutor, I wear many hats: I'm a model, strictly analog photographer, DJ, pianist, bassist, guitarist, music producer, releasing artist, event planner, graphic designer, and I was briefly even a writer. The funny thing is, I do almost everything under a different alias. It's confusing for others, but clear to me. Currently, I'm aggressively exploring and expanding my data skills and possibilities."
+      },
+      "photos": {
+        "title": "A Glimpse into My World",
+        "content": "I have various photos from my work as a photographer and model over the past 10 years. For cases involving a young child or a parent of a child under 15, I might include a childhood photo of myself to show how normal I am. It's a fun way to connect and show a different side of me."
+      },
+      "conclusion": {
+        "title": "Reflections and Future Plans",
+        "content": "I've truly enjoyed giving these lessons. When I started Stephen's Private Lessons two years ago, formalizing the tutoring, exam training, and homework guidance I'd been doing for years, I honestly didn't think I'd keep at it this long or continue to see so many possibilities in it. I've always loved teaching, and teaching you was, of course, the absolute best (wink). Starting this year, I'm planning to schedule lessons more through a portal/date-picker to reduce screen time, but my WhatsApp and email are always open for questions or a chat. Lobie!"
+      }
     }
+  },
+  "form": {
+    "feedbackSummary": "Feedback Summary",
+    "generalInformation": "General Information",
+    "name": "Name",
+    "subjects": "Subjects",
+    "ratings": "Ratings",
+    "overallRating": "Overall Rating",
+    "openFeedback": "Open Feedback",
+    "mostValuableAspect": "Most Valuable Aspect",
+    "suggestionForImprovement": "Suggestion for Improvement",
+    "quote": "Quote",
+    "quoteText": "Quote Text",
+    "editFeedback": "Edit Feedback",
+    "optional": "Optional",
+    "thisFieldIsRequired": "This field is required",
+    "pressEnterToGoToTheNextQuestion": "Press Enter to go to the next question",
+    "youCanAlsoTypeToVote": "You can also type to vote!",
+    "chooseOneOrMoreSubjects": "Choose one or more subjects",
+    "searchASubject": "Search a subject",
+    "otherNamely": "Other, namely...",
+    "add": "Add"
   }
 }

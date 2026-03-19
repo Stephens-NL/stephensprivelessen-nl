@@ -1,7 +1,7 @@
 import React, { useCallback, useReducer } from 'react';
 import useSWR from 'swr';
 import { m, AnimatePresence, PanInfo } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { FeedbackForm, FeedbackFormDataImportProps, Language, PersonalIntermezzo, QuestionGroup } from '../../data';
 
 import FadeInText from './FadeInText';
@@ -148,8 +148,8 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
   const [state, dispatch] = useReducer(formReducer, initialFormState);
   const { currentStep, currentQuestionIndex, formData, selectedForm, isQuestionAnswered, showSummary, direction, isLastStep, showFarewell, contentHeight } = state;
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('feedback');
   const { data: feedbackFormData, isLoading: loading, error: swrError } = useSWR<FeedbackFormDataImportProps>('/api/feedback', feedbackFetcher);
   const error = swrError ?? null;
 

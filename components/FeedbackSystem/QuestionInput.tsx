@@ -87,7 +87,7 @@ export function QuestionInput({
                 handleOptionChange(question.id, option.value);
                 onNext();
               }}
-              label={String(t(option.label))}
+              label={option.label[language]}
             />
           ))}
         </div>

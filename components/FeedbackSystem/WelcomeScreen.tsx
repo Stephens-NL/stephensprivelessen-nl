@@ -1,12 +1,12 @@
 import { WelcomeScreenData } from '../../data';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import React from 'react'
 
 const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void }> = ({ data, onContinue }) => {
     const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('feedback');
 
     return (
         <m.div
