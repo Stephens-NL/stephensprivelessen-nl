@@ -2,7 +2,7 @@
 
 import { m } from 'framer-motion';
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { jsonLd } from './metadata';
@@ -16,8 +16,8 @@ const fadeIn = {
 
 export default function ConsultancyContent() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('consultancy');
   const router = useRouter();
   const contactSectionRef = useRef<HTMLDivElement>(null);
 
@@ -160,19 +160,16 @@ export default function ConsultancyContent() {
             variants={fadeIn}
           >
             <h1 className="text-6xl md:text-7xl font-bold mb-6 font-display">
-              {String(t(content.hero.title))}
+              {content.hero.title[language]}
             </h1>
             <p className="text-xl md:text-2xl leading-relaxed mb-8">
-              {String(t(content.hero.subtitle))}
+              {content.hero.subtitle[language]}
             </p>
             <button
               onClick={() => handleContactClick(true)}
               className="bg-[var(--amber)] text-[var(--ink)] px-8 py-4 rounded-lg text-lg font-bold hover:bg-[var(--amber-hover)] transition-colors duration-300"
             >
-              {String(t({
-                EN: 'More Info & Schedule Now',
-                NL: 'Meer Info & Plan Nu'
-              }))}
+              {t('form.moreInfoScheduleNow')}
             </button>
           </m.div>
         </section>
@@ -187,7 +184,7 @@ export default function ConsultancyContent() {
             variants={fadeIn}
           >
             <h2 className="text-4xl font-bold text-center mb-16 font-display text-[var(--ink)]">
-              {String(t(content.services.title))}
+              {content.services.title[language]}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {content.services.items[language as keyof typeof content.services.items].map((service, index) => (
@@ -225,7 +222,7 @@ export default function ConsultancyContent() {
             variants={fadeIn}
           >
             <h2 className="text-4xl font-bold text-center mb-16 font-display text-[var(--ink)]">
-              {String(t(content.approach.title))}
+              {content.approach.title[language]}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {content.approach.steps[language as keyof typeof content.approach.steps].map((step, index) => (
@@ -258,25 +255,16 @@ export default function ConsultancyContent() {
             variants={fadeIn}
           >
             <h2 className="text-4xl font-bold mb-8 font-display">
-              {String(t({
-                EN: 'Ready to Transform Your Data?',
-                NL: 'Klaar om Uw Data te Transformeren?'
-              }))}
+              {t('form.readyToTransformYourData')}
             </h2>
             <p className="text-xl mb-12">
-              {String(t({
-                EN: 'Contact us today to discuss how we can help you leverage your data for better decision-making.',
-                NL: 'Neem vandaag nog contact op om te bespreken hoe wij u kunnen helpen uw data beter te benutten voor besluitvorming.'
-              }))}
+              {t('form.contactUsTodayToDiscussHowWeCanHelpYouLeverageYour')}
             </p>
             <button
               onClick={() => handleContactClick(false)}
               className="bg-[var(--amber)] text-[var(--ink)] px-8 py-4 rounded-lg text-lg font-bold hover:bg-[var(--amber-hover)] transition-colors duration-300"
             >
-              {String(t({
-                EN: 'Schedule Now',
-                NL: 'Plan Nu In'
-              }))}
+              {t('form.scheduleNow')}
             </button>
           </m.div>
         </section>

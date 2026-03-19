@@ -5,15 +5,30 @@
     "title": "Our Services",
     "methodology": {
       "title": "Methodology",
-      "items": ["Research Design", "Research Questions", "Hypothesis Formulation", "Methodological Foundation"]
+      "items": [
+        "Research Design",
+        "Research Questions",
+        "Hypothesis Formulation",
+        "Methodological Foundation"
+      ]
     },
     "dataAnalysis": {
       "title": "Data Analysis",
-      "items": ["Statistical Analysis", "SPSS & R Studio", "Python for Data Science", "Result Interpretation"]
+      "items": [
+        "Statistical Analysis",
+        "SPSS & R Studio",
+        "Python for Data Science",
+        "Result Interpretation"
+      ]
     },
     "guidance": {
       "title": "Guidance",
-      "items": ["Personal Feedback", "Structure Advice", "Planning & Deadlines", "Final Editing"]
+      "items": [
+        "Personal Feedback",
+        "Structure Advice",
+        "Planning & Deadlines",
+        "Final Editing"
+      ]
     }
   },
   "why": {
@@ -31,5 +46,10 @@
     "title": "Ready to Excel?",
     "subtitle": "Contact us today to discuss how we can help you achieve academic excellence.",
     "button": "Get Started"
+  },
+  "form": {
+    "readyToExcel": "Ready to Excel?",
+    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Contact us today to discuss how we can help you achieve academic excellence.",
+    "getStarted": "Get Started"
   }
 }

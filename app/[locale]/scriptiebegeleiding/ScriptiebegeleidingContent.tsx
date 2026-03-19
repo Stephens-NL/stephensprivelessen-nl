@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { JsonLdScript } from '@/components/JsonLdScript';
 import { m } from 'framer-motion';
 import Image from 'next/image';
@@ -69,8 +69,8 @@ const fadeIn = {
 
 export default function ScriptiebegeleidingContent() {
   const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const language = locale === 'nl' ? 'NL' : 'EN';
+    const t = useTranslations('thesis');
 
   const content = {
     title: {
@@ -233,16 +233,10 @@ export default function ScriptiebegeleidingContent() {
           <div className="container mx-auto px-4">
             <div className="max-w-[800px] mx-auto">
               <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-100 mb-6 lg:mb-8">
-                {String(t({
-                  EN: 'Ready to Excel?',
-                  NL: 'Klaar om te Excelleren?'
-                }))}
+                {t('form.readyToExcel')}
               </h2>
               <p className="font-space-grotesk text-lg sm:text-xl lg:text-2xl text-blue-200 mb-8 lg:mb-12">
-                {String(t({
-                  EN: 'Contact us today to discuss how we can help you achieve academic excellence.',
-                  NL: 'Neem vandaag nog contact op om te bespreken hoe we je kunnen helpen academisch te excelleren.'
-                }))}
+                {t('form.contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade')}
               </p>
               <Link href="/contact">
                 <m.button 
@@ -250,10 +244,7 @@ export default function ScriptiebegeleidingContent() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {String(t({
-                    EN: 'Get Started',
-                    NL: 'Begin Nu'
-                  }))}
+                  {t('form.getStarted')}
                 </m.button>
               </Link>
             </div>

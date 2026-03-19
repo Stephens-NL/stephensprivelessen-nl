@@ -3,9 +3,15 @@
     "title": "Transformeer Je Leertraject",
     "subtitle": "Professionele bijles in wiskunde, statistiek en programmeren met persoonlijke aandacht en bewezen resultaten.",
     "stats": [
-      { "label": "Studenttevredenheid" },
-      { "label": "Studenten Geholpen" },
-      { "label": "Gemiddelde Beoordeling" }
+      {
+        "label": "Studenttevredenheid"
+      },
+      {
+        "label": "Studenten Geholpen"
+      },
+      {
+        "label": "Gemiddelde Beoordeling"
+      }
     ],
     "ctaPrimary": "Plan Gratis Proefles",
     "ctaSecondary": "Bekijk Vakken"
@@ -27,24 +33,48 @@
   "subjects": {
     "mathematics": {
       "name": "Wiskunde",
-      "items": ["Calculus", "Lineaire Algebra", "Statistiek"]
+      "items": [
+        "Calculus",
+        "Lineaire Algebra",
+        "Statistiek"
+      ]
     },
     "programming": {
       "name": "Programmeren",
-      "items": ["Python", "JavaScript", "Java"]
+      "items": [
+        "Python",
+        "JavaScript",
+        "Java"
+      ]
     },
     "dataScience": {
       "name": "Data Science",
-      "items": ["Machine Learning", "Data Analyse", "R Programmeren"]
+      "items": [
+        "Machine Learning",
+        "Data Analyse",
+        "R Programmeren"
+      ]
     }
   },
   "process": {
     "title": "Jouw Leertraject",
     "steps": [
-      { "title": "Eerste Gesprek", "description": "We bespreken je doelen en beoordelen je huidige niveau." },
-      { "title": "Plan op Maat", "description": "We maken een leerplan op maat van jouw behoeften." },
-      { "title": "Regelmatige Sessies", "description": "Volg interactieve leersessies met je docent." },
-      { "title": "Voortgang Volgen", "description": "Volg je verbetering met regelmatige evaluaties." }
+      {
+        "title": "Eerste Gesprek",
+        "description": "We bespreken je doelen en beoordelen je huidige niveau."
+      },
+      {
+        "title": "Plan op Maat",
+        "description": "We maken een leerplan op maat van jouw behoeften."
+      },
+      {
+        "title": "Regelmatige Sessies",
+        "description": "Volg interactieve leersessies met je docent."
+      },
+      {
+        "title": "Voortgang Volgen",
+        "description": "Volg je verbetering met regelmatige evaluaties."
+      }
     ]
   },
   "testimonials": {
@@ -78,28 +108,48 @@
         "name": "Individuele Bijles",
         "price": "Vanaf €75",
         "interval": "per uur",
-        "features": ["Persoonlijke aandacht", "Alle vakken beschikbaar", "Flexibele planning", "Online of op Science Park"],
+        "features": [
+          "Persoonlijke aandacht",
+          "Alle vakken beschikbaar",
+          "Flexibele planning",
+          "Online of op Science Park"
+        ],
         "cta": "Plan Proefles"
       },
       {
         "name": "Groepslessen (2 personen)",
         "price": "Vanaf €55",
         "interval": "per uur per persoon",
-        "features": ["Gedeelde leerervaring", "Lagere kosten per persoon", "Interactieve groepsdynamiek", "Online of op Science Park"],
+        "features": [
+          "Gedeelde leerervaring",
+          "Lagere kosten per persoon",
+          "Interactieve groepsdynamiek",
+          "Online of op Science Park"
+        ],
         "cta": "Begin Nu"
       },
       {
         "name": "Scriptie & Onderzoek",
         "price": "Vanaf €90",
         "interval": "per uur",
-        "features": ["Statistiek & Onderzoek", "Data Science & AI", "Geavanceerde SPSS/R/Python", "Volledige scriptiebegeleiding"],
+        "features": [
+          "Statistiek & Onderzoek",
+          "Data Science & AI",
+          "Geavanceerde SPSS/R/Python",
+          "Volledige scriptiebegeleiding"
+        ],
         "cta": "Neem Contact Op"
       },
       {
         "name": "Weekend Programma's",
         "price": "Vanaf €30",
         "interval": "per uur",
-        "features": ["Speciale gemeenschapstarieven", "Weekend beschikbaarheid", "Amsterdam Zuidoost", "Bijles aan huis mogelijk"],
+        "features": [
+          "Speciale gemeenschapstarieven",
+          "Weekend beschikbaarheid",
+          "Amsterdam Zuidoost",
+          "Bijles aan huis mogelijk"
+        ],
         "cta": "Bespreek Mogelijkheden"
       }
     ]
@@ -107,9 +157,18 @@
   "faq": {
     "title": "Veelgestelde Vragen",
     "questions": [
-      { "question": "Hoe lang duren de bijlessen?", "answer": "Standaard sessies duren 1 uur, maar we kunnen langere sessies inplannen indien nodig." },
-      { "question": "Kan ik van docent wisselen als ik niet tevreden ben?", "answer": "Ja, we willen dat je de beste leerervaring hebt. Je kunt op elk moment een andere docent aanvragen." },
-      { "question": "Bieden jullie online sessies aan?", "answer": "Ja, we bieden zowel online als persoonlijke bijlessen aan om aan je voorkeuren te voldoen." }
+      {
+        "question": "Hoe lang duren de bijlessen?",
+        "answer": "Standaard sessies duren 1 uur, maar we kunnen langere sessies inplannen indien nodig."
+      },
+      {
+        "question": "Kan ik van docent wisselen als ik niet tevreden ben?",
+        "answer": "Ja, we willen dat je de beste leerervaring hebt. Je kunt op elk moment een andere docent aanvragen."
+      },
+      {
+        "question": "Bieden jullie online sessies aan?",
+        "answer": "Ja, we bieden zowel online als persoonlijke bijlessen aan om aan je voorkeuren te voldoen."
+      }
     ]
   },
   "contact": {
@@ -119,9 +178,15 @@
       "name": "Je Naam",
       "email": "Email Adres",
       "subjectLabel": "Interessegebied",
-      "subjectOptions": ["Wiskunde", "Programmeren", "Statistiek", "Data Science"],
+      "subjectOptions": [
+        "Wiskunde",
+        "Programmeren",
+        "Statistiek",
+        "Data Science"
+      ],
       "message": "Je Bericht",
       "submit": "Verstuur Bericht"
     }
-  }
+  },
+  "form": {}
 }
