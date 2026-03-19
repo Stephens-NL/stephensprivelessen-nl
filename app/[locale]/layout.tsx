@@ -2,6 +2,8 @@ import {NextIntlClientProvider} from 'next-intl';
 import {setRequestLocale} from 'next-intl/server';
 import {hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
+import {Cormorant_Garamond, Outfit} from 'next/font/google';
+import Script from 'next/script';
 import {routing} from '@/i18n/routing';
 import {Viewport} from 'next';
 import {MotionProvider} from '@/components/MotionProvider';
@@ -10,7 +12,20 @@ import Footer from '@/components/Footer';
 import {Analytics} from '@vercel/analytics/react';
 import {SpeedInsights} from '@vercel/speed-insights/next';
 import WhatsAppButton from '@/components/shared/WhatsAppButton';
+import {organizationSchema, websiteSchema} from '@/lib/structured-data';
 import {config} from '@/data/config';
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  display: 'swap',
+});
 
 type Props = {
   children: React.ReactNode;
@@ -344,15 +359,26 @@ export default async function LocaleLayout({children, params}: Props) {
   setRequestLocale(locale);
 
   return (
-    <NextIntlClientProvider>
-      <MotionProvider>
-        <Header />
-        <WhatsAppButton />
-        <main className="pt-14 md:pt-24">{children}</main>
-        <Footer />
-        <Analytics />
-        <SpeedInsights />
-      </MotionProvider>
-    </NextIntlClientProvider>
+    <html lang={locale} className={`${cormorant.variable} ${outfit.variable} font-body`} suppressHydrationWarning>
+      <head />
+      <body>
+        <Script id="organization-ld+json" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(organizationSchema)}
+        </Script>
+        <Script id="website-ld+json" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(websiteSchema)}
+        </Script>
+        <NextIntlClientProvider>
+          <MotionProvider>
+            <Header />
+            <WhatsAppButton />
+            <main className="pt-14 md:pt-24">{children}</main>
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </MotionProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
