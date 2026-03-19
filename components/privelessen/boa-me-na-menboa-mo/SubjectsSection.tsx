@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { m, AnimatePresence, useInView } from 'framer-motion';
 import { useRef, useReducer } from 'react';
@@ -81,9 +81,11 @@ export function SubjectsSection({
 }: SubjectsSectionProps) {
   const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+  const t = useTranslations('boa');
 
-  const businessData = getBusinessData(t);
+  // businessData still needs the old-style t for its internal keys (pricing etc.)
+  const legacyT = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+  const businessData = getBusinessData(legacyT);
   const [formState, dispatch] = useReducer(formReducer, initialFormState);
   const { searchQuery, hoveredSubject, studentName, studentAge, wantsHomeTutoring, intent, selectedTime, showModal, selectedSubject } = formState;
   const ref = useRef(null);
@@ -96,7 +98,7 @@ export function SubjectsSection({
 
   // Filter subjects based on search query
   const filteredSubjects = searchQuery
-    ? [...businessData.subjects.primary, 
+    ? [...businessData.subjects.primary,
        ...businessData.subjects.secondary,
        ...businessData.subjects.higher,
        ...businessData.subjects.programming].filter((subject: Bilingual) => {
@@ -138,13 +140,13 @@ export function SubjectsSection({
       }}
     >
       <div className="max-w-7xl mx-auto">
-        <m.h2 
+        <m.h2
           className="text-5xl font-bold text-white mb-16 text-center"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
         >
-          {language === 'NL' ? 'Beschikbare Vakken' : 'Available Subjects'}
+          {t('subjects.title')}
         </m.h2>
 
         <div className="flex flex-col items-center gap-8 mb-16">
@@ -152,7 +154,7 @@ export function SubjectsSection({
             <div className="relative">
               <Input
                 className="w-full bg-white/5 border-[var(--amber)]/20 text-white placeholder:text-white/50 pl-12 py-6 text-lg"
-                placeholder={language === 'NL' ? 'Zoek een vak of voer je eigen vak in...' : 'Search a subject or enter your own...'}
+                placeholder={t('subjects.searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => dispatch({ type: 'SEARCH', payload: e.target.value })}
               />
@@ -167,8 +169,8 @@ export function SubjectsSection({
                   key={level.id}
                   onClick={() => setActiveLevel(level.id)}
                   className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 relative ${
-                    activeLevel === level.id 
-                      ? 'text-amber-950' 
+                    activeLevel === level.id
+                      ? 'text-amber-950'
                       : 'text-white hover:text-[var(--cream)]'
                   }`}
                   whileHover={{ scale: 1.02 }}
@@ -199,7 +201,7 @@ export function SubjectsSection({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ 
+                transition={{
                   duration: 0.3,
                   delay: index * 0.05,
                   ease: "easeOut"
@@ -214,7 +216,7 @@ export function SubjectsSection({
                       <div className={`absolute inset-0 bg-gradient-to-r ${
                         educationLevels.find(level => level.id === activeLevel)?.color
                       } opacity-0 group-hover:opacity-100 rounded-xl transition-all duration-300 blur-sm`} />
-                      
+
                       <div className="relative h-full bg-[#4B2E1D] group-hover:bg-[#5B3E2D] backdrop-blur-sm rounded-xl border border-[var(--amber)]/20 group-hover:border-[var(--amber)] transition-all duration-300 overflow-hidden shadow-lg group-hover:shadow-[var(--amber)]/20">
                         <div className="p-6 h-full flex flex-col justify-between">
                           <div>
@@ -227,7 +229,7 @@ export function SubjectsSection({
                           </div>
                           <div className="flex items-center gap-2 mt-4 text-sm text-[var(--cream)]/75 group-hover:text-[var(--cream)]">
                             <FaHandPointer className="text-[var(--amber)] group-hover:text-[var(--amber)]" />
-                            <p>{language === 'NL' ? 'Tik voor gratis proefles' : 'Tap for free trial'}</p>
+                            <p>{t('subjects.tapForTrial')}</p>
                           </div>
                         </div>
                       </div>
@@ -236,12 +238,10 @@ export function SubjectsSection({
                   <DialogContent className="bg-amber-950/90 backdrop-blur-xl border border-[var(--amber)]/20">
                     <DialogHeader>
                       <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)]">
-                        {language === 'NL' ? 'Even je gegevens' : 'Your details'}
+                        {t('subjects.dialogTitle')}
                       </DialogTitle>
                       <DialogDescription className="text-[var(--cream)]/80">
-                        {language === 'NL' 
-                          ? 'Vul je gegevens in en kies wat je wilt doen' 
-                          : 'Fill in your details and choose what you want to do'}
+                        {t('subjects.dialogDescription')}
                       </DialogDescription>
                     </DialogHeader>
                     <TrialLessonForm
@@ -258,16 +258,14 @@ export function SubjectsSection({
                       levelTitle={educationLevels.find(level => level.id === activeLevel)?.title ?? ''}
                       subjectDisplay={language === 'NL' ? subject.NL : subject.EN}
                       onSend={() => {
-                        const fullMessage = `${language === 'NL' 
-                          ? 'Hoi! Ik wil graag meer informatie over bijles.' 
-                          : 'Hi! I would like more information about tutoring.'}
+                        const fullMessage = `${t('subjects.whatsappIntro')}
 - Name: ${studentName}
 - Age: ${studentAge}
 - Level: ${educationLevels.find(level => level.id === activeLevel)?.title}
 - Subject: ${language === 'NL' ? subject.NL : subject.EN}
 - Home tutoring requested: ${wantsHomeTutoring ? 'Yes' : 'No'}
 - Request type: ${intent === 'trial' ? 'Trial lesson (30 min)' : 'Information'}${
-  intent === 'trial' 
+  intent === 'trial'
     ? `\n- Preferred times:\n  1. ${selectedTime[0]}\n  2. ${selectedTime[1]}\n  3. ${selectedTime[2]}`
     : ''
 }`;
@@ -283,4 +281,4 @@ export function SubjectsSection({
       </div>
     </m.section>
   );
-} 
+}

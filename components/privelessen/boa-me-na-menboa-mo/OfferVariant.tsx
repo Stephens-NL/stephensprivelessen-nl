@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { useReducer } from 'react';
 import { Button } from '@/components/ui/button';
@@ -12,11 +12,11 @@ import {
   DialogTrigger,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Bilingual, ProgramOffer } from '@/data/types';
+import { Bilingual } from '@/data/types';
 import { TrialLessonForm } from './TrialLessonForm';
 
 interface OfferVariantProps {
-  offer: ProgramOffer;
+  offerKey: string;
   ctaText: string;
   educationLevels: Array<{
     id: string;
@@ -43,8 +43,8 @@ function offerFormReducer(state: OfferFormState, action: { type: string; payload
   }
 }
 
-export function OfferVariant({ 
-  offer, 
+export function OfferVariant({
+  offerKey,
   ctaText,
   educationLevels,
   activeLevel,
@@ -52,6 +52,7 @@ export function OfferVariant({
 }: OfferVariantProps) {
   const locale = useLocale();
   const language = locale.toUpperCase() as 'EN' | 'NL';
+  const t = useTranslations('boa');
   const [state, dispatch] = useReducer(offerFormReducer, {
     showModal: false,
     studentName: '',
@@ -76,19 +77,22 @@ export function OfferVariant({
   };
 
   const handleSend = () => {
-    const fullMessage = `${offer.whatsappMessage[language]}
+    const fullMessage = `${t(`programOffers.${offerKey}.whatsappMessage`)}
 - Name: ${studentName}
 - Age: ${studentAge}
 - Level: ${educationLevels.find(level => level.id === activeLevel)?.title}
 - Subject: ${language === 'NL' ? subject.NL : subject.EN}
 - Home tutoring requested: ${wantsHomeTutoring ? 'Yes' : 'No'}
 - Request type: ${intent === 'trial' ? 'Trial lesson (30 min)' : 'Information'}${
-  intent === 'trial' 
+  intent === 'trial'
     ? `\n- Preferred times:\n  1. ${selectedTime[0]}\n  2. ${selectedTime[1]}\n  3. ${selectedTime[2]}`
     : ''
 }`;
     window.open(`https://wa.me/31647357426?text=${encodeURIComponent(fullMessage)}`, '_blank');
   };
+
+  // Check if titleTwi exists for this offer
+  const hasTitleTwi = t.has(`programOffers.${offerKey}.titleTwi`);
 
   return (
     <m.div
@@ -102,15 +106,15 @@ export function OfferVariant({
         <div className="relative bg-amber-950/50 backdrop-blur-xl rounded-2xl p-8 ring-1 ring-white/10 hover:ring-[var(--amber)]/50 transition duration-300">
           <div className="h-full flex flex-col">
             <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)] mb-2">
-              {offer.title[language]}
+              {t(`programOffers.${offerKey}.title`)}
             </h3>
-            {offer.titleTwi && (
+            {hasTitleTwi && (
               <p className="text-lg text-[var(--cream)]/80 mb-4 italic font-light">
-                {offer.titleTwi}
+                {t(`programOffers.${offerKey}.titleTwi`)}
               </p>
             )}
             <p className="text-white/80 mb-8 flex-grow">
-              {offer.description[language]}
+              {t(`programOffers.${offerKey}.description`)}
             </p>
             <Dialog open={showModal} onOpenChange={(v) => dispatch({ type: 'MODAL', payload: v })}>
               <DialogTrigger asChild>
@@ -118,18 +122,16 @@ export function OfferVariant({
                   {ctaText}
                 </Button>
               </DialogTrigger>
-              <DialogContent 
+              <DialogContent
                 className="bg-amber-950/90 backdrop-blur-xl border border-[var(--amber)]/20"
                 onClick={(e) => e.stopPropagation()}
               >
                 <DialogHeader>
                   <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--amber)] to-[var(--amber-hover)]">
-                    {offer.title[language]}
+                    {t(`programOffers.${offerKey}.title`)}
                   </DialogTitle>
                   <DialogDescription className="text-[var(--cream)]/80">
-                    {language === 'NL' 
-                      ? 'Vul je gegevens in en kies wat je wilt doen' 
-                      : 'Fill in your details and choose what you want to do'}
+                    {t('offers.dialogDescription')}
                   </DialogDescription>
                 </DialogHeader>
                 <TrialLessonForm
@@ -154,4 +156,4 @@ export function OfferVariant({
       </div>
     </m.div>
   );
-} 
+}

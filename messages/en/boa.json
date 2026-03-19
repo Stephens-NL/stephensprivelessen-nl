@@ -26,16 +26,19 @@
   "programOffers": {
     "weekendTutoring": {
       "title": "Weekend Tutoring for Ghanaian Youth",
+      "titleTwi": "Adesua mma sukuufo",
       "description": "Special community discount for Ghanaian youth in Zuidoost! Only €30 per hour (regular €60). Home tutoring available in Gein or at Douwe Egberts. Start with a free 30-minute trial lesson!",
       "whatsappMessage": "Hi! I'm interested in the Boa me na menboa mo tutoring program. Can I book a trial lesson?"
     },
     "personalCoaching": {
       "title": "Personal Coaching & Study Support",
+      "titleTwi": "Akwankyerɛ ne Mmoa",
       "description": "Need guidance with your studies or personal development? Available weekends for €30/hour in Zuidoost. Me ne wo bɛyɛ adwuma! (We'll work together!) First 30-minute consultation is free.",
       "whatsappMessage": "Hi! I'm interested in personal coaching/study support from the Boa me na menboa mo program. Can you tell me more?"
     },
     "flexibleSupport": {
       "title": "Flexible Weekend Support",
+      "titleTwi": "Mmerɛ-mmerɛ Mmoa",
       "description": "Whether it's math, coaching, or just discussing your studies - I'm here to help! Special rate of €30/hour (save €30). Yɛbɛyɛ bi akɔ! Available at Douwe Egberts or home tutoring in Gein.",
       "whatsappMessage": "Hi! I'm interested in the flexible weekend support from Boa me na menboa mo. I'd like to learn more about the possibilities."
     }
@@ -45,5 +48,16 @@
     "description": "Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.",
     "hours": "Open daily: 08:00 - 22:00"
   },
-  "footer": "Yɛbɛyɛ bi akɔ!"
+  "footer": "Yɛbɛyɛ bi akɔ!",
+  "subjects": {
+    "title": "Available Subjects",
+    "searchPlaceholder": "Search a subject or enter your own...",
+    "tapForTrial": "Tap for free trial",
+    "dialogTitle": "Your details",
+    "dialogDescription": "Fill in your details and choose what you want to do",
+    "whatsappIntro": "Hi! I would like more information about tutoring."
+  },
+  "offers": {
+    "dialogDescription": "Fill in your details and choose what you want to do"
+  }
 }

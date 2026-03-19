@@ -5,6 +5,53 @@
   "defaultMaterials": "Wordt bij aanmelding gecommuniceerd",
   "defaultLocation": "Online of op locatie",
   "defaultPrerequisites": "Geen specifieke voorvereisten",
+  "hero": {
+    "title": "Interactieve Workshops",
+    "subtitle": "Ontdek onze gespecialiseerde workshops ontworpen om leren te verbeteren door praktijkervaring en deskundige begeleiding.",
+    "smallGroups": "Kleine Groepen",
+    "flexibleScheduling": "Flexibele Planning",
+    "expertGuidance": "Expert Begeleiding"
+  },
+  "card": {
+    "clickForDetails": "Klik voor Details",
+    "learnMore": "Lees meer over deze workshop",
+    "moreInfo": "Meer Info",
+    "requestInformation": "Informatie Aanvragen",
+    "max": "Max",
+    "participants": "deelnemers",
+    "creative": "Creatief",
+    "academic": "Academisch"
+  },
+  "filters": {
+    "filterWorkshops": "Filter Workshops",
+    "active": "Actief",
+    "allWorkshops": "Alle Workshops",
+    "creative": "Creatief",
+    "academic": "Academisch",
+    "noResults": "Geen workshops gevonden die aan je filters voldoen."
+  },
+  "customCTA": {
+    "title": "Op Zoek naar een Workshop op Maat?",
+    "description": "We kunnen een programma op maat maken dat perfect aansluit bij de behoeften en doelen van jouw organisatie.",
+    "button": "Neem Contact Op"
+  },
+  "levels": {
+    "allLevels": "Alle Niveaus",
+    "beginner": "Beginner",
+    "intermediate": "Gevorderd",
+    "advanced": "Vergevorderd",
+    "professional": "Professional"
+  },
+  "formats": {
+    "flexible": "Flexibel",
+    "handsOn": "Praktisch",
+    "interactive": "Interactief",
+    "technical": "Technisch",
+    "creative": "Creatief",
+    "professional": "Professioneel",
+    "media": "Media",
+    "wellness": "Welzijn"
+  },
   "items": {
     "statisticsProject": { "title": "Statistiek Project Cursus", "description": "Uitgebreide statistiek workshops voor hele klassen of kleine groepen. Perfect voor middelbare scholieren die aan onderzoeksprojecten werken, met flexibele planning om aan te sluiten bij lesroosters.", "durationText": "90 minuten per sessie", "details": ["Beschikbaar voor hele klassen of kleine groepen", "Aangepast aan curriculum vereisten", "Praktijkervaring met echte datasets", "Focus op onderzoeksmethodologie", "Interactieve leeraanpak", "Online of fysieke sessies", "Serie van 6 sessies over 6-12 weken"] },
     "mathInnovation": { "title": "Wiskunde Docenten Innovatie Workshop", "description": "Workshop voor wiskundedocenten gericht op innovatieve onderwijsmethoden, integratie van technologie en moderne benaderingen om leerlingen beter te betrekken.", "durationText": "3 uur per sessie", "details": ["Innovatieve onderwijsmethoden", "Technologie-integratie in wiskundeonderwijs", "Moderne betrokkenheidstrategieën", "Praktische oefening met tools", "Samenwerkende leertechnieken"] },

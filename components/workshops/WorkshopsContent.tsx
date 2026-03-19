@@ -2,52 +2,70 @@
 
 import React, { useState, useMemo, useEffect, useRef, useSyncExternalStore, useReducer } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
-import { useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import workshopsData from '@/data/workshopsData'
 import type { Workshop, WorkshopLevel, WorkshopFormat, Workshops } from '@/data/types'
-import type { Bilingual } from '@/data/types'
 import { FiClock, FiUsers, FiBookOpen, FiFilter, FiChevronDown } from 'react-icons/fi'
 import { MobileFilterDrawer, Tab } from './WorkshopsFilters'
 import { WorkshopsFilterPanel } from './WorkshopsFilterPanel'
 
-// Helper functions for translations
-const getLevelTranslation = (level?: WorkshopLevel): Bilingual => {
-    if (!level) {
-        return { EN: 'All Levels', NL: 'Alle Niveaus' };
-    }
-    return {
-        EN: level.charAt(0).toUpperCase() + level.slice(1).replace('_', ' '),
-        NL: level === 'beginner' ? 'Beginner' :
-            level === 'intermediate' ? 'Gevorderd' :
-            level === 'advanced' ? 'Vergevorderd' :
-            level === 'professional' ? 'Professional' :
-            'Alle Niveaus'
-    };
+// Map workshop kebab-case IDs to camelCase message keys
+const workshopIdToKey: Record<string, string> = {
+    'statistics-project': 'statisticsProject',
+    'math-innovation': 'mathInnovation',
+    'ai-math': 'aiMath',
+    'music-production': 'musicProduction',
+    'analog-photography': 'analogPhotography',
+    'visual-storytelling': 'visualStorytelling',
+    'creative-coding': 'creativeCoding',
+    'ai-art': 'aiArt',
+    'escape-room': 'escapeRoom',
+    'data-visualization': 'dataVisualization',
+    'math-games': 'mathGames',
+    'math-art': 'mathArt',
+    'math-modeling': 'mathModeling',
+    'math-storytelling': 'mathStorytelling',
+    'math-podcasting': 'mathPodcasting',
+    'math-video': 'mathVideo',
+    'math-assessment': 'mathAssessment',
+    'math-differentiation': 'mathDifferentiation',
+    'math-mindfulness': 'mathMindfulness',
+    'mindfulness': 'mindfulness',
+    'time-management': 'timeManagement',
+    'exam-preparation': 'examPreparation',
 };
 
-const getFormatTranslation = (format?: WorkshopFormat): Bilingual => {
-    if (!format) {
-        return { EN: 'Flexible', NL: 'Flexibel' };
-    }
-    return {
-        EN: format.charAt(0).toUpperCase() + format.slice(1).replace('-', ' '),
-        NL: format === 'hands-on' ? 'Praktisch' :
-            format === 'interactive' ? 'Interactief' :
-            format === 'technical' ? 'Technisch' :
-            format === 'creative' ? 'Creatief' :
-            format === 'professional' ? 'Professioneel' :
-            format === 'media' ? 'Media' :
-            format === 'flexible' ? 'Flexibel' :
-            format === 'wellness' ? 'Welzijn' : format
+const getLevelKey = (level?: WorkshopLevel): string => {
+    if (!level) return 'allLevels';
+    const map: Record<string, string> = {
+        'beginner': 'beginner',
+        'intermediate': 'intermediate',
+        'advanced': 'advanced',
+        'professional': 'professional',
+        'all_levels': 'allLevels',
     };
+    return map[level] || 'allLevels';
+};
+
+const getFormatKey = (format?: WorkshopFormat): string => {
+    if (!format) return 'flexible';
+    const map: Record<string, string> = {
+        'flexible': 'flexible',
+        'hands-on': 'handsOn',
+        'interactive': 'interactive',
+        'technical': 'technical',
+        'creative': 'creative',
+        'professional': 'professional',
+        'media': 'media',
+        'wellness': 'wellness',
+    };
+    return map[format] || 'flexible';
 };
 
 const HeroSection: React.FC = () => {
-    const locale = useLocale()
-    const language = locale.toUpperCase() as 'EN' | 'NL'
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
-    
+    const t = useTranslations('workshops')
+
     return (
         <div className="bg-[var(--ink)] text-[var(--cream)]">
             <div className="container mx-auto px-4 py-16 md:py-24">
@@ -58,26 +76,23 @@ const HeroSection: React.FC = () => {
                     className="max-w-3xl mx-auto text-center"
                 >
                     <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight">
-                        {String(t({ EN: 'Interactive Workshops', NL: 'Interactieve Workshops' }))}
+                        {t('hero.title')}
                     </h1>
                     <p className="text-xl md:text-2xl text-[var(--cream-dark)] mb-8 leading-relaxed">
-                        {String(t({
-                            EN: 'Discover our specialized workshops designed to enhance learning through practical experience and expert guidance.',
-                            NL: 'Ontdek onze gespecialiseerde workshops ontworpen om leren te verbeteren door praktijkervaring en deskundige begeleiding.'
-                        }))}
+                        {t('hero.subtitle')}
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center items-center">
                         <div className="flex items-center bg-[var(--cream)]/10 rounded-full px-6 py-3">
                             <FiUsers className="mr-2" />
-                            <span>{String(t({ EN: 'Small Groups', NL: 'Kleine Groepen' }))}</span>
+                            <span>{t('hero.smallGroups')}</span>
                         </div>
                         <div className="flex items-center bg-[var(--cream)]/10 rounded-full px-6 py-3">
                             <FiClock className="mr-2" />
-                            <span>{String(t({ EN: 'Flexible Scheduling', NL: 'Flexibele Planning' }))}</span>
+                            <span>{t('hero.flexibleScheduling')}</span>
                         </div>
                         <div className="flex items-center bg-[var(--cream)]/10 rounded-full px-6 py-3">
                             <FiBookOpen className="mr-2" />
-                            <span>{String(t({ EN: 'Expert Guidance', NL: 'Expert Begeleiding' }))}</span>
+                            <span>{t('hero.expertGuidance')}</span>
                         </div>
                     </div>
                 </m.div>
@@ -93,10 +108,10 @@ interface WorkshopCardProps {
 }
 
 const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestInfo }) => {
-    const locale = useLocale()
-    const language = locale.toUpperCase() as 'EN' | 'NL'
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
+    const t = useTranslations('workshops')
     const router = useRouter()
+
+    const msgKey = workshopIdToKey[workshop.id] || workshop.id;
 
     const isCreative = workshop.type === 'creative'
     const gradientClasses = isCreative
@@ -127,7 +142,7 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
 
     return (
         <div className="h-full">
-            <div 
+            <div
                 role="button"
                 tabIndex={0}
                 onClick={handleCardClick}
@@ -138,16 +153,10 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                 <div className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${gradientClasses} transition-all duration-300 hidden md:flex items-center justify-center opacity-0 group-hover:opacity-100`}>
                     <div className="text-center px-6 py-8">
                         <p className="font-display text-3xl uppercase tracking-wider mb-2 text-white">
-                            {String(t({ 
-                                EN: 'Click for Details', 
-                                NL: 'Klik voor Details' 
-                            }))}
+                            {t('card.clickForDetails')}
                         </p>
                         <p className="text-white/80 text-sm">
-                            {String(t({ 
-                                EN: 'Learn more about this workshop', 
-                                NL: 'Lees meer over deze workshop' 
-                            }))}
+                            {t('card.learnMore')}
                         </p>
                     </div>
                 </div>
@@ -155,36 +164,33 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                     <div className="p-6 flex-grow">
                         <div className="flex flex-wrap gap-2 mb-4">
                             <span className={`${tagBgClasses} text-sm font-medium px-3 py-1 rounded-full`}>
-                                {String(t(getFormatTranslation(workshop.format)))}
+                                {t(`formats.${getFormatKey(workshop.format)}`)}
                             </span>
                             <span className={`${tagBgClasses} text-sm font-medium px-3 py-1 rounded-full`}>
-                                {String(t({ 
-                                    EN: workshop.type === 'creative' ? 'Creative' : 'Academic',
-                                    NL: workshop.type === 'creative' ? 'Creatief' : 'Academisch'
-                                }))}
+                                {isCreative ? t('card.creative') : t('card.academic')}
                             </span>
                         </div>
                         <h3 className="text-xl font-bold text-[var(--ink)] mb-3">
-                            {String(t(workshop.title))}
+                            {t(`items.${msgKey}.title`)}
                         </h3>
                         <p className="text-[var(--muted-text)] mb-6 line-clamp-3">
-                            {String(t(workshop.description))}
+                            {t(`items.${msgKey}.description`)}
                         </p>
                         <div className="space-y-3 text-sm text-[var(--muted-text)]">
                             <div className="flex items-center">
                                 <FiClock className="mr-2 flex-shrink-0" />
-                                <span className="line-clamp-1">{String(t(workshop.durationText))}</span>
+                                <span className="line-clamp-1">{t(`items.${msgKey}.durationText`)}</span>
                             </div>
                             <div className="flex items-center">
                                 <FiUsers className="mr-2 flex-shrink-0" />
-                                <span className="line-clamp-1">{String(t(getLevelTranslation(workshop.level)))}</span>
+                                <span className="line-clamp-1">{t(`levels.${getLevelKey(workshop.level)}`)}</span>
                             </div>
                             {workshop.maxParticipants && (
                                 <div className="flex items-center">
                                     <FiUsers className="mr-2 flex-shrink-0" />
                                     <span className="line-clamp-1">
-                                        {String(t({ EN: 'Max', NL: 'Max' }))}:{' '}
-                                        {workshop.maxParticipants} {String(t({ EN: 'participants', NL: 'deelnemers' }))}
+                                        {t('card.max')}:{' '}
+                                        {workshop.maxParticipants} {t('card.participants')}
                                     </span>
                                 </div>
                             )}
@@ -192,18 +198,18 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                     </div>
                     <div className="px-6 py-4 bg-[var(--cream-dark)] border-t border-[var(--border-warm)] relative space-y-2">
                         {/* More Info button - only visible on mobile */}
-                        <button 
+                        <button
                             className={`md:hidden w-full bg-gradient-to-r ${buttonClasses} bg-opacity-80 text-white py-2.5 px-4 rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md flex items-center justify-center gap-2`}
                             onClick={handleDetailsClick}
                         >
                             <FiBookOpen className="w-4 h-4" />
-                            {String(t({ EN: 'More Info', NL: 'Meer Info' }))}
+                            {t('card.moreInfo')}
                         </button>
-                        <button 
+                        <button
                             className={`w-full bg-gradient-to-r ${buttonClasses} text-white py-2.5 px-4 rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md`}
                             onClick={handleInfoClick}
                         >
-                            {String(t({ EN: 'Request Information', NL: 'Informatie Aanvragen' }))}
+                            {t('card.requestInformation')}
                         </button>
                     </div>
                 </div>
@@ -217,30 +223,22 @@ interface CustomWorkshopCTAProps {
 }
 
 const CustomWorkshopCTA: React.FC<CustomWorkshopCTAProps> = ({ onContactUs }) => {
-    const locale = useLocale()
-    const language = locale.toUpperCase() as 'EN' | 'NL'
-    const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || ''
+    const t = useTranslations('workshops')
 
     return (
         <div className="mt-16 bg-[var(--cream-dark)] rounded-2xl p-8 md:p-12 border border-[var(--border-warm)]">
             <div className="max-w-3xl mx-auto text-center">
                 <h2 className="text-2xl md:text-3xl font-display font-bold text-[var(--ink)] mb-4">
-                    {String(t({
-                        EN: 'Looking for a Custom Workshop?',
-                        NL: 'Op Zoek naar een Workshop op Maat?'
-                    }))}
+                    {t('customCTA.title')}
                 </h2>
                 <p className="text-[var(--warm-text)] mb-8 text-lg">
-                    {String(t({
-                        EN: "We can create a tailored program that perfectly matches your organization's needs and goals.",
-                        NL: "We kunnen een programma op maat maken dat perfect aansluit bij de behoeften en doelen van jouw organisatie."
-                    }))}
+                    {t('customCTA.description')}
                 </p>
-                <button 
+                <button
                     onClick={onContactUs}
                     className="bg-[var(--amber)] text-[var(--cream)] py-3 px-8 rounded-xl hover:bg-[var(--amber-hover)] transition-all duration-300 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                 >
-                    {String(t({ EN: 'Contact Us', NL: 'Neem Contact Op' }))}
+                    {t('customCTA.button')}
                 </button>
             </div>
         </div>
@@ -305,9 +303,7 @@ function filterReducer(state: FilterState, action: { type: string; payload?: str
 
 const WorkshopsContent: React.FC = () => {
     const router = useRouter();
-    const locale = useLocale();
-  const language = locale.toUpperCase() as 'EN' | 'NL';
-  const t = (obj: Record<string, string> | string) => typeof obj === 'string' ? obj : obj[language] || obj['EN'] || '';
+    const t = useTranslations('workshops');
     const [filters, dispatchFilter] = useReducer(filterReducer, initialFilterState);
     const { type: typeFilter, audience: audienceFilter, size: sizeFilter, duration: durationFilter, schedule: scheduleFilter, isMobileOpen: isMobileFilterOpen, isDesktopOpen: isDesktopFilterOpen } = filters;
     const randomSeed = useSyncExternalStore(
@@ -326,7 +322,7 @@ const WorkshopsContent: React.FC = () => {
             let x = Math.sin(seed + n) * 10000;
             return x - Math.floor(x);
         };
-        
+
         for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(rng(i) * (i + 1));
             [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -339,7 +335,7 @@ const WorkshopsContent: React.FC = () => {
     const filteredWorkshops = useMemo(() => {
         let filtered = Object.values(workshopsData).filter(workshop => {
             if (typeFilter !== 'all' && workshop.type !== typeFilter) return false;
-            
+
             if (audienceFilter !== 'all') {
                 const level = workshop.level;
                 if (audienceFilter === 'students') {
@@ -355,7 +351,7 @@ const WorkshopsContent: React.FC = () => {
                     return level === 'all_levels' || level === 'intermediate';
                 }
             }
-            
+
             if (sizeFilter !== 'all' && workshop.maxParticipants) {
                 if (sizeFilter === 'small' && workshop.maxParticipants > 8) return false;
                 if (sizeFilter === 'medium' && (workshop.maxParticipants <= 8 || workshop.maxParticipants > 15)) return false;
@@ -375,7 +371,7 @@ const WorkshopsContent: React.FC = () => {
                 if (scheduleFilter === 'weekly' && schedule !== 'weekly') return false;
                 if (scheduleFilter === 'monthly' && schedule !== 'monthly') return false;
             }
-            
+
             return true;
         });
 
@@ -452,10 +448,10 @@ const WorkshopsContent: React.FC = () => {
                             className="w-full flex items-center justify-center gap-2 bg-[var(--cream)]/80 backdrop-blur-sm border border-[var(--border-warm)] rounded-xl py-3 px-4 text-[var(--muted-text)] shadow-sm"
                         >
                             <FiFilter />
-                            {String(t({ EN: 'Filter Workshops', NL: 'Filter Workshops' }))}
+                            {t('filters.filterWorkshops')}
                             {hasActiveFilters && (
                                 <span className="bg-[var(--amber)] text-[var(--cream)] text-xs px-2 py-1 rounded-full ml-2">
-                                    {String(t({ EN: 'Active', NL: 'Actief' }))}
+                                    {t('filters.active')}
                                 </span>
                             )}
                         </button>
@@ -464,26 +460,26 @@ const WorkshopsContent: React.FC = () => {
                     {/* Type Filter Tabs - Static position */}
                     <div className="mb-6 -mx-4 px-4">
                         <div className="flex gap-2 p-1 bg-[var(--cream-dark)]/50 backdrop-blur-sm rounded-xl overflow-x-auto">
-                            <Tab 
-                                isActive={typeFilter === 'all'} 
+                            <Tab
+                                isActive={typeFilter === 'all'}
                                 onClick={() => dispatchFilter({ type: 'SET_TYPE', payload: 'all' })}
                                 count={workshopCounts.all}
                             >
-                                {String(t({ EN: 'All Workshops', NL: 'Alle Workshops' }))}
+                                {t('filters.allWorkshops')}
                             </Tab>
-                            <Tab 
-                                isActive={typeFilter === 'creative'} 
+                            <Tab
+                                isActive={typeFilter === 'creative'}
                                 onClick={() => dispatchFilter({ type: 'SET_TYPE', payload: 'creative' })}
                                 count={workshopCounts.creative}
                             >
-                                {String(t({ EN: 'Creative', NL: 'Creatief' }))}
+                                {t('filters.creative')}
                             </Tab>
-                            <Tab 
-                                isActive={typeFilter === 'academic'} 
+                            <Tab
+                                isActive={typeFilter === 'academic'}
                                 onClick={() => dispatchFilter({ type: 'SET_TYPE', payload: 'academic' })}
                                 count={workshopCounts.academic}
                             >
-                                {String(t({ EN: 'Academic', NL: 'Academisch' }))}
+                                {t('filters.academic')}
                             </Tab>
                         </div>
                     </div>
@@ -497,18 +493,18 @@ const WorkshopsContent: React.FC = () => {
                             <div className="flex items-center gap-2">
                                 <FiFilter className="text-[var(--muted-text)]" />
                                 <span className="font-medium text-[var(--ink)]">
-                                    {String(t({ EN: 'Filter Workshops', NL: 'Filter Workshops' }))}
+                                    {t('filters.filterWorkshops')}
                                 </span>
                                 {hasActiveFilters && (
                                     <span className="bg-[var(--amber)] text-[var(--cream)] text-xs px-2 py-1 rounded-full ml-2">
-                                        {String(t({ EN: 'Active', NL: 'Actief' }))}
+                                        {t('filters.active')}
                                     </span>
                                 )}
                             </div>
-                            <FiChevronDown 
+                            <FiChevronDown
                                 className={`transform transition-transform duration-200 ${
                                     isDesktopFilterOpen ? 'rotate-180' : ''
-                                }`} 
+                                }`}
                             />
                         </button>
                         <AnimatePresence>
@@ -545,7 +541,7 @@ const WorkshopsContent: React.FC = () => {
                                     initial={{ opacity: 0, scale: 0.95 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.95 }}
-                                    transition={{ 
+                                    transition={{
                                         duration: 0.2,
                                         layout: {
                                             duration: 0.3,
@@ -572,10 +568,7 @@ const WorkshopsContent: React.FC = () => {
                             className="text-center py-12"
                         >
                             <p className="text-[var(--muted-text)] text-lg">
-                                {String(t({
-                                    EN: 'No workshops found matching your filters.',
-                                    NL: 'Geen workshops gevonden die aan je filters voldoen.'
-                                }))}
+                                {t('filters.noResults')}
                             </p>
                         </m.div>
                     )}
@@ -587,4 +580,4 @@ const WorkshopsContent: React.FC = () => {
     );
 };
 
-export default WorkshopsContent 
+export default WorkshopsContent

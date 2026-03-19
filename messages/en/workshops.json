@@ -5,6 +5,53 @@
   "defaultMaterials": "Will be communicated upon registration",
   "defaultLocation": "Online or in-person",
   "defaultPrerequisites": "No specific prerequisites",
+  "hero": {
+    "title": "Interactive Workshops",
+    "subtitle": "Discover our specialized workshops designed to enhance learning through practical experience and expert guidance.",
+    "smallGroups": "Small Groups",
+    "flexibleScheduling": "Flexible Scheduling",
+    "expertGuidance": "Expert Guidance"
+  },
+  "card": {
+    "clickForDetails": "Click for Details",
+    "learnMore": "Learn more about this workshop",
+    "moreInfo": "More Info",
+    "requestInformation": "Request Information",
+    "max": "Max",
+    "participants": "participants",
+    "creative": "Creative",
+    "academic": "Academic"
+  },
+  "filters": {
+    "filterWorkshops": "Filter Workshops",
+    "active": "Active",
+    "allWorkshops": "All Workshops",
+    "creative": "Creative",
+    "academic": "Academic",
+    "noResults": "No workshops found matching your filters."
+  },
+  "customCTA": {
+    "title": "Looking for a Custom Workshop?",
+    "description": "We can create a tailored program that perfectly matches your organization's needs and goals.",
+    "button": "Contact Us"
+  },
+  "levels": {
+    "allLevels": "All Levels",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "professional": "Professional"
+  },
+  "formats": {
+    "flexible": "Flexible",
+    "handsOn": "Hands on",
+    "interactive": "Interactive",
+    "technical": "Technical",
+    "creative": "Creative",
+    "professional": "Professional",
+    "media": "Media",
+    "wellness": "Wellness"
+  },
   "items": {
     "statisticsProject": { "title": "Statistics Project Course", "description": "Comprehensive statistics workshops for entire classes or small groups. Perfect for high school students working on research projects, with flexible scheduling options to accommodate class schedules.", "durationText": "90 minutes per session", "details": ["Available for entire classes or small groups", "Customized to match curriculum requirements", "Hands-on practice with real datasets", "Focus on research methodology", "Interactive learning approach", "Online or in-person sessions", "Series of 6 sessions over 6-12 weeks"] },
     "mathInnovation": { "title": "Math Teachers Innovation Workshop", "description": "Workshop for math teachers focusing on innovative teaching methods, incorporating technology and modern approaches to engage students better.", "durationText": "3 hours per session", "details": ["Innovative teaching methods", "Technology integration in math education", "Modern engagement strategies", "Hands-on practice with tools", "Collaborative learning techniques"] },

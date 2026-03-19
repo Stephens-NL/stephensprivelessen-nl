@@ -26,16 +26,19 @@
   "programOffers": {
     "weekendTutoring": {
       "title": "Weekend Bijles voor Ghanese Jongeren",
+      "titleTwi": "Adesua mma sukuufo",
       "description": "Speciale gemeenschapskorting voor Ghanese jongeren in Zuidoost! Slechts €30 per uur (normaal €60). Bijles aan huis in Gein of bij Douwe Egberts. Begin met een gratis proefles van 30 minuten!",
       "whatsappMessage": "Hoi! Ik ben geïnteresseerd in het Boa me na menboa mo bijlesprogramma. Kan ik een proefles boeken?"
     },
     "personalCoaching": {
       "title": "Persoonlijke Coaching & Studiebegeleiding",
+      "titleTwi": "Akwankyerɛ ne Mmoa",
       "description": "Hulp nodig bij je studie of persoonlijke ontwikkeling? Beschikbaar in het weekend voor €30/uur in Zuidoost. Me ne wo bɛyɛ adwuma! (We werken samen!) Eerste consult van 30 minuten is gratis.",
       "whatsappMessage": "Hoi! Ik ben geïnteresseerd in persoonlijke coaching/studiebegeleiding van het Boa me na menboa mo programma. Kun je me meer vertellen?"
     },
     "flexibleSupport": {
       "title": "Flexibele Weekend Ondersteuning",
+      "titleTwi": "Mmerɛ-mmerɛ Mmoa",
       "description": "Of het nu gaat om wiskunde, coaching of gewoon je studie bespreken - ik ben er om te helpen! Speciaal tarief van €30/uur (bespaar €30). Yɛbɛyɛ bi akɔ! Beschikbaar bij Douwe Egberts of bijles aan huis in Gein.",
       "whatsappMessage": "Hoi! Ik ben geïnteresseerd in de flexibele weekendondersteuning van Boa me na menboa mo. Ik wil graag meer weten over de mogelijkheden."
     }
@@ -45,5 +48,16 @@
     "description": "Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.",
     "hours": "Dagelijks geopend: 08:00 - 22:00"
   },
-  "footer": "Yɛbɛyɛ bi akɔ!"
+  "footer": "Yɛbɛyɛ bi akɔ!",
+  "subjects": {
+    "title": "Beschikbare Vakken",
+    "searchPlaceholder": "Zoek een vak of voer je eigen vak in...",
+    "tapForTrial": "Tik voor gratis proefles",
+    "dialogTitle": "Even je gegevens",
+    "dialogDescription": "Vul je gegevens in en kies wat je wilt doen",
+    "whatsappIntro": "Hoi! Ik wil graag meer informatie over bijles."
+  },
+  "offers": {
+    "dialogDescription": "Vul je gegevens in en kies wat je wilt doen"
+  }
 }

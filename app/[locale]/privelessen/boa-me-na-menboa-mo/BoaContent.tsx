@@ -78,8 +78,7 @@ export default function BoaContent() {
         setSubject={setSubject}
       />
       <PricingSection content={content} />
-      <OffersSection 
-        content={content} 
+      <OffersSection
         educationLevels={educationLevels}
         activeLevel={activeLevel}
         subject={subject}
