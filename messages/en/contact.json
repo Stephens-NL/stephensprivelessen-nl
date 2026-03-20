@@ -144,6 +144,7 @@
     }
   },
   "form": {
+    "pricing": "Pricing",
     "pleaseFillInAllRequiredFields": "Please fill in all required fields",
     "parentContactInformationIsRequiredForStudentsUnder": "Parent contact information is required for students under 18",
     "thankYouForYourSubmission": "Thank you for your submission!",

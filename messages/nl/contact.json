@@ -144,6 +144,7 @@
     }
   },
   "form": {
+    "pricing": "Tarieven",
     "pleaseFillInAllRequiredFields": "Vul alle verplichte velden in",
     "parentContactInformationIsRequiredForStudentsUnder": "Contactgegevens van ouders zijn verplicht voor studenten onder de 18",
     "thankYouForYourSubmission": "Bedankt voor je aanmelding!",
