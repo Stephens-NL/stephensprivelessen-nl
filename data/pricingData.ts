@@ -148,12 +148,14 @@ export const hboWoOnlinePackages = [
   { students: 1, packagePrice: 360, pricePerPerson: 360 },
   { students: 2, packagePrice: 520, pricePerPerson: 260 },
   { students: 3, packagePrice: 660, pricePerPerson: 220 },
+  { students: 4, packagePrice: 800, pricePerPerson: 200 },
 ];
 
 export const hboWoPhysicalPackages = [
   { students: 1, packagePrice: 450, pricePerPerson: 450 },
   { students: 2, packagePrice: 600, pricePerPerson: 300 },
   { students: 3, packagePrice: 780, pricePerPerson: 260 },
+  { students: 4, packagePrice: 920, pricePerPerson: 230 },
 ];
 
 export const weekendHvaOnlinePackages = [
