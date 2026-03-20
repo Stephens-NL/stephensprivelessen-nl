@@ -174,7 +174,7 @@ export default function ScriptiebegeleidingContent() {
         <section className="py-16 sm:py-24 lg:py-32 bg-blue-950">
           <div className="container mx-auto px-4">
             <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-100 mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
-              {String(t(content.services.title))}
+              {content.services.title[language as keyof typeof content.services.title]}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[content.services.methodology, content.services.dataAnalysis, content.services.guidance].map((service, index) => (
@@ -188,7 +188,7 @@ export default function ScriptiebegeleidingContent() {
                 >
                   <span className="text-4xl sm:text-5xl lg:text-7xl font-syne text-blue-500 mb-4 lg:mb-8 block">0{index + 1}</span>
                   <h3 className="font-syne text-xl sm:text-2xl lg:text-3xl text-blue-100 mb-4 lg:mb-8">
-                    {String(t(service.title))}
+                    {service.title[language as keyof typeof service.title]}
                   </h3>
                   <ul className="space-y-3 lg:space-y-4 font-space-grotesk text-base lg:text-lg text-blue-200">
                     {service.items[language as keyof typeof service.items].map((item) => (
@@ -208,7 +208,7 @@ export default function ScriptiebegeleidingContent() {
         <section className="py-16 sm:py-24 lg:py-32 bg-white">
           <div className="container mx-auto px-4">
             <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-950 mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
-              {String(t(content.why.title))}
+              {content.why.title[language as keyof typeof content.why.title]}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
               {content.why.items[language as keyof typeof content.why.items].map((item, index) => (
