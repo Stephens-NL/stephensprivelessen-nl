@@ -178,6 +178,16 @@
     "freeIntroDesc": "No obligations, just getting to know each other and see if we're a good match.",
     "scheduleIntro": "Schedule introduction"
   },
+  "rekentrajecten": {
+    "recommended": "RECOMMENDED",
+    "select": "SELECT",
+    "perHour": "per hour",
+    "fullComparison": "FULL COMPARISON",
+    "allDetailsAtAGlance": "All details at a glance",
+    "feature": "FEATURE",
+    "showDetails": "SHOW DETAILS",
+    "hideDetails": "HIDE DETAILS"
+  },
   "form": {
     "whyChooseUs": "Why choose us?",
     "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "We understand the challenges of MBO math and provide the support you need to succeed.",

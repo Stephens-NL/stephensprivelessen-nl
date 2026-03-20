@@ -1,6 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Star, Zap, ArrowRight } from 'lucide-react';
 
@@ -28,6 +29,7 @@ export function RekentrajectenCard({
   language: 'NL' | 'EN';
   onSelect: () => void;
 }) {
+  const t = useTranslations('mbo.rekentrajecten');
   return (
     <m.div
       key={course.id}
@@ -46,7 +48,7 @@ export function RekentrajectenCard({
           <div className="absolute -top-3 -right-3 z-20">
             <div className="bg-[var(--amber)] text-[var(--cream)] px-6 py-3 rounded-2xl text-sm font-bold flex items-center gap-2 shadow-lg">
               <Star className="w-4 h-4 fill-current" />
-              AANBEVOLEN
+              {t('recommended')}
             </div>
           </div>
         )}
@@ -73,7 +75,7 @@ export function RekentrajectenCard({
             </div>
             <div className="flex items-center gap-4">
               <div className="w-2 h-2 bg-[var(--sage)] rounded-full" />
-              <span className="font-medium text-[var(--warm-text)]">{course.pricePerLessonHour} per uur</span>
+              <span className="font-medium text-[var(--warm-text)]">{course.pricePerLessonHour} {t('perHour')}</span>
             </div>
           </div>
           <div className={`bg-gradient-to-r ${course.color} bg-opacity-10 rounded-2xl p-4 mb-6`}>
@@ -83,7 +85,7 @@ export function RekentrajectenCard({
             onClick={onSelect}
             className={`w-full py-4 text-lg font-bold rounded-2xl transition-all duration-300 bg-gradient-to-r ${course.color} text-white hover:scale-105 hover:shadow-xl shadow-lg`}
           >
-            SELECTEER
+            {t('select')}
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </div>

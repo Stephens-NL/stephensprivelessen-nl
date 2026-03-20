@@ -1,6 +1,7 @@
 'use client';
 
 import { m } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { rekentrajectenComparison } from '@/data/pricingData';
 
 function getCourseValue(course: (typeof rekentrajectenComparison.courses)[0], featureId: string, language: 'NL' | 'EN') {
@@ -17,11 +18,12 @@ function getCourseValue(course: (typeof rekentrajectenComparison.courses)[0], fe
 }
 
 export function RekentrajectenComparisonTable({ language }: { language: 'NL' | 'EN' }) {
+  const t = useTranslations('mbo.rekentrajecten');
   return (
     <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl overflow-hidden">
       <div className="bg-gradient-to-r from-[var(--ink)] to-[var(--ink-light)] text-white p-8">
-        <h3 className="text-3xl font-black tracking-tight mb-2">VOLLEDIGE VERGELIJKING</h3>
-        <p className="text-[var(--muted-text)]">Alle details op een rij</p>
+        <h3 className="text-3xl font-black tracking-tight mb-2">{t('fullComparison')}</h3>
+        <p className="text-[var(--muted-text)]">{t('allDetailsAtAGlance')}</p>
       </div>
       <div className="lg:hidden">
         {rekentrajectenComparison.courses.map((course, courseIndex) => (
@@ -50,7 +52,7 @@ export function RekentrajectenComparisonTable({ language }: { language: 'NL' | '
         <table className="w-full">
           <thead>
             <tr className="border-b border-[var(--border-warm)]">
-              <th className="text-left p-6 text-[var(--ink)] font-black text-lg">KENMERK</th>
+              <th className="text-left p-6 text-[var(--ink)] font-black text-lg">{t('feature')}</th>
               {rekentrajectenComparison.courses.map((course) => (
                 <th
                   key={course.id}

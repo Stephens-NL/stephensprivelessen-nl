@@ -12,7 +12,8 @@ import { RekentrajectenCTA } from './RekentrajectenCTA';
 
 export function RekentrajectenComparison() {
   const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = locale === 'nl' ? 'NL' : 'EN';
+  const t = useTranslations('mbo.rekentrajecten');
   const [showDetails, setShowDetails] = useState(false);
 
   const scrollToContact = () => {
@@ -71,7 +72,7 @@ export function RekentrajectenComparison() {
             size="lg"
             className="px-8 py-4 text-lg font-bold border-2 border-[var(--ink)] text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--cream)] transition-all duration-300 rounded-2xl"
           >
-            {showDetails ? 'VERBERG DETAILS' : 'TOON DETAILS'}
+            {showDetails ? t('hideDetails') : t('showDetails')}
             <Info className="w-5 h-5 ml-2" />
           </Button>
         </m.div>

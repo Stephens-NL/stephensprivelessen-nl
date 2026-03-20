@@ -178,6 +178,16 @@
     "freeIntroDesc": "Geen verplichtingen, gewoon kennismaken en kijken of we bij elkaar passen.",
     "scheduleIntro": "Plan kennismaking"
   },
+  "rekentrajecten": {
+    "recommended": "AANBEVOLEN",
+    "select": "SELECTEER",
+    "perHour": "per uur",
+    "fullComparison": "VOLLEDIGE VERGELIJKING",
+    "allDetailsAtAGlance": "Alle details op een rij",
+    "feature": "KENMERK",
+    "showDetails": "TOON DETAILS",
+    "hideDetails": "VERBERG DETAILS"
+  },
   "form": {
     "whyChooseUs": "Waarom kiezen voor ons?",
     "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "We begrijpen de uitdagingen van MBO-rekenen en bieden de ondersteuning die je nodig hebt om succesvol te zijn.",
