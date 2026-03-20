@@ -10,7 +10,6 @@ const navItems = [
     { href: '/mbo-rekenen' as const, key: 'mboRekenen' },
     { href: '/scriptiebegeleiding' as const, key: 'scriptiebegeleiding' },
     { href: '/about' as const, key: 'about' },
-    { href: '/services' as const, key: 'services' },
     { href: '/workshops' as const, key: 'workshops' },
     { href: '/consultancy' as const, key: 'consultancy' },
     { href: '/blog' as const, key: 'blog' },

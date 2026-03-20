@@ -12,7 +12,6 @@ export const navigation: NavItem[] = [
     { href: '/scriptiebegeleiding', label: { EN: 'Thesis Supervision', NL: 'Scriptiebegeleiding' } },
     { href: '/aantekeningen', label: { EN: 'Course Notes', NL: 'Aantekeningen' } },
     { href: '/about', label: { EN: 'About', NL: 'Over Ons' } },
-    { href: '/services', label: { EN: 'Services', NL: 'Diensten' } },
     { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
     { href: '/consultancy', label: { EN: 'Consultancy', NL: 'Consultancy' } },
     { href: '/blog', label: { EN: 'Blog', NL: 'Blog' } },

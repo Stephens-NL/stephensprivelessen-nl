@@ -11,7 +11,6 @@ const serviceLinks = [
     { href: '/scriptiebegeleiding' as const, key: 'services.thesisSupervision' },
     { href: '/workshops' as const, key: 'services.workshops' },
     { href: '/consultancy' as const, key: 'services.consultancy' },
-    { href: '/services' as const, key: 'services.services' },
 ] as const;
 
 const infoLinks = [

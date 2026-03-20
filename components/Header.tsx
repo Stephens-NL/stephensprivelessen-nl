@@ -12,7 +12,6 @@ const navItems = [
     { href: '/scriptiebegeleiding' as const, key: 'scriptiebegeleiding' },
     { href: '/workshops' as const, key: 'workshops' },
     { href: '/consultancy' as const, key: 'consultancy' },
-    { href: '/services' as const, key: 'services' },
 ] as const;
 
 const infoItems = [

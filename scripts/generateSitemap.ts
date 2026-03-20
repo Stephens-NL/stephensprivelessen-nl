@@ -36,7 +36,6 @@ function generateSitemap() {
 
   // Add main pages with high priority
   urlset.push(createUrlEntry('/', 'weekly', '1.0'));
-  urlset.push(createUrlEntry('/services', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/privelessen', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/workshops', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/consultancy', 'weekly', '0.9'));
@@ -77,7 +76,7 @@ function generateSitemap() {
   });
 
   // Add navigation pages (excluding already added pages)
-  const addedPaths = new Set(['/', '/services', '/privelessen', '/workshops', '/consultancy', '/contact', '/faq'].map(p => p.toLowerCase()));
+  const addedPaths = new Set(['/', '/privelessen', '/workshops', '/consultancy', '/contact', '/faq'].map(p => p.toLowerCase()));
   navigation.forEach((item: typeof NavItem) => {
     if (!addedPaths.has(item.href.toLowerCase())) {
       urlset.push(createUrlEntry(item.href.toLowerCase()));
