@@ -26,6 +26,29 @@ const config = {
         'space-grotesk': ["var(--font-space-grotesk)", "sans-serif"],
       },
       colors: {
+        // Brand palette — use these instead of raw Tailwind colors
+        ink: {
+          DEFAULT: "var(--ink)",
+          light: "var(--ink-light)",
+        },
+        cream: {
+          DEFAULT: "var(--cream)",
+          dark: "var(--cream-dark)",
+        },
+        amber: {
+          DEFAULT: "var(--amber)",
+          hover: "var(--amber-hover)",
+        },
+        sage: {
+          DEFAULT: "var(--sage)",
+          light: "var(--sage-light)",
+        },
+        terracotta: "var(--terracotta)",
+        'warm-text': "var(--warm-text)",
+        'muted-text': "var(--muted-text)",
+        'border-warm': "var(--border-warm)",
+
+        // shadcn/ui semantic tokens
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -58,13 +81,6 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-        'warm-gray': {
-          '50': 'var(--warm-gray-50)',
-          '100': 'var(--warm-gray-100)',
-          '200': 'var(--warm-gray-200)',
-          '300': 'var(--warm-gray-300)',
-          '400': 'var(--warm-gray-400)',
         },
       },
       borderRadius: {
