@@ -113,7 +113,7 @@ export default function StatistiekPsychologiePage() {
               </div>
             </div>
             <Button className="mt-4" asChild>
-              <Link href="/scriptiebegeleiding/statistiek">Meer over scriptiebegeleiding</Link>
+              <Link href="/scriptiebegeleiding">Meer over scriptiebegeleiding</Link>
             </Button>
           </div>
 
