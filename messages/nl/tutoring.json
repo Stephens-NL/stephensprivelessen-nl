@@ -188,5 +188,25 @@
       "submit": "Verstuur Bericht"
     }
   },
-  "form": {}
+  "form": {},
+  "locations": {
+    "title": "Waar We Lesgeven",
+    "subtitle": "Lessen op Science Park of online. Beschikbaar voor studenten in heel Amsterdam.",
+    "sciencePark": "Science Park 904, Amsterdam",
+    "online": "Online via Zoom",
+    "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"
+  },
+  "specialPrograms": {
+    "title": "Speciale Programma's",
+    "weekend": {
+      "title": "Weekend Bijles Zuidoost",
+      "description": "Zaterdag- en zondaglessen bij HvA in Amsterdam Zuidoost. Halve prijs van het reguliere tarief.",
+      "cta": "Meer info"
+    },
+    "boa": {
+      "title": "Boa Me Na Menboa Mo",
+      "description": "Speciaal bijlesprogramma voor jongeren in Amsterdam Zuidoost.",
+      "cta": "Meer info"
+    }
+  }
 }

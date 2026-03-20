@@ -188,5 +188,25 @@
       "submit": "Send Message"
     }
   },
-  "form": {}
+  "form": {},
+  "locations": {
+    "title": "Where We Teach",
+    "subtitle": "Lessons at Science Park or online. Available for students across Amsterdam.",
+    "sciencePark": "Science Park 904, Amsterdam",
+    "online": "Online via Zoom",
+    "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"
+  },
+  "specialPrograms": {
+    "title": "Special Programs",
+    "weekend": {
+      "title": "Weekend Tutoring Zuidoost",
+      "description": "Saturday and Sunday lessons at HvA in Amsterdam Zuidoost. Half price of regular rates.",
+      "cta": "Learn more"
+    },
+    "boa": {
+      "title": "Boa Me Na Menboa Mo",
+      "description": "Special tutoring program for youth in Amsterdam Zuidoost.",
+      "cta": "Learn more"
+    }
+  }
 }

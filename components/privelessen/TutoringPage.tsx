@@ -9,6 +9,8 @@ import { ProcessSection } from './ProcessSection';
 import { TestimonialsSection } from './TestimonialsSection';
 import { PricingSection } from './PricingSection';
 import { FAQSection } from './FAQSection';
+import { LocationsSection } from './LocationsSection';
+import { SpecialProgramsSection } from './SpecialProgramsSection';
 import { useLocale, useTranslations } from 'next-intl';
 import { tutoringPage } from '@/data/tutoringPage';
 
@@ -54,6 +56,8 @@ export function TutoringPage({ locationSpecific }: TutoringPageProps) {
           <TestimonialsSection testimonials={tutoringPage.testimonials} t={t} />
           <PricingSection pricing={tutoringPage.pricing} t={t} />
           <FAQSection faq={tutoringPage.faq} t={t} />
+          <LocationsSection t={t} />
+          <SpecialProgramsSection t={t} />
         </div>
       </div>
     </main>
