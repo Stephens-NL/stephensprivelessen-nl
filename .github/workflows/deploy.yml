@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Deploy to VPS
+    runs-on: self-hosted
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy with Docker
+        working-directory: /home/stephen/projects/stephensprivelessen-nl
+        run: |
+          git pull origin main
+          docker compose up -d --build
+
+      - name: Health check
+        run: |
+          sleep 15
+          HTTP_CODE=$(curl -sf -o /dev/null -w '%{http_code}' --connect-timeout 10 --max-time 15 http://localhost:4302 || echo "000")
+          if [ "$HTTP_CODE" = "200" ] || [ "$HTTP_CODE" = "302" ]; then
+            echo "stephensprivelessen.nl healthy: HTTP $HTTP_CODE"
+          else
+            echo "stephensprivelessen.nl unhealthy: HTTP $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Notify success
+        if: success()
+        run: |
+          COMMIT="${GITHUB_SHA:0:7}"
+          /home/stephen/scripts/notify/telegram_alert.sh "stephensprivelessen.nl deployed (commit $COMMIT)"
+
+      - name: Notify failure
+        if: failure()
+        run: |
+          COMMIT="${GITHUB_SHA:0:7}"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          /home/stephen/scripts/notify/telegram_alert.sh "stephensprivelessen.nl deploy FAILED (commit $COMMIT). Check $RUN_URL"
