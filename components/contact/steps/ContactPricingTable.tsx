@@ -43,22 +43,26 @@ export function ContactPricingTable() {
               <th className="text-left py-2 text-[var(--cream)] font-medium">Type</th>
               {selectedLevel === 'middelbaar' ? (
                 <>
-                  <th className="text-right py-2 text-[var(--cream)] font-medium">Tot 20 jaar</th>
-                  <th className="text-right py-2 text-[var(--cream)] font-medium">Vanaf 20 jaar</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">1 leerling</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">p.p. (2 lln)</th>
                 </>
               ) : (
                 <>
-                  <th className="text-right py-2 text-[var(--cream)] font-medium">Bachelor</th>
-                  <th className="text-right py-2 text-[var(--cream)] font-medium">Master</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">1 student</th>
+                  <th className="text-right py-2 text-[var(--cream)] font-medium">p.p. (2 stud)</th>
                 </>
               )}
             </tr>
           </thead>
           <tbody>
             {[
-              { type: { EN: "Single session", NL: "Losse sessie" }, ms20minus: "€75", ms20plus: "€80", bachelor: "€80", master: "€90" },
-              { type: { EN: "2 sessions", NL: "2 sessies" }, ms20minus: "€130", ms20plus: "€135", bachelor: "€135", master: "€140" },
-              { type: { EN: "4 sessions", NL: "4 sessies" }, ms20minus: "€200", ms20plus: "€230", bachelor: "€230", master: "€250" },
+              // 4-uurs pakketprijzen — kolom 1: 1 leerling/student, kolom 2: p.p. bij 2 personen
+              // VO: online €240/€160pp | fysiek €300/€200pp
+              // HBO/WO: online €360/€260pp | fysiek €450/€300pp
+              { type: { EN: "4hr package — online", NL: "4 uur pakket — online" }, ms20minus: "€240", ms20plus: "€160", bachelor: "€360", master: "€260" },
+              { type: { EN: "4hr package — physical", NL: "4 uur pakket — fysiek" }, ms20minus: "€300", ms20plus: "€200", bachelor: "€450", master: "€300" },
+              { type: { EN: "Rush 2hr — online", NL: "Spoed 2 uur — online" }, ms20minus: "€120", ms20plus: "—", bachelor: "€180", master: "—" },
+              { type: { EN: "Rush 2hr — physical", NL: "Spoed 2 uur — fysiek" }, ms20minus: "€180", ms20plus: "—", bachelor: "€260", master: "—" },
             ].map((row) => (
               <tr key={row.type.NL} className="border-b border-[var(--sage)]/30 last:border-0">
                 <td className="py-2 text-[var(--cream)]">{t(row.type)}</td>

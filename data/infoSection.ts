@@ -23,86 +23,85 @@ export interface GroupPricingTier {
     }[];
 }
 
+// Pricingtiershoeven alleen 4-uurs pakketten te tonen — losse uren worden niet meer aangeboden.
 export const pricingTiers: PricingTier[] = [
     {
-        level: "Hoger Onderwijs",
+        level: "Hoger Onderwijs — Online",
         prices: [
-            { duration: "1 uur", price: "€80" },
-            { duration: "2 uren", price: "€135" },
-            { duration: "4 uren", price: "€250" },
+            { duration: "4 uur · 1 student", price: "€360" },
+            { duration: "4 uur · 2 studenten", price: "€520 (€260 p.p.)" },
+            { duration: "4 uur · 3 studenten", price: "€660 (€220 p.p.)" },
         ]
     },
     {
-        level: "Voortgezet Onderwijs (20+)",
+        level: "Hoger Onderwijs — Fysiek",
         prices: [
-            { duration: "1 uur", price: "€75" },
-            { duration: "2 uren", price: "€130" },
-            { duration: "4 uren", price: "€230" },
+            { duration: "4 uur · 1 student", price: "€450" },
+            { duration: "4 uur · 2 studenten", price: "€600 (€300 p.p.)" },
+            { duration: "4 uur · 3 studenten", price: "€780 (€260 p.p.)" },
         ]
     },
     {
-        level: "Voortgezet Onderwijs (20-)",
+        level: "Voortgezet Onderwijs — Online",
         prices: [
-            { duration: "1 uur", price: "€60" },
-            { duration: "2 uren", price: "€100" },
-            { duration: "4 uren", price: "€200" },
+            { duration: "4 uur · 1 leerling", price: "€240" },
+            { duration: "4 uur · 2 leerlingen", price: "€320 (€160 p.p.)" },
+            { duration: "4 uur · 3 leerlingen", price: "€420 (€140 p.p.)" },
+            { duration: "4 uur · 4 leerlingen", price: "€520 (€130 p.p.)" },
+        ]
+    },
+    {
+        level: "Voortgezet Onderwijs — Fysiek",
+        prices: [
+            { duration: "4 uur · 1 leerling", price: "€300" },
+            { duration: "4 uur · 2 leerlingen", price: "€400 (€200 p.p.)" },
+            { duration: "4 uur · 3 leerlingen", price: "€525 (€175 p.p.)" },
+            { duration: "4 uur · 4 leerlingen", price: "€640 (€160 p.p.)" },
         ]
     }
 ];
 
+// Groepsprijzen zijn pakketprijzen per persoon voor 4-uurs pakketten.
+// Alleen pakketten worden aangeboden — geen losse sessies meer.
+// "Voortgezet Onderwijs (20-)" tabel gebruikt door ContactGroupPricingTable voor 'middelbaar'.
+// "Hoger Onderwijs" tabel gebruikt voor 'hoger'. Losse sessie kolom toont "—".
 export const groupPricingTiers: GroupPricingTier[] = [
     {
         level: "Hoger Onderwijs",
         prices: [
-            { students: 1, duration: "1 uur", price: "€90" },
-            { students: 2, duration: "1 uur", price: "€55" },
-            { students: 3, duration: "1,5 uur", price: "€40" },
-            { students: 4, duration: "1,5 uur", price: "€35" },
+            { students: 1, duration: "4 uur", price: "—" },
+            { students: 2, duration: "4 uur", price: "—" },
+            { students: 3, duration: "4 uur", price: "—" },
+            { students: 4, duration: "4 uur", price: "—" },
         ]
     },
     {
+        // Online 4-uurs pakket — prijs per persoon
         level: "Hoger Onderwijs 4-uurs pakket",
         prices: [
-            { students: 1, duration: "4 uur", price: "€250" },
-            { students: 2, duration: "4 uur", price: "€180" },
-            { students: 3, duration: "4 uur", price: "€150" },
-            { students: 4, duration: "4 uur", price: "€125" },
-        ]
-    },
-    {
-        level: "Voortgezet Onderwijs (20+)",
-        prices: [
-            { students: 1, duration: "1 uur", price: "€80" },
-            { students: 2, duration: "1 uur", price: "€55" },
-            { students: 3, duration: "1,5 uur", price: "€40" },
-            { students: 4, duration: "1,5 uur", price: "€35" },
-        ]
-    },
-    {
-        level: "Voortgezet Onderwijs (20+) 4-uurs pakket",
-        prices: [
-            { students: 1, duration: "4 uur", price: "€230" },
-            { students: 2, duration: "4 uur", price: "€180" },
-            { students: 3, duration: "4 uur", price: "€150" },
-            { students: 4, duration: "4 uur", price: "€125" },
+            { students: 1, duration: "4 uur", price: "€360" },
+            { students: 2, duration: "4 uur", price: "€260" },
+            { students: 3, duration: "4 uur", price: "€220" },
+            { students: 4, duration: "4 uur", price: "—" },
         ]
     },
     {
         level: "Voortgezet Onderwijs (20-)",
         prices: [
-            { students: 1, duration: "1 uur", price: "€75" },
-            { students: 2, duration: "1 uur", price: "€55" },
-            { students: 3, duration: "1,5 uur", price: "€40" },
-            { students: 4, duration: "1,5 uur", price: "€35" },
+            { students: 1, duration: "4 uur", price: "—" },
+            { students: 2, duration: "4 uur", price: "—" },
+            { students: 3, duration: "4 uur", price: "—" },
+            { students: 4, duration: "4 uur", price: "—" },
         ]
     },
     {
+        // Online 4-uurs pakket — prijs per persoon
         level: "Voortgezet Onderwijs (20-) 4-uurs pakket",
         prices: [
-            { students: 1, duration: "4 uur", price: "€200" },
-            { students: 2, duration: "4 uur", price: "€165" },
-            { students: 3, duration: "4 uur", price: "€150" },
-            { students: 4, duration: "4 uur", price: "€125" },
+            { students: 1, duration: "4 uur", price: "€240" },
+            { students: 2, duration: "4 uur", price: "€160" },
+            { students: 3, duration: "4 uur", price: "€140" },
+            { students: 4, duration: "4 uur", price: "€130" },
         ]
     }
 ];

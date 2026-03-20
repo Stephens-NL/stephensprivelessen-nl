@@ -125,40 +125,74 @@ export const rekentrajectenComparison = {
   ]
 };
 
+// Package-based pricing (4-uurs pakketten — enige aangeboden vorm)
+// VO = Voortgezet Onderwijs (middelbare school)
+// HBO/WO = Hoger onderwijs
+// Weekend HvA = Weekend programma (50% van VO-tarief)
+
+export const voOnlinePackages = [
+  { students: 1, packagePrice: 240, pricePerPerson: 240 },
+  { students: 2, packagePrice: 320, pricePerPerson: 160 },
+  { students: 3, packagePrice: 420, pricePerPerson: 140 },
+  { students: 4, packagePrice: 520, pricePerPerson: 130 },
+];
+
+export const voPhysicalPackages = [
+  { students: 1, packagePrice: 300, pricePerPerson: 300 },
+  { students: 2, packagePrice: 400, pricePerPerson: 200 },
+  { students: 3, packagePrice: 525, pricePerPerson: 175 },
+  { students: 4, packagePrice: 640, pricePerPerson: 160 },
+];
+
+export const hboWoOnlinePackages = [
+  { students: 1, packagePrice: 360, pricePerPerson: 360 },
+  { students: 2, packagePrice: 520, pricePerPerson: 260 },
+  { students: 3, packagePrice: 660, pricePerPerson: 220 },
+];
+
+export const hboWoPhysicalPackages = [
+  { students: 1, packagePrice: 450, pricePerPerson: 450 },
+  { students: 2, packagePrice: 600, pricePerPerson: 300 },
+  { students: 3, packagePrice: 780, pricePerPerson: 260 },
+];
+
+export const weekendHvaOnlinePackages = [
+  { students: 1, packagePrice: 120, pricePerPerson: 120 },
+  { students: 2, packagePrice: 160, pricePerPerson: 80 },
+  { students: 3, packagePrice: 210, pricePerPerson: 70 },
+  { students: 4, packagePrice: 260, pricePerPerson: 65 },
+];
+
+export const weekendHvaPhysicalPackages = [
+  { students: 1, packagePrice: 150, pricePerPerson: 150 },
+  { students: 2, packagePrice: 200, pricePerPerson: 100 },
+  { students: 3, packagePrice: 260, pricePerPerson: 87 },
+  { students: 4, packagePrice: 320, pricePerPerson: 80 },
+];
+
+// Spoedpakketten (2 uur)
+export const spoedPrices = {
+  voOnline: 120,
+  voPhysical: 180,
+  hboWoOnline: 180,
+  hboWoPhysical: 260,
+};
+
+// Legacy shape kept for PricingPage.tsx (duration in hours, price = pakketprijs 1 student)
+// Business only sells 4hr packages — 1-student package price shown per tier.
 export const prices = {
+  // VO online — 4hr packages (1 student)
   higher: [
-    { duration: 1, price: 90.00 }, // 1 uur
-    { duration: 2, price: 140.00 }, // 2 uur
-    { duration: 4, price: 250.00 }, // 4 uur
+    { duration: 4, price: 360.00 }, // HBO/WO online, 1 student — 4 uur pakket
   ],
+  // VO online — 4hr packages
   secondary20Plus: [
-    { duration: 1, price: 80.00 }, // 1 uur
-    { duration: 2, price: 135.00 }, // 2 uur
-    { duration: 4, price: 230.00 }, // 4 uur
+    { duration: 4, price: 240.00 }, // VO online, 1 student — 4 uur pakket
   ],
+  // VO fysiek — 4hr packages
   secondary20Minus: [
-    { duration: 1, price: 75.00 }, // 1 uur
-    { duration: 2, price: 130.00 }, // 2 uur
-    { duration: 4, price: 200.00 }, // 4 uur
+    { duration: 4, price: 300.00 }, // VO fysiek, 1 student — 4 uur pakket
   ],
-  groupLessons: {
-    // 2 personen tarieven
-    higher: [
-      { duration: 1, price: 65.00 },  // 2 personen, 1 uur
-      { duration: 2, price: 125.00 }, // 2 personen, 2 uur
-      { duration: 4, price: 180.00 }, // 2 personen, 4 uur
-    ],
-    secondary20Plus: [
-      { duration: 1, price: 65.00 },  // 2 personen, 1 uur
-      { duration: 2, price: 125.00 }, // 2 personen, 2 uur
-      { duration: 4, price: 180.00 }, // 2 personen, 4 uur
-    ],
-    secondary20Minus: [
-      { duration: 1, price: 55.00 },  // 2 personen, 1 uur
-      { duration: 2, price: 110.00 }, // 2 personen, 2 uur
-      { duration: 4, price: 165.00 }, // 2 personen, 4 uur
-    ],
-  },
   flexibilityPremium: [
     { duration: "Pakket van 2 lessen", price: `€${config.pricing.flexibilityPremium.twoLessons}` },
     { duration: "Pakket van 4 lessen", price: `€${config.pricing.flexibilityPremium.fourLessons}` },
@@ -175,20 +209,7 @@ export const prices = {
   ],
 };
 
-// Groepslessen 3–4 personen (weergeven via LocationPricingTable)
-export const groupLessonsThreeToFourUnder20 = [
-  { duration: "3–4 personen · 1 uur", price: "€45" },
-  { duration: "3–4 personen · 2 uur", price: "€80" },
-  { duration: "3–4 personen · 4 uur", price: "€125" },
-];
-
-export const groupLessonsThreeToFour20Plus = [
-  { duration: "3–4 personen · 1 uur", price: "€55" },
-  { duration: "3–4 personen · 2 uur", price: "€95" },
-  { duration: "3–4 personen · 4 uur", price: "€150" },
-];
-
-// Scriptiebegeleiding tarieven
+// Scriptiebegeleiding tarieven (uurtarief — apart product, niet pakketgebaseerd)
 export const scriptieRates = [
   { duration: "Statistiek & Onderzoek", price: "€90/uur" },
   { duration: "Data Science & AI", price: "€100/uur" },

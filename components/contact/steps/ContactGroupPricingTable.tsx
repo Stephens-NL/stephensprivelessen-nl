@@ -98,15 +98,15 @@ export function ContactGroupPricingTable() {
                     <div>
                       <p className="text-sm text-[var(--amber)] font-medium mb-1">{t(translations.individualSessions)}</p>
                       <ul className="mt-1 space-y-1 text-sm text-[var(--cream)]">
-                        <li>• {`Price per 4 hours: ${selectedLevel === 'middelbaar' ? '€200' : '€250'}`}</li>
-                        <li>• {`For 4 separate students: 4 × ${selectedLevel === 'middelbaar' ? '€200' : '€250'} = ${selectedLevel === 'middelbaar' ? '€800' : '€1000'}`}</li>
+                        <li>• {`4 uur pakket (online), 1 student: ${selectedLevel === 'middelbaar' ? '€240' : '€360'}`}</li>
+                        <li>• {`Voor 4 aparte studenten: 4 × ${selectedLevel === 'middelbaar' ? '€240' : '€360'} = ${selectedLevel === 'middelbaar' ? '€960' : '€1440'}`}</li>
                       </ul>
                     </div>
                     <div>
                       <p className="text-sm text-[var(--amber)] font-medium mb-1">{t(translations.groupSessions)}</p>
                       <ul className="mt-1 space-y-1 text-sm text-[var(--cream)]">
-                        <li>• {`Price per person: ${selectedLevel === 'middelbaar' ? '€125' : '€125'} (${selectedLevel === 'middelbaar' ? '€31.25' : '€31.25'}/hour)`}</li>
-                        <li>• {`Total for the group: 4 × ${selectedLevel === 'middelbaar' ? '€125' : '€125'} = ${selectedLevel === 'middelbaar' ? '€500' : '€500'}`}</li>
+                        <li>• {`4 uur pakket (online), 4 studenten — p.p.: ${selectedLevel === 'middelbaar' ? '€130' : '—'} (${selectedLevel === 'middelbaar' ? '€32,50/uur' : 'max. 3 studenten HBO/WO'})`}</li>
+                        <li>• {`Totaal voor de groep: ${selectedLevel === 'middelbaar' ? '€520' : '—'}`}</li>
                       </ul>
                     </div>
                   </div>

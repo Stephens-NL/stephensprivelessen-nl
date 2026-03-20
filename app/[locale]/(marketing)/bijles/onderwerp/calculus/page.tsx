@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 const structuredData = generateSubjectStructuredData({
   title: "Calculus Bijles | Differentiëren & Integreren",
   description: "Professionele calculus bijles voor niet-bèta studenten. Van differentiëren tot integreren, wij maken het begrijpelijk.",
-  price: 45,
+  price: 240, // Vanaf €240 (VO online 4 uur, 1 leerling) — laagste standaardtarief
   priceCurrency: "EUR",
   provider: {
     name: "StephensPrivelessen",

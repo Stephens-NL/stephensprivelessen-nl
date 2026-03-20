@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 const structuredData = generateSubjectStructuredData({
   title: "Statistiek Bijles voor Psychologie Studenten | SPSS & Data Analyse",
   description: "Professionele statistiek bijles voor psychologie studenten. SPSS begeleiding, statistische analyses en scriptie ondersteuning.",
-  price: 45,
+  price: 240, // Vanaf €240 (VO online 4 uur, 1 leerling) — laagste standaardtarief
   priceCurrency: "EUR",
   provider: {
     name: "StephensPrivelessen",
