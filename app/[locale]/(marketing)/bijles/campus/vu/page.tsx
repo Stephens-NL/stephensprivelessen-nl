@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,31 +7,45 @@ import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
 
-export const metadata: Metadata = {
-  title: "VU Bijles Amsterdam | Campus & Zuidas",
-  description: "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R.",
-  keywords: [
-    'vu bijles amsterdam',
-    'vu campus bijles',
-    'zuidas bijles',
-    'vu studenten bijles',
-    'econometrie vu',
-    'statistiek vu',
-    'python vu'
-  ],
-  openGraph: {
-    title: "VU Bijles Amsterdam | Campus & Zuidas",
-    description: "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R.",
-    images: [
-      {
-        url: "/api/og?title=VU%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Meer%20info&footerText=VU%20Campus%20%E2%80%A2%20Zuidas&featureImageUrl=/images/og-vu-feature.jpg",
-        width: 1200,
-        height: 630,
-        alt: "VU Bijles Amsterdam - Campus & Zuidas | Stephensprivelessen.nl",
-      },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+  return {
+    title: isNl
+      ? "VU Bijles Amsterdam | Campus & Zuidas"
+      : "VU Tutoring Amsterdam | Campus & Zuidas",
+    description: isNl
+      ? "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R."
+      : "Tutoring for VU students on campus and Zuidas. Statistics, econometrics, Python & R.",
+    keywords: [
+      'vu bijles amsterdam',
+      'vu campus bijles',
+      'zuidas bijles',
+      'vu studenten bijles',
+      'econometrie vu',
+      'statistiek vu',
+      'python vu'
     ],
-  },
-};
+    openGraph: {
+      title: isNl
+        ? "VU Bijles Amsterdam | Campus & Zuidas"
+        : "VU Tutoring Amsterdam | Campus & Zuidas",
+      description: isNl
+        ? "Bijles voor VU studenten op campus en Zuidas. Statistiek, econometrie, Python & R."
+        : "Tutoring for VU students on campus and Zuidas. Statistics, econometrics, Python & R.",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent("VU Bijles A'dam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "Meer info" : "More info")}&footerText=${encodeURIComponent("VU Campus \u2022 Zuidas")}&featureImageUrl=/images/og-vu-feature.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isNl
+            ? "VU Bijles Amsterdam - Campus & Zuidas | Stephensprivelessen.nl"
+            : "VU Tutoring Amsterdam - Campus & Zuidas | Stephensprivelessen.nl",
+        },
+      ],
+    },
+  };
+}
 
 const structuredData = generateCampusStructuredData({
       title: "Bijles voor VU Studenten | Online & Science Park",

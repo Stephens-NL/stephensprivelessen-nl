@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,32 +7,46 @@ import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
 
-export const metadata: Metadata = {
-  title: "Python & R Bijles Amsterdam | Data Science voor Psychologie & Economie",
-  description: "Python en R bijles in Amsterdam voor data science. Speciaal voor psychologie, economie en life sciences studenten. SPSS, R Studio begeleiding.",
-  keywords: [
-    'python bijles amsterdam',
-    'r studio bijles amsterdam',
-    'data science bijles',
-    'spss hulp amsterdam',
-    'programmeren psychologie',
-    'python economie',
-    'r studio begeleiding',
-    'data analyse bijles'
-  ],
-  openGraph: {
-    title: "Python & R Bijles Amsterdam | Data Science",
-    description: "Python en R bijles voor data science. Speciaal voor psychologie, economie en life sciences studenten in Amsterdam.",
-    images: [
-      {
-        url: "/api/og?title=Python%20%26%20R%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Start%20Code&footerText=Data%20Science%20%E2%80%A2%20Statistiek&featureImageUrl=/images/og-programmeren-feature.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Python/R Bijles Amsterdam - Data Science | Stephensprivelessen.nl",
-      },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+  return {
+    title: isNl
+      ? "Python & R Bijles Amsterdam | Data Science voor Psychologie & Economie"
+      : "Python & R Tutoring Amsterdam | Data Science for Psychology & Economics",
+    description: isNl
+      ? "Python en R bijles in Amsterdam voor data science. Speciaal voor psychologie, economie en life sciences studenten. SPSS, R Studio begeleiding."
+      : "Python and R tutoring in Amsterdam for data science. Specialised for psychology, economics and life sciences students. SPSS, R Studio guidance.",
+    keywords: [
+      'python bijles amsterdam',
+      'r studio bijles amsterdam',
+      'data science bijles',
+      'spss hulp amsterdam',
+      'programmeren psychologie',
+      'python economie',
+      'r studio begeleiding',
+      'data analyse bijles'
     ],
-  },
-};
+    openGraph: {
+      title: isNl
+        ? "Python & R Bijles Amsterdam | Data Science"
+        : "Python & R Tutoring Amsterdam | Data Science",
+      description: isNl
+        ? "Python en R bijles voor data science. Speciaal voor psychologie, economie en life sciences studenten in Amsterdam."
+        : "Python and R tutoring for data science. Specialised for psychology, economics and life sciences students in Amsterdam.",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent("Python & R Bijles A'dam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "Start Code" : "Start Coding")}&footerText=${encodeURIComponent(isNl ? "Data Science \u2022 Statistiek" : "Data Science \u2022 Statistics")}&featureImageUrl=/images/og-programmeren-feature.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isNl
+            ? "Python/R Bijles Amsterdam - Data Science | Stephensprivelessen.nl"
+            : "Python/R Tutoring Amsterdam - Data Science | Stephensprivelessen.nl",
+        },
+      ],
+    },
+  };
+}
 
 const structuredData = generateSubjectStructuredData({
   title: "Programmeren Bijles | Python & R voor Data Science",

@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,32 +7,46 @@ import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
 
-export const metadata: Metadata = {
-  title: "Bijles Amsterdam voor UvA & VU | Statistiek, Calculus & Programmeren",
-  description: "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. 4-uurs pakketten v.a. €240. UvA & VU studenten. 1-op-1 begeleiding.",
-  keywords: [
-    'bijles amsterdam',
-    'statistiek bijles amsterdam',
-    'calculus bijles amsterdam',
-    'programmeren bijles amsterdam',
-    'uva bijles',
-    'vu bijles',
-    'spss hulp amsterdam',
-    'r tutor amsterdam'
-  ],
-  openGraph: {
-    title: "Bijles Amsterdam | Statistiek, Calculus & Programmeren",
-    description: "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. 4-uurs pakketten v.a. €240. UvA & VU studenten.",
-    images: [
-      {
-        url: "/api/og?title=Bijles%20Amsterdam&brandText=Stephensprivelessen.nl&buttonText=Boek%20les&footerText=Statistiek%20%E2%80%A2%20Calculus%20%E2%80%A2%20Programmeren&featureImageUrl=/images/og-default-feature.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Top Bijles Amsterdam - Alle Vakken | Stephensprivelessen.nl",
-      },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+  return {
+    title: isNl
+      ? "Bijles Amsterdam voor UvA & VU | Statistiek, Calculus & Programmeren"
+      : "Tutoring Amsterdam for UvA & VU | Statistics, Calculus & Programming",
+    description: isNl
+      ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. 4-uurs pakketten v.a. €240. UvA & VU studenten. 1-op-1 begeleiding."
+      : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online or Science Park. 4-hour packages from €240. UvA & VU students. 1-on-1 guidance.",
+    keywords: [
+      'bijles amsterdam',
+      'statistiek bijles amsterdam',
+      'calculus bijles amsterdam',
+      'programmeren bijles amsterdam',
+      'uva bijles',
+      'vu bijles',
+      'spss hulp amsterdam',
+      'r tutor amsterdam'
     ],
-  },
-};
+    openGraph: {
+      title: isNl
+        ? "Bijles Amsterdam | Statistiek, Calculus & Programmeren"
+        : "Tutoring Amsterdam | Statistics, Calculus & Programming",
+      description: isNl
+        ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. 4-uurs pakketten v.a. €240. UvA & VU studenten."
+        : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online or Science Park. 4-hour packages from €240. UvA & VU students.",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(isNl ? "Bijles Amsterdam" : "Tutoring Amsterdam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "Boek les" : "Book lesson")}&footerText=${encodeURIComponent(isNl ? "Statistiek \u2022 Calculus \u2022 Programmeren" : "Statistics \u2022 Calculus \u2022 Programming")}&featureImageUrl=/images/og-default-feature.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isNl
+            ? "Top Bijles Amsterdam - Alle Vakken | Stephensprivelessen.nl"
+            : "Top Tutoring Amsterdam - All Subjects | Stephensprivelessen.nl",
+        },
+      ],
+    },
+  };
+}
 
 const structuredData = generateStructuredData({
   title: "Bijles in Amsterdam | Statistiek, Calculus & Programmeren",

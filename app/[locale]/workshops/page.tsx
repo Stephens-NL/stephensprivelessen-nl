@@ -1,9 +1,8 @@
-import type { Metadata } from 'next';
 import Script from 'next/script';
 import WorkshopsContent from '@/components/workshops/WorkshopsContent';
-import { metadata as workshopsMetadata, jsonLd } from './metadata';
+import { jsonLd } from './metadata';
 
-export const metadata: Metadata = workshopsMetadata;
+export { generateMetadata } from './metadata';
 
 export default function WorkshopsPage() {
   return (

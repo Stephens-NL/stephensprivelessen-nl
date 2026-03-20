@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,32 +7,46 @@ import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
 
-export const metadata: Metadata = {
-  title: "Calculus Bijles Amsterdam | Differentiëren & Integreren voor Life Sciences",
-  description: "Calculus bijles in Amsterdam voor Life Sciences en Economie studenten. Differentiëren, integreren en toegepaste wiskunde. 1‑op‑1 begeleiding.",
-  keywords: [
-    'calculus bijles amsterdam',
-    'differentiëren bijles',
-    'integreren bijles',
-    'wiskunde life sciences',
-    'calculus economie',
-    'toegepaste wiskunde bijles',
-    'afgeleiden berekenen',
-    'integralen berekenen'
-  ],
-  openGraph: {
-    title: "Calculus Bijles Amsterdam | Differentiëren & Integreren",
-    description: "Calculus bijles voor Life Sciences en Economie studenten. Differentiëren, integreren en toegepaste wiskunde in Amsterdam.",
-    images: [
-      {
-        url: "/api/og?title=Calculus%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Start%20Calculus&footerText=Differentiëren%20%E2%80%A2%20Integreren&featureImageUrl=/images/og-calculus-feature.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Calculus Bijles Amsterdam - Life Sci & Economie | Stephensprivelessen.nl",
-      },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+  return {
+    title: isNl
+      ? "Calculus Bijles Amsterdam | Differentiëren & Integreren voor Life Sciences"
+      : "Calculus Tutoring Amsterdam | Differentiation & Integration for Life Sciences",
+    description: isNl
+      ? "Calculus bijles in Amsterdam voor Life Sciences en Economie studenten. Differentiëren, integreren en toegepaste wiskunde. 1\u2011op\u20111 begeleiding."
+      : "Calculus tutoring in Amsterdam for Life Sciences and Economics students. Differentiation, integration and applied mathematics. 1\u2011on\u20111 guidance.",
+    keywords: [
+      'calculus bijles amsterdam',
+      'differentiëren bijles',
+      'integreren bijles',
+      'wiskunde life sciences',
+      'calculus economie',
+      'toegepaste wiskunde bijles',
+      'afgeleiden berekenen',
+      'integralen berekenen'
     ],
-  },
-};
+    openGraph: {
+      title: isNl
+        ? "Calculus Bijles Amsterdam | Differentiëren & Integreren"
+        : "Calculus Tutoring Amsterdam | Differentiation & Integration",
+      description: isNl
+        ? "Calculus bijles voor Life Sciences en Economie studenten. Differentiëren, integreren en toegepaste wiskunde in Amsterdam."
+        : "Calculus tutoring for Life Sciences and Economics students. Differentiation, integration and applied mathematics in Amsterdam.",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent("Calculus Bijles A'dam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "Start Calculus" : "Start Calculus")}&footerText=${encodeURIComponent(isNl ? "Differenti\u00ebren \u2022 Integreren" : "Differentiation \u2022 Integration")}&featureImageUrl=/images/og-calculus-feature.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isNl
+            ? "Calculus Bijles Amsterdam - Life Sci & Economie | Stephensprivelessen.nl"
+            : "Calculus Tutoring Amsterdam - Life Sci & Economics | Stephensprivelessen.nl",
+        },
+      ],
+    },
+  };
+}
 
 const structuredData = generateSubjectStructuredData({
   title: "Calculus Bijles | Differentiëren & Integreren",

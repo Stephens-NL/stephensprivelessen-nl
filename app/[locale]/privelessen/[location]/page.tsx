@@ -87,20 +87,25 @@ const validLocations = {
 type LocationParams = {
   params: Promise<{
     location: keyof typeof validLocations;
+    locale: string;
   }>;
 };
 
 export async function generateMetadata(props: LocationParams): Promise<Metadata> {
   const params = await props.params;
   const locationData = validLocations[params.location];
+  const isNl = params.locale === 'nl';
 
   if (!locationData) {
     notFound();
   }
 
+  const enTitle = `Maths & Statistics Tutoring ${locationData.area} | Stephens Private Tutoring`;
+  const enDescription = `Professional mathematics and statistics tutoring in ${locationData.area}. Personal guidance at our office. Experienced tutor for all levels.`;
+
   return {
-    title: locationData.title,
-    description: locationData.description,
+    title: isNl ? locationData.title : enTitle,
+    description: isNl ? locationData.description : enDescription,
     keywords: locationData.keywords,
     openGraph: {
       title: locationData.title,

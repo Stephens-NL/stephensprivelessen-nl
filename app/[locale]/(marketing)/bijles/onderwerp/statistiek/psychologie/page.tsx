@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -8,32 +7,46 @@ import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
 
-export const metadata: Metadata = {
-  title: "Statistiek Bijles Amsterdam | SPSS voor Psychologie Studenten",
-  description: "Statistiek bijles in Amsterdam voor psychologie studenten. SPSS begeleiding, χ²-tests, ANOVA. UvA & VU studenten. Scriptie ondersteuning.",
-  keywords: [
-    'statistiek bijles amsterdam',
-    'spss bijles amsterdam',
-    'psychologie statistiek',
-    'spss hulp amsterdam',
-    'statistiek uva',
-    'statistiek vu',
-    'chi kwadraat toets',
-    'anova bijles'
-  ],
-  openGraph: {
-    title: "Statistiek Bijles Amsterdam | SPSS voor Psychologie",
-    description: "Statistiek bijles voor psychologie studenten. SPSS begeleiding, χ²-tests, ANOVA. UvA & VU studenten in Amsterdam.",
-    images: [
-      {
-        url: "/api/og?title=Statistiek%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=SPSS%20Hulp&footerText=Psychologie%20%E2%80%A2%20UvA%20%26%20VU&featureImageUrl=/images/og-statistiek-psychologie-feature.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Statistiek Psychologie Bijles Amsterdam (UvA/VU) | Stephensprivelessen.nl",
-      },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+  return {
+    title: isNl
+      ? "Statistiek Bijles Amsterdam | SPSS voor Psychologie Studenten"
+      : "Statistics Tutoring Amsterdam | SPSS for Psychology Students",
+    description: isNl
+      ? "Statistiek bijles in Amsterdam voor psychologie studenten. SPSS begeleiding, χ²-tests, ANOVA. UvA & VU studenten. Scriptie ondersteuning."
+      : "Statistics tutoring in Amsterdam for psychology students. SPSS guidance, χ²-tests, ANOVA. UvA & VU students. Thesis support.",
+    keywords: [
+      'statistiek bijles amsterdam',
+      'spss bijles amsterdam',
+      'psychologie statistiek',
+      'spss hulp amsterdam',
+      'statistiek uva',
+      'statistiek vu',
+      'chi kwadraat toets',
+      'anova bijles'
     ],
-  },
-};
+    openGraph: {
+      title: isNl
+        ? "Statistiek Bijles Amsterdam | SPSS voor Psychologie"
+        : "Statistics Tutoring Amsterdam | SPSS for Psychology",
+      description: isNl
+        ? "Statistiek bijles voor psychologie studenten. SPSS begeleiding, χ²-tests, ANOVA. UvA & VU studenten in Amsterdam."
+        : "Statistics tutoring for psychology students. SPSS guidance, χ²-tests, ANOVA. UvA & VU students in Amsterdam.",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent("Statistiek Bijles A'dam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "SPSS Hulp" : "SPSS Help")}&footerText=${encodeURIComponent("Psychologie \u2022 UvA & VU")}&featureImageUrl=/images/og-statistiek-psychologie-feature.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isNl
+            ? "Statistiek Psychologie Bijles Amsterdam (UvA/VU) | Stephensprivelessen.nl"
+            : "Statistics Psychology Tutoring Amsterdam (UvA/VU) | Stephensprivelessen.nl",
+        },
+      ],
+    },
+  };
+}
 
 const structuredData = generateSubjectStructuredData({
   title: "Statistiek Bijles voor Psychologie Studenten | SPSS & Data Analyse",

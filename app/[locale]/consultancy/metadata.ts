@@ -1,72 +1,82 @@
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Consultancy | Data & Statistiek Expert Amsterdam',
-  description: 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur. Science Park of online.',
-  keywords: [
-    'statistiek consultant',
-    'data analyse consultant',
-    'onderzoek consultant',
-    'methodologie expert',
-    'statistisch advies',
-    'data science consultant',
-    'spss consultant',
-    'r programming consultant',
-    'python data analyse',
-    'machine learning advies',
-    'data visualisatie',
-    'predictive analytics',
-    'statistical modeling',
-    'business analytics',
-    'data strategie',
-    'kwantitatief onderzoek',
-    'marktonderzoek analyse',
-    'data consultancy amsterdam',
-    'statistiek expert',
-    'onderzoeksopzet advies',
-  ],
-  openGraph: {
-    title: 'Consultancy | Data & Statistiek Expert Amsterdam',
-    description: 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur.',
-    url: 'https://stephensprivelessen.nl/consultancy',
-    type: 'website',
-    locale: 'nl_NL',
-    alternateLocale: 'en_US',
-    siteName: 'Stephens Privelessen',
-    images: [
-      {
-        url: `/api/og?title=${encodeURIComponent("Consultancy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Meer Advies Info")}&footerText=${encodeURIComponent("Data & Statistiek Expert")}&featureImageUrl=/images/consultancy-banner.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Data & Statistiek Consultancy Amsterdam',
-      },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+  return {
+    title: isNl ? 'Consultancy | Data & Statistiek Expert Amsterdam' : 'Consultancy | Data & Statistics Expert Amsterdam',
+    description: isNl
+      ? 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur. Science Park of online.'
+      : 'Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From €100/hr. Science Park or online.',
+    keywords: [
+      'statistiek consultant',
+      'data analyse consultant',
+      'onderzoek consultant',
+      'methodologie expert',
+      'statistisch advies',
+      'data science consultant',
+      'spss consultant',
+      'r programming consultant',
+      'python data analyse',
+      'machine learning advies',
+      'data visualisatie',
+      'predictive analytics',
+      'statistical modeling',
+      'business analytics',
+      'data strategie',
+      'kwantitatief onderzoek',
+      'marktonderzoek analyse',
+      'data consultancy amsterdam',
+      'statistiek expert',
+      'onderzoeksopzet advies',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Consultancy | Data & Statistiek Expert Amsterdam',
-    description: 'Expert consultancy in data-analyse en statistiek voor bedrijven en organisaties.',
-    images: [`/api/og?title=${encodeURIComponent("Consultancy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent("Meer Advies Info")}&footerText=${encodeURIComponent("Data & Statistiek Expert")}&featureImageUrl=/images/consultancy-banner.jpg`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    openGraph: {
+      title: isNl ? 'Consultancy | Data & Statistiek Expert Amsterdam' : 'Consultancy | Data & Statistics Expert Amsterdam',
+      description: isNl
+        ? 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur.'
+        : 'Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From €100/hr.',
+      url: 'https://stephensprivelessen.nl/consultancy',
+      type: 'website',
+      locale: 'nl_NL',
+      alternateLocale: 'en_US',
+      siteName: 'Stephens Privelessen',
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent("Consultancy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Meer Advies Info" : "More Info")}&footerText=${encodeURIComponent(isNl ? "Data & Statistiek Expert" : "Data & Statistics Expert")}&featureImageUrl=/images/consultancy-banner.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isNl ? 'Data & Statistiek Consultancy Amsterdam' : 'Data & Statistics Consultancy Amsterdam',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: isNl ? 'Consultancy | Data & Statistiek Expert Amsterdam' : 'Consultancy | Data & Statistics Expert Amsterdam',
+      description: isNl
+        ? 'Expert consultancy in data-analyse en statistiek voor bedrijven en organisaties.'
+        : 'Expert consultancy in data analysis and statistics for businesses and organisations.',
+      images: [`/api/og?title=${encodeURIComponent("Consultancy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Meer Advies Info" : "More Info")}&footerText=${encodeURIComponent(isNl ? "Data & Statistiek Expert" : "Data & Statistics Expert")}&featureImageUrl=/images/consultancy-banner.jpg`],
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
-  },
-  alternates: {
-    canonical: '/consultancy',
-    languages: {
-      'nl-NL': '/consultancy',
-      'en-US': '/consulting',
+    alternates: {
+      canonical: '/consultancy',
+      languages: {
+        'nl-NL': '/consultancy',
+        'en-US': '/consulting',
+      },
     },
-  },
-};
+  };
+}
 
 export const jsonLd = {
   '@context': 'https://schema.org',
@@ -108,4 +118,4 @@ export const jsonLd = {
       }
     ]
   }
-}; 
+};

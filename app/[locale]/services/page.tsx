@@ -1,10 +1,9 @@
 // app/services/page.tsx
-import type { Metadata } from 'next';
 import Script from 'next/script';
 import Services from '@/components/Services';
-import { metadata as servicesMetadata, jsonLd } from './metadata';
+import { jsonLd } from './metadata';
 
-export const metadata: Metadata = servicesMetadata;
+export { generateMetadata } from './metadata';
 
 export default function ServicesPage() {
   return (

@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,31 +8,45 @@ import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
 
-export const metadata: Metadata = {
-  title: "UvA Bijles Amsterdam | Science Park & Roeterseiland",
-  description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R.",
-  keywords: [
-    'uva bijles amsterdam',
-    'science park bijles',
-    'roeterseiland bijles',
-    'uva studenten bijles',
-    'statistiek uva',
-    'calculus uva',
-    'python uva'
-  ],
-  openGraph: {
-    title: "UvA Bijles Amsterdam | Science Park & Roeterseiland",
-    description: "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R.",
-    images: [
-      {
-        url: "/api/og?title=UvA%20Bijles%20A'dam&brandText=Stephensprivelessen.nl&buttonText=Meer%20info&footerText=Science%20Park%20%E2%80%A2%20Roeterseiland&featureImageUrl=/images/og-uva-feature.jpg",
-        width: 1200,
-        height: 630,
-        alt: "UvA Bijles Amsterdam - Science Park & Roeters | Stephensprivelessen.nl",
-      },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const isNl = locale === 'nl';
+  return {
+    title: isNl
+      ? "UvA Bijles Amsterdam | Science Park & Roeterseiland"
+      : "UvA Tutoring Amsterdam | Science Park & Roeterseiland",
+    description: isNl
+      ? "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R."
+      : "Tutoring for UvA students at Science Park and Roeterseiland. Statistics, calculus, Python & R.",
+    keywords: [
+      'uva bijles amsterdam',
+      'science park bijles',
+      'roeterseiland bijles',
+      'uva studenten bijles',
+      'statistiek uva',
+      'calculus uva',
+      'python uva'
     ],
-  },
-};
+    openGraph: {
+      title: isNl
+        ? "UvA Bijles Amsterdam | Science Park & Roeterseiland"
+        : "UvA Tutoring Amsterdam | Science Park & Roeterseiland",
+      description: isNl
+        ? "Bijles voor UvA studenten op Science Park en Roeterseiland. Statistiek, calculus, Python & R."
+        : "Tutoring for UvA students at Science Park and Roeterseiland. Statistics, calculus, Python & R.",
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent("UvA Bijles A'dam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "Meer info" : "More info")}&footerText=${encodeURIComponent("Science Park \u2022 Roeterseiland")}&featureImageUrl=/images/og-uva-feature.jpg`,
+          width: 1200,
+          height: 630,
+          alt: isNl
+            ? "UvA Bijles Amsterdam - Science Park & Roeters | Stephensprivelessen.nl"
+            : "UvA Tutoring Amsterdam - Science Park & Roeters | Stephensprivelessen.nl",
+        },
+      ],
+    },
+  };
+}
 
 const structuredData = generateCampusStructuredData({
       title: "Bijles voor UvA Studenten | Online & Science Park",
