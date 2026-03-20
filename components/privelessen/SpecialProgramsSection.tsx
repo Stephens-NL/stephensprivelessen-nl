@@ -20,15 +20,6 @@ export const SpecialProgramsSection = ({ t }: SpecialProgramsSectionProps) => {
       cta: { NL: 'Meer info', EN: 'Learn more' },
       href: '/privelessen/zuidoost-weekend',
     },
-    {
-      title: { NL: 'Boa Me Na Menboa Mo', EN: 'Boa Me Na Menboa Mo' },
-      description: {
-        NL: 'Speciaal bijlesprogramma voor jongeren in Amsterdam Zuidoost.',
-        EN: 'Special tutoring program for youth in Amsterdam Zuidoost.',
-      },
-      cta: { NL: 'Meer info', EN: 'Learn more' },
-      href: '/privelessen/boa-me-na-menboa-mo',
-    },
   ];
 
   return (
@@ -45,7 +36,7 @@ export const SpecialProgramsSection = ({ t }: SpecialProgramsSectionProps) => {
           </m.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="max-w-lg mx-auto">
           {programs.map((program, index) => (
             <m.div
               key={index}
