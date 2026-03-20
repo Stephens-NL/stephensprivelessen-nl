@@ -2,8 +2,12 @@
 'use client';
 
 import React from 'react';
-import { LocationPricingTableProps } from '../data'
+import { PriceInfo } from '../data';
 
+interface LocationPricingTableProps {
+  pricing: PriceInfo[];
+  title: string;
+}
 
 const LocationPricingTable = ({ pricing, title }: LocationPricingTableProps) => {
     return (

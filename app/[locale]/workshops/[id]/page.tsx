@@ -18,7 +18,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const isCreative = workshop.type === 'creative'
   const workshopType = isCreative ? 'Creatieve' : 'Academische'
   const title = `${workshop.title.NL} Workshop | ${workshopType} Workshop`
-  const description = `${workshop.description.NL} ${workshop.durationText.NL}, ${workshop.format === 'interactive' ? 'interactief' : workshop.format} format.`
+  const description = `${workshop.description?.NL ?? ''} ${workshop.durationText.NL}, ${workshop.format === 'interactive' ? 'interactief' : workshop.format} format.`
 
   return {
     title,

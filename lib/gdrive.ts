@@ -138,8 +138,8 @@ export async function listFiles(folderId: string): Promise<DriveFile[]> {
           files.push({
             id: file.id,
             name: file.name,
-            mimeType: file.mimeType,
-            modifiedTime: file.modifiedTime,
+            mimeType: file.mimeType ?? undefined,
+            modifiedTime: file.modifiedTime ?? undefined,
             viewUrl: `https://drive.google.com/file/d/${file.id}/view`,
             dlUrl: `https://drive.google.com/uc?id=${file.id}&export=download`,
           });

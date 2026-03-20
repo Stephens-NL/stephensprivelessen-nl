@@ -25,7 +25,8 @@ interface TutoringPageProps {
 export function TutoringPage({ locationSpecific }: TutoringPageProps) {
   const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('tutoring');
+    useTranslations('tutoring');
+    const t = (text: { EN: string; NL: string }) => text[language];
 
   // Customize hero content for location-specific pages
   const heroContent = locationSpecific ? {

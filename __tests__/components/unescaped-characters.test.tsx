@@ -75,7 +75,10 @@ describe('React Components', () => {
         ).join('\n');
     };
 
-    expect(issues).toEqual([], formatIssues());
+    if (issues.length > 0) {
+      throw new Error(formatIssues());
+    }
+    expect(issues).toEqual([]);
   });
 
   test('should provide helpful suggestions for fixing unescaped characters', () => {

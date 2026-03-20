@@ -90,7 +90,7 @@ const config = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    function({ addUtilities }) {
+    function({ addUtilities }: { addUtilities: any }) {
       addUtilities({
         '.scrollbar-hide': {
           '-ms-overflow-style': 'none',

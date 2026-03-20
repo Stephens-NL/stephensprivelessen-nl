@@ -31,7 +31,7 @@ export function AantekeningenContent({ student: initialStudent }: AantekeningenC
     : baseAantekeningenAppURL;
 
   useEffect(() => {
-    dispatch({ type: 'SET_NAME', payload: initialStudent ?? null });
+    dispatch({ type: 'SET_NAME', payload: initialStudent ?? undefined });
     dispatch({ type: 'SET_REDIRECTING', payload: true });
     const timer = setTimeout(() => {
       window.location.href = redirectUrl;
