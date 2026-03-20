@@ -144,7 +144,7 @@ const Contact = () => {
 
                     {formData.error && (
                         <m.div 
-                            className="mb-4 p-4 bg-red-500 text-white rounded"
+                            className="mb-4 p-4 bg-destructive text-white rounded"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                         >

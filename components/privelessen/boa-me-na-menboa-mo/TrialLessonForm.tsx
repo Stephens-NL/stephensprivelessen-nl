@@ -63,7 +63,7 @@ export function TrialLessonForm({
           <Label htmlFor="name" className="text-[var(--cream)] flex items-center gap-2">
             <span className="text-[var(--amber)]">1.</span>
             {t('name')}
-            <span className="text-red-400">*</span>
+            <span className="text-destructive">*</span>
           </Label>
           <Input
             id="name"
@@ -77,7 +77,7 @@ export function TrialLessonForm({
           <Label htmlFor="age" className="text-[var(--cream)] flex items-center gap-2">
             <span className="text-[var(--amber)]">2.</span>
             {t('age')}
-            <span className="text-red-400">*</span>
+            <span className="text-destructive">*</span>
           </Label>
           <select
             id="age"
@@ -139,7 +139,7 @@ export function TrialLessonForm({
         <Label className="text-[var(--cream)] flex items-center gap-2">
           <span className="text-[var(--amber)]">5.</span>
           {t('whatToDo')}
-          <span className="text-red-400">*</span>
+          <span className="text-destructive">*</span>
         </Label>
         <div className="grid grid-cols-2 gap-3">
           <div
@@ -193,7 +193,7 @@ export function TrialLessonForm({
             <Label htmlFor="time" className="text-[var(--cream)] flex items-center gap-2">
               <span className="text-[var(--amber)]">6.</span>
               {t('chooseThreePreferences')}
-              <span className="text-red-400">*</span>
+              <span className="text-destructive">*</span>
             </Label>
             <div className="text-center text-[var(--cream)]/90 text-sm whitespace-nowrap">
               {selectedTime.length === 0

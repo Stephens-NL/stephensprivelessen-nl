@@ -241,7 +241,7 @@ const FeedbackDashboard: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={clearData}
-                                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 flex items-center"
+                                className="px-4 py-2 bg-destructive text-white rounded-md hover:opacity-90 flex items-center"
                             >
                                 <Trash2 className="mr-2" size={18} />
                                 Clear All Data

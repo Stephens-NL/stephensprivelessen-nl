@@ -31,8 +31,8 @@ const CommentCloud: React.FC<CommentCloudProps> = ({ children, className = '' })
         w-20 
         h-20 
         bg-gradient-to-br 
-        from-purple-500 
-        to-pink-500 
+        from-sage
+        to-terracotta
         rounded-full 
         opacity-50
         blur-xl

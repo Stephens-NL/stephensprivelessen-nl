@@ -23,12 +23,12 @@ export function EmailInput({
         value={value}
         onChange={onChange}
         className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
-          error ? 'border-red-500' : 'border-[var(--ink-light)]'
+          error ? 'border-destructive' : 'border-[var(--ink-light)]'
         } focus:border-[var(--amber)] focus:outline-none`}
         required
       />
       {error && (
-        <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-red-500 text-sm">
+        <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-destructive text-sm">
           {error}
         </m.p>
       )}
@@ -59,12 +59,12 @@ export function PhoneInput({
         onChange={onChange}
         placeholder={config.contact.display.phone}
         className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
-          error ? 'border-red-500' : 'border-[var(--ink-light)]'
+          error ? 'border-destructive' : 'border-[var(--ink-light)]'
         } focus:border-[var(--amber)] focus:outline-none`}
         required
       />
       {error && (
-        <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-red-500 text-sm">
+        <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-destructive text-sm">
           {error}
         </m.p>
       )}

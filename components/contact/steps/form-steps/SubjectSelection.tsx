@@ -357,7 +357,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                             value={otherSubject}
                             onChange={(e) => handleOtherInput(e.target.value)}
                             className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
-                                otherInputError ? 'border-red-500' : 'border-[var(--ink-light)]'
+                                otherInputError ? 'border-destructive' : 'border-[var(--ink-light)]'
                             } focus:border-[var(--amber)] focus:outline-none`}
                             placeholder={(locale === 'nl' ? showProgrammingLanguages
                                     ? "Voer de programmeertaal in"
@@ -370,7 +370,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                             <m.p
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="text-red-500 text-sm"
+                                className="text-destructive text-sm"
                             >
                                 {otherInputError}
                             </m.p>

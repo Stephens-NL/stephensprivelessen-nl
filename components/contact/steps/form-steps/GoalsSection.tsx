@@ -47,7 +47,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                     value={formData.goals}
                     onChange={(e) => handleGoalsChange(e.target.value)}
                     className={`w-full h-48 p-4 rounded-lg bg-[var(--ink-light)] text-white border ${
-                        error ? 'border-red-500' : 'border-[var(--ink-light)]'
+                        error ? 'border-destructive' : 'border-[var(--ink-light)]'
                     } focus:border-[var(--amber)] focus:outline-none resize-none`}
                     placeholder={t('form.exampleIWantToImproveMyUnderstandingOfCalculusEspe')}
                     maxLength={MAX_GOALS_LENGTH}
@@ -56,7 +56,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                     <m.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className={`text-sm ${error ? 'text-red-500' : 'text-[var(--amber)]'}`}
+                        className={`text-sm ${error ? 'text-destructive' : 'text-[var(--amber)]'}`}
                     >
                         {error || (locale === 'nl' ? `Nog ${remainingChars} tekens beschikbaar` : `${remainingChars} characters remaining`)}
                     </m.p>

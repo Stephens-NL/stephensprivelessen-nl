@@ -96,7 +96,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                         ))}
                     </div>
                     {formData.preferredDays.length === 0 && (
-                        <p className="text-red-400 text-sm mt-2">
+                        <p className="text-destructive text-sm mt-2">
                             {t('form.pleaseSelectAtLeastOnePreferredDay')}
                         </p>
                     )}
@@ -125,7 +125,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                         ))}
                     </div>
                     {formData.preferredTimes.length === 0 && (
-                        <p className="text-red-400 text-sm mt-2">
+                        <p className="text-destructive text-sm mt-2">
                             {t('form.pleaseSelectAtLeastOnePreferredTime')}
                         </p>
                     )}
@@ -144,8 +144,8 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 whileTap={{ scale: 0.98 }}
                                 className={`p-3 rounded-lg border-2 transition-colors ${
                                     formData.unavailableDays.includes(day.value)
-                                        ? 'bg-red-400 text-[var(--ink)] border-red-500'
-                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-red-400'
+                                        ? 'bg-destructive text-white border-destructive'
+                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-destructive'
                                 }`}
                                 onClick={() => toggleUnavailableDay(day.value)}
                                 disabled={formData.preferredDays.includes(day.value)}
