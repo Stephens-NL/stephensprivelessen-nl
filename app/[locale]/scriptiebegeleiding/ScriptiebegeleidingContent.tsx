@@ -161,39 +161,39 @@ export default function ScriptiebegeleidingContent() {
           <div className="relative z-20 container mx-auto px-4 h-full flex flex-col justify-center">
             <div className="max-w-[800px]">
               <h1 className="font-syne text-4xl sm:text-5xl md:text-7xl lg:text-[120px] text-white mb-4 sm:mb-8 leading-[0.95] tracking-tight drop-shadow-[0_4px_15px_rgba(0,0,0,0.4)]">
-                Scriptie<br />begeleiding
+                {content.title[language as keyof typeof content.title]}
               </h1>
-              <p className="font-space-grotesk text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-100 max-w-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
-                Persoonlijke begeleiding bij methodologie, data-analyse en het schrijfproces van je scriptie
+              <p className="font-space-grotesk text-lg sm:text-xl md:text-2xl lg:text-3xl text-cream max-w-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)]">
+                {content.subtitle[language as keyof typeof content.subtitle]}
               </p>
             </div>
           </div>
         </div>
 
         {/* Services Section */}
-        <section className="py-16 sm:py-24 lg:py-32 bg-blue-950">
+        <section className="py-16 sm:py-24 lg:py-32 bg-ink">
           <div className="container mx-auto px-4">
-            <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-100 mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
+            <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-cream mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
               {content.services.title[language as keyof typeof content.services.title]}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {[content.services.methodology, content.services.dataAnalysis, content.services.guidance].map((service, index) => (
                 <m.div
                   key={String(service.title?.EN ?? service.title?.NL ?? index)}
-                  className="bg-blue-900/50 backdrop-blur-sm p-6 sm:p-8 lg:p-12 rounded-3xl border border-blue-800/50"
+                  className="bg-ink-light/50 backdrop-blur-sm p-6 sm:p-8 lg:p-12 rounded-3xl border border-cream/10"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
                 >
-                  <span className="text-4xl sm:text-5xl lg:text-7xl font-syne text-blue-500 mb-4 lg:mb-8 block">0{index + 1}</span>
-                  <h3 className="font-syne text-xl sm:text-2xl lg:text-3xl text-blue-100 mb-4 lg:mb-8">
+                  <span className="text-4xl sm:text-5xl lg:text-7xl font-syne text-amber mb-4 lg:mb-8 block">0{index + 1}</span>
+                  <h3 className="font-syne text-xl sm:text-2xl lg:text-3xl text-cream mb-4 lg:mb-8">
                     {service.title[language as keyof typeof service.title]}
                   </h3>
-                  <ul className="space-y-3 lg:space-y-4 font-space-grotesk text-base lg:text-lg text-blue-200">
+                  <ul className="space-y-3 lg:space-y-4 font-space-grotesk text-base lg:text-lg text-cream-dark">
                     {service.items[language as keyof typeof service.items].map((item) => (
                       <li key={String(item)} className="flex items-start">
-                        <span className="mr-3 text-blue-400">—</span>
+                        <span className="mr-3 text-amber">—</span>
                         {item}
                       </li>
                     ))}
@@ -205,9 +205,9 @@ export default function ScriptiebegeleidingContent() {
         </section>
 
         {/* Why Choose Us Section - with improved responsive text */}
-        <section className="py-16 sm:py-24 lg:py-32 bg-white">
+        <section className="py-16 sm:py-24 lg:py-32 bg-cream">
           <div className="container mx-auto px-4">
-            <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-950 mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
+            <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-ink mb-12 sm:mb-16 lg:mb-24 max-w-[800px]">
               {content.why.title[language as keyof typeof content.why.title]}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
@@ -220,8 +220,8 @@ export default function ScriptiebegeleidingContent() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="h-1 w-16 bg-blue-500 mb-6 lg:mb-8 group-hover:w-32 transition-all duration-300"></div>
-                  <p className="font-space-grotesk text-lg lg:text-xl text-blue-950">{item}</p>
+                  <div className="h-1 w-16 bg-amber mb-6 lg:mb-8 group-hover:w-32 transition-all duration-300"></div>
+                  <p className="font-space-grotesk text-lg lg:text-xl text-ink">{item}</p>
                 </m.div>
               ))}
             </div>
@@ -229,18 +229,18 @@ export default function ScriptiebegeleidingContent() {
         </section>
 
         {/* CTA Section - with improved responsive text and contact link */}
-        <section className="py-16 sm:py-24 lg:py-32 bg-blue-950">
+        <section className="py-16 sm:py-24 lg:py-32 bg-ink">
           <div className="container mx-auto px-4">
             <div className="max-w-[800px] mx-auto">
-              <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-blue-100 mb-6 lg:mb-8">
+              <h2 className="font-syne text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-cream mb-6 lg:mb-8">
                 {t('form.readyToExcel')}
               </h2>
-              <p className="font-space-grotesk text-lg sm:text-xl lg:text-2xl text-blue-200 mb-8 lg:mb-12">
+              <p className="font-space-grotesk text-lg sm:text-xl lg:text-2xl text-cream-dark mb-8 lg:mb-12">
                 {t('form.contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade')}
               </p>
               <Link href="/contact">
-                <m.button 
-                  className="bg-blue-100 text-blue-950 px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-xl font-space-grotesk hover:bg-white transition-colors duration-300"
+                <m.button
+                  className="bg-amber text-ink px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-xl font-space-grotesk hover:bg-cream transition-colors duration-300"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
