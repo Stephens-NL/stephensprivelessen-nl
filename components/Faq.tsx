@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import FloatingShapes from './FloatingShapes';
-import FadeInText from './FadeInText';
+import FadeInText from './FeedbackSystem/FadeInText';
 
 // FAQ items count from JSON (20 items)
 const FAQ_COUNT = 20;

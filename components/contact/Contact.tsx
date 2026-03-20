@@ -124,8 +124,6 @@ const Contact = () => {
         }
     };
 
-    console.log('Current step:', currentStep);
-
     return (
         <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)] py-12 px-4 sm:px-6 lg:px-8">
             <m.div

@@ -21,9 +21,6 @@ const variants = {
   })
 };
 
-// Consider removing this console.log in production
-console.log('LanguageSelector loaded');
-
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, data }) => {
   return (
     <m.div
