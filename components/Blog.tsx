@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
+import { BlogPost } from '../data';
 
 const BLOG_COUNT = 10;
 
@@ -133,8 +134,25 @@ const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ 
   );
 };
 
-export const FullPageBlogPost: React.FC<{ index: number }> = ({ index }) => {
-  const t = useTranslations('blog');
+interface LoadingErrorState {
+  isLoading: boolean;
+  error: string | null;
+}
+
+export const FullPageBlogPost: React.FC<{ post: BlogPost | null; loadingErrorState: LoadingErrorState }> = ({ post, loadingErrorState }) => {
+  const { isLoading, error } = loadingErrorState;
+
+  if (isLoading) {
+    return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">Laden...</div>;
+  }
+
+  if (error) {
+    return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">{error}</div>;
+  }
+
+  if (!post) {
+    return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">Blog post niet gevonden.</div>;
+  }
 
   return (
     <div className="min-h-screen bg-[var(--cream)] text-[var(--warm-text)] py-12 px-4 sm:px-6 lg:px-8">
@@ -151,8 +169,11 @@ export const FullPageBlogPost: React.FC<{ index: number }> = ({ index }) => {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-4xl sm:text-5xl font-bold font-display text-[var(--ink)] mb-4"
           >
-            {t(`items.${index}.title`)}
+            {post.title.NL}
           </m.h1>
+          {post.date && (
+            <p className="text-sm text-[var(--warm-text)] opacity-60">{post.date}</p>
+          )}
         </header>
 
         <m.div
@@ -161,8 +182,10 @@ export const FullPageBlogPost: React.FC<{ index: number }> = ({ index }) => {
           transition={{ delay: 0.6, duration: 0.5 }}
           className="prose prose-lg prose-neutral max-w-none"
         >
-          {t(`items.${index}.content`).split('\n').map((paragraph, pIndex) => (
-            <p key={paragraph ? `${paragraph.slice(0, 30)}-${pIndex}` : `para-${pIndex}`} className="mb-6">{paragraph.trim()}</p>
+          {post.content.NL.split('\n').map((paragraph, pIndex) => (
+            paragraph.trim() ? (
+              <p key={`para-${pIndex}`} className="mb-6">{paragraph.trim()}</p>
+            ) : null
           ))}
         </m.div>
       </m.article>

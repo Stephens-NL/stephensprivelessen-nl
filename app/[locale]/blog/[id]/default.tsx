@@ -1,12 +1,5 @@
-import { FullPageBlogPost } from '@/components/Blog'
-import React from 'react'
+import { redirect } from 'next/navigation';
 
-const defaultPage = () => {
-  return (
-    <>
-    Nah
-    </>
-  )
+export default function DefaultBlogPost() {
+  redirect('/blog');
 }
-
-export default defaultPage

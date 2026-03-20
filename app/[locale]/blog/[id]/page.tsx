@@ -27,13 +27,13 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   const ogTitle = post.title.NL;
-  const ogDescription = post.summary.NL;
+  const ogDescription = post.content.NL.replace(/\s+/g, ' ').trim().substring(0, 160);
   const featureImageUrl = '/images/og-blog-banner.jpg'; // Default for blog posts
   const pageUrl = `${config.business.siteUrl}/blog/${post.id}`;
 
   return {
     title: post.title.NL,
-    description: post.summary.NL,
+    description: ogDescription,
     alternates: {
       canonical: pageUrl,
     },
@@ -42,8 +42,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       description: ogDescription,
       url: pageUrl,
       type: 'article',
-      publishedTime: post.date, // Assuming post object has a date field
-      authors: ['Stephen Adei'], // Or dynamically if available
+      publishedTime: post.date,
+      authors: ['Stephen Adei'],
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(
@@ -53,7 +53,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
           )}&buttonText=${encodeURIComponent(
             'Lees Blog'
           )}&footerText=${encodeURIComponent(
-            `Blog Post | ${post.category?.NL || 'Algemeen'}` // Add category if available
+            'Blog Post | Algemeen'
           )}&featureImageUrl=${encodeURIComponent(featureImageUrl)}`,
           width: 1200,
           height: 630,
@@ -73,7 +73,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         )}&buttonText=${encodeURIComponent(
           'Lees Blog'
         )}&footerText=${encodeURIComponent(
-          `Blog Post | ${post.category?.NL || 'Algemeen'}`
+          'Blog Post | Algemeen'
         )}&featureImageUrl=${encodeURIComponent(featureImageUrl)}`,
       ],
     },
