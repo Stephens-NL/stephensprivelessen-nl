@@ -13,15 +13,6 @@ import { config } from '../data/config';
 const DOMAIN = config.business.siteUrl;
 const LAST_MOD = new Date().toISOString().split('T')[0];
 
-// Valid locations for tutoring services
-const LOCATIONS = [
-  'amsterdam-zuid',
-  'amsterdam-centrum',
-  'amsterdam-noord',
-  'amsterdam-west',
-  'amsterdam-oost'
-] as const;
-
 function createUrlEntry(path: string, changefreq: string = 'monthly', priority: string = '0.7'): any {
   return {
     loc: `${DOMAIN}${path.toLowerCase()}`,
@@ -41,11 +32,6 @@ function generateSitemap() {
   urlset.push(createUrlEntry('/consultancy', 'weekly', '0.9'));
   urlset.push(createUrlEntry('/contact', 'monthly', '0.8'));
   urlset.push(createUrlEntry('/faq', 'monthly', '0.8'));
-
-  // Add location-specific tutoring pages
-  LOCATIONS.forEach(location => {
-    urlset.push(createUrlEntry(`/privelessen/${location}`, 'weekly', '0.9'));
-  });
 
   // Add new Bijles pages
   urlset.push(createUrlEntry('/bijles/amsterdam', 'weekly', '0.9'));
