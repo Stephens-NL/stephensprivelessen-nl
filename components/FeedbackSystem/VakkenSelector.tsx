@@ -22,10 +22,10 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
 
   // Combine all subjects from businessData
   const allVakken = [
-    ...businessData.subjects.primary.map(subject => subject.NL),
-    ...businessData.subjects.secondary.map(subject => subject.NL),
-    ...businessData.subjects.higher.map(subject => subject.NL),
-    ...businessData.subjects.programming.map(subject => subject.NL)
+    ...businessData.subjects.primary.map(subject => subject[language]),
+    ...businessData.subjects.secondary.map(subject => subject[language]),
+    ...businessData.subjects.higher.map(subject => subject[language]),
+    ...businessData.subjects.programming.map(subject => subject[language])
   ];
 
   const filteredVakken = allVakken.filter(vak =>

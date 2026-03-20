@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
 import { BlogPost } from '../data';
@@ -10,6 +10,8 @@ const BLOG_COUNT = 10;
 
 const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ index, onClick }) => {
   const t = useTranslations('blog');
+  const locale = useLocale();
+  const isNl = locale === 'nl';
   return (
     <m.div
       className="bg-[var(--cream)] shadow-md rounded-lg p-6 mb-6 border border-[var(--border-warm)] hover:border-[var(--amber)] cursor-pointer"
@@ -23,7 +25,7 @@ const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ ind
       <div className="text-balance text-[var(--warm-text)] mb-4">
         {t(`items.${index}.content`).substring(0, 150)}...
       </div>
-      <span className="text-[var(--amber)] hover:text-[var(--amber-hover)] transition-colors duration-300">Lees meer</span>
+      <span className="text-[var(--amber)] hover:text-[var(--amber-hover)] transition-colors duration-300">{isNl ? 'Lees meer' : 'Read more'}</span>
     </m.div>
   );
 };
@@ -86,6 +88,8 @@ export const BlogList: React.FC = () => {
 
 const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ index, onClose }) => {
   const t = useTranslations('blog');
+  const locale = useLocale();
+  const isNl = locale === 'nl';
 
   return (
     <m.div
@@ -126,7 +130,7 @@ const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ 
             onClick={onClose}
             className="inline-block bg-[var(--ink)] text-[var(--cream)] px-6 py-3 rounded-lg hover:bg-[var(--ink-light)] transition-colors duration-300"
           >
-            Terug naar alle blogs
+            {isNl ? 'Terug naar alle blogs' : 'Back to all blogs'}
           </button>
         </m.div>
       )}
@@ -141,6 +145,8 @@ interface LoadingErrorState {
 
 export const FullPageBlogPost: React.FC<{ post: BlogPost | null; loadingErrorState: LoadingErrorState }> = ({ post, loadingErrorState }) => {
   const { isLoading, error } = loadingErrorState;
+  const locale = useLocale();
+  const language = locale === 'nl' ? 'NL' : 'EN';
 
   if (isLoading) {
     return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">Laden...</div>;
@@ -169,7 +175,7 @@ export const FullPageBlogPost: React.FC<{ post: BlogPost | null; loadingErrorSta
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-4xl sm:text-5xl font-bold font-display text-[var(--ink)] mb-4"
           >
-            {post.title.NL}
+            {post.title[language]}
           </m.h1>
           {post.date && (
             <p className="text-sm text-[var(--warm-text)] opacity-60">{post.date}</p>
@@ -182,7 +188,7 @@ export const FullPageBlogPost: React.FC<{ post: BlogPost | null; loadingErrorSta
           transition={{ delay: 0.6, duration: 0.5 }}
           className="prose prose-lg prose-neutral max-w-none"
         >
-          {post.content.NL.split('\n').map((paragraph, pIndex) => (
+          {post.content[language].split('\n').map((paragraph, pIndex) => (
             paragraph.trim() ? (
               <p key={`para-${pIndex}`} className="mb-6">{paragraph.trim()}</p>
             ) : null

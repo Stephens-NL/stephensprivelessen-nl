@@ -4,7 +4,7 @@ import WorkshopDetailContent from '@/components/workshops/WorkshopDetailContent'
 import { notFound } from 'next/navigation'
 
 type Props = {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string; locale: string }>
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -15,16 +15,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     notFound()
   }
 
+  const language = params.locale === 'nl' ? 'NL' : 'EN';
   const isCreative = workshop.type === 'creative'
-  const workshopType = isCreative ? 'Creatieve' : 'Academische'
-  const title = `${workshop.title.NL} Workshop | ${workshopType} Workshop`
-  const description = `${workshop.description?.NL ?? ''} ${workshop.durationText.NL}, ${workshop.format === 'interactive' ? 'interactief' : workshop.format} format.`
+  const workshopType = isCreative ? (language === 'NL' ? 'Creatieve' : 'Creative') : (language === 'NL' ? 'Academische' : 'Academic')
+  const title = `${workshop.title[language]} Workshop | ${workshopType} Workshop`
+  const description = `${workshop.description?.[language] ?? ''} ${workshop.durationText[language]}, ${workshop.format === 'interactive' ? (language === 'NL' ? 'interactief' : 'interactive') : workshop.format} format.`
 
   return {
     title,
     description,
     keywords: [
-      workshop.title.NL.toLowerCase(),
+      workshop.title[language].toLowerCase(),
       'workshop',
       workshop.type,
       workshop.format,

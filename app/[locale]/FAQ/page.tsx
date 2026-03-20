@@ -65,17 +65,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 // Add revalidation settings
 export const revalidate = 3600; // Revalidate every hour
 
-export default function FaqPage() {
+export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const language = locale === 'nl' ? 'NL' : 'EN';
   // Build FAQPage JSON-LD from data
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: faqData.faqItems.map((item: any) => ({
       '@type': 'Question',
-      name: item.question?.NL || item.question?.EN,
+      name: item.question?.[language] || item.question?.NL || item.question?.EN,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: item.answer?.NL || item.answer?.EN
+        text: item.answer?.[language] || item.answer?.NL || item.answer?.EN
       }
     }))
   };

@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 import { config } from '@/data/config'; // Import config for siteUrl
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string; locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
@@ -14,25 +14,26 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const postId = Number(params.id);
   const post = blogPosts.find(p => p.id === postId);
+  const language = params.locale === 'nl' ? 'NL' : 'EN';
 
   if (!post) {
     return {
-      title: "Blog Post Niet Gevonden",
+      title: language === 'NL' ? "Blog Post Niet Gevonden" : "Blog Post Not Found",
       // Add a more descriptive message for OG tags if post not found
       openGraph: {
-        title: "Blog Post Niet Gevonden",
-        description: "Deze blog post kon niet worden gevonden.",
+        title: language === 'NL' ? "Blog Post Niet Gevonden" : "Blog Post Not Found",
+        description: language === 'NL' ? "Deze blog post kon niet worden gevonden." : "This blog post could not be found.",
       }
     };
   }
 
-  const ogTitle = post.title.NL;
-  const ogDescription = post.content.NL.replace(/\s+/g, ' ').trim().substring(0, 160);
+  const ogTitle = post.title[language];
+  const ogDescription = post.content[language].replace(/\s+/g, ' ').trim().substring(0, 160);
   const featureImageUrl = '/images/og-blog-banner.jpg'; // Default for blog posts
   const pageUrl = `${config.business.siteUrl}/blog/${post.id}`;
 
   return {
-    title: post.title.NL,
+    title: post.title[language],
     description: ogDescription,
     alternates: {
       canonical: pageUrl,
