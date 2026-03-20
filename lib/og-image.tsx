@@ -21,8 +21,6 @@ export async function generateOGImage(params: OGImageParams) {
       featureImageUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/og-default-banner.jpg`, // Default fallback
     } = params;
 
-    console.log('[og-image.tsx] Generating OG Image with Params:', { title, brandText, buttonText, footerText, featureImageUrl });
-
     const fontStack = `Inter, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`;
 
     return new ImageResponse(

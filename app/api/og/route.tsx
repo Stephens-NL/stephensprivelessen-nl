@@ -5,7 +5,6 @@ export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
   try {
-    console.log('OG Image request received for URL:', req.url);
     const { searchParams } = new URL(req.url);
     
     const title = searchParams.get("title") || undefined;
@@ -25,8 +24,6 @@ export async function GET(req: NextRequest) {
     }
 
 
-    console.log('Parameters for OG Image:', { title, brandText, buttonText, footerText, featureImageUrl });
-
     const response = await generateOGImage({
       title,
       brandText,
@@ -35,7 +32,6 @@ export async function GET(req: NextRequest) {
       featureImageUrl, // This should now be an absolute URL
     });
 
-    console.log('OG Image generated successfully from API route.');
     return response;
   } catch (e: any) {
     console.error('Error in GET /api/og:', e);

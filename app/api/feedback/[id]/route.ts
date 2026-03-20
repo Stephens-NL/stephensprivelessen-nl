@@ -21,7 +21,6 @@ export async function GET(request: NextRequest, props: { params: Promise<{ id: s
     const fileContent = fs.readFileSync(dataFilePath, 'utf8');
     const feedbackData: FeedbackData[] = JSON.parse(fileContent);
 
-    console.log(`GET request received for feedback with id: ${params.id}`);
     const feedback = feedbackData.find(item => item.id === params.id);
 
     if (feedback) {
@@ -48,7 +47,6 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
     const fileContent = fs.readFileSync(dataFilePath, 'utf8');
     const feedbackData: FeedbackData[] = JSON.parse(fileContent);
 
-    console.log(`PUT request received for feedback with id: ${params.id}`);
     const index = feedbackData.findIndex(item => item.id === params.id);
 
     if (index !== -1) {
@@ -78,7 +76,6 @@ export async function DELETE(request: NextRequest, props: { params: Promise<{ id
     const fileContent = fs.readFileSync(dataFilePath, 'utf8');
     const feedbackData: FeedbackData[] = JSON.parse(fileContent);
 
-    console.log(`DELETE request received for feedback with id: ${params.id}`);
     const newData = feedbackData.filter(item => item.id !== params.id);
 
     if (newData.length < feedbackData.length) {

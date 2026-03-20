@@ -4,7 +4,6 @@ import fs from 'fs';
 import path from 'path';
 
 export async function GET() {
-    console.log('GET request received for feedback component data');
     try {
         const dataFilePath = path.join(process.cwd(), 'data', 'feedbackComponentData.json');
 
