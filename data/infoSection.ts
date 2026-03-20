@@ -232,12 +232,12 @@ export const infoSectionTranslations: Record<string, Bilingual> = {
         NL: "Individuele Sessies"
     },
     rates: {
-        EN: "Rates start at €60 per hour. First trial lesson (30 min) is free!",
-        NL: "Tarieven vanaf €60 per uur. Eerste proefles (30 min) is gratis!"
+        EN: "We work exclusively with 4-hour packages. First trial lesson (30 min) is free!",
+        NL: "We werken uitsluitend met 4-uurs pakketten. Eerste proefles (30 min) is gratis!"
     },
     ratesNote: {
-        EN: "A standard session is 60 minutes. Longer sessions are possible on request. All rates for individuals include VAT (21%).",
-        NL: "Een standaard sessie duurt 60 minuten. Langere sessies zijn mogelijk op aanvraag. Alle tarieven voor particulieren zijn inclusief BTW (21%)."
+        EN: "All rates are per 4-hour package. Group rates apply when students form their own group. Payment upfront via Tikkie.",
+        NL: "Alle tarieven zijn per 4-uurs pakket. Groepstarieven gelden als studenten zelf een groep vormen. Betaling vooraf per Tikkie."
     },
     groupSessions: {
         EN: "Group Sessions",

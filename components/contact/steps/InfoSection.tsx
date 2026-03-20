@@ -233,20 +233,20 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                                     <thead>
                                         <tr className="border-b border-[var(--ink-light)]/50">
                                             <th className="text-left py-2 text-[var(--cream)] font-medium">Type</th>
-                                            <th className="text-right py-2 text-[var(--cream)] font-medium">Tarief</th>
+                                            <th className="text-right py-2 text-[var(--cream)] font-medium">{language === 'NL' ? 'Tarief' : 'Rate'}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr className="border-b border-[var(--ink-light)]/50">
-                                            <td className="py-2 text-[var(--cream)]">Eenmalig consult</td>
+                                            <td className="py-2 text-[var(--cream)]">{language === 'NL' ? 'Eenmalig consult' : 'Single consultation'}</td>
                                             <td className="py-2 text-[var(--amber)] font-semibold text-right">€100</td>
                                         </tr>
                                         <tr className="border-b border-[var(--ink-light)]/50">
-                                            <td className="py-2 text-[var(--cream)]">4 sessies</td>
+                                            <td className="py-2 text-[var(--cream)]">{language === 'NL' ? '4 sessies' : '4 sessions'}</td>
                                             <td className="py-2 text-[var(--amber)] font-semibold text-right">€250</td>
                                         </tr>
                                         <tr>
-                                            <td className="py-2 text-[var(--cream)]">10 sessies</td>
+                                            <td className="py-2 text-[var(--cream)]">{language === 'NL' ? '10 sessies' : '10 sessions'}</td>
                                             <td className="py-2 text-[var(--amber)] font-semibold text-right">€550</td>
                                         </tr>
                                     </tbody>
