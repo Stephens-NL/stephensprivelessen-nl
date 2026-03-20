@@ -381,7 +381,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
 
             <NotesPreviewModal
                 isOpen={!!selectedNote}
-                onClose={() => setSelectedNote(null)}
+                onClose={() => dispatch({ type: 'NOTE', payload: null })}
                 subject={selectedNote?.subject || ''}
                 noteUrl={selectedNote?.noteUrl || ''}
             />

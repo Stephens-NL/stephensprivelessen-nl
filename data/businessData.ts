@@ -1,7 +1,8 @@
 // src/data/businessData.ts
 import { config } from './config';
 
-type TranslateFunction = (key: string | Record<string, string>) => string;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TranslateFunction = (key: any, ...args: any[]) => string;
 
 export const getBusinessData = (t: TranslateFunction) => ({
   title: t('common:siteName'),

@@ -2,14 +2,13 @@
 
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { infoSectionTranslations as translations, groupPricingTiers } from '@/data/infoSection';
 
 export function ContactGroupPricingTable() {
   const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('contact');
   const [showExample, setShowExample] = useState(false);
   const [selectedLevel, setSelectedLevel] = useState<'middelbaar' | 'hoger'>('middelbaar');
   return (
@@ -26,7 +25,7 @@ export function ContactGroupPricingTable() {
               selectedLevel === 'middelbaar' ? 'bg-[var(--sage)]/30 text-[var(--amber)]' : 'text-[var(--cream)] hover:text-[var(--amber-hover)]'
             }`}
           >
-            {t(translations.secondaryEducation)}
+            {translations.secondaryEducation[language]}
           </button>
           <button
             onClick={() => setSelectedLevel('hoger')}
@@ -34,7 +33,7 @@ export function ContactGroupPricingTable() {
               selectedLevel === 'hoger' ? 'bg-[var(--sage)]/30 text-[var(--amber)]' : 'text-[var(--cream)] hover:text-[var(--amber-hover)]'
             }`}
           >
-            {t(translations.higherEducation)}
+            {translations.higherEducation[language]}
           </button>
         </div>
       </div>
@@ -73,14 +72,14 @@ export function ContactGroupPricingTable() {
         </table>
       </div>
       <div className="mt-4 space-y-2">
-        <p className="text-sm text-[var(--cream)] italic">{t(translations.standardSession)}</p>
+        <p className="text-sm text-[var(--cream)] italic">{translations.standardSession[language]}</p>
         <div className="mt-2">
           <button
             onClick={() => setShowExample(!showExample)}
             className="flex items-center text-sm text-[var(--amber)] hover:text-[var(--amber-hover)] transition-colors"
           >
             {showExample ? <FaChevronUp className="mr-2" /> : <FaChevronDown className="mr-2" />}
-            {t(translations.showExample)}
+            {translations.showExample[language]}
           </button>
           <AnimatePresence>
             {showExample && (
@@ -92,18 +91,18 @@ export function ContactGroupPricingTable() {
               >
                 <div className="mt-2 p-4 bg-[var(--ink)]/20 rounded-xl border border-[var(--sage)]/30">
                   <p className="text-sm text-[var(--cream)] font-medium mb-3">
-                    {t(translations.costComparison).replace('{level}', selectedLevel === 'middelbaar' ? 'high school' : 'university')}
+                    {translations.costComparison[language].replace('{level}', selectedLevel === 'middelbaar' ? 'high school' : 'university')}
                   </p>
                   <div className="space-y-4">
                     <div>
-                      <p className="text-sm text-[var(--amber)] font-medium mb-1">{t(translations.individualSessions)}</p>
+                      <p className="text-sm text-[var(--amber)] font-medium mb-1">{translations.individualSessions[language]}</p>
                       <ul className="mt-1 space-y-1 text-sm text-[var(--cream)]">
                         <li>• {`4 uur pakket (online), 1 student: ${selectedLevel === 'middelbaar' ? '€240' : '€360'}`}</li>
                         <li>• {`Voor 4 aparte studenten: 4 × ${selectedLevel === 'middelbaar' ? '€240' : '€360'} = ${selectedLevel === 'middelbaar' ? '€960' : '€1440'}`}</li>
                       </ul>
                     </div>
                     <div>
-                      <p className="text-sm text-[var(--amber)] font-medium mb-1">{t(translations.groupSessions)}</p>
+                      <p className="text-sm text-[var(--amber)] font-medium mb-1">{translations.groupSessions[language]}</p>
                       <ul className="mt-1 space-y-1 text-sm text-[var(--cream)]">
                         <li>• {`4 uur pakket (online), 4 studenten — p.p.: ${selectedLevel === 'middelbaar' ? '€130' : '—'} (${selectedLevel === 'middelbaar' ? '€32,50/uur' : 'max. 3 studenten HBO/WO'})`}</li>
                         <li>• {`Totaal voor de groep: ${selectedLevel === 'middelbaar' ? '€520' : '—'}`}</li>

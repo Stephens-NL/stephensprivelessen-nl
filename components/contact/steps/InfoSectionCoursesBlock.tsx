@@ -28,9 +28,9 @@ export function InfoSectionCoursesBlock({
   const businessData = getBusinessData(t);
 
   const educationLevels = [
-    { id: 'basis', title: t(translations.primaryEducation), subjects: businessData.subjects.primary },
-    { id: 'voortgezet', title: t(translations.secondaryEducation), subjects: businessData.subjects.secondary },
-    { id: 'hoger', title: t(translations.higherEducation), subjects: [...businessData.subjects.higher, ...businessData.subjects.programming] },
+    { id: 'basis', title: translations.primaryEducation[language], subjects: businessData.subjects.primary },
+    { id: 'voortgezet', title: translations.secondaryEducation[language], subjects: businessData.subjects.secondary },
+    { id: 'hoger', title: translations.higherEducation[language], subjects: [...businessData.subjects.higher, ...businessData.subjects.programming] },
   ];
 
   const renderSubjects = (subjects: Array<{ NL: string; EN: string }>) => (
@@ -43,7 +43,7 @@ export function InfoSectionCoursesBlock({
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {subjects.map((subject, index) => {
-          const subjectText = t(subject);
+          const subjectText = subject[language];
           return (
             <m.div
               key={subject.NL}
@@ -63,8 +63,8 @@ export function InfoSectionCoursesBlock({
                 <button
                   onClick={() => onPreviewNotes(subject.NL)}
                   className="h-full flex items-center px-3 bg-[var(--ink)]/20 group-hover:bg-[var(--ink)]/30 border-l border-[var(--ink)]/30 cursor-pointer transition-all duration-200"
-                  title={t(translations.previewNotes)}
-                  aria-label={t(translations.previewNotes)}
+                  title={translations.previewNotes[language]}
+                  aria-label={translations.previewNotes[language]}
                 >
                   <FaEye className="w-4 h-4 text-[var(--amber)]/80 group-hover:text-[var(--amber)] transition-colors" />
                 </button>
@@ -86,7 +86,7 @@ export function InfoSectionCoursesBlock({
       <div className="flex items-center justify-between text-[var(--amber)] mb-6">
         <div className="flex items-center">
           <FaGraduationCap className="text-2xl mr-3" />
-          <h3 className="text-xl font-semibold">{t(translations.availableCourses)}</h3>
+          <h3 className="text-xl font-semibold">{translations.availableCourses[language]}</h3>
         </div>
         <button onClick={onToggleCourses} className="p-2 hover:bg-[var(--ink-light)]/50 rounded-lg transition-colors">
           {showCourses ? <FaChevronUp /> : <FaChevronDown />}
@@ -142,7 +142,7 @@ export function InfoSectionCoursesBlock({
         animate={{ opacity: 1 }}
         className="mt-6 p-4 bg-[var(--ink-light)]/30 rounded-xl border border-[var(--ink)]/30"
       >
-        <p className="text-[var(--cream)] text-sm">{t(translations.thesisDescription)}</p>
+        <p className="text-[var(--cream)] text-sm">{translations.thesisDescription[language]}</p>
       </m.div>
     </m.div>
   );

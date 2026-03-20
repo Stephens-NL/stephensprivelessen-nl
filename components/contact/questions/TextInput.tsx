@@ -1,6 +1,6 @@
 import React from 'react';
 import { TextQuestion } from '../../../data';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 type Props = {
   question: TextQuestion;
   value: string;
@@ -9,20 +9,19 @@ type Props = {
   isDarkMode: boolean;
 };
 
-const TextInput: React.FC<Props> = ({ question, value, onChange, language, isDarkMode }) => {
+const TextInput: React.FC<Props> = ({ question, value, onChange, isDarkMode }) => {
   const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('contact');
   return (
     <div className={`mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-      <label htmlFor={question.id} className="block mb-2">{String(t(question.label))}</label>
+      <label htmlFor={String(question.id)} className="block mb-2">{question.label[language]}</label>
       <input
         type={question.type}
-        id={question.id}
-        name={question.id}
+        id={String(question.id)}
+        name={String(question.id)}
         value={value}
         onChange={onChange}
-        placeholder={question.placeholder ? String(t(question.placeholder)) : undefined}
+        placeholder={question.placeholder ? question.placeholder[language] : undefined}
         className={`w-full p-2 rounded ${isDarkMode ? 'bg-[var(--ink-light)] text-white' : 'bg-[var(--cream)] text-black'} border ${isDarkMode ? 'border-[var(--ink-light)]' : 'border-[var(--border-warm)]'}`}
       />
     </div>

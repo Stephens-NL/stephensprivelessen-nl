@@ -2,13 +2,12 @@
 
 import React, { useState } from 'react';
 import { m } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { infoSectionTranslations as translations } from '@/data/infoSection';
 
 export function ContactPricingTable() {
   const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('contact');
   const [selectedLevel, setSelectedLevel] = useState<'middelbaar' | 'hoger'>('middelbaar');
   return (
     <m.div
@@ -24,7 +23,7 @@ export function ContactPricingTable() {
               selectedLevel === 'middelbaar' ? 'bg-[var(--sage)]/30 text-[var(--amber)]' : 'text-[var(--cream)] hover:text-[var(--amber-hover)]'
             }`}
           >
-            {t(translations.secondaryEducation)}
+            {translations.secondaryEducation[language]}
           </button>
           <button
             onClick={() => setSelectedLevel('hoger')}
@@ -32,7 +31,7 @@ export function ContactPricingTable() {
               selectedLevel === 'hoger' ? 'bg-[var(--sage)]/30 text-[var(--amber)]' : 'text-[var(--cream)] hover:text-[var(--amber-hover)]'
             }`}
           >
-            {t(translations.higherEducation)}
+            {translations.higherEducation[language]}
           </button>
         </div>
       </div>
@@ -65,7 +64,7 @@ export function ContactPricingTable() {
               { type: { EN: "Rush 2hr — physical", NL: "Spoed 2 uur — fysiek" }, ms20minus: "€180", ms20plus: "—", bachelor: "€260", master: "—" },
             ].map((row) => (
               <tr key={row.type.NL} className="border-b border-[var(--sage)]/30 last:border-0">
-                <td className="py-2 text-[var(--cream)]">{t(row.type)}</td>
+                <td className="py-2 text-[var(--cream)]">{row.type[language]}</td>
                 {selectedLevel === 'middelbaar' ? (
                   <>
                     <td className="py-2 text-[var(--amber)] font-semibold text-right">{row.ms20minus}</td>
@@ -82,7 +81,7 @@ export function ContactPricingTable() {
           </tbody>
         </table>
       </div>
-      <p className="mt-4 text-sm text-[var(--cream)] italic">{t(translations.whatsappSupport)}</p>
+      <p className="mt-4 text-sm text-[var(--cream)] italic">{translations.whatsappSupport[language]}</p>
     </m.div>
   );
 }

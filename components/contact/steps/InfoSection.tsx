@@ -5,8 +5,7 @@ import { m, AnimatePresence } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
 import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaWhatsapp, FaChevronDown, FaChevronUp, FaEye, FaEnvelope } from 'react-icons/fa';
 import NotesPreviewModal from '../components/NotesPreviewModal';
-import { getBusinessData } from '@/data/businessData';
-import { 
+import {
     subjectNotes, 
     contactLinks, 
     infoSectionTranslations as translations, 
@@ -18,6 +17,7 @@ import { InfoSectionCoursesBlock } from './InfoSectionCoursesBlock';
 
 interface InfoSectionProps {
     onBack: () => void;
+    onRequestLesson?: () => void;
 }
 
 type InfoState = {
@@ -53,7 +53,6 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
     const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
     const t = useTranslations('contact');
-    const businessData = getBusinessData(t);
     const [state, dispatch] = useReducer(infoReducer, {
         showPricing: false,
         showGroupPricing: false,
@@ -90,11 +89,11 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 <div className="flex items-center text-[var(--amber)] mb-3">
                     <FaGraduationCap className="text-2xl mr-3" />
                     <h3 className="text-lg font-semibold">
-                        {t(translations.teachingMethod)}
+                        {translations.teachingMethod[language]}
                     </h3>
                 </div>
                 <p className="text-[var(--cream)]">
-                    {t(translations.teachingMethodDescription)}
+                    {translations.teachingMethodDescription[language]}
                 </p>
             </m.div>
 
@@ -108,7 +107,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     <div className="flex items-center">
                         <FaClock className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
-                            {t(translations.lessonStructure)}
+                            {translations.lessonStructure[language]}
                         </h3>
                     </div>
                     <button
@@ -120,10 +119,10 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 </div>
                 <div className="space-y-2">
                     <p className="text-[var(--cream)]">
-                        {t(translations.standardSession)}
+                        {translations.standardSession[language]}
                     </p>
                     <p className="text-[var(--cream)]">
-                        {t(translations.trialLesson)}
+                        {translations.trialLesson[language]}
                     </p>
                 </div>
 
@@ -151,7 +150,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     <div className="flex items-center">
                         <FaEuroSign className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
-                            {t(translations.groupSessions)}
+                            {translations.groupSessions[language]}
                         </h3>
                     </div>
                     <button
@@ -162,7 +161,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     </button>
                 </div>
                 <p className="text-[var(--cream)]">
-                    {t(translations.groupSessionsDescription)}
+                    {translations.groupSessionsDescription[language]}
                 </p>
 
                 <AnimatePresence>
@@ -180,7 +179,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                                 animate={{ opacity: 1 }}
                                 className="text-sm text-[var(--cream)] text-center mt-4"
                             >
-                                {t(translations.freeTrialNote)}
+                                {translations.freeTrialNote[language]}
                             </m.p>
                         </m.div>
                     )}
@@ -197,7 +196,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     <div className="flex items-center">
                         <FaGraduationCap className="text-2xl mr-3" />
                         <h3 className="text-lg font-semibold">
-                            {t(translations.thesisSupervision)}
+                            {translations.thesisSupervision[language]}
                         </h3>
                     </div>
                     <button
@@ -208,7 +207,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     </button>
                 </div>
                 <p className="text-[var(--cream)]">
-                    {t(translations.thesisDescription)}
+                    {translations.thesisDescription[language]}
                 </p>
 
                 <AnimatePresence>
@@ -220,7 +219,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                             className="mt-6 space-y-4"
                         >
                             <p className="text-[var(--cream)] mb-4">
-                                {t(translations.servicesInclude)}
+                                {translations.servicesInclude[language]}
                             </p>
                             <ul className="list-disc list-inside text-[var(--cream)] mb-4 space-y-1">
                                 <li>{t('form.researchMethodologyAndDesign')}</li>
@@ -255,7 +254,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                             </div>
 
                             <p className="mt-4 text-sm text-[var(--cream)] italic">
-                                {t(translations.thesisPackageNote)}
+                                {translations.thesisPackageNote[language]}
                             </p>
                         </m.div>
                     )}
@@ -270,9 +269,9 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         onClick={onBack}
                         className="px-6 py-3 bg-[var(--ink-light)] text-white rounded-lg hover:bg-[var(--ink-light)] w-full sm:w-auto"
                     >
-                        {t(translations.back)}
+                        {translations.back[language]}
                     </m.button>
-                    
+
                     <m.a
                         href={contactLinks.whatsapp}
                         target="_blank"
@@ -282,7 +281,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         className="flex items-center justify-center px-6 py-3 bg-[var(--sage)] text-white rounded-lg hover:bg-[var(--sage)] w-full sm:w-auto min-w-[200px]"
                     >
                         <FaWhatsapp className="mr-2" />
-                        {t(translations.contactWhatsApp)}
+                        {translations.contactWhatsApp[language]}
                     </m.a>
 
                     <m.a
@@ -292,7 +291,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                         className="flex items-center justify-center px-6 py-3 bg-[var(--ink)] text-white rounded-lg hover:bg-[var(--ink-light)] w-full sm:w-auto min-w-[200px]"
                     >
                         <FaEnvelope className="mr-2" />
-                        {t(translations.contactEmail)}
+                        {translations.contactEmail[language]}
                     </m.a>
                 </div>
 
@@ -301,7 +300,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     animate={{ opacity: 1 }}
                     className="text-[var(--cream)] text-sm italic max-w-2xl text-center px-4"
                 >
-                    {t(translations.communicationNote)}
+                    {translations.communicationNote[language]}
                 </m.div>
             </div>
 

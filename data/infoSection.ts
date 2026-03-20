@@ -259,23 +259,21 @@ export const infoSectionTranslations: Record<string, Bilingual> = {
         EN: "Services include:",
         NL: "Diensten omvatten:"
     },
-    thesisServices: {
-        researchMethodology: {
-            EN: "Research methodology and design",
-            NL: "Onderzoeksmethodologie en opzet"
-        },
-        dataAnalysis: {
-            EN: "Data analysis and statistics",
-            NL: "Data-analyse en statistiek"
-        },
-        proofreading: {
-            EN: "Proofreading and feedback",
-            NL: "Proeflezen en feedback"
-        },
-        softwareSupport: {
-            EN: "Software support (R, Python, SPSS)",
-            NL: "Software ondersteuning (R, Python, SPSS)"
-        }
+    thesisResearchMethodology: {
+        EN: "Research methodology and design",
+        NL: "Onderzoeksmethodologie en opzet"
+    },
+    thesisDataAnalysis: {
+        EN: "Data analysis and statistics",
+        NL: "Data-analyse en statistiek"
+    },
+    thesisProofreading: {
+        EN: "Proofreading and feedback",
+        NL: "Proeflezen en feedback"
+    },
+    thesisSoftwareSupport: {
+        EN: "Software support (R, Python, SPSS)",
+        NL: "Software ondersteuning (R, Python, SPSS)"
     },
     thesisPackageNote: {
         EN: "A standard session is 60 minutes. All packages include WhatsApp support for quick questions between sessions. The 10 sessions package is recommended for comprehensive thesis support.",
