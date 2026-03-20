@@ -76,10 +76,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-3 gap-8 text-center">
             {[
               { value: '500+', labelKey: 'hero.stats.studentsHelped' },
-              { value: '\u20AC75', labelKey: 'hero.stats.perHour' },
               { value: 'UvA & VU', labelKey: 'hero.stats.campusNetwork' },
               { value: '5\u2605', labelKey: 'hero.stats.averageRating' },
             ].map((stat, i) => (

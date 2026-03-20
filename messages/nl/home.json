@@ -6,7 +6,13 @@
     "alreadyEnrolled": "Al ingeschreven?",
     "signInHere": "Hier inloggen",
     "schedulefreetrial": "Plan een Gratis Proefles",
-    "imgAlt": "Illustratie van gepersonaliseerde lessen"
+    "imgAlt": "Illustratie van gepersonaliseerde lessen",
+    "stats": {
+      "studentsHelped": "Studenten geholpen",
+      "perHour": "Vanaf per pakket",
+      "campusNetwork": "Campusnetwerk",
+      "averageRating": "Gemiddelde beoordeling"
+    }
   },
   "testimonials": {
     "label": "Ervaringen",

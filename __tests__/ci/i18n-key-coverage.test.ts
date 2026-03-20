@@ -66,6 +66,11 @@ function extractKeysFromFile(filePath: string): { namespace: string; keys: strin
   const keyRegex = /\bt\(\s*['"]([^'"]+)['"]\s*[,)]/g;
   const backtickKeyRegex = /\bt\(\s*`([^`$]+)`\s*[,)]/g;
 
+  // Also catch keys assigned to variables that get passed to t() later
+  // e.g. { labelKey: 'hero.stats.studentsHelped' } → t(stat.labelKey)
+  // Only match property names that clearly indicate translation keys (must contain a dot = nested key)
+  const indirectKeyRegex = /(?:labelKey|translationKey|messageKey|i18nKey)\s*:\s*['"]([^'"]*\.[^'"]+)['"]/g;
+
   const staticKeys: string[] = [];
   let keyMatch;
 
@@ -73,6 +78,9 @@ function extractKeysFromFile(filePath: string): { namespace: string; keys: strin
     staticKeys.push(keyMatch[1]);
   }
   while ((keyMatch = backtickKeyRegex.exec(content)) !== null) {
+    staticKeys.push(keyMatch[1]);
+  }
+  while ((keyMatch = indirectKeyRegex.exec(content)) !== null) {
     staticKeys.push(keyMatch[1]);
   }
 

@@ -6,7 +6,13 @@
     "alreadyEnrolled": "Already enrolled?",
     "signInHere": "Sign in",
     "schedulefreetrial": "Schedule a Free Trial Session",
-    "imgAlt": "Illustration of personalized lessons"
+    "imgAlt": "Illustration of personalized lessons",
+    "stats": {
+      "studentsHelped": "Students helped",
+      "perHour": "Starting per package",
+      "campusNetwork": "Campus network",
+      "averageRating": "Average rating"
+    }
   },
   "testimonials": {
     "label": "Testimonials",
