@@ -76,7 +76,7 @@ export default function FaqPage() {
       <Script id="faq-ld+json" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(faqJsonLd)}
       </Script>
-      <FAQPage faqInfo={faqData.faqInfo} faqItems={faqData.faqItems} />
+      <FAQPage />
     </>
   );
 }
