@@ -3,6 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { Mail, MessageCircle, Phone, MapPin, Clock } from 'lucide-react';
+import { config } from '@/data/config';
 
 export function ContactSection() {
   const locale = useLocale();
@@ -13,22 +14,22 @@ export function ContactSection() {
     {
       icon: MessageCircle,
       label: { NL: 'WhatsApp', EN: 'WhatsApp' },
-      value: '+31 6 12345678',
-      href: 'https://wa.me/31612345678',
+      value: config.contact.display.phone,
+      href: config.contact.whatsapp,
       description: { NL: 'Snelste manier voor contact', EN: 'Fastest way to contact' }
     },
     {
       icon: Mail,
       label: { NL: 'E-mail', EN: 'Email' },
-      value: 'info@stephensprivelessen.nl',
-      href: 'mailto:info@stephensprivelessen.nl',
+      value: config.contact.email,
+      href: `mailto:${config.contact.email}`,
       description: { NL: 'Voor uitgebreidere vragen', EN: 'For more detailed questions' }
     },
     {
       icon: Phone,
       label: { NL: 'Telefoon', EN: 'Phone' },
-      value: '+31 6 12345678',
-      href: 'tel:+31612345678',
+      value: config.contact.display.phone,
+      href: config.contact.display.href,
       description: { NL: 'Persoonlijk gesprek', EN: 'Personal conversation' }
     }
   ];
@@ -163,7 +164,7 @@ export function ContactSection() {
                 {t('form.noObligationsGoodMatch')}
               </p>
               <a
-                href="https://wa.me/31612345678"
+                href={config.contact.whatsapp}
                 className="inline-block bg-[var(--cream)] text-[var(--ink)] px-6 py-3 rounded-xl font-medium hover:bg-[var(--cream-dark)] transition-colors duration-300"
               >
                 {t('form.scheduleIntroduction')}

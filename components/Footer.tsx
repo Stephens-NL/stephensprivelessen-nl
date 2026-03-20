@@ -77,7 +77,7 @@ const Footer = () => {
             </a>
             <div className="mt-4 flex space-x-4">
               {/* Social Media Icons */}
-              <a href="http://instagram.com/stephensprivelessen" className="text-[var(--cream-dark)] hover:text-[var(--amber)] transition">
+              <a href={config.social.instagram} className="text-[var(--cream-dark)] hover:text-[var(--amber)] transition">
                 <span className="sr-only">Instagram</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path

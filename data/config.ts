@@ -4,6 +4,15 @@ const EMAIL = 'info@stephenadei.nl';
 const BUSINESS_NAME = 'Stephen\'s Privelessen';
 const SITE_URL = 'https://stephensprivelessen.nl';
 
+// Social Media
+const INSTAGRAM_URL = 'https://www.instagram.com/stephensprivelessen';
+
+// Business Details
+const BUSINESS_NAME_NL = 'Stephens Privelessen';
+const BUSINESS_NAME_EN = "Stephen's Private Lessons";
+const BUSINESS_OWNER = 'Stephen Adei';
+const DASHBOARD_URL = 'https://dash.stephensprivelessen.nl';
+
 // Office Locations
 const MAIN_OFFICE = {
     address: 'Science Park 904',
@@ -45,9 +54,16 @@ export const config = {
             href: `tel:${PHONE_NUMBER}`
         }
     },
+    social: {
+        instagram: INSTAGRAM_URL,
+    },
     business: {
         name: BUSINESS_NAME,
+        nameNl: BUSINESS_NAME_NL,
+        nameEn: BUSINESS_NAME_EN,
+        owner: BUSINESS_OWNER,
         siteUrl: SITE_URL,
+        dashboardUrl: DASHBOARD_URL,
         mainOffice: {
             ...MAIN_OFFICE,
             googleMapsUrl: `https://maps.google.com/?q=${MAIN_OFFICE.address}, ${MAIN_OFFICE.postalCode} ${MAIN_OFFICE.city}`

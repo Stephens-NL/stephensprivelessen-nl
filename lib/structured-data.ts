@@ -1,3 +1,5 @@
+import { config } from '@/data/config';
+
 export interface StructuredDataProps {
   title: string;
   description: string;
@@ -134,7 +136,7 @@ export const organizationSchema = {
     "addressCountry": "NL"
   },
   "sameAs": [
-    "https://www.instagram.com/stephensprivelessen"
+    config.social.instagram
   ]
 };
 

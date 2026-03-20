@@ -4,6 +4,7 @@ import { useReducer } from 'react';
 import { useTranslations } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaCoffee, FaMapMarkerAlt, FaClock, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { config } from '@/data/config';
 
 function mapReducer(state: { showMap: boolean }, action: { type: 'TOGGLE' }) {
   return { ...state, showMap: !state.showMap };
@@ -58,7 +59,7 @@ export function ZuidoostLocationMap() {
               </div>
               <div className="flex items-center gap-2 text-white/90 mt-4">
                 <FaMapMarkerAlt className="text-[var(--amber)]" />
-                <span>Bijlmerplein 888, 1102 MG Amsterdam</span>
+                <span>{config.business.weekendOffice.address}, {config.business.weekendOffice.postalCode} {config.business.weekendOffice.city}</span>
               </div>
               <div className="flex items-center gap-2 text-white/90">
                 <FaClock className="text-[var(--amber)]" />

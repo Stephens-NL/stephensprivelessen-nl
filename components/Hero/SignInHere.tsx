@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
+import { config } from '@/data/config';
 
 const SignInHere = () => {
     const t = useTranslations('home');
@@ -10,7 +11,7 @@ const SignInHere = () => {
         <p className="text-[var(--muted-text)] text-sm">
             {t('hero.alreadyEnrolled')}
             <a
-                href="https://dash.stephensprivelessen.nl"
+                href={config.business.dashboardUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--ink)] font-medium hover:text-[var(--amber)] transition-colors ml-1 underline underline-offset-2 decoration-[var(--border-warm)] hover:decoration-[var(--amber)]"

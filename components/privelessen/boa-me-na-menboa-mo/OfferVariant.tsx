@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Bilingual } from '@/data/types';
 import { TrialLessonForm } from './TrialLessonForm';
+import { config } from '@/data/config';
 
 interface OfferVariantProps {
   offerKey: string;
@@ -88,7 +89,7 @@ export function OfferVariant({
     ? `\n- Preferred times:\n  1. ${selectedTime[0]}\n  2. ${selectedTime[1]}\n  3. ${selectedTime[2]}`
     : ''
 }`;
-    window.open(`https://wa.me/31647357426?text=${encodeURIComponent(fullMessage)}`, '_blank');
+    window.open(`${config.contact.whatsapp}?text=${encodeURIComponent(fullMessage)}`, '_blank');
   };
 
   // Check if titleTwi exists for this offer
