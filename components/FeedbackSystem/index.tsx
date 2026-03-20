@@ -82,7 +82,7 @@ type FeedbackContentProps = {
   handleFormTypeSelect: (formType: 'short' | 'long') => void;
   shouldShowQuestion: (question: any) => boolean;
   handleChange: (id: string, value: any, skipToNext?: boolean) => void;
-  setIsQuestionAnswered: (value: boolean) => void;
+  setIsQuestionAnswered: React.Dispatch<React.SetStateAction<boolean>>;
   nextStep: () => void;
   t: (key: any) => any;
 };
@@ -290,7 +290,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
             style={{ height: contentHeight }}
           >
             <h1 className="text-3xl font-bold text-white mb-6">
-              <FadeInText text={String(t(selectedForm ? selectedForm.title : feedbackFormData.feedbackFormData.lengthSelection.title))} />
+              <FadeInText text={selectedForm ? selectedForm.title[language] : feedbackFormData.feedbackFormData.lengthSelection.title[language]} />
             </h1>
             <FeedbackContent
               currentStep={currentStep}
@@ -301,7 +301,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
               handleFormTypeSelect={handleFormTypeSelect}
               shouldShowQuestion={shouldShowQuestion}
               handleChange={handleChange}
-              setIsQuestionAnswered={(value) => dispatch({ type: 'SET_QUESTION_ANSWERED', value })}
+              setIsQuestionAnswered={(value) => dispatch({ type: 'SET_QUESTION_ANSWERED', value: typeof value === 'function' ? value(false) : value })}
               nextStep={nextStep}
               t={t}
             />

@@ -83,10 +83,10 @@ function FeedbackItem({
               value ? <p key={key}><span className="font-medium">{key}:</span> {value}</p> : null
             ))}
           </div>
-          {entry.quote.text && (
+          {entry.quote?.text && (
             <div className="mt-4 bg-[var(--cream-dark)] p-3 rounded-lg">
               <h4 className="font-semibold text-[var(--ink)] mb-2">Quote</h4>
-              <p className="italic">&quot;{entry.quote.text}&quot;</p>
+              <p className="italic">&quot;{entry.quote?.text}&quot;</p>
             </div>
           )}
         </m.div>

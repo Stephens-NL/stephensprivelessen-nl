@@ -15,7 +15,7 @@ const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue 
   const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
     const t = useTranslations('feedback');
-  const businessData = getBusinessData(t);
+  const businessData = getBusinessData((key: string | Record<string, string>) => typeof key === 'string' ? t(key) : (key[language] ?? ''));
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedVakken, setSelectedVakken] = useState<string[]>(() => initialValue);
   const [customVak, setCustomVak] = useState('');

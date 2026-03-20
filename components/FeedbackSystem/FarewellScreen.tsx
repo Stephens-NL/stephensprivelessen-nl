@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import React from 'react'
 import { feedbackFormData } from '../../data';
@@ -6,7 +6,6 @@ import { feedbackFormData } from '../../data';
 const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('feedback');
 
     return (
         <m.div
@@ -22,7 +21,7 @@ const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
             >
-                {String(t(feedbackFormData.farewell.title))}
+                {feedbackFormData.farewell.title[language]}
             </m.h1>
             <m.p
                 className="text-xl text-white mb-8"
@@ -30,7 +29,7 @@ const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                {String(t(feedbackFormData.farewell.message))}
+                {feedbackFormData.farewell.message[language]}
             </m.p>
             <m.button
                 onClick={onClose}
@@ -38,7 +37,7 @@ const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                {String(t(feedbackFormData.farewell.closeButtonText))}
+                {feedbackFormData.farewell.closeButtonText[language]}
             </m.button>
         </m.div>
     );

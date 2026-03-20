@@ -1,7 +1,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { feedbackFormData } from '../../data';
 
 interface NavigationButtonsProps {
@@ -13,7 +13,6 @@ interface NavigationButtonsProps {
 const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onPrevious, onNext, isNextDisabled }) => {
   const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('feedback');
 
   return (
     <m.div
@@ -27,14 +26,14 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({ onPrevious, onNex
         className="px-6 py-3 bg-[var(--cream)] text-[var(--ink)] rounded-full text-lg font-semibold hover:bg-[var(--cream-dark)] transition-colors duration-300 flex items-center"
       >
         <ChevronLeft className="mr-2" size={24} />
-        {String(t(feedbackFormData.navigation.back))}
+        {feedbackFormData.navigation.back[language]}
       </button>
       <button
         onClick={onNext}
         className={`px-8 py-4 bg-[var(--cream)] text-[var(--ink)] rounded-full text-xl font-bold hover:bg-[var(--amber)] transition-colors duration-300 flex items-center ${isNextDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
         disabled={isNextDisabled}
       >
-        {String(t(feedbackFormData.navigation.next))}
+        {feedbackFormData.navigation.next[language]}
         <ChevronRight className="ml-2" size={24} />
       </button>
     </m.div>

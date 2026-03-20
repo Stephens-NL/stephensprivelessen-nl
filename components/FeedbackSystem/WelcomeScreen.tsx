@@ -1,12 +1,11 @@
 import { WelcomeScreenData } from '../../data';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { m } from 'framer-motion';
 import React from 'react'
 
 const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void }> = ({ data, onContinue }) => {
     const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('feedback');
 
     return (
         <m.div
@@ -22,7 +21,7 @@ const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void 
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
             >
-                {String(t(data.title))}
+                {data.title[language]}
             </m.h1>
             <m.p
                 className="text-xl text-white mb-8"
@@ -30,7 +29,7 @@ const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void 
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
             >
-                {String(t(data.description))}
+                {data.description[language]}
             </m.p>
             <m.button
                 onClick={onContinue}
@@ -38,7 +37,7 @@ const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                {String(t(data.startButtonText))}
+                {data.startButtonText[language]}
             </m.button>
         </m.div>
     );

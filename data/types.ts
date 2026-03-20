@@ -188,6 +188,10 @@ type BaseQuestionConfig = {
 
 export interface Question extends BaseEntity, BaseQuestionConfig {
   label: Bilingual;
+  options?: Array<{
+    value: string;
+    label: Bilingual;
+  }>;
 }
 
 export interface TextQuestion extends Question {

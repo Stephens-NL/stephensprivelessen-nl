@@ -1,29 +1,26 @@
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { Clock, ClipboardList } from 'lucide-react';
 import { FormTypeSelectorProps, feedbackFormData } from '../../data';
 
 const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType }) => {
   const locale = useLocale();
     const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('feedback');
-  
+
   const formTypes = {
     short: {
-      title: t(feedbackFormData.lengthSelection.shortOption),
-      description: t({
-        EN: "Perfect if you're short on time. Just a few quick questions to give me an idea of how I'm doing.",
-        NL: "Perfect als je weinig tijd hebt. Slechts een paar korte vragen om mij een idee te geven van hoe het gaat.",
-      }),
+      title: feedbackFormData.lengthSelection.shortOption[language],
+      description: language === 'NL'
+        ? "Perfect als je weinig tijd hebt. Slechts een paar korte vragen om mij een idee te geven van hoe het gaat."
+        : "Perfect if you're short on time. Just a few quick questions to give me an idea of how I'm doing.",
       icon: Clock,
     },
     long: {
-      title: t(feedbackFormData.lengthSelection.longOption),
-      description: t({
-        EN: "Ideal if you have more time. This version includes additional questions where I share more about myself, allowing for more in-depth feedback.",
-        NL: "Ideaal als je meer tijd hebt. Deze versie bevat extra vragen waarin ik meer over mezelf vertel, waardoor je dieper kunt ingaan op de feedback.",
-      }),
+      title: feedbackFormData.lengthSelection.longOption[language],
+      description: language === 'NL'
+        ? "Ideaal als je meer tijd hebt. Deze versie bevat extra vragen waarin ik meer over mezelf vertel, waardoor je dieper kunt ingaan op de feedback."
+        : "Ideal if you have more time. This version includes additional questions where I share more about myself, allowing for more in-depth feedback.",
       icon: ClipboardList,
     }
   };

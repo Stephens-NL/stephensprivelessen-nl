@@ -1,8 +1,9 @@
 import React from 'react';
+import { useLocale } from 'next-intl';
 import VakkenSelector from './VakkenSelector';
 import CustomRadio from './CustomRadio';
 import RatingComponent from './RatingComponent';
-import { Question } from '../../data';
+import { MultipleChoiceQuestion, Question } from '../../data';
 
 interface QuestionInputProps {
   question: Question;
@@ -16,7 +17,6 @@ interface QuestionInputProps {
   handleKeyDown: (e: React.KeyboardEvent) => void;
   handleOptionChange: (id: string, optionValue: string | number) => void;
   handleVakkenChange: (vakken: string[]) => void;
-  t: (key: { EN: string; NL: string } | string) => string;
 }
 
 export function QuestionInput({
@@ -31,8 +31,10 @@ export function QuestionInput({
   handleKeyDown,
   handleOptionChange,
   handleVakkenChange,
-  t,
 }: QuestionInputProps) {
+  const locale = useLocale();
+  const language = locale === 'nl' ? 'NL' : 'EN';
+
   switch (question.type) {
     case 'vakkenSelector':
       return (
@@ -45,7 +47,7 @@ export function QuestionInput({
     case 'text':
       return (
         <input
-          ref={inputRef}
+          ref={inputRef as React.RefObject<HTMLInputElement>}
           type="text"
           value={(value as string) || ''}
           onChange={handleInputChange}
@@ -56,7 +58,7 @@ export function QuestionInput({
     case 'textarea':
       return (
         <textarea
-          ref={textAreaRef}
+          ref={textAreaRef as React.RefObject<HTMLTextAreaElement>}
           value={(value as string) || ''}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
@@ -70,21 +72,22 @@ export function QuestionInput({
         <RatingComponent
           value={(value as number) || 0}
           onChange={(rating) => {
-            handleOptionChange(question.id, rating);
+            handleOptionChange(String(question.id), rating);
             onNext();
           }}
           max={question.max || 5}
         />
       );
-    case 'multipleChoice':
+    case 'multipleChoice': {
+      const mcQuestion = question as MultipleChoiceQuestion;
       return (
         <div role="radiogroup" className="mb-4" onKeyDown={handleKeyDown}>
-          {question.options?.map((option) => (
+          {mcQuestion.options?.map((option) => (
             <CustomRadio
               key={option.value}
               checked={value === option.value}
               onChange={() => {
-                handleOptionChange(question.id, option.value);
+                handleOptionChange(String(question.id), option.value);
                 onNext();
               }}
               label={option.label[language]}
@@ -92,6 +95,7 @@ export function QuestionInput({
           ))}
         </div>
       );
+    }
     default:
       return null;
   }

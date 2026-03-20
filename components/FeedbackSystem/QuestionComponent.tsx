@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { useTranslations } from 'next-intl';
-import { QuestionComponentProps } from "../../data";
+import { useLocale, useTranslations } from 'next-intl';
+import { MultipleChoiceQuestion, QuestionComponentProps } from "../../data";
 
 import { QuestionInput } from "./QuestionInput";
 import CommentCloud from "./CommentCloud";
@@ -12,6 +12,8 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     setIsQuestionAnswered,
     onNext,
 }) => {
+    const locale = useLocale();
+    const language = locale === 'nl' ? 'NL' : 'EN';
     const t = useTranslations('feedback');
     const inputRef = useRef<HTMLInputElement>(null);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -29,12 +31,13 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const newValue = e.target.type === 'number' ? (e.target as HTMLInputElement).valueAsNumber : e.target.value;
-        onChange(question.id, newValue);
+        onChange(String(question.id), newValue);
     };
 
     const handleOptionChange = (id: string, optionValue: string | number) => {
         if (question.type === 'multipleChoice') {
-            const selectedOption = question.options?.find(opt => opt.value === optionValue);
+            const mcQuestion = question as MultipleChoiceQuestion;
+            const selectedOption = mcQuestion.options?.find(opt => opt.value === optionValue);
             const skipToNext = selectedOption?.value === 'no';
             onChange(id, optionValue, skipToNext);
             if (skipToNext) {
@@ -46,7 +49,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     };
 
     const handleVakkenChange = useCallback((vakken: string[]) => {
-        onChange(question.id, vakken);
+        onChange(String(question.id), vakken);
     }, [onChange, question.id]);
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -66,15 +69,15 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                 <div className="absolute -top-4 right-0 z-10">
                     <CommentCloud>
                         <p className="text-sm">
-                            {String(question.comment
-                                ? t(question.comment)
-                                : t('form.youCanAlsoTypeToVote'))}
+                            {question.comment
+                                ? question.comment[language]
+                                : t('form.youCanAlsoTypeToVote')}
                         </p>
                     </CommentCloud>
                 </div>
             )}
             <label className="text-lg font-medium text-white mb-2 flex items-center">
-                {String(t(question.label))}
+                {question.label[language]}
                 {question.required ? (
                     <span className="text-[var(--amber)] ml-2 text-sm font-bold animate-pulse" title="This field is required">
                         *
@@ -97,7 +100,6 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
                 handleKeyDown={handleKeyDown}
                 handleOptionChange={handleOptionChange}
                 handleVakkenChange={handleVakkenChange}
-                t={t}
             />
             {question.required && (
                 <p className="text-[var(--amber)] text-xs mt-1 italic">
