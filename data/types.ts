@@ -687,3 +687,80 @@ export interface SubjectsSectionProps {
   subject: Bilingual;
   setSubject: (subject: Bilingual) => void;
 }
+
+// FeedbackSystem Component Props Types
+
+export interface CustomRadioProps {
+  checked: boolean;
+  onChange: () => void;
+  label: string;
+}
+
+export type ChartType = 'line' | 'pie';
+
+export interface ChartDataPoint {
+  date: string;
+  count: number;
+  avgRating: number;
+}
+
+export interface PieChartDataPoint {
+  name: string;
+  value: number;
+}
+
+export type ExpandedEntries = Record<number, boolean>;
+
+export type FilterOption = 'all' | 'high' | 'low';
+
+export interface RenderSummaryItemProps {
+  label: string;
+  value: string;
+}
+
+export interface FeedbackSummaryProps {
+  formData: Record<string, any>;
+  onSubmit: () => void;
+  onEdit: () => void;
+}
+
+export interface FormTypeSelectorProps {
+  onSelectFormType: (type: 'short' | 'long') => void;
+}
+
+export interface FeedbackFormDataImportProps {
+  feedbackFormData: FeedbackFormData;
+}
+
+// LabelGroup and VakkenSelectorLabel are aliases used in feedbackQuestions files
+export type LabelGroup = QuestionGroup;
+export type VakkenSelectorLabel = SelectorQuestion;
+
+export interface WelcomeScreenData {
+  title: Bilingual;
+  description: Bilingual;
+  startButtonText: Bilingual;
+}
+
+// FeedbackSummaryData — shape of feedbackSummaryData.ts export
+export interface FeedbackSummaryData {
+  headings: {
+    feedbackSummary: Bilingual;
+    generalInformation: Bilingual;
+    ratings: Bilingual;
+    openFeedback: Bilingual;
+    quote: Bilingual;
+  };
+  labels: {
+    name: Bilingual;
+    subjects: Bilingual;
+    overallRating: Bilingual;
+    mostValuableAspect: Bilingual;
+    suggestionForImprovement: Bilingual;
+    quoteText: Bilingual;
+  };
+  buttons: {
+    editFeedback: Bilingual;
+    submitCTA: Bilingual;
+  };
+}
