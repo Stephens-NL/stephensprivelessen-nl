@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateStructuredData } from "@/lib/structured-data";
+import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -47,7 +48,10 @@ const structuredData = generateStructuredData({
   timeToComplete: "PT90M",
 });
 
-export default function AmsterdamBijlesPage() {
+export default async function AmsterdamBijlesPage() {
+  const locale = await getLocale();
+  const isNl = locale === "nl";
+
   return (
     <>
       <Script id="amsterdam-ld+json" type="application/ld+json" strategy="afterInteractive">
@@ -56,69 +60,89 @@ export default function AmsterdamBijlesPage() {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-6">
-            Bijles in Amsterdam voor niet-bèta studenten
+            {isNl
+              ? "Bijles in Amsterdam voor niet-bèta studenten"
+              : "Tutoring in Amsterdam for non-STEM students"}
           </h1>
-          
+
           <p className="text-xl mb-8">
-            Geen wiskunde-nerd? Hoeft ook niet. In 90 minuten snap jij χ²-tests of integreren zó dat je tentamen doorkomt.
+            {isNl
+              ? "Geen wiskunde-nerd? Hoeft ook niet. In 90 minuten snap jij χ²-tests of integreren zó dat je tentamen doorkomt."
+              : "Not a maths nerd? No problem. In 90 minutes you'll understand χ²-tests or integration well enough to pass your exam."}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <Card>
               <CardHeader>
-                <CardTitle>Statistiek & SPSS</CardTitle>
-                <CardDescription>Voor psychologie, economie & business</CardDescription>
+                <CardTitle>{isNl ? "Statistiek & SPSS" : "Statistics & SPSS"}</CardTitle>
+                <CardDescription>
+                  {isNl
+                    ? "Voor psychologie, economie & business"
+                    : "For psychology, economics & business"}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>SPSS begeleiding</li>
-                  <li>Statistische analyses</li>
-                  <li>Scriptie ondersteuning</li>
+                  <li>{isNl ? "SPSS begeleiding" : "SPSS guidance"}</li>
+                  <li>{isNl ? "Statistische analyses" : "Statistical analyses"}</li>
+                  <li>{isNl ? "Scriptie ondersteuning" : "Thesis support"}</li>
                 </ul>
                 <Button className="mt-4" asChild>
-                  <Link href="/bijles/onderwerp/statistiek/psychologie">Meer info</Link>
+                  <Link href="/bijles/onderwerp/statistiek/psychologie">
+                    {isNl ? "Meer info" : "More info"}
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Calculus & Wiskunde</CardTitle>
-                <CardDescription>Voor life sciences & economie</CardDescription>
+                <CardTitle>{isNl ? "Calculus & Wiskunde" : "Calculus & Mathematics"}</CardTitle>
+                <CardDescription>
+                  {isNl ? "Voor life sciences & economie" : "For life sciences & economics"}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Differentiëren & integreren</li>
-                  <li>Lineaire algebra</li>
-                  <li>Toegepaste wiskunde</li>
+                  <li>{isNl ? "Differentiëren & integreren" : "Differentiation & integration"}</li>
+                  <li>{isNl ? "Lineaire algebra" : "Linear algebra"}</li>
+                  <li>{isNl ? "Toegepaste wiskunde" : "Applied mathematics"}</li>
                 </ul>
                 <Button className="mt-4" asChild>
-                  <Link href="/bijles/onderwerp/calculus">Meer info</Link>
+                  <Link href="/bijles/onderwerp/calculus">
+                    {isNl ? "Meer info" : "More info"}
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Programmeren</CardTitle>
-                <CardDescription>Python & R voor data-analyse</CardDescription>
+                <CardTitle>{isNl ? "Programmeren" : "Programming"}</CardTitle>
+                <CardDescription>
+                  {isNl ? "Python & R voor data-analyse" : "Python & R for data analysis"}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
-                  <li>Python voor data science</li>
-                  <li>R Studio begeleiding</li>
-                  <li>Data visualisatie</li>
+                  <li>{isNl ? "Python voor data science" : "Python for data science"}</li>
+                  <li>{isNl ? "R Studio begeleiding" : "R Studio guidance"}</li>
+                  <li>{isNl ? "Data visualisatie" : "Data visualisation"}</li>
                 </ul>
                 <Button className="mt-4" asChild>
-                  <Link href="/bijles/onderwerp/programmeren">Meer info</Link>
+                  <Link href="/bijles/onderwerp/programmeren">
+                    {isNl ? "Meer info" : "More info"}
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle>Campus Specifiek</CardTitle>
-                <CardDescription>UvA & VU studenten</CardDescription>
+                <CardTitle>{isNl ? "Campus Specifiek" : "Campus-specific"}</CardTitle>
+                <CardDescription>
+                  {isNl ? "UvA & VU studenten" : "UvA & VU students"}
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc pl-5 space-y-2">
@@ -138,36 +162,58 @@ export default function AmsterdamBijlesPage() {
           </div>
 
           <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
-            <h2 className="text-2xl font-bold mb-4">Spoed hulp nodig?</h2>
+            <h2 className="text-2xl font-bold mb-4">
+              {isNl ? "Spoed hulp nodig?" : "Need urgent help?"}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <h3 className="font-semibold mb-2">Tentamen over 10 dagen?</h3>
-                <p>Boek een spoedtraject en haal dat tentamen!</p>
+                <h3 className="font-semibold mb-2">
+                  {isNl ? "Tentamen over 10 dagen?" : "Exam in 10 days?"}
+                </h3>
+                <p>
+                  {isNl
+                    ? "Boek een spoedtraject en haal dat tentamen!"
+                    : "Book an intensive crash course and pass that exam!"}
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Scriptie vast op statistiek?</h3>
-                <p>48-uurs hulplijn voor scriptiebegeleiding</p>
+                <h3 className="font-semibold mb-2">
+                  {isNl ? "Scriptie vast op statistiek?" : "Stuck on thesis statistics?"}
+                </h3>
+                <p>
+                  {isNl
+                    ? "48-uurs hulplijn voor scriptiebegeleiding"
+                    : "48-hour helpline for thesis guidance"}
+                </p>
               </div>
             </div>
           </div>
 
           <div className="prose max-w-none">
-            <h2>Waarom bijles in Amsterdam?</h2>
+            <h2>{isNl ? "Waarom bijles in Amsterdam?" : "Why tutoring in Amsterdam?"}</h2>
             <p>
-              Als niet-bèta student kan wiskunde, statistiek of programmeren overweldigend zijn. 
-              Onze bijles is speciaal gericht op jouw studie en leerstijl. Geen ingewikkelde theorie, 
-              maar praktische uitleg die je direct kunt toepassen.
+              {isNl
+                ? "Als niet-bèta student kan wiskunde, statistiek of programmeren overweldigend zijn. Onze bijles is speciaal gericht op jouw studie en leerstijl. Geen ingewikkelde theorie, maar praktische uitleg die je direct kunt toepassen."
+                : "As a non-STEM student, maths, statistics or programming can feel overwhelming. Our tutoring is tailored to your degree and learning style — no convoluted theory, just practical explanations you can apply immediately."}
             </p>
 
-            <h2>Onze aanpak</h2>
+            <h2>{isNl ? "Onze aanpak" : "Our approach"}</h2>
             <ul>
-              <li>1-op-1 begeleiding op jouw tempo</li>
-              <li>Praktijkgerichte voorbeelden uit jouw vakgebied</li>
-              <li>Flexibele planning, ook 's avonds mogelijk</li>
+              <li>{isNl ? "1-op-1 begeleiding op jouw tempo" : "1-on-1 tutoring at your own pace"}</li>
+              <li>
+                {isNl
+                  ? "Praktijkgerichte voorbeelden uit jouw vakgebied"
+                  : "Practical examples from your own field of study"}
+              </li>
+              <li>
+                {isNl
+                  ? "Flexibele planning, ook 's avonds mogelijk"
+                  : "Flexible scheduling, including evenings"}
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </>
   );
-} 
+}
