@@ -4,9 +4,12 @@
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { useLocale } from 'next-intl';
 
 export const CollapsibleSection = ({ title, children }: { title: string | { EN: string; NL: string }, children: React.ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const locale = useLocale();
+    const language = locale === 'nl' ? 'NL' : 'EN';
 
     return (
         <div className="mb-4">
@@ -15,7 +18,7 @@ export const CollapsibleSection = ({ title, children }: { title: string | { EN: 
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.02 }}
             >
-                {typeof title === 'string' ? title : title.EN} {/* Pas dit aan voor NL */}
+                {typeof title === 'string' ? title : title[language]}
                 {isOpen ? <FaChevronUp /> : <FaChevronDown />}
             </m.button>
             <AnimatePresence>

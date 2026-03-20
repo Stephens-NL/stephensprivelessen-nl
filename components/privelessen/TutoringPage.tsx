@@ -11,7 +11,7 @@ import { PricingSection } from './PricingSection';
 import { FAQSection } from './FAQSection';
 import { LocationsSection } from './LocationsSection';
 import { SpecialProgramsSection } from './SpecialProgramsSection';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { tutoringPage } from '@/data/tutoringPage';
 
 interface LocationSpecific {
@@ -26,9 +26,8 @@ interface TutoringPageProps {
 
 export function TutoringPage({ locationSpecific }: TutoringPageProps) {
   const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    useTranslations('tutoring');
-    const t = (text: { EN: string; NL: string }) => text[language];
+  const language = locale === 'nl' ? 'NL' : 'EN';
+  const t = (text: { EN: string; NL: string }) => text[language];
 
   // Customize hero content for location-specific pages
   const heroContent = locationSpecific ? {

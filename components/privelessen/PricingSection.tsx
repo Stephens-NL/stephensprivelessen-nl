@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
+import { useLocale } from 'next-intl';
 import { TutoringPage } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -14,6 +15,8 @@ interface PricingSectionProps {
 }
 
 export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
+  const locale = useLocale();
+  const isNl = locale === 'nl';
   return (
     <section className="py-24 bg-gradient-to-b from-[var(--cream-dark)] to-[var(--cream)]">
       <div className="container mx-auto px-4">
@@ -60,7 +63,7 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                     <span className="bg-[var(--amber)] text-[var(--ink)] px-4 py-1 rounded-full text-sm font-medium">
-                      Most Popular
+                      {isNl ? 'Meest Populair' : 'Most Popular'}
                     </span>
                   </div>
                 )}
