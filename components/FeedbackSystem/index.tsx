@@ -2,10 +2,9 @@ import React, { useCallback, useReducer } from 'react';
 import useSWR from 'swr';
 import { m, AnimatePresence, PanInfo } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
-import { FeedbackForm, FeedbackFormDataImportProps, Language, PersonalIntermezzo, QuestionGroup } from '../../data';
+import { FeedbackForm, FeedbackFormDataImportProps, PersonalIntermezzo, QuestionGroup } from '../../data';
 
 import FadeInText from './FadeInText';
-import LanguageSelector from './LanguageSelector';
 import FormTypeSelector from './FormTypeSelector';
 import QuestionComponent from './QuestionComponent';
 import SubmitCTA from './SubmitCTA';
@@ -43,7 +42,7 @@ type FormAction =
   | { type: 'RESET' };
 
 const initialFormState: FormState = {
-  currentStep: -2,
+  currentStep: -1,
   currentQuestionIndex: 0,
   formData: {},
   selectedForm: null,
@@ -80,7 +79,6 @@ type FeedbackContentProps = {
   selectedForm: FeedbackForm | null;
   formData: Record<string, any>;
   feedbackFormData: FeedbackFormDataImportProps | undefined;
-  handleLanguageSelect: (lang: Language) => void;
   handleFormTypeSelect: (formType: 'short' | 'long') => void;
   shouldShowQuestion: (question: any) => boolean;
   handleChange: (id: string, value: any, skipToNext?: boolean) => void;
@@ -95,7 +93,6 @@ const FeedbackContent: React.FC<FeedbackContentProps> = ({
   selectedForm,
   formData,
   feedbackFormData,
-  handleLanguageSelect,
   handleFormTypeSelect,
   shouldShowQuestion,
   handleChange,
@@ -103,9 +100,6 @@ const FeedbackContent: React.FC<FeedbackContentProps> = ({
   nextStep,
   t,
 }) => {
-  if (currentStep === -2 && feedbackFormData) {
-    return <LanguageSelector onSelectLanguage={handleLanguageSelect} data={feedbackFormData.feedbackFormData.languageSelection} />;
-  }
   if (currentStep === -1) return <FormTypeSelector onSelectFormType={handleFormTypeSelect} />;
 
   if (selectedForm) {
@@ -212,12 +206,6 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
     dispatch({ type: 'RESET' });
   };
 
-  const handleLanguageSelect = (lang: Language) => {
-    setLanguage(lang);
-    dispatch({ type: 'SET_STEP', step: -1 });
-    dispatch({ type: 'SET_DIRECTION', value: 1 });
-  };
-
   const previousStep = () => {
     if (!selectedForm) return;
 
@@ -302,7 +290,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
             style={{ height: contentHeight }}
           >
             <h1 className="text-3xl font-bold text-white mb-6">
-              {currentStep !== -2 && <FadeInText text={String(t(selectedForm ? selectedForm.title : feedbackFormData.feedbackFormData.lengthSelection.title))} />}
+              <FadeInText text={String(t(selectedForm ? selectedForm.title : feedbackFormData.feedbackFormData.lengthSelection.title))} />
             </h1>
             <FeedbackContent
               currentStep={currentStep}
@@ -310,7 +298,6 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
               selectedForm={selectedForm}
               formData={formData}
               feedbackFormData={feedbackFormData}
-              handleLanguageSelect={handleLanguageSelect}
               handleFormTypeSelect={handleFormTypeSelect}
               shouldShowQuestion={shouldShowQuestion}
               handleChange={handleChange}
