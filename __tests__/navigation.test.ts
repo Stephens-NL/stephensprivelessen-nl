@@ -10,7 +10,6 @@ describe('Navigation Links', () => {
       '/',
       '/privelessen',
       '/scriptiebegeleiding',
-      '/services',
       '/workshops',
       '/consultancy',
       '/about',

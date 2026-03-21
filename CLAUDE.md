@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-Stephen's Privélessen — the public-facing tutoring website at `stephensprivelessen.nl`. A bilingual (NL/EN) Next.js 15 marketing site for math, statistics, and programming tutoring in Amsterdam. Dutch is the default locale. Not a monorepo — this is a standalone Next.js project.
+Stephen's Privélessen — the public-facing tutoring website at `stephensprivelessen.nl`. A bilingual (NL/EN) Next.js 15 marketing site for math, statistics, and programming tutoring in Amsterdam. Dutch is the default locale. Part of the monorepo npm workspaces.
 
 ## Commands
 
