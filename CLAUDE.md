@@ -72,6 +72,14 @@ Components may still use either pattern. When modifying text, check which system
 - Fonts: Cormorant Garamond (headings, `--font-cormorant`) + Outfit (body, `--font-outfit`)
 - Framer Motion for all animations
 
+### Other Directories
+
+- **`hooks/`** — Custom React hooks (`useOutsideClick`, `useFooter`, `useScrollPosition`)
+- **`stores/`** — State stores (currently empty, reserved for Zustand or similar)
+- **`scripts/`** — Build-time scripts (`generateSitemap.ts`)
+- **`private/`** — Non-public assets (`favicon/` — source favicon files and manifest)
+- **`docs/`** — Superpowers plans (`docs/superpowers/plans/`)
+
 ### Key Files
 
 - `data/config.ts` — business config (site URL, contact info)
