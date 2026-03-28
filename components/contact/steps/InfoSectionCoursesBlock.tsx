@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { FaGraduationCap, FaChevronDown, FaChevronUp, FaEye } from 'react-icons/fa';
 import { getBusinessData } from '@/data/businessData';
 import { subjectNotes, infoSectionTranslations as translations } from '@/data/infoSection';
@@ -22,8 +23,7 @@ export function InfoSectionCoursesBlock({
   onSetLevel,
   onPreviewNotes,
 }: InfoSectionCoursesBlockProps) {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
     const t = useTranslations('contact');
   const businessData = getBusinessData(t);
 

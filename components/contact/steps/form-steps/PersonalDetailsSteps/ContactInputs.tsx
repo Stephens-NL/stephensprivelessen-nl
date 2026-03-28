@@ -1,7 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { config } from '@/data/config';
 
 export function EmailInput({
@@ -45,8 +46,7 @@ export function PhoneInput({
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error: string | null;
 }) {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
     const t = useTranslations('contact');
   return (
     <div>

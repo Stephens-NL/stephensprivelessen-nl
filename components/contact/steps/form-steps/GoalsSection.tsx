@@ -1,6 +1,7 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import React, { useState } from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
@@ -15,15 +16,16 @@ const MIN_GOALS_LENGTH = 10;
 const MAX_GOALS_LENGTH = 500;
 
 const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
-    const locale = useLocale();
+    const language = useLanguage();
+    const isNl = language === 'NL';
     const t = useTranslations('contact');
     const [error, setError] = useState<string | null>(null);
 
     const handleGoalsChange = (value: string) => {
         if (value.length < MIN_GOALS_LENGTH) {
-            setError(locale === 'nl' ? `Geef minimaal ${MIN_GOALS_LENGTH} tekens op om je doelen te beschrijven` : `Please provide at least ${MIN_GOALS_LENGTH} characters describing your goals`);
+            setError(isNl ? `Geef minimaal ${MIN_GOALS_LENGTH} tekens op om je doelen te beschrijven` : `Please provide at least ${MIN_GOALS_LENGTH} characters describing your goals`);
         } else if (value.length > MAX_GOALS_LENGTH) {
-            setError(locale === 'nl' ? `Doelomschrijving mag niet langer zijn dan ${MAX_GOALS_LENGTH} tekens` : `Goals description cannot exceed ${MAX_GOALS_LENGTH} characters`);
+            setError(isNl ? `Doelomschrijving mag niet langer zijn dan ${MAX_GOALS_LENGTH} tekens` : `Goals description cannot exceed ${MAX_GOALS_LENGTH} characters`);
         } else {
             setError(null);
         }
@@ -58,7 +60,7 @@ const GoalsSection = ({ formData, onUpdate }: GoalsSectionProps) => {
                         animate={{ opacity: 1 }}
                         className={`text-sm ${error ? 'text-destructive' : 'text-[var(--amber)]'}`}
                     >
-                        {error || (locale === 'nl' ? `Nog ${remainingChars} tekens beschikbaar` : `${remainingChars} characters remaining`)}
+                        {error || (isNl ? `Nog ${remainingChars} tekens beschikbaar` : `${remainingChars} characters remaining`)}
                     </m.p>
                     {formData.goals?.length >= MIN_GOALS_LENGTH && (
                         <m.p

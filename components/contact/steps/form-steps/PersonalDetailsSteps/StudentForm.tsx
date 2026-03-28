@@ -1,7 +1,8 @@
 'use client';
 
 import { m } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { EmailInput } from './ContactInputs';
 
 export function StudentForm({
@@ -17,8 +18,7 @@ export function StudentForm({
   onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isFieldComplete: (v: unknown) => boolean;
 }) {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
     const t = useTranslations('contact');
   const fadeInUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -20 } };
 

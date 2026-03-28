@@ -2,7 +2,8 @@
 
 import React, { useReducer } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaWhatsapp, FaChevronDown, FaChevronUp, FaEye, FaEnvelope } from 'react-icons/fa';
 import NotesPreviewModal from '../components/NotesPreviewModal';
 import {
@@ -50,8 +51,7 @@ function infoReducer(state: InfoState, action: InfoAction): InfoState {
 }
 
 const InfoSection = ({ onBack }: InfoSectionProps) => {
-    const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
     const t = useTranslations('contact');
     const [state, dispatch] = useReducer(infoReducer, {
         showPricing: false,

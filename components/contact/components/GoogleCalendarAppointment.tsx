@@ -3,6 +3,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface GoogleCalendarAppointmentProps {
     isOpen: boolean;
@@ -20,7 +21,7 @@ const GoogleCalendarAppointment = ({
     studentEmail 
 }: GoogleCalendarAppointmentProps) => {
     const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
     const t = useTranslations('contact');
 
     if (!isOpen) return null;
