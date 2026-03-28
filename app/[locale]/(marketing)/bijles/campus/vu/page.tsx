@@ -2,7 +2,7 @@ import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { generateCampusStructuredData } from "@/lib/structured-data";
+import { generateStructuredData } from "@/lib/structured-data";
 import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const structuredData = generateCampusStructuredData({
+const structuredData = generateStructuredData({
       title: "Bijles voor VU Studenten | Online & Science Park",
   description: "Bijles voor VU studenten. Statistiek, calculus en programmeren online of op Science Park.",
   provider: {
@@ -56,6 +56,7 @@ const structuredData = generateCampusStructuredData({
   },
   areaServed: "Science Park, Online",
   category: ["Psychology", "Business & Economics", "Life Sciences"],
+  priceValidUntil: true,
 });
 
 export default async function VUBijlesPage() {

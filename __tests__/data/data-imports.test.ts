@@ -1,7 +1,7 @@
 import workshopsData from '@/data/workshopsData'
 import { navigation, siteTitle } from '@/data/navigation'
 import { tutoringPage } from '@/data/tutoringPage'
-import { faqInfo, faqItems } from '@/data/faq'
+import faqData from '@/data/faq.json'
 import { blogInfo, blogPosts } from '@/data/blog'
 import type { Workshop, NavItem } from '@/data/types'
 
@@ -55,15 +55,15 @@ describe('Data Imports', () => {
 
   describe('faq', () => {
     it('should have valid FAQ content', () => {
-      expect(faqInfo).toBeDefined()
-      expect(faqInfo.title).toBeDefined()
-      expect(faqInfo.title.EN).toBeDefined()
-      expect(faqInfo.title.NL).toBeDefined()
+      expect(faqData.faqInfo).toBeDefined()
+      expect(faqData.faqInfo.title).toBeDefined()
+      expect(faqData.faqInfo.title.EN).toBeDefined()
+      expect(faqData.faqInfo.title.NL).toBeDefined()
 
-      expect(faqItems).toBeDefined()
-      expect(faqItems.length).toBeGreaterThan(0)
+      expect(faqData.faqItems).toBeDefined()
+      expect(faqData.faqItems.length).toBeGreaterThan(0)
 
-      faqItems.forEach(item => {
+      faqData.faqItems.forEach(item => {
         expect(item.question).toBeDefined()
         expect(item.question.EN).toBeDefined()
         expect(item.question.NL).toBeDefined()

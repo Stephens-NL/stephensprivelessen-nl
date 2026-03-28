@@ -1,5 +1,4 @@
 export * from './navigation';
-export * from './faq';
 export * from './types';
 export * from './blog';
 export * from './pricingData';
@@ -7,6 +6,5 @@ export * from './feedbackQuestions';
 export * from './feedbackFormData';
 export * from './infoSection';
 export * from './businessData';
-export * from './businessInfo';
 export * from './tutoringPage';
 export * from './workshopsData';
