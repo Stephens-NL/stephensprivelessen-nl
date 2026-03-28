@@ -182,18 +182,16 @@ export const spoedPrices = {
 
 // Legacy shape kept for PricingPage.tsx (duration in hours, price = pakketprijs 1 student)
 // Business only sells 4hr packages — 1-student package price shown per tier.
+// Prices derived from package arrays above (single source of truth).
 export const prices = {
-  // VO online — 4hr packages (1 student)
   higher: [
-    { duration: 4, price: 360.00 }, // HBO/WO online, 1 student — 4 uur pakket
+    { duration: 4, price: hboWoOnlinePackages[0].packagePrice },
   ],
-  // VO online — 4hr packages
   secondary20Plus: [
-    { duration: 4, price: 240.00 }, // VO online, 1 student — 4 uur pakket
+    { duration: 4, price: voOnlinePackages[0].packagePrice },
   ],
-  // VO fysiek — 4hr packages
   secondary20Minus: [
-    { duration: 4, price: 300.00 }, // VO fysiek, 1 student — 4 uur pakket
+    { duration: 4, price: voPhysicalPackages[0].packagePrice },
   ],
   flexibilityPremium: [
     { duration: "Pakket van 2 lessen", price: `€${config.pricing.flexibilityPremium.twoLessons}` },

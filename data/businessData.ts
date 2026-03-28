@@ -47,6 +47,9 @@ export const getBusinessData = (t: TranslateFunction) => ({
       { NL: 'SQL', EN: 'SQL' }
     ]
   },
+  // LEGACY per-hour pricing — discontinued model, NOT used by any current consumer.
+  // Current pricing uses 4-hour packages defined in data/pricingData.ts (single source of truth).
+  // Kept for backward compatibility with the BusinessData type.
   pricing: {
     higher: [
       { duration: t('pricing:singleHour'), price: "€80,00" },
