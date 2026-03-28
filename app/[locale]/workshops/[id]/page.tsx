@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import workshopsData from '@/data/workshopsData'
 import WorkshopDetailContent from '@/components/workshops/WorkshopDetailContent'
 import { notFound } from 'next/navigation'
+import { getLanguageFromLocale } from '@/hooks/useLanguage'
 
 type Props = {
   params: Promise<{ id: string; locale: string }>
@@ -15,7 +16,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     notFound()
   }
 
-  const language = params.locale === 'nl' ? 'NL' : 'EN';
+  const language = getLanguageFromLocale(params.locale);
   const isCreative = workshop.type === 'creative'
   const workshopType = isCreative ? (language === 'NL' ? 'Creatieve' : 'Creative') : (language === 'NL' ? 'Academische' : 'Academic')
   const title = `${workshop.title[language]} Workshop | ${workshopType} Workshop`

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { FiRotateCcw } from 'react-icons/fi';
 import {
   FilterSection,
@@ -33,9 +33,7 @@ export function WorkshopsFilterPanel({
   onFilterChange,
   onReset,
 }: WorkshopsFilterPanelProps) {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('workshops');
+  const t = useTranslations('workshops');
 
   return (
     <>
