@@ -4,12 +4,11 @@
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 
 export const CollapsibleSection = ({ title, children }: { title: string | { EN: string; NL: string }, children: React.ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
 
     return (
         <div className="mb-4">
