@@ -1,9 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import { Target, Heart, BookOpenCheck, Lightbulb } from 'lucide-react';
+import { inViewFadeUp } from '@/lib/animations';
+import { scrollToElement } from '@/lib/scroll';
 
 const reasons = [
   {
@@ -53,18 +56,14 @@ const reasons = [
 ];
 
 export function WhyChooseSection() {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('mbo');
+  const language = useLanguage();
+  const t = useTranslations('mbo');
 
   return (
     <section className="py-20 bg-[var(--cream)]">
       <div className="container mx-auto px-4 max-w-6xl">
         <m.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          {...inViewFadeUp}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
@@ -118,10 +117,7 @@ export function WhyChooseSection() {
               {t('form.dontLetMathHoldYouBack')}
             </p>
             <button
-              onClick={() => {
-                const element = document.getElementById('contact');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              onClick={() => scrollToElement('contact')}
               className="bg-[var(--cream)] text-[var(--ink)] px-8 py-4 rounded-xl font-medium hover:bg-[var(--cream-dark)] transition-colors duration-300"
             >
               {t('form.getInTouch')}
