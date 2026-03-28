@@ -1,6 +1,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Send, Edit2 } from 'lucide-react';
 import { feedbackFormData, FeedbackSummaryProps, RenderSummaryItemProps } from '../../data';
 
@@ -14,8 +15,7 @@ function SummaryItem({ label, value }: RenderSummaryItemProps) {
 }
 
 const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) => {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
     const t = useTranslations('feedback');
 
   return (

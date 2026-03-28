@@ -1,11 +1,10 @@
 import { m } from 'framer-motion';
 import { PersonalIntermezzo } from '../../data';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import React from 'react'
 
 const PersonalIntermezzoComponent: React.FC<{ intermezzo: PersonalIntermezzo }> = ({ intermezzo }) => {
-    const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
 
     return (
         <m.div

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { MultipleChoiceQuestion, QuestionComponentProps } from "../../data";
 
 import { QuestionInput } from "./QuestionInput";
@@ -12,8 +13,7 @@ const QuestionComponent: React.FC<QuestionComponentProps> = ({
     setIsQuestionAnswered,
     onNext,
 }) => {
-    const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
     const t = useTranslations('feedback');
     const inputRef = useRef<HTMLInputElement>(null);
     const textAreaRef = useRef<HTMLTextAreaElement>(null);

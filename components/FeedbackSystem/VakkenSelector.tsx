@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, KeyboardEvent } from 'react';
 import { Search } from 'lucide-react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { getBusinessData } from '@/data/businessData';
 
 const EMPTY_VAKKEN: string[] = [];
@@ -12,8 +13,7 @@ interface VakkenSelectorProps {
 }
 
 const VakkenSelector: React.FC<VakkenSelectorProps> = ({ onChange, initialValue = EMPTY_VAKKEN, setIsQuestionAnswered }) => {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
     const t = useTranslations('feedback');
   const businessData = getBusinessData((key: string | Record<string, string>) => typeof key === 'string' ? t(key) : (key[language] ?? ''));
   const [searchTerm, setSearchTerm] = useState('');
