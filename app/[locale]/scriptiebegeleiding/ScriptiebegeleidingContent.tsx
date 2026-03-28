@@ -1,6 +1,7 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { JsonLdScript } from '@/components/JsonLdScript';
 import { m } from 'framer-motion';
 import Image from 'next/image';
@@ -61,15 +62,10 @@ const jsonLd = {
   }
 };
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
 
 export default function ScriptiebegeleidingContent() {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  
+    const language = useLanguage();
     const t = useTranslations('thesis');
 
   const content = {
