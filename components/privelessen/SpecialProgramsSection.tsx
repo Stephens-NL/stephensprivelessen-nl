@@ -4,6 +4,7 @@ import React from 'react';
 import { m } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { inViewFadeUp } from '@/lib/animations';
 
 interface SpecialProgramsSectionProps {
   t: (text: { EN: string; NL: string }) => string;
@@ -27,9 +28,7 @@ export const SpecialProgramsSection = ({ t }: SpecialProgramsSectionProps) => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <m.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...inViewFadeUp}
             className="text-4xl font-display font-bold mb-4 text-[var(--ink)]"
           >
             {t({ NL: "Speciale Programma's", EN: 'Special Programs' })}
@@ -40,9 +39,7 @@ export const SpecialProgramsSection = ({ t }: SpecialProgramsSectionProps) => {
           {programs.map((program, index) => (
             <m.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              {...inViewFadeUp}
               transition={{ delay: index * 0.15 }}
             >
               <Link

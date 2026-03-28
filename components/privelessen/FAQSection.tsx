@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
+import { inViewFadeUp } from '@/lib/animations';
 import { TutoringPage } from '@/data/types';
 import {
   Accordion,
@@ -21,9 +22,7 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Section Header */}
         <m.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...inViewFadeUp}
           className="text-4xl font-bold text-center mb-16"
         >
           {t(faq.title)}
@@ -31,9 +30,7 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
 
         {/* FAQ Accordion */}
         <m.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...inViewFadeUp}
           transition={{ delay: 0.2 }}
         >
           <Accordion type="single" collapsible className="space-y-4">

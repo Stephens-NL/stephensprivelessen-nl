@@ -1,7 +1,8 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -44,8 +45,7 @@ export function ZuidoostStudentForm({
   educationLevels: EducationLevel[];
   whatsappMessage: string;
 }) {
-  const locale = useLocale();
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
   const t = useTranslations('weekend.form');
   const [state, dispatch] = useReducer(formReducer, {
     studentName: '',

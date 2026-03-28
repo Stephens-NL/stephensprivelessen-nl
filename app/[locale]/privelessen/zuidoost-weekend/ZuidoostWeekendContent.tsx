@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { FaStar, FaMapMarkerAlt, FaClock, FaCheck } from 'react-icons/fa';
 import { weekendLocations } from '@/data/weekendTutoring';
@@ -13,6 +13,7 @@ import { ZuidoostOfferVariant } from '@/components/privelessen/zuidoost/Zuidoost
 import { ZuidoostLocationMap } from '@/components/privelessen/zuidoost/ZuidoostLocationMap';
 import { ZuidoostSubjectsSection } from '@/components/privelessen/zuidoost/ZuidoostSubjectsSection';
 import { config } from '@/data/config';
+import { staggeredFadeInUp } from '@/lib/animations';
 
 export default function ZuidoostWeekendContent() {
   const t = useTranslations('weekend');
@@ -93,8 +94,8 @@ export default function ZuidoostWeekendContent() {
                 {t('cta.whatsapp')}
               </m.a>
             </div>
-            <m.p className="text-3xl font-bold text-[var(--amber)]" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>{t('footer')}</m.p>
-            <m.div className="mt-16 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
+            <m.p className="text-3xl font-bold text-[var(--amber)]" {...staggeredFadeInUp(0, 0.5)}>{t('footer')}</m.p>
+            <m.div className="mt-16 text-center" {...staggeredFadeInUp(0, 0.5)}>
               <p className="text-xl text-white/90 mb-6">{t('form.questionsText')}</p>
               <Dialog>
                 <DialogTrigger asChild><Button size="lg" className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-semibold px-8 py-6 text-lg">{t('form.contactUs')}</Button></DialogTrigger>

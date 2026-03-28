@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { TutoringPage } from '@/types';
 import { Card } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import { inViewFadeUp } from '@/lib/animations';
 
 interface TestimonialsSectionProps {
   testimonials: TutoringPage['testimonials'];
@@ -19,17 +20,13 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
         {/* Section Header */}
         <div className="text-center mb-16">
           <m.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...inViewFadeUp}
             className="text-4xl font-bold mb-4"
           >
             {t(testimonials.title)}
           </m.h2>
           <m.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...inViewFadeUp}
             transition={{ delay: 0.2 }}
             className="text-xl text-[var(--muted-text)]"
           >
@@ -42,9 +39,7 @@ export const TestimonialsSection = ({ testimonials, t }: TestimonialsSectionProp
           {testimonials.slides.map((slide, index) => (
             <m.div
               key={slide.author ?? index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              {...inViewFadeUp}
               transition={{ delay: index * 0.1 }}
             >
               <Card className="p-8 h-full flex flex-col">
