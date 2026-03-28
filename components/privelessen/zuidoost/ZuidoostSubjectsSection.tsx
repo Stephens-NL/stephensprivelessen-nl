@@ -1,7 +1,8 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaGraduationCap, FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
@@ -18,8 +19,7 @@ function reducer(state: { selectedLevel: string; showCourses: boolean }, action:
 }
 
 export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: EducationLevel[] }) {
-  const locale = useLocale();
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
   const t = useTranslations('weekend');
   const [state, dispatch] = useReducer(reducer, { selectedLevel: '', showCourses: true });
   const { selectedLevel, showCourses } = state;

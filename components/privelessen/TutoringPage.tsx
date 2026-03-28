@@ -11,7 +11,7 @@ import { PricingSection } from './PricingSection';
 import { FAQSection } from './FAQSection';
 import { LocationsSection } from './LocationsSection';
 import { SpecialProgramsSection } from './SpecialProgramsSection';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { tutoringPage } from '@/data/tutoringPage';
 
 interface LocationSpecific {
@@ -25,8 +25,7 @@ interface TutoringPageProps {
 }
 
 export function TutoringPage({ locationSpecific }: TutoringPageProps) {
-  const locale = useLocale();
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
   const t = (text: { EN: string; NL: string }) => text[language];
 
   // Customize hero content for location-specific pages

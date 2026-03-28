@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { TutoringHero } from '@/types';
+import { staggeredFadeInUp } from '@/lib/animations';
 
 interface HeroSectionProps {
   content: TutoringHero;
@@ -57,9 +58,7 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
             {content.stats.map((stat, index) => (
               <m.div
                 key={`${stat.value}-${String(stat.label?.EN ?? stat.label?.NL)}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 * index }}
+                {...staggeredFadeInUp(index, 0.2)}
                 className="bg-[var(--cream)]/10 backdrop-blur-sm rounded-lg p-6 text-center"
               >
                 <div className="text-4xl font-bold text-[var(--cream)] mb-2">

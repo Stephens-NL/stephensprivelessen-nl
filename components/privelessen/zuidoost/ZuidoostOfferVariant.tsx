@@ -1,7 +1,8 @@
 'use client';
 
 import { useReducer } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -54,8 +55,7 @@ export function ZuidoostOfferVariant({
   offerKey: string;
   educationLevels: EducationLevel[];
 }) {
-  const locale = useLocale();
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
   const t = useTranslations('weekend');
   const [state, dispatch] = useReducer(formReducer, {
     showModal: false,
