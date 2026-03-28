@@ -1,14 +1,9 @@
 // src/hooks/useFooter.ts
 import useSWR from 'swr';
 import { Footer } from '../data';
-
-const footerFetcher = (url: string) =>
-  fetch(url).then((res) => {
-    if (!res.ok) throw new Error('Failed to fetch footer data');
-    return res.json();
-  });
+import { safeFetcher } from '@/lib/fetchers';
 
 export const useFooter = () => {
-  const { data, isLoading, error } = useSWR<Footer>('/api/footer', footerFetcher);
+  const { data, isLoading, error } = useSWR<Footer>('/api/footer', safeFetcher);
   return { data: data ?? null, isLoading, error: error ?? null };
 };
