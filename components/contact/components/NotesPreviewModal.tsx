@@ -4,6 +4,7 @@ import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
 import { useLocale, useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface NotesPreviewModalProps {
     isOpen: boolean;
@@ -15,7 +16,7 @@ interface NotesPreviewModalProps {
 
 const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial }: NotesPreviewModalProps) => {
     const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
     const t = useTranslations('contact');
 
     if (!isOpen) return null;

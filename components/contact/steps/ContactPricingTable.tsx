@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { voOnlinePackages, voPhysicalPackages, hboWoOnlinePackages, hboWoPhysicalPackages, spoedPrices } from '@/data/pricingData';
 
 export function ContactPricingTable() {
-  const locale = useLocale();
-  const isNl = locale === 'nl';
+  const language = useLanguage();
+  const isNl = language === 'NL';
   const [selectedLevel, setSelectedLevel] = useState<'vo' | 'hbo_wo'>('vo');
 
   const online = selectedLevel === 'vo' ? voOnlinePackages : hboWoOnlinePackages;

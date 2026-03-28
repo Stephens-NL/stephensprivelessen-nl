@@ -1,6 +1,7 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import React from 'react';
 import { m } from 'framer-motion';
 import { FaCheck, FaWhatsapp } from 'react-icons/fa';
@@ -12,14 +13,15 @@ interface SuccessMessageProps {
 }
 
 const SuccessMessage = ({ formData }: SuccessMessageProps) => {
-    const locale = useLocale();
+    const language = useLanguage();
+    const isNl = language === 'NL';
     const t = useTranslations('contact');
 
     const getContactPerson = () => {
         if (formData.age < 18) {
             switch (formData.contactPreference) {
                 case 'parent':
-                    return locale === 'nl' ? `je ouder/verzorger (${formData.parentName})` : `your parent/guardian (${formData.parentName})`;
+                    return isNl ? `je ouder/verzorger (${formData.parentName})` : `your parent/guardian (${formData.parentName})`;
                 case 'both':
                     return t('form.bothYouAndYourParentguardian');
                 default:

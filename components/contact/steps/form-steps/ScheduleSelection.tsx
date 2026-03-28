@@ -1,6 +1,7 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import React from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
@@ -37,7 +38,8 @@ const timeSlots = [
 ];
 
 const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
-    const locale = useLocale();
+    const language = useLanguage();
+    const isNl = language === 'NL';
     const t = useTranslations('contact');
 
     const toggleDay = (day: string) => {
@@ -91,7 +93,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 }`}
                                 onClick={() => toggleDay(day.value)}
                             >
-                                {locale === 'nl' ? day.labelNL : day.labelEN}
+                                {isNl ? day.labelNL : day.labelEN}
                             </m.button>
                         ))}
                     </div>
@@ -150,7 +152,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 onClick={() => toggleUnavailableDay(day.value)}
                                 disabled={formData.preferredDays.includes(day.value)}
                             >
-                                {locale === 'nl' ? day.labelNL : day.labelEN}
+                                {isNl ? day.labelNL : day.labelEN}
                             </m.button>
                         ))}
                     </div>

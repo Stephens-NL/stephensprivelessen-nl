@@ -3,7 +3,7 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { FaInfoCircle, FaCalendarCheck } from 'react-icons/fa';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 interface InitialChoiceProps {
     onChooseInfo: () => void;
@@ -11,7 +11,6 @@ interface InitialChoiceProps {
 }
 
 const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => {
-    const locale = useLocale();
     const t = useTranslations('contact');
 
     return (

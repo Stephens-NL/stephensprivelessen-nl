@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useReducer } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m, AnimatePresence } from 'framer-motion';
 import { FormData } from '../../Contact';
 
@@ -191,7 +192,8 @@ function subjectReducer(state: SubjectState, action: { type: string; payload?: u
 }
 
 const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
-    const locale = useLocale();
+    const language = useLanguage();
+    const isNl = language === 'NL';
     const t = useTranslations('contact');
     const [state, dispatch] = useReducer(subjectReducer, {
         showOtherInput: false,
@@ -232,9 +234,9 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
     const handleOtherInput = (value: string) => {
         dispatch({ type: 'OTHER_SUBJECT', payload: value });
         if (value.length < MIN_SUBJECT_LENGTH) {
-            dispatch({ type: 'OTHER_ERROR', payload: locale === 'nl' ? `Vak moet minimaal ${MIN_SUBJECT_LENGTH} tekens lang zijn` : `Subject must be at least ${MIN_SUBJECT_LENGTH} characters long` });
+            dispatch({ type: 'OTHER_ERROR', payload: isNl ? `Vak moet minimaal ${MIN_SUBJECT_LENGTH} tekens lang zijn` : `Subject must be at least ${MIN_SUBJECT_LENGTH} characters long` });
         } else if (value.length > MAX_SUBJECT_LENGTH) {
-            dispatch({ type: 'OTHER_ERROR', payload: locale === 'nl' ? `Vak mag niet langer zijn dan ${MAX_SUBJECT_LENGTH} tekens` : `Subject cannot be longer than ${MAX_SUBJECT_LENGTH} characters` });
+            dispatch({ type: 'OTHER_ERROR', payload: isNl ? `Vak mag niet langer zijn dan ${MAX_SUBJECT_LENGTH} tekens` : `Subject cannot be longer than ${MAX_SUBJECT_LENGTH} characters` });
         } else {
             dispatch({ type: 'OTHER_ERROR', payload: null });
             if (showProgrammingLanguages) {
@@ -285,11 +287,11 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
     return (
         <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-white text-center">
-                {(locale === 'nl' ? showProgrammingLanguages ? "Kies Programmeertaal" : "Kies een Vak" : showProgrammingLanguages ? "Choose Programming Language" : "Choose Your Subject")}
+                {(isNl ? showProgrammingLanguages ? "Kies Programmeertaal" : "Kies een Vak" : showProgrammingLanguages ? "Choose Programming Language" : "Choose Your Subject")}
             </h2>
             
             <p className="text-[var(--amber)] text-center">
-                {(locale === 'nl' ? showProgrammingLanguages
+                {(isNl ? showProgrammingLanguages
                         ? "Selecteer een programmeertaal om door te gaan"
                         : "Selecteer een vak om door te gaan" : showProgrammingLanguages 
                         ? "Select a programming language to continue"
@@ -346,7 +348,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                         className="space-y-2"
                     >
                         <label className="block text-[var(--amber)]">
-                            {(locale === 'nl' ? showProgrammingLanguages
+                            {(isNl ? showProgrammingLanguages
                                     ? "Specificeer de programmeertaal"
                                     : "Specificeer het vak" : showProgrammingLanguages 
                                     ? "Please specify the programming language"
@@ -359,7 +361,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                             className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
                                 otherInputError ? 'border-destructive' : 'border-[var(--ink-light)]'
                             } focus:border-[var(--amber)] focus:outline-none`}
-                            placeholder={(locale === 'nl' ? showProgrammingLanguages
+                            placeholder={(isNl ? showProgrammingLanguages
                                     ? "Voer de programmeertaal in"
                                     : "Voer de naam van het vak in" : showProgrammingLanguages
                                     ? "Enter the programming language"

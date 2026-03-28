@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { voOnlinePackages, hboWoOnlinePackages } from '@/data/pricingData';
 
 export function ContactGroupPricingTable() {
-  const locale = useLocale();
-  const isNl = locale === 'nl';
+  const language = useLanguage();
+  const isNl = language === 'NL';
 
   // Show the per-person savings for the largest group
   const voMax = voOnlinePackages[voOnlinePackages.length - 1];
