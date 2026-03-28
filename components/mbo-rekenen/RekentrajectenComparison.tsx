@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m, AnimatePresence } from 'framer-motion';
 import { rekentrajectenComparison } from '@/data/pricingData';
 import { Button } from '@/components/ui/button';
@@ -9,16 +10,14 @@ import { Info } from 'lucide-react';
 import { RekentrajectenCard } from './RekentrajectenCard';
 import { RekentrajectenComparisonTable } from './RekentrajectenComparisonTable';
 import { RekentrajectenCTA } from './RekentrajectenCTA';
+import { scrollToElement } from '@/lib/scroll';
 
 export function RekentrajectenComparison() {
-  const locale = useLocale();
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
   const t = useTranslations('mbo.rekentrajecten');
   const [showDetails, setShowDetails] = useState(false);
 
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const handleScrollToContact = () => scrollToElement('contact');
 
   return (
     <section className="relative py-32 overflow-hidden">
@@ -54,7 +53,7 @@ export function RekentrajectenComparison() {
               course={course}
               index={index}
               language={language}
-              onSelect={scrollToContact}
+              onSelect={handleScrollToContact}
             />
           ))}
         </div>
@@ -91,7 +90,7 @@ export function RekentrajectenComparison() {
           )}
         </AnimatePresence>
 
-        <RekentrajectenCTA onStart={scrollToContact} />
+        <RekentrajectenCTA onStart={handleScrollToContact} />
       </div>
     </section>
   );

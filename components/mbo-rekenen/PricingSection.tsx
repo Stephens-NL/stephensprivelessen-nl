@@ -1,19 +1,16 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import { RekentrajectenComparison } from './RekentrajectenComparison';
 import { MessageCircle, Phone, Calendar } from 'lucide-react';
+import { inViewFadeUp } from '@/lib/animations';
+import { scrollToElement } from '@/lib/scroll';
 
 export function PricingSection() {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('mbo');
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const language = useLanguage();
+  const t = useTranslations('mbo');
 
   const contactMethods = [
     {
@@ -42,10 +39,7 @@ export function PricingSection() {
       <section className="py-20 bg-[var(--cream)]">
         <div className="container mx-auto px-4 max-w-6xl">
           <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            {...inViewFadeUp}
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">
@@ -95,7 +89,7 @@ export function PricingSection() {
                     transition={{ delay: index * 0.1, duration: 0.6 }}
                     viewport={{ once: true }}
                     className="bg-[var(--cream)] rounded-xl border border-[var(--border-warm)] p-6 hover:shadow-lg transition-all duration-300 group cursor-pointer"
-                    onClick={scrollToContact}
+                    onClick={() => scrollToElement('contact')}
                   >
                     <div className="inline-flex items-center justify-center w-12 h-12 bg-[var(--cream-dark)] rounded-xl mb-4 group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300">
                       <method.icon className="w-6 h-6" />

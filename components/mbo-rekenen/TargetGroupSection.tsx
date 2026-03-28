@@ -1,9 +1,11 @@
 'use client';
 
 import React from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import { GraduationCap, Briefcase, Book, Calculator } from 'lucide-react';
+import { inViewFadeUp } from '@/lib/animations';
 
 const targetGroups = [
   {
@@ -53,18 +55,14 @@ const targetGroups = [
 ];
 
 export function TargetGroupSection() {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('mbo');
+  const language = useLanguage();
+  const t = useTranslations('mbo');
 
   return (
     <section className="py-20 bg-[var(--cream-dark)]">
       <div className="container mx-auto px-4 max-w-6xl">
         <m.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          {...inViewFadeUp}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-display font-light text-[var(--ink)] mb-6 tracking-tight">

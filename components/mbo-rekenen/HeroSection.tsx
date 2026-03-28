@@ -1,18 +1,15 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import { ArrowRight, Calculator, TrendingUp, Users } from 'lucide-react';
+import { staggeredFadeInUp } from '@/lib/animations';
+import { scrollToElement } from '@/lib/scroll';
 
 export function HeroSection() {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('mbo');
-
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    element?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const language = useLanguage();
+  const t = useTranslations('mbo');
 
   const stats = [
     {
@@ -78,7 +75,7 @@ export function HeroSection() {
               <m.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={scrollToContact}
+                onClick={() => scrollToElement('contact')}
                 className="group bg-[var(--ink)] text-[var(--cream)] px-8 py-4 rounded-xl text-lg font-medium hover:bg-[var(--ink-light)] transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
               >
                 {t('form.startToday')}
@@ -109,9 +106,7 @@ export function HeroSection() {
             {stats.map((stat, index) => (
               <m.div
                 key={stat.label?.[language] ?? stat.value ?? index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
+                {...staggeredFadeInUp(index, 0.6)}
                 className="bg-[var(--cream)] rounded-2xl border border-[var(--border-warm)] p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
               >
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-[var(--cream-dark)] rounded-xl mb-4 group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300">
