@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from '@/i18n/navigation';
 import { m } from 'framer-motion';
+import { viewportOnce } from '@/lib/animations';
 
 const InternalLinks: React.FC = () => {
   const subjectLinks = [
@@ -23,7 +24,7 @@ const InternalLinks: React.FC = () => {
           className="text-center mb-12 lg:mb-16"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={viewportOnce}
         >
           <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber)] mb-4">
             Bijles in Amsterdam
@@ -43,7 +44,7 @@ const InternalLinks: React.FC = () => {
                   key={link.href}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={viewportOnce}
                   transition={{ delay: index * 0.05 }}
                 >
                   <Link
@@ -73,7 +74,7 @@ const InternalLinks: React.FC = () => {
                   key={link.href}
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={viewportOnce}
                   transition={{ delay: index * 0.05 }}
                 >
                   <Link

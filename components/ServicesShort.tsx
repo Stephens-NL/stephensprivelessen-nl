@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { viewportOnce } from '@/lib/animations';
 import Image from 'next/image';
 
 // Service icon imports
@@ -25,7 +26,7 @@ const ServicesShort: React.FC = () => {
             className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber)] mb-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={viewportOnce}
           >
             {t('ourServices')}
           </m.p>
@@ -33,7 +34,7 @@ const ServicesShort: React.FC = () => {
             className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[var(--ink)] leading-tight"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={viewportOnce}
             transition={{ delay: 0.1 }}
           >
             {t('whatWeOffer')}
@@ -48,7 +49,7 @@ const ServicesShort: React.FC = () => {
               className="group bg-[var(--cream)] p-8 rounded-xl border border-[var(--border-warm)] hover:border-[var(--amber)]/30 transition-all duration-300 cursor-pointer hover:shadow-lg hover:shadow-black/5"
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={viewportOnce}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => setModalIndex(index)}
             >

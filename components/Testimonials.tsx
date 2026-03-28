@@ -3,6 +3,7 @@
 import React from 'react'
 import { m } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { viewportOnce } from '@/lib/animations';
 import Testimonial from './Testimonial'
 
 const Testimonials = () => {
@@ -13,7 +14,7 @@ const Testimonials = () => {
         <section className="py-16 sm:py-20 lg:py-28 bg-[var(--ink)] relative overflow-hidden">
             {/* Subtle pattern */}
             <div className="absolute inset-0 opacity-[0.03]" style={{
-                backgroundImage: `radial-gradient(circle at 1px 1px, #FAF7F2 1px, transparent 0)`,
+                backgroundImage: `radial-gradient(circle at 1px 1px, var(--cream) 1px, transparent 0)`,
                 backgroundSize: '48px 48px',
             }} />
 
@@ -22,7 +23,7 @@ const Testimonials = () => {
                     className="text-center mb-12 lg:mb-16"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
+                    viewport={viewportOnce}
                 >
                     <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber)] mb-4">
                         {t('testimonials.label')}
@@ -39,7 +40,7 @@ const Testimonials = () => {
                             className="relative p-8 rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm"
                             initial={{ opacity: 0, y: 25 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={viewportOnce}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                         >
                             {/* Quote mark */}
