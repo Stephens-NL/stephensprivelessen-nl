@@ -1,11 +1,10 @@
 import { WelcomeScreenData } from '../../data';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import React from 'react'
 
 const WelcomeScreen: React.FC<{ data: WelcomeScreenData; onContinue: () => void }> = ({ data, onContinue }) => {
-    const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
 
     return (
         <m.div

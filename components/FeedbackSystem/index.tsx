@@ -1,7 +1,9 @@
 import React, { useCallback, useReducer } from 'react';
 import useSWR from 'swr';
 import { m, AnimatePresence, PanInfo } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
+import { safeFetcher } from '@/lib/fetchers';
 import { FeedbackForm, FeedbackFormDataImportProps, PersonalIntermezzo, QuestionGroup } from '../../data';
 
 import FadeInText from './FadeInText';
@@ -132,19 +134,12 @@ const FeedbackContent: React.FC<FeedbackContentProps> = ({
   return null;
 };
 
-const feedbackFetcher = (url: string) =>
-  fetch(url).then((res) => {
-    if (!res.ok) throw new Error('Failed to fetch data');
-    return res.json();
-  });
-
 export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion: FeedbackForm }> = ({ longVersion, shortVersion }) => {
   const [state, dispatch] = useReducer(formReducer, initialFormState);
   const { currentStep, currentQuestionIndex, formData, selectedForm, isQuestionAnswered, showSummary, direction, isLastStep, showFarewell, contentHeight } = state;
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
     const t = useTranslations('feedback');
-  const { data: feedbackFormData, isLoading: loading, error: swrError } = useSWR<FeedbackFormDataImportProps>('/api/feedback', feedbackFetcher);
+  const { data: feedbackFormData, isLoading: loading, error: swrError } = useSWR<FeedbackFormDataImportProps>('/api/feedback', safeFetcher);
   const error = swrError ?? null;
 
   const nextStep = useCallback(() => {

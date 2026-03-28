@@ -1,12 +1,11 @@
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { Clock, ClipboardList } from 'lucide-react';
 import { FormTypeSelectorProps, feedbackFormData } from '../../data';
 
 const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType }) => {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
 
   const formTypes = {
     short: {

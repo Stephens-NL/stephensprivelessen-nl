@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import VakkenSelector from './VakkenSelector';
 import CustomRadio from './CustomRadio';
 import RatingComponent from './RatingComponent';
@@ -32,8 +32,7 @@ export function QuestionInput({
   handleOptionChange,
   handleVakkenChange,
 }: QuestionInputProps) {
-  const locale = useLocale();
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
 
   switch (question.type) {
     case 'vakkenSelector':

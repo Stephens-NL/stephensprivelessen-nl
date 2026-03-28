@@ -1,11 +1,10 @@
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import React from 'react'
 import { feedbackFormData } from '../../data';
 
 const FarewellScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-    const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
 
     return (
         <m.div
