@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
-import { FiX, FiRotateCcw } from 'react-icons/fi';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
+import { FiX } from 'react-icons/fi';
 
 export interface FilterOption {
   id: string;
@@ -75,9 +76,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
   activeFilter,
   onFilterChange,
 }) => {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('workshops');
+  const language = useLanguage();
   return (
     <div className="mb-6">
       <h3 className="text-sm font-medium text-[var(--muted-text)] mb-3">{title}</h3>
@@ -88,7 +87,7 @@ export const FilterSection: React.FC<FilterSectionProps> = ({
             isActive={activeFilter === option.id}
             onClick={() => onFilterChange(option.id)}
           >
-            {locale === 'nl' ? option.labelNL : option.labelEN}
+            {language === 'NL' ? option.labelNL : option.labelEN}
           </FilterButton>
         ))}
       </div>
@@ -103,9 +102,7 @@ interface MobileFilterDrawerProps {
 }
 
 export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({ isOpen, onClose, children }) => {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('workshops');
+  const t = useTranslations('workshops');
   return (
     <AnimatePresence>
       {isOpen && (

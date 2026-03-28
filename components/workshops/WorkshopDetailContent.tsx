@@ -2,18 +2,17 @@
 
 import React, { useRef } from 'react';
 import { m } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
 import type { Workshop, Language } from '@/data/types';
+import { useLanguage } from '@/hooks/useLanguage';
 
 interface WorkshopDetailContentProps {
     workshop: Workshop;
 }
 
 export default function WorkshopDetailContent({ workshop }: WorkshopDetailContentProps) {
-    const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+    const language = useLanguage();
     const t = useTranslations('workshops');
     const router = useRouter();
     const contactSectionRef = useRef<HTMLDivElement>(null);
@@ -72,14 +71,14 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                                 </li>
                                 <li className="flex items-center text-[var(--warm-text)]">
                                     <span className="font-medium mr-2">{t('form.level')}</span>
-                                    {(locale === 'nl' ? workshop.level === 'beginner' ? 'Beginner' :
+                                    {(language === 'NL' ? workshop.level === 'beginner' ? 'Beginner' :
                                             workshop.level === 'intermediate' ? 'Gevorderd' :
                                             workshop.level === 'advanced' ? 'Vergevorderd' :
                                             workshop.level === 'professional' ? 'Professional' : 'Alle Niveaus' : workshop.level.charAt(0).toUpperCase() + workshop.level.slice(1))}
                                 </li>
                                 <li className="flex items-center text-[var(--warm-text)]">
                                     <span className="font-medium mr-2">{t('form.format')}</span>
-                                    {(locale === 'nl' ? workshop.format === 'interactive' ? 'Interactief' :
+                                    {(language === 'NL' ? workshop.format === 'interactive' ? 'Interactief' :
                                             workshop.format === 'hands-on' ? 'Praktisch' :
                                             workshop.format === 'technical' ? 'Technisch' :
                                             workshop.format === 'creative' ? 'Creatief' :
