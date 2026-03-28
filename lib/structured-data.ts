@@ -14,6 +14,7 @@ export interface StructuredDataProps {
   educationalProgramMode?: string;
   timeToComplete?: string;
   category: string[];
+  priceValidUntil?: boolean;
 }
 
 export function generateStructuredData({
@@ -27,6 +28,7 @@ export function generateStructuredData({
   educationalProgramMode,
   timeToComplete,
   category,
+  priceValidUntil = false,
 }: StructuredDataProps) {
   const base: any = {
     "@context": "https://schema.org",
@@ -48,70 +50,9 @@ export function generateStructuredData({
       "@type": "Offer",
       "price": price,
       "priceCurrency": priceCurrency,
-    };
-  }
-  return base;
-}
-
-export function generateCampusStructuredData({
-  title,
-  description,
-  price,
-  priceCurrency,
-  provider,
-  areaServed,
-  category,
-}: StructuredDataProps) {
-  const base: any = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOccupationalProgram",
-    "name": title,
-    "description": description,
-    "provider": {
-      "@type": provider.type,
-      "name": provider.name,
-    },
-    "occupationalCategory": category,
-    "areaServed": areaServed,
-  };
-  if (price !== undefined && priceCurrency) {
-    base.offers = {
-      "@type": "Offer",
-      "price": price,
-      "priceCurrency": priceCurrency,
-      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-    };
-  }
-  return base;
-}
-
-export function generateSubjectStructuredData({
-  title,
-  description,
-  price,
-  priceCurrency,
-  provider,
-  areaServed,
-  category,
-}: StructuredDataProps) {
-  const base: any = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOccupationalProgram",
-    "name": title,
-    "description": description,
-    "provider": {
-      "@type": provider.type,
-      "name": provider.name,
-    },
-    "occupationalCategory": category,
-    "areaServed": areaServed,
-  };
-  if (price !== undefined && priceCurrency) {
-    base.offers = {
-      "@type": "Offer",
-      "price": price,
-      "priceCurrency": priceCurrency,
-      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
+      ...(priceValidUntil && {
+        "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
+      }),
     };
   }
   return base;
@@ -150,52 +91,3 @@ export const websiteSchema = {
     "query-input": "required name=search_term_string"
   }
 };
-
-export function generateServiceStructuredData({
-  title,
-  description,
-  price,
-  priceCurrency,
-  provider,
-  areaServed,
-  serviceType,
-  category,
-}: {
-  title: string;
-  description: string;
-  price?: number;
-  priceCurrency?: string;
-  provider: {
-    name: string;
-    type: string;
-  };
-  areaServed: string;
-  serviceType: string;
-  category: string[];
-}) {
-  const base: any = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": title,
-    "description": description,
-    "provider": {
-      "@type": provider.type,
-      "name": provider.name,
-    },
-    "serviceType": serviceType,
-    "areaServed": {
-      "@type": "City",
-      "name": areaServed
-    },
-    "category": category,
-  };
-  if (price !== undefined && priceCurrency) {
-    base.offers = {
-      "@type": "Offer",
-      "price": price,
-      "priceCurrency": priceCurrency,
-      "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
-    };
-  }
-  return base;
-} 

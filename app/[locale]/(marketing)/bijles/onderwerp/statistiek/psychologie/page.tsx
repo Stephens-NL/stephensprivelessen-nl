@@ -2,7 +2,7 @@ import Script from "next/script";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { generateSubjectStructuredData } from "@/lib/structured-data";
+import { generateStructuredData } from "@/lib/structured-data";
 import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const structuredData = generateSubjectStructuredData({
+const structuredData = generateStructuredData({
   title: "Statistiek Bijles voor Psychologie Studenten | SPSS & Data Analyse",
   description: "Professionele statistiek bijles voor psychologie studenten. SPSS begeleiding, statistische analyses en scriptie ondersteuning.",
   price: 240, // Vanaf €240 (VO online 4 uur, 1 leerling) — laagste standaardtarief
@@ -59,6 +59,7 @@ const structuredData = generateSubjectStructuredData({
   },
   areaServed: "Amsterdam",
   category: ["Psychology", "Social Sciences", "Research Methods"],
+  priceValidUntil: true,
 });
 
 export default async function StatistiekPsychologiePage() {

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
-import { generateCampusStructuredData } from "@/lib/structured-data";
+import { generateStructuredData } from "@/lib/structured-data";
 import { getLocale } from "next-intl/server";
 
 export const revalidate = 3600; // Revalidate every hour
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const structuredData = generateCampusStructuredData({
+const structuredData = generateStructuredData({
       title: "Bijles voor UvA Studenten | Online & Science Park",
   description: "Bijles voor UvA studenten. Statistiek, calculus en programmeren online of op Science Park.",
   provider: {
@@ -57,6 +57,7 @@ const structuredData = generateCampusStructuredData({
   },
   areaServed: "Amsterdam UvA Science Park, Online",
   category: ["University Tutoring", "STEM Tutoring", "Social Sciences Tutoring"],
+  priceValidUntil: true,
 });
 
 export default async function UVABijlesPage() {

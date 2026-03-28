@@ -1,8 +1,90 @@
 import { WeekendLocation } from './types';
 import { config } from './config';
 
+const baseWeekendLocation = {
+  pricing: {
+    regularPrice: {
+      label: {
+        EN: 'Regular Price',
+        NL: 'Normale Prijs'
+      },
+      amount: 60,
+      perHour: {
+        EN: 'per hour',
+        NL: 'per uur'
+      }
+    },
+    communityRate: {
+      amount: 30,
+      perHour: {
+        EN: 'per hour',
+        NL: 'per uur'
+      },
+      savings: {
+        EN: 'SAVE €30 EVERY HOUR!',
+        NL: 'BESPAAR €30 PER UUR!'
+      }
+    }
+  },
+  features: {
+    location: {
+      title: {
+        EN: 'Location',
+        NL: 'Locatie'
+      },
+      text: {
+        EN: 'At Douwe Egberts (Dubbelink 2) or home tutoring in Gein',
+        NL: 'Bij Douwe Egberts (Dubbelink 2) of bijles aan huis in Gein'
+      }
+    },
+    availability: {
+      title: {
+        EN: 'Availability',
+        NL: 'Beschikbaarheid'
+      },
+      text: {
+        EN: 'Saturdays and Sundays, flexible hours',
+        NL: 'Zaterdag en zondag, flexibele tijden'
+      }
+    },
+    extras: {
+      title: {
+        EN: 'Extras',
+        NL: 'Extra\'s'
+      }
+    }
+  },
+  cta: {
+    trial: {
+      EN: 'Book Free Trial',
+      NL: 'Boek Gratis Proefles'
+    },
+    whatsapp: {
+      EN: 'WhatsApp Us',
+      NL: 'WhatsApp Ons'
+    }
+  },
+  location: {
+    name: {
+      EN: 'Douwe Egberts Café',
+      NL: 'Douwe Egberts Café'
+    },
+    description: {
+      EN: 'Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.',
+      NL: 'Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.'
+    },
+    address: `${config.business.weekendOffice.address}, ${config.business.weekendOffice.postalCode} ${config.business.weekendOffice.city}`,
+    mapUrl: 'https://maps.app.goo.gl/nMBBA9MAaKhDrPmSA?g_st=iwb',
+    hours: {
+      EN: 'Open daily: 08:00 - 22:00',
+      NL: 'Dagelijks geopend: 08:00 - 22:00'
+    }
+  }
+} as const;
+
 export const weekendLocations: WeekendLocation[] = [
   {
+    ...baseWeekendLocation,
     id: 'boa-me-na-menboa-mo',
     title: {
       EN: 'Boa me na menboa mo',
@@ -37,73 +119,23 @@ export const weekendLocations: WeekendLocation[] = [
       }
     },
     pricing: {
-      regularPrice: {
-        label: {
-          EN: 'Regular Price',
-          NL: 'Normale Prijs'
-        },
-        amount: 60,
-        perHour: {
-          EN: 'per hour',
-          NL: 'per uur'
-        }
-      },
+      ...baseWeekendLocation.pricing,
       communityRate: {
+        ...baseWeekendLocation.pricing.communityRate,
         label: {
           EN: 'Community Rate',
           NL: 'Gemeenschapstarief'
-        },
-        amount: 30,
-        perHour: {
-          EN: 'per hour',
-          NL: 'per uur'
-        },
-        savings: {
-          EN: 'SAVE €30 EVERY HOUR!',
-          NL: 'BESPAAR €30 PER UUR!'
         }
       }
     },
     features: {
-      location: {
-        title: {
-          EN: 'Location',
-          NL: 'Locatie'
-        },
-        text: {
-          EN: 'At Douwe Egberts (Dubbelink 2) or home tutoring in Gein',
-          NL: 'Bij Douwe Egberts (Dubbelink 2) of bijles aan huis in Gein'
-        }
-      },
-      availability: {
-        title: {
-          EN: 'Availability',
-          NL: 'Beschikbaarheid'
-        },
-        text: {
-          EN: 'Saturdays and Sundays, flexible hours',
-          NL: 'Zaterdag en zondag, flexibele tijden'
-        }
-      },
+      ...baseWeekendLocation.features,
       extras: {
-        title: {
-          EN: 'Extras',
-          NL: 'Extra\'s'
-        },
+        ...baseWeekendLocation.features.extras,
         text: {
           EN: 'Free 30-minute trial lesson - Sɔhwɛ adesua!',
           NL: 'Gratis proefles van 30 minuten - Sɔhwɛ adesua!'
         }
-      }
-    },
-    cta: {
-      trial: {
-        EN: 'Book Free Trial',
-        NL: 'Boek Gratis Proefles'
-      },
-      whatsapp: {
-        EN: 'WhatsApp Us',
-        NL: 'WhatsApp Ons'
       }
     },
     programOffers: {
@@ -153,28 +185,13 @@ export const weekendLocations: WeekendLocation[] = [
         }
       }
     },
-    location: {
-      name: {
-        EN: 'Douwe Egberts Café',
-        NL: 'Douwe Egberts Café'
-      },
-      description: {
-        EN: 'Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.',
-        NL: 'Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.'
-      },
-      address: `${config.business.weekendOffice.address}, ${config.business.weekendOffice.postalCode} ${config.business.weekendOffice.city}`,
-      mapUrl: 'https://maps.app.goo.gl/nMBBA9MAaKhDrPmSA?g_st=iwb',
-      hours: {
-        EN: 'Open daily: 08:00 - 22:00',
-        NL: 'Dagelijks geopend: 08:00 - 22:00'
-      }
-    },
     footer: {
       EN: 'Yɛbɛyɛ bi akɔ!',
       NL: 'Yɛbɛyɛ bi akɔ!'
     }
   },
   {
+    ...baseWeekendLocation,
     id: 'zuidoost-weekend',
     title: {
       EN: 'Weekend Tutoring Zuidoost',
@@ -199,73 +216,23 @@ export const weekendLocations: WeekendLocation[] = [
       }
     },
     pricing: {
-      regularPrice: {
-        label: {
-          EN: 'Regular Price',
-          NL: 'Normale Prijs'
-        },
-        amount: 60,
-        perHour: {
-          EN: 'per hour',
-          NL: 'per uur'
-        }
-      },
+      ...baseWeekendLocation.pricing,
       communityRate: {
+        ...baseWeekendLocation.pricing.communityRate,
         label: {
           EN: 'Weekend Rate',
           NL: 'Weekend Tarief'
-        },
-        amount: 30,
-        perHour: {
-          EN: 'per hour',
-          NL: 'per uur'
-        },
-        savings: {
-          EN: 'SAVE €30 EVERY HOUR!',
-          NL: 'BESPAAR €30 PER UUR!'
         }
       }
     },
     features: {
-      location: {
-        title: {
-          EN: 'Location',
-          NL: 'Locatie'
-        },
-        text: {
-          EN: 'At Douwe Egberts (Dubbelink 2) or home tutoring in Gein',
-          NL: 'Bij Douwe Egberts (Dubbelink 2) of bijles aan huis in Gein'
-        }
-      },
-      availability: {
-        title: {
-          EN: 'Availability',
-          NL: 'Beschikbaarheid'
-        },
-        text: {
-          EN: 'Saturdays and Sundays, flexible hours',
-          NL: 'Zaterdag en zondag, flexibele tijden'
-        }
-      },
+      ...baseWeekendLocation.features,
       extras: {
-        title: {
-          EN: 'Extras',
-          NL: 'Extra\'s'
-        },
+        ...baseWeekendLocation.features.extras,
         text: {
           EN: 'Free 30-minute trial lesson',
           NL: 'Gratis proefles van 30 minuten'
         }
-      }
-    },
-    cta: {
-      trial: {
-        EN: 'Book Free Trial',
-        NL: 'Boek Gratis Proefles'
-      },
-      whatsapp: {
-        EN: 'WhatsApp Us',
-        NL: 'WhatsApp Ons'
       }
     },
     programOffers: {
@@ -312,25 +279,9 @@ export const weekendLocations: WeekendLocation[] = [
         }
       }
     },
-    location: {
-      name: {
-        EN: 'Douwe Egberts Café',
-        NL: 'Douwe Egberts Café'
-      },
-      description: {
-        EN: 'Centrally located in Amsterdam Zuidoost, right at Bijlmer Arena metro station. Easily accessible by public transport and car.',
-        NL: 'Centraal gelegen in Amsterdam Zuidoost, direct bij metrostation Bijlmer Arena. Makkelijk bereikbaar met OV en auto.'
-      },
-      address: `${config.business.weekendOffice.address}, ${config.business.weekendOffice.postalCode} ${config.business.weekendOffice.city}`,
-      mapUrl: 'https://maps.app.goo.gl/nMBBA9MAaKhDrPmSA?g_st=iwb',
-      hours: {
-        EN: 'Open daily: 08:00 - 22:00',
-        NL: 'Dagelijks geopend: 08:00 - 22:00'
-      }
-    },
     footer: {
       EN: 'Let\'s learn together!',
       NL: 'Samen leren we meer!'
     }
   }
-]; 
+];
