@@ -1,5 +1,11 @@
 import { Bilingual } from './types';
 import { config } from './config';
+import {
+    hboWoOnlinePackages,
+    hboWoPhysicalPackages,
+    voOnlinePackages,
+    voPhysicalPackages,
+} from './pricingData';
 
 export interface SubjectNote {
     subject: string;
@@ -23,87 +29,70 @@ export interface GroupPricingTier {
     }[];
 }
 
-// Pricingtiershoeven alleen 4-uurs pakketten te tonen — losse uren worden niet meer aangeboden.
+// --- Helpers to derive display tiers from pricingData (single source of truth) ---
+
+type PackageEntry = { students: number; packagePrice: number; pricePerPerson: number };
+
+/** Format a single pricing tier entry for the pricingTiers display. */
+function formatTierPrice(pkg: PackageEntry, studentLabel: string, studentsLabel: string): { duration: string; price: string } {
+    const label = pkg.students === 1 ? studentLabel : studentsLabel;
+    const price = pkg.students === 1
+        ? `\u20AC${pkg.packagePrice}`
+        : `\u20AC${pkg.packagePrice} (\u20AC${pkg.pricePerPerson} p.p.)`;
+    return { duration: `4 uur \u00B7 ${pkg.students} ${label}`, price };
+}
+
+function buildPricingTier(level: string, packages: PackageEntry[], studentLabel: string, studentsLabel: string): PricingTier {
+    return {
+        level,
+        prices: packages.map(pkg => formatTierPrice(pkg, studentLabel, studentsLabel)),
+    };
+}
+
+/** Build a group pricing tier showing per-person prices, with "—" for unavailable slots. */
+function buildGroupPricingTier(level: string, packages: PackageEntry[], maxStudents: number): GroupPricingTier {
+    return {
+        level,
+        prices: Array.from({ length: maxStudents }, (_, i) => {
+            const pkg = packages.find(p => p.students === i + 1);
+            return {
+                students: i + 1,
+                duration: "4 uur",
+                price: pkg ? `\u20AC${pkg.pricePerPerson}` : "\u2014",
+            };
+        }),
+    };
+}
+
+function buildEmptyGroupTier(level: string, studentCount: number): GroupPricingTier {
+    return {
+        level,
+        prices: Array.from({ length: studentCount }, (_, i) => ({
+            students: i + 1,
+            duration: "4 uur",
+            price: "\u2014",
+        })),
+    };
+}
+
+// Pricing tiers — derived from pricingData.ts package arrays.
+// HBO/WO tiers show up to 3 students; VO tiers show up to 4 students.
 export const pricingTiers: PricingTier[] = [
-    {
-        level: "Hoger Onderwijs — Online",
-        prices: [
-            { duration: "4 uur · 1 student", price: "€360" },
-            { duration: "4 uur · 2 studenten", price: "€520 (€260 p.p.)" },
-            { duration: "4 uur · 3 studenten", price: "€660 (€220 p.p.)" },
-        ]
-    },
-    {
-        level: "Hoger Onderwijs — Fysiek",
-        prices: [
-            { duration: "4 uur · 1 student", price: "€450" },
-            { duration: "4 uur · 2 studenten", price: "€600 (€300 p.p.)" },
-            { duration: "4 uur · 3 studenten", price: "€780 (€260 p.p.)" },
-        ]
-    },
-    {
-        level: "Voortgezet Onderwijs — Online",
-        prices: [
-            { duration: "4 uur · 1 leerling", price: "€240" },
-            { duration: "4 uur · 2 leerlingen", price: "€320 (€160 p.p.)" },
-            { duration: "4 uur · 3 leerlingen", price: "€420 (€140 p.p.)" },
-            { duration: "4 uur · 4 leerlingen", price: "€520 (€130 p.p.)" },
-        ]
-    },
-    {
-        level: "Voortgezet Onderwijs — Fysiek",
-        prices: [
-            { duration: "4 uur · 1 leerling", price: "€300" },
-            { duration: "4 uur · 2 leerlingen", price: "€400 (€200 p.p.)" },
-            { duration: "4 uur · 3 leerlingen", price: "€525 (€175 p.p.)" },
-            { duration: "4 uur · 4 leerlingen", price: "€640 (€160 p.p.)" },
-        ]
-    }
+    buildPricingTier("Hoger Onderwijs \u2014 Online", hboWoOnlinePackages.slice(0, 3), "student", "studenten"),
+    buildPricingTier("Hoger Onderwijs \u2014 Fysiek", hboWoPhysicalPackages.slice(0, 3), "student", "studenten"),
+    buildPricingTier("Voortgezet Onderwijs \u2014 Online", voOnlinePackages, "leerling", "leerlingen"),
+    buildPricingTier("Voortgezet Onderwijs \u2014 Fysiek", voPhysicalPackages, "leerling", "leerlingen"),
 ];
 
-// Groepsprijzen zijn pakketprijzen per persoon voor 4-uurs pakketten.
-// Alleen pakketten worden aangeboden — geen losse sessies meer.
-// "Voortgezet Onderwijs (20-)" tabel gebruikt door ContactGroupPricingTable voor 'middelbaar'.
-// "Hoger Onderwijs" tabel gebruikt voor 'hoger'. Losse sessie kolom toont "—".
+// Group pricing tiers — derived from pricingData.ts package arrays.
+// "Losse sessie" tiers show "—" for all slots (no longer offered).
+// "4-uurs pakket" tiers show per-person prices from the online packages.
+// HBO/WO 4-student slot shows "—" (not offered for higher education).
 export const groupPricingTiers: GroupPricingTier[] = [
-    {
-        level: "Hoger Onderwijs",
-        prices: [
-            { students: 1, duration: "4 uur", price: "—" },
-            { students: 2, duration: "4 uur", price: "—" },
-            { students: 3, duration: "4 uur", price: "—" },
-            { students: 4, duration: "4 uur", price: "—" },
-        ]
-    },
-    {
-        // Online 4-uurs pakket — prijs per persoon
-        level: "Hoger Onderwijs 4-uurs pakket",
-        prices: [
-            { students: 1, duration: "4 uur", price: "€360" },
-            { students: 2, duration: "4 uur", price: "€260" },
-            { students: 3, duration: "4 uur", price: "€220" },
-            { students: 4, duration: "4 uur", price: "—" },
-        ]
-    },
-    {
-        level: "Voortgezet Onderwijs (20-)",
-        prices: [
-            { students: 1, duration: "4 uur", price: "—" },
-            { students: 2, duration: "4 uur", price: "—" },
-            { students: 3, duration: "4 uur", price: "—" },
-            { students: 4, duration: "4 uur", price: "—" },
-        ]
-    },
-    {
-        // Online 4-uurs pakket — prijs per persoon
-        level: "Voortgezet Onderwijs (20-) 4-uurs pakket",
-        prices: [
-            { students: 1, duration: "4 uur", price: "€240" },
-            { students: 2, duration: "4 uur", price: "€160" },
-            { students: 3, duration: "4 uur", price: "€140" },
-            { students: 4, duration: "4 uur", price: "€130" },
-        ]
-    }
+    buildEmptyGroupTier("Hoger Onderwijs", 4),
+    buildGroupPricingTier("Hoger Onderwijs 4-uurs pakket", hboWoOnlinePackages.slice(0, 3), 4),
+    buildEmptyGroupTier("Voortgezet Onderwijs (20-)", 4),
+    buildGroupPricingTier("Voortgezet Onderwijs (20-) 4-uurs pakket", voOnlinePackages, 4),
 ];
 
 export const subjectNotes: SubjectNote[] = [
