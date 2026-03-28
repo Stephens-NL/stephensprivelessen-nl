@@ -3,6 +3,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { m, AnimatePresence } from 'framer-motion';
 import { ChevronUp, Menu } from 'lucide-react';
+import { getOtherLocale } from '@/hooks/useLanguage';
 
 const navItems = [
     { href: '/' as const, key: 'home' },
@@ -46,7 +47,7 @@ const FloatingNavbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const t = useTranslations('common');
     const locale = useLocale();
-    const otherLocale = locale === 'nl' ? 'en' : 'nl';
+    const otherLocale = getOtherLocale(locale);
 
     const handleScroll = useCallback(() => {
         const currentScrollY = window.scrollY;

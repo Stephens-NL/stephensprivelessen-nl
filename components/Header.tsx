@@ -6,6 +6,7 @@ import { useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
 import { m, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
 import { FiMenu, FiX } from 'react-icons/fi'
+import { getOtherLocale } from '@/hooks/useLanguage'
 
 const navItems = [
     { href: '/privelessen' as const, key: 'privelessen' },
@@ -29,7 +30,7 @@ const Header = () => {
     const pathname = usePathname()
     const t = useTranslations('common')
     const locale = useLocale()
-    const otherLocale = locale === 'nl' ? 'en' : 'nl'
+    const otherLocale = getOtherLocale(locale)
 
     useMotionValueEvent(scrollYProgress, "change", (current) => {
         if (typeof current === "number") {
@@ -64,7 +65,7 @@ const Header = () => {
                         className="absolute inset-x-0 transition-all duration-500"
                         animate={{
                             height: scrolled ? '56px' : '72px',
-                            backgroundColor: scrolled ? 'rgba(13, 40, 24, 0.97)' : '#0D2818',
+                            backgroundColor: scrolled ? 'rgba(13, 40, 24, 0.97)' : 'var(--ink)',
                             backdropFilter: scrolled ? 'blur(12px)' : 'none',
                         }}
                     >
@@ -73,7 +74,7 @@ const Header = () => {
                                 {/* Logo */}
                                 <Link
                                     href="/"
-                                    className="font-display text-lg lg:text-xl font-semibold text-[#FAF7F2] tracking-tight"
+                                    className="font-display text-lg lg:text-xl font-semibold text-cream tracking-tight"
                                 >
                                     {t('siteTitle')}
                                 </Link>
@@ -86,8 +87,8 @@ const Header = () => {
                                             href={href}
                                             className={`px-3 py-1.5 text-sm font-medium transition-all duration-200 rounded-md whitespace-nowrap ${
                                                 pathname === href
-                                                    ? 'text-[#C9963B] bg-white/5'
-                                                    : 'text-[#FAF7F2]/70 hover:text-[#FAF7F2] hover:bg-white/5'
+                                                    ? 'text-amber bg-white/5'
+                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}
@@ -102,8 +103,8 @@ const Header = () => {
                                             href={href}
                                             className={`px-3 py-1.5 text-sm font-medium transition-all duration-200 rounded-md whitespace-nowrap ${
                                                 pathname === href
-                                                    ? 'text-[#C9963B] bg-white/5'
-                                                    : 'text-[#FAF7F2]/70 hover:text-[#FAF7F2] hover:bg-white/5'
+                                                    ? 'text-amber bg-white/5'
+                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}
@@ -116,7 +117,7 @@ const Header = () => {
                                     <Link
                                         href={pathname as any}
                                         locale={otherLocale}
-                                        className="px-3 py-1.5 text-sm font-medium text-[#C9963B] border border-[#C9963B]/30 rounded-md hover:bg-[#C9963B]/10 transition-all duration-200"
+                                        className="px-3 py-1.5 text-sm font-medium text-amber border border-amber/30 rounded-md hover:bg-amber/10 transition-all duration-200"
                                     >
                                         {locale === 'nl' ? 'English?' : 'Nederlands?'}
                                     </Link>
@@ -128,12 +129,12 @@ const Header = () => {
             </AnimatePresence>
 
             {/* Mobile Header */}
-            <header className="fixed top-0 w-full z-50 bg-[#0D2818] md:hidden">
+            <header className="fixed top-0 w-full z-50 bg-ink md:hidden">
                 <nav>
                     <div className="flex items-center justify-between h-14 px-4">
                         <Link
                             href="/"
-                            className="font-display text-base font-semibold text-[#FAF7F2] tracking-tight"
+                            className="font-display text-base font-semibold text-cream tracking-tight"
                         >
                             {t('siteTitle')}
                         </Link>
@@ -142,14 +143,14 @@ const Header = () => {
                             <Link
                                 href={pathname as any}
                                 locale={otherLocale}
-                                className="px-2 py-1 text-sm font-medium text-[#C9963B] border border-[#C9963B]/30 rounded"
+                                className="px-2 py-1 text-sm font-medium text-amber border border-amber/30 rounded"
                             >
                                 {otherLocale.toUpperCase()}
                             </Link>
 
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
-                                className="p-1.5 text-[#FAF7F2]"
+                                className="p-1.5 text-cream"
                             >
                                 {isOpen ? <FiX size={22} /> : <FiMenu size={22} />}
                             </button>
@@ -173,8 +174,8 @@ const Header = () => {
                                             onClick={closeMenu}
                                             className={`block px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${
                                                 pathname === href
-                                                    ? 'text-[#C9963B] bg-white/5'
-                                                    : 'text-[#FAF7F2]/70 hover:text-[#FAF7F2] hover:bg-white/5'
+                                                    ? 'text-amber bg-white/5'
+                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}
@@ -188,8 +189,8 @@ const Header = () => {
                                             onClick={closeMenu}
                                             className={`block px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${
                                                 pathname === href
-                                                    ? 'text-[#C9963B] bg-white/5'
-                                                    : 'text-[#FAF7F2]/70 hover:text-[#FAF7F2] hover:bg-white/5'
+                                                    ? 'text-amber bg-white/5'
+                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}

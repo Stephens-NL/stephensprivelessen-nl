@@ -2,11 +2,12 @@
 
 import { useLocale } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
+import { getOtherLocale } from '@/hooks/useLanguage';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
-  const otherLocale = locale === 'nl' ? 'en' : 'nl';
+  const otherLocale = getOtherLocale(locale);
 
   return (
     <Link
