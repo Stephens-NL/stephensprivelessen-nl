@@ -1,6 +1,6 @@
 import React from 'react';
 import { MultipleChoiceQuestion } from '../../../data';
-import { useLocale } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 
 type Props = {
   question: MultipleChoiceQuestion;
@@ -11,8 +11,7 @@ type Props = {
 };
 
 const MultipleChoice: React.FC<Props> = ({ question, value, onChange, isDarkMode }) => {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
   return (
     <div className={`mb-4 ${isDarkMode ? 'text-white' : 'text-black'}`}>
       <label htmlFor={String(question.id)} className="block mb-2">{question.label[language]}</label>

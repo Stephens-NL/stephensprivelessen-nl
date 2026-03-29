@@ -3,7 +3,7 @@
 import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 
 interface NotesPreviewModalProps {
@@ -15,7 +15,6 @@ interface NotesPreviewModalProps {
 }
 
 const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial }: NotesPreviewModalProps) => {
-    const locale = useLocale();
     const language = useLanguage();
     const t = useTranslations('contact');
 
@@ -40,7 +39,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                     <div className="p-6 pb-4 flex-shrink-0 flex items-center justify-between border-b border-[var(--ink-light)]">
                         <div>
                             <h3 className="text-xl font-semibold text-[var(--amber)]">
-                                {locale === 'nl' ? `Voorbeeldnotities: ${subject}` : `Example Notes: ${subject}`}
+                                {language === 'NL' ? `Voorbeeldnotities: ${subject}` : `Example Notes: ${subject}`}
                             </h3>
                             <p className="text-white/80 text-sm mt-1">
                                 {t('form.theseAreExampleNotesToDemonstrateTeachingStyleAndM')}

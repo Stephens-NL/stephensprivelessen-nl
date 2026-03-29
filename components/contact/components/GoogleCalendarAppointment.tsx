@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 
 interface GoogleCalendarAppointmentProps {
@@ -20,7 +20,6 @@ const GoogleCalendarAppointment = ({
     studentName,
     studentEmail 
 }: GoogleCalendarAppointmentProps) => {
-    const locale = useLocale();
     const language = useLanguage();
     const t = useTranslations('contact');
 
@@ -53,10 +52,10 @@ const GoogleCalendarAppointment = ({
             >
                 <div className="p-4 border-b border-[var(--ink-light)] flex justify-between items-center">
                     <h2 className="text-xl font-semibold text-[var(--amber)]">
-                        {(locale === 'nl' ? appointmentType === 'trial'
+                        {(language === 'NL' ? appointmentType === 'trial'
                                 ? "Plan Proefles"
-                                : "Plan Reguliere Les" : appointmentType === 'trial' 
-                                ? "Schedule Trial Lesson" 
+                                : "Plan Reguliere Les" : appointmentType === 'trial'
+                                ? "Schedule Trial Lesson"
                                 : "Schedule Regular Lesson")}
                     </h2>
                     <button
