@@ -2,9 +2,6 @@
 'use client';
 
 import React from 'react';
-import PricingTable from '@/components/PricingTable';
-import LocationPricingTable from '@/components/LocationPricingTable';
-import { prices } from '@/data';
 import { useTranslations } from 'next-intl';
 
 const PricingPage = () => {
@@ -13,36 +10,9 @@ const PricingPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)] py-12 px-6 sm:px-8 lg:px-12">
       <div className="max-w-6xl mx-auto bg-[var(--ink)] p-8 rounded-lg shadow-sm border border-[var(--sage)]/20">
-        {/* Header */}
         <h1 className="text-4xl font-display font-bold text-center text-[var(--amber)] mb-12">
           {t('pricing.title')}
         </h1>
-
-        {/* Individual Pricing */}
-        <PricingTable
-          pricing={prices.higher}
-          title={t('infoSection.individualSessions')}
-        />
-        <PricingTable
-          pricing={prices.secondary20Plus}
-          title={t('infoSection.groupSessions')}
-        />
-        <PricingTable
-          pricing={prices.secondary20Minus}
-          title={t('infoSection.thesisSupervision')}
-        />
-
-        {/* Flexibility Premium */}
-        <LocationPricingTable
-          pricing={prices.flexibilityPremium}
-          title={t('infoSection.rates')}
-        />
-
-        {/* Travel Costs */}
-        <LocationPricingTable
-          pricing={prices.travelCosts}
-          title={t('infoSection.ratesNote')}
-        />
       </div>
     </div>
   );

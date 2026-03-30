@@ -1,8 +1,6 @@
-// src/data/prices.ts
+// Package-based pricing data (4-hour packages are the only offered format)
 
-import { config } from './config';
-
-// Nieuwe uitgebreide rekentrajecten data
+// Rekentrajecten comparison data
 export const rekentrajectenComparison = {
   title: {
     NL: "Totaaloverzicht – Rekentrajecten",
@@ -164,35 +162,6 @@ export const spoedPrices = {
   voPhysical: 180,
   hboWoOnline: 180,
   hboWoPhysical: 260,
-};
-
-// Legacy shape kept for PricingPage.tsx (duration in hours, price = pakketprijs 1 student)
-// Business only sells 4hr packages — 1-student package price shown per tier.
-// Prices derived from package arrays above (single source of truth).
-export const prices = {
-  higher: [
-    { duration: 4, price: hboWoOnlinePackages[0].packagePrice },
-  ],
-  secondary20Plus: [
-    { duration: 4, price: voOnlinePackages[0].packagePrice },
-  ],
-  secondary20Minus: [
-    { duration: 4, price: voPhysicalPackages[0].packagePrice },
-  ],
-  flexibilityPremium: [
-    { duration: "Pakket van 2 lessen", price: `€${config.pricing.flexibilityPremium.twoLessons}` },
-    { duration: "Pakket van 4 lessen", price: `€${config.pricing.flexibilityPremium.fourLessons}` },
-    { duration: "Pakket van 6 lessen of meer", price: `€${config.pricing.flexibilityPremium.sixOrMoreLessons}` },
-  ],
-  travelCosts: [
-    { duration: "Science Park", price: `€${config.pricing.travelCosts.sciencePark}` },
-    { duration: "Uni (buiten Science Park)", price: `€${config.pricing.travelCosts.vuUva}` },
-    { duration: "Aan huis (Amsterdam e.o.)", price: `€${config.pricing.travelCosts.homeAmsterdam}` },
-  ],
-  lastMinuteSurcharges: [
-    { timeFrame: "Minder dan 24 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan24Hours },
-    { timeFrame: "Minder dan 12 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan12Hours },
-  ],
 };
 
 // Scriptiebegeleiding tarieven (uurtarief — apart product, niet pakketgebaseerd)
