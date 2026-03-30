@@ -128,7 +128,6 @@ export const rekentrajectenComparison = {
 // Package-based pricing (4-uurs pakketten — enige aangeboden vorm)
 // VO = Voortgezet Onderwijs (middelbare school)
 // HBO/WO = Hoger onderwijs
-// Weekend HvA = Weekend programma (50% van VO-tarief)
 
 export const voOnlinePackages = [
   { students: 1, packagePrice: 240, pricePerPerson: 240 },
@@ -145,32 +144,19 @@ export const voPhysicalPackages = [
 ];
 
 export const hboWoOnlinePackages = [
-  { students: 1, packagePrice: 360, pricePerPerson: 360 },
+  { students: 1, packagePrice: 300, pricePerPerson: 300 },
+  { students: 2, packagePrice: 400, pricePerPerson: 200 },
+  { students: 3, packagePrice: 510, pricePerPerson: 170 },
+  { students: 4, packagePrice: 600, pricePerPerson: 150 },
+];
+
+export const hboWoPhysicalPackages = [
+  { students: 1, packagePrice: 400, pricePerPerson: 400 },
   { students: 2, packagePrice: 520, pricePerPerson: 260 },
   { students: 3, packagePrice: 660, pricePerPerson: 220 },
   { students: 4, packagePrice: 800, pricePerPerson: 200 },
 ];
 
-export const hboWoPhysicalPackages = [
-  { students: 1, packagePrice: 450, pricePerPerson: 450 },
-  { students: 2, packagePrice: 600, pricePerPerson: 300 },
-  { students: 3, packagePrice: 780, pricePerPerson: 260 },
-  { students: 4, packagePrice: 920, pricePerPerson: 230 },
-];
-
-export const weekendHvaOnlinePackages = [
-  { students: 1, packagePrice: 120, pricePerPerson: 120 },
-  { students: 2, packagePrice: 160, pricePerPerson: 80 },
-  { students: 3, packagePrice: 210, pricePerPerson: 70 },
-  { students: 4, packagePrice: 260, pricePerPerson: 65 },
-];
-
-export const weekendHvaPhysicalPackages = [
-  { students: 1, packagePrice: 150, pricePerPerson: 150 },
-  { students: 2, packagePrice: 200, pricePerPerson: 100 },
-  { students: 3, packagePrice: 260, pricePerPerson: 87 },
-  { students: 4, packagePrice: 320, pricePerPerson: 80 },
-];
 
 // Spoedpakketten (2 uur)
 export const spoedPrices = {
