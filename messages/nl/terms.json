@@ -1,21 +1,20 @@
 {
   "items": [
     {
-      "title": "Vooraf Betalen",
+      "title": "Betaling",
       "content": [
-        "Betaling dient vooraf te geschieden.",
-        "Betaling kan via bankoverschrijving of contant.",
-        "Bij niet tijdige betaling kan de les worden geannuleerd."
+        "Betaling gaat vooraf per Tikkie.",
+        "Een factuur is mogelijk op verzoek.",
+        "Een les of plek staat pas definitief vast na bevestiging en betaling."
       ]
     },
     {
       "title": "Annulering en Verplaatsing",
       "content": [
-        "Annulering is kosteloos tot 24 uur voor aanvang van de les.",
-        "Bij annulering binnen 24 uur voor aanvang wordt 50% in rekening gebracht.",
-        "Bij no-show wordt het volledige bedrag in rekening gebracht.",
-        "Verplaatsen van een les is mogelijk in overleg.",
-        "Bij ziekte wordt in overleg een nieuwe afspraak gemaakt."
+        "Een les verzetten kan alleen in overleg en op basis van beschikbaarheid.",
+        "Annuleren of verzetten moet minimaal 24 uur van tevoren.",
+        "Bij afmelding binnen 24 uur vervalt de les.",
+        "Inhalen is alleen mogelijk op zondag tussen 14:00 en 18:00, online."
       ]
     }
   ]
