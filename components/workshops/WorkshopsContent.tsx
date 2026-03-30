@@ -67,7 +67,7 @@ const HeroSection: React.FC = () => {
     const t = useTranslations('workshops')
 
     return (
-        <div className="bg-[var(--ink)] text-[var(--cream)]">
+        <div className="bg-[var(--ink)] text-on-dark">
             <div className="container mx-auto px-4 py-16 md:py-24">
                 <m.div
                     initial={{ opacity: 0, y: 20 }}
@@ -155,7 +155,7 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                         <p className="font-display text-3xl uppercase tracking-wider mb-2 text-white">
                             {t('card.clickForDetails')}
                         </p>
-                        <p className="text-white/80 text-sm">
+                        <p className="text-on-dark-muted text-sm">
                             {t('card.learnMore')}
                         </p>
                     </div>
@@ -199,7 +199,7 @@ const WorkshopCard: React.FC<WorkshopCardProps> = ({ workshop, index, onRequestI
                     <div className="px-6 py-4 bg-[var(--cream-dark)] border-t border-[var(--border-warm)] relative space-y-2">
                         {/* More Info button - only visible on mobile */}
                         <button
-                            className={`md:hidden w-full bg-gradient-to-r ${buttonClasses} bg-opacity-80 text-white py-2.5 px-4 rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md flex items-center justify-center gap-2`}
+                            className={`md:hidden w-full bg-gradient-to-r ${buttonClasses} text-white py-2.5 px-4 rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md flex items-center justify-center gap-2`}
                             onClick={handleDetailsClick}
                         >
                             <FiBookOpen className="w-4 h-4" />

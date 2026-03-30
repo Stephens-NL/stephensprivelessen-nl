@@ -78,8 +78,9 @@ export function RekentrajectenCard({
               <span className="font-medium text-[var(--warm-text)]">{course.pricePerLessonHour} {t('perHour')}</span>
             </div>
           </div>
-          <div className={`bg-gradient-to-r ${course.color} bg-opacity-10 rounded-2xl p-4 mb-6`}>
-            <p className="text-sm font-bold text-[var(--ink)]">💡 {course.highlight[language]}</p>
+          <div className="relative rounded-2xl p-4 mb-6 overflow-hidden">
+            <div className={`absolute inset-0 bg-gradient-to-r ${course.color} opacity-10`} />
+            <p className="relative text-sm font-bold text-[var(--ink)]">💡 {course.highlight[language]}</p>
           </div>
           <Button
             onClick={onSelect}

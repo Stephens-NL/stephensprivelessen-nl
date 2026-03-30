@@ -13,7 +13,7 @@ const LocationPricingTable = ({ pricing, title }: LocationPricingTableProps) => 
     return (
         <div className="mb-4">
             <h3 className="text-lg font-semibold text-[var(--amber)] mb-2">{title}</h3>
-            <table className="w-full text-[var(--cream)] text-sm">
+            <table className="w-full text-on-dark text-sm">
                 <thead>
                     <tr>
                         <th className="text-left">Location</th>

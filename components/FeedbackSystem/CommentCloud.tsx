@@ -9,7 +9,7 @@ const CommentCloud: React.FC<CommentCloudProps> = ({ children, className = '' })
   return (
     <div className={`
       relative 
-      bg-[var(--cream)] bg-opacity-20 
+      bg-white/20 
       backdrop-blur-sm 
       text-white
       p-3 
@@ -18,7 +18,7 @@ const CommentCloud: React.FC<CommentCloudProps> = ({ children, className = '' })
       overflow-hidden
       transition-all
       duration-300
-      hover:bg-opacity-30
+      hover:bg-white/30
       sm:p-4 
       md:p-5 
       lg:p-6
@@ -48,8 +48,7 @@ const CommentCloud: React.FC<CommentCloudProps> = ({ children, className = '' })
         -translate-x-1/2 
         w-4 
         h-4 
-        bg-[var(--cream)] 
-        bg-opacity-20 
+        bg-white/20
         rotate-45
       " />
     </div>

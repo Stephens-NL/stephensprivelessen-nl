@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 import { JsonLdScript } from '@/components/JsonLdScript';
 import { m } from 'framer-motion';
-import Image from 'next/image';
+import BlurImage from '@/components/shared/BlurImage';
 import { Syne, Space_Grotesk } from "next/font/google";
 import { Link } from '@/i18n/navigation';
 
@@ -146,7 +146,7 @@ export default function ScriptiebegeleidingContent() {
         
         {/* Hero Section */}
         <div className="relative h-screen">
-          <Image
+          <BlurImage
             src="/images/thesis-hero.jpg"
             alt="Scriptiebegeleiding Hero"
             fill

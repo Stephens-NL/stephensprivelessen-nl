@@ -41,7 +41,7 @@ export function ZuidoostLocationMap() {
             className="overflow-hidden"
           >
             <div className="space-y-4">
-              <p className="text-white/90 text-lg mb-4">
+              <p className="text-on-dark-muted text-lg mb-4">
                 {t('location.description')}
               </p>
               <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
@@ -57,11 +57,11 @@ export function ZuidoostLocationMap() {
                   className="absolute inset-0"
                 />
               </div>
-              <div className="flex items-center gap-2 text-white/90 mt-4">
+              <div className="flex items-center gap-2 text-on-dark-muted mt-4">
                 <FaMapMarkerAlt className="text-[var(--amber)]" />
                 <span>{config.business.weekendOffice.address}, {config.business.weekendOffice.postalCode} {config.business.weekendOffice.city}</span>
               </div>
-              <div className="flex items-center gap-2 text-white/90">
+              <div className="flex items-center gap-2 text-on-dark-muted">
                 <FaClock className="text-[var(--amber)]" />
                 <span>{t('location.hours')}</span>
               </div>

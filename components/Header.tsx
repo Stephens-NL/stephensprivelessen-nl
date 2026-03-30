@@ -88,7 +88,7 @@ const Header = () => {
                                             className={`px-3 py-1.5 text-sm font-medium transition-all duration-200 rounded-md whitespace-nowrap ${
                                                 pathname === href
                                                     ? 'text-amber bg-white/5'
-                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
+                                                    : 'text-on-dark hover:text-amber hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}
@@ -104,7 +104,7 @@ const Header = () => {
                                             className={`px-3 py-1.5 text-sm font-medium transition-all duration-200 rounded-md whitespace-nowrap ${
                                                 pathname === href
                                                     ? 'text-amber bg-white/5'
-                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
+                                                    : 'text-on-dark hover:text-amber hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}
@@ -175,7 +175,7 @@ const Header = () => {
                                             className={`block px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${
                                                 pathname === href
                                                     ? 'text-amber bg-white/5'
-                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
+                                                    : 'text-on-dark hover:text-amber hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}
@@ -190,7 +190,7 @@ const Header = () => {
                                             className={`block px-3 py-2.5 text-sm font-medium rounded-md transition-colors ${
                                                 pathname === href
                                                     ? 'text-amber bg-white/5'
-                                                    : 'text-cream/70 hover:text-cream hover:bg-white/5'
+                                                    : 'text-on-dark hover:text-amber hover:bg-white/5'
                                             }`}
                                         >
                                             {t(`nav.${key}`)}

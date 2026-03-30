@@ -1,12 +1,12 @@
 {
   "title": "About Us",
   "introduction": {
-    "heading": "Our Journey and Vision",
+    "heading": "From Struggling to Excelling",
     "paragraphs": [
-      "Stephen's journey in education began in elementary school, where he excelled in mathematics. However, during high school, mathematics became a significant challenge. After finishing the third year with an average grade of a five, Stephen decided to take a new approach. Despite the initial doubts from teachers, he decided to complete all assigned tasks meticulously and have them checked. This effort led to surprising results, starting with a 9.8 on the first test. This marked the beginning of a remarkable turnaround in his academic performance.",
-      "Continuing on this path, Stephen consistently achieved high grades, eventually maintaining an average of a 10 in the fourth and fifth years. However, in the sixth year, a challenging test on proofs brought his average down, concluding with an 8.45. Despite missing out on a nine by a small margin, this journey inspired him to start offering tutoring services, initially to his peers and later as a professional service. We, as a team, share this passion and aim to support students in overcoming academic challenges. For us, it is not just a job, but an opportunity to make a positive impact on the lives of our students."
+      "My journey started with a failing grade in math during my third year of high school. Instead of giving up, I chose a radically different approach: complete every single problem, have every step checked. The result? A 9.8 on the very next test and a perfect 10 average in years four and five. That experience — knowing what it feels like to be stuck and how to break through — is the foundation of everything we do.",
+      "Today I guide students at UvA, VU, and universities of applied sciences in mathematics, statistics, data analysis, and programming. From first-years struggling with calculus to master's students completing their thesis with SPSS, R, or Python. We work online via Google Meet or on-site at Science Park. Every lesson is tailored — because I know from experience that the right push at the right moment can change everything."
     ],
-    "altText": "Stephen's portrait"
+    "altText": "Stephen Adei — founder of Stephen's Private Lessons"
   },
   "philosophyTitle": "Our Philosophy",
   "philosophyPoints": [

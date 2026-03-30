@@ -35,7 +35,7 @@ const TermsAndConditions = () => {
                                 // We know the content array lengths from the JSON
                                 const contentCount = index === 0 ? 3 : 5;
                                 return (
-                                    <ul className="list-disc pl-5 text-[var(--cream)]">
+                                    <ul className="list-disc pl-5 text-on-dark">
                                         {Array.from({ length: contentCount }, (_, cIndex) => (
                                             <li key={cIndex} className="mb-2 text-sm">
                                                 {t(`items.${index}.content.${cIndex}`)}

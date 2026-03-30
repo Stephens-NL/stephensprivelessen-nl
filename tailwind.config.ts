@@ -48,6 +48,18 @@ const config = {
         'muted-text': "var(--muted-text)",
         'border-warm': "var(--border-warm)",
 
+        // Semantic text colors — use these instead of cream/XX opacity hacks
+        'on-dark': {
+          DEFAULT: "var(--text-on-dark)",
+          muted: "var(--text-on-dark-muted)",
+          subtle: "var(--text-on-dark-subtle)",
+        },
+        'on-light': {
+          DEFAULT: "var(--text-on-light)",
+          muted: "var(--text-on-light-muted)",
+          subtle: "var(--text-on-light-subtle)",
+        },
+
         // shadcn/ui semantic tokens
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

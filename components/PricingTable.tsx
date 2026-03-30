@@ -18,7 +18,7 @@ const PricingTable = ({ pricing, title }: PricingTableProps) => {
   return (
     <div className="mb-8 p-6 bg-[var(--ink)] rounded-lg shadow-lg">
       <h3 className="text-2xl font-semibold font-display text-[var(--amber)] mb-4 text-center">{title}</h3>
-      <table className="w-full table-auto text-[var(--cream)] text-sm">
+      <table className="w-full table-auto text-on-dark text-sm">
         <thead>
           <tr className="border-b border-[var(--amber)]">
             <th className="text-left py-2 px-4">Duration (hours)</th>

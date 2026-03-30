@@ -52,7 +52,7 @@ export const LocationsSection = ({ t }: LocationsSectionProps) => {
           >
             <Monitor className="w-6 h-6 text-[var(--amber)] flex-shrink-0" />
             <span className="font-medium">
-              {t({ NL: 'Online via Zoom', EN: 'Online via Zoom' })}
+              {t({ NL: 'Online via Google Meet', EN: 'Online via Google Meet' })}
             </span>
           </m.div>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
+import BlurImage from './shared/BlurImage';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { AnimatePresence, m } from 'framer-motion';
@@ -85,7 +85,9 @@ const About = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <Image src="/images/jpeg/portrait.jpeg" alt={t('introduction.altText')} width={400} height={400} className="rounded-full shadow-lg" />
+              <div className="relative w-full max-w-sm mx-auto aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+                <BlurImage src="/images/jpeg/portrait-about.jpg" alt={t('introduction.altText')} fill className="object-cover object-top" variant="light" />
+              </div>
             </m.div>
             <m.div
               className="md:w-1/2 md:pl-8"
@@ -110,7 +112,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-[var(--cream-dark)] bg-opacity-50">
+      <section className="py-20 bg-[var(--cream-dark)]/50">
         <div className="container mx-auto px-4">
           <m.h2
             className="text-3xl font-semibold text-center font-display text-[var(--ink)] mb-12"
@@ -152,7 +154,7 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-[var(--ink)] text-[var(--cream)]">
+      <section className="py-20 bg-[var(--ink)] text-on-dark">
         <div className="container mx-auto px-4 text-center">
           <m.h2
             className="text-3xl font-semibold mb-4"

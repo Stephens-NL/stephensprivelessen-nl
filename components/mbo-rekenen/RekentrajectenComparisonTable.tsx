@@ -34,9 +34,10 @@ export function RekentrajectenComparisonTable({ language }: { language: 'NL' | '
             transition={{ delay: courseIndex * 0.1 }}
             className="border-b border-[var(--border-warm)] last:border-b-0"
           >
-            <div className={`p-6 bg-gradient-to-r ${course.color} bg-opacity-5`}>
-              <h4 className="text-2xl font-bold text-[var(--ink)] mb-4">{course.name[language]}</h4>
-              <div className="space-y-3">
+            <div className={`p-6 relative overflow-hidden`}>
+              <div className={`absolute inset-0 bg-gradient-to-r ${course.color} opacity-5`} />
+              <h4 className="relative text-2xl font-bold text-[var(--ink)] mb-4">{course.name[language]}</h4>
+              <div className="relative space-y-3">
                 {rekentrajectenComparison.features.map((feature) => (
                   <div key={feature.id} className="flex justify-between items-center">
                     <span className="text-[var(--muted-text)] font-medium">{feature.short[language]}:</span>
@@ -57,7 +58,7 @@ export function RekentrajectenComparisonTable({ language }: { language: 'NL' | '
                 <th
                   key={course.id}
                   className={`text-center p-6 font-black relative ${
-                    course.featured ? `bg-gradient-to-b ${course.color} bg-opacity-5` : ''
+                    course.featured ? 'bg-[var(--cream-dark)]' : ''
                   }`}
                 >
                   <div className="text-xl text-[var(--ink)] mb-2">{course.name[language]}</div>
@@ -80,7 +81,7 @@ export function RekentrajectenComparisonTable({ language }: { language: 'NL' | '
                   <td
                     key={`${course.id}-${feature.id}`}
                     className={`p-6 text-center font-bold ${
-                      course.featured ? `bg-gradient-to-b ${course.color} bg-opacity-5` : ''
+                      course.featured ? 'bg-[var(--cream-dark)]' : ''
                     }`}
                   >
                     <span

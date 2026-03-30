@@ -96,17 +96,7 @@ const Contact = () => {
                 throw new Error(t('form.parentContactInformationIsRequiredForStudentsUnder'));
             }
 
-            const response = await fetch('/api/submit-form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to submit form');
-            }
+            await sendContactForm(formData);
 
             handleUpdateFormData({ 
                 submitted: true,
@@ -125,7 +115,7 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)] py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--ink-light)] px-4 sm:px-6 lg:px-8 py-12">
             <m.div
                 className="max-w-2xl mx-auto bg-[var(--ink)] rounded-lg shadow-xl overflow-hidden border border-[var(--amber)]/30"
                 initial={{ opacity: 0, y: 20 }}

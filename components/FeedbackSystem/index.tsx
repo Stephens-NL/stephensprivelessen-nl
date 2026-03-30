@@ -281,7 +281,7 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
             onDragEnd={handleSwipe}
-            className="w-full max-w-3xl mx-auto bg-[var(--cream)] bg-opacity-10 backdrop-blur-lg rounded-lg p-8 overflow-hidden"
+            className="w-full max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-lg p-8 overflow-hidden"
             style={{ height: contentHeight }}
           >
             <h1 className="text-3xl font-bold text-white mb-6">

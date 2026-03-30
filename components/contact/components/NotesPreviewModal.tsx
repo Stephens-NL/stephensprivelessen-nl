@@ -26,7 +26,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50"
+                className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-[60]"
                 onClick={onClose}
             >
                 <m.div
@@ -41,7 +41,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                             <h3 className="text-xl font-semibold text-[var(--amber)]">
                                 {language === 'NL' ? `Voorbeeldnotities: ${subject}` : `Example Notes: ${subject}`}
                             </h3>
-                            <p className="text-white/80 text-sm mt-1">
+                            <p className="text-on-dark-muted text-sm mt-1">
                                 {t('form.theseAreExampleNotesToDemonstrateTeachingStyleAndM')}
                             </p>
                         </div>

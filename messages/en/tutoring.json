@@ -101,6 +101,7 @@
     "ratesNote": "Travel Costs"
   },
   "pricing": {
+    "scheduleTrialLesson": "Schedule Trial Lesson",
     "title": "Tutoring Packages",
     "subtitle": "Quality tutoring starting from €75 per hour - Online or at Science Park",
     "plans": [
@@ -193,7 +194,7 @@
     "title": "Where We Teach",
     "subtitle": "Lessons at Science Park or online. Available for students across Amsterdam.",
     "sciencePark": "Science Park 904, Amsterdam",
-    "online": "Online via Zoom",
+    "online": "Online via Google Meet",
     "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"
   },
   "specialPrograms": {

@@ -7,7 +7,7 @@ import { feedbackFormData, FeedbackSummaryProps, RenderSummaryItemProps } from '
 
 function SummaryItem({ label, value }: RenderSummaryItemProps) {
   return (
-    <div className="mb-4 bg-[var(--cream)] bg-opacity-10 rounded-lg p-4">
+    <div className="mb-4 bg-white/10 rounded-lg p-4">
       <span className="font-semibold text-[var(--amber)]">{label}:</span>
       <p className="mt-1 text-white">{value}</p>
     </div>
@@ -23,7 +23,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -50 }}
-      className="w-full max-w-2xl mx-auto bg-[var(--ink)] bg-opacity-70 backdrop-blur-lg rounded-lg p-8 shadow-lg"
+      className="w-full max-w-2xl mx-auto bg-[var(--ink)]/70 backdrop-blur-lg rounded-lg p-8 shadow-lg"
     >
       <h2 className="text-3xl font-bold text-[var(--amber)] mb-6">{t('form.feedbackSummary')}</h2>
 

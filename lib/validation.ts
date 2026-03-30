@@ -29,28 +29,22 @@ export const formatPhoneNumber = (phoneNumber: string): string => {
 
 export const getPhoneNumberError = (phoneNumber: string, t: any): string | null => {
     if (!phoneNumber) return null;
-    
+
     const formattedNumber = formatPhoneNumber(phoneNumber);
-    
+
     if (!isValidPhoneNumber(formattedNumber)) {
-        return String(t({
-            EN: "Please enter a valid phone number with country code (e.g., +31647357426)",
-            NL: "Voer een geldig telefoonnummer in met landcode (bijv. +31647357426)"
-        }));
+        return t('form.invalidPhone');
     }
-    
+
     return null;
 };
 
 export const getEmailError = (email: string, t: any): string | null => {
     if (!email) return null;
-    
+
     if (!isValidEmail(email)) {
-        return String(t({
-            EN: "Please enter a valid email address",
-            NL: "Voer een geldig e-mailadres in"
-        }));
+        return t('form.invalidEmail');
     }
-    
+
     return null;
 }; 

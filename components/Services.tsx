@@ -74,7 +74,7 @@ const Services = () => {
         {/* Introduction Section */}
         <div className="max-w-4xl mx-auto text-center mb-16">
           <m.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-8 text-[var(--cream)]"
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-bold mb-8 text-on-dark"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -82,7 +82,7 @@ const Services = () => {
             {t('ourServices')}
           </m.h2>
           <m.p
-            className="text-lg sm:text-xl text-[var(--cream)] mb-8"
+            className="text-lg sm:text-xl text-on-dark-muted mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -101,7 +101,7 @@ const Services = () => {
           {serviceIds.map((id, index) => (
             <m.div
               key={id}
-              className="bg-[var(--cream)] bg-opacity-90 p-6 sm:p-8 rounded-xl border border-[var(--border-warm)] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col transform hover:-translate-y-2"
+              className="bg-[var(--cream)]/90 p-6 sm:p-8 rounded-xl border border-[var(--border-warm)] shadow-sm hover:shadow-md transition-all duration-300 flex flex-col transform hover:-translate-y-2"
               variants={itemVariants}
             >
               <div className="flex justify-center mb-4 sm:mb-6">
@@ -147,7 +147,7 @@ const Services = () => {
       <AnimatePresence>
         {selectedIndex !== null && (
           <m.div
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

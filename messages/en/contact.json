@@ -239,6 +239,8 @@
     "iFocusOnUnderstandingRatherThan": "I focus on understanding rather than memorization. We'll work together to build a strong foundation in the subject, using practical examples and clear explanations.",
     "whatsYourAge": "What's your age?",
     "greatIveReceivedYourRequest": "Great! I've Received Your Request",
-    "illContact": "I'll contact"
+    "illContact": "I'll contact",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number with country code (e.g., +31647357426)"
   }
 }

@@ -85,7 +85,7 @@ export function ZuidoostOfferVariant({
       className="bg-white/10 rounded-xl p-6 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
     >
       <h3 className="text-xl font-bold text-[var(--amber)] mb-2">{t(`programOffers.${offerKey}.title`)}</h3>
-      <p className="text-white/90 mb-6">{t(`programOffers.${offerKey}.description`)}</p>
+      <p className="text-on-dark-muted mb-6">{t(`programOffers.${offerKey}.description`)}</p>
       <Dialog open={showModal} onOpenChange={(v) => dispatch({ type: 'MODAL', payload: v })}>
         <DialogTrigger asChild>
           <Button className="bg-[var(--amber-hover)] hover:bg-[var(--amber)] text-[var(--ink)] font-bold">{t(`programOffers.${offerKey}.cta`)}</Button>

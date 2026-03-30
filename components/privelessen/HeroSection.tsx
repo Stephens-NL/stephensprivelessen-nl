@@ -4,7 +4,7 @@ import React from 'react';
 import { m } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
-import Image from 'next/image';
+import BlurImage from '@/components/shared/BlurImage';
 import { TutoringHero } from '@/types';
 import { staggeredFadeInUp } from '@/lib/animations';
 
@@ -19,7 +19,7 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink)]/90 to-[var(--ink)]/80 backdrop-blur-sm z-10" />
-        <Image
+        <BlurImage
           src="/images/tutoring-hero.jpg"
           alt="Students learning"
           fill
@@ -40,7 +40,7 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
           <h1 className="text-5xl md:text-7xl font-display font-bold text-[var(--cream)] mb-6">
             {t(content.title)}
           </h1>
-          <p className="text-xl md:text-2xl text-[var(--cream)]/90 mb-8 max-w-2xl">
+          <p className="text-xl md:text-2xl text-on-dark-muted mb-8 max-w-2xl">
             {t(content.subtitle)}
           </p>
           
@@ -64,7 +64,7 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
                 <div className="text-4xl font-bold text-[var(--cream)] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-[var(--cream)]/80">
+                <div className="text-on-dark-muted">
                   {t(stat.label)}
                 </div>
               </m.div>

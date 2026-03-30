@@ -370,7 +370,7 @@ export default async function LocaleLayout({children, params}: Props) {
           <MotionProvider>
             <Header />
             <WhatsAppButton />
-            <main className="pt-14 md:pt-24">{children}</main>
+            <main className="pt-14 md:pt-[72px] bg-[var(--ink)]">{children}</main>
             <Footer />
           </MotionProvider>
         </NextIntlClientProvider>

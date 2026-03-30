@@ -33,7 +33,7 @@ export default function ZuidoostWeekendContent() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gradient-to-b from-amber-900 to-amber-700 pt-14 md:pt-24">
+      <main className="min-h-screen bg-gradient-to-b from-amber-900 to-amber-700">
         <div className="container mx-auto px-4 py-16">
           <div className="text-center text-white">
             <div className="inline-block bg-[var(--amber-hover)]/20 rounded-full px-6 py-2 mb-6">
@@ -47,9 +47,9 @@ export default function ZuidoostWeekendContent() {
             </div>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-12">
               <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm w-full md:w-64">
-                <h3 className="text-lg font-medium text-[var(--cream)] mb-2">{t('pricing.regularPrice.label')}</h3>
-                <div className="text-3xl font-bold mb-1 line-through text-white/70">€{content.pricing.regularPrice.amount}</div>
-                <div className="text-sm text-white/60">{t('pricing.regularPrice.perHour')}</div>
+                <h3 className="text-lg font-medium text-on-dark mb-2">{t('pricing.regularPrice.label')}</h3>
+                <div className="text-3xl font-bold mb-1 line-through text-on-dark-subtle">€{content.pricing.regularPrice.amount}</div>
+                <div className="text-sm text-on-dark-subtle">{t('pricing.regularPrice.perHour')}</div>
               </div>
               <div className="text-4xl text-[var(--amber)]">→</div>
               <Dialog>

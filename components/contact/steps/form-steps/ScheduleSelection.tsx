@@ -76,7 +76,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
 
             <div className="space-y-6">
                 <div>
-                    <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
+                    <h3 className="flex items-center text-lg text-on-dark mb-3">
                         <FaCalendarAlt className="mr-2" />
                         {t('form.preferredDays')}
                     </h3>
@@ -89,7 +89,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 className={`p-3 rounded-lg border-2 transition-colors ${
                                     formData.preferredDays.includes(day.value)
                                         ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
-                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-[var(--amber)]'
+                                        : 'bg-[var(--ink-light)] text-on-dark border-[var(--ink-light)] hover:border-[var(--amber)]'
                                 }`}
                                 onClick={() => toggleDay(day.value)}
                             >
@@ -105,7 +105,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                 </div>
 
                 <div>
-                    <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
+                    <h3 className="flex items-center text-lg text-on-dark mb-3">
                         <FaClock className="mr-2" />
                         {t('form.preferredTimes')}
                     </h3>
@@ -118,7 +118,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 className={`p-3 rounded-lg border-2 transition-colors ${
                                     formData.preferredTimes.includes(time.value)
                                         ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
-                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-[var(--amber)]'
+                                        : 'bg-[var(--ink-light)] text-on-dark border-[var(--ink-light)] hover:border-[var(--amber)]'
                                 }`}
                                 onClick={() => toggleTime(time.value)}
                             >
@@ -134,7 +134,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                 </div>
 
                 <div>
-                    <h3 className="flex items-center text-lg text-[var(--cream)] mb-3">
+                    <h3 className="flex items-center text-lg text-on-dark mb-3">
                         <FaBan className="mr-2" />
                         {t('form.unavailableDays')}
                     </h3>
@@ -147,7 +147,7 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                                 className={`p-3 rounded-lg border-2 transition-colors ${
                                     formData.unavailableDays.includes(day.value)
                                         ? 'bg-destructive text-white border-destructive'
-                                        : 'bg-[var(--ink-light)] text-[var(--amber)] border-[var(--ink-light)] hover:border-destructive'
+                                        : 'bg-[var(--ink-light)] text-on-dark border-[var(--ink-light)] hover:border-destructive'
                                 }`}
                                 onClick={() => toggleUnavailableDay(day.value)}
                                 disabled={formData.preferredDays.includes(day.value)}

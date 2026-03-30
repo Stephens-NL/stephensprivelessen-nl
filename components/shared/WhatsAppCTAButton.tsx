@@ -108,12 +108,12 @@ export default function WhatsAppCTAButton({
       </button>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="bg-[var(--ink)] border border-[var(--border-warm)]/50 text-[var(--cream)]">
+        <DialogContent className="bg-[var(--ink)] border border-[var(--border-warm)]/50 text-on-dark">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-[var(--amber)]">
               {modalTitle || 'Student Informatie'}
             </DialogTitle>
-            <DialogDescription className="text-[var(--cream)]">
+            <DialogDescription className="text-on-dark">
               {modalDescription || 'Vul alstublieft wat informatie in voordat we verbinden via WhatsApp'}
             </DialogDescription>
           </DialogHeader>
@@ -122,7 +122,7 @@ export default function WhatsAppCTAButton({
             {customFormFields || (
               <>
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-[var(--cream)]">
+                  <Label htmlFor="name" className="text-on-dark">
                     Naam Student
                   </Label>
                   <Input
@@ -130,12 +130,12 @@ export default function WhatsAppCTAButton({
                     placeholder="Vul naam student in..."
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-[var(--cream)] placeholder:text-[var(--cream)]/50"
+                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-on-dark placeholder:text-on-dark-subtle"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="age" className="text-[var(--cream)]">
+                  <Label htmlFor="age" className="text-on-dark">
                     Leeftijd Student
                   </Label>
                   <Input
@@ -144,12 +144,12 @@ export default function WhatsAppCTAButton({
                     placeholder="Vul leeftijd student in..."
                     value={formData.age}
                     onChange={(e) => setFormData(prev => ({ ...prev, age: e.target.value }))}
-                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-[var(--cream)] placeholder:text-[var(--cream)]/50"
+                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-on-dark placeholder:text-on-dark-subtle"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-[var(--cream)]">
+                  <Label className="text-on-dark">
                     Wat wil je doen?
                   </Label>
                   <div className="grid grid-cols-2 gap-3">
@@ -185,10 +185,10 @@ export default function WhatsAppCTAButton({
                 {formData.requestType === 'trial' && (
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <Label className="text-[var(--cream)]">
+                      <Label className="text-on-dark">
                         Kies drie voorkeurstijden
                       </Label>
-                      <span className="text-sm text-[var(--cream)]">
+                      <span className="text-sm text-on-dark">
                         {formData.preferredTimes.length}/3
                       </span>
                     </div>
@@ -219,7 +219,7 @@ export default function WhatsAppCTAButton({
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-[var(--cream)]">
+                  <Label htmlFor="message" className="text-on-dark">
                     Extra Bericht (Optioneel)
                   </Label>
                   <Textarea
@@ -227,7 +227,7 @@ export default function WhatsAppCTAButton({
                     placeholder="Specifieke vragen of wensen..."
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-[var(--cream)] placeholder:text-[var(--cream)]/50 min-h-[100px]"
+                    className="bg-[var(--ink)] border-[var(--border-warm)]/50 text-on-dark placeholder:text-on-dark-subtle min-h-[100px]"
                   />
                 </div>
               </>
@@ -238,7 +238,7 @@ export default function WhatsAppCTAButton({
             <Button
               variant="outline"
               onClick={() => setIsModalOpen(false)}
-              className="border-[var(--border-warm)]/50 text-[var(--cream)] hover:bg-[var(--ink)] hover:text-[var(--cream)]"
+              className="border-[var(--border-warm)]/50 text-on-dark hover:bg-[var(--ink)] hover:text-on-dark"
             >
               Annuleren
             </Button>

@@ -27,7 +27,7 @@ export function ContactGroupPricingTable() {
       <h3 className="text-lg font-display font-semibold text-cream mb-3">
         {isNl ? 'Groepsvoordeel' : 'Group discount'}
       </h3>
-      <p className="text-sm text-cream/80 mb-4">
+      <p className="text-sm text-on-dark-muted mb-4">
         {isNl
           ? 'Vorm zelf een groep met klasgenoten of vrienden en bespaar flink op de kosten per persoon.'
           : 'Form a group with classmates or friends and save significantly on per-person costs.'}
@@ -35,18 +35,18 @@ export function ContactGroupPricingTable() {
 
       <div className="grid grid-cols-2 gap-4">
         <div className="bg-ink/40 rounded-xl p-4 text-center">
-          <p className="text-xs text-cream/60 mb-1">{isNl ? 'Middelbaar' : 'Secondary'}</p>
+          <p className="text-xs text-on-dark-subtle mb-1">{isNl ? 'Middelbaar' : 'Secondary'}</p>
           <p className="text-2xl font-display font-bold text-amber">-{voSaving}%</p>
-          <p className="text-xs text-cream/60 mt-1">
+          <p className="text-xs text-on-dark-subtle mt-1">
             {isNl
               ? `€${voMax.pricePerPerson} p.p. bij ${voMax.students} leerlingen`
               : `€${voMax.pricePerPerson} p.p. with ${voMax.students} students`}
           </p>
         </div>
         <div className="bg-ink/40 rounded-xl p-4 text-center">
-          <p className="text-xs text-cream/60 mb-1">HBO / WO</p>
+          <p className="text-xs text-on-dark-subtle mb-1">HBO / WO</p>
           <p className="text-2xl font-display font-bold text-amber">-{hboSaving}%</p>
-          <p className="text-xs text-cream/60 mt-1">
+          <p className="text-xs text-on-dark-subtle mt-1">
             {isNl
               ? `€${hboMax.pricePerPerson} p.p. bij ${hboMax.students} studenten`
               : `€${hboMax.pricePerPerson} p.p. with ${hboMax.students} students`}
@@ -54,7 +54,7 @@ export function ContactGroupPricingTable() {
         </div>
       </div>
 
-      <p className="mt-4 text-xs text-cream/50">
+      <p className="mt-4 text-xs text-on-dark-subtle">
         {isNl
           ? 'Groepstarieven gelden alleen als je zelf een groep vormt.'
           : 'Group rates only apply when you form your own group.'}

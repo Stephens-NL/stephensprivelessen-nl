@@ -59,7 +59,7 @@ export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: 
                       type="button"
                       onClick={() => dispatch({ type: 'LEVEL', payload: level.id })}
                       className={`relative px-8 py-3 rounded-xl text-center transition-all duration-200 ${
-                        selectedLevel === level.id ? 'text-[var(--amber)]' : 'text-white/70 hover:text-white'
+                        selectedLevel === level.id ? 'text-[var(--amber)]' : 'text-on-dark-muted hover:text-on-dark'
                       } ${index !== educationLevels.length - 1 ? 'mr-1' : ''}`}
                     >
                       {selectedLevel === level.id && (
@@ -97,7 +97,7 @@ export function ZuidoostSubjectsSection({ educationLevels }: { educationLevels: 
                             className="group relative flex items-center bg-white/10 backdrop-blur-sm rounded-xl transition-all duration-300 border border-white/10 hover:border-white/20 transform hover:-translate-y-1 overflow-hidden h-[60px] w-full hover:shadow-lg hover:shadow-black/20"
                           >
                             <div className="flex-1 p-4 overflow-hidden">
-                              <m.span className="text-white/90 group-hover:text-white font-medium transition-colors inline-block whitespace-nowrap">
+                              <m.span className="text-on-dark-muted group-hover:text-on-dark font-medium transition-colors inline-block whitespace-nowrap">
                                 {language === 'NL' ? subject.NL : subject.EN}
                               </m.span>
                             </div>

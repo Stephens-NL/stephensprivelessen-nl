@@ -49,7 +49,7 @@ export const SpecialProgramsSection = ({ t }: SpecialProgramsSectionProps) => {
                 <h3 className="text-xl font-display font-bold mb-3">
                   {t(program.title)}
                 </h3>
-                <p className="text-[var(--cream)] opacity-80 mb-6 flex-grow">
+                <p className="text-on-dark-muted mb-6 flex-grow">
                   {t(program.description)}
                 </p>
                 <span className="inline-flex items-center gap-2 text-[var(--amber)] font-medium group-hover:gap-3 transition-all">

@@ -101,6 +101,7 @@
     "ratesNote": "Reiskosten"
   },
   "pricing": {
+    "scheduleTrialLesson": "Plan Gratis Proefles",
     "title": "Bijlespakketten",
     "subtitle": "Kwaliteitsbijles vanaf €75 per uur - Online of op Science Park",
     "plans": [
@@ -193,7 +194,7 @@
     "title": "Waar We Lesgeven",
     "subtitle": "Lessen op Science Park of online. Beschikbaar voor studenten in heel Amsterdam.",
     "sciencePark": "Science Park 904, Amsterdam",
-    "online": "Online via Zoom",
+    "online": "Online via Google Meet",
     "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"
   },
   "specialPrograms": {

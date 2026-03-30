@@ -133,8 +133,8 @@ export default async function VUBijlesPage() {
             <h3>{isNl ? "Online Bijles" : "Online Tutoring"}</h3>
             <p>
               {isNl
-                ? "Flexibele online bijles via Zoom of Teams. Perfect voor drukke studenten die tijd willen besparen op reizen. Alle vakken beschikbaar."
-                : "Flexible online tutoring via Zoom or Teams. Perfect for busy students who want to save time commuting. All subjects available."}
+                ? "Flexibele online bijles via Google Meet. Perfect voor drukke studenten die tijd willen besparen op reizen. Alle vakken beschikbaar."
+                : "Flexible online tutoring via Google Meet. Perfect for busy students who want to save time commuting. All subjects available."}
             </p>
             <ul>
               <li>{isNl ? "Geen reistijd" : "No travel time"}</li>

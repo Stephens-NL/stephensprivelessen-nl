@@ -18,14 +18,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function Home() {
   return (
-    <>
+    <div className="bg-[var(--cream)]">
       <Script id="website-ld+json" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(websiteSchema)}
       </Script>
       <Hero />
       <ServicesShort />
       <InternalLinks />
-      <Testimonials /> 
-    </>
+      <Testimonials />
+    </div>
   );
 }

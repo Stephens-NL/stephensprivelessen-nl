@@ -49,15 +49,15 @@ const Faq: React.FC = () => {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] text-[var(--cream)] p-8">
-        <h1 className="text-4xl font-bold text-center mb-8">
+      <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] text-on-dark p-8">
+        <h1 className="text-4xl font-bold text-center mb-8 font-display">
           {t('title')}
         </h1>
         <div className="max-w-3xl mx-auto">
           {allIndices.map((index) => (
             <div key={index} className="mb-4">
-              <button className="w-full p-4 text-left flex justify-between items-center bg-[var(--cream)] bg-opacity-10 backdrop-blur-lg rounded-lg">
-                <span>{t(`items.${index}.question`)}</span>
+              <button className="w-full p-4 text-left flex justify-between items-center bg-white/10 backdrop-blur-lg rounded-lg">
+                <span className="text-on-dark font-medium">{t(`items.${index}.question`)}</span>
                 <ChevronDown />
               </button>
             </div>
@@ -68,13 +68,13 @@ const Faq: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] text-[var(--cream)] p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] text-on-dark p-8 overflow-hidden">
       <m.h1
         key={locale}
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-4xl font-bold text-center mb-8"
+        className="text-4xl font-bold text-center mb-8 font-display"
       >
         <FadeInText text={t('title')} />
       </m.h1>
@@ -91,9 +91,9 @@ const Faq: React.FC = () => {
             placeholder={t('searchPlaceholder')}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full p-4 pl-12 rounded-full bg-[var(--cream)] bg-opacity-20 backdrop-blur-lg text-[var(--cream)] placeholder-[var(--cream)] placeholder-opacity-75 focus:outline-none focus:ring-2 focus:ring-[var(--amber)]"
+            className="w-full p-4 pl-12 rounded-full bg-white/15 backdrop-blur-lg text-on-dark placeholder:text-on-dark-subtle focus:outline-none focus:ring-2 focus:ring-[var(--amber)]"
           />
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[var(--cream)] opacity-75" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-on-dark-muted" />
         </div>
       </m.div>
 
@@ -113,11 +113,11 @@ const Faq: React.FC = () => {
           >
             <m.button
               onClick={() => toggleQuestion(index)}
-              className="w-full p-4 text-left flex justify-between items-center bg-[var(--cream)] bg-opacity-10 backdrop-blur-lg rounded-lg hover:bg-opacity-20 transition-colors duration-300"
+              className="w-full p-4 text-left flex justify-between items-center bg-white/10 backdrop-blur-lg rounded-lg hover:bg-white/20 transition-colors duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span>{t(`items.${index}.question`)}</span>
+              <span className="text-on-dark font-medium">{t(`items.${index}.question`)}</span>
               {activeIndex === index ? <ChevronUp /> : <ChevronDown />}
             </m.button>
             <AnimatePresence>
@@ -127,9 +127,9 @@ const Faq: React.FC = () => {
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="mt-2 p-4 bg-[var(--cream)] bg-opacity-5 backdrop-blur-lg rounded-lg"
+                  className="mt-2 p-4 bg-white/5 backdrop-blur-lg rounded-lg"
                 >
-                  <p>{t(`items.${index}.answer`)}</p>
+                  <p className="text-on-dark-muted">{t(`items.${index}.answer`)}</p>
                 </m.div>
               )}
             </AnimatePresence>

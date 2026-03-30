@@ -100,7 +100,7 @@ export function ContactPricingTable() {
         </table>
       </div>
 
-      <p className="mt-4 text-xs text-cream/60">
+      <p className="mt-4 text-xs text-on-dark-subtle">
         {isNl
           ? 'Groepsprijzen gelden als studenten zelf een groep vormen. Betaling vooraf per Tikkie.'
           : 'Group prices apply when students form their own group. Payment upfront via Tikkie.'}

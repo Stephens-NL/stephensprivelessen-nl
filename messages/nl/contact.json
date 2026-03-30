@@ -239,6 +239,8 @@
     "iFocusOnUnderstandingRatherThan": "Ik focus op begrip in plaats van uit het hoofd leren. We werken samen aan een sterke basis in het vak, met praktische voorbeelden en heldere uitleg.",
     "whatsYourAge": "Wat is je leeftijd?",
     "greatIveReceivedYourRequest": "Super! Ik heb je aanvraag ontvangen",
-    "illContact": "Ik zal"
+    "illContact": "Ik zal",
+    "invalidEmail": "Voer een geldig e-mailadres in",
+    "invalidPhone": "Voer een geldig telefoonnummer in met landcode (bijv. +31647357426)"
   }
 }

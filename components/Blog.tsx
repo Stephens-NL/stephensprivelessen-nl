@@ -176,7 +176,7 @@ export const FullPageBlogPost: React.FC<{ post: BlogPost | null; loadingErrorSta
             {post.title[language]}
           </m.h1>
           {post.date && (
-            <p className="text-sm text-[var(--warm-text)] opacity-60">{post.date}</p>
+            <p className="text-sm text-on-light-subtle">{post.date}</p>
           )}
         </header>
 

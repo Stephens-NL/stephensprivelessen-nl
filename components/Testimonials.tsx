@@ -28,7 +28,7 @@ const Testimonials = () => {
                     <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber)] mb-4">
                         {t('testimonials.label')}
                     </p>
-                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[var(--cream)] leading-tight">
+                    <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-on-dark leading-tight">
                         {t('testimonials.title')}
                     </h2>
                 </m.div>
@@ -45,7 +45,7 @@ const Testimonials = () => {
                         >
                             {/* Quote mark */}
                             <div className="font-display text-5xl text-[var(--amber)]/30 leading-none mb-4">&ldquo;</div>
-                            <p className="text-[var(--cream)]/80 leading-relaxed mb-6 text-sm sm:text-base">
+                            <p className="text-on-dark-muted leading-relaxed mb-6 text-sm sm:text-base">
                                 {t(`testimonials.items.${index}.text`)}
                             </p>
                             <div className="flex items-center gap-3">

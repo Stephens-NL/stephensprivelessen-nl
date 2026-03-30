@@ -16,7 +16,7 @@ const SHAPES = Array.from({ length: 5 }, (_, i) => ({
 const FloatingShapes = () => {
   return (
     <m.div
-      className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.6, duration: 1 }}
@@ -24,7 +24,7 @@ const FloatingShapes = () => {
       {SHAPES.map((shape) => (
         <m.div
           key={shape.id}
-          className="absolute bg-[var(--cream)] bg-opacity-10 rounded-full"
+          className="absolute bg-white/10 rounded-full"
           style={{
             width: shape.width,
             height: shape.height,
