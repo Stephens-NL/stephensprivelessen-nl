@@ -1,0 +1,4 @@
+{"timestamp":"2026-03-28T22:00:40.025Z","level":"info","message":"Tool invocation started","correlationId":"f59af004-ed57-4104-b0ab-7495bd5b2213","tool":"testsprite_check_account_info"}
+{"timestamp":"2026-03-28T22:00:40.587Z","level":"info","message":"Tool invocation completed","correlationId":"f59af004-ed57-4104-b0ab-7495bd5b2213","tool":"testsprite_check_account_info"}
+{"timestamp":"2026-03-28T22:00:59.655Z","level":"debug","message":"Initialization params","correlationId":"95f2e1e9-44f3-481d-bf0d-3d1347f1a554","tool":"testsprite_bootstrap","context":{"localPort":3000,"type":"frontend","projectPath":"/home/stephen/projects/stephensprivelessen-nl","testScope":"codebase"}}
+{"timestamp":"2026-03-28T22:00:59.695Z","level":"info","message":"HTTP server started, config saved","correlationId":"95f2e1e9-44f3-481d-bf0d-3d1347f1a554","tool":"testsprite_bootstrap"}

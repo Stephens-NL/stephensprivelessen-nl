@@ -196,13 +196,5 @@
     "sciencePark": "Science Park 904, Amsterdam",
     "online": "Online via Google Meet",
     "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"
-  },
-  "specialPrograms": {
-    "title": "Special Programs",
-    "weekend": {
-      "title": "Weekend Tutoring Zuidoost",
-      "description": "Saturday and Sunday lessons at HvA in Amsterdam Zuidoost. Half price of regular rates.",
-      "cta": "Learn more"
-    }
   }
 }

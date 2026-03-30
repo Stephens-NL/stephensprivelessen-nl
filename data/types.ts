@@ -595,101 +595,12 @@ export interface Footer {
     copyright: Bilingual;
 }
 
-// Weekend Tutoring Types
-export interface ProgramOffer {
-  title: Bilingual;
-  titleTwi?: string;
-  description: Bilingual;
-  whatsappMessage: Bilingual;
-}
-
-export interface WeekendLocation extends BilingualEntity {
-  id: string;
-  subtitle: Bilingual;
-  specialOffer: Bilingual;
-  proverb?: {
-    text: Bilingual;
-    meaning: Bilingual;
-  };
-  discount: {
-    text: Bilingual;
-    subtext: Bilingual;
-  };
-  pricing: {
-    regularPrice: {
-      label: Bilingual;
-      amount: number;
-      perHour: Bilingual;
-    };
-    communityRate: {
-      label: Bilingual;
-      amount: number;
-      perHour: Bilingual;
-      savings: Bilingual;
-    };
-  };
-  features: {
-    location: {
-      title: Bilingual;
-      text: Bilingual;
-    };
-    availability: {
-      title: Bilingual;
-      text: Bilingual;
-    };
-    extras: {
-      title: Bilingual;
-      text: Bilingual;
-    };
-  };
-  cta: {
-    trial: Bilingual;
-    whatsapp: Bilingual;
-  };
-  programOffers: {
-    weekendTutoring: ProgramOffer;
-    personalCoaching: ProgramOffer;
-    flexibleSupport: ProgramOffer;
-  };
-  location: {
-    name: Bilingual;
-    description: Bilingual;
-    address: string;
-    mapUrl: string;
-    hours: Bilingual;
-  };
-  footer: Bilingual;
-}
-
 // Education Level Types
 export interface BusinessSubjects {
   primary: Bilingual[];
   secondary: Bilingual[];
   higher: Bilingual[];
   programming: Bilingual[];
-}
-
-export interface SubjectWithKey extends Bilingual {
-  uniqueKey: string;
-}
-
-// Component Props Types
-export interface OfferVariantProps {
-  offer: ProgramOffer;
-  ctaText: string;
-  preSelectedLevel?: string;
-  preSelectedSubject?: Bilingual;
-  educationLevels: EducationLevel[];
-  activeLevel: string;
-  subject: Bilingual;
-}
-
-export interface SubjectsSectionProps {
-  educationLevels: EducationLevel[];
-  activeLevel: string;
-  setActiveLevel: (level: string) => void;
-  subject: Bilingual;
-  setSubject: (subject: Bilingual) => void;
 }
 
 // FeedbackSystem Component Props Types
