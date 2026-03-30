@@ -169,3 +169,29 @@ export const scriptieRates = [
   { duration: "Statistiek & Onderzoek", price: "€90/uur" },
   { duration: "Data Science & AI", price: "€100/uur" },
 ];
+
+// Policies
+export const availabilityPolicy = {
+  weekdays: { NL: 'Doordeweeks tussen 18:00 en 21:00', EN: 'Weekdays between 18:00 and 21:00' },
+  maxPerWeek: { NL: 'Maximaal 2 uur les per week', EN: 'Maximum 2 hours of lessons per week' },
+  makeUp: { NL: 'Gemiste les inhalen op zondag 14:00–18:00, online', EN: 'Make-up lessons on Sundays 14:00–18:00, online only' },
+};
+
+export const cancellationPolicy = {
+  reschedule: { NL: 'Verzetten kan alleen in overleg en op basis van beschikbaarheid', EN: 'Rescheduling is only possible by arrangement and subject to availability' },
+  notice: { NL: 'Minimaal 24 uur van tevoren doorgeven', EN: 'At least 24 hours notice required' },
+  lateCancel: { NL: 'Bij afmelding binnen 24 uur vervalt de les', EN: 'Cancellation within 24 hours means the lesson is forfeited' },
+};
+
+export const paymentPolicy = {
+  method: { NL: 'Betaling vooraf per Tikkie', EN: 'Payment in advance via Tikkie' },
+  invoice: { NL: 'Factuur mogelijk op verzoek', EN: 'Invoice available on request' },
+  confirmation: { NL: 'Plek pas definitief na bevestiging en betaling', EN: 'Spot confirmed only after payment and confirmation' },
+};
+
+export const lessonModel = {
+  packageOnly: { NL: 'Uitsluitend pakketten van 4 uur — geen losse lessen', EN: '4-hour packages only — no single lessons' },
+  groupNote: { NL: 'Groepsprijzen gelden alleen als studenten zelf een groepje vormen', EN: 'Group prices apply only when students form their own group' },
+  maxGroupSize: 4,
+  packageHours: 4,
+};
