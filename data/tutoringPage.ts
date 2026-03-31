@@ -217,21 +217,6 @@ export const tutoringPage: TutoringPage = {
           text: { EN: 'Contact Us', NL: 'Neem Contact Op' },
           href: '/contact'
         }
-      },
-      {
-        name: { EN: 'Weekend Programs', NL: 'Weekend Programma\'s' },
-        price: { EN: 'From €30', NL: 'Vanaf €30' },
-        interval: { EN: 'per hour', NL: 'per uur' },
-        features: [
-          { EN: 'Special community rates', NL: 'Speciale gemeenschapstarieven' },
-          { EN: 'Weekend availability', NL: 'Weekend beschikbaarheid' },
-          { EN: 'Zuidoost Amsterdam', NL: 'Amsterdam Zuidoost' },
-          { EN: 'Home tutoring available', NL: 'Bijles aan huis mogelijk' }
-        ],
-        cta: {
-          text: { EN: 'Discuss Options', NL: 'Bespreek Mogelijkheden' },
-          href: '/contact'
-        }
       }
     ]
   },
