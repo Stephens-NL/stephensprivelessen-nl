@@ -25,13 +25,13 @@
     },
     "farewell": {
       "title": "Bedankt!",
-      "message": "Je feedback is succesvol ingediend. We waarderen je bijdrage!",
+      "message": "Je feedback is succesvol ingediend. Ik waardeer je bijdrage!",
       "closeButtonText": "Sluiten"
     }
   },
   "shortVersion": {
     "title": "Stephen's Jaarlijkse Korte Feedbackformulier",
-    "description": "Een snelle manier om je gedachten te delen over onze sessies. Je feedback helpt me te verbeteren en onze toekomstige lessen aan te passen!",
+    "description": "Een snelle manier om je gedachten te delen over onze sessies. Je feedback helpt me te verbeteren en mijn toekomstige lessen aan te passen!",
     "conclusion": "Bedankt voor je waardevolle feedback! Je inzichten helpen me mijn bijlesdiensten te verbeteren en aan te passen. Ik waardeer je tijd en kijk uit naar mogelijke toekomstige samenwerkingen.",
     "sections": {
       "respondentType": {
@@ -100,7 +100,7 @@
   "longVersion": {
     "title": "Stephen's Uitgebreid Jaarlijks Feedbackformulier",
     "description": "Welkom bij mijn uitgebreide jaarlijkse feedbackformulier. Jouw inzichten zijn onmisbaar om mijn onderwijsmethoden te verbeteren en aan te passen voor het komende jaar. Bedankt dat je de tijd neemt om je gedachten te delen!",
-    "conclusion": "Bedankt dat je de tijd hebt genomen om deze waardevolle feedback te geven over ons jaar samen. Jouw inzichten zullen me helpen mijn onderwijsmethoden te verbeteren en aan te passen voor het komende jaar. Ik kijk uit naar onze voortgezette samenwerking!",
+    "conclusion": "Bedankt dat je de tijd hebt genomen om deze waardevolle feedback te geven over het afgelopen jaar. Jouw inzichten zullen me helpen mijn onderwijsmethoden te verbeteren en aan te passen voor het komende jaar. Ik kijk uit naar onze voortgezette samenwerking!",
     "sections": {
       "general": {
         "title": "Algemene Informatie"

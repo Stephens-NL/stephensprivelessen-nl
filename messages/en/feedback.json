@@ -25,13 +25,13 @@
     },
     "farewell": {
       "title": "Thank You!",
-      "message": "Your feedback has been successfully submitted. We appreciate your input!",
+      "message": "Your feedback has been successfully submitted. I appreciate your input!",
       "closeButtonText": "Close"
     }
   },
   "shortVersion": {
     "title": "Stephen's Annual Quick Feedback Form",
-    "description": "A quick way to share your thoughts on our sessions. Your feedback helps me improve and tailor our future lessons!",
+    "description": "A quick way to share your thoughts on our sessions. Your feedback helps me improve and tailor my future lessons!",
     "conclusion": "Thank you for your valuable feedback! Your insights help me improve and tailor my tutoring services. I appreciate your time and look forward to potential future collaborations.",
     "sections": {
       "respondentType": {
@@ -100,7 +100,7 @@
   "longVersion": {
     "title": "Stephen's Detailed Annual Feedback Form",
     "description": "Welcome to my detailed annual feedback form. Your insights are invaluable in helping me improve and tailor my teaching methods for the coming year. Thank you for taking the time to share your thoughts!",
-    "conclusion": "Thank you for taking the time to provide this valuable feedback on our year together. Your insights will help me improve and tailor my teaching methods for the coming year. I look forward to our continued collaboration!",
+    "conclusion": "Thank you for taking the time to provide this valuable feedback on the past year. Your insights will help me improve and tailor my teaching methods for the coming year. I look forward to our continued collaboration!",
     "sections": {
       "general": {
         "title": "General Information"

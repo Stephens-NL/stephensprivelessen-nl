@@ -5,7 +5,7 @@
     "cta": "More Info & Schedule Now"
   },
   "services": {
-    "title": "Our Expertise",
+    "title": "My Expertise",
     "items": [
       {
         "title": "Data Analysis",
@@ -40,11 +40,11 @@
     ]
   },
   "approach": {
-    "title": "Our Approach",
+    "title": "My Approach",
     "steps": [
       {
         "title": "Initial Consultation",
-        "description": "We start with a thorough understanding of your needs and objectives"
+        "description": "I start with a thorough understanding of your needs and objectives"
       },
       {
         "title": "Data Assessment",
@@ -66,13 +66,13 @@
   },
   "cta": {
     "title": "Ready to Transform Your Data?",
-    "subtitle": "Contact us today to discuss how we can help you leverage your data for better decision-making.",
+    "subtitle": "Contact me today to discuss how I can help you leverage your data for better decision-making.",
     "button": "Schedule Now"
   },
   "form": {
     "moreInfoScheduleNow": "More Info & Schedule Now",
     "readyToTransformYourData": "Ready to Transform Your Data?",
-    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Contact us today to discuss how we can help you leverage your data for better decision-making.",
+    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Contact me today to discuss how I can help you leverage your data for better decision-making.",
     "scheduleNow": "Schedule Now"
   }
 }

@@ -1,13 +1,13 @@
 {
   "title": "Workshops & Courses",
-  "description": "Discover our diverse range of workshops and courses designed to enhance your skills and knowledge.",
+  "description": "Discover my diverse range of workshops and courses designed to enhance your skills and knowledge.",
   "defaultPrice": "Contact for pricing",
   "defaultMaterials": "Will be communicated upon registration",
   "defaultLocation": "Online or in-person",
   "defaultPrerequisites": "No specific prerequisites",
   "hero": {
     "title": "Interactive Workshops",
-    "subtitle": "Discover our specialized workshops designed to enhance learning through practical experience and expert guidance.",
+    "subtitle": "Discover my specialized workshops designed to enhance learning through practical experience and expert guidance.",
     "smallGroups": "Small Groups",
     "flexibleScheduling": "Flexible Scheduling",
     "expertGuidance": "Expert Guidance"
@@ -32,8 +32,8 @@
   },
   "customCTA": {
     "title": "Looking for a Custom Workshop?",
-    "description": "We can create a tailored program that perfectly matches your organization's needs and goals.",
-    "button": "Contact Us"
+    "description": "I can create a tailored program that perfectly matches your organization's needs and goals.",
+    "button": "Contact Me"
   },
   "levels": {
     "allLevels": "All Levels",
