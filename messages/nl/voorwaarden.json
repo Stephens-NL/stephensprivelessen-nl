@@ -1,0 +1,31 @@
+{
+  "title": "Voorwaarden",
+  "subtitle": "Transparantie over onze werkwijze",
+  "intro": "Hieronder vind je de belangrijkste voorwaarden voor bijlessen bij Stephens Privelessen. Dit is een samenvatting — het volledige contract ontvang je na de proefles.",
+  "agreement": {
+    "title": "Lesovereenkomst",
+    "cancellation": "Gratis annuleren tot 24 uur voor de les",
+    "surcharge24h": "Annulering binnen 24 uur: 20% toeslag",
+    "surcharge12h": "Annulering binnen 12 uur: 50% toeslag",
+    "payment": "Betaling vooraf via Tikkie",
+    "invoice": "Factuur op verzoek beschikbaar",
+    "maxHours": "Maximaal 2 uur per week"
+  },
+  "hours": {
+    "title": "Beschikbaarheid",
+    "weekdays": "Maandag t/m vrijdag: 18:00 – 21:00",
+    "saturday": "Zaterdag: 10:00 – 18:00",
+    "sunday": "Zondag: 14:00 – 18:00 (alleen online, inhaalles)"
+  },
+  "privacy": {
+    "title": "Privacy",
+    "description": "Wij verwerken alleen de gegevens die nodig zijn voor de bijles: naam, contactgegevens, vak en niveau. Bij minderjarigen bewaren we ook de gegevens van een ouder/verzorger.",
+    "rights": "Je hebt recht op inzage, correctie en verwijdering van je gegevens.",
+    "contact": "Neem contact op via het contactformulier voor privacy-verzoeken."
+  },
+  "pricing": {
+    "title": "Tarieven",
+    "description": "Tarieven zijn afhankelijk van niveau, groepsgrootte en locatie. Bekijk de actuele tarieven op onze website of vraag een offerte aan na de proefles."
+  },
+  "cta": "Heb je vragen? Neem contact op."
+}

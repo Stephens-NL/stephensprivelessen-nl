@@ -23,6 +23,7 @@ export default getRequestConfig(async ({requestLocale}) => {
     feedback: (await import(`../messages/${locale}/feedback.json`)).default,
     blog: (await import(`../messages/${locale}/blog.json`)).default,
     terms: (await import(`../messages/${locale}/terms.json`)).default,
+    voorwaarden: (await import(`../messages/${locale}/voorwaarden.json`)).default,
     errors: (await import(`../messages/${locale}/errors.json`)).default,
   };
 
