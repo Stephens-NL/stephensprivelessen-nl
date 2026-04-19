@@ -4,6 +4,7 @@ import BlogPostComponent from '@/components/BlogPostComponent';
 import { blogPosts } from '@/data/blog';
 import { notFound } from 'next/navigation';
 import { config } from '@/data/config'; // Import config for siteUrl
+import { getLanguageFromLocale } from '@/hooks/useLanguage';
 
 type Props = {
   params: Promise<{ id: string; locale: string }>;
@@ -14,7 +15,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
   const postId = Number(params.id);
   const post = blogPosts.find(p => p.id === postId);
-  const language = params.locale === 'nl' ? 'NL' : 'EN';
+  const language = getLanguageFromLocale(params.locale);
 
   if (!post) {
     return {

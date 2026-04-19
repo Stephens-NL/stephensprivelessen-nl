@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, m } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { staggerContainer } from '@/lib/animations';
 import { Link } from '@/i18n/navigation';
 import ButtonTrial from './ButtonTrial';
 import { X } from 'lucide-react';
@@ -38,16 +39,6 @@ const serviceLinkMap: Record<string, string> = {
 const Services = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const t = useTranslations('services');
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -94,7 +85,7 @@ const Services = () => {
         {/* Services Grid */}
         <m.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-          variants={containerVariants}
+          variants={staggerContainer}
           initial="hidden"
           animate="visible"
         >

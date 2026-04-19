@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { useTranslations, useLocale } from 'next-intl';
+import { staggeredFadeInUp } from '@/lib/animations';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import FloatingShapes from './FloatingShapes';
@@ -106,9 +107,7 @@ const Faq: React.FC = () => {
         {filteredIndices.map((index, displayIndex) => (
           <m.div
             key={`${index}-${locale}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: displayIndex * 0.1 }}
+            {...staggeredFadeInUp(displayIndex)}
             className="mb-4"
           >
             <m.button

@@ -5,15 +5,14 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { AnimatePresence, m } from 'framer-motion';
+import { staggeredFadeInUp } from '@/lib/animations';
 
-const PhilosophyCard = ({ title, description }: {title: string, description: string}) => (
+const PhilosophyCard = ({ title, description, index = 0 }: {title: string, description: string, index?: number}) => (
   <m.div
     className="bg-[var(--cream)] border border-[var(--border-warm)] backdrop-blur-lg rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300"
     whileHover={{ scale: 1.03, transition: { duration: 0.2, ease: "easeInOut" } }}
     whileTap={{ scale: 0.98 }}
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, ease: "easeOut" }}
+    {...staggeredFadeInUp(index)}
   >
     <h3 className="text-xl font-semibold text-[var(--ink)] mb-3">{title}</h3>
     <p className="text-[var(--warm-text)]">{description}</p>
@@ -98,9 +97,7 @@ const About = () => {
                 <m.p
                   key={index}
                   className="mb-4 text-[var(--warm-text)]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut", delay: 0.6 + index * 0.1 }}
+                  {...staggeredFadeInUp(index, 0.6)}
                 >
                   {t(`introduction.paragraphs.${index}`)}
                 </m.p>
@@ -124,6 +121,7 @@ const About = () => {
             {philosophyPoints.map((index) => (
               <PhilosophyCard
                 key={index}
+                index={index}
                 title={t(`philosophyPoints.${index}.title`)}
                 description={t(`philosophyPoints.${index}.description`)}
               />

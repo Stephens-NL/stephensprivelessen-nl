@@ -5,6 +5,7 @@ import { m } from 'framer-motion';
 import { TutoringPage } from '@/types';
 import { Icon, IconName } from '@/components/ui/icons';
 import { Card } from '@/components/ui/card';
+import { inViewFadeUp } from '@/lib/animations';
 
 interface ProcessSectionProps {
   process: TutoringPage['process'];
@@ -16,9 +17,7 @@ export function ProcessSection({ process, t }: ProcessSectionProps) {
     <section className="py-24 bg-muted/50">
       <div className="container px-4 md:px-6">
         <m.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...inViewFadeUp}
           className="text-3xl font-bold text-center mb-12"
         >
           {t(process.title)}
@@ -28,10 +27,8 @@ export function ProcessSection({ process, t }: ProcessSectionProps) {
           {process.steps.map((step, index) => (
             <m.div
               key={String(step.title?.EN ?? step.title?.NL ?? step.number ?? index)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              {...inViewFadeUp}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
             >
               <Card className="p-6 h-full flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
@@ -49,4 +46,4 @@ export function ProcessSection({ process, t }: ProcessSectionProps) {
       </div>
     </section>
   );
-} 
+}

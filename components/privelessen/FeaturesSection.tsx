@@ -5,6 +5,7 @@ import { m } from 'framer-motion';
 import { TutoringFeature } from '@/types';
 import { Icon, IconName } from '@/components/ui/icons';
 import { Card } from '@/components/ui/card';
+import { inViewFadeUp } from '@/lib/animations';
 
 interface FeaturesSectionProps {
   features: TutoringFeature[];
@@ -19,10 +20,8 @@ export function FeaturesSection({ features, t }: FeaturesSectionProps) {
           {features.map((feature, index) => (
             <m.div
               key={String(feature.title?.EN ?? feature.title?.NL ?? feature.icon ?? index)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              {...inViewFadeUp}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              viewport={{ once: true }}
             >
               <Card className="p-6 h-full flex flex-col">
                 <div className="mb-4">
@@ -37,4 +36,4 @@ export function FeaturesSection({ features, t }: FeaturesSectionProps) {
       </div>
     </section>
   );
-} 
+}

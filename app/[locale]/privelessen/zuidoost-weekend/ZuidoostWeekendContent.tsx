@@ -1,6 +1,6 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { m } from 'framer-motion';
 import { FaStar, FaMapMarkerAlt, FaClock, FaCheck } from 'react-icons/fa';
 import { weekendLocations } from '@/data/weekendTutoring';
@@ -13,6 +13,7 @@ import { ZuidoostOfferVariant } from '@/components/privelessen/zuidoost/Zuidoost
 import { ZuidoostLocationMap } from '@/components/privelessen/zuidoost/ZuidoostLocationMap';
 import { ZuidoostSubjectsSection } from '@/components/privelessen/zuidoost/ZuidoostSubjectsSection';
 import { config } from '@/data/config';
+import { staggeredFadeInUp } from '@/lib/animations';
 
 export default function ZuidoostWeekendContent() {
   const t = useTranslations('weekend');
@@ -67,18 +68,23 @@ export default function ZuidoostWeekendContent() {
               </Dialog>
             </div>
             <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                <div className="flex items-center gap-2 text-[var(--amber)] mb-3"><FaMapMarkerAlt className="text-xl" /><h3 className="font-medium">{t('features.location.title')}</h3></div>
-                <p className="text-white/90">{t('features.location.text')}</p>
-              </div>
-              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                <div className="flex items-center gap-2 text-[var(--amber)] mb-3"><FaClock className="text-xl" /><h3 className="font-medium">{t('features.availability.title')}</h3></div>
-                <p className="text-white/90">{t('features.availability.text')}</p>
-              </div>
-              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
-                <div className="flex items-center gap-2 text-[var(--amber)] mb-3"><FaCheck className="text-xl" /><h3 className="font-medium">{t('features.extras.title')}</h3></div>
-                <p className="text-white/90">{t('features.extras.text')}</p>
-              </div>
+              {[
+                { icon: FaMapMarkerAlt, key: 'location' },
+                { icon: FaClock, key: 'availability' },
+                { icon: FaCheck, key: 'extras' },
+              ].map(({ icon: IconComponent, key }, index) => (
+                <m.div
+                  key={key}
+                  {...staggeredFadeInUp(index)}
+                  className="bg-white/10 rounded-xl p-6 backdrop-blur-sm"
+                >
+                  <div className="flex items-center gap-2 text-[var(--amber)] mb-3">
+                    <IconComponent className="text-xl" />
+                    <h3 className="font-medium">{t(`features.${key}.title`)}</h3>
+                  </div>
+                  <p className="text-white/90">{t(`features.${key}.text`)}</p>
+                </m.div>
+              ))}
             </div>
             <ZuidoostLocationMap />
             <ZuidoostSubjectsSection educationLevels={educationLevels} />

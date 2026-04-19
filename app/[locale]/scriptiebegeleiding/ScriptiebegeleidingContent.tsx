@@ -1,19 +1,21 @@
 'use client';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { JsonLdScript } from '@/components/JsonLdScript';
 import { m } from 'framer-motion';
+import { staggeredFadeInUp, viewportOnce } from '@/lib/animations';
 import Image from 'next/image';
 import { Syne, Space_Grotesk } from "next/font/google";
 import { Link } from '@/i18n/navigation';
 
-const syne = Syne({ 
+const syne = Syne({
     subsets: ['latin'],
     variable: '--font-syne',
     display: 'swap',
 });
 
-const spaceGrotesk = Space_Grotesk({ 
+const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
     variable: '--font-space-grotesk',
     display: 'swap',
@@ -61,16 +63,9 @@ const jsonLd = {
   }
 };
 
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
-
 export default function ScriptiebegeleidingContent() {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('thesis');
+  const language = useLanguage();
+  const t = useTranslations('thesis');
 
   const content = {
     title: {
@@ -147,7 +142,7 @@ export default function ScriptiebegeleidingContent() {
     <div className={`${syne.variable} ${spaceGrotesk.variable}`}>
       <div className="relative min-h-screen">
         <JsonLdScript data={jsonLd} />
-        
+
         {/* Hero Section */}
         <div className="relative h-screen">
           <Image
@@ -181,10 +176,9 @@ export default function ScriptiebegeleidingContent() {
                 <m.div
                   key={String(service.title?.EN ?? service.title?.NL ?? index)}
                   className="bg-ink-light/50 backdrop-blur-sm p-6 sm:p-8 lg:p-12 rounded-3xl border border-cream/10"
-                  initial={{ opacity: 0, y: 40 }}
+                  {...staggeredFadeInUp(index, 0)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  viewport={viewportOnce}
                 >
                   <span className="text-4xl sm:text-5xl lg:text-7xl font-syne text-amber mb-4 lg:mb-8 block">0{index + 1}</span>
                   <h3 className="font-syne text-xl sm:text-2xl lg:text-3xl text-cream mb-4 lg:mb-8">
@@ -193,7 +187,7 @@ export default function ScriptiebegeleidingContent() {
                   <ul className="space-y-3 lg:space-y-4 font-space-grotesk text-base lg:text-lg text-cream-dark">
                     {service.items[language as keyof typeof service.items].map((item) => (
                       <li key={String(item)} className="flex items-start">
-                        <span className="mr-3 text-amber">—</span>
+                        <span className="mr-3 text-amber">&mdash;</span>
                         {item}
                       </li>
                     ))}
@@ -215,10 +209,9 @@ export default function ScriptiebegeleidingContent() {
                 <m.div
                   key={String(item) || `why-${index}`}
                   className="group"
-                  initial={{ opacity: 0, y: 40 }}
+                  {...staggeredFadeInUp(index)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  viewport={viewportOnce}
                 >
                   <div className="h-1 w-16 bg-amber mb-6 lg:mb-8 group-hover:w-32 transition-all duration-300"></div>
                   <p className="font-space-grotesk text-lg lg:text-xl text-ink">{item}</p>

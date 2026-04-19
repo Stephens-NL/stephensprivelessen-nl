@@ -2,28 +2,22 @@
 
 import { m } from 'framer-motion';
 import Image from 'next/image';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
+import { useLanguage } from '@/hooks/useLanguage';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
 import { jsonLd } from './metadata';
 import { JsonLdScript } from '@/components/JsonLdScript';
-
-const fadeIn = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
-};
+import { staggeredFadeInUp, viewportOnce, inViewFadeUp } from '@/lib/animations';
+import { scrollToElement } from '@/lib/scroll';
 
 export default function ConsultancyContent() {
-  const locale = useLocale();
-    const language = locale === 'nl' ? 'NL' : 'EN';
-    const t = useTranslations('consultancy');
+  const language = useLanguage();
+  const t = useTranslations('consultancy');
   const router = useRouter();
-  const contactSectionRef = useRef<HTMLDivElement>(null);
 
   const handleContactClick = (scrollToContact: boolean = false) => {
-    if (scrollToContact && contactSectionRef.current) {
-      contactSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (scrollToContact) {
+      scrollToElement('consultancy-contact');
     } else {
       router.push('/contact?service=consultancy');
     }
@@ -153,11 +147,9 @@ export default function ConsultancyContent() {
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--ink)]/90 to-black/50" />
           </div>
-          <m.div 
+          <m.div
             className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto"
-            initial="initial"
-            animate="animate"
-            variants={fadeIn}
+            {...staggeredFadeInUp(0)}
           >
             <h1 className="text-6xl md:text-7xl font-bold mb-6 font-display">
               {content.hero.title[language]}
@@ -176,12 +168,9 @@ export default function ConsultancyContent() {
 
         {/* Services Section */}
         <section className="py-24 px-4 bg-[var(--cream-dark)]">
-          <m.div 
+          <m.div
             className="max-w-7xl mx-auto"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={fadeIn}
+            {...inViewFadeUp}
           >
             <h2 className="text-4xl font-bold text-center mb-16 font-display text-[var(--ink)]">
               {content.services.title[language]}
@@ -191,17 +180,16 @@ export default function ConsultancyContent() {
                 <m.div
                   key={service.title}
                   className="bg-[var(--cream)] border border-[var(--border-warm)] p-8 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
-                  initial={{ opacity: 0, y: 20 }}
+                  {...staggeredFadeInUp(index, 0)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  viewport={viewportOnce}
                 >
                   <h3 className="text-2xl font-bold font-display text-[var(--ink)] mb-4">{service.title}</h3>
                   <p className="text-[var(--muted-text)] mb-6">{service.description}</p>
                   <ul className="space-y-3">
                     {service.items.map((item) => (
                       <li key={item} className="flex items-start">
-                        <span className="mr-2 text-[var(--amber)]">•</span>
+                        <span className="mr-2 text-[var(--amber)]">&bull;</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -214,12 +202,9 @@ export default function ConsultancyContent() {
 
         {/* Approach Section */}
         <section className="py-24 px-4">
-          <m.div 
+          <m.div
             className="max-w-7xl mx-auto"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={fadeIn}
+            {...inViewFadeUp}
           >
             <h2 className="text-4xl font-bold text-center mb-16 font-display text-[var(--ink)]">
               {content.approach.title[language]}
@@ -229,10 +214,9 @@ export default function ConsultancyContent() {
                 <m.div
                   key={step.title}
                   className="relative bg-[var(--cream)] p-8 rounded-lg shadow-lg border border-[var(--border-warm)]"
-                  initial={{ opacity: 0, y: 20 }}
+                  {...staggeredFadeInUp(index)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  viewport={viewportOnce}
                 >
                   <div className="absolute -top-4 -left-4 w-8 h-8 bg-[var(--amber)] text-[var(--ink)] rounded-full flex items-center justify-center font-bold">
                     {index + 1}
@@ -246,13 +230,10 @@ export default function ConsultancyContent() {
         </section>
 
         {/* CTA Section */}
-        <section ref={contactSectionRef} className="py-24 px-4 bg-[var(--ink)] text-[var(--cream)]">
-          <m.div 
+        <section id="consultancy-contact" className="py-24 px-4 bg-[var(--ink)] text-[var(--cream)]">
+          <m.div
             className="max-w-4xl mx-auto text-center"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            variants={fadeIn}
+            {...inViewFadeUp}
           >
             <h2 className="text-4xl font-bold mb-8 font-display">
               {t('form.readyToTransformYourData')}

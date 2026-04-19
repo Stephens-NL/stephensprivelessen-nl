@@ -2,12 +2,13 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
-import { useLocale } from 'next-intl';
 import { TutoringPage } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Check } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
+import { useLanguage } from '@/hooks/useLanguage';
+import { inViewFadeUp } from '@/lib/animations';
 
 interface PricingSectionProps {
   pricing: TutoringPage['pricing'];
@@ -15,26 +16,22 @@ interface PricingSectionProps {
 }
 
 export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
-  const locale = useLocale();
-  const isNl = locale === 'nl';
+  const language = useLanguage();
+  const isNl = language === 'NL';
   return (
     <section className="py-24 bg-gradient-to-b from-[var(--cream-dark)] to-[var(--cream)]">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
           <m.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            {...inViewFadeUp}
             className="text-4xl font-display font-bold mb-4 text-[var(--ink)]"
           >
             {t(pricing.title)}
           </m.h2>
           <m.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            {...inViewFadeUp}
+            transition={{ ...inViewFadeUp.transition, delay: 0.2 }}
             className="text-xl text-[var(--muted-text)]"
           >
             {t(pricing.subtitle)}
@@ -46,10 +43,8 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
           {pricing.plans.map((plan, index) => (
             <m.div
               key={String(plan.name?.EN ?? plan.name?.NL ?? index)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              {...inViewFadeUp}
+              transition={{ ...inViewFadeUp.transition, delay: index * 0.1 }}
               className={`flex ${plan.name.EN === 'Thesis & Research' ? 'md:col-span-2 lg:col-span-3' : ''}`}
             >
               <Card
@@ -105,4 +100,4 @@ export const PricingSection = ({ pricing, t }: PricingSectionProps) => {
       </div>
     </section>
   );
-}; 
+};

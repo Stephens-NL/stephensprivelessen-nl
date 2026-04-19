@@ -1,17 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
 import { BlogPost } from '../data';
+import { useLanguage } from '@/hooks/useLanguage';
+import { staggerContainer, fadeInUp } from '@/lib/animations';
 
 const BLOG_COUNT = 10;
 
 const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ index, onClick }) => {
   const t = useTranslations('blog');
-  const locale = useLocale();
-  const isNl = locale === 'nl';
+  const language = useLanguage();
+  const isNl = language === 'NL';
   return (
     <m.div
       className="bg-[var(--cream)] shadow-md rounded-lg p-6 mb-6 border border-[var(--border-warm)] hover:border-[var(--amber)] cursor-pointer"
@@ -38,21 +40,6 @@ export const BlogList: React.FC = () => {
     setSelectedIndex(null);
   };
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
-
   return (
     <div className="mx-auto px-4 py-8 bg-[var(--cream)]">
       <m.h1
@@ -65,12 +52,12 @@ export const BlogList: React.FC = () => {
       </m.h1>
       <m.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        variants={container}
+        variants={staggerContainer}
         initial="hidden"
-        animate="show"
+        animate="visible"
       >
         {Array.from({ length: BLOG_COUNT }, (_, index) => (
-          <m.div key={index} variants={item}>
+          <m.div key={index} variants={fadeInUp}>
             <BlogPostSummary index={index} onClick={() => setSelectedIndex(index)} />
           </m.div>
         ))}
@@ -88,8 +75,8 @@ export const BlogList: React.FC = () => {
 
 const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ index, onClose }) => {
   const t = useTranslations('blog');
-  const locale = useLocale();
-  const isNl = locale === 'nl';
+  const language = useLanguage();
+  const isNl = language === 'NL';
 
   return (
     <m.div
@@ -145,8 +132,7 @@ interface LoadingErrorState {
 
 export const FullPageBlogPost: React.FC<{ post: BlogPost | null; loadingErrorState: LoadingErrorState }> = ({ post, loadingErrorState }) => {
   const { isLoading, error } = loadingErrorState;
-  const locale = useLocale();
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = useLanguage();
 
   if (isLoading) {
     return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">Laden...</div>;

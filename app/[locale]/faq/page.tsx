@@ -2,6 +2,7 @@
 import Script from 'next/script';
 import FAQPage from '@/components/Faq';
 import faqData from '@/data/faq.json';
+import { getLanguageFromLocale } from '@/hooks/useLanguage';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -67,7 +68,7 @@ export const revalidate = 3600; // Revalidate every hour
 
 export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const language = locale === 'nl' ? 'NL' : 'EN';
+  const language = getLanguageFromLocale(locale);
   // Build FAQPage JSON-LD from data
   const faqJsonLd = {
     '@context': 'https://schema.org',
