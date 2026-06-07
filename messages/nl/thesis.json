@@ -2,7 +2,7 @@
   "title": "Scriptiebegeleiding Amsterdam",
   "subtitle": "Professionele begeleiding voor je scriptie of thesis. Expert in statistiek, methodologie en data-analyse. Persoonlijke aanpak voor bachelor en master studenten.",
   "services": {
-    "title": "Onze Diensten",
+    "title": "Mijn Diensten",
     "methodology": {
       "title": "Methodologie",
       "items": [
@@ -32,7 +32,7 @@
     }
   },
   "why": {
-    "title": "Waarom Kiezen voor Onze Scriptiebegeleiding?",
+    "title": "Waarom Kiezen voor Mijn Scriptiebegeleiding?",
     "items": [
       "Ervaren begeleider met academische achtergrond",
       "Specialisatie in statistiek en methodologie",
@@ -44,12 +44,12 @@
   },
   "cta": {
     "title": "Klaar om te Excelleren?",
-    "subtitle": "Neem vandaag nog contact op om te bespreken hoe we je kunnen helpen academisch te excelleren.",
+    "subtitle": "Neem vandaag nog contact op om te bespreken hoe ik je kan helpen academisch te excelleren.",
     "button": "Begin Nu"
   },
   "form": {
     "readyToExcel": "Klaar om te Excelleren?",
-    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Neem vandaag nog contact op om te bespreken hoe we je kunnen helpen academisch te excelleren.",
+    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Neem vandaag nog contact op om te bespreken hoe ik je kan helpen academisch te excelleren.",
     "getStarted": "Begin Nu"
   }
 }

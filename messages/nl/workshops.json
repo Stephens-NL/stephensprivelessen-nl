@@ -1,13 +1,13 @@
 {
   "title": "Workshops & Cursussen",
-  "description": "Ontdek ons diverse aanbod van workshops en cursussen ontworpen om je vaardigheden en kennis te verbeteren.",
+  "description": "Ontdek mijn diverse aanbod van workshops en cursussen ontworpen om je vaardigheden en kennis te verbeteren.",
   "defaultPrice": "Neem contact op voor prijzen",
   "defaultMaterials": "Wordt bij aanmelding gecommuniceerd",
   "defaultLocation": "Online of op locatie",
   "defaultPrerequisites": "Geen specifieke voorvereisten",
   "hero": {
     "title": "Interactieve Workshops",
-    "subtitle": "Ontdek onze gespecialiseerde workshops ontworpen om leren te verbeteren door praktijkervaring en deskundige begeleiding.",
+    "subtitle": "Ontdek mijn gespecialiseerde workshops ontworpen om leren te verbeteren door praktijkervaring en deskundige begeleiding.",
     "smallGroups": "Kleine Groepen",
     "flexibleScheduling": "Flexibele Planning",
     "expertGuidance": "Expert Begeleiding"
@@ -32,7 +32,7 @@
   },
   "customCTA": {
     "title": "Op Zoek naar een Workshop op Maat?",
-    "description": "We kunnen een programma op maat maken dat perfect aansluit bij de behoeften en doelen van jouw organisatie.",
+    "description": "Ik kan een programma op maat maken dat perfect aansluit bij de behoeften en doelen van jouw organisatie.",
     "button": "Neem Contact Op"
   },
   "levels": {

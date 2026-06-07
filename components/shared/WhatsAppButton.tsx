@@ -54,7 +54,7 @@ export default function WhatsAppButton() {
         onClick={handleClick}
         onMouseEnter={() => dispatchUI({ type: 'HOVERED', payload: true })}
         onMouseLeave={() => dispatchUI({ type: 'HOVERED', payload: false })}
-        className="fixed bottom-6 right-6 z-30 flex items-center gap-2.5 bg-[var(--ink)] text-[var(--cream)] pl-4 pr-5 py-3 rounded-full shadow-lg shadow-black/15 hover:shadow-xl hover:shadow-black/20 transition-all duration-300"
+        className="fixed bottom-20 right-6 z-30 flex items-center gap-2.5 bg-[var(--ink)] text-[var(--cream)] pl-4 pr-5 py-3 rounded-full shadow-lg shadow-black/15 hover:shadow-xl hover:shadow-black/20 transition-all duration-300"
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 1, ease: [0.22, 1, 0.36, 1] }}

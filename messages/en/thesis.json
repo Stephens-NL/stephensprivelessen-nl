@@ -2,7 +2,7 @@
   "title": "Thesis Supervision Amsterdam",
   "subtitle": "Professional guidance for your thesis or dissertation. Expert in statistics, methodology and data analysis. Personal approach for bachelor and master students.",
   "services": {
-    "title": "Our Services",
+    "title": "My Services",
     "methodology": {
       "title": "Methodology",
       "items": [
@@ -32,7 +32,7 @@
     }
   },
   "why": {
-    "title": "Why Choose Our Thesis Supervision?",
+    "title": "Why Choose My Thesis Supervision?",
     "items": [
       "Experienced supervisor with academic background",
       "Specialization in statistics and methodology",
@@ -44,12 +44,12 @@
   },
   "cta": {
     "title": "Ready to Excel?",
-    "subtitle": "Contact us today to discuss how we can help you achieve academic excellence.",
+    "subtitle": "Contact me today to discuss how I can help you achieve academic excellence.",
     "button": "Get Started"
   },
   "form": {
     "readyToExcel": "Ready to Excel?",
-    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Contact us today to discuss how we can help you achieve academic excellence.",
+    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Contact me today to discuss how I can help you achieve academic excellence.",
     "getStarted": "Get Started"
   }
 }

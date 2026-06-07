@@ -1,8 +1,6 @@
-// src/data/prices.ts
+// Package-based pricing data (4-hour packages are the only offered format)
 
-import { config } from './config';
-
-// Nieuwe uitgebreide rekentrajecten data
+// Rekentrajecten comparison data
 export const rekentrajectenComparison = {
   title: {
     NL: "Totaaloverzicht – Rekentrajecten",
@@ -128,7 +126,6 @@ export const rekentrajectenComparison = {
 // Package-based pricing (4-uurs pakketten — enige aangeboden vorm)
 // VO = Voortgezet Onderwijs (middelbare school)
 // HBO/WO = Hoger onderwijs
-// Weekend HvA = Weekend programma (50% van VO-tarief)
 
 export const voOnlinePackages = [
   { students: 1, packagePrice: 240, pricePerPerson: 240 },
@@ -145,32 +142,19 @@ export const voPhysicalPackages = [
 ];
 
 export const hboWoOnlinePackages = [
-  { students: 1, packagePrice: 360, pricePerPerson: 360 },
+  { students: 1, packagePrice: 300, pricePerPerson: 300 },
+  { students: 2, packagePrice: 400, pricePerPerson: 200 },
+  { students: 3, packagePrice: 510, pricePerPerson: 170 },
+  { students: 4, packagePrice: 600, pricePerPerson: 150 },
+];
+
+export const hboWoPhysicalPackages = [
+  { students: 1, packagePrice: 400, pricePerPerson: 400 },
   { students: 2, packagePrice: 520, pricePerPerson: 260 },
   { students: 3, packagePrice: 660, pricePerPerson: 220 },
   { students: 4, packagePrice: 800, pricePerPerson: 200 },
 ];
 
-export const hboWoPhysicalPackages = [
-  { students: 1, packagePrice: 450, pricePerPerson: 450 },
-  { students: 2, packagePrice: 600, pricePerPerson: 300 },
-  { students: 3, packagePrice: 780, pricePerPerson: 260 },
-  { students: 4, packagePrice: 920, pricePerPerson: 230 },
-];
-
-export const weekendHvaOnlinePackages = [
-  { students: 1, packagePrice: 120, pricePerPerson: 120 },
-  { students: 2, packagePrice: 160, pricePerPerson: 80 },
-  { students: 3, packagePrice: 210, pricePerPerson: 70 },
-  { students: 4, packagePrice: 260, pricePerPerson: 65 },
-];
-
-export const weekendHvaPhysicalPackages = [
-  { students: 1, packagePrice: 150, pricePerPerson: 150 },
-  { students: 2, packagePrice: 200, pricePerPerson: 100 },
-  { students: 3, packagePrice: 260, pricePerPerson: 87 },
-  { students: 4, packagePrice: 320, pricePerPerson: 80 },
-];
 
 // Spoedpakketten (2 uur)
 export const spoedPrices = {
@@ -180,37 +164,34 @@ export const spoedPrices = {
   hboWoPhysical: 260,
 };
 
-// Legacy shape kept for PricingPage.tsx (duration in hours, price = pakketprijs 1 student)
-// Business only sells 4hr packages — 1-student package price shown per tier.
-// Prices derived from package arrays above (single source of truth).
-export const prices = {
-  higher: [
-    { duration: 4, price: hboWoOnlinePackages[0].packagePrice },
-  ],
-  secondary20Plus: [
-    { duration: 4, price: voOnlinePackages[0].packagePrice },
-  ],
-  secondary20Minus: [
-    { duration: 4, price: voPhysicalPackages[0].packagePrice },
-  ],
-  flexibilityPremium: [
-    { duration: "Pakket van 2 lessen", price: `€${config.pricing.flexibilityPremium.twoLessons}` },
-    { duration: "Pakket van 4 lessen", price: `€${config.pricing.flexibilityPremium.fourLessons}` },
-    { duration: "Pakket van 6 lessen of meer", price: `€${config.pricing.flexibilityPremium.sixOrMoreLessons}` },
-  ],
-  travelCosts: [
-    { duration: "Science Park", price: `€${config.pricing.travelCosts.sciencePark}` },
-    { duration: "Uni (buiten Science Park)", price: `€${config.pricing.travelCosts.vuUva}` },
-    { duration: "Aan huis (Amsterdam e.o.)", price: `€${config.pricing.travelCosts.homeAmsterdam}` },
-  ],
-  lastMinuteSurcharges: [
-    { timeFrame: "Minder dan 24 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan24Hours },
-    { timeFrame: "Minder dan 12 uur van tevoren gepland", percentage: config.pricing.lastMinuteSurcharges.lessThan12Hours },
-  ],
-};
-
 // Scriptiebegeleiding tarieven (uurtarief — apart product, niet pakketgebaseerd)
 export const scriptieRates = [
   { duration: "Statistiek & Onderzoek", price: "€90/uur" },
   { duration: "Data Science & AI", price: "€100/uur" },
 ];
+
+// Policies
+export const availabilityPolicy = {
+  weekdays: { NL: 'Doordeweeks tussen 18:00 en 21:00', EN: 'Weekdays between 18:00 and 21:00' },
+  maxPerWeek: { NL: 'Maximaal 2 uur les per week', EN: 'Maximum 2 hours of lessons per week' },
+  makeUp: { NL: 'Gemiste les inhalen op zondag 14:00–18:00, online', EN: 'Make-up lessons on Sundays 14:00–18:00, online only' },
+};
+
+export const cancellationPolicy = {
+  reschedule: { NL: 'Verzetten kan alleen in overleg en op basis van beschikbaarheid', EN: 'Rescheduling is only possible by arrangement and subject to availability' },
+  notice: { NL: 'Minimaal 24 uur van tevoren doorgeven', EN: 'At least 24 hours notice required' },
+  lateCancel: { NL: 'Bij afmelding binnen 24 uur vervalt de les', EN: 'Cancellation within 24 hours means the lesson is forfeited' },
+};
+
+export const paymentPolicy = {
+  method: { NL: 'Betaling vooraf per Tikkie', EN: 'Payment in advance via Tikkie' },
+  invoice: { NL: 'Factuur mogelijk op verzoek', EN: 'Invoice available on request' },
+  confirmation: { NL: 'Plek pas definitief na bevestiging en betaling', EN: 'Spot confirmed only after payment and confirmation' },
+};
+
+export const lessonModel = {
+  packageOnly: { NL: 'Uitsluitend pakketten van 4 uur — geen losse lessen', EN: '4-hour packages only — no single lessons' },
+  groupNote: { NL: 'Groepsprijzen gelden alleen als studenten zelf een groepje vormen', EN: 'Group prices apply only when students form their own group' },
+  maxGroupSize: 4,
+  packageHours: 4,
+};

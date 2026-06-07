@@ -5,7 +5,7 @@
     "cta": "Meer Info & Plan Nu"
   },
   "services": {
-    "title": "Onze Expertise",
+    "title": "Mijn Expertise",
     "items": [
       {
         "title": "Data Analyse",
@@ -40,11 +40,11 @@
     ]
   },
   "approach": {
-    "title": "Onze Aanpak",
+    "title": "Mijn Aanpak",
     "steps": [
       {
         "title": "Eerste Gesprek",
-        "description": "We beginnen met een grondig begrip van uw behoeften en doelstellingen"
+        "description": "Ik begin met een grondig begrip van uw behoeften en doelstellingen"
       },
       {
         "title": "Data Evaluatie",
@@ -66,13 +66,13 @@
   },
   "cta": {
     "title": "Klaar om Uw Data te Transformeren?",
-    "subtitle": "Neem vandaag nog contact op om te bespreken hoe wij u kunnen helpen uw data beter te benutten voor besluitvorming.",
+    "subtitle": "Neem vandaag nog contact op om te bespreken hoe ik u kan helpen uw data beter te benutten voor besluitvorming.",
     "button": "Plan Nu In"
   },
   "form": {
     "moreInfoScheduleNow": "Meer Info & Plan Nu",
     "readyToTransformYourData": "Klaar om Uw Data te Transformeren?",
-    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Neem vandaag nog contact op om te bespreken hoe wij u kunnen helpen uw data beter te benutten voor besluitvorming.",
+    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Neem vandaag nog contact op om te bespreken hoe ik u kan helpen uw data beter te benutten voor besluitvorming.",
     "scheduleNow": "Plan Nu In"
   }
 }

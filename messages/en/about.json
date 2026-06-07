@@ -1,72 +1,72 @@
 {
-  "title": "About Us",
+  "title": "About Me",
   "introduction": {
     "heading": "From Struggling to Excelling",
     "paragraphs": [
-      "My journey started with a failing grade in math during my third year of high school. Instead of giving up, I chose a radically different approach: complete every single problem, have every step checked. The result? A 9.8 on the very next test and a perfect 10 average in years four and five. That experience — knowing what it feels like to be stuck and how to break through — is the foundation of everything we do.",
-      "Today I guide students at UvA, VU, and universities of applied sciences in mathematics, statistics, data analysis, and programming. From first-years struggling with calculus to master's students completing their thesis with SPSS, R, or Python. We work online via Google Meet or on-site at Science Park. Every lesson is tailored — because I know from experience that the right push at the right moment can change everything."
+      "My journey started with a failing grade in math during my third year of high school. Instead of giving up, I chose a radically different approach: complete every single problem, have every step checked. The result? A 9.8 on the very next test and a perfect 10 average in years four and five. That experience — knowing what it feels like to be stuck and how to break through — is the foundation of everything I do.",
+      "Today I guide students at UvA, VU, and universities of applied sciences in mathematics, statistics, data analysis, and programming. From first-years struggling with calculus to master's students completing their thesis with SPSS, R, or Python. Lessons are online via Google Meet or on-site at Science Park. Every lesson is tailored — because I know from experience that the right push at the right moment can change everything."
     ],
     "altText": "Stephen Adei — founder of Stephen's Private Lessons"
   },
-  "philosophyTitle": "Our Philosophy",
+  "philosophyTitle": "My Philosophy",
   "philosophyPoints": [
     {
       "title": "Personalized Approach",
-      "description": "We tailor our lessons to the unique needs and learning styles of each student, ensuring that everyone receives the support they need to succeed."
+      "description": "I tailor my lessons to the unique needs and learning styles of each student, ensuring that everyone receives the support they need to succeed."
     },
     {
       "title": "Broad Expertise",
-      "description": "Our team's diverse background allows us to connect with students from various disciplines, making complex topics accessible and engaging."
+      "description": "My diverse background in mathematics, statistics, programming, and data analysis allows me to connect with students from various disciplines, making complex topics accessible and engaging."
     },
     {
       "title": "Flexible Learning",
-      "description": "We offer flexible scheduling and support through various channels, including WhatsApp, to accommodate the busy lives of our students."
+      "description": "I offer flexible scheduling and support through various channels, including WhatsApp, to accommodate the busy lives of my students."
     }
   ],
   "cta": {
-    "title": "Join Us",
-    "description": "Ready to improve your skills and achieve your academic goals? Contact us today to get started.",
-    "buttonText": "Contact Us"
+    "title": "Get Started",
+    "description": "Ready to improve your skills and achieve your academic goals? Contact me today to get started.",
+    "buttonText": "Contact Me"
   },
   "detailedTitle": "Detailed Information",
   "detailedInfo": {
     "items": [
       {
-        "question": "What inspired us to offer tutoring and education?",
-        "answer": "Stephen's journey in education began with challenges in high school, but through perseverance and a strategic approach, he excelled. This experience ignited a passion for helping others overcome similar obstacles."
+        "question": "What inspired you to offer tutoring and education?",
+        "answer": "My journey in education began with challenges in high school, but through perseverance and a strategic approach, I excelled. This experience ignited a passion for helping others overcome similar obstacles."
       },
       {
-        "question": "How do we describe our teaching approach and methods?",
-        "answer": "Our approach is personal and adaptive, focusing on the individual needs of each student. We utilize technology, such as iPad notes and WhatsApp support, to enhance learning and provide ongoing assistance."
+        "question": "How would you describe your teaching approach?",
+        "answer": "My approach is personal and adaptive, focusing on the individual needs of each student. I utilize technology, such as iPad notes and WhatsApp support, to enhance learning and provide ongoing assistance."
       },
       {
-        "question": "What makes our tutoring unique compared to other providers?",
-        "answer": "Our diverse background in mathematics, programming, music, and photography allows us to offer a broad perspective. We create a relatable and engaging learning environment, making complex subjects approachable."
+        "question": "What makes your tutoring unique compared to other providers?",
+        "answer": "My diverse background in mathematics, programming, music, and photography allows me to offer a broad perspective. I create a relatable and engaging learning environment, making complex subjects approachable."
       },
       {
-        "question": "How do we handle different learning styles and levels of students?",
-        "answer": "We employ various differentiation techniques, including scaffolding, to support students at different levels. Our flexible and interactive lessons cater to visual, auditory, and kinesthetic learners."
+        "question": "How do you handle different learning styles and levels?",
+        "answer": "I employ various differentiation techniques, including scaffolding, to support students at different levels. My flexible and interactive lessons cater to visual, auditory, and kinesthetic learners."
       },
       {
-        "question": "What results and successes have we seen with our students?",
-        "answer": "We've helped many students improve their grades and confidence, from overcoming academic challenges to excelling in exams. Our focus is on providing efficient and valuable assistance, even in just a few sessions."
+        "question": "What results and successes have you seen with your students?",
+        "answer": "I've helped many students improve their grades and confidence, from overcoming academic challenges to excelling in exams. My focus is on providing efficient and valuable assistance, even in just a few sessions."
       }
     ]
   },
   "introductionContent": {
-    "title": "Our Approach",
+    "title": "My Approach",
     "sections": [
       {
         "title": "Welcome",
-        "content": "Welcome to our tutoring and courses! We believe in a personalized and flexible approach, tailored to the unique needs of each student. Our experienced teachers provide customized support, from basic skills to advanced topics, in a friendly and stimulating learning environment. Whether you're studying for an exam, looking to improve your skills, or wanting to learn a new language, we're here to help you succeed."
+        "content": "Welcome to my tutoring and courses! I believe in a personalized and flexible approach, tailored to the unique needs of each student. I provide customized support, from basic skills to advanced topics, in a friendly and stimulating learning environment. Whether you're studying for an exam, looking to improve your skills, or wanting to learn a new subject, I'm here to help you succeed."
       },
       {
         "title": "Personalized Learning",
-        "content": "We tailor our teaching methods to match your learning style and pace. Every student is unique, and we adapt our approach accordingly."
+        "content": "I tailor my teaching methods to match your learning style and pace. Every student is unique, and I adapt my approach accordingly."
       },
       {
         "title": "Expert Support",
-        "content": "Our experienced teachers provide guidance in various subjects, ensuring you receive high-quality education and support."
+        "content": "With experience across various subjects, I provide guidance ensuring you receive high-quality education and support."
       }
     ]
   }

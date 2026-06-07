@@ -5,7 +5,7 @@
     "titleItalic": "math test",
     "titleLine2": "with",
     "titleBold": "confidence",
-    "subtitle": "Since math became mandatory for the MBO diploma, we help students with targeted guidance and proven methods to succeed.",
+    "subtitle": "Since math became mandatory for the MBO diploma, I help students with targeted guidance and proven methods to succeed.",
     "ctaPrimary": "Start today",
     "ctaSecondary": "View programs",
     "stats": {
@@ -15,8 +15,8 @@
     }
   },
   "about": {
-    "title": "Why choose us?",
-    "subtitle": "We understand the challenges of MBO math and provide the support you need to succeed.",
+    "title": "Why choose me?",
+    "subtitle": "I understand the challenges of MBO math and provide the support you need to succeed.",
     "features": [
       {
         "title": "Targeted approach",
@@ -28,22 +28,22 @@
       },
       {
         "title": "High success rate",
-        "description": "95% of our students pass their math test"
+        "description": "95% of my students pass their math test"
       },
       {
-        "title": "Experienced teachers",
+        "title": "Experienced teacher",
         "description": "Specialized in MBO math with years of experience"
       }
     ],
     "ctaTitle": "Ready for your math test?",
-    "ctaSubtitle": "Join hundreds of students who have successfully passed their MBO math test with our guidance.",
+    "ctaSubtitle": "Join hundreds of students who have successfully passed their MBO math test with my guidance.",
     "smallGroups": "Small groups",
     "flexibleTimes": "Flexible times",
     "onlineOffline": "Online & offline"
   },
   "services": {
-    "title": "Our services",
-    "subtitle": "From individual guidance to group lessons - we offer flexible solutions for every learning style.",
+    "title": "My services",
+    "subtitle": "From individual guidance to group lessons - I offer flexible solutions for every learning style.",
     "items": [
       {
         "title": "Personal guidance",
@@ -55,7 +55,7 @@
       },
       {
         "title": "Specific exam preparation",
-        "description": "We practice specifically on the skills and knowledge needed for the MBO math exam."
+        "description": "I practice specifically on the skills and knowledge needed for the MBO math exam."
       },
       {
         "title": "Location flexibility",
@@ -69,7 +69,7 @@
   },
   "targetGroups": {
     "title": "Who is this suitable for?",
-    "subtitle": "Our lessons are accessible to anyone who struggles with mathematics, regardless of background or level.",
+    "subtitle": "My lessons are accessible to anyone who struggles with mathematics, regardless of background or level.",
     "items": [
       {
         "title": "MBO students level 2, 3 and 4",
@@ -89,14 +89,14 @@
       }
     ],
     "stillUnsure": "Still unsure?",
-    "stillUnsureText": "No problem! We offer a free introductory meeting to see if our approach suits you.",
+    "stillUnsureText": "No problem! I offer a free introductory meeting to see if my approach suits you.",
     "noObligations": "No obligations",
     "personalAdvice": "Personal advice",
     "freeIntake": "Free intake"
   },
   "whyChoose": {
-    "title": "Why do students choose us?",
-    "subtitle": "Our approach ensures that students not only improve in mathematics, but also gain more confidence.",
+    "title": "Why do students choose me?",
+    "subtitle": "My approach ensures that students not only improve in mathematics, but also gain more confidence.",
     "reasons": [
       {
         "title": "Calm and clear explanation",
@@ -104,7 +104,7 @@
       },
       {
         "title": "Patient and supportive",
-        "description": "We work together on your confidence in mathematics."
+        "description": "I work together with you on your confidence in mathematics."
       },
       {
         "title": "Extensive experience",
@@ -121,7 +121,7 @@
   },
   "pricing": {
     "flexibleGuidance": "Flexible guidance",
-    "flexibleSubtitle": "In addition to our group programs, we also offer individual lessons for personal guidance.",
+    "flexibleSubtitle": "In addition to my group programs, I also offer individual lessons for personal guidance.",
     "perHour": "per hour",
     "individualLessons": "Individual lessons",
     "groupLessons": "Group lessons (2-4 people)",
@@ -147,7 +147,7 @@
   },
   "contact": {
     "title": "Let's get in touch",
-    "subtitle": "Ready to start? Contact us for a free introductory meeting and discover how we can help you.",
+    "subtitle": "Ready to start? Contact me for a free introductory meeting and discover how I can help you.",
     "getInTouch": "Get in touch",
     "contactInfo": {
       "whatsapp": {
@@ -189,15 +189,15 @@
     "hideDetails": "HIDE DETAILS"
   },
   "form": {
-    "whyChooseUs": "Why choose us?",
-    "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "We understand the challenges of MBO math and provide the support you need to succeed.",
+    "whyChooseUs": "Why choose me?",
+    "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "I understand the challenges of MBO math and provide the support you need to succeed.",
     "readyForYourMathTest": "Ready for your math test?",
-    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Join hundreds of students who have successfully passed their MBO math test with our guidance.",
+    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Join hundreds of students who have successfully passed their MBO math test with my guidance.",
     "smallGroups": "Small groups",
     "flexibleTimes": "Flexible times",
     "onlineOffline": "Online & offline",
     "let": "Let's get in touch",
-    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Ready to start? Contact us for a free introductory meeting and discover how we can help you.",
+    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Ready to start? Contact me for a free introductory meeting and discover how I can help you.",
     "getInTouch": "Get in touch",
     "availability": "Availability",
     "locations": "Locations",
@@ -209,27 +209,27 @@
     "noObligationsJustGettingToKnowEachOtherAndSeeIfWe": "No obligations, just getting to know each other and see if we're a good match.",
     "scheduleIntroduction": "Schedule introduction",
     "mboMathSupport": "MBO Math Support",
-    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Since math became mandatory for the MBO diploma, we help students with targeted guidance and proven methods to succeed.",
+    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Since math became mandatory for the MBO diploma, I help students with targeted guidance and proven methods to succeed.",
     "startToday": "Start today",
     "viewPrograms": "View programs",
     "flexibleGuidance": "Flexible guidance",
-    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "In addition to our group programs, we also offer individual lessons for personal guidance.",
+    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "In addition to my group programs, I also offer individual lessons for personal guidance.",
     "perHour": "per hour",
     "individualLessons": "Individual lessons",
     "groupLessons24People": "Group lessons (2-4 people)",
     "available": "available",
     "allOptions": "All options",
-    "ourServices": "Our services",
-    "fromIndividualGuidanceToGroupLessonsWeOfferFlexibl": "From individual guidance to group lessons - we offer flexible solutions for every learning style.",
+    "ourServices": "My services",
+    "fromIndividualGuidanceToGroupLessonsWeOfferFlexibl": "From individual guidance to group lessons - I offer flexible solutions for every learning style.",
     "whoIsThisSuitableFor": "Who is this suitable for?",
-    "ourLessonsAreAccessibleToAnyoneWhoStrugglesWithMat": "Our lessons are accessible to anyone who struggles with mathematics, regardless of background or level.",
+    "ourLessonsAreAccessibleToAnyoneWhoStrugglesWithMat": "My lessons are accessible to anyone who struggles with mathematics, regardless of background or level.",
     "stillUnsure": "Still unsure?",
-    "noProblemWeOfferAFreeIntroductoryMeetingToSeeIfOur": "No problem! We offer a free introductory meeting to see if our approach suits you.",
+    "noProblemWeOfferAFreeIntroductoryMeetingToSeeIfOur": "No problem! I offer a free introductory meeting to see if my approach suits you.",
     "noObligations": "No obligations",
     "personalAdvice": "Personal advice",
     "freeIntake": "Free intake",
-    "whyDoStudentsChooseUs": "Why do students choose us?",
-    "ourApproachEnsuresThatStudentsNotOnlyImproveInMath": "Our approach ensures that students not only improve in mathematics, but also gain more confidence.",
+    "whyDoStudentsChooseUs": "Why do students choose me?",
+    "ourApproachEnsuresThatStudentsNotOnlyImproveInMath": "My approach ensures that students not only improve in mathematics, but also gain more confidence.",
     "readyToGetStarted": "Ready to get started?",
     "don": "Don't let mathematics hold you back. With the right guidance, you can do it!",
     "letsGetInTouch": "Let's get in touch",

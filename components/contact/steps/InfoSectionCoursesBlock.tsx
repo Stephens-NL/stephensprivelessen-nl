@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 import { FaGraduationCap, FaChevronDown, FaChevronUp, FaEye } from 'react-icons/fa';
 import { getBusinessData } from '@/data/businessData';
-import { subjectNotes, infoSectionTranslations as translations } from '@/data/infoSection';
+import { subjectNotes, SHOW_NOTE_PREVIEWS, infoSectionTranslations as translations } from '@/data/infoSection';
 
 type InfoSectionCoursesBlockProps = {
   showCourses: boolean;
@@ -59,10 +59,10 @@ export function InfoSectionCoursesBlock({
                   </m.span>
                 </div>
               </div>
-              {subjectNotes.some((note) => note.subject === subject.NL) && (
+              {SHOW_NOTE_PREVIEWS && subjectNotes.some((note) => note.subject === subject.NL) && (
                 <button
                   onClick={() => onPreviewNotes(subject.NL)}
-                  className="h-full flex items-center px-3 bg-[var(--ink)]/20 group-hover:bg-[var(--ink)]/30 border-l border-[var(--ink)]/30 cursor-pointer transition-all duration-200"
+                  className="h-full flex items-center px-3 cursor-pointer transition-all duration-200"
                   title={translations.previewNotes[language]}
                   aria-label={translations.previewNotes[language]}
                 >
@@ -86,7 +86,7 @@ export function InfoSectionCoursesBlock({
       <div className="flex items-center justify-between text-[var(--amber)] mb-6">
         <div className="flex items-center">
           <FaGraduationCap className="text-2xl mr-3" />
-          <h3 className="text-xl font-semibold">{translations.availableCourses[language]}</h3>
+          <h3 className="text-xl font-semibold text-[var(--amber)]">{translations.availableCourses[language]}</h3>
         </div>
         <button onClick={onToggleCourses} className="p-2 hover:bg-[var(--ink-light)]/50 rounded-lg transition-colors">
           {showCourses ? <FaChevronUp /> : <FaChevronDown />}

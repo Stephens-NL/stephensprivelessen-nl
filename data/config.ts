@@ -17,24 +17,6 @@ const WEEKEND_OFFICE = {
     city: 'Amsterdam'
 };
 
-// Pricing Constants (travel premiums)
-const TRAVEL_COSTS = {
-    sciencePark: 0,      // Default fysieke locatie
-    vuUva: 20,           // Uni-plekken buiten Science Park
-    homeAmsterdam: 50    // Aan huis in Amsterdam e.o.
-};
-
-const LAST_MINUTE_SURCHARGES = {
-    lessThan24Hours: 20, // percentage
-    lessThan12Hours: 50  // percentage
-};
-
-const FLEXIBILITY_PREMIUM = {
-    twoLessons: 15,
-    fourLessons: 30,
-    sixOrMoreLessons: 50
-};
-
 export const config = {
     contact: {
         email: EMAIL,
@@ -63,10 +45,5 @@ export const config = {
             ...WEEKEND_OFFICE,
             googleMapsUrl: `https://maps.google.com/?q=${WEEKEND_OFFICE.address}, ${WEEKEND_OFFICE.postalCode} ${WEEKEND_OFFICE.city}`
         }
-    },
-    pricing: {
-        travelCosts: TRAVEL_COSTS,
-        lastMinuteSurcharges: LAST_MINUTE_SURCHARGES,
-        flexibilityPremium: FLEXIBILITY_PREMIUM
     }
 } as const;

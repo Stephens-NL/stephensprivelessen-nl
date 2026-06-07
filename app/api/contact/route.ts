@@ -63,6 +63,33 @@ export async function POST(request: NextRequest) {
             html: emailBody,
         });
 
+        // Post to CRM pipeline (non-blocking — don't fail the response if this errors)
+        try {
+            await fetch(`${process.env.PLATFORM_API_URL || 'http://platform-api:8082'}/api/intake`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    studentName: formData.name,
+                    email: formData.email,
+                    age: formData.age,
+                    educationLevel: formData.level,
+                    subject: formData.subject,
+                    programmingLang: formData.programmingLanguage,
+                    goals: formData.goals,
+                    preferredDays: formData.preferredDays,
+                    preferredTimes: formData.preferredTimes,
+                    location: formData.isOnline ? 'online' : 'in-person',
+                    parentName: formData.parentName,
+                    parentEmail: formData.parentEmail,
+                    parentPhone: formData.parentPhone,
+                    source: 'website',
+                    locale: 'nl',
+                }),
+            });
+        } catch (e) {
+            console.error('CRM intake POST failed (non-blocking):', e);
+        }
+
         return NextResponse.json({ message: 'Success' }, { status: 200 });
     } catch (error) {
         console.error('Contact form error:', error);
