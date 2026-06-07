@@ -95,6 +95,10 @@ export const groupPricingTiers: GroupPricingTier[] = [
     buildGroupPricingTier("Voortgezet Onderwijs (20-) 4-uurs pakket", voOnlinePackages, 4),
 ];
 
+// Note previews temporarily disabled (2026-06-07). Flip to true to re-enable the
+// per-subject "preview notes" eye buttons in the course block + subject selection.
+export const SHOW_NOTE_PREVIEWS = false;
+
 export const subjectNotes: SubjectNote[] = [
     // University Level
     {

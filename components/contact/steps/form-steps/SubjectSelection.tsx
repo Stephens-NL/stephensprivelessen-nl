@@ -8,6 +8,7 @@ import { FormData } from '../../Contact';
 
 import { FaEye } from 'react-icons/fa';
 import NotesPreviewModal from '../../components/NotesPreviewModal';
+import { SHOW_NOTE_PREVIEWS } from '@/data/infoSection';
 
 interface SubjectSelectionProps {
     formData: FormData;
@@ -269,7 +270,7 @@ const SubjectSelection = ({ formData, onUpdate }: SubjectSelectionProps) => {
                     : subject
                 }
             </m.button>
-            {subjectNotes.some(note => note.subject === subject) && (
+            {SHOW_NOTE_PREVIEWS && subjectNotes.some(note => note.subject === subject) && (
                 <button
                     onClick={(e) => {
                         e.stopPropagation();  // Prevent triggering the subject selection
