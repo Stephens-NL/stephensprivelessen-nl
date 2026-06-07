@@ -53,7 +53,7 @@ const Header = () => {
             {/* Desktop Header */}
             <AnimatePresence mode="wait">
                 <m.header
-                    className="fixed top-0 w-full z-50 hidden md:block"
+                    className="fixed top-0 w-full z-50 hidden lg:block"
                     initial={{ opacity: 1, y: 0 }}
                     animate={{
                         y: visible ? 0 : -100,
@@ -129,7 +129,7 @@ const Header = () => {
             </AnimatePresence>
 
             {/* Mobile Header */}
-            <header className="fixed top-0 w-full z-50 bg-ink md:hidden">
+            <header className="fixed top-0 w-full z-50 bg-ink lg:hidden">
                 <nav>
                     <div className="flex items-center justify-between h-14 px-4">
                         <Link
