@@ -54,7 +54,7 @@ const structuredData = generateStructuredData({
   price: 240, // Vanaf €240 (VO online 4 uur, 1 leerling) — laagste standaardtarief
   priceCurrency: "EUR",
   provider: {
-    name: "StephensPrivelessen",
+    name: "Stephen's Privélessen",
     type: "Person",
   },
   areaServed: "Amsterdam",
@@ -88,8 +88,8 @@ export default async function ProgrammerenBijlesPage() {
 
           <p className="text-xl mb-8">
             {isNl
-              ? "Programmeren hoeft niet moeilijk te zijn. Wij leren je Python en R op een praktische manier, speciaal voor data science en statistiek."
-              : "Programming doesn't have to be hard. We teach you Python and R in a practical way, tailored specifically for data science and statistics."}
+              ? "Programmeren hoeft niet moeilijk te zijn. Ik leer je Python en R op een praktische manier, speciaal voor data science en statistiek."
+              : "Programming doesn't have to be hard. I teach you Python and R in a practical way, tailored specifically for data science and statistics."}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -132,7 +132,7 @@ export default async function ProgrammerenBijlesPage() {
 
           <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-4">
-              {isNl ? "Onze aanpak" : "Our approach"}
+              {isNl ? "Mijn aanpak" : "My approach"}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -193,8 +193,8 @@ export default async function ProgrammerenBijlesPage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "Nee, we beginnen bij de basis. We leren je Python en R vanaf het begin, speciaal gericht op data science en statistiek voor jouw vakgebied."
-                    : "No, we start from scratch. We teach you Python and R from the ground up, with a focus on data science and statistics for your specific field."}
+                    ? "Nee, ik begin bij de basis. Ik leer je Python en R vanaf het begin, speciaal gericht op data science en statistiek voor jouw vakgebied."
+                    : "No, I start from scratch. I teach you Python and R from the ground up, with a focus on data science and statistics for your specific field."}
                 </p>
               </div>
               <div>
@@ -217,8 +217,8 @@ export default async function ProgrammerenBijlesPage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "We gebruiken Jupyter Notebooks voor Python, R Studio voor R, en werken met echte datasets uit jouw vakgebied. Je krijgt ook toegang tot onze oefenmaterialen."
-                    : "We use Jupyter Notebooks for Python, R Studio for R, and work with real datasets from your field. You also get access to our practice materials."}
+                    ? "Ik gebruik Jupyter Notebooks voor Python, R Studio voor R, en werk met echte datasets uit jouw vakgebied. Je krijgt ook toegang tot mijn oefenmaterialen."
+                    : "I use Jupyter Notebooks for Python, R Studio for R, and work with real datasets from your field. You also get access to my practice materials."}
                 </p>
               </div>
               <div>
@@ -229,8 +229,8 @@ export default async function ProgrammerenBijlesPage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "Ja, we helpen je graag met data analyse voor je scriptie. Van data cleaning tot statistische analyses en visualisaties - we begeleiden je door het hele proces."
-                    : "Yes, we're happy to help with thesis data analysis. From data cleaning to statistical analyses and visualisations — we guide you through the entire process."}
+                    ? "Ja, ik help je graag met data analyse voor je scriptie. Van data cleaning tot statistische analyses en visualisaties - ik begeleid je door het hele proces."
+                    : "Yes, I'm happy to help with thesis data analysis. From data cleaning to statistical analyses and visualisations — I guide you through the entire process."}
                 </p>
               </div>
             </div>

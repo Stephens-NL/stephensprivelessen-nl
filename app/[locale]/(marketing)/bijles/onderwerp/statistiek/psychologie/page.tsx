@@ -54,7 +54,7 @@ const structuredData = generateStructuredData({
   price: 240, // Vanaf €240 (VO online 4 uur, 1 leerling) — laagste standaardtarief
   priceCurrency: "EUR",
   provider: {
-    name: "StephensPrivelessen",
+    name: "Stephen's Privélessen",
     type: "Person",
   },
   areaServed: "Amsterdam",
@@ -175,8 +175,8 @@ export default async function StatistiekPsychologiePage() {
 
             <h2>
               {isNl
-                ? "Onze aanpak voor psychologie studenten"
-                : "Our approach for psychology students"}
+                ? "Mijn aanpak voor psychologie studenten"
+                : "My approach for psychology students"}
             </h2>
             <ul>
               <li>
@@ -243,8 +243,8 @@ export default async function StatistiekPsychologiePage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "We behandelen alle gangbare tests: t-toetsen, ANOVA, chi-kwadraat toetsen, correlaties, regressie-analyses, factor analyses en non-parametrische tests."
-                    : "We cover all common tests: t-tests, ANOVA, chi-square tests, correlations, regression analyses, factor analyses and non-parametric tests."}
+                    ? "Ik behandel alle gangbare tests: t-toetsen, ANOVA, chi-kwadraat toetsen, correlaties, regressie-analyses, factor analyses en non-parametrische tests."
+                    : "I cover all common tests: t-tests, ANOVA, chi-square tests, correlations, regression analyses, factor analyses and non-parametric tests."}
                 </p>
               </div>
               <div>
@@ -253,8 +253,8 @@ export default async function StatistiekPsychologiePage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "Van data invoer tot output interpretatie. We leren je stap voor stap hoe je analyses uitvoert en hoe je de resultaten correct interpreteert en rapporteert."
-                    : "From data entry to output interpretation. We show you step by step how to run analyses and how to correctly interpret and report the results."}
+                    ? "Van data invoer tot output interpretatie. Ik leer je stap voor stap hoe je analyses uitvoert en hoe je de resultaten correct interpreteert en rapporteert."
+                    : "From data entry to output interpretation. I show you step by step how to run analyses and how to correctly interpret and report the results."}
                 </p>
               </div>
               <div>
@@ -265,8 +265,8 @@ export default async function StatistiekPsychologiePage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "Geen probleem! We beginnen bij de absolute basis en bouwen stap voor stap op. We focussen op begrip en praktische toepassing, niet op ingewikkelde formules."
-                    : "No problem! We start from the absolute basics and build up step by step. We focus on understanding and practical application, not on complex formulas."}
+                    ? "Geen probleem! Ik begin bij de absolute basis en bouw stap voor stap op. Ik focus op begrip en praktische toepassing, niet op ingewikkelde formules."
+                    : "No problem! I start from the absolute basics and build up step by step. I focus on understanding and practical application, not on complex formulas."}
                 </p>
               </div>
               <div>
@@ -277,8 +277,8 @@ export default async function StatistiekPsychologiePage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "Ja, we helpen je met de volledige statistische analyse voor je scriptie: van onderzoeksvraag tot resultaten en interpretatie. We begeleiden je door het hele proces."
-                    : "Yes, we help you with the full statistical analysis for your thesis: from research question to results and interpretation. We guide you through the entire process."}
+                    ? "Ja, ik help je met de volledige statistische analyse voor je scriptie: van onderzoeksvraag tot resultaten en interpretatie. Ik begeleid je door het hele proces."
+                    : "Yes, I help you with the full statistical analysis for your thesis: from research question to results and interpretation. I guide you through the entire process."}
                 </p>
               </div>
             </div>

@@ -50,11 +50,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const structuredData = generateStructuredData({
   title: "Calculus Bijles | Differentiëren & Integreren",
-  description: "Professionele calculus bijles voor niet-bèta studenten. Van differentiëren tot integreren, wij maken het begrijpelijk.",
+  description: "Professionele calculus bijles voor niet-bèta studenten. Van differentiëren tot integreren, ik maak het begrijpelijk.",
   price: 240, // Vanaf €240 (VO online 4 uur, 1 leerling) — laagste standaardtarief
   priceCurrency: "EUR",
   provider: {
-    name: "StephensPrivelessen",
+    name: "Stephen's Privélessen",
     type: "Person",
   },
   areaServed: "Amsterdam",
@@ -88,8 +88,8 @@ export default async function CalculusBijlesPage() {
 
           <p className="text-xl mb-8">
             {isNl
-              ? "Calculus hoeft niet ingewikkeld te zijn. Wij maken differentiëren en integreren begrijpelijk met praktische voorbeelden uit jouw vakgebied."
-              : "Calculus doesn't have to be complicated. We make differentiation and integration understandable using practical examples from your own field."}
+              ? "Calculus hoeft niet ingewikkeld te zijn. Ik maak differentiëren en integreren begrijpelijk met praktische voorbeelden uit jouw vakgebied."
+              : "Calculus doesn't have to be complicated. I make differentiation and integration understandable using practical examples from your own field."}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -138,7 +138,7 @@ export default async function CalculusBijlesPage() {
 
           <div className="bg-[var(--cream-dark)] p-6 rounded-lg mb-8">
             <h2 className="text-2xl font-bold mb-4">
-              {isNl ? "Onze aanpak" : "Our approach"}
+              {isNl ? "Mijn aanpak" : "My approach"}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -231,8 +231,8 @@ export default async function CalculusBijlesPage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "Met onze 1-op-1 begeleiding zien studenten meestal binnen 4-6 lessen significante verbetering. Het hangt af van je basiskennis en hoeveel tijd je erin steekt."
-                    : "With our 1-on-1 tutoring, students typically see significant improvement within 4–6 sessions. It depends on your prior knowledge and how much time you put in."}
+                    ? "Met mijn 1-op-1 begeleiding zien studenten meestal binnen 4-6 lessen significante verbetering. Het hangt af van je basiskennis en hoeveel tijd je erin steekt."
+                    : "With my 1-on-1 tutoring, students typically see significant improvement within 4–6 sessions. It depends on your prior knowledge and how much time you put in."}
                 </p>
               </div>
               <div>
@@ -243,8 +243,8 @@ export default async function CalculusBijlesPage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "We behandelen differentiëren (afgeleiden, kettingregel), integreren (bepaalde/onbepaalde integralen, substitutie) en toegepaste calculus voor jouw vakgebied."
-                    : "We cover differentiation (derivatives, chain rule), integration (definite/indefinite integrals, substitution) and applied calculus for your field."}
+                    ? "Ik behandel differentiëren (afgeleiden, kettingregel), integreren (bepaalde/onbepaalde integralen, substitutie) en toegepaste calculus voor jouw vakgebied."
+                    : "I cover differentiation (derivatives, chain rule), integration (definite/indefinite integrals, substitution) and applied calculus for your field."}
                 </p>
               </div>
               <div>
@@ -255,8 +255,8 @@ export default async function CalculusBijlesPage() {
                 </h3>
                 <p className="text-[var(--warm-text)]">
                   {isNl
-                    ? "Ja, we beginnen altijd bij jouw niveau. Of je nu helemaal opnieuw wilt beginnen of specifieke onderwerpen wilt oefenen - we passen ons aan."
-                    : "Yes, we always start at your level. Whether you want to start from scratch or practise specific topics — we adapt to you."}
+                    ? "Ja, ik begin altijd bij jouw niveau. Of je nu helemaal opnieuw wilt beginnen of specifieke onderwerpen wilt oefenen - ik pas me aan."
+                    : "Yes, I always start at your level. Whether you want to start from scratch or practise specific topics — I adapt to you."}
                 </p>
               </div>
             </div>

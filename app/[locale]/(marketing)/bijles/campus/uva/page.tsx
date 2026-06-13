@@ -52,7 +52,7 @@ const structuredData = generateStructuredData({
       title: "Bijles voor UvA Studenten | Online & Science Park",
   description: "Bijles voor UvA studenten. Statistiek, calculus en programmeren online of op Science Park.",
   provider: {
-    name: "StephensPrivelessen",
+    name: "Stephen's Privélessen",
     type: "Person",
   },
   areaServed: "Amsterdam UvA Science Park, Online",
@@ -84,8 +84,8 @@ export default async function UVABijlesPage() {
 
           <p className="text-xl mb-8">
             {isNl
-              ? "Speciaal voor UvA studenten: online bijles of op Science Park. Van statistiek tot programmeren, wij helpen je door je studie."
-              : "Specifically for UvA students: online tutoring or at Science Park. From statistics to programming, we'll help you through your degree."}
+              ? "Speciaal voor UvA studenten: online bijles of op Science Park. Van statistiek tot programmeren, ik help je door je studie."
+              : "Specifically for UvA students: online tutoring or at Science Park. From statistics to programming, I'll help you through your degree."}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -148,8 +148,8 @@ export default async function UVABijlesPage() {
             <h3>Science Park</h3>
             <p>
               {isNl
-                ? "Onze bijleslocatie ligt op 5 minuten lopen van Science Park. Perfect voor studenten van de Faculteit der Natuurwetenschappen, Wiskunde en Informatica (FNWI)."
-                : "Our tutoring location is a 5-minute walk from Science Park. Perfect for students of the Faculty of Science (FNWI)."}
+                ? "Mijn bijleslocatie ligt op 5 minuten lopen van Science Park. Perfect voor studenten van de Faculteit der Natuurwetenschappen, Wiskunde en Informatica (FNWI)."
+                : "My tutoring location is a 5-minute walk from Science Park. Perfect for students of the Faculty of Science (FNWI)."}
             </p>
             <ul>
               <li>

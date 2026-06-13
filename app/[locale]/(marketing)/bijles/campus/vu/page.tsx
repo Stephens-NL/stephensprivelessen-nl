@@ -51,7 +51,7 @@ const structuredData = generateStructuredData({
       title: "Bijles voor VU Studenten | Online & Science Park",
   description: "Bijles voor VU studenten. Statistiek, calculus en programmeren online of op Science Park.",
   provider: {
-    name: "StephensPrivelessen",
+    name: "Stephen's Privélessen",
     type: "Person",
   },
   areaServed: "Science Park, Online",
@@ -83,8 +83,8 @@ export default async function VUBijlesPage() {
 
           <p className="text-xl mb-8">
             {isNl
-              ? "Speciaal voor VU studenten: online bijles of op Science Park. Van statistiek tot programmeren, wij helpen je door je studie."
-              : "Specifically for VU students: online tutoring or at Science Park. From statistics to programming, we'll help you through your degree."}
+              ? "Speciaal voor VU studenten: online bijles of op Science Park. Van statistiek tot programmeren, ik help je door je studie."
+              : "Specifically for VU students: online tutoring or at Science Park. From statistics to programming, I'll help you through your degree."}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -145,8 +145,8 @@ export default async function VUBijlesPage() {
             <h3>Science Park</h3>
             <p>
               {isNl
-                ? "Onze bijleslocatie ligt op Science Park, goed bereikbaar vanaf de VU campus. Perfect voor alle VU studenten."
-                : "Our tutoring location is at Science Park, easily accessible from the VU campus. Perfect for all VU students."}
+                ? "Mijn bijleslocatie ligt op Science Park, goed bereikbaar vanaf de VU campus. Perfect voor alle VU studenten."
+                : "My tutoring location is at Science Park, easily accessible from the VU campus. Perfect for all VU students."}
             </p>
             <ul>
               <li>
