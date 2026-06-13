@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Transformeer Je Leertraject",
+    "title": "Bijles op maat in wiskunde, statistiek en programmeren",
     "subtitle": "Professionele bijles in wiskunde, statistiek en programmeren met persoonlijke aandacht en bewezen resultaten.",
     "stats": [
       {
@@ -23,7 +23,7 @@
     },
     {
       "title": "Expert Ondersteuning",
-      "description": "Leer van ervaren docenten met bewezen resultaten."
+      "description": "Leer van een ervaren docent met bewezen resultaten."
     },
     {
       "title": "Flexibele Planning",
@@ -61,15 +61,15 @@
     "steps": [
       {
         "title": "Eerste Gesprek",
-        "description": "We bespreken je doelen en beoordelen je huidige niveau."
+        "description": "Ik bespreek je doelen en beoordeel je huidige niveau."
       },
       {
         "title": "Plan op Maat",
-        "description": "We maken een leerplan op maat van jouw behoeften."
+        "description": "Ik maak een leerplan op maat van jouw behoeften."
       },
       {
         "title": "Regelmatige Sessies",
-        "description": "Volg interactieve leersessies met je docent."
+        "description": "Volg interactieve leersessies met Stephen."
       },
       {
         "title": "Voortgang Volgen",
@@ -79,7 +79,7 @@
   },
   "testimonials": {
     "title": "Succesverhalen van Studenten",
-    "subtitle": "Hoor van onze studenten over hun ervaring.",
+    "subtitle": "Lees wat studenten over hun ervaring vertellen.",
     "slides": [
       {
         "quote": "De persoonlijke aanpak hielp me calculus te beheersen in slechts een paar maanden.",
@@ -148,21 +148,21 @@
     "questions": [
       {
         "question": "Hoe lang duren de bijlessen?",
-        "answer": "Standaard sessies duren 1 uur, maar we kunnen langere sessies inplannen indien nodig."
+        "answer": "Standaard sessies duren 1 uur, maar ik kan langere sessies inplannen indien nodig."
       },
       {
-        "question": "Kan ik van docent wisselen als ik niet tevreden ben?",
-        "answer": "Ja, we willen dat je de beste leerervaring hebt. Je kunt op elk moment een andere docent aanvragen."
+        "question": "Wat als de aanpak niet bij me past?",
+        "answer": "Tijdens de gratis proefles ontdek je vrijblijvend of mijn aanpak bij je past. Werkt het toch niet, dan stoppen we gewoon — je zit nergens aan vast. Stephen geeft alle lessen zelf."
       },
       {
         "question": "Bieden jullie online sessies aan?",
-        "answer": "Ja, we bieden zowel online als persoonlijke bijlessen aan om aan je voorkeuren te voldoen."
+        "answer": "Ja, ik bied zowel online als persoonlijke bijlessen aan om aan je voorkeuren te voldoen."
       }
     ]
   },
   "contact": {
     "title": "Begin Je Leertraject",
-    "subtitle": "Vul het onderstaande formulier in en we nemen binnen 24 uur contact met je op.",
+    "subtitle": "Vul het onderstaande formulier in en ik neem binnen 24 uur contact met je op.",
     "form": {
       "name": "Je Naam",
       "email": "Email Adres",
@@ -179,7 +179,7 @@
   },
   "form": {},
   "locations": {
-    "title": "Waar We Lesgeven",
+    "title": "Waar ik lesgeef",
     "subtitle": "Lessen op Science Park of online. Beschikbaar voor studenten in heel Amsterdam.",
     "sciencePark": "Science Park 904, Amsterdam",
     "online": "Online via Google Meet",

@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Transform Your Learning Journey",
+    "title": "Tailored tutoring in maths, statistics and programming",
     "subtitle": "Expert tutoring in mathematics, statistics, and programming with personalized attention and proven results.",
     "stats": [
       {
@@ -23,7 +23,7 @@
     },
     {
       "title": "Expert Support",
-      "description": "Learn from experienced tutors with proven track records."
+      "description": "Learn from an experienced tutor with proven results."
     },
     {
       "title": "Flexible Scheduling",
@@ -61,15 +61,15 @@
     "steps": [
       {
         "title": "Initial Consultation",
-        "description": "We discuss your goals and assess your current level."
+        "description": "I discuss your goals and assess your current level."
       },
       {
         "title": "Customized Plan",
-        "description": "We create a learning plan tailored to your needs."
+        "description": "I create a learning plan tailored to your needs."
       },
       {
         "title": "Regular Sessions",
-        "description": "Engage in interactive learning sessions with your tutor."
+        "description": "Engage in interactive learning sessions with Stephen."
       },
       {
         "title": "Progress Tracking",
@@ -79,7 +79,7 @@
   },
   "testimonials": {
     "title": "Student Success Stories",
-    "subtitle": "Hear from our students about their experience.",
+    "subtitle": "Read what students say about their experience.",
     "slides": [
       {
         "quote": "The personalized approach helped me master calculus in just a few months.",
@@ -148,21 +148,21 @@
     "questions": [
       {
         "question": "How long are the tutoring sessions?",
-        "answer": "Standard sessions are 1 hour long, but we can accommodate longer sessions if needed."
+        "answer": "Standard sessions are 1 hour long, but I can accommodate longer sessions if needed."
       },
       {
-        "question": "Can I change my tutor if I'm not satisfied?",
-        "answer": "Yes, we want you to have the best learning experience. You can request a different tutor at any time."
+        "question": "What if the approach doesn't suit me?",
+        "answer": "During the free trial lesson you can see, with no obligation, whether my approach suits you. If it doesn't work out we simply stop — you're tied to nothing. Stephen teaches every lesson himself."
       },
       {
         "question": "Do you offer online sessions?",
-        "answer": "Yes, we offer both online and in-person tutoring sessions to accommodate your preferences."
+        "answer": "Yes, I offer both online and in-person tutoring sessions to accommodate your preferences."
       }
     ]
   },
   "contact": {
     "title": "Start Your Learning Journey",
-    "subtitle": "Fill out the form below and we'll get back to you within 24 hours.",
+    "subtitle": "Fill out the form below and I'll get back to you within 24 hours.",
     "form": {
       "name": "Your Name",
       "email": "Email Address",
@@ -179,7 +179,7 @@
   },
   "form": {},
   "locations": {
-    "title": "Where We Teach",
+    "title": "Where I Teach",
     "subtitle": "Lessons at Science Park or online. Available for students across Amsterdam.",
     "sciencePark": "Science Park 904, Amsterdam",
     "online": "Online via Google Meet",

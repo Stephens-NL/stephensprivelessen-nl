@@ -76,7 +76,7 @@ describe('Page Content Translations', () => {
               }
             },
             {
-              title: { EN: 'Experienced Tutors', NL: 'Ervaren Docenten' },
+              title: { EN: 'Experienced Tutor', NL: 'Ervaren Docent' },
               description: {
                 EN: 'Learn from qualified professionals with extensive teaching experience.',
                 NL: 'Leer van gekwalificeerde professionals met uitgebreide onderwijservaring.'
