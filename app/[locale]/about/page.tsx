@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: "Stephen's Privélessen",
       images: [
         {
-          url: `/api/og?title=${encodeURIComponent(isNl ? "Over Ons A'dam" : "About Us A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Lees Meer" : "Read More")}&footerText=${encodeURIComponent(isNl ? "Onze Visie & Aanpak" : "Our Vision & Approach")}&featureImageUrl=/images/about-banner.jpg`,
+          url: `/api/og?title=${encodeURIComponent(isNl ? "Over Mij A'dam" : "About Me A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Lees Meer" : "Read More")}&footerText=${encodeURIComponent(isNl ? "Mijn Visie & Aanpak" : "My Vision & Approach")}&featureImageUrl=/images/about-banner.jpg`,
           width: 1200,
           height: 630,
           alt: isNl ? "Over Stephen's Privélessen Amsterdam" : "About Stephen's Private Tutoring Amsterdam",
@@ -46,9 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: "summary_large_image",
       title: isNl ? "Over Mij | Stephen's Privélessen Amsterdam" : "About Me | Stephen's Private Tutoring Amsterdam",
       description: isNl
-        ? "Ontdek onze visie op onderwijs en persoonlijke begeleiding."
-        : "Discover our vision on education and personal tutoring.",
-      images: [`/api/og?title=${encodeURIComponent(isNl ? "Over Ons A'dam" : "About Us A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Lees Meer" : "Read More")}&footerText=${encodeURIComponent(isNl ? "Onze Visie & Aanpak" : "Our Vision & Approach")}&featureImageUrl=/images/about-banner.jpg`],
+        ? "Ontdek mijn visie op onderwijs en persoonlijke begeleiding."
+        : "Discover my vision on education and personal tutoring.",
+      images: [`/api/og?title=${encodeURIComponent(isNl ? "Over Mij A'dam" : "About Me A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Lees Meer" : "Read More")}&footerText=${encodeURIComponent(isNl ? "Mijn Visie & Aanpak" : "My Vision & Approach")}&featureImageUrl=/images/about-banner.jpg`],
     },
     alternates: {
       canonical: '/about',
