@@ -37,8 +37,8 @@ export default function ConsultancyContent() {
         NL: 'Data & Statistiek Consultancy'
       },
       subtitle: {
-        EN: 'Expert guidance in data analysis, statistics, and research methodology. Transform your data into actionable insights.',
-        NL: 'Expert begeleiding in data-analyse, statistiek en onderzoeksmethodologie. Transformeer uw data naar bruikbare inzichten.'
+        EN: 'Guidance in data analysis, statistics and research design, from raw data to a well-founded conclusion.',
+        NL: 'Begeleiding bij data-analyse, statistiek en onderzoeksopzet, van ruwe data tot een onderbouwde conclusie.'
       }
     },
     services: {
