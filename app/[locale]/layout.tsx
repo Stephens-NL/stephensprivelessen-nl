@@ -3,7 +3,6 @@ import {setRequestLocale} from 'next-intl/server';
 import {hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {Cormorant_Garamond, Outfit} from 'next/font/google';
-import Script from 'next/script';
 import {routing} from '@/i18n/routing';
 import {Viewport} from 'next';
 import {MotionProvider} from '@/components/MotionProvider';
@@ -360,12 +359,14 @@ export default async function LocaleLayout({children, params}: Props) {
     <html lang={locale} className={`${cormorant.variable} ${outfit.variable} font-body`} suppressHydrationWarning>
       <head />
       <body>
-        <Script id="organization-ld+json" type="application/ld+json" strategy="beforeInteractive">
-          {JSON.stringify(organizationSchema)}
-        </Script>
-        <Script id="website-ld+json" type="application/ld+json" strategy="beforeInteractive">
-          {JSON.stringify(websiteSchema)}
-        </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(organizationSchema)}}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(websiteSchema)}}
+        />
         <NextIntlClientProvider>
           <MotionProvider>
             <Header />
