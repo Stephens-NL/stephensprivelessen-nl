@@ -37,14 +37,14 @@ export default function ConsultancyContent() {
         NL: 'Data & Statistiek Consultancy'
       },
       subtitle: {
-        EN: 'Expert guidance in data analysis, statistics, and research methodology. Transform your data into actionable insights.',
-        NL: 'Expert begeleiding in data-analyse, statistiek en onderzoeksmethodologie. Transformeer uw data naar bruikbare inzichten.'
+        EN: 'Guidance in data analysis, statistics and research design, from raw data to a well-founded conclusion.',
+        NL: 'Begeleiding bij data-analyse, statistiek en onderzoeksopzet, van ruwe data tot een onderbouwde conclusie.'
       }
     },
     services: {
       title: {
-        EN: 'Our Expertise',
-        NL: 'Onze Expertise'
+        EN: 'My Expertise',
+        NL: 'Mijn Expertise'
       },
       items: {
         EN: [
@@ -85,14 +85,14 @@ export default function ConsultancyContent() {
     },
     approach: {
       title: {
-        EN: 'Our Approach',
-        NL: 'Onze Aanpak'
+        EN: 'My Approach',
+        NL: 'Mijn Aanpak'
       },
       steps: {
         EN: [
           {
             title: 'Initial Consultation',
-            description: 'We start with a thorough understanding of your needs and objectives'
+            description: 'I start with a thorough understanding of your needs and objectives'
           },
           {
             title: 'Data Assessment',
@@ -114,7 +114,7 @@ export default function ConsultancyContent() {
         NL: [
           {
             title: 'Eerste Gesprek',
-            description: 'We beginnen met een grondig begrip van uw behoeften en doelstellingen'
+            description: 'Ik begin met een grondig begrip van uw behoeften en doelstellingen'
           },
           {
             title: 'Data Evaluatie',

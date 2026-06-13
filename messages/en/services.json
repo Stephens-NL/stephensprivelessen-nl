@@ -33,12 +33,12 @@
       "id": "consultancy",
       "title": "Consultancy & Advisory",
       "shortDescription": "Expert guidance for businesses and individuals.",
-      "longDescription": "I offer consultancy and advisory services for businesses and individuals seeking expertise in data analysis, AI, and software development. My tailored solutions help you tackle complex problems and implement effective strategies."
+      "longDescription": "I offer consultancy and advisory services for businesses and individuals seeking expertise in data analysis, AI, and software development. I help you with concrete data analyses, statistics and software, tailored to your question."
     },
     {
       "id": "custom-solutions",
-      "title": "Custom Solutions",
-      "shortDescription": "Tailored solutions for unique challenges.",
+      "title": "Custom projects",
+      "shortDescription": "Help with a specific data or software project.",
       "longDescription": "If you have a unique problem or project that requires a specialized solution, I offer custom services to meet your specific needs. Whether it's a data analysis challenge, software development project, or educational requirement, I'll work with you to create a solution that fits perfectly."
     }
   ]

@@ -24,11 +24,11 @@ export function AboutSection() {
     {
       icon: Trophy,
       title: { NL: 'Hoog slagingspercentage', EN: 'High success rate' },
-      description: { NL: '95% van onze studenten slaagt voor hun rekentoets', EN: '95% of our students pass their math test' }
+      description: { NL: '95% van mijn studenten slaagt voor hun rekentoets', EN: '95% of my students pass their math test' }
     },
     {
       icon: Users,
-      title: { NL: 'Ervaren docenten', EN: 'Experienced teachers' },
+      title: { NL: 'Ervaren docent', EN: 'Experienced tutor' },
       description: { NL: 'Gespecialiseerd in MBO-rekenen met jarenlange ervaring', EN: 'Specialized in MBO math with years of experience' }
     }
   ];

@@ -1,7 +1,7 @@
 {
   "title": "About Me",
   "introduction": {
-    "heading": "From Struggling to Excelling",
+    "heading": "From a five to a ten: my story",
     "paragraphs": [
       "My journey started with a failing grade in math during my third year of high school. Instead of giving up, I chose a radically different approach: complete every single problem, have every step checked. The result? A 9.8 on the very next test and a perfect 10 average in years four and five. That experience — knowing what it feels like to be stuck and how to break through — is the foundation of everything I do.",
       "Today I guide students at UvA, VU, and universities of applied sciences in mathematics, statistics, data analysis, and programming. From first-years struggling with calculus to master's students completing their thesis with SPSS, R, or Python. Lessons are online via Google Meet or on-site at Science Park. Every lesson is tailored — because I know from experience that the right push at the right moment can change everything."
@@ -24,8 +24,8 @@
     }
   ],
   "cta": {
-    "title": "Get Started",
-    "description": "Ready to improve your skills and achieve your academic goals? Contact me today to get started.",
+    "title": "Book a free trial lesson",
+    "description": "Book your free trial lesson and see for yourself how the lessons work.",
     "buttonText": "Contact Me"
   },
   "detailedTitle": "Detailed Information",
