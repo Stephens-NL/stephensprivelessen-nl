@@ -88,7 +88,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
             >
                 <div className="flex items-center text-[var(--amber)] mb-3">
                     <FaGraduationCap className="text-2xl mr-3" />
-                    <h3 className="text-lg font-semibold">
+                    <h3 className="text-lg font-semibold text-[var(--amber)]">
                         {translations.teachingMethod[language]}
                     </h3>
                 </div>
@@ -106,7 +106,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 <div className="flex items-center justify-between text-[var(--amber)] mb-3">
                     <div className="flex items-center">
                         <FaClock className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-[var(--amber)]">
                             {translations.lessonStructure[language]}
                         </h3>
                     </div>
@@ -149,7 +149,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 <div className="flex items-center justify-between text-[var(--amber)] mb-3">
                     <div className="flex items-center">
                         <FaEuroSign className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-[var(--amber)]">
                             {translations.groupSessions[language]}
                         </h3>
                     </div>
@@ -195,7 +195,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                 <div className="flex items-center justify-between text-[var(--amber)] mb-3">
                     <div className="flex items-center">
                         <FaGraduationCap className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-[var(--amber)]">
                             {translations.thesisSupervision[language]}
                         </h3>
                     </div>
