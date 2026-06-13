@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+# Single self-hosted runner — cancel superseded runs so they don't pile up.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   typecheck:
     name: TypeScript
@@ -15,7 +20,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
       - run: npm ci
       - run: npx tsc --noEmit
 
@@ -27,7 +31,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
       - run: npm ci
       - run: npm run lint
 
@@ -39,7 +42,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
       - run: npm ci
       - run: npx jest --ci --passWithNoTests
 
@@ -52,6 +54,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
       - run: npm ci
       - run: npm run build
