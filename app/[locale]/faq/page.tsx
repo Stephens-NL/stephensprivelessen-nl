@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isNl = locale === 'nl';
   return {
-    title: isNl ? "Veelgestelde Vragen | Stephens Privelessen Amsterdam" : "Frequently Asked Questions | Stephens Private Tutoring Amsterdam",
+    title: isNl ? "Veelgestelde Vragen | Stephen's Privélessen Amsterdam" : "Frequently Asked Questions | Stephen's Private Tutoring Amsterdam",
     description: isNl
       ? "Vind antwoorden op veelgestelde vragen over onze bijles, scriptiebegeleiding en workshops in Amsterdam. Duidelijke informatie over onze aanpak en werkwijze."
       : "Find answers to frequently asked questions about our tutoring, thesis supervision and workshops in Amsterdam. Clear information about our approach and methods.",
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'online bijles vragen',
     ],
     openGraph: {
-      title: isNl ? "FAQ | Stephens Privelessen Amsterdam" : "FAQ | Stephens Private Tutoring Amsterdam",
+      title: isNl ? "FAQ | Stephen's Privélessen Amsterdam" : "FAQ | Stephen's Private Tutoring Amsterdam",
       description: isNl
         ? "Antwoorden op veelgestelde vragen over onze bijles en begeleiding in Amsterdam."
         : "Answers to frequently asked questions about our tutoring and guidance in Amsterdam.",
@@ -35,19 +35,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
-      siteName: 'Stephens Privelessen',
+      siteName: "Stephen's Privélessen",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent("FAQ A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Krijg Antwoorden" : "Get Answers")}&footerText=${encodeURIComponent(isNl ? "Veelgestelde Vragen" : "Frequently Asked Questions")}&featureImageUrl=/images/faq-banner.jpg`,
           width: 1200,
           height: 630,
-          alt: isNl ? "FAQ Stephens Privelessen Amsterdam" : "FAQ Stephens Private Tutoring Amsterdam",
+          alt: isNl ? "FAQ Stephen's Privélessen Amsterdam" : "FAQ Stephen's Private Tutoring Amsterdam",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: isNl ? "FAQ | Stephens Privelessen Amsterdam" : "FAQ | Stephens Private Tutoring Amsterdam",
+      title: isNl ? "FAQ | Stephen's Privélessen Amsterdam" : "FAQ | Stephen's Private Tutoring Amsterdam",
       description: isNl
         ? "Veelgestelde vragen over onze bijles en begeleiding in Amsterdam."
         : "Frequently asked questions about our tutoring and guidance in Amsterdam.",

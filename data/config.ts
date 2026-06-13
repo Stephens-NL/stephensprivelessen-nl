@@ -1,7 +1,7 @@
 // Contact Information
 const PHONE_NUMBER = '+31647357426';
 const EMAIL = 'info@stephenadei.nl';
-const BUSINESS_NAME = "Stephen's Privelessen";
+const BUSINESS_NAME = "Stephen's Privélessen";
 const SITE_URL = 'https://stephensprivelessen.nl';
 
 // Office Locations
@@ -32,8 +32,8 @@ export const config = {
     },
     business: {
         name: BUSINESS_NAME,
-        nameNl: 'Stephens Privelessen',
-        nameEn: "Stephen's Private Lessons",
+        nameNl: "Stephen's Privélessen",
+        nameEn: "Stephen's Private Tutoring",
         owner: 'Stephen Adei',
         siteUrl: SITE_URL,
         dashboardUrl: 'https://dash.stephensprivelessen.nl',

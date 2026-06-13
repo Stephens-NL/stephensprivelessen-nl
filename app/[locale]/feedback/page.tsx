@@ -4,10 +4,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isNl = locale === 'nl';
   return {
-    title: isNl ? 'Feedback | Stephens Privelessen' : 'Feedback | Stephens Private Tutoring',
+    title: isNl ? "Feedback | Stephen's Privélessen" : "Feedback | Stephen's Private Tutoring",
     description: isNl
-      ? 'Deel je feedback over de bijlesdiensten van Stephens Privelessen.'
-      : 'Share your feedback about Stephens Private Tutoring services.',
+      ? "Deel je feedback over de bijlesdiensten van Stephen's Privélessen."
+      : "Share your feedback about Stephen's Private Tutoring services.",
   };
 }
 

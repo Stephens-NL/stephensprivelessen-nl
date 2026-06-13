@@ -6,10 +6,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isNl = locale === 'nl';
   return {
-    title: isNl ? "Contact | Stephens Privelessen Amsterdam" : "Contact | Stephens Private Tutoring Amsterdam",
+    title: isNl ? "Contact | Stephen's Privélessen Amsterdam" : "Contact | Stephen's Private Tutoring Amsterdam",
     description: isNl
-      ? "Contact Stephens Privelessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur. Snelle reactie."
-      : "Contact Stephens Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online or Science Park. From €75/hr. Quick response.",
+      ? "Contact Stephen's Privélessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur. Snelle reactie."
+      : "Contact Stephen's Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online or Science Park. From €75/hr. Quick response.",
     keywords: [
       'contact stephens privelessen',
       'bijles afspraak amsterdam',
@@ -24,27 +24,27 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       'statistiek begeleiding contact',
     ],
     openGraph: {
-      title: isNl ? "Contact | Stephens Privelessen Amsterdam" : "Contact | Stephens Private Tutoring Amsterdam",
+      title: isNl ? "Contact | Stephen's Privélessen Amsterdam" : "Contact | Stephen's Private Tutoring Amsterdam",
       description: isNl
-        ? "Contact Stephens Privelessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur."
-        : "Contact Stephens Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online or Science Park. From €75/hr.",
+        ? "Contact Stephen's Privélessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur."
+        : "Contact Stephen's Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online or Science Park. From €75/hr.",
       url: "https://www.stephensprivelessen.nl/contact",
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
-      siteName: 'Stephens Privelessen',
+      siteName: "Stephen's Privélessen",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent("Contact A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Neem Contact Op" : "Get in Touch")}&footerText=${encodeURIComponent(isNl ? "Wiskunde, Statistiek & Meer" : "Maths, Statistics & More")}&featureImageUrl=/images/contact-banner.jpg`,
           width: 1200,
           height: 630,
-          alt: isNl ? "Contact Stephens Privelessen Amsterdam" : "Contact Stephens Private Tutoring Amsterdam",
+          alt: isNl ? "Contact Stephen's Privélessen Amsterdam" : "Contact Stephen's Private Tutoring Amsterdam",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: isNl ? "Contact | Stephens Privelessen Amsterdam" : "Contact | Stephens Private Tutoring Amsterdam",
+      title: isNl ? "Contact | Stephen's Privélessen Amsterdam" : "Contact | Stephen's Private Tutoring Amsterdam",
       description: isNl
         ? "Neem contact op voor professionele bijles en begeleiding in Amsterdam."
         : "Get in touch for professional tutoring and guidance in Amsterdam.",

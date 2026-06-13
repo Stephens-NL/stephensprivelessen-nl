@@ -35,13 +35,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
-      siteName: 'Stephens Privelessen',
+      siteName: "Stephen's Privélessen",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(isNl ? "Scriptie Hulp A'dam" : "Thesis Help A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Start Scriptie" : "Start Thesis")}&footerText=${encodeURIComponent(isNl ? "Thesis & Methodologie" : "Thesis & Methodology")}&featureImageUrl=/images/thesis-supervision.jpg`,
           width: 1200,
           height: 630,
-          alt: isNl ? 'Scriptiebegeleiding Amsterdam | Stephens Privelessen' : 'Thesis Supervision Amsterdam | Stephens Private Tutoring',
+          alt: isNl ? "Scriptiebegeleiding Amsterdam | Stephen's Privélessen" : "Thesis Supervision Amsterdam | Stephen's Private Tutoring",
         },
       ],
     },

@@ -26,7 +26,7 @@ const jsonLd = {
   name: 'Scriptiebegeleiding Amsterdam',
   provider: {
     '@type': 'EducationalOrganization',
-    name: 'Stephens Privelessen',
+    name: "Stephen's Privélessen",
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Amsterdam',

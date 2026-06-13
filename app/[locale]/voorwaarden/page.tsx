@@ -5,11 +5,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const isNl = locale === "nl"
   return {
     title: isNl
-      ? "Voorwaarden | Stephens Privelessen"
-      : "Terms | Stephen's Private Lessons",
+      ? "Voorwaarden | Stephen's Privélessen"
+      : "Terms | Stephen's Private Tutoring",
     description: isNl
-      ? "Voorwaarden en werkwijze voor bijlessen bij Stephens Privelessen"
-      : "Terms and conditions for tutoring with Stephen's Private Lessons",
+      ? "Voorwaarden en werkwijze voor bijlessen bij Stephen's Privélessen"
+      : "Terms and conditions for tutoring with Stephen's Private Tutoring",
   }
 }
 

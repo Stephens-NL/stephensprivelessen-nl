@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
-      siteName: 'Stephens Privelessen',
+      siteName: "Stephen's Privélessen",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent("Consultancy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Meer Advies Info" : "More Info")}&footerText=${encodeURIComponent(isNl ? "Data & Statistiek Expert" : "Data & Statistics Expert")}&featureImageUrl=/images/consultancy-banner.jpg`,
@@ -84,7 +84,7 @@ export const jsonLd = {
   name: 'Data & Statistiek Consultancy Amsterdam',
   provider: {
     '@type': 'Organization',
-    name: 'Stephens Privelessen',
+    name: "Stephen's Privélessen",
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Amsterdam',
