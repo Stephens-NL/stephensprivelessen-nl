@@ -820,8 +820,8 @@ export const workshops: WorkshopsPageContent = {
         NL: 'Workshops & Cursussen'
     },
     description: {
-        EN: 'Discover our diverse range of workshops and courses designed to enhance your skills and knowledge.',
-        NL: 'Ontdek ons diverse aanbod van workshops en cursussen ontworpen om je vaardigheden en kennis te verbeteren.'
+        EN: 'Discover my diverse range of workshops and courses designed to enhance your skills and knowledge.',
+        NL: 'Ontdek mijn diverse aanbod van workshops en cursussen ontworpen om je vaardigheden en kennis te verbeteren.'
     },
     categories: [
         {
