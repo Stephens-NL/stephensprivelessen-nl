@@ -1,4 +1,3 @@
-import Script from 'next/script';
 import Hero from '@/components/Hero';
 import ServicesShort from '@/components/ServicesShort';
 import Testimonials from '@/components/Testimonials';
@@ -19,9 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default function Home() {
   return (
     <div className="bg-[var(--cream)]">
-      <Script id="website-ld+json" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(websiteSchema)}
-      </Script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{__html: JSON.stringify(websiteSchema)}}
+      />
       <Hero />
       <ServicesShort />
       <InternalLinks />
