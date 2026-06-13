@@ -52,7 +52,7 @@ const structuredData = generateStructuredData({
   title: "Bijles in Amsterdam | Statistiek, Calculus & Programmeren",
   description: "Professionele bijles in Amsterdam voor statistiek, calculus en programmeren.",
   provider: {
-    name: "StephensPrivelessen",
+    name: "Stephen's Privélessen",
     type: "Person",
   },
   areaServed: "Amsterdam",
@@ -206,11 +206,11 @@ export default async function AmsterdamBijlesPage() {
             <h2>{isNl ? "Waarom bijles in Amsterdam?" : "Why tutoring in Amsterdam?"}</h2>
             <p>
               {isNl
-                ? "Als niet-bèta student kan wiskunde, statistiek of programmeren overweldigend zijn. Onze bijles is speciaal gericht op jouw studie en leerstijl. Geen ingewikkelde theorie, maar praktische uitleg die je direct kunt toepassen."
-                : "As a non-STEM student, maths, statistics or programming can feel overwhelming. Our tutoring is tailored to your degree and learning style — no convoluted theory, just practical explanations you can apply immediately."}
+                ? "Als niet-bèta student kan wiskunde, statistiek of programmeren overweldigend zijn. Mijn bijles is speciaal gericht op jouw studie en leerstijl. Geen ingewikkelde theorie, maar praktische uitleg die je direct kunt toepassen."
+                : "As a non-STEM student, maths, statistics or programming can feel overwhelming. My tutoring is tailored to your degree and learning style — no convoluted theory, just practical explanations you can apply immediately."}
             </p>
 
-            <h2>{isNl ? "Onze aanpak" : "Our approach"}</h2>
+            <h2>{isNl ? "Mijn aanpak" : "My approach"}</h2>
             <ul>
               <li>{isNl ? "1-op-1 begeleiding op jouw tempo" : "1-on-1 tutoring at your own pace"}</li>
               <li>
