@@ -3,8 +3,8 @@ import { TutoringPage } from '@/data/types';
 export const tutoringPage: TutoringPage = {
   hero: {
     title: {
-      EN: 'Transform Your Learning Journey',
-      NL: 'Transformeer Je Leertraject'
+      EN: 'Tailored tutoring in maths, statistics and programming',
+      NL: 'Bijles op maat in wiskunde, statistiek en programmeren'
     },
     subtitle: {
       EN: 'Expert tutoring in mathematics, statistics, and programming with personalized attention and proven results.',
@@ -49,8 +49,8 @@ export const tutoringPage: TutoringPage = {
       icon: 'ExpertSupport',
       title: { EN: 'Expert Support', NL: 'Expert Ondersteuning' },
       description: {
-        EN: 'Learn from experienced tutors with proven track records.',
-        NL: 'Leer van ervaren docenten met bewezen resultaten.'
+        EN: 'Learn from an experienced tutor with proven results.',
+        NL: 'Leer van een ervaren docent met bewezen resultaten.'
       },
       animation: 'fade-up'
     },
@@ -100,8 +100,8 @@ export const tutoringPage: TutoringPage = {
         number: 1,
         title: { EN: 'Initial Consultation', NL: 'Eerste Gesprek' },
         description: {
-          EN: 'We discuss your goals and assess your current level.',
-          NL: 'We bespreken je doelen en beoordelen je huidige niveau.'
+          EN: 'I discuss your goals and assess your current level.',
+          NL: 'Ik bespreek je doelen en beoordeel je huidige niveau.'
         },
         icon: 'Chat'
       },
@@ -109,8 +109,8 @@ export const tutoringPage: TutoringPage = {
         number: 2,
         title: { EN: 'Customized Plan', NL: 'Plan op Maat' },
         description: {
-          EN: 'We create a learning plan tailored to your needs.',
-          NL: 'We maken een leerplan op maat van jouw behoeften.'
+          EN: 'I create a learning plan tailored to your needs.',
+          NL: 'Ik maak een leerplan op maat van jouw behoeften.'
         },
         icon: 'Plan'
       },
@@ -118,8 +118,8 @@ export const tutoringPage: TutoringPage = {
         number: 3,
         title: { EN: 'Regular Sessions', NL: 'Regelmatige Sessies' },
         description: {
-          EN: 'Engage in interactive learning sessions with your tutor.',
-          NL: 'Volg interactieve leersessies met je docent.'
+          EN: 'Engage in interactive learning sessions with Stephen.',
+          NL: 'Volg interactieve leersessies met Stephen.'
         },
         icon: 'Calendar'
       },
@@ -137,8 +137,8 @@ export const tutoringPage: TutoringPage = {
   testimonials: {
     title: { EN: 'Student Success Stories', NL: 'Succesverhalen van Studenten' },
     subtitle: {
-      EN: 'Hear from our students about their experience.',
-      NL: 'Hoor van onze studenten over hun ervaring.'
+      EN: 'Read what students say about their experience.',
+      NL: 'Lees wat studenten over hun ervaring vertellen.'
     },
     slides: [
       {
@@ -229,18 +229,18 @@ export const tutoringPage: TutoringPage = {
           NL: 'Hoe lang duren de bijlessen?'
         },
         answer: {
-          EN: 'Standard sessions are 1 hour long, but we can accommodate longer sessions if needed.',
-          NL: 'Standaard sessies duren 1 uur, maar we kunnen langere sessies inplannen indien nodig.'
+          EN: 'Standard sessions are 1 hour long, but I can accommodate longer sessions if needed.',
+          NL: 'Standaard sessies duren 1 uur, maar ik kan langere sessies inplannen indien nodig.'
         }
       },
       {
         question: {
-          EN: 'Can I change my tutor if I\'m not satisfied?',
-          NL: 'Kan ik van docent wisselen als ik niet tevreden ben?'
+          EN: "What if the approach doesn't suit me?",
+          NL: 'Wat als de aanpak niet bij me past?'
         },
         answer: {
-          EN: 'Yes, we want you to have the best learning experience. You can request a different tutor at any time.',
-          NL: 'Ja, we willen dat je de beste leerervaring hebt. Je kunt op elk moment een andere docent aanvragen.'
+          EN: "During the free trial lesson you can see, with no obligation, whether my approach suits you. If it doesn't work out we simply stop — you're tied to nothing. Stephen teaches every lesson himself.",
+          NL: 'Tijdens de gratis proefles ontdek je vrijblijvend of mijn aanpak bij je past. Werkt het toch niet, dan stoppen we gewoon — je zit nergens aan vast. Stephen geeft alle lessen zelf.'
         }
       },
       {
@@ -249,8 +249,8 @@ export const tutoringPage: TutoringPage = {
           NL: 'Bieden jullie online sessies aan?'
         },
         answer: {
-          EN: 'Yes, we offer both online and in-person tutoring sessions to accommodate your preferences.',
-          NL: 'Ja, we bieden zowel online als persoonlijke bijlessen aan om aan je voorkeuren te voldoen.'
+          EN: 'Yes, I offer both online and in-person tutoring sessions to accommodate your preferences.',
+          NL: 'Ja, ik bied zowel online als persoonlijke bijlessen aan om aan je voorkeuren te voldoen.'
         }
       }
     ]
@@ -258,8 +258,8 @@ export const tutoringPage: TutoringPage = {
   contact: {
     title: { EN: 'Start Your Learning Journey', NL: 'Begin Je Leertraject' },
     subtitle: {
-      EN: 'Fill out the form below and we\'ll get back to you within 24 hours.',
-      NL: 'Vul het onderstaande formulier in en we nemen binnen 24 uur contact met je op.'
+      EN: "Fill out the form below and I'll get back to you within 24 hours.",
+      NL: 'Vul het onderstaande formulier in en ik neem binnen 24 uur contact met je op.'
     },
     form: {
       name: { EN: 'Your Name', NL: 'Je Naam' },

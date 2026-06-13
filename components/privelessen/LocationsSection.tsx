@@ -18,7 +18,7 @@ export const LocationsSection = ({ t }: LocationsSectionProps) => {
             {...inViewFadeUp}
             className="text-4xl font-display font-bold mb-4 text-[var(--ink)]"
           >
-            {t({ NL: 'Waar We Lesgeven', EN: 'Where We Teach' })}
+            {t({ NL: 'Waar ik lesgeef', EN: 'Where I Teach' })}
           </m.h2>
           <m.p
             {...inViewFadeUp}
