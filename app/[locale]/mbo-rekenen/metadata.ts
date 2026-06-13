@@ -32,13 +32,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
-      siteName: 'Stephens Privelessen',
+      siteName: "Stephen's Privélessen",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(isNl ? "MBO Rekenen A'dam" : "MBO Numeracy A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Start Rekenen" : "Start Numeracy")}&footerText=${encodeURIComponent(isNl ? "MBO Rekentoets Hulp" : "MBO Numeracy Test Help")}&featureImageUrl=/images/mbo-rekenen-banner.jpg`,
           width: 1200,
           height: 630,
-          alt: isNl ? "MBO Rekenen Bijles Amsterdam | Stephens Privelessen" : "MBO Numeracy Tutoring Amsterdam | Stephens Private Tutoring",
+          alt: isNl ? "MBO Rekenen Bijles Amsterdam | Stephen's Privélessen" : "MBO Numeracy Tutoring Amsterdam | Stephen's Private Tutoring",
         },
       ],
     },
@@ -77,7 +77,7 @@ export const jsonLd = {
   name: 'MBO Rekenen Bijles',
   provider: {
     '@type': 'EducationalOrganization',
-    name: 'Stephens Privelessen',
+    name: "Stephen's Privélessen",
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Amsterdam',

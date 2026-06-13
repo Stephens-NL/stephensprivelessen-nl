@@ -48,11 +48,11 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
     metadataBase: new URL(siteUrl),
     title: {
       default: isNl
-        ? 'Stephens Privelessen | Wiskunde & Statistiek Privelessen Amsterdam'
-        : "Stephen's Private Lessons | Math & Statistics Tutoring Amsterdam",
+        ? "Stephen's Privélessen | Wiskunde & Statistiek Bijles Amsterdam"
+        : "Stephen's Private Tutoring | Math & Statistics Tutoring Amsterdam",
       template: isNl
-        ? '%s | Stephens Privelessen Amsterdam'
-        : "%s | Stephen's Private Lessons Amsterdam",
+        ? "%s | Stephen's Privélessen Amsterdam"
+        : "%s | Stephen's Private Tutoring Amsterdam",
     },
     description: isNl
       ? 'Expert bijles in wiskunde, statistiek en programmeren in Amsterdam. Online of op Science Park. Van €75/uur. Scriptiebegeleiding, SPSS, R, Python. UvA & VU studenten.'
@@ -283,7 +283,7 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
       : ['tutoring amsterdam', 'math tutoring amsterdam', 'statistics tutoring', 'thesis supervision amsterdam', 'programming lessons amsterdam', 'SPSS help', 'R studio tutoring', 'Python tutoring', 'online tutoring netherlands'],
     authors: [{name: 'Stephen Adei'}],
     creator: 'Stephen Adei',
-    publisher: isNl ? 'Stephens Privelessen' : "Stephen's Private Lessons",
+    publisher: isNl ? "Stephen's Privélessen" : "Stephen's Private Tutoring",
     formatDetection: {email: false, address: true, telephone: true},
     icons: {
       icon: [
@@ -304,10 +304,10 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
       type: 'website' as const,
       locale: isNl ? 'nl_NL' : 'en_US',
       alternateLocale: isNl ? 'en_US' : 'nl_NL',
-      siteName: isNl ? 'Stephens Privelessen' : "Stephen's Private Lessons",
+      siteName: isNl ? "Stephen's Privélessen" : "Stephen's Private Tutoring",
       title: isNl
-        ? 'Wiskunde & Statistiek Privelessen Amsterdam | Stephens Privelessen'
-        : "Math & Statistics Tutoring Amsterdam | Stephen's Private Lessons",
+        ? "Wiskunde & Statistiek Bijles Amsterdam | Stephen's Privélessen"
+        : "Math & Statistics Tutoring Amsterdam | Stephen's Private Tutoring",
       description: isNl
         ? 'Expert bijles in wiskunde, statistiek en programmeren in Amsterdam.'
         : 'Expert tutoring in mathematics, statistics and programming in Amsterdam.',

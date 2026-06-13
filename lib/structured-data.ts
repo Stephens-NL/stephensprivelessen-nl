@@ -61,7 +61,7 @@ export function generateStructuredData({
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  "name": "Stephen's Privelessen",
+  "name": "Stephen's Privélessen",
   "url": "https://stephensprivelessen.nl",
   "logo": "https://stephensprivelessen.nl/favicon/android-chrome-512x512.png",
   "contactPoint": {

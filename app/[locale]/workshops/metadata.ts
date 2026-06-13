@@ -37,13 +37,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
-      siteName: 'Stephens Privelessen',
+      siteName: "Stephen's Privélessen",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent("Workshops A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Bekijk Workshops" : "View Workshops")}&footerText=${encodeURIComponent(isNl ? "Wiskunde, Statistiek & Meer" : "Maths, Statistics & More")}&featureImageUrl=/images/workshops-banner.jpg`,
           width: 1200,
           height: 630,
-          alt: isNl ? "Workshops Wiskunde & Statistiek Amsterdam | Stephens Privelessen" : "Workshops Mathematics & Statistics Amsterdam | Stephens Private Tutoring",
+          alt: isNl ? "Workshops Wiskunde & Statistiek Amsterdam | Stephen's Privélessen" : "Workshops Mathematics & Statistics Amsterdam | Stephen's Private Tutoring",
         },
       ],
     },
@@ -79,11 +79,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export const jsonLd = {
   '@context': 'https://schema.org',
   '@type': ['EducationalOrganization', 'Organization'],
-  name: 'Stephens Privelessen Workshops',
+  name: "Stephen's Privélessen Workshops",
   description: 'Interactieve workshops voor wiskunde, statistiek en creatieve vaardigheden in Amsterdam.',
   provider: {
     '@type': 'EducationalOrganization',
-    name: 'Stephens Privelessen',
+    name: "Stephen's Privélessen",
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Amsterdam',

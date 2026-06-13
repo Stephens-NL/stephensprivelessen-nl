@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
       </defs>
       <text x="600" y="200" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white" text-anchor="middle">📚 Aantekeningen</text>
       ${studentName ? `<text x="600" y="280" font-family="Arial, sans-serif" font-size="60" font-weight="bold" fill="#ffd700" text-anchor="middle">${studentName}</text>` : ''}
-      <text x="600" y="${studentName ? '360' : '300'}" font-family="Arial, sans-serif" font-size="40" fill="rgba(255, 255, 255, 0.8)" text-anchor="middle">Stephen's Privelessen</text>
+      <text x="600" y="${studentName ? '360' : '300'}" font-family="Arial, sans-serif" font-size="40" fill="rgba(255, 255, 255, 0.8)" text-anchor="middle">Stephen's Privélessen</text>
       <text x="600" y="${studentName ? '440' : '380'}" font-family="Arial, sans-serif" font-size="30" fill="rgba(255, 255, 255, 0.9)" text-anchor="middle">${studentName ? `${studentName}'s aantekeningen` : 'Vind je aantekeningen'}</text>
       <text x="600" y="${studentName ? '490' : '430'}" font-family="Arial, sans-serif" font-size="24" fill="rgba(255, 255, 255, 0.7)" text-anchor="middle">Alle notities georganiseerd en direct toegankelijk</text>
     </svg>
