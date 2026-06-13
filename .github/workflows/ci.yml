@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
 
-# Single self-hosted runner — cancel superseded runs so they don't pile up.
+# Cancel superseded runs on a ref so they don't pile up.
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
@@ -14,45 +14,49 @@ concurrency:
 jobs:
   typecheck:
     name: TypeScript
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
       - run: npm ci
       - run: npx tsc --noEmit
 
   lint:
     name: Lint
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
       - run: npm ci
       - run: npm run lint
 
   test:
     name: Tests
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
       - run: npm ci
       - run: npx jest --ci --passWithNoTests
 
   build:
     name: Build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [typecheck, lint, test]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
