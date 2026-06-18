@@ -1,5 +1,7 @@
 // Package-based pricing data (4-hour packages are the only offered format)
 
+import { businessConfig } from './business-config.generated';
+
 // Rekentrajecten comparison data
 export const rekentrajectenComparison = {
   title: {
@@ -127,20 +129,46 @@ export const rekentrajectenComparison = {
 // VO = Voortgezet Onderwijs (middelbare school)
 // HBO/WO = Hoger onderwijs
 
-export const voOnlinePackages = [
-  { students: 1, packagePrice: 240, pricePerPerson: 240 },
-  { students: 2, packagePrice: 320, pricePerPerson: 160 },
-  { students: 3, packagePrice: 420, pricePerPerson: 140 },
-  { students: 4, packagePrice: 520, pricePerPerson: 130 },
-];
+// --- SPL Fase 3 (#162): VO + spoed + scriptie afgeleid uit business-config (canoniek). ---
+// Een prijswijziging in packages/business-config volgt hier automatisch na een re-sync
+// (`npm run sync:business-config`); de business-config CI-drift-guard bewaakt de bron.
 
-export const voPhysicalPackages = [
-  { students: 1, packagePrice: 300, pricePerPerson: 300 },
-  { students: 2, packagePrice: 400, pricePerPerson: 200 },
-  { students: 3, packagePrice: 525, pricePerPerson: 175 },
-  { students: 4, packagePrice: 640, pricePerPerson: 160 },
-];
+type GenRate = {
+  rate_id: string;
+  segment: string;
+  mode: string;
+  amount_cents: number;
+  package_hours: number;
+  student_count: number;
+  per_person_cents?: number;
+};
 
+const generatedRates: readonly GenRate[] = businessConfig.rates;
+
+function pkgArray(segment: string, mode: string) {
+  return generatedRates
+    .filter((r) => r.segment === segment && r.mode === mode && r.package_hours === 4)
+    .slice()
+    .sort((a, b) => a.student_count - b.student_count)
+    .map((r) => ({
+      students: r.student_count,
+      packagePrice: r.amount_cents / 100,
+      pricePerPerson: (r.per_person_cents ?? r.amount_cents) / 100,
+    }));
+}
+
+function spoedEuro(rateId: string): number {
+  const r = generatedRates.find((x) => x.rate_id === rateId);
+  if (!r) throw new Error(`pricingData: ontbrekend spoed-tarief '${rateId}' in business-config`);
+  return r.amount_cents / 100;
+}
+
+export const voOnlinePackages = pkgArray('vo', 'online');
+export const voPhysicalPackages = pkgArray('vo', 'physical');
+
+// HBO/WO staat in business-config nog op `status: draft` én wijkt af van wat hier live
+// staat (en mist de 4-leerling-tier). Bewust hardcoded gelaten tot de canonieke HBO/WO-
+// tarieven zijn vastgesteld — HBO/WO-convergentie is een #162 follow-up (businessbeslissing).
 export const hboWoOnlinePackages = [
   { students: 1, packagePrice: 300, pricePerPerson: 300 },
   { students: 2, packagePrice: 400, pricePerPerson: 200 },
@@ -155,20 +183,19 @@ export const hboWoPhysicalPackages = [
   { students: 4, packagePrice: 800, pricePerPerson: 200 },
 ];
 
-
-// Spoedpakketten (2 uur)
+// Spoedpakketten (2 uur) — afgeleid uit business-config
 export const spoedPrices = {
-  voOnline: 120,
-  voPhysical: 180,
-  hboWoOnline: 180,
-  hboWoPhysical: 260,
+  voOnline: spoedEuro('vo_spoed_online'),
+  voPhysical: spoedEuro('vo_spoed_physical'),
+  hboWoOnline: spoedEuro('hbo_wo_spoed_online'),
+  hboWoPhysical: spoedEuro('hbo_wo_spoed_physical'),
 };
 
-// Scriptiebegeleiding tarieven (uurtarief — apart product, niet pakketgebaseerd)
-export const scriptieRates = [
-  { duration: "Statistiek & Onderzoek", price: "€90/uur" },
-  { duration: "Data Science & AI", price: "€100/uur" },
-];
+// Scriptiebegeleiding (uurtarief — apart product) — afgeleid uit business-config
+export const scriptieRates = businessConfig.scriptie.rates.map((r) => ({
+  duration: r.label,
+  price: `€${r.amount_cents / 100}/uur`,
+}));
 
 // Policies
 export const availabilityPolicy = {

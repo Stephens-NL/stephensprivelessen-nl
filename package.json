@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
+    "sync:business-config": "node scripts/sync-business-config.mjs",
     "seed": "ts-node --compiler-options '{\"module\":\"CommonJS\"}' prisma/seed.ts",
     "test:form": "ts-node scripts/test-form-submission.ts",
     "test:drive": "ts-node --project tsconfig.scripts.json scripts/test-google-drive.ts",
