@@ -2,17 +2,7 @@
   "hero": {
     "title": "Bijles op maat in wiskunde, statistiek en programmeren",
     "subtitle": "Professionele bijles in wiskunde, statistiek en programmeren met persoonlijke aandacht en bewezen resultaten.",
-    "stats": [
-      {
-        "label": "Studenttevredenheid"
-      },
-      {
-        "label": "Studenten Geholpen"
-      },
-      {
-        "label": "Gemiddelde Beoordeling"
-      }
-    ],
+    "stats": [],
     "ctaPrimary": "Plan Gratis Proefles",
     "ctaSecondary": "Bekijk Vakken"
   },
@@ -80,18 +70,7 @@
   "testimonials": {
     "title": "Succesverhalen van Studenten",
     "subtitle": "Lees wat studenten over hun ervaring vertellen.",
-    "slides": [
-      {
-        "quote": "De persoonlijke aanpak hielp me calculus te beheersen in slechts een paar maanden.",
-        "role": "Wiskunde Student",
-        "subject": "Calculus"
-      },
-      {
-        "quote": "Eindelijk programmeerconcepten begrepen die me jarenlang in verwarring brachten.",
-        "role": "Informatica Student",
-        "subject": "Python Programmeren"
-      }
-    ]
+    "slides": []
   },
   "infoSection": {
     "individualSessions": "Individuele Sessies",

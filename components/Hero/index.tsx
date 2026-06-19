@@ -76,26 +76,19 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <div className="grid grid-cols-3 gap-8 text-center">
-            {[
-              { value: '500+', labelKey: 'hero.stats.studentsHelped' },
-              { value: 'UvA & VU', labelKey: 'hero.stats.campusNetwork' },
-              { value: '5\u2605', labelKey: 'hero.stats.averageRating' },
-            ].map((stat, i) => (
-              <m.div
-                key={stat.value}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
-              >
-                <div className="font-display text-2xl sm:text-3xl font-semibold text-[var(--ink)]">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-[var(--muted-text)] mt-1">
-                  {t(stat.labelKey)}
-                </div>
-              </m.div>
-            ))}
+          <div className="flex justify-center text-center">
+            <m.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.7 }}
+            >
+              <div className="font-display text-2xl sm:text-3xl font-semibold text-[var(--ink)]">
+                UvA &amp; VU
+              </div>
+              <div className="text-sm text-[var(--muted-text)] mt-1">
+                {t('hero.stats.campusNetwork')}
+              </div>
+            </m.div>
           </div>
         </m.div>
       </div>

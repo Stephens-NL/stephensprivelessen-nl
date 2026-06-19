@@ -10,20 +10,7 @@ export const tutoringPage: TutoringPage = {
       EN: 'Expert tutoring in mathematics, statistics, and programming with personalized attention and proven results.',
       NL: 'Professionele bijles in wiskunde, statistiek en programmeren met persoonlijke aandacht en bewezen resultaten.'
     },
-    stats: [
-      {
-        value: '98%',
-        label: { EN: 'Student Satisfaction', NL: 'Studenttevredenheid' }
-      },
-      {
-        value: '500+',
-        label: { EN: 'Students Helped', NL: 'Studenten Geholpen' }
-      },
-      {
-        value: '4.9/5',
-        label: { EN: 'Average Rating', NL: 'Gemiddelde Beoordeling' }
-      }
-    ],
+    stats: [],
     cta: {
       primary: {
         text: { EN: 'Schedule Free Trial', NL: 'Plan Gratis Proefles' },
@@ -140,30 +127,7 @@ export const tutoringPage: TutoringPage = {
       EN: 'Read what students say about their experience.',
       NL: 'Lees wat studenten over hun ervaring vertellen.'
     },
-    slides: [
-      {
-        quote: {
-          EN: 'The personalized approach helped me master calculus in just a few months.',
-          NL: 'De persoonlijke aanpak hielp me calculus te beheersen in slechts een paar maanden.'
-        },
-        author: 'Sarah K.',
-        role: { EN: 'Mathematics Student', NL: 'Wiskunde Student' },
-        image: '/images/testimonials/sarah.jpg',
-        rating: 5,
-        subject: { EN: 'Calculus', NL: 'Calculus' }
-      },
-      {
-        quote: {
-          EN: 'Finally understood programming concepts that had been confusing me for years.',
-          NL: 'Eindelijk programmeerconcepten begrepen die me jarenlang in verwarring brachten.'
-        },
-        author: 'Michael R.',
-        role: { EN: 'Computer Science Student', NL: 'Informatica Student' },
-        image: '/images/testimonials/michael.jpg',
-        rating: 5,
-        subject: { EN: 'Python Programming', NL: 'Python Programmeren' }
-      }
-    ]
+    slides: []
   },
   pricing: {
     title: { EN: 'Tutoring Packages', NL: 'Bijlespakketten' },

@@ -3,31 +3,12 @@
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
-import { ArrowRight, Calculator, TrendingUp, Users } from 'lucide-react';
-import { staggeredFadeInUp } from '@/lib/animations';
+import { ArrowRight, Calculator } from 'lucide-react';
 import { scrollToElement } from '@/lib/scroll';
 
 export function HeroSection() {
   const language = useLanguage();
   const t = useTranslations('mbo');
-
-  const stats = [
-    {
-      icon: Calculator,
-      value: '95%',
-      label: { NL: 'Slagingspercentage', EN: 'Success rate' }
-    },
-    {
-      icon: Users,
-      value: '500+',
-      label: { NL: 'Studenten geholpen', EN: 'Students helped' }
-    },
-    {
-      icon: TrendingUp,
-      value: '8.9',
-      label: { NL: 'Gemiddelde beoordeling', EN: 'Average rating' }
-    }
-  ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-[var(--cream)] to-[var(--cream-dark)]">
@@ -95,34 +76,8 @@ export function HeroSection() {
               </m.button>
             </div>
           </m.div>
-
-          {/* Stats */}
-          <m.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-          >
-            {stats.map((stat, index) => (
-              <m.div
-                key={stat.label?.[language] ?? stat.value ?? index}
-                {...staggeredFadeInUp(index, 0.6)}
-                className="bg-[var(--cream)] rounded-2xl border border-[var(--border-warm)] p-8 shadow-lg hover:shadow-xl transition-all duration-300 group"
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-[var(--cream-dark)] rounded-xl mb-4 group-hover:bg-[var(--ink)] group-hover:text-[var(--cream)] transition-all duration-300">
-                  <stat.icon className="w-6 h-6" />
-                </div>
-                <div className="text-3xl font-light text-[var(--ink)] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-[var(--muted-text)] text-sm">
-                  {stat.label[language]}
-                </div>
-              </m.div>
-            ))}
-          </m.div>
         </div>
       </div>
     </section>
   );
-} 
+}

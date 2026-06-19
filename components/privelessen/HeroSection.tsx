@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/navigation';
 import BlurImage from '@/components/shared/BlurImage';
 import { TutoringHero } from '@/types';
-import { staggeredFadeInUp } from '@/lib/animations';
 
 interface HeroSectionProps {
   content: TutoringHero;
@@ -45,33 +44,15 @@ export const HeroSection = ({ content, t }: HeroSectionProps) => {
           </p>
           
           {/* CTAs */}
-          <div className="flex flex-wrap gap-4 mb-16">
+          <div className="flex flex-wrap gap-4">
             <Link href={content.cta.primary.href}>
               <Button size="lg" className="bg-[var(--amber)] text-[var(--ink)] hover:bg-[var(--amber-hover)] font-semibold text-lg px-8 py-6">
                 {t(content.cta.primary.text)}
               </Button>
             </Link>
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {content.stats.map((stat, index) => (
-              <m.div
-                key={`${stat.value}-${String(stat.label?.EN ?? stat.label?.NL)}`}
-                {...staggeredFadeInUp(index, 0.2)}
-                className="bg-[var(--cream)]/10 backdrop-blur-sm rounded-lg p-6 text-center"
-              >
-                <div className="text-4xl font-bold text-[var(--cream)] mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-on-dark-muted">
-                  {t(stat.label)}
-                </div>
-              </m.div>
-            ))}
-          </div>
         </m.div>
       </div>
     </section>
   );
-}; 
+};

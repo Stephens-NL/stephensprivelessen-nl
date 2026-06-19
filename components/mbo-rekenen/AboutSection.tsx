@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
-import { BookOpen, Target, Trophy, Users } from 'lucide-react';
+import { BookOpen, Target, Users } from 'lucide-react';
 import { inViewFadeUp } from '@/lib/animations';
 
 export function AboutSection() {
@@ -20,11 +20,6 @@ export function AboutSection() {
       icon: BookOpen,
       title: { NL: 'Bewezen methoden', EN: 'Proven methods' },
       description: { NL: 'Effectieve lesmaterialen en technieken voor optimaal leerresultaat', EN: 'Effective teaching materials and techniques for optimal learning results' }
-    },
-    {
-      icon: Trophy,
-      title: { NL: 'Hoog slagingspercentage', EN: 'High success rate' },
-      description: { NL: '95% van mijn studenten slaagt voor hun rekentoets', EN: '95% of my students pass their math test' }
     },
     {
       icon: Users,

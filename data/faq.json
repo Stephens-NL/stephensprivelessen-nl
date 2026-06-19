@@ -25,108 +25,234 @@
   "faqItems": [
     {
       "id": 1,
-      "question": { "NL": "Wat inspireerde je om bijles en onderwijs aan te bieden?", "EN": "What inspired you to offer tutoring and education?" },
-      "answer": { "NL": "Mijn passie voor bijles en onderwijs komt voort uit mijn eigen ervaringen. Mijn reis door uitdagingen in wiskunde op de middelbare school leidde tot een diep begrip van het vak en een sterke motivatie om anderen te helpen. Die ervaring — weten hoe het voelt om vast te zitten en hoe je er doorheen breekt — is de basis van alles wat ik doe.", "EN": "My passion for tutoring and education stems from my own experiences. My journey through challenges in high school mathematics led to a deep understanding of the subject and a strong motivation to help others. That experience — knowing what it feels like to be stuck and how to break through — is the foundation of everything I do." }
+      "question": {
+        "NL": "Wat inspireerde je om bijles en onderwijs aan te bieden?",
+        "EN": "What inspired you to offer tutoring and education?"
+      },
+      "answer": {
+        "NL": "Mijn passie voor bijles en onderwijs komt voort uit mijn eigen ervaringen. Mijn reis door uitdagingen in wiskunde op de middelbare school leidde tot een diep begrip van het vak en een sterke motivatie om anderen te helpen. Die ervaring — weten hoe het voelt om vast te zitten en hoe je er doorheen breekt — is de basis van alles wat ik doe.",
+        "EN": "My passion for tutoring and education stems from my own experiences. My journey through challenges in high school mathematics led to a deep understanding of the subject and a strong motivation to help others. That experience — knowing what it feels like to be stuck and how to break through — is the foundation of everything I do."
+      }
     },
     {
       "id": 2,
-      "question": { "NL": "Hoe zou je jouw onderwijsaanpak omschrijven?", "EN": "How would you describe your teaching approach?" },
-      "answer": { "NL": "Mijn aanpak is sterk gericht op persoonlijke begeleiding en maatwerk. Ik gebruik technologie zoals iPad-aantekeningen en bied tot zeven dagen na de les ondersteuning via WhatsApp. Mijn doel is om een leeromgeving te creëren waarin studenten op hun eigen tempo kunnen groeien en bloeien.", "EN": "My approach is strongly focused on personal guidance and customization. I use technology such as iPad notes and offer support via WhatsApp for up to seven days after the lesson. My goal is to create a learning environment where students can grow and flourish at their own pace." }
+      "question": {
+        "NL": "Hoe zou je jouw onderwijsaanpak omschrijven?",
+        "EN": "How would you describe your teaching approach?"
+      },
+      "answer": {
+        "NL": "Mijn aanpak is sterk gericht op persoonlijke begeleiding en maatwerk. Ik gebruik technologie zoals iPad-aantekeningen en bied tot zeven dagen na de les ondersteuning via WhatsApp. Mijn doel is om een leeromgeving te creëren waarin studenten op hun eigen tempo kunnen groeien en bloeien.",
+        "EN": "My approach is strongly focused on personal guidance and customization. I use technology such as iPad notes and offer support via WhatsApp for up to seven days after the lesson. My goal is to create a learning environment where students can grow and flourish at their own pace."
+      }
     },
     {
       "id": 3,
-      "question": { "NL": "Wat maakt jouw bijlessen uniek in vergelijking met andere aanbieders?", "EN": "What makes your tutoring unique compared to other providers?" },
-      "answer": { "NL": "Mijn bijlessen onderscheiden zich door een multidisciplinaire achtergrond in wiskunde, statistiek, programmeren en data-analyse. Ik benader complexe onderwerpen op een begrijpelijke manier en focus sterk op de persoonlijke groei van mijn studenten.", "EN": "My tutoring stands out due to a multidisciplinary background in mathematics, statistics, programming, and data analysis. I approach complex topics in an understandable way and have a strong focus on the personal growth of my students." }
+      "question": {
+        "NL": "Wat maakt jouw bijlessen uniek in vergelijking met andere aanbieders?",
+        "EN": "What makes your tutoring unique compared to other providers?"
+      },
+      "answer": {
+        "NL": "Mijn bijlessen onderscheiden zich door een multidisciplinaire achtergrond in wiskunde, statistiek, programmeren en data-analyse. Ik benader complexe onderwerpen op een begrijpelijke manier en focus sterk op de persoonlijke groei van mijn studenten.",
+        "EN": "My tutoring stands out due to a multidisciplinary background in mathematics, statistics, programming, and data analysis. I approach complex topics in an understandable way and have a strong focus on the personal growth of my students."
+      }
     },
     {
       "id": 4,
-      "question": { "NL": "Hoe ga je om met verschillende leerstijlen en -niveaus van studenten?", "EN": "How do you handle different learning styles and levels?" },
-      "answer": { "NL": "Ik pas mijn lessen aan op de specifieke leerstijl van elke student. De lessen zijn interactief en dynamisch, met een combinatie van theoretische uitleg, praktische oefeningen en toepassingen in de echte wereld. Ik gebruik differentiatie technieken zoals scaffolding om effectief in te spelen op verschillende leerstijlen.", "EN": "I adapt my lessons to each student's specific learning style. The lessons are interactive and dynamic, combining theoretical explanation, practical exercises, and real-world applications. I use differentiation techniques such as scaffolding to effectively cater to different learning styles." }
+      "question": {
+        "NL": "Hoe ga je om met verschillende leerstijlen en -niveaus van studenten?",
+        "EN": "How do you handle different learning styles and levels?"
+      },
+      "answer": {
+        "NL": "Ik pas mijn lessen aan op de specifieke leerstijl van elke student. De lessen zijn interactief en dynamisch, met een combinatie van theoretische uitleg, praktische oefeningen en toepassingen in de echte wereld. Ik gebruik differentiatie technieken zoals scaffolding om effectief in te spelen op verschillende leerstijlen.",
+        "EN": "I adapt my lessons to each student's specific learning style. The lessons are interactive and dynamic, combining theoretical explanation, practical exercises, and real-world applications. I use differentiation techniques such as scaffolding to effectively cater to different learning styles."
+      }
     },
     {
       "id": 5,
-      "question": { "NL": "Welke resultaten en successen heb je gezien bij je studenten?", "EN": "What results and successes have you seen with your students?" },
-      "answer": { "NL": "Mijn bijlessen hebben veel studenten geholpen om hun academische prestaties te verbeteren en hun zelfvertrouwen te vergroten. Ik heb talloze succesverhalen, waaronder een volwassen student die het CCVX-examen succesvol aflegde en zijn universitaire studie hervatte.", "EN": "My tutoring has helped many students improve their academic performance and increase their confidence. I have numerous success stories, including an adult student who successfully passed the CCVX exam and resumed his university studies." }
+      "question": {
+        "NL": "Welke resultaten en successen heb je gezien bij je studenten?",
+        "EN": "What results and successes have you seen with your students?"
+      },
+      "answer": {
+        "NL": "Mijn bijlessen hebben veel studenten geholpen om hun academische prestaties te verbeteren en hun zelfvertrouwen te vergroten. Zo begeleidde ik bijvoorbeeld een volwassen student die het CCVX-examen succesvol aflegde en zijn universitaire studie hervatte.",
+        "EN": "My tutoring has helped many students improve their academic performance and increase their confidence. For example, I guided an adult student who successfully passed the CCVX exam and resumed his university studies."
+      }
     },
     {
       "id": 6,
-      "question": { "NL": "Hoe worden de bijlessen georganiseerd?", "EN": "How are the tutoring sessions organized?" },
-      "answer": { "NL": "De bijlessen vinden doordeweeks plaats tussen 18:00 en 21:00, online via Google Meet of fysiek op Science Park in Amsterdam. Ik werk uitsluitend met pakketten van 4 uur — er zijn dus geen losse lessen meer. Maximaal 2 uur les per week.", "EN": "Tutoring sessions take place on weekdays between 18:00 and 21:00, online via Google Meet or in person at Science Park in Amsterdam. I work exclusively with 4-hour packages — no single lessons. Maximum 2 hours of lessons per week." }
+      "question": {
+        "NL": "Hoe worden de bijlessen georganiseerd?",
+        "EN": "How are the tutoring sessions organized?"
+      },
+      "answer": {
+        "NL": "De bijlessen vinden doordeweeks plaats tussen 18:00 en 21:00, online via Google Meet of fysiek op Science Park in Amsterdam. Ik werk uitsluitend met pakketten van 4 uur — er zijn dus geen losse lessen meer. Maximaal 2 uur les per week.",
+        "EN": "Tutoring sessions take place on weekdays between 18:00 and 21:00, online via Google Meet or in person at Science Park in Amsterdam. I work exclusively with 4-hour packages — no single lessons. Maximum 2 hours of lessons per week."
+      }
     },
     {
       "id": 7,
-      "question": { "NL": "Wat zijn de kosten van de bijlessen?", "EN": "What are the costs of the tutoring sessions?" },
-      "answer": { "NL": "Ik werk met pakketten van 4 uur. Voor voortgezet onderwijs: online vanaf €240 per pakket (€60/u), fysiek op Science Park vanaf €300 (€75/u). Voor hoger onderwijs (HBO/WO): online vanaf €300 per pakket (€75/u), fysiek vanaf €400 (€100/u). Groepskortingen zijn beschikbaar tot 4 studenten. Voor spoedhulp is er een 2-uurspakket beschikbaar.", "EN": "I work with 4-hour packages. For secondary education: online from €240 per package (€60/hr), in person at Science Park from €300 (€75/hr). For higher education (HBO/WO): online from €300 per package (€75/hr), in person from €400 (€100/hr). Group discounts are available for up to 4 students. For urgent help, a 2-hour emergency package is available." }
+      "question": {
+        "NL": "Wat zijn de kosten van de bijlessen?",
+        "EN": "What are the costs of the tutoring sessions?"
+      },
+      "answer": {
+        "NL": "Ik werk met pakketten van 4 uur. Voor voortgezet onderwijs: online vanaf €240 per pakket (€60/u), fysiek op Science Park vanaf €300 (€75/u). Voor hoger onderwijs (HBO/WO): online vanaf €300 per pakket (€75/u), fysiek vanaf €400 (€100/u). Groepskortingen zijn beschikbaar tot 4 studenten. Voor spoedhulp is er een 2-uurspakket beschikbaar.",
+        "EN": "I work with 4-hour packages. For secondary education: online from €240 per package (€60/hr), in person at Science Park from €300 (€75/hr). For higher education (HBO/WO): online from €300 per package (€75/hr), in person from €400 (€100/hr). Group discounts are available for up to 4 students. For urgent help, a 2-hour emergency package is available."
+      }
     },
     {
       "id": 8,
-      "question": { "NL": "Hoe kan ik me aanmelden voor bijles?", "EN": "How can I sign up for tutoring?" },
-      "answer": { "NL": "Je kunt je aanmelden door een bericht te sturen via WhatsApp, het contactformulier op de website in te vullen, of door te bellen. Ik bespreek graag je specifieke behoeften en hoe ik je het beste kan helpen.", "EN": "You can sign up by sending a message via WhatsApp, filling out the contact form on the website, or by calling. I'd be happy to discuss your specific needs and how I can best help you." }
+      "question": {
+        "NL": "Hoe kan ik me aanmelden voor bijles?",
+        "EN": "How can I sign up for tutoring?"
+      },
+      "answer": {
+        "NL": "Je kunt je aanmelden door een bericht te sturen via WhatsApp, het contactformulier op de website in te vullen, of door te bellen. Ik bespreek graag je specifieke behoeften en hoe ik je het beste kan helpen.",
+        "EN": "You can sign up by sending a message via WhatsApp, filling out the contact form on the website, or by calling. I'd be happy to discuss your specific needs and how I can best help you."
+      }
     },
     {
       "id": 9,
-      "question": { "NL": "Hoe verloopt de betalingsprocedure?", "EN": "How does the payment procedure work?" },
-      "answer": { "NL": "Betaling gaat vooraf per Tikkie. Een factuur is mogelijk op verzoek. Een les of plek staat pas definitief vast na bevestiging en betaling.", "EN": "Payment is made in advance via Tikkie. An invoice is available on request. A lesson or spot is only confirmed after payment and confirmation." }
+      "question": {
+        "NL": "Hoe verloopt de betalingsprocedure?",
+        "EN": "How does the payment procedure work?"
+      },
+      "answer": {
+        "NL": "Betaling gaat vooraf per Tikkie. Een factuur is mogelijk op verzoek. Een les of plek staat pas definitief vast na bevestiging en betaling.",
+        "EN": "Payment is made in advance via Tikkie. An invoice is available on request. A lesson or spot is only confirmed after payment and confirmation."
+      }
     },
     {
       "id": 10,
-      "question": { "NL": "Is er een mogelijkheid tot een proefles?", "EN": "Is there an option for a trial lesson?" },
-      "answer": { "NL": "Ja, ik bied een gratis proefles aan zodat je kunt kennismaken met mijn werkwijze. De proefles vindt online plaats op zondag. Dit is een goede gelegenheid om te ervaren hoe de lessen worden gegeven en om te bepalen of mijn aanpak bij je past.", "EN": "Yes, I offer a free trial lesson so you can get acquainted with my methods. The trial lesson takes place online on Sundays. This is a good opportunity to experience how the lessons work and to determine if my approach suits you." }
+      "question": {
+        "NL": "Is er een mogelijkheid tot een proefles?",
+        "EN": "Is there an option for a trial lesson?"
+      },
+      "answer": {
+        "NL": "Ja, ik bied een gratis proefles aan zodat je kunt kennismaken met mijn werkwijze. De proefles vindt online plaats op zondag. Dit is een goede gelegenheid om te ervaren hoe de lessen worden gegeven en om te bepalen of mijn aanpak bij je past.",
+        "EN": "Yes, I offer a free trial lesson so you can get acquainted with my methods. The trial lesson takes place online on Sundays. This is a good opportunity to experience how the lessons work and to determine if my approach suits you."
+      }
     },
     {
       "id": 11,
-      "question": { "NL": "Bied je ook bijles voor beroepsspecifieke vakken?", "EN": "Do you also offer tutoring for profession-specific subjects?" },
-      "answer": { "NL": "Ja, ik bied bijles voor beroepsspecifieke vakken, voornamelijk op het gebied van scriptiebegeleiding en studievaardigheden. Ik help studenten met het structureren van teksten, het ontwikkelen van logische argumenten en het uitvoeren van statistische analyses.", "EN": "Yes, I offer tutoring for profession-specific subjects, mainly in the areas of thesis guidance and study skills. I help students with structuring texts, developing logical arguments, and performing statistical analyses." }
+      "question": {
+        "NL": "Bied je ook bijles voor beroepsspecifieke vakken?",
+        "EN": "Do you also offer tutoring for profession-specific subjects?"
+      },
+      "answer": {
+        "NL": "Ja, ik bied bijles voor beroepsspecifieke vakken, voornamelijk op het gebied van scriptiebegeleiding en studievaardigheden. Ik help studenten met het structureren van teksten, het ontwikkelen van logische argumenten en het uitvoeren van statistische analyses.",
+        "EN": "Yes, I offer tutoring for profession-specific subjects, mainly in the areas of thesis guidance and study skills. I help students with structuring texts, developing logical arguments, and performing statistical analyses."
+      }
     },
     {
       "id": 12,
-      "question": { "NL": "Hoe integreer je AI-taalmodellen en technologie in de lessen?", "EN": "How do you integrate AI language models and technology into lessons?" },
-      "answer": { "NL": "Ik maak gebruik van de nieuwste technologieën, waaronder AI-taalmodellen zoals ChatGPT en Claude, om complexe concepten te verduidelijken en interactieve leerervaringen te bieden. Ik gebruik ook een iPad voor digitale aantekeningen, die ik na de les deel met de student.", "EN": "I use the latest technologies, including AI language models like ChatGPT and Claude, to clarify complex concepts and provide interactive learning experiences. I also use an iPad for digital notes, which I share with the student after the lesson." }
+      "question": {
+        "NL": "Hoe integreer je AI-taalmodellen en technologie in de lessen?",
+        "EN": "How do you integrate AI language models and technology into lessons?"
+      },
+      "answer": {
+        "NL": "Ik maak gebruik van de nieuwste technologieën, waaronder AI-taalmodellen zoals ChatGPT en Claude, om complexe concepten te verduidelijken en interactieve leerervaringen te bieden. Ik gebruik ook een iPad voor digitale aantekeningen, die ik na de les deel met de student.",
+        "EN": "I use the latest technologies, including AI language models like ChatGPT and Claude, to clarify complex concepts and provide interactive learning experiences. I also use an iPad for digital notes, which I share with the student after the lesson."
+      }
     },
     {
       "id": 13,
-      "question": { "NL": "Hoe ondersteun je studenten bij het ontwikkelen van soft skills?", "EN": "How do you support students in developing soft skills?" },
-      "answer": { "NL": "Ik ondersteun studenten door hen te helpen met het plannen van hun studie, het stellen van prioriteiten en het behouden van overzicht. Mijn aanpak is gericht op het bevorderen van zelfvertrouwen en het ontwikkelen van praktische vaardigheden die studenten in hun dagelijkse leven kunnen toepassen.", "EN": "I support students by helping them plan their studies, set priorities, and maintain an overview. My approach is aimed at fostering confidence and developing practical skills that students can apply in their daily lives." }
+      "question": {
+        "NL": "Hoe ondersteun je studenten bij het ontwikkelen van soft skills?",
+        "EN": "How do you support students in developing soft skills?"
+      },
+      "answer": {
+        "NL": "Ik ondersteun studenten door hen te helpen met het plannen van hun studie, het stellen van prioriteiten en het behouden van overzicht. Mijn aanpak is gericht op het bevorderen van zelfvertrouwen en het ontwikkelen van praktische vaardigheden die studenten in hun dagelijkse leven kunnen toepassen.",
+        "EN": "I support students by helping them plan their studies, set priorities, and maintain an overview. My approach is aimed at fostering confidence and developing practical skills that students can apply in their daily lives."
+      }
     },
     {
       "id": 14,
-      "question": { "NL": "Welke ervaringen heb je met het begeleiden van studenten met leerproblemen?", "EN": "What experience do you have with guiding students with learning difficulties?" },
-      "answer": { "NL": "Ik heb ervaring met het begeleiden van studenten met leerproblemen, zoals lichte autisme. Ik bied een gestructureerde en geduldige leeromgeving, waarbij ik rekening houd met hun specifieke behoeften en uitdagingen.", "EN": "I have experience guiding students with learning difficulties, such as mild autism. I provide a structured and patient learning environment, taking into account their specific needs and challenges." }
+      "question": {
+        "NL": "Welke ervaringen heb je met het begeleiden van studenten met leerproblemen?",
+        "EN": "What experience do you have with guiding students with learning difficulties?"
+      },
+      "answer": {
+        "NL": "Ik heb ervaring met het begeleiden van studenten met leerproblemen, zoals lichte autisme. Ik bied een gestructureerde en geduldige leeromgeving, waarbij ik rekening houd met hun specifieke behoeften en uitdagingen.",
+        "EN": "I have experience guiding students with learning difficulties, such as mild autism. I provide a structured and patient learning environment, taking into account their specific needs and challenges."
+      }
     },
     {
       "id": 15,
-      "question": { "NL": "Hoe zorg je ervoor dat studenten gemotiveerd blijven?", "EN": "How do you ensure that students stay motivated?" },
-      "answer": { "NL": "Ik creëer een positieve en ondersteunende omgeving waarin studenten worden aangemoedigd om nieuwsgierig te zijn en hun passie voor leren te ontdekken. Ik ben er om te ondersteunen, maar de uiteindelijke motivatie hangt af van de student zelf.", "EN": "I create a positive and supportive environment where students are encouraged to be curious and discover their passion for learning. I'm there to support, but the ultimate motivation depends on the student themselves." }
+      "question": {
+        "NL": "Hoe zorg je ervoor dat studenten gemotiveerd blijven?",
+        "EN": "How do you ensure that students stay motivated?"
+      },
+      "answer": {
+        "NL": "Ik creëer een positieve en ondersteunende omgeving waarin studenten worden aangemoedigd om nieuwsgierig te zijn en hun passie voor leren te ontdekken. Ik ben er om te ondersteunen, maar de uiteindelijke motivatie hangt af van de student zelf.",
+        "EN": "I create a positive and supportive environment where students are encouraged to be curious and discover their passion for learning. I'm there to support, but the ultimate motivation depends on the student themselves."
+      }
     },
     {
       "id": 16,
-      "question": { "NL": "Welke rol speelt feedback in jouw onderwijsaanpak?", "EN": "What role does feedback play in your teaching approach?" },
-      "answer": { "NL": "Feedback is een essentieel onderdeel van mijn aanpak. Ik ben constant bezig met het verbeteren van mijn methoden en sta open voor suggesties van studenten en ouders. Feedback helpt mij om de lessen te verfijnen en aan te passen aan de behoeften van mijn studenten.", "EN": "Feedback is an essential part of my approach. I'm constantly improving my methods and am open to suggestions from students and parents. Feedback helps me refine my lessons and adapt to the needs of my students." }
+      "question": {
+        "NL": "Welke rol speelt feedback in jouw onderwijsaanpak?",
+        "EN": "What role does feedback play in your teaching approach?"
+      },
+      "answer": {
+        "NL": "Feedback is een essentieel onderdeel van mijn aanpak. Ik ben constant bezig met het verbeteren van mijn methoden en sta open voor suggesties van studenten en ouders. Feedback helpt mij om de lessen te verfijnen en aan te passen aan de behoeften van mijn studenten.",
+        "EN": "Feedback is an essential part of my approach. I'm constantly improving my methods and am open to suggestions from students and parents. Feedback helps me refine my lessons and adapt to the needs of my students."
+      }
     },
     {
       "id": 17,
-      "question": { "NL": "Bied je maatwerk en gespecialiseerde programma's voor bedrijven?", "EN": "Do you offer customized programs for companies?" },
-      "answer": { "NL": "Ja, ik bied op maat gemaakte programma's en trainingen voor bedrijven en instellingen, afgestemd op hun specifieke behoeften en doelen. Dit kan variëren van het trainen van personeel in het gebruik van statistische programma's en data management tools tot het introduceren van nieuwe technologieën zoals prompt engineering.", "EN": "Yes, I offer customized programs and trainings for companies and institutions, tailored to their specific needs and goals. This can range from training staff in the use of statistical programs and data management tools to introducing new technologies such as prompt engineering." }
+      "question": {
+        "NL": "Bied je maatwerk en gespecialiseerde programma's voor bedrijven?",
+        "EN": "Do you offer customized programs for companies?"
+      },
+      "answer": {
+        "NL": "Ja, ik bied op maat gemaakte programma's en trainingen voor bedrijven en instellingen, afgestemd op hun specifieke behoeften en doelen. Dit kan variëren van het trainen van personeel in het gebruik van statistische programma's en data management tools tot het introduceren van nieuwe technologieën zoals prompt engineering.",
+        "EN": "Yes, I offer customized programs and trainings for companies and institutions, tailored to their specific needs and goals. This can range from training staff in the use of statistical programs and data management tools to introducing new technologies such as prompt engineering."
+      }
     },
     {
       "id": 18,
-      "question": { "NL": "Hoe kan ik contact opnemen voor meer informatie?", "EN": "How can I contact you for more information?" },
-      "answer": { "NL": "Voor vragen of meer informatie kun je contact met mij opnemen via info@stephenadei.nl of bellen naar +31 6 47357426. Ik beantwoord graag al je vragen en sta klaar om je te helpen. Je kunt ook een berichtje sturen via WhatsApp.", "EN": "For questions or more information, you can contact me via info@stephenadei.nl or call +31 6 47357426. I'm happy to answer all your questions and ready to help. You can also send a message via WhatsApp." }
+      "question": {
+        "NL": "Hoe kan ik contact opnemen voor meer informatie?",
+        "EN": "How can I contact you for more information?"
+      },
+      "answer": {
+        "NL": "Voor vragen of meer informatie kun je contact met mij opnemen via info@stephenadei.nl of bellen naar +31 6 47357426. Ik beantwoord graag al je vragen en sta klaar om je te helpen. Je kunt ook een berichtje sturen via WhatsApp.",
+        "EN": "For questions or more information, you can contact me via info@stephenadei.nl or call +31 6 47357426. I'm happy to answer all your questions and ready to help. You can also send a message via WhatsApp."
+      }
     },
     {
       "id": 19,
-      "question": { "NL": "Welke materialen en hulpmiddelen worden tijdens de lessen gebruikt?", "EN": "What materials and tools are used during the lessons?" },
-      "answer": { "NL": "Tijdens de lessen gebruik ik verschillende materialen en hulpmiddelen, afhankelijk van het onderwerp en de behoeften van de student. Dit varieert van digitale tools zoals tablets en software voor statistische analyse tot traditionele materialen zoals tekstboeken en oefenopgaven.", "EN": "During lessons, I use various materials and tools depending on the subject and the student's needs. This ranges from digital tools such as tablets and statistical analysis software to traditional materials such as textbooks and practice exercises." }
+      "question": {
+        "NL": "Welke materialen en hulpmiddelen worden tijdens de lessen gebruikt?",
+        "EN": "What materials and tools are used during the lessons?"
+      },
+      "answer": {
+        "NL": "Tijdens de lessen gebruik ik verschillende materialen en hulpmiddelen, afhankelijk van het onderwerp en de behoeften van de student. Dit varieert van digitale tools zoals tablets en software voor statistische analyse tot traditionele materialen zoals tekstboeken en oefenopgaven.",
+        "EN": "During lessons, I use various materials and tools depending on the subject and the student's needs. This ranges from digital tools such as tablets and statistical analysis software to traditional materials such as textbooks and practice exercises."
+      }
     },
     {
       "id": 20,
-      "question": { "NL": "Hoe vaak vinden de bijlessen plaats en hoe lang duren ze?", "EN": "How often do the tutoring sessions take place and how long do they last?" },
-      "answer": { "NL": "Ik werk met pakketten van 4 uur. Lessen vinden meestal wekelijks plaats, maximaal 2 uur per week, doordeweeks tussen 18:00 en 21:00. Een gemiste les kan alleen worden ingehaald op zondag tussen 14:00 en 18:00, online.", "EN": "I work with 4-hour packages. Lessons usually take place weekly, maximum 2 hours per week, on weekdays between 18:00 and 21:00. A missed lesson can only be made up on Sundays between 14:00 and 18:00, online." }
+      "question": {
+        "NL": "Hoe vaak vinden de bijlessen plaats en hoe lang duren ze?",
+        "EN": "How often do the tutoring sessions take place and how long do they last?"
+      },
+      "answer": {
+        "NL": "Ik werk met pakketten van 4 uur. Lessen vinden meestal wekelijks plaats, maximaal 2 uur per week, doordeweeks tussen 18:00 en 21:00. Een gemiste les kan alleen worden ingehaald op zondag tussen 14:00 en 18:00, online.",
+        "EN": "I work with 4-hour packages. Lessons usually take place weekly, maximum 2 hours per week, on weekdays between 18:00 and 21:00. A missed lesson can only be made up on Sundays between 14:00 and 18:00, online."
+      }
     },
     {
       "id": 21,
-      "question": { "NL": "Hoe werken groepslessen?", "EN": "How do group lessons work?" },
-      "answer": { "NL": "Groepsprijzen gelden alleen als studenten zelf een groepje vormen. Dus als je een klasgenoot of studiegenoot hebt die ook hulp nodig heeft, kunnen jullie samen lessen volgen tegen het groepstarief. Groepen tot maximaal 4 studenten.", "EN": "Group prices only apply when students form their own group. So if you have a classmate or fellow student who also needs help, you can take lessons together at the group rate. Groups up to a maximum of 4 students." }
+      "question": {
+        "NL": "Hoe werken groepslessen?",
+        "EN": "How do group lessons work?"
+      },
+      "answer": {
+        "NL": "Groepsprijzen gelden alleen als studenten zelf een groepje vormen. Dus als je een klasgenoot of studiegenoot hebt die ook hulp nodig heeft, kunnen jullie samen lessen volgen tegen het groepstarief. Groepen tot maximaal 4 studenten.",
+        "EN": "Group prices only apply when students form their own group. So if you have a classmate or fellow student who also needs help, you can take lessons together at the group rate. Groups up to a maximum of 4 students."
+      }
     }
   ]
 }
