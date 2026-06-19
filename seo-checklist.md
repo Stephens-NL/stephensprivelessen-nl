@@ -1,4 +1,4 @@
-# SEO Optimalisatie Checklist - Stephens Privelessen
+# SEO Optimalisatie Checklist - Stephen's Privélessen
 
 ## 🎯 Doel
 SEO optimalisatie voor 200 zoektermen (80% Nederlands, 20% Engels) gericht op bijles, statistiek, wiskunde en scriptiebegeleiding in Amsterdam.

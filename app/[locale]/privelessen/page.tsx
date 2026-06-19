@@ -34,13 +34,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
-      siteName: 'Stephens Privelessen',
+      siteName: "Stephen's Privélessen",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(isNl ? "Privelessen A'dam" : "Tutoring A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Boek Les" : "Book Lesson")}&footerText=${encodeURIComponent(isNl ? "Wiskunde & Statistiek" : "Maths & Statistics")}&featureImageUrl=/images/tutoring-hero.jpg`,
           width: 1200,
           height: 630,
-          alt: isNl ? 'Privelessen Amsterdam - Wiskunde & Statistiek | Stephens Privelessen' : 'Private Tutoring Amsterdam - Maths & Statistics | Stephens Privelessen',
+          alt: isNl ? "Privelessen Amsterdam - Wiskunde & Statistiek | Stephen's Privélessen" : "Private Tutoring Amsterdam - Maths & Statistics | Stephen's Privélessen",
         },
       ],
     },
@@ -59,7 +59,7 @@ export default function BijlesPage() {
     title: tutoringPage.hero.title.NL,
     description: tutoringPage.hero.subtitle.NL,
     provider: {
-      name: 'Stephens Privelessen',
+      name: "Stephen's Privélessen",
       type: 'EducationalOrganization',
     },
     areaServed: 'Amsterdam',
