@@ -1,6 +1,5 @@
 import Hero from '@/components/Hero';
 import ServicesShort from '@/components/ServicesShort';
-import Testimonials from '@/components/Testimonials';
 import InternalLinks from '@/components/InternalLinks';
 import { websiteSchema } from '@/lib/structured-data';
 
@@ -25,7 +24,6 @@ export default function Home() {
       <Hero />
       <ServicesShort />
       <InternalLinks />
-      <Testimonials />
     </div>
   );
 }

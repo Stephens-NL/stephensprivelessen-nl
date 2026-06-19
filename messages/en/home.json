@@ -8,28 +8,8 @@
     "schedulefreetrial": "Schedule a Free Trial Session",
     "imgAlt": "Illustration of personalized lessons",
     "stats": {
-      "studentsHelped": "Students helped",
       "perHour": "Starting per package",
-      "campusNetwork": "Campus network",
-      "averageRating": "Average rating"
+      "campusNetwork": "Campus network"
     }
-  },
-  "testimonials": {
-    "label": "Testimonials",
-    "title": "What My Students Say",
-    "items": [
-      {
-        "text": "Thanks to Stephen's tutoring, I scored a 9 on my math exam!",
-        "author": "Emma, VWO 5 student"
-      },
-      {
-        "text": "The programming lessons helped me build my first app. Amazing!",
-        "author": "Liam, Informatica student"
-      },
-      {
-        "text": "Stephen's patience and clear explanations make complex topics understandable.",
-        "author": "Sophie, Universitair student"
-      }
-    ]
   }
 }

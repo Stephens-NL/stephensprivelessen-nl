@@ -6,7 +6,6 @@ import { HeroSection } from './HeroSection';
 import { FeaturesSection } from './FeaturesSection';
 import { SubjectsSection } from './SubjectsSection';
 import { ProcessSection } from './ProcessSection';
-import { TestimonialsSection } from './TestimonialsSection';
 import { PricingSection } from './PricingSection';
 import { FAQSection } from './FAQSection';
 import { LocationsSection } from './LocationsSection';
@@ -50,7 +49,6 @@ export function TutoringPage({ locationSpecific }: TutoringPageProps) {
           <FeaturesSection features={tutoringPage.features} t={t} />
           <SubjectsSection subjects={tutoringPage.subjects} t={t} />
           <ProcessSection process={tutoringPage.process} t={t} />
-          <TestimonialsSection testimonials={tutoringPage.testimonials} t={t} />
           <PricingSection pricing={tutoringPage.pricing} t={t} />
           <FAQSection faq={tutoringPage.faq} t={t} />
           <LocationsSection t={t} />
@@ -58,4 +56,4 @@ export function TutoringPage({ locationSpecific }: TutoringPageProps) {
       </div>
     </main>
   );
-} 
+}

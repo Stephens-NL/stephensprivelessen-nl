@@ -5,26 +5,89 @@
   "languageToggle": "EN",
   "scrollToTopLabel": "Scroll naar boven",
   "items": [
-    { "question": "Wat inspireerde je om bijles en onderwijs aan te bieden?", "answer": "Mijn passie voor bijles en onderwijs komt voort uit mijn eigen ervaringen. Mijn reis door uitdagingen in wiskunde op de middelbare school leidde tot een diep begrip van het vak en een sterke motivatie om anderen te helpen. Die ervaring — weten hoe het voelt om vast te zitten en hoe je er doorheen breekt — is de basis van alles wat ik doe." },
-    { "question": "Hoe zou je jouw onderwijsaanpak omschrijven?", "answer": "Mijn aanpak is sterk gericht op persoonlijke begeleiding en maatwerk. Ik gebruik technologie zoals iPad-aantekeningen en bied tot zeven dagen na de les ondersteuning via WhatsApp. Mijn doel is om een leeromgeving te creëren waarin studenten op hun eigen tempo kunnen groeien en bloeien." },
-    { "question": "Wat maakt jouw bijlessen uniek in vergelijking met andere aanbieders?", "answer": "Mijn bijlessen onderscheiden zich door een multidisciplinaire achtergrond in wiskunde, statistiek, programmeren en data-analyse. Ik benader complexe onderwerpen op een begrijpelijke manier en focus sterk op de persoonlijke groei van mijn studenten." },
-    { "question": "Hoe ga je om met verschillende leerstijlen en -niveaus van studenten?", "answer": "Ik pas mijn lessen aan op de specifieke leerstijl van elke student. De lessen zijn interactief en dynamisch, met een combinatie van theoretische uitleg, praktische oefeningen en toepassingen in de echte wereld. Ik gebruik differentiatie technieken zoals scaffolding om effectief in te spelen op verschillende leerstijlen." },
-    { "question": "Welke resultaten en successen heb je gezien bij je studenten?", "answer": "Mijn bijlessen hebben veel studenten geholpen om hun academische prestaties te verbeteren en hun zelfvertrouwen te vergroten. Ik heb talloze succesverhalen, waaronder een volwassen student die het CCVX-examen succesvol aflegde en zijn universitaire studie hervatte." },
-    { "question": "Hoe worden de bijlessen georganiseerd?", "answer": "De bijlessen vinden doordeweeks plaats tussen 18:00 en 21:00, online via Google Meet of fysiek op Science Park in Amsterdam. Ik werk uitsluitend met pakketten van 4 uur — er zijn dus geen losse lessen meer. Maximaal 2 uur les per week." },
-    { "question": "Wat zijn de kosten van de bijlessen?", "answer": "Ik werk met pakketten van 4 uur. Voor voortgezet onderwijs: online vanaf €240 per pakket (€60/u), fysiek op Science Park vanaf €300 (€75/u). Voor hoger onderwijs (HBO/WO): online vanaf €300 per pakket (€75/u), fysiek vanaf €400 (€100/u). Groepskortingen zijn beschikbaar tot 4 studenten. Voor spoedhulp is er een 2-uurspakket beschikbaar." },
-    { "question": "Hoe kan ik me aanmelden voor bijles?", "answer": "Je kunt je aanmelden door een bericht te sturen via WhatsApp, het contactformulier op de website in te vullen, of door te bellen. Ik bespreek graag je specifieke behoeften en hoe ik je het beste kan helpen." },
-    { "question": "Hoe verloopt de betalingsprocedure?", "answer": "Betaling gaat vooraf per Tikkie. Een factuur is mogelijk op verzoek. Een les of plek staat pas definitief vast na bevestiging en betaling." },
-    { "question": "Is er een mogelijkheid tot een proefles?", "answer": "Ja, ik bied een gratis proefles aan zodat je kunt kennismaken met mijn werkwijze. De proefles vindt online plaats op zondag. Dit is een goede gelegenheid om te ervaren hoe de lessen worden gegeven en om te bepalen of mijn aanpak bij je past." },
-    { "question": "Bied je ook bijles voor beroepsspecifieke vakken?", "answer": "Ja, ik bied bijles voor beroepsspecifieke vakken, voornamelijk op het gebied van scriptiebegeleiding en studievaardigheden. Ik help studenten met het structureren van teksten, het ontwikkelen van logische argumenten en het uitvoeren van statistische analyses." },
-    { "question": "Hoe integreer je AI-taalmodellen en technologie in de lessen?", "answer": "Ik maak gebruik van de nieuwste technologieën, waaronder AI-taalmodellen zoals ChatGPT en Claude, om complexe concepten te verduidelijken en interactieve leerervaringen te bieden. Ik gebruik ook een iPad voor digitale aantekeningen, die ik na de les deel met de student." },
-    { "question": "Hoe ondersteun je studenten bij het ontwikkelen van soft skills?", "answer": "Ik ondersteun studenten door hen te helpen met het plannen van hun studie, het stellen van prioriteiten en het behouden van overzicht. Mijn aanpak is gericht op het bevorderen van zelfvertrouwen en het ontwikkelen van praktische vaardigheden die studenten in hun dagelijkse leven kunnen toepassen." },
-    { "question": "Welke ervaringen heb je met het begeleiden van studenten met leerproblemen?", "answer": "Ik heb ervaring met het begeleiden van studenten met leerproblemen, zoals lichte autisme. Ik bied een gestructureerde en geduldige leeromgeving, waarbij ik rekening houd met hun specifieke behoeften en uitdagingen." },
-    { "question": "Hoe zorg je ervoor dat studenten gemotiveerd blijven?", "answer": "Ik creëer een positieve en ondersteunende omgeving waarin studenten worden aangemoedigd om nieuwsgierig te zijn en hun passie voor leren te ontdekken. Ik ben er om te ondersteunen, maar de uiteindelijke motivatie hangt af van de student zelf." },
-    { "question": "Welke rol speelt feedback in jouw onderwijsaanpak?", "answer": "Feedback is een essentieel onderdeel van mijn aanpak. Ik ben constant bezig met het verbeteren van mijn methoden en sta open voor suggesties van studenten en ouders. Feedback helpt mij om de lessen te verfijnen en aan te passen aan de behoeften van mijn studenten." },
-    { "question": "Bied je maatwerk en gespecialiseerde programma's voor bedrijven?", "answer": "Ja, ik bied op maat gemaakte programma's en trainingen voor bedrijven en instellingen, afgestemd op hun specifieke behoeften en doelen. Dit kan variëren van het trainen van personeel in het gebruik van statistische programma's en data management tools tot het introduceren van nieuwe technologieën zoals prompt engineering." },
-    { "question": "Hoe kan ik contact opnemen voor meer informatie?", "answer": "Voor vragen of meer informatie kun je contact met mij opnemen via info@stephenadei.nl of bellen naar +31 6 47357426. Ik beantwoord graag al je vragen en sta klaar om je te helpen. Je kunt ook een berichtje sturen via WhatsApp." },
-    { "question": "Welke materialen en hulpmiddelen worden tijdens de lessen gebruikt?", "answer": "Tijdens de lessen gebruik ik verschillende materialen en hulpmiddelen, afhankelijk van het onderwerp en de behoeften van de student. Dit varieert van digitale tools zoals tablets en software voor statistische analyse tot traditionele materialen zoals tekstboeken en oefenopgaven." },
-    { "question": "Hoe vaak vinden de bijlessen plaats en hoe lang duren ze?", "answer": "Ik werk met pakketten van 4 uur. Lessen vinden meestal wekelijks plaats, maximaal 2 uur per week, doordeweeks tussen 18:00 en 21:00. Een gemiste les kan alleen worden ingehaald op zondag tussen 14:00 en 18:00, online." },
-    { "question": "Hoe werken groepslessen?", "answer": "Groepsprijzen gelden alleen als studenten zelf een groepje vormen. Dus als je een klasgenoot of studiegenoot hebt die ook hulp nodig heeft, kunnen jullie samen lessen volgen tegen het groepstarief. Groepen tot maximaal 4 studenten." }
+    {
+      "question": "Wat inspireerde je om bijles en onderwijs aan te bieden?",
+      "answer": "Mijn passie voor bijles en onderwijs komt voort uit mijn eigen ervaringen. Mijn reis door uitdagingen in wiskunde op de middelbare school leidde tot een diep begrip van het vak en een sterke motivatie om anderen te helpen. Die ervaring — weten hoe het voelt om vast te zitten en hoe je er doorheen breekt — is de basis van alles wat ik doe."
+    },
+    {
+      "question": "Hoe zou je jouw onderwijsaanpak omschrijven?",
+      "answer": "Mijn aanpak is sterk gericht op persoonlijke begeleiding en maatwerk. Ik gebruik technologie zoals iPad-aantekeningen en bied tot zeven dagen na de les ondersteuning via WhatsApp. Mijn doel is om een leeromgeving te creëren waarin studenten op hun eigen tempo kunnen groeien en bloeien."
+    },
+    {
+      "question": "Wat maakt jouw bijlessen uniek in vergelijking met andere aanbieders?",
+      "answer": "Mijn bijlessen onderscheiden zich door een multidisciplinaire achtergrond in wiskunde, statistiek, programmeren en data-analyse. Ik benader complexe onderwerpen op een begrijpelijke manier en focus sterk op de persoonlijke groei van mijn studenten."
+    },
+    {
+      "question": "Hoe ga je om met verschillende leerstijlen en -niveaus van studenten?",
+      "answer": "Ik pas mijn lessen aan op de specifieke leerstijl van elke student. De lessen zijn interactief en dynamisch, met een combinatie van theoretische uitleg, praktische oefeningen en toepassingen in de echte wereld. Ik gebruik differentiatie technieken zoals scaffolding om effectief in te spelen op verschillende leerstijlen."
+    },
+    {
+      "question": "Welke resultaten en successen heb je gezien bij je studenten?",
+      "answer": "Mijn bijlessen hebben veel studenten geholpen om hun academische prestaties te verbeteren en hun zelfvertrouwen te vergroten. Zo begeleidde ik bijvoorbeeld een volwassen student die het CCVX-examen succesvol aflegde en zijn universitaire studie hervatte."
+    },
+    {
+      "question": "Hoe worden de bijlessen georganiseerd?",
+      "answer": "De bijlessen vinden doordeweeks plaats tussen 18:00 en 21:00, online via Google Meet of fysiek op Science Park in Amsterdam. Ik werk uitsluitend met pakketten van 4 uur — er zijn dus geen losse lessen meer. Maximaal 2 uur les per week."
+    },
+    {
+      "question": "Wat zijn de kosten van de bijlessen?",
+      "answer": "Ik werk met pakketten van 4 uur. Voor voortgezet onderwijs: online vanaf €240 per pakket (€60/u), fysiek op Science Park vanaf €300 (€75/u). Voor hoger onderwijs (HBO/WO): online vanaf €300 per pakket (€75/u), fysiek vanaf €400 (€100/u). Groepskortingen zijn beschikbaar tot 4 studenten. Voor spoedhulp is er een 2-uurspakket beschikbaar."
+    },
+    {
+      "question": "Hoe kan ik me aanmelden voor bijles?",
+      "answer": "Je kunt je aanmelden door een bericht te sturen via WhatsApp, het contactformulier op de website in te vullen, of door te bellen. Ik bespreek graag je specifieke behoeften en hoe ik je het beste kan helpen."
+    },
+    {
+      "question": "Hoe verloopt de betalingsprocedure?",
+      "answer": "Betaling gaat vooraf per Tikkie. Een factuur is mogelijk op verzoek. Een les of plek staat pas definitief vast na bevestiging en betaling."
+    },
+    {
+      "question": "Is er een mogelijkheid tot een proefles?",
+      "answer": "Ja, ik bied een gratis proefles aan zodat je kunt kennismaken met mijn werkwijze. De proefles vindt online plaats op zondag. Dit is een goede gelegenheid om te ervaren hoe de lessen worden gegeven en om te bepalen of mijn aanpak bij je past."
+    },
+    {
+      "question": "Bied je ook bijles voor beroepsspecifieke vakken?",
+      "answer": "Ja, ik bied bijles voor beroepsspecifieke vakken, voornamelijk op het gebied van scriptiebegeleiding en studievaardigheden. Ik help studenten met het structureren van teksten, het ontwikkelen van logische argumenten en het uitvoeren van statistische analyses."
+    },
+    {
+      "question": "Hoe integreer je AI-taalmodellen en technologie in de lessen?",
+      "answer": "Ik maak gebruik van de nieuwste technologieën, waaronder AI-taalmodellen zoals ChatGPT en Claude, om complexe concepten te verduidelijken en interactieve leerervaringen te bieden. Ik gebruik ook een iPad voor digitale aantekeningen, die ik na de les deel met de student."
+    },
+    {
+      "question": "Hoe ondersteun je studenten bij het ontwikkelen van soft skills?",
+      "answer": "Ik ondersteun studenten door hen te helpen met het plannen van hun studie, het stellen van prioriteiten en het behouden van overzicht. Mijn aanpak is gericht op het bevorderen van zelfvertrouwen en het ontwikkelen van praktische vaardigheden die studenten in hun dagelijkse leven kunnen toepassen."
+    },
+    {
+      "question": "Welke ervaringen heb je met het begeleiden van studenten met leerproblemen?",
+      "answer": "Ik heb ervaring met het begeleiden van studenten met leerproblemen, zoals lichte autisme. Ik bied een gestructureerde en geduldige leeromgeving, waarbij ik rekening houd met hun specifieke behoeften en uitdagingen."
+    },
+    {
+      "question": "Hoe zorg je ervoor dat studenten gemotiveerd blijven?",
+      "answer": "Ik creëer een positieve en ondersteunende omgeving waarin studenten worden aangemoedigd om nieuwsgierig te zijn en hun passie voor leren te ontdekken. Ik ben er om te ondersteunen, maar de uiteindelijke motivatie hangt af van de student zelf."
+    },
+    {
+      "question": "Welke rol speelt feedback in jouw onderwijsaanpak?",
+      "answer": "Feedback is een essentieel onderdeel van mijn aanpak. Ik ben constant bezig met het verbeteren van mijn methoden en sta open voor suggesties van studenten en ouders. Feedback helpt mij om de lessen te verfijnen en aan te passen aan de behoeften van mijn studenten."
+    },
+    {
+      "question": "Bied je maatwerk en gespecialiseerde programma's voor bedrijven?",
+      "answer": "Ja, ik bied op maat gemaakte programma's en trainingen voor bedrijven en instellingen, afgestemd op hun specifieke behoeften en doelen. Dit kan variëren van het trainen van personeel in het gebruik van statistische programma's en data management tools tot het introduceren van nieuwe technologieën zoals prompt engineering."
+    },
+    {
+      "question": "Hoe kan ik contact opnemen voor meer informatie?",
+      "answer": "Voor vragen of meer informatie kun je contact met mij opnemen via info@stephenadei.nl of bellen naar +31 6 47357426. Ik beantwoord graag al je vragen en sta klaar om je te helpen. Je kunt ook een berichtje sturen via WhatsApp."
+    },
+    {
+      "question": "Welke materialen en hulpmiddelen worden tijdens de lessen gebruikt?",
+      "answer": "Tijdens de lessen gebruik ik verschillende materialen en hulpmiddelen, afhankelijk van het onderwerp en de behoeften van de student. Dit varieert van digitale tools zoals tablets en software voor statistische analyse tot traditionele materialen zoals tekstboeken en oefenopgaven."
+    },
+    {
+      "question": "Hoe vaak vinden de bijlessen plaats en hoe lang duren ze?",
+      "answer": "Ik werk met pakketten van 4 uur. Lessen vinden meestal wekelijks plaats, maximaal 2 uur per week, doordeweeks tussen 18:00 en 21:00. Een gemiste les kan alleen worden ingehaald op zondag tussen 14:00 en 18:00, online."
+    },
+    {
+      "question": "Hoe werken groepslessen?",
+      "answer": "Groepsprijzen gelden alleen als studenten zelf een groepje vormen. Dus als je een klasgenoot of studiegenoot hebt die ook hulp nodig heeft, kunnen jullie samen lessen volgen tegen het groepstarief. Groepen tot maximaal 4 studenten."
+    }
   ]
 }

@@ -2,17 +2,7 @@
   "hero": {
     "title": "Tailored tutoring in maths, statistics and programming",
     "subtitle": "Expert tutoring in mathematics, statistics, and programming with personalized attention and proven results.",
-    "stats": [
-      {
-        "label": "Student Satisfaction"
-      },
-      {
-        "label": "Students Helped"
-      },
-      {
-        "label": "Average Rating"
-      }
-    ],
+    "stats": [],
     "ctaPrimary": "Schedule Free Trial",
     "ctaSecondary": "View Subjects"
   },
@@ -80,18 +70,7 @@
   "testimonials": {
     "title": "Student Success Stories",
     "subtitle": "Read what students say about their experience.",
-    "slides": [
-      {
-        "quote": "The personalized approach helped me master calculus in just a few months.",
-        "role": "Mathematics Student",
-        "subject": "Calculus"
-      },
-      {
-        "quote": "Finally understood programming concepts that had been confusing me for years.",
-        "role": "Computer Science Student",
-        "subject": "Python Programming"
-      }
-    ]
+    "slides": []
   },
   "infoSection": {
     "individualSessions": "Individual Sessions",
