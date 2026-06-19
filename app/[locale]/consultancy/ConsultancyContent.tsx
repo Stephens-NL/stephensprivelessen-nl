@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
-import { jsonLd } from './metadata';
-import { JsonLdScript } from '@/components/JsonLdScript';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const fadeIn = {
@@ -139,7 +137,6 @@ export default function ConsultancyContent() {
 
   return (
     <>
-      <JsonLdScript data={jsonLd} />
       <main className="min-h-screen bg-[var(--cream)]">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">

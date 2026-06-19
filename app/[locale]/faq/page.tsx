@@ -1,5 +1,5 @@
 // app/faq/page.tsx
-import Script from 'next/script';
+import { JsonLd } from '@/components/JsonLd';
 import FAQPage from '@/components/Faq';
 import faqData from '@/data/faq.json';
 import { getLanguageFromLocale } from '@/hooks/useLanguage';
@@ -85,9 +85,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
 
   return (
     <>
-      <Script id="faq-ld+json" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(faqJsonLd)}
-      </Script>
+      <JsonLd data={faqJsonLd} />
       <FAQPage />
     </>
   );
