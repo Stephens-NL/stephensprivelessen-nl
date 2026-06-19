@@ -11,7 +11,7 @@ export const navigation: NavItem[] = [
     { href: '/mbo-rekenen', label: { EN: 'MBO Math', NL: 'MBO Rekenen' } },
     { href: '/scriptiebegeleiding', label: { EN: 'Thesis Supervision', NL: 'Scriptiebegeleiding' } },
     { href: '/aantekeningen', label: { EN: 'Course Notes', NL: 'Aantekeningen' } },
-    { href: '/about', label: { EN: 'About', NL: 'Over Ons' } },
+    { href: '/about', label: { EN: 'About', NL: 'Over Mij' } },
     { href: '/workshops', label: { EN: 'Workshops', NL: 'Workshops' } },
     { href: '/consultancy', label: { EN: 'Consultancy', NL: 'Consultancy' } },
     { href: '/blog', label: { EN: 'Blog', NL: 'Blog' } },
