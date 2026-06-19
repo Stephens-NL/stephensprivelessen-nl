@@ -6,12 +6,11 @@ async function getGoogleDrive() {
 
   const { google } = await import('googleapis');
   
-  const auth = new google.auth.JWT(
-    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    undefined,
-    (process.env.GOOGLE_SERVICE_ACCOUNT_KEY || "").replace(/\\n/g, "\n"),
-    ["https://www.googleapis.com/auth/drive.readonly"]
-  );
+  const auth = new google.auth.JWT({
+    email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    key: (process.env.GOOGLE_SERVICE_ACCOUNT_KEY || "").replace(/\\n/g, "\n"),
+    scopes: ["https://www.googleapis.com/auth/drive.readonly"],
+  });
 
   return google.drive({ version: "v3", auth });
 }
