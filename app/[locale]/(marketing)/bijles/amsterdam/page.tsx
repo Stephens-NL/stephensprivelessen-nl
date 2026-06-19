@@ -1,4 +1,4 @@
-import Script from "next/script";
+import { JsonLd } from "@/components/JsonLd";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -67,9 +67,7 @@ export default async function AmsterdamBijlesPage() {
 
   return (
     <>
-      <Script id="amsterdam-ld+json" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <JsonLd data={structuredData} />
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-6">
