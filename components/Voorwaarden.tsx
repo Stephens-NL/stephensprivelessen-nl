@@ -28,7 +28,6 @@ export default function Voorwaarden() {
         <h2 className="text-xl font-semibold mb-3">{t("hours.title")}</h2>
         <ul className="space-y-2 text-warm-text">
           <li>• {t("hours.weekdays")}</li>
-          <li>• {t("hours.saturday")}</li>
           <li>• {t("hours.sunday")}</li>
         </ul>
       </section>
