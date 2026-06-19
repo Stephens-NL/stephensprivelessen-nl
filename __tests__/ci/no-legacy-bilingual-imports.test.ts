@@ -54,7 +54,7 @@ const BARREL_IMPORT_RE = /from\s+['"]@\/data['"]/g;
  * Handles `import { a, b as c }` forms.
  */
 function extractNamedImports(statement: string): string[] {
-  const match = statement.match(/import\s+\{([^}]+)\}/s);
+  const match = statement.match(/import\s+\{([^}]+)\}/);
   if (!match) return [];
   return match[1]
     .split(',')
