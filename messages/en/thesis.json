@@ -42,14 +42,9 @@
       "Focus on independent learning and understanding"
     ]
   },
-  "cta": {
-    "title": "Ready to Excel?",
-    "subtitle": "Contact me today to discuss how I can help you achieve academic excellence.",
-    "button": "Get Started"
-  },
   "form": {
-    "readyToExcel": "Ready to Excel?",
-    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Contact me today to discuss how I can help you achieve academic excellence.",
+    "readyToExcel": "Stuck on your thesis?",
+    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Tell me where you are with your thesis and we'll plan the support.",
     "getStarted": "Get Started"
   }
 }

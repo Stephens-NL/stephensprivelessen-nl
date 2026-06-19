@@ -42,14 +42,9 @@
       "Focus op zelfstandig leren en begrip"
     ]
   },
-  "cta": {
-    "title": "Klaar om te Excelleren?",
-    "subtitle": "Neem vandaag nog contact op om te bespreken hoe ik je kan helpen academisch te excelleren.",
-    "button": "Begin Nu"
-  },
   "form": {
-    "readyToExcel": "Klaar om te Excelleren?",
-    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Neem vandaag nog contact op om te bespreken hoe ik je kan helpen academisch te excelleren.",
+    "readyToExcel": "Vastgelopen met je scriptie?",
+    "contactUsTodayToDiscussHowWeCanHelpYouAchieveAcade": "Vertel waar je staat met je scriptie, dan plannen we de begeleiding.",
     "getStarted": "Begin Nu"
   }
 }
