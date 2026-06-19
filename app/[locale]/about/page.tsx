@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isNl
         ? "Over Stephen's Privélessen Amsterdam: Expert in wiskunde, statistiek & scriptiebegeleiding. Persoonlijke aanpak, ervaren docent."
         : "About Stephen's Private Tutoring Amsterdam: Expert in mathematics, statistics & thesis supervision. Personal approach, experienced tutor.",
-      url: "https://www.stephensprivelessen.nl/about",
+      url: "https://stephensprivelessen.nl/about",
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',

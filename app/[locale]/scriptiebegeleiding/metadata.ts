@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isNl
         ? 'Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van €90/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding.'
         : 'Thesis supervision Amsterdam: Expert in statistics, SPSS, R & methodology. From €90/hr. Bachelor & master thesis support. Personal guidance.',
-      url: 'https://www.stephensprivelessen.nl/scriptiebegeleiding',
+      url: 'https://stephensprivelessen.nl/scriptiebegeleiding',
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',
