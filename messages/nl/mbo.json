@@ -161,9 +161,8 @@
     },
     "availability": "Beschikbaarheid",
     "availabilityTimes": [
-      "Maandag - Vrijdag: 9:00 - 21:00",
-      "Zaterdag: 10:00 - 18:00",
-      "Zondag: Op afspraak"
+      "Maandag - Vrijdag: 18:00 - 21:00",
+      "Zondag: 14:00 - 18:00 (alleen online, inhaalles)"
     ],
     "locations": "Locaties",
     "amsterdamArea": "Amsterdam & omgeving",

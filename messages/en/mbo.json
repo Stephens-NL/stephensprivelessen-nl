@@ -161,9 +161,8 @@
     },
     "availability": "Availability",
     "availabilityTimes": [
-      "Monday - Friday: 9:00 - 21:00",
-      "Saturday: 10:00 - 18:00",
-      "Sunday: By appointment"
+      "Monday - Friday: 18:00 - 21:00",
+      "Sunday: 14:00 - 18:00 (online only, makeup lessons)"
     ],
     "locations": "Locations",
     "amsterdamArea": "Amsterdam & surroundings",
