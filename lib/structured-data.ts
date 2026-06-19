@@ -84,10 +84,5 @@ export const organizationSchema = {
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "url": "https://stephensprivelessen.nl",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://stephensprivelessen.nl/zoeken?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "url": "https://stephensprivelessen.nl"
 };
