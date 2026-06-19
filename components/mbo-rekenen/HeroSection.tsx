@@ -37,7 +37,7 @@ export function HeroSection() {
               {language === 'NL' ? (
                 <>
                   Jouw <span className="italic">rekentoets</span><br />
-                  <span className="font-normal">meesterlijk</span> halen
+                  <span className="font-normal">met vertrouwen</span> halen
                 </>
               ) : (
                 <>
