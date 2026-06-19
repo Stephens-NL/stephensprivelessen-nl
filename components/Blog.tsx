@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useMessages } from 'next-intl';
 import { m, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/hooks/useLanguage';
 import Modal from './Modal';
 import { BlogPost } from '../data';
 
-const BLOG_COUNT = 10;
 
 const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ index, onClick }) => {
   const t = useTranslations('blog');
@@ -32,6 +31,9 @@ const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ ind
 
 export const BlogList: React.FC = () => {
   const t = useTranslations('blog');
+  const language = useLanguage();
+  const messages = useMessages();
+  const count = (messages?.blog as { items?: unknown[] } | undefined)?.items?.length ?? 0;
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const handleClose = () => {
@@ -63,18 +65,24 @@ export const BlogList: React.FC = () => {
       >
         {t('title')}
       </m.h1>
-      <m.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        variants={container}
-        initial="hidden"
-        animate="show"
-      >
-        {Array.from({ length: BLOG_COUNT }, (_, index) => (
-          <m.div key={index} variants={item}>
-            <BlogPostSummary index={index} onClick={() => setSelectedIndex(index)} />
-          </m.div>
-        ))}
-      </m.div>
+      {count === 0 ? (
+        <div className="flex justify-center items-center py-16 text-[var(--warm-text)] text-lg">
+          {language === 'NL' ? 'Er zijn momenteel geen blogartikelen.' : 'There are currently no blog articles.'}
+        </div>
+      ) : (
+        <m.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          {Array.from({ length: count }, (_, index) => (
+            <m.div key={index} variants={item}>
+              <BlogPostSummary index={index} onClick={() => setSelectedIndex(index)} />
+            </m.div>
+          ))}
+        </m.div>
+      )}
       <AnimatePresence>
         {selectedIndex !== null && (
           <Modal isOpen={true} onClose={handleClose}>
