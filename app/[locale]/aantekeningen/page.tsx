@@ -7,11 +7,11 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   const { student } = await searchParams;
   const studentName = student ?? null;
   const title = studentName
-    ? `📚 ${studentName}'s Aantekeningen - Stephen's Privelessen`
-    : "📚 Aantekeningen - Stephen's Privelessen";
+    ? `📚 ${studentName}'s Aantekeningen - Stephen's Privélessen`
+    : "📚 Aantekeningen - Stephen's Privélessen";
   const description = studentName
-    ? `${studentName}'s aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk.`
-    : "Vind je aantekeningen van Stephen's Privelessen. Alle notities georganiseerd en direct toegankelijk.";
+    ? `${studentName}'s aantekeningen van Stephen's Privélessen. Alle notities georganiseerd en direct toegankelijk.`
+    : "Vind je aantekeningen van Stephen's Privélessen. Alle notities georganiseerd en direct toegankelijk.";
   const url = `https://stephensprivelessen.nl/aantekeningen${studentName ? `?student=${encodeURIComponent(studentName)}` : ''}`;
   const ogImage = studentName
     ? `https://stephensprivelessen.nl/api/og-image?student=${encodeURIComponent(studentName)}`
