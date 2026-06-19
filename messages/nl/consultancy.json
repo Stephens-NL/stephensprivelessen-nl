@@ -64,15 +64,10 @@
       }
     ]
   },
-  "cta": {
-    "title": "Klaar om Uw Data te Transformeren?",
-    "subtitle": "Neem vandaag nog contact op om te bespreken hoe ik u kan helpen uw data beter te benutten voor besluitvorming.",
-    "button": "Plan Nu In"
-  },
   "form": {
     "moreInfoScheduleNow": "Meer Info & Plan Nu",
-    "readyToTransformYourData": "Klaar om Uw Data te Transformeren?",
-    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Neem vandaag nog contact op om te bespreken hoe ik u kan helpen uw data beter te benutten voor besluitvorming.",
+    "readyToTransformYourData": "Hulp nodig bij je data-analyse?",
+    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Stuur me je onderzoeksvraag, dan kijken we samen naar de aanpak.",
     "scheduleNow": "Plan Nu In"
   }
 }

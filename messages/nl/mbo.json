@@ -110,10 +110,7 @@
         "title": "Praktisch en begrijpelijk",
         "description": "Ik maak rekenen praktisch en begrijpelijk, zodat je het direct kunt toepassen."
       }
-    ],
-    "ctaTitle": "Klaar om te beginnen?",
-    "ctaSubtitle": "Laat je niet tegenhouden door rekenen. Met de juiste begeleiding kun je het wel!",
-    "ctaButton": "Neem contact op"
+    ]
   },
   "pricing": {
     "flexibleGuidance": "Flexibele begeleiding",
@@ -143,7 +140,6 @@
   },
   "contact": {
     "title": "Laten we kennismaken",
-    "subtitle": "Klaar om te starten? Neem contact op voor een gratis kennismakingsgesprek en ontdek hoe ik jou kan helpen.",
     "getInTouch": "Neem contact op",
     "contactInfo": {
       "whatsapp": {
@@ -192,7 +188,7 @@
     "flexibleTimes": "Flexibele tijden",
     "onlineOffline": "Online & offline",
     "let": "Laten we kennismaken",
-    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Klaar om te starten? Neem contact op voor een gratis kennismakingsgesprek en ontdek hoe ik jou kan helpen.",
+    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Plan een gratis kennismakingsgesprek; daarin kijken we of het klikt.",
     "getInTouch": "Neem contact op",
     "availability": "Beschikbaarheid",
     "locations": "Locaties",
@@ -225,7 +221,7 @@
     "freeIntake": "Gratis intake",
     "whyDoStudentsChooseUs": "Waarom kiezen studenten voor mij?",
     "ourApproachEnsuresThatStudentsNotOnlyImproveInMath": "Mijn aanpak zorgt ervoor dat studenten niet alleen beter worden in rekenen, maar ook meer zelfvertrouwen krijgen.",
-    "readyToGetStarted": "Klaar om te beginnen?",
+    "readyToGetStarted": "Klaar voor je rekentoets?",
     "don": "Laat je niet tegenhouden door rekenen. Met de juiste begeleiding kun je het wel!",
     "letsGetInTouch": "Laten we kennismaken",
     "noObligationsGoodMatch": "Vrijblijvend. Gewoon even kennismaken en kijken of er een klik is.",

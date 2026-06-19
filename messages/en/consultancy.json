@@ -64,15 +64,10 @@
       }
     ]
   },
-  "cta": {
-    "title": "Ready to Transform Your Data?",
-    "subtitle": "Contact me today to discuss how I can help you leverage your data for better decision-making.",
-    "button": "Schedule Now"
-  },
   "form": {
     "moreInfoScheduleNow": "More Info & Schedule Now",
-    "readyToTransformYourData": "Ready to Transform Your Data?",
-    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Contact me today to discuss how I can help you leverage your data for better decision-making.",
+    "readyToTransformYourData": "Need help with your data analysis?",
+    "contactUsTodayToDiscussHowWeCanHelpYouLeverageYour": "Send me your research question and we'll look at the approach together.",
     "scheduleNow": "Schedule Now"
   }
 }

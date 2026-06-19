@@ -110,10 +110,7 @@
         "title": "Practical and understandable",
         "description": "I make mathematics practical and understandable, so you can apply it immediately."
       }
-    ],
-    "ctaTitle": "Ready to get started?",
-    "ctaSubtitle": "Don't let mathematics hold you back. With the right guidance, you can do it!",
-    "ctaButton": "Get in touch"
+    ]
   },
   "pricing": {
     "flexibleGuidance": "Flexible guidance",
@@ -143,7 +140,6 @@
   },
   "contact": {
     "title": "Let's get in touch",
-    "subtitle": "Ready to start? Contact me for a free introductory meeting and discover how I can help you.",
     "getInTouch": "Get in touch",
     "contactInfo": {
       "whatsapp": {
@@ -192,7 +188,7 @@
     "flexibleTimes": "Flexible times",
     "onlineOffline": "Online & offline",
     "let": "Let's get in touch",
-    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Ready to start? Contact me for a free introductory meeting and discover how I can help you.",
+    "readyToStartContactUsForAFreeIntroductoryMeetingAn": "Book a free intro call; we'll see if it's a good fit.",
     "getInTouch": "Get in touch",
     "availability": "Availability",
     "locations": "Locations",
@@ -225,7 +221,7 @@
     "freeIntake": "Free intake",
     "whyDoStudentsChooseUs": "Why do students choose me?",
     "ourApproachEnsuresThatStudentsNotOnlyImproveInMath": "My approach ensures that students not only improve in mathematics, but also gain more confidence.",
-    "readyToGetStarted": "Ready to get started?",
+    "readyToGetStarted": "Ready for your math test?",
     "don": "Don't let mathematics hold you back. With the right guidance, you can do it!",
     "letsGetInTouch": "Let's get in touch",
     "noObligationsGoodMatch": "No obligations. Just getting to know each other and see if we're a good match.",
