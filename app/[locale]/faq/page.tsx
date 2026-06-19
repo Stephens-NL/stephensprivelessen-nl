@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isNl
         ? "Antwoorden op veelgestelde vragen over onze bijles en begeleiding in Amsterdam."
         : "Answers to frequently asked questions about our tutoring and guidance in Amsterdam.",
-      url: "https://www.stephensprivelessen.nl/faq",
+      url: "https://stephensprivelessen.nl/faq",
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',

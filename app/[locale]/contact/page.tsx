@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isNl
         ? "Contact Stephen's Privélessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur."
         : "Contact Stephen's Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online or Science Park. From €75/hr.",
-      url: "https://www.stephensprivelessen.nl/contact",
+      url: "https://stephensprivelessen.nl/contact",
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',

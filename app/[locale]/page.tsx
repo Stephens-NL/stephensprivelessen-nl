@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isNl = locale === 'nl';
   return {
-    title: isNl ? "Stephen's Privélessen | Bijles Amsterdam" : "Stephen's Private Tutoring | Tutoring Amsterdam",
+    title: { absolute: isNl ? "Stephen's Privélessen | Bijles & Privelessen Wiskunde, Statistiek Amsterdam" : "Stephen's Private Tutoring | Math & Statistics Tutoring Amsterdam" },
     description: isNl
       ? "Professionele bijles in Amsterdam. Wiskunde, statistiek, programmeren. Online of op locatie. Van €75/uur."
       : "Professional tutoring in Amsterdam. Mathematics, statistics, programming. Online or on-site. From €75/hr.",

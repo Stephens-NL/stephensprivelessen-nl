@@ -22,6 +22,9 @@ const nextConfig = {
       { source: '/privelessen/amsterdam-west', destination: '/privelessen', permanent: true },
       { source: '/privelessen/amsterdam-oost', destination: '/privelessen', permanent: true },
       { source: '/en/privelessen/amsterdam-:area', destination: '/en/privelessen', permanent: true },
+      // /terms → /voorwaarden consolidation (SEO: canonical is /voorwaarden)
+      { source: '/terms', destination: '/voorwaarden', permanent: true },
+      { source: '/en/terms', destination: '/en/voorwaarden', permanent: true },
     ];
   },
 };

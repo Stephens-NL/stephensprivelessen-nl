@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: isNl
         ? "Ontdek onze blog met artikelen over wiskunde, statistiek en academische vaardigheden."
         : "Discover our blog with articles on mathematics, statistics and academic skills.",
-      url: "https://www.stephensprivelessen.nl/blog",
+      url: "https://stephensprivelessen.nl/blog",
       type: 'website',
       locale: 'nl_NL',
       alternateLocale: 'en_US',

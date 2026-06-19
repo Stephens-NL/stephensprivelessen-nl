@@ -86,7 +86,7 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
       description: isNl
         ? 'Expert bijles in wiskunde, statistiek en programmeren in Amsterdam.'
         : 'Expert tutoring in mathematics, statistics and programming in Amsterdam.',
-      url: isNl ? 'https://www.stephensprivelessen.nl' : 'https://www.stephensprivelessen.nl/en',
+      url: isNl ? 'https://stephensprivelessen.nl' : 'https://stephensprivelessen.nl/en',
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(
