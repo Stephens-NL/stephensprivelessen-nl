@@ -1,4 +1,4 @@
-import Script from 'next/script';
+import { JsonLd } from '@/components/JsonLd';
 import { TutoringPage } from '@/components/privelessen/TutoringPage';
 import { generateStructuredData } from '@/lib/structured-data';
 import { tutoringPage } from '@/data/tutoringPage';
@@ -70,9 +70,7 @@ export default function BijlesPage() {
 
   return (
     <>
-      <Script id="privelessen-ld+json" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <JsonLd data={structuredData} />
       <TutoringPage />
     </>
   );

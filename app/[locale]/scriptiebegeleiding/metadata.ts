@@ -62,3 +62,45 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
   };
 }
+
+export const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Scriptiebegeleiding Amsterdam',
+  provider: {
+    '@type': 'EducationalOrganization',
+    name: "Stephen's Privélessen",
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Amsterdam',
+      addressRegion: 'NH',
+      addressCountry: 'NL'
+    }
+  },
+  serviceType: 'Scriptiebegeleiding',
+  areaServed: {
+    '@type': 'City',
+    name: 'Amsterdam'
+  },
+  description: 'Professionele scriptiebegeleiding met focus op statistiek en methodologie',
+  offers: {
+    '@type': 'Offer',
+    itemOffered: [
+      {
+        '@type': 'Service',
+        name: 'Methodologie Begeleiding',
+        description: 'Hulp bij onderzoeksopzet en methodologie'
+      },
+      {
+        '@type': 'Service',
+        name: 'Statistische Analyse',
+        description: 'Begeleiding bij data-analyse en statistische verwerking'
+      },
+      {
+        '@type': 'Service',
+        name: 'Software Ondersteuning',
+        description: 'Hulp met SPSS, R, Python en andere analyse tools'
+      }
+    ]
+  }
+};

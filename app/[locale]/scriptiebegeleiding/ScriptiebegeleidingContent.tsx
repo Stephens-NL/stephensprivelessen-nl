@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
-import { JsonLdScript } from '@/components/JsonLdScript';
 import { m } from 'framer-motion';
 import BlurImage from '@/components/shared/BlurImage';
 import { Syne, Space_Grotesk } from "next/font/google";
@@ -19,48 +18,6 @@ const spaceGrotesk = Space_Grotesk({
     variable: '--font-space-grotesk',
     display: 'swap',
 });
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: 'Scriptiebegeleiding Amsterdam',
-  provider: {
-    '@type': 'EducationalOrganization',
-    name: "Stephen's Privélessen",
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Amsterdam',
-      addressRegion: 'NH',
-      addressCountry: 'NL'
-    }
-  },
-  serviceType: 'Scriptiebegeleiding',
-  areaServed: {
-    '@type': 'City',
-    name: 'Amsterdam'
-  },
-  description: 'Professionele scriptiebegeleiding met focus op statistiek en methodologie',
-  offers: {
-    '@type': 'Offer',
-    itemOffered: [
-      {
-        '@type': 'Service',
-        name: 'Methodologie Begeleiding',
-        description: 'Hulp bij onderzoeksopzet en methodologie'
-      },
-      {
-        '@type': 'Service',
-        name: 'Statistische Analyse',
-        description: 'Begeleiding bij data-analyse en statistische verwerking'
-      },
-      {
-        '@type': 'Service',
-        name: 'Software Ondersteuning',
-        description: 'Hulp met SPSS, R, Python en andere analyse tools'
-      }
-    ]
-  }
-};
 
 
 export default function ScriptiebegeleidingContent() {
@@ -142,8 +99,6 @@ export default function ScriptiebegeleidingContent() {
   return (
     <div className={`${syne.variable} ${spaceGrotesk.variable}`}>
       <div className="relative min-h-screen">
-        <JsonLdScript data={jsonLd} />
-        
         {/* Hero Section */}
         <div className="relative h-screen">
           <BlurImage
