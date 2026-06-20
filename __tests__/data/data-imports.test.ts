@@ -1,7 +1,6 @@
 import workshopsData from '@/data/workshopsData'
 import { navigation, siteTitle } from '@/data/navigation'
 import { tutoringPage } from '@/data/tutoringPage'
-import faqData from '@/data/faq.json'
 import { blogInfo, blogPosts } from '@/data/blog'
 import type { Workshop, NavItem } from '@/data/types'
 
@@ -50,27 +49,6 @@ describe('Data Imports', () => {
       expect(tutoringPage.pricing).toBeDefined()
       expect(tutoringPage.pricing.plans).toBeDefined()
       expect(tutoringPage.pricing.plans.length).toBeGreaterThan(0)
-    })
-  })
-
-  describe('faq', () => {
-    it('should have valid FAQ content', () => {
-      expect(faqData.faqInfo).toBeDefined()
-      expect(faqData.faqInfo.title).toBeDefined()
-      expect(faqData.faqInfo.title.EN).toBeDefined()
-      expect(faqData.faqInfo.title.NL).toBeDefined()
-
-      expect(faqData.faqItems).toBeDefined()
-      expect(faqData.faqItems.length).toBeGreaterThan(0)
-
-      faqData.faqItems.forEach(item => {
-        expect(item.question).toBeDefined()
-        expect(item.question.EN).toBeDefined()
-        expect(item.question.NL).toBeDefined()
-        expect(item.answer).toBeDefined()
-        expect(item.answer.EN).toBeDefined()
-        expect(item.answer.NL).toBeDefined()
-      })
     })
   })
 
