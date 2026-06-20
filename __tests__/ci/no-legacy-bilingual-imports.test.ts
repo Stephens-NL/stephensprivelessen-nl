@@ -99,10 +99,6 @@ const ALLOWLIST = new Set([
   // tutoringPage
   'app/[locale]/privelessen/page.tsx',
   'components/privelessen/TutoringPage.tsx',
-  // infoSection
-  'components/contact/steps/InfoSection.tsx',
-  'components/contact/steps/InfoSectionCoursesBlock.tsx',
-  'components/contact/steps/form-steps/SubjectSelection.tsx',
   // feedbackFormData (via @/data barrel)
   'app/api/feedback/route.ts',
   'app/api/feedback/component-data/route.ts',
