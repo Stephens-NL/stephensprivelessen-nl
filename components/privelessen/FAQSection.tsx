@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { inViewFadeUp } from '@/lib/animations';
-import { TutoringPage } from '@/data/types';
 import {
   Accordion,
   AccordionContent,
@@ -11,12 +11,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-interface FAQSectionProps {
-  faq: TutoringPage['faq'];
-  t: (text: any) => string;
+interface FAQQuestionMessage {
+  question: string;
+  answer: string;
 }
 
-export const FAQSection = ({ faq, t }: FAQSectionProps) => {
+export const FAQSection = () => {
+  const t = useTranslations('tutoring');
+  const questions = t.raw('faq.questions') as FAQQuestionMessage[];
+
   return (
     <section className="py-24 bg-[var(--cream)]">
       <div className="container mx-auto px-4 max-w-4xl">
@@ -25,7 +28,7 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
           {...inViewFadeUp}
           className="text-4xl font-bold text-center mb-16"
         >
-          {t(faq.title)}
+          {t('faq.title')}
         </m.h2>
 
         {/* FAQ Accordion */}
@@ -34,17 +37,17 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
           transition={{ delay: 0.2 }}
         >
           <Accordion type="single" collapsible className="space-y-4">
-            {faq.questions.map((item, index) => (
+            {questions.map((item, index) => (
               <AccordionItem
-                key={String(item.question?.EN ?? item.question?.NL ?? index)}
+                key={index}
                 value={`item-${index}`}
                 className="border border-[var(--border-warm)] rounded-lg px-6 py-2 bg-[var(--cream)] shadow-sm"
               >
                 <AccordionTrigger className="text-lg font-semibold text-[var(--ink)] hover:text-[var(--amber)] transition-colors">
-                  {t(item.question)}
+                  {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-[var(--muted-text)] leading-relaxed pt-2">
-                  {t(item.answer)}
+                  {item.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -53,4 +56,4 @@ export const FAQSection = ({ faq, t }: FAQSectionProps) => {
       </div>
     </section>
   );
-}; 
+};

@@ -1,7 +1,7 @@
 import { JsonLd } from '@/components/JsonLd';
 import { TutoringPage } from '@/components/privelessen/TutoringPage';
 import { generateStructuredData } from '@/lib/structured-data';
-import { tutoringPage } from '@/data/tutoringPage';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -54,10 +54,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function BijlesPage() {
+export default async function BijlesPage() {
+  // Use NL translations for JSON-LD structured data (always Dutch for SEO)
+  const tNl = await getTranslations({ locale: 'nl', namespace: 'tutoring' });
+
   const structuredData = generateStructuredData({
-    title: tutoringPage.hero.title.NL,
-    description: tutoringPage.hero.subtitle.NL,
+    title: tNl('hero.title'),
+    description: tNl('hero.subtitle'),
     provider: {
       name: "Stephen's Privélessen",
       type: 'EducationalOrganization',
@@ -74,4 +77,4 @@ export default function BijlesPage() {
       <TutoringPage />
     </>
   );
-} 
+}

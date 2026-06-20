@@ -96,9 +96,6 @@ function hasLegacyBilingualImport(content: string): boolean {
  * the stale-entry assertion below will catch forgotten entries.
  */
 const ALLOWLIST = new Set([
-  // tutoringPage
-  'app/[locale]/privelessen/page.tsx',
-  'components/privelessen/TutoringPage.tsx',
   // feedbackFormData (via @/data barrel)
   'app/api/feedback/route.ts',
   'app/api/feedback/component-data/route.ts',

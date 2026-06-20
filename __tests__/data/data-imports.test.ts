@@ -1,8 +1,9 @@
 import workshopsData from '@/data/workshopsData'
 import { navigation, siteTitle } from '@/data/navigation'
-import { tutoringPage } from '@/data/tutoringPage'
 import { blogInfo, blogPosts } from '@/data/blog'
 import type { Workshop, NavItem } from '@/data/types'
+import nlTutoring from '@/messages/nl/tutoring.json'
+import enTutoring from '@/messages/en/tutoring.json'
 
 describe('Data Imports', () => {
   describe('workshopsData', () => {
@@ -41,14 +42,23 @@ describe('Data Imports', () => {
     })
   })
 
-  describe('tutoringPage', () => {
-    it('should have valid tutoring page content', () => {
-      expect(tutoringPage).toBeDefined()
-      expect(tutoringPage.hero).toBeDefined()
-      expect(tutoringPage.hero.title).toBeDefined()
-      expect(tutoringPage.pricing).toBeDefined()
-      expect(tutoringPage.pricing.plans).toBeDefined()
-      expect(tutoringPage.pricing.plans.length).toBeGreaterThan(0)
+  describe('tutoring messages (migrated from tutoringPage)', () => {
+    it('should have valid tutoring hero and pricing in messages/nl', () => {
+      expect(nlTutoring).toBeDefined()
+      expect(nlTutoring.hero).toBeDefined()
+      expect(nlTutoring.hero.title).toBeDefined()
+      expect(nlTutoring.pricing).toBeDefined()
+      expect(nlTutoring.pricing.plans).toBeDefined()
+      expect(nlTutoring.pricing.plans.length).toBeGreaterThan(0)
+    })
+
+    it('should have valid tutoring hero and pricing in messages/en', () => {
+      expect(enTutoring).toBeDefined()
+      expect(enTutoring.hero).toBeDefined()
+      expect(enTutoring.hero.title).toBeDefined()
+      expect(enTutoring.pricing).toBeDefined()
+      expect(enTutoring.pricing.plans).toBeDefined()
+      expect(enTutoring.pricing.plans.length).toBeGreaterThan(0)
     })
   })
 

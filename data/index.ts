@@ -6,5 +6,4 @@ export * from './feedbackQuestions';
 export * from './feedbackFormData';
 export * from './infoSection';
 export * from './businessData';
-export * from './tutoringPage';
 export * from './workshopsData';

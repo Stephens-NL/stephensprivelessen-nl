@@ -2,14 +2,13 @@
 
 import React from 'react';
 import { m } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { MapPin, Monitor } from 'lucide-react';
 import { inViewFadeUp, viewportOnce } from '@/lib/animations';
 
-interface LocationsSectionProps {
-  t: (text: { EN: string; NL: string }) => string;
-}
+export const LocationsSection = () => {
+  const t = useTranslations('tutoring');
 
-export const LocationsSection = ({ t }: LocationsSectionProps) => {
   return (
     <section className="py-24 bg-gradient-to-b from-[var(--cream)] to-[var(--cream-dark)]">
       <div className="container mx-auto px-4">
@@ -18,17 +17,14 @@ export const LocationsSection = ({ t }: LocationsSectionProps) => {
             {...inViewFadeUp}
             className="text-4xl font-display font-bold mb-4 text-[var(--ink)]"
           >
-            {t({ NL: 'Waar ik lesgeef', EN: 'Where I Teach' })}
+            {t('locations.title')}
           </m.h2>
           <m.p
             {...inViewFadeUp}
             transition={{ delay: 0.1 }}
             className="text-xl text-[var(--muted-text)] max-w-2xl mx-auto"
           >
-            {t({
-              NL: 'Lessen op Science Park of online. Beschikbaar voor studenten in heel Amsterdam.',
-              EN: 'Lessons at Science Park or online. Available for students across Amsterdam.',
-            })}
+            {t('locations.subtitle')}
           </m.p>
         </div>
 
@@ -41,7 +37,7 @@ export const LocationsSection = ({ t }: LocationsSectionProps) => {
           >
             <MapPin className="w-6 h-6 text-[var(--amber)] flex-shrink-0" />
             <span className="font-medium">
-              {t({ NL: 'Science Park 904, Amsterdam', EN: 'Science Park 904, Amsterdam' })}
+              {t('locations.sciencePark')}
             </span>
           </m.div>
 
@@ -52,7 +48,7 @@ export const LocationsSection = ({ t }: LocationsSectionProps) => {
           >
             <Monitor className="w-6 h-6 text-[var(--amber)] flex-shrink-0" />
             <span className="font-medium">
-              {t({ NL: 'Online via Google Meet', EN: 'Online via Google Meet' })}
+              {t('locations.online')}
             </span>
           </m.div>
         </div>
@@ -65,10 +61,7 @@ export const LocationsSection = ({ t }: LocationsSectionProps) => {
           transition={{ delay: 0.4 }}
           className="text-center text-[var(--muted-text)]"
         >
-          {t({
-            NL: 'Amsterdam Zuid, Centrum, Noord, West & Oost',
-            EN: 'Amsterdam Zuid, Centrum, Noord, West & Oost',
-          })}
+          {t('locations.areas')}
         </m.p>
       </div>
     </section>
