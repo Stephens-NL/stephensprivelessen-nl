@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { feedbackFormData } from '@/data';
 import fs from 'fs';
 import path from 'path';
 
@@ -49,4 +48,4 @@ export async function DELETE() {
 
 export async function PATCH() {
     return new NextResponse(null, { status: 405 });
-} 
+}

@@ -1,10 +1,8 @@
 import React, { useCallback, useReducer } from 'react';
-import useSWR from 'swr';
 import { m, AnimatePresence, PanInfo } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
-import { safeFetcher } from '@/lib/fetchers';
-import { FeedbackForm, FeedbackFormDataImportProps, PersonalIntermezzo, QuestionGroup } from '../../data';
+import { FeedbackForm, PersonalIntermezzo, QuestionGroup } from '../../data';
 
 import FadeInText from './FadeInText';
 import FormTypeSelector from './FormTypeSelector';
@@ -80,7 +78,6 @@ type FeedbackContentProps = {
   currentQuestionIndex: number;
   selectedForm: FeedbackForm | null;
   formData: Record<string, any>;
-  feedbackFormData: FeedbackFormDataImportProps | undefined;
   handleFormTypeSelect: (formType: 'short' | 'long') => void;
   shouldShowQuestion: (question: any) => boolean;
   handleChange: (id: string, value: any, skipToNext?: boolean) => void;
@@ -94,7 +91,6 @@ const FeedbackContent: React.FC<FeedbackContentProps> = ({
   currentQuestionIndex,
   selectedForm,
   formData,
-  feedbackFormData,
   handleFormTypeSelect,
   shouldShowQuestion,
   handleChange,
@@ -139,8 +135,6 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
   const { currentStep, currentQuestionIndex, formData, selectedForm, isQuestionAnswered, showSummary, direction, isLastStep, showFarewell, contentHeight } = state;
   const language = useLanguage();
     const t = useTranslations('feedback');
-  const { data: feedbackFormData, isLoading: loading, error: swrError } = useSWR<FeedbackFormDataImportProps>('/api/feedback', safeFetcher);
-  const error = swrError ?? null;
 
   const nextStep = useCallback(() => {
     if (!selectedForm) return;
@@ -244,17 +238,11 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
     });
   };
 
-  if (feedbackFormData === null) return null;
-
   const variants = {
     enter: (direction: number) => ({ x: direction > 0 ? 1000 : -1000, opacity: 0 }),
     center: { x: 0, opacity: 1 },
     exit: (direction: number) => ({ x: direction < 0 ? 1000 : -1000, opacity: 0 }),
   };
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  if (!feedbackFormData) return null;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--ink)] to-[var(--amber)] flex flex-col justify-center items-center p-8">
@@ -285,14 +273,13 @@ export const FeedbackSystem: React.FC<{ longVersion: FeedbackForm, shortVersion:
             style={{ height: contentHeight }}
           >
             <h1 className="text-3xl font-bold text-white mb-6">
-              <FadeInText text={selectedForm ? selectedForm.title[language] : feedbackFormData.feedbackFormData.lengthSelection.title[language]} />
+              <FadeInText text={selectedForm ? selectedForm.title[language] : t('formData.lengthSelection.title')} />
             </h1>
             <FeedbackContent
               currentStep={currentStep}
               currentQuestionIndex={currentQuestionIndex}
               selectedForm={selectedForm}
               formData={formData}
-              feedbackFormData={feedbackFormData}
               handleFormTypeSelect={handleFormTypeSelect}
               shouldShowQuestion={shouldShowQuestion}
               handleChange={handleChange}
