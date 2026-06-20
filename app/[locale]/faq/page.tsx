@@ -1,8 +1,7 @@
 // app/faq/page.tsx
 import { JsonLd } from '@/components/JsonLd';
 import FAQPage from '@/components/Faq';
-import faqData from '@/data/faq.json';
-import { getLanguageFromLocale } from '@/hooks/useLanguage';
+import { getMessages } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -68,17 +67,18 @@ export const revalidate = 3600; // Revalidate every hour
 
 export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const language = getLanguageFromLocale(locale);
-  // Build FAQPage JSON-LD from data
+  const messages = await getMessages({ locale });
+  const faqItems = (messages.faq as { items: { question: string; answer: string }[] }).items;
+  // Build FAQPage JSON-LD from next-intl messages
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqData.faqItems.map((item: any) => ({
+    mainEntity: faqItems.map((item) => ({
       '@type': 'Question',
-      name: item.question?.[language] || item.question?.NL || item.question?.EN,
+      name: item.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: item.answer?.[language] || item.answer?.NL || item.answer?.EN
+        text: item.answer
       }
     }))
   };
