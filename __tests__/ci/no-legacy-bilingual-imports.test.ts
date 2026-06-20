@@ -95,10 +95,7 @@ function hasLegacyBilingualImport(content: string): boolean {
  * legacy callers awaiting migration. Remove entries once a file is migrated;
  * the stale-entry assertion below will catch forgotten entries.
  */
-const ALLOWLIST = new Set([
-  // feedbackFormData (via @/data barrel)
-  'app/api/feedback/route.ts',
-  'app/api/feedback/component-data/route.ts',
+const ALLOWLIST = new Set<string>([
   // navigation — currently ZERO importers (already migrated to next-intl)
 ]);
 

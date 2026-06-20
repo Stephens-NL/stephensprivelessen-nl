@@ -1,9 +1,8 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { useLanguage } from '@/hooks/useLanguage';
 import { Send, Edit2 } from 'lucide-react';
-import { feedbackFormData, FeedbackSummaryProps, RenderSummaryItemProps } from '../../data';
+import { FeedbackSummaryProps, RenderSummaryItemProps } from '../../data';
 
 function SummaryItem({ label, value }: RenderSummaryItemProps) {
   return (
@@ -15,7 +14,6 @@ function SummaryItem({ label, value }: RenderSummaryItemProps) {
 }
 
 const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) => {
-  const language = useLanguage();
     const t = useTranslations('feedback');
 
   return (
@@ -73,7 +71,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          {feedbackFormData.submitCTA.buttonText[language]}
+          {t('formData.submitCTA.buttonText')}
           <Send className="ml-2" size={20} />
         </m.button>
       </div>

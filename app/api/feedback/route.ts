@@ -1,26 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { feedbackFormData } from '@/data';
+import { NextResponse } from 'next/server';
 
+// GET previously served bilingual form copy; now migrated to next-intl (useTranslations).
 export async function GET() {
-    try {
-        if (!feedbackFormData) {
-            throw new Error('Feedback form data is undefined');
-        }
-        
-        return NextResponse.json(
-            { feedbackFormData },
-            { status: 200 }
-        );
-    } catch (error) {
-        console.error('Error fetching feedback data:', error);
-        return NextResponse.json(
-            {
-                feedbackFormData: {},
-                error: 'Failed to fetch feedback data'
-            },
-            { status: 500 }
-        );
-    }
+    return new NextResponse(null, { status: 405 });
 }
 
 // Handle unsupported methods
@@ -38,4 +20,4 @@ export async function DELETE() {
 
 export async function PATCH() {
     return new NextResponse(null, { status: 405 });
-} 
+}

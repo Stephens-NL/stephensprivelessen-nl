@@ -1,22 +1,24 @@
 import React from 'react';
 import { m } from 'framer-motion';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useTranslations } from 'next-intl';
 import { Clock, ClipboardList } from 'lucide-react';
-import { FormTypeSelectorProps, feedbackFormData } from '../../data';
+import { FormTypeSelectorProps } from '../../data';
 
 const FormTypeSelector: React.FC<FormTypeSelectorProps> = ({ onSelectFormType }) => {
   const language = useLanguage();
+  const t = useTranslations('feedback');
 
   const formTypes = {
     short: {
-      title: feedbackFormData.lengthSelection.shortOption[language],
+      title: t('formData.lengthSelection.shortOption'),
       description: language === 'NL'
         ? "Perfect als je weinig tijd hebt. Slechts een paar korte vragen om mij een idee te geven van hoe het gaat."
         : "Perfect if you're short on time. Just a few quick questions to give me an idea of how I'm doing.",
       icon: Clock,
     },
     long: {
-      title: feedbackFormData.lengthSelection.longOption[language],
+      title: t('formData.lengthSelection.longOption'),
       description: language === 'NL'
         ? "Ideaal als je meer tijd hebt. Deze versie bevat extra vragen waarin ik meer over mezelf vertel, waardoor je dieper kunt ingaan op de feedback."
         : "Ideal if you have more time. This version includes additional questions where I share more about myself, allowing for more in-depth feedback.",

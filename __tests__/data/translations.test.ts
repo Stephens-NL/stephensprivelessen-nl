@@ -2,16 +2,11 @@ import { testComponentTranslations } from '../utils/testUtils';
 
 // Import data files
 import { workshops } from '@/data/workshopsData';
-import { feedbackFormData } from '@/data/feedbackFormData';
 
 describe('Page Content Translations', () => {
   describe('Data Files', () => {
     it('workshops data should have all required translations', () => {
       testComponentTranslations(workshops, 'Workshops');
-    });
-
-    it('feedback form data should have all required translations', () => {
-      testComponentTranslations(feedbackFormData, 'FeedbackForm');
     });
   });
 
