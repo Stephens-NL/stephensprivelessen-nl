@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import { m } from 'framer-motion';
+import { m, type Variants } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 const Introductie = () => {
   const t = useTranslations('about');
 
   // Animation variants for the entire section
-  const sectionVariants = {
+  const sectionVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
@@ -21,7 +21,7 @@ const Introductie = () => {
   };
 
   // Animation variants for text elements with staggered children
-  const textContainerVariants = {
+  const textContainerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -33,7 +33,7 @@ const Introductie = () => {
   };
 
   // Animation variants for individual text items
-  const textItemVariants = {
+  const textItemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { AnimatePresence, m } from 'framer-motion';
+import { AnimatePresence, m, type Variants } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import ButtonTrial from './ButtonTrial';
@@ -39,7 +39,7 @@ const Services = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const t = useTranslations('services');
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -49,7 +49,7 @@ const Services = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
