@@ -8,7 +8,7 @@ import { FormData } from '../../Contact';
 
 import { FaEye } from 'react-icons/fa';
 import NotesPreviewModal from '../../components/NotesPreviewModal';
-import { SHOW_NOTE_PREVIEWS } from '@/data/infoSection';
+import { SHOW_NOTE_PREVIEWS } from '@/data/config';
 
 interface SubjectSelectionProps {
     formData: FormData;

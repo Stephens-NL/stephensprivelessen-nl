@@ -47,3 +47,16 @@ export const config = {
         }
     }
 } as const;
+
+/** Structural contact link shortcuts derived from config. */
+export const contactLinks = {
+    whatsapp: config.contact.whatsapp,
+    email: `mailto:${config.contact.email}`,
+};
+
+/**
+ * Feature flag: per-subject "preview notes" eye buttons in the course block
+ * and subject selection. Temporarily disabled (2026-06-07). Flip to true to
+ * re-enable.
+ */
+export const SHOW_NOTE_PREVIEWS = false;
