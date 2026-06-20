@@ -1,36 +1,52 @@
-import { tutoringPage } from '@/data/tutoringPage';
 import { workshops } from '@/data/workshopsData';
+import nlTutoring from '@/messages/nl/tutoring.json';
+import enTutoring from '@/messages/en/tutoring.json';
 
 describe('Content Validation', () => {
-  describe('Tutoring Page Content', () => {
-    it('should have all required sections', () => {
-      expect(tutoringPage).toBeDefined();
-      expect(tutoringPage.hero).toBeDefined();
-      expect(tutoringPage.features).toBeDefined();
-      expect(tutoringPage.subjects).toBeDefined();
-      expect(tutoringPage.process).toBeDefined();
-      expect(tutoringPage.testimonials).toBeDefined();
-      expect(tutoringPage.pricing).toBeDefined();
-      expect(tutoringPage.faq).toBeDefined();
-      expect(tutoringPage.contact).toBeDefined();
+  describe('Tutoring Messages (messages/*/tutoring.json)', () => {
+    it('NL tutoring.json should have all required sections', () => {
+      expect(nlTutoring).toBeDefined();
+      expect(nlTutoring.hero).toBeDefined();
+      expect(nlTutoring.features).toBeDefined();
+      expect(nlTutoring.subjects).toBeDefined();
+      expect(nlTutoring.process).toBeDefined();
+      expect(nlTutoring.pricing).toBeDefined();
+      expect(nlTutoring.faq).toBeDefined();
     });
 
-    it('should have valid hero section content', () => {
-      const { hero } = tutoringPage;
-      validateBilingualText(hero.title);
-      validateBilingualText(hero.subtitle);
-      expect(Array.isArray(hero.stats)).toBe(true);
-      expect(hero.cta).toBeDefined();
+    it('EN tutoring.json should have all required sections', () => {
+      expect(enTutoring).toBeDefined();
+      expect(enTutoring.hero).toBeDefined();
+      expect(enTutoring.features).toBeDefined();
+      expect(enTutoring.subjects).toBeDefined();
+      expect(enTutoring.process).toBeDefined();
+      expect(enTutoring.pricing).toBeDefined();
+      expect(enTutoring.faq).toBeDefined();
     });
 
-    it('should have valid features content', () => {
-      const { features } = tutoringPage;
-      expect(Array.isArray(features)).toBe(true);
-      features.forEach(feature => {
-        expect(feature.icon).toBeDefined();
-        validateBilingualText(feature.title);
-        validateBilingualText(feature.description);
+    it('should have valid hero section content in both locales', () => {
+      expect(typeof nlTutoring.hero.title).toBe('string');
+      expect(typeof nlTutoring.hero.subtitle).toBe('string');
+      expect(typeof nlTutoring.hero.ctaPrimary).toBe('string');
+      expect(typeof enTutoring.hero.title).toBe('string');
+      expect(typeof enTutoring.hero.subtitle).toBe('string');
+      expect(typeof enTutoring.hero.ctaPrimary).toBe('string');
+    });
+
+    it('should have valid features content in both locales', () => {
+      expect(Array.isArray(nlTutoring.features)).toBe(true);
+      expect(nlTutoring.features.length).toBeGreaterThan(0);
+      nlTutoring.features.forEach((feature: { title: string; description: string }) => {
+        expect(typeof feature.title).toBe('string');
+        expect(typeof feature.description).toBe('string');
       });
+      expect(nlTutoring.features.length).toBe(enTutoring.features.length);
+    });
+
+    it('should have NL/EN parity for pricing plans', () => {
+      expect(nlTutoring.pricing.plans.length).toBe(enTutoring.pricing.plans.length);
+      expect(typeof nlTutoring.pricing.mostPopular).toBe('string');
+      expect(typeof enTutoring.pricing.mostPopular).toBe('string');
     });
   });
 
