@@ -2,14 +2,11 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations, useLocale, useMessages } from 'next-intl';
 import { ChevronUp, ChevronDown, Search } from 'lucide-react';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import FloatingShapes from './FloatingShapes';
 import FadeInText from './FeedbackSystem/FadeInText';
-
-// FAQ items count from JSON (20 items)
-const FAQ_COUNT = 20;
 
 const Faq: React.FC = () => {
   const [mounted, setMounted] = useState(false);
@@ -17,6 +14,9 @@ const Faq: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const t = useTranslations('faq');
   const locale = useLocale();
+  const messages = useMessages();
+  // Derive count from the messages array length so display never drifts from JSON/JSON-LD (#65).
+  const faqCount = (messages?.faq as { items?: unknown[] } | undefined)?.items?.length ?? 0;
   const showBackToTop = useScrollPosition(300);
 
   React.useEffect(() => {
@@ -31,7 +31,7 @@ const Faq: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const allIndices = useMemo(() => Array.from({ length: FAQ_COUNT }, (_, i) => i), []);
+  const allIndices = useMemo(() => Array.from({ length: faqCount }, (_, i) => i), [faqCount]);
 
   const filteredIndices = useMemo(() => {
     if (!mounted) return allIndices;
