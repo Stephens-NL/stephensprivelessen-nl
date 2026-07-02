@@ -1,7 +1,7 @@
 import { navigation } from '@/data/navigation'
 
 describe('Navigation E2E', () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:4302'
 
   // Skip E2E tests if server is not running
   const isServerRunning = async () => {
