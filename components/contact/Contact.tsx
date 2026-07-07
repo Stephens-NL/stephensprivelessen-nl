@@ -69,8 +69,15 @@ const initialFormData: FormData = {
 
 type CalendarState = { show: boolean; type: 'trial' | 'regular' };
 
-const Contact = () => {
-    const [currentStep, setCurrentStep] = useState<FormStep>('initial');
+interface ContactProps {
+    /** Step to start on. Defaults to 'initial' (the info-vs-lesson split). Pass 'personal-details' to open the lesson-request wizard directly (e.g. /aanmelden). */
+    startStep?: FormStep;
+    /** Optional warm intro line shown under the heading. */
+    intro?: string;
+}
+
+const Contact = ({ startStep = 'initial', intro }: ContactProps) => {
+    const [currentStep, setCurrentStep] = useState<FormStep>(startStep);
     const [formData, setFormData] = useState<FormData>(initialFormData);
     const language = useLanguage();
     const t = useTranslations('contact');
@@ -131,6 +138,17 @@ const Contact = () => {
                     >
                         {t('form.letsGetStarted')}
                     </m.h1>
+
+                    {intro && (
+                        <m.p
+                            className="text-center text-[var(--cream)]/80 mb-8 -mt-2"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                            {intro}
+                        </m.p>
+                    )}
 
                     {formData.error && (
                         <m.div 

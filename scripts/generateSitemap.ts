@@ -31,6 +31,7 @@ function generateSitemap() {
   urlset.push(createUrlEntry('/workshops', 'weekly', '1.0'));
   urlset.push(createUrlEntry('/consultancy', 'weekly', '0.9'));
   urlset.push(createUrlEntry('/contact', 'monthly', '0.8'));
+  urlset.push(createUrlEntry('/aanmelden', 'monthly', '0.8'));
   urlset.push(createUrlEntry('/faq', 'monthly', '0.8'));
 
   // Add new Bijles pages
