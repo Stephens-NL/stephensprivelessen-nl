@@ -75,7 +75,44 @@ export async function POST(request: NextRequest) {
         console.error('Contact form email notification failed (non-fatal):', error);
     }
 
-    return NextResponse.json({ ok: true, delivered }, { status: 200 });
+    // Best-effort Telegram notification — the primary lead alert (email is off in
+    // prod). Reuses the vps-bot's TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID (set on the
+    // container). Plain text, no parse_mode, so user-supplied fields can't break
+    // the message; 5s timeout so a slow Telegram never stalls the student's success.
+    let notified = false;
+    const tgToken = process.env.TELEGRAM_BOT_TOKEN;
+    const tgChat = process.env.TELEGRAM_CHAT_ID;
+    if (tgToken && tgChat) {
+        try {
+            const prefs = [...(formData.preferredDays || []), ...(formData.preferredTimes || [])].join(', ');
+            const text = [
+                '🎓 Nieuwe lesaanvraag via de site',
+                `Naam: ${formData.name}`,
+                `Email: ${formData.email}`,
+                formData.age ? `Leeftijd: ${formData.age}` : '',
+                formData.level ? `Niveau: ${formData.level}` : '',
+                formData.subject ? `Vak: ${formData.subject}` : '',
+                formData.programmingLanguage ? `Taal: ${formData.programmingLanguage}` : '',
+                prefs ? `Voorkeur: ${prefs}` : '',
+                formData.isOnline ? 'Online' : 'Fysiek',
+                formData.goals ? `Doelen: ${formData.goals}` : '',
+            ].filter(Boolean).join('\n');
+            const res = await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: tgChat, text, disable_web_page_preview: true }),
+                signal: AbortSignal.timeout(5000),
+            });
+            notified = res.ok;
+            if (!res.ok) {
+                console.error('Contact form Telegram notify failed (non-fatal):', res.status, await res.text());
+            }
+        } catch (error) {
+            console.error('Contact form Telegram notify error (non-fatal):', error);
+        }
+    }
+
+    return NextResponse.json({ ok: true, delivered, notified }, { status: 200 });
 }
 
 // Handle unsupported methods
