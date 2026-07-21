@@ -5,6 +5,7 @@ import BlurImage from './shared/BlurImage';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { AnimatePresence, m } from 'framer-motion';
+import SubjectsPalette from './SubjectsPalette';
 
 const PhilosophyCard = ({ title, description }: {title: string, description: string}) => (
   <m.div
@@ -111,6 +112,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <SubjectsPalette />
 
       <section className="py-20 bg-[var(--cream-dark)]/50">
         <div className="container mx-auto px-4">

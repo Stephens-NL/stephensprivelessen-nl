@@ -8,6 +8,17 @@
     ],
     "altText": "Stephen Adei — founder of Stephen's Private Lessons"
   },
+  "subjectsPalette": {
+    "title": "The full subject palette",
+    "subline": "from primary-school arithmetic to university mathematics",
+    "credibility": "UvA mathematician & fully-licensed maths teacher — the breadth is real.",
+    "groups": {
+      "exact": "Mathematics & sciences",
+      "data": "Statistics & data",
+      "programming": "Programming",
+      "language": "Languages & economics"
+    }
+  },
   "philosophyTitle": "My Philosophy",
   "philosophyPoints": [
     {

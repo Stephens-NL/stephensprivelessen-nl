@@ -8,6 +8,17 @@
     ],
     "altText": "Stephen Adei — oprichter Stephen's Privélessen"
   },
+  "subjectsPalette": {
+    "title": "Het volledige vakkenpalet",
+    "subline": "van basisschool-rekenen tot universitaire wiskunde",
+    "credibility": "UvA-wiskundige & eerstegraads bevoegd docent — de breedte is echt.",
+    "groups": {
+      "exact": "Wiskunde & exacte vakken",
+      "data": "Statistiek & data",
+      "programming": "Programmeren",
+      "language": "Talen & economie"
+    }
+  },
   "philosophyTitle": "Mijn Filosofie",
   "philosophyPoints": [
     {
