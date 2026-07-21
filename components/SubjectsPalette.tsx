@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState, CSSProperties } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { AnimatePresence, m } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   LEVELS,
   BASIS,
@@ -62,15 +62,14 @@ const SubjectsPalette = () => {
   const searching = query.trim().length >= 2;
   const results = useMemo(() => (searching ? searchSubjects(query, index) : []), [searching, query, index]);
 
-  const morph = {
-    initial: { opacity: 0, scale: 0.97, y: 12, filter: 'blur(3px)' },
-    animate: { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' },
-    exit: { opacity: 0, scale: 0.97, y: -12, filter: 'blur(3px)' },
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
-  };
+  // All levels stay in the DOM (crawlable / no-JS); inactive ones are
+  // display:none via styles.hidden. The active level plays the framer viewIn
+  // entrance; switching away is an instant cross-fade (accepted trade-off).
+  const hidden = { opacity: 0, scale: 0.98, y: 8, filter: 'blur(2px)' };
+  const shown = { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' };
 
-  const renderView = () => {
-    if (level === 'basis') {
+  const renderView = (lvl: LevelKey) => {
+    if (lvl === 'basis') {
       return (
         <div className={`${styles.grid} ${styles.gBasis}`}>
           {BASIS.map((card) => (
@@ -79,7 +78,7 @@ const SubjectsPalette = () => {
         </div>
       );
     }
-    if (level === 'vo') {
+    if (lvl === 'vo') {
       return (
         <div className={`${styles.grid} ${styles.gVo}`}>
           {VO.map((card) => (
@@ -88,7 +87,7 @@ const SubjectsPalette = () => {
         </div>
       );
     }
-    if (level === 'ho') {
+    if (lvl === 'ho') {
       return (
         <>
           <p className={styles.hoNote}>{t('subjectsPalette.hoNote')}</p>
@@ -228,11 +227,18 @@ const SubjectsPalette = () => {
             </div>
 
             <div className={styles.stage}>
-              <AnimatePresence mode="wait">
-                <m.div key={level} {...morph}>
-                  {renderView()}
+              {LEVELS.map(({ key }) => (
+                <m.div
+                  key={key}
+                  role="tabpanel"
+                  className={level === key ? undefined : styles.hidden}
+                  initial={false}
+                  animate={level === key ? shown : hidden}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {renderView(key)}
                 </m.div>
-              </AnimatePresence>
+              ))}
             </div>
 
             <p className={styles.hint}>{t('subjectsPalette.hint')}</p>

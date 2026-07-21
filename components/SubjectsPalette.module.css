@@ -112,6 +112,10 @@
   position: relative;
   margin-top: 22px;
 }
+/* Inactive levels stay in the DOM (crawlable) but take no layout space. */
+.hidden {
+  display: none;
+}
 .grid {
   display: grid;
   gap: 18px;
