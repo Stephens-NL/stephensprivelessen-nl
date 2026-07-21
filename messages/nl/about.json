@@ -9,14 +9,22 @@
     "altText": "Stephen Adei — oprichter Stephen's Privélessen"
   },
   "subjectsPalette": {
+    "eyebrow": "Eén docent, het hele spectrum",
     "title": "Het volledige vakkenpalet",
-    "subline": "van basisschool-rekenen tot universitaire wiskunde",
-    "credibility": "UvA-wiskundige & eerstegraads bevoegd docent — de breedte is echt.",
-    "groups": {
-      "exact": "Wiskunde & exacte vakken",
-      "data": "Statistiek & data",
-      "programming": "Programmeren",
-      "language": "Talen & economie"
+    "subline": "Kies je niveau — dan zie je precies jouw vakken.",
+    "anchor": "Wiskunde (UvA) · eerstegraads bevoegd docent",
+    "searchPlaceholder": "Zoek je vak… (bijv. statistiek, calculus, SPSS)",
+    "searchLabel": "Zoek een vak",
+    "selectorLabel": "Kies onderwijsniveau",
+    "hint": "↑ Kies een niveau of zoek je vak — de grids morphen mee.",
+    "empty": "Geen vak gevonden — maar vraag gerust, grote kans dat ik het tóch kan. 📲",
+    "hoNote": "Klik je studierichting → subsecties open voor de exacte vaknamen uit de studiegids (UvA · VU · Leiden · UU · EUR e.a.). Staat jouw vak er niet bij? Grote kans dat ik het tóch kan — even appen.",
+    "webnote": "+ webontwikkeling:",
+    "levels": {
+      "basis": { "label": "Basisschool", "lv": "" },
+      "vo": { "label": "Voortgezet", "lv": "vmbo·havo·vwo" },
+      "ho": { "label": "Hoger onderwijs", "lv": "hbo·wo" },
+      "prog": { "label": "Programmeren", "lv": "" }
     }
   },
   "philosophyTitle": "Mijn Filosofie",

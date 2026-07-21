@@ -1,66 +1,243 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo, useState, CSSProperties } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
-import { m } from 'framer-motion';
-import { subjects } from '@/data/subjects';
+import { AnimatePresence, m } from 'framer-motion';
+import {
+  LEVELS,
+  BASIS,
+  VO,
+  HO,
+  PROG,
+  SNIP,
+  buildSearchIndex,
+  searchSubjects,
+  type LevelKey,
+  type SubjectCard,
+} from '@/data/subjects';
+import styles from './SubjectsPalette.module.css';
 
-// Alternating accent per card, matching the site's amber/sage palette.
-const ACCENTS = ['var(--amber)', 'var(--sage)'];
+const accentStyle = (accent: string) => ({ ['--accent']: accent } as CSSProperties);
+
+/** basis/vo card: heading + who-line + chip list. */
+const Card = ({ card, big }: { card: SubjectCard; big?: boolean }) => (
+  <div className={`${styles.cell}${big ? ` ${styles.big}` : ''}`} style={accentStyle(card.accent)}>
+    <h3>
+      <span className={styles.icon}>{card.icon}</span>
+      {card.title}
+    </h3>
+    <p className={styles.who}>{card.who}</p>
+    <ul className={styles.chips}>
+      {card.chips.map((c) => (
+        <li key={c} className={styles.chip}>
+          {c}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const SubjectsPalette = () => {
   const t = useTranslations('about');
   const locale = useLocale();
-  const lang = locale === 'nl' ? 'NL' : 'EN';
 
-  return (
-    <section className="py-20 bg-[var(--cream-dark)]/50">
-      <div className="container mx-auto px-4">
-        <m.h2
-          className="text-3xl font-semibold text-center font-display text-[var(--ink)] mb-4"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          {t('subjectsPalette.title')}
-        </m.h2>
-        <p className="text-center text-[var(--warm-text)] max-w-2xl mx-auto mb-3">
-          {t('subjectsPalette.subline')}
-        </p>
-        <p className="text-center text-[var(--sage)] font-medium max-w-2xl mx-auto mb-12">
-          {t('subjectsPalette.credibility')}
-        </p>
+  const [level, setLevel] = useState<LevelKey>('vo');
+  const [lang, setLang] = useState<string>('python');
+  const [query, setQuery] = useState('');
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {subjects.map(({ group, subjects: items }, index) => (
-            <m.div
-              key={group}
-              className="bg-[var(--cream)] border border-[var(--border-warm)] rounded-lg shadow-lg p-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.1 }}
-            >
-              <h3 className="text-xl font-semibold text-[var(--ink)] mb-2">
-                {t(`subjectsPalette.groups.${group}`)}
-              </h3>
-              <div
-                className="h-1 w-10 rounded-full mb-4"
-                style={{ backgroundColor: ACCENTS[index % ACCENTS.length] }}
-                aria-hidden="true"
-              />
-              <ul className="flex flex-wrap gap-2">
-                {items.map((subject) => (
-                  <li
-                    key={subject.EN}
-                    className="rounded-full border border-[var(--border-warm)] bg-[var(--cream-dark)]/60 text-[var(--warm-text)] text-sm px-3 py-1"
-                  >
-                    {subject[lang]}
-                  </li>
-                ))}
-              </ul>
-            </m.div>
+  const levelLabel = (key: LevelKey) => t(`subjectsPalette.levels.${key}.label`);
+
+  const index = useMemo(
+    () =>
+      buildSearchIndex({
+        basis: levelLabel('basis'),
+        vo: levelLabel('vo'),
+        ho: levelLabel('ho'),
+        prog: levelLabel('prog'),
+      }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [locale],
+  );
+
+  const searching = query.trim().length >= 2;
+  const results = useMemo(() => (searching ? searchSubjects(query, index) : []), [searching, query, index]);
+
+  const morph = {
+    initial: { opacity: 0, scale: 0.97, y: 12, filter: 'blur(3px)' },
+    animate: { opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' },
+    exit: { opacity: 0, scale: 0.97, y: -12, filter: 'blur(3px)' },
+    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+  };
+
+  const renderView = () => {
+    if (level === 'basis') {
+      return (
+        <div className={`${styles.grid} ${styles.gBasis}`}>
+          {BASIS.map((card) => (
+            <Card key={card.title} card={card} big />
           ))}
         </div>
+      );
+    }
+    if (level === 'vo') {
+      return (
+        <div className={`${styles.grid} ${styles.gVo}`}>
+          {VO.map((card) => (
+            <Card key={card.title} card={card} />
+          ))}
+        </div>
+      );
+    }
+    if (level === 'ho') {
+      return (
+        <>
+          <p className={styles.hoNote}>{t('subjectsPalette.hoNote')}</p>
+          <div className={`${styles.grid} ${styles.gHo}`}>
+            {HO.map((disc, di) => (
+              <div key={disc.laneTitle} className={`${styles.cell} ${styles.disc}`} style={accentStyle(disc.accent)}>
+                <div className={styles.discHead}>
+                  <span className={styles.laneT}>{disc.laneTitle}</span>
+                  <span className={styles.laneW}>{disc.laneWhich}</span>
+                </div>
+                {disc.subsections.map((sub, si) => (
+                  <details key={sub.label} className={styles.subsec} open={di === 0 && si === 0}>
+                    <summary>
+                      {sub.label} · {sub.count} vakken
+                    </summary>
+                    <ul className={styles.chips}>
+                      {sub.chips.map((c) => (
+                        <li key={c} className={styles.chip}>
+                          {c}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ))}
+              </div>
+            ))}
+          </div>
+        </>
+      );
+    }
+    // prog
+    return (
+      <div className={`${styles.grid} ${styles.gProg}`}>
+        <div className={`${styles.cell} ${styles.big}`} style={accentStyle(PROG.accent)}>
+          <h3>
+            <span className={styles.icon}>{PROG.icon}</span>
+            {PROG.title}
+          </h3>
+          <p className={styles.who}>{PROG.who}</p>
+          <div className={`${styles.chips} ${styles.langpick}`}>
+            {PROG.langs.map((l) => (
+              <button
+                key={l.id}
+                type="button"
+                className={`${styles.chip} ${styles.lang}${lang === l.id ? ` ${styles.active}` : ''}`}
+                aria-pressed={lang === l.id}
+                onClick={() => setLang(l.id)}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+          <pre className={styles.codebox}>
+            {/* ponytail: static author-controlled snippet, no user input → dangerouslySetInnerHTML is safe here */}
+            <code key={lang} dangerouslySetInnerHTML={{ __html: SNIP[lang] }} />
+          </pre>
+          <p className={styles.webnote}>
+            {t('subjectsPalette.webnote')}
+            {PROG.web.map((w) => (
+              <span key={w} className={styles.chip}>
+                {w}
+              </span>
+            ))}
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <section className={styles.palette}>
+      <div className={styles.page}>
+        <div className={styles.head}>
+          <div className={styles.eyebrow}>{t('subjectsPalette.eyebrow')}</div>
+          <h2>{t('subjectsPalette.title')}</h2>
+          <div className={styles.subline}>{t('subjectsPalette.subline')}</div>
+          <div className={styles.anchor}>
+            <span className={styles.dot} />
+            {t('subjectsPalette.anchor')}
+          </div>
+        </div>
+
+        <div className={styles.search}>
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t('subjectsPalette.searchPlaceholder')}
+            aria-label={t('subjectsPalette.searchLabel')}
+            autoComplete="off"
+          />
+        </div>
+
+        {searching ? (
+          <div className={styles.results}>
+            {results.length > 0 ? (
+              results.map((r) => (
+                <div key={`${r.name}|${r.path}`} className={styles.res}>
+                  <span className={styles.rname}>
+                    {r.seg ? (
+                      <>
+                        {r.seg.before}
+                        <mark>{r.seg.match}</mark>
+                        {r.seg.after}
+                      </>
+                    ) : (
+                      r.name
+                    )}
+                  </span>
+                  {r.gloss && <span className={styles.en}>{r.gloss}</span>}
+                  <span className={styles.crumb}>{r.path}</span>
+                </div>
+              ))
+            ) : (
+              <div className={styles.resEmpty}>{t('subjectsPalette.empty')}</div>
+            )}
+          </div>
+        ) : (
+          <>
+            <div className={styles.selector} role="tablist" aria-label={t('subjectsPalette.selectorLabel')}>
+              {LEVELS.map(({ key, emoji }) => {
+                const lv = t(`subjectsPalette.levels.${key}.lv`);
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    role="tab"
+                    aria-selected={level === key}
+                    className={styles.seg}
+                    onClick={() => setLevel(key)}
+                  >
+                    {emoji} {levelLabel(key)}
+                    {lv && <span className={styles.lv}>{lv}</span>}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className={styles.stage}>
+              <AnimatePresence mode="wait">
+                <m.div key={level} {...morph}>
+                  {renderView()}
+                </m.div>
+              </AnimatePresence>
+            </div>
+
+            <p className={styles.hint}>{t('subjectsPalette.hint')}</p>
+          </>
+        )}
       </div>
     </section>
   );
