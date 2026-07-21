@@ -3,9 +3,56 @@ import { FormData } from '@/components/contact/Contact';
 import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
+    let formData: FormData;
     try {
-        const formData = await request.json() as FormData;
+        formData = await request.json() as FormData;
+    } catch {
+        return NextResponse.json({ ok: false, message: 'Invalid request body' }, { status: 400 });
+    }
 
+    if (!formData?.name || !formData?.email) {
+        return NextResponse.json({ ok: false, message: 'Name and email are required' }, { status: 400 });
+    }
+
+    const emailBody = `
+        <h1>Nieuwe lesaanvraag</h1>
+
+        <h2>Student Informatie</h2>
+        <p><strong>Naam:</strong> ${formData.name}</p>
+        <p><strong>Email:</strong> ${formData.email}</p>
+        <p><strong>Leeftijd:</strong> ${formData.age}</p>
+        <p><strong>Niveau:</strong> ${formData.level}</p>
+
+        <h2>Vak</h2>
+        <p><strong>Vak:</strong> ${formData.subject}</p>
+        ${formData.programmingLanguage ? `<p><strong>Programmeertaal:</strong> ${formData.programmingLanguage}</p>` : ''}
+
+        <h2>Voorkeuren</h2>
+        <p><strong>Lestype:</strong> ${formData.isOnline ? 'Online' : 'Fysiek'}</p>
+        <p><strong>Voorkeursdagen:</strong> ${formData.preferredDays.join(', ')}</p>
+        <p><strong>Voorkeurstijden:</strong> ${formData.preferredTimes.join(', ')}</p>
+
+        <h2>Doelen</h2>
+        <p>${formData.goals}</p>
+
+        ${formData.requestType === 'other' ? `
+            <h2>Aanvrager Informatie</h2>
+            <p><strong>Naam:</strong> ${formData.requesterName}</p>
+            <p><strong>Email:</strong> ${formData.requesterEmail}</p>
+            <p><strong>Relatie tot student:</strong> ${formData.relationship}</p>
+        ` : ''}
+    `;
+
+    // Best-effort email notification. A mail failure must NEVER return 500 to the
+    // student: a 500 turns the whole form into a dead end — which is exactly how a
+    // CCVX Wiskunde B lead got turned away (see info@ "Enrollment", 2026-07-21).
+    // The real booking happens via the calendar step, and any lead is also caught
+    // by the info@ inbox watcher and the WhatsApp fallback on the thank-you screen.
+    // ponytail: SMTP is the only email-notify channel here; when the container has
+    // no SMTP_* env (current live state) `delivered` stays false and the student is
+    // routed to WhatsApp/calendar instead. Restore SMTP env to re-enable email.
+    let delivered = false;
+    try {
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: parseInt(process.env.SMTP_PORT || '465'),
@@ -13,48 +60,9 @@ export async function POST(request: NextRequest) {
             authMethod: 'LOGIN',
             auth: {
                 user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS?.replace(/['"]/g, '')
+                pass: process.env.SMTP_PASS?.replace(/['"]/g, ''),
             },
-            debug: true,
-            logger: true
         });
-
-        // Verify connection configuration
-        try {
-            await transporter.verify();
-        } catch (error) {
-            console.error('SMTP verification error:', error);
-            throw error;
-        }
-
-        const emailBody = `
-            <h1>Nieuwe lesaanvraag</h1>
-            
-            <h2>Student Informatie</h2>
-            <p><strong>Naam:</strong> ${formData.name}</p>
-            <p><strong>Email:</strong> ${formData.email}</p>
-            <p><strong>Leeftijd:</strong> ${formData.age}</p>
-            <p><strong>Niveau:</strong> ${formData.level}</p>
-            
-            <h2>Vak</h2>
-            <p><strong>Vak:</strong> ${formData.subject}</p>
-            ${formData.programmingLanguage ? `<p><strong>Programmeertaal:</strong> ${formData.programmingLanguage}</p>` : ''}
-            
-            <h2>Voorkeuren</h2>
-            <p><strong>Lestype:</strong> ${formData.isOnline ? 'Online' : 'Fysiek'}</p>
-            <p><strong>Voorkeursdagen:</strong> ${formData.preferredDays.join(', ')}</p>
-            <p><strong>Voorkeurstijden:</strong> ${formData.preferredTimes.join(', ')}</p>
-            
-            <h2>Doelen</h2>
-            <p>${formData.goals}</p>
-            
-            ${formData.requestType === 'other' ? `
-                <h2>Aanvrager Informatie</h2>
-                <p><strong>Naam:</strong> ${formData.requesterName}</p>
-                <p><strong>Email:</strong> ${formData.requesterEmail}</p>
-                <p><strong>Relatie tot student:</strong> ${formData.relationship}</p>
-            ` : ''}
-        `;
 
         await transporter.sendMail({
             from: process.env.MAIL_FROM,
@@ -62,42 +70,12 @@ export async function POST(request: NextRequest) {
             subject: `Nieuwe lesaanvraag van ${formData.name}`,
             html: emailBody,
         });
-
-        // Post to CRM pipeline (non-blocking — don't fail the response if this errors)
-        try {
-            await fetch(`${process.env.PLATFORM_API_URL || 'http://platform-api:8082'}/api/intake`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    studentName: formData.name,
-                    email: formData.email,
-                    age: formData.age,
-                    educationLevel: formData.level,
-                    subject: formData.subject,
-                    programmingLang: formData.programmingLanguage,
-                    goals: formData.goals,
-                    preferredDays: formData.preferredDays,
-                    preferredTimes: formData.preferredTimes,
-                    location: formData.isOnline ? 'online' : 'in-person',
-                    parentName: formData.parentName,
-                    parentEmail: formData.parentEmail,
-                    parentPhone: formData.parentPhone,
-                    source: 'website',
-                    locale: 'nl',
-                }),
-            });
-        } catch (e) {
-            console.error('CRM intake POST failed (non-blocking):', e);
-        }
-
-        return NextResponse.json({ message: 'Success' }, { status: 200 });
+        delivered = true;
     } catch (error) {
-        console.error('Contact form error:', error);
-        return NextResponse.json(
-            { message: 'Error sending email' },
-            { status: 500 }
-        );
+        console.error('Contact form email notification failed (non-fatal):', error);
     }
+
+    return NextResponse.json({ ok: true, delivered }, { status: 200 });
 }
 
 // Handle unsupported methods
@@ -115,4 +93,4 @@ export async function DELETE() {
 
 export async function PATCH() {
     return new NextResponse(null, { status: 405 });
-} 
+}

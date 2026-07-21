@@ -8,6 +8,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import LessonForm from './steps/LessonForm';
 import { sendContactForm } from '../../lib/api';
 import GoogleCalendarAppointment from './components/GoogleCalendarAppointment';
+import WhatsAppCTAButton from '@/components/shared/WhatsAppCTAButton';
 
 export type FormStep =
     | 'initial' 
@@ -191,9 +192,16 @@ const Contact = ({ startStep = 'initial', intro }: ContactProps) => {
                                 <h2 className="text-2xl font-bold mb-4">
                                     {t('form.thankYouForYourSubmission')}
                                 </h2>
-                                <p>
+                                <p className="mb-6">
                                     {t('form.wellContactYouSoon')}
                                 </p>
+                                {/* Direct line to Stephen's preferred channel — so a lead is never
+                                    lost even if the notification email or calendar step is skipped. */}
+                                <div className="flex justify-center">
+                                    <WhatsAppCTAButton
+                                        prefilledMessage={`Hi Stephen, I just submitted the lesson request form (${formData.name}${formData.subject ? ` — ${formData.subject}` : ''}).`}
+                                    />
+                                </div>
                             </m.div>
                         )}
                     </AnimatePresence>
