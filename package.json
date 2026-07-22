@@ -15,8 +15,6 @@
     "test:aantekeningen": "ts-node --project tsconfig.scripts.json scripts/test-aantekeningen.ts",
     "quick-test": "node scripts/quick-test.js",
     "setup:sheet": "clasp push && clasp run createFormTrackingSheet",
-    "generate-sitemap": "ts-node --project tsconfig.scripts.json scripts/generateSitemap.ts",
-    "postbuild": "npm run generate-sitemap",
     "doctor": "npx react-doctor@latest . --no-dead-code"
   },
   "dependencies": {

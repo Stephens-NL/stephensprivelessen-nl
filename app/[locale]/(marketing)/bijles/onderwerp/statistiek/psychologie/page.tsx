@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/JsonLd";
+import { buildAlternates } from "@/lib/seo";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isNl = locale === 'nl';
   return {
+    alternates: buildAlternates(locale, '/bijles/onderwerp/statistiek/psychologie'),
     title: isNl
       ? "Statistiek Bijles Amsterdam | SPSS voor Psychologie Studenten"
       : "Statistics Tutoring Amsterdam | SPSS for Psychology Students",

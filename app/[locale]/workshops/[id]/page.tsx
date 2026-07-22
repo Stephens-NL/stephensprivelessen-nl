@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/seo'
 import workshopsData from '@/data/workshopsData'
 import WorkshopDetailContent from '@/components/workshops/WorkshopDetailContent'
 import { notFound } from 'next/navigation'
@@ -37,7 +38,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       'onderwijs',
       'cursus',
       'training'
-    ]
+    ],
+    alternates: buildAlternates(params.locale, `/workshops/${params.id}`),
   }
 }
 

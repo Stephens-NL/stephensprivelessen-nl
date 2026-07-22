@@ -1,4 +1,5 @@
 // app/faq/page.tsx
+import { buildAlternates } from '@/lib/seo';
 import { JsonLd } from '@/components/JsonLd';
 import FAQPage from '@/components/Faq';
 import { getMessages } from 'next-intl/server';
@@ -52,13 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         : "Frequently asked questions about our tutoring and guidance in Amsterdam.",
       images: [`/api/og?title=${encodeURIComponent("FAQ A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Krijg Antwoorden" : "Get Answers")}&footerText=${encodeURIComponent(isNl ? "Veelgestelde Vragen" : "Frequently Asked Questions")}&featureImageUrl=/images/faq-banner.jpg`],
     },
-    alternates: {
-      canonical: '/faq',
-      languages: {
-        'nl-NL': '/faq',
-        'en-US': '/faq',
-      },
-    },
+    alternates: buildAlternates(locale, '/faq'),
   };
 }
 

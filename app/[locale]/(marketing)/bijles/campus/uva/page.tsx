@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/JsonLd";
+import { buildAlternates } from "@/lib/seo";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isNl = locale === 'nl';
   return {
+    alternates: buildAlternates(locale, '/bijles/campus/uva'),
     title: isNl
       ? "UvA Bijles Amsterdam | Science Park & Roeterseiland"
       : "UvA Tutoring Amsterdam | Science Park & Roeterseiland",

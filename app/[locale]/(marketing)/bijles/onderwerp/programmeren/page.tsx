@@ -1,4 +1,5 @@
 import { JsonLd } from "@/components/JsonLd";
+import { buildAlternates } from "@/lib/seo";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const isNl = locale === 'nl';
   return {
+    alternates: buildAlternates(locale, '/bijles/onderwerp/programmeren'),
     title: isNl
       ? "Python & R Bijles Amsterdam | Data Science voor Psychologie & Economie"
       : "Python & R Tutoring Amsterdam | Data Science for Psychology & Economics",

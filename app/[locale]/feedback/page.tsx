@@ -1,4 +1,5 @@
 import FeedbackContent from './FeedbackContent';
+import { buildAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -8,6 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: isNl
       ? "Deel je feedback over de bijlesdiensten van Stephen's Privélessen."
       : "Share your feedback about Stephen's Private Tutoring services.",
+    alternates: buildAlternates(locale, '/feedback'),
   };
 }
 
