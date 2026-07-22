@@ -1,4 +1,5 @@
 import Voorwaarden from "@/components/Voorwaarden"
+import { buildAlternates } from "@/lib/seo"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -10,6 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: isNl
       ? "Voorwaarden en werkwijze voor bijlessen bij Stephen's Privélessen"
       : "Terms and conditions for tutoring with Stephen's Private Tutoring",
+    alternates: buildAlternates(locale, '/voorwaarden'),
   }
 }
 

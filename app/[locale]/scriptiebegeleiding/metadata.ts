@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { buildAlternates } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -53,13 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         : 'Professional thesis supervision focused on statistics and methodology. Personal approach for students.',
       images: [`/api/og?title=${encodeURIComponent(isNl ? "Scriptie Hulp A'dam" : "Thesis Help A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Start Scriptie" : "Start Thesis")}&footerText=${encodeURIComponent(isNl ? "Thesis & Methodologie" : "Thesis & Methodology")}&featureImageUrl=/images/thesis-supervision.jpg`],
     },
-    alternates: {
-      canonical: '/scriptiebegeleiding',
-      languages: {
-        'nl-NL': '/scriptiebegeleiding',
-        'en-US': '/thesis-supervision',
-      },
-    },
+    alternates: buildAlternates(locale, '/scriptiebegeleiding'),
   };
 }
 

@@ -1,4 +1,5 @@
 // app/contact/page.tsx
+import { buildAlternates } from '@/lib/seo';
 import React from 'react';
 import Contact from '@/components/contact/Contact';
 
@@ -50,13 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         : "Get in touch for professional tutoring and guidance in Amsterdam.",
       images: [`/api/og?title=${encodeURIComponent("Contact A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Neem Contact Op" : "Get in Touch")}&footerText=${encodeURIComponent(isNl ? "Wiskunde, Statistiek & Meer" : "Maths, Statistics & More")}&featureImageUrl=/images/contact-banner.jpg`],
     },
-    alternates: {
-      canonical: '/contact',
-      languages: {
-        'nl-NL': '/contact',
-        'en-US': '/contact',
-      },
-    },
+    alternates: buildAlternates(locale, '/contact'),
   };
 }
 

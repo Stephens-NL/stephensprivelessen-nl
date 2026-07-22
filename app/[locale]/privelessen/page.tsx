@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import { JsonLd } from '@/components/JsonLd';
 import { TutoringPage } from '@/components/privelessen/TutoringPage';
 import { generateStructuredData } from '@/lib/structured-data';
@@ -44,13 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         },
       ],
     },
-    alternates: {
-      canonical: '/privelessen',
-      languages: {
-        'nl-NL': '/privelessen',
-        'en-US': '/privelessen',
-      },
-    },
+    alternates: buildAlternates(locale, '/privelessen'),
   };
 }
 
