@@ -68,13 +68,6 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
       apple: [{url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png'}],
     },
     manifest: '/favicon/site.webmanifest',
-    alternates: {
-      canonical: isNl ? '/' : '/en',
-      languages: {
-        'nl-NL': '/',
-        'en-US': '/en',
-      },
-    },
     openGraph: {
       type: 'website' as const,
       locale: isNl ? 'nl_NL' : 'en_US',

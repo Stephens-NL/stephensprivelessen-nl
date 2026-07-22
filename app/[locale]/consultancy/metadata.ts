@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { buildAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -68,13 +69,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'max-snippet': -1,
       },
     },
-    alternates: {
-      canonical: '/consultancy',
-      languages: {
-        'nl-NL': '/consultancy',
-        'en-US': '/consulting',
-      },
-    },
+    alternates: buildAlternates(locale, '/consultancy'),
   };
 }
 

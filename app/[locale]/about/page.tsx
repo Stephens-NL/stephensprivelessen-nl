@@ -1,4 +1,5 @@
 import About from '@/components/About'
+import { buildAlternates } from '@/lib/seo'
 import React from 'react'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -50,13 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         : "Discover my vision on education and personal tutoring.",
       images: [`/api/og?title=${encodeURIComponent(isNl ? "Over Mij A'dam" : "About Me A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Lees Meer" : "Read More")}&footerText=${encodeURIComponent(isNl ? "Mijn Visie & Aanpak" : "My Vision & Approach")}&featureImageUrl=/images/about-banner.jpg`],
     },
-    alternates: {
-      canonical: '/about',
-      languages: {
-        'nl-NL': '/about',
-        'en-US': '/about',
-      },
-    },
+    alternates: buildAlternates(locale, '/about'),
   };
 }
 

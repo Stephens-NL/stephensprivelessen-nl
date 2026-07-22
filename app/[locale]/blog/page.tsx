@@ -1,4 +1,5 @@
 // app/blog/page.tsx
+import { buildAlternates } from '@/lib/seo';
 import { BlogList } from '@/components/Blog';
 import React from 'react';
 
@@ -51,13 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         : "Articles on mathematics, statistics and academic skills.",
       images: [`/api/og?title=${encodeURIComponent("Blog A'dam")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Lees Artikelen" : "Read Articles")}&footerText=${encodeURIComponent(isNl ? "Wiskunde, Statistiek & Tips" : "Maths, Statistics & Tips")}&featureImageUrl=/images/blog-banner.jpg`],
     },
-    alternates: {
-      canonical: '/blog',
-      languages: {
-        'nl-NL': '/blog',
-        'en-US': '/blog',
-      },
-    },
+    alternates: buildAlternates(locale, '/blog'),
   };
 }
 

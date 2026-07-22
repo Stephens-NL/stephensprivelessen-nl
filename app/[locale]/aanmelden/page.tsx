@@ -1,4 +1,5 @@
 // app/[locale]/aanmelden/page.tsx
+import { buildAlternates } from '@/lib/seo';
 // Shareable self-registration link: opens the intake wizard straight at the
 // lesson-request flow (skips the info-vs-lesson InitialChoice split). Reuses the
 // contact wizard, so submissions flow through the same /api/contact -> /api/intake
@@ -53,13 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description,
       images: [ogImage],
     },
-    alternates: {
-      canonical: '/aanmelden',
-      languages: {
-        'nl-NL': '/aanmelden',
-        'en-US': '/aanmelden',
-      },
-    },
+    alternates: buildAlternates(locale, '/aanmelden'),
   };
 }
 
