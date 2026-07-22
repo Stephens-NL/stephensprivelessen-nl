@@ -8,6 +8,25 @@
     ],
     "altText": "Stephen Adei — founder of Stephen's Private Lessons"
   },
+  "subjectsPalette": {
+    "eyebrow": "One teacher, the whole spectrum",
+    "title": "The full subject palette",
+    "subline": "Pick your level — and see exactly your subjects.",
+    "anchor": "Mathematics (UvA) · fully-licensed teacher",
+    "searchPlaceholder": "Search your subject… (e.g. statistics, calculus, SPSS)",
+    "searchLabel": "Search a subject",
+    "selectorLabel": "Choose education level",
+    "hint": "↑ Pick a level or search your subject — the grids morph along.",
+    "empty": "No subject found — but do ask; chances are I can still help. 📲",
+    "hoNote": "Click your field of study → subsections open with the exact course names from the course catalogue (UvA · VU · Leiden · UU · EUR and others). Don't see your subject? Good chance I can still help — just send a message.",
+    "webnote": "+ web development:",
+    "levels": {
+      "basis": { "label": "Primary school", "lv": "groep 3–8" },
+      "vo": { "label": "Secondary", "lv": "vmbo·havo·vwo" },
+      "ho": { "label": "Higher education", "lv": "hbo·wo" },
+      "prog": { "label": "Programming", "lv": "Python·R" }
+    }
+  },
   "philosophyTitle": "My Philosophy",
   "philosophyPoints": [
     {
