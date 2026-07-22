@@ -1,3 +1,4 @@
+import { buildAlternates } from '@/lib/seo';
 import Hero from '@/components/Hero';
 import ServicesShort from '@/components/ServicesShort';
 import InternalLinks from '@/components/InternalLinks';
@@ -11,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: isNl
       ? "Professionele bijles in Amsterdam. Wiskunde, statistiek, programmeren. Online of op locatie. Van €75/uur."
       : "Professional tutoring in Amsterdam. Mathematics, statistics, programming. Online or on-site. From €75/hr.",
+    alternates: buildAlternates(locale, '/'),
   };
 }
 

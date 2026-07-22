@@ -1,9 +1,14 @@
 import { Metadata } from 'next';
 import { AantekeningenContent } from './AantekeningenContent';
+import { buildAlternates } from '@/lib/seo';
 
-type Props = { searchParams: Promise<{ student?: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ student?: string }>;
+};
 
-export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
+  const { locale } = await params;
   const { student } = await searchParams;
   const studentName = student ?? null;
   const title = studentName
@@ -20,6 +25,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
   return {
     title,
     description,
+    alternates: buildAlternates(locale, '/aantekeningen'),
     openGraph: {
       type: 'website',
       url,

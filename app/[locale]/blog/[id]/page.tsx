@@ -1,4 +1,5 @@
 // app/blog/[id]/page.tsx
+import { buildAlternates } from '@/lib/seo';
 import { Metadata } from 'next';
 import BlogPostComponent from '@/components/BlogPostComponent';
 import { blogPosts } from '@/data/blog';
@@ -36,9 +37,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
     title: post.title[language],
     description: ogDescription,
-    alternates: {
-      canonical: pageUrl,
-    },
+    alternates: buildAlternates(params.locale, `/blog/${post.id}`),
     openGraph: {
       title: ogTitle,
       description: ogDescription,
