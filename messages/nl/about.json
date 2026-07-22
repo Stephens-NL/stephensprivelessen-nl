@@ -21,10 +21,10 @@
     "hoNote": "Klik je studierichting → subsecties open voor de exacte vaknamen uit de studiegids (UvA · VU · Leiden · UU · EUR e.a.). Staat jouw vak er niet bij? Grote kans dat ik het tóch kan — even appen.",
     "webnote": "+ webontwikkeling:",
     "levels": {
-      "basis": { "label": "Basisschool", "lv": "" },
+      "basis": { "label": "Basisschool", "lv": "groep 3–8" },
       "vo": { "label": "Voortgezet", "lv": "vmbo·havo·vwo" },
       "ho": { "label": "Hoger onderwijs", "lv": "hbo·wo" },
-      "prog": { "label": "Programmeren", "lv": "" }
+      "prog": { "label": "Programmeren", "lv": "Python·R" }
     }
   },
   "philosophyTitle": "Mijn Filosofie",
