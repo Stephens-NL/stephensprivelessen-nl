@@ -32,7 +32,7 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
                     onClick={onChooseInfo}
                 >
                     <FaInfoCircle className="text-3xl mb-4 text-amber" />
-                    <h3 className="text-lg font-semibold mb-2">
+                    <h3 className="text-lg font-semibold mb-2 text-amber">
                         {t('form.moreInformation')}
                     </h3>
                     <p className="text-sm text-center text-on-dark-muted">
@@ -47,7 +47,7 @@ const InitialChoice = ({ onChooseInfo, onChooseLesson }: InitialChoiceProps) => 
                     onClick={onChooseLesson}
                 >
                     <FaCalendarCheck className="text-3xl mb-4 text-amber" />
-                    <h3 className="text-lg font-semibold mb-2">
+                    <h3 className="text-lg font-semibold mb-2 text-amber">
                         {t('form.scheduleTrialLesson')}
                     </h3>
                     <p className="text-sm text-center text-on-dark-muted">

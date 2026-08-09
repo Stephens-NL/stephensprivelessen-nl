@@ -56,13 +56,13 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 >
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaBook className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-[var(--amber)]">
                             {t('form.availableSubjects')}
                         </h3>
                     </div>
                     <div className="text-[var(--cream)] space-y-4">
                         <div>
-                            <h4 className="font-semibold mb-2">{t('form.primaryEducation')}</h4>
+                            <h4 className="font-semibold mb-2 text-[var(--amber)]">{t('form.primaryEducation')}</h4>
                             <ul className="list-disc list-inside pl-4">
                                 {courses.primary.map((course) => (
                                     <li key={course}>{course}</li>
@@ -70,7 +70,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="font-semibold mb-2">{t('form.secondaryEducation')}</h4>
+                            <h4 className="font-semibold mb-2 text-[var(--amber)]">{t('form.secondaryEducation')}</h4>
                             <ul className="list-disc list-inside pl-4">
                                 {courses.secondary.map((course) => (
                                     <li key={course}>{course}</li>
@@ -78,7 +78,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="font-semibold mb-2">{t('form.higherEducation')}</h4>
+                            <h4 className="font-semibold mb-2 text-[var(--amber)]">{t('form.higherEducation')}</h4>
                             <ul className="list-disc list-inside pl-4">
                                 {courses.higher.map((course) => (
                                     <li key={course}>{course}</li>
@@ -86,7 +86,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="font-semibold mb-2">{t('form.programming')}</h4>
+                            <h4 className="font-semibold mb-2 text-[var(--amber)]">{t('form.programming')}</h4>
                             <p className="mb-2">{t('form.variousProgrammingLanguagesAndTechnologiesIncludin')}</p>
                             <div className="flex flex-wrap gap-2">
                                 {courses.programming.map((lang) => (
@@ -107,7 +107,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 >
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaGraduationCap className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-[var(--amber)]">
                             {t('form.teachingMethod')}
                         </h3>
                     </div>
@@ -124,7 +124,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 >
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaClock className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-[var(--amber)]">
                             {t('form.lessonStructure')}
                         </h3>
                     </div>
@@ -141,7 +141,7 @@ const InfoSection = ({ onBack, onRequestLesson }: InfoSectionProps) => {
                 >
                     <div className="flex items-center text-[var(--amber)] mb-3">
                         <FaEuroSign className="text-2xl mr-3" />
-                        <h3 className="text-lg font-semibold">
+                        <h3 className="text-lg font-semibold text-[var(--amber)]">
                             {t('form.pricing')}
                         </h3>
                     </div>
