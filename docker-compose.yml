@@ -5,6 +5,11 @@ services:
     restart: unless-stopped
     ports:
       - "4302:4302"
+    # TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID for the contact-form lead alert.
+    # Without them app/api/contact/route.ts returns ok:true with notified:false —
+    # the student sees success and no lead notification is sent anywhere.
+    env_file:
+      - .env
     environment:
       - NODE_ENV=production
       - PORT=4302
