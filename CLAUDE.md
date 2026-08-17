@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+**Laatst geverifieerd:** 2026-08-17
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## What This Is
@@ -87,6 +89,10 @@ Components may still use either pattern. When modifying text, check which system
 - `lib/og-image.tsx` — dynamic OG image generation
 - `i18n/routing.ts` — locale routing config
 - `i18n/config.ts` — locale definitions (`nl`, `en`)
+- `testsprite_tests/` — TestSprite scratch output (`tmp/` only). Generated, not a suite
+  to run or maintain; the real tests are Jest (`npm test`, see Testing below).
+
+There is no `type-check` script in this repo — run `npx tsc --noEmit` directly.
 
 ## Deployment
 
