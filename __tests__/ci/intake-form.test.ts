@@ -4,28 +4,40 @@ import path from 'path';
 const PROJECT_ROOT = path.resolve(__dirname, '../..');
 
 describe('Intake form configuration', () => {
-  test('submit-form API route exists and posts to Platform API', () => {
-    const routePath = path.join(PROJECT_ROOT, 'app/api/submit-form/route.ts');
+  // These three used to assert app/api/submit-form/route.ts, which POSTed to
+  // PLATFORM_API_URL/api/intake. Nothing has listened on that port since the CRM
+  // POST was retired, the route had zero callers, and the assertions were what
+  // kept the dead design and its dead env var in place. The live path is
+  // /api/contact recording into the portaal; that is what these now pin.
+  test('contact route records the lead in the portaal', () => {
+    const routePath = path.join(PROJECT_ROOT, 'app/api/contact/route.ts');
     expect(fs.existsSync(routePath)).toBe(true);
 
     const content = fs.readFileSync(routePath, 'utf-8');
-    // Should POST to Platform API, not Google Script
-    expect(content).toContain('PLATFORM_API_URL');
-    expect(content).toContain('/api/intake');
+    expect(content).toContain('PORTAAL_INTERNAL_URL');
+    expect(content).toContain('/api/intake/submit-internal');
+    expect(content).toContain('x-internal-key');
+    // The dead path must not come back.
+    expect(content).not.toContain('PLATFORM_API_URL');
     expect(content).not.toContain('GOOGLE_SCRIPT_URL');
   });
 
-  test('submit-form sends required fields (studentName, email)', () => {
-    const routePath = path.join(PROJECT_ROOT, 'app/api/submit-form/route.ts');
-    const content = fs.readFileSync(routePath, 'utf-8');
+  test('the lead payload carries the fields the intake table requires', () => {
+    const mapperPath = path.join(PROJECT_ROOT, 'lib/intake-payload.ts');
+    const content = fs.readFileSync(mapperPath, 'utf-8');
     expect(content).toContain('studentName');
     expect(content).toContain('email');
+    // source is the portaal's to set — the review poller filters on it.
+    expect(content).not.toMatch(/^\s*source:/m);
   });
 
-  test('PLATFORM_API_URL is configured in docker-compose', () => {
+  test('PORTAAL_INTERNAL_URL is configured in docker-compose, on the portaal network', () => {
     const composePath = path.join(PROJECT_ROOT, 'docker-compose.yml');
     const content = fs.readFileSync(composePath, 'utf-8');
-    expect(content).toContain('PLATFORM_API_URL');
+    expect(content).toContain('PORTAAL_INTERNAL_URL');
+    // Without joining data-network the hostname above does not resolve at all.
+    expect(content).toContain('data-network');
+    expect(content).not.toContain('PLATFORM_API_URL');
   });
 
   test('InitialChoice has no Coming Soon badge', () => {
