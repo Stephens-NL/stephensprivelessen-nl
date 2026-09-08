@@ -6,6 +6,7 @@
  */
 
 import { FormData } from '@/components/contact/Contact';
+import { intakePayload } from '@/lib/intake-payload';
 
 // ---- Form Data Validation Tests ----
 
@@ -150,66 +151,83 @@ describe('Contact Form - Step Navigation', () => {
 
 // ---- API Route Tests ----
 
+// These four used to read app/api/submit-form/route.ts and assert it contained
+// certain strings. That route POSTed to the long-dead platform-api:8082, had no
+// callers, and is gone; the mapping is now lib/intake-payload.ts, so these check
+// the object it actually returns rather than grepping source text.
 describe('Contact Form - API Integration', () => {
-  test('submit-form route maps form fields correctly', async () => {
-    // Read the route file and verify field mapping
-    const fs = require('fs');
-    const path = require('path');
-    const routeContent = fs.readFileSync(
-      path.join(process.cwd(), 'app/api/submit-form/route.ts'),
-      'utf-8'
-    );
+  const formData: FormData = {
+    name: 'Test Student',
+    email: 'test@example.com',
+    age: 20,
+    level: 'university',
+    subject: 'wiskunde',
+    goals: 'Improve my math skills for the upcoming exam',
+    preferredDays: ['monday', 'wednesday'],
+    preferredTimes: ['17:00'],
+    isOnline: true,
+    unavailableDays: [],
+    contactPreference: null,
+    submitted: false,
+    requestType: 'self',
+  };
 
-    // Required Platform API fields must be mapped
-    expect(routeContent).toContain('studentName');
-    expect(routeContent).toContain('email');
-    expect(routeContent).toContain('phone');
-    expect(routeContent).toContain('age');
-    expect(routeContent).toContain('educationLevel');
-    expect(routeContent).toContain('subject');
-    expect(routeContent).toContain('goals');
-    expect(routeContent).toContain('preferredDays');
-    expect(routeContent).toContain('preferredTimes');
-    expect(routeContent).toContain('location');
-    expect(routeContent).toContain('locale');
+  test('the lead payload maps form fields onto the intake columns', () => {
+    const p = intakePayload(formData);
+    expect(p.studentName).toBe('Test Student');
+    expect(p.email).toBe('test@example.com');
+    expect(p.age).toBe(20);
+    expect(p.educationLevel).toBe('university');
+    expect(p.subject).toBe('wiskunde');
+    expect(p.goals).toBe('Improve my math skills for the upcoming exam');
+    expect(p.preferredDays).toEqual(['monday', 'wednesday']);
+    expect(p.preferredTimes).toEqual(['17:00']);
+    expect(p.location).toBe('online');
+    // Known gaps, both intentional: the form collects no student phone, and no
+    // locale, so intake_submissions keeps null / the portaal's 'nl' default.
+    expect(p.phone).toBeUndefined();
+    expect(p.locale).toBeUndefined();
   });
 
-  test('submit-form handles parent info for minors', async () => {
-    const fs = require('fs');
-    const path = require('path');
-    const routeContent = fs.readFileSync(
-      path.join(process.cwd(), 'app/api/submit-form/route.ts'),
-      'utf-8'
-    );
-
-    expect(routeContent).toContain('parentName');
-    expect(routeContent).toContain('parentEmail');
-    expect(routeContent).toContain('parentPhone');
+  test('the lead payload carries parent info for minors', () => {
+    const p = intakePayload({
+      ...formData,
+      age: 16,
+      parentName: 'Test Parent',
+      parentEmail: 'parent@example.com',
+      parentPhone: '+31612345678',
+    });
+    expect(p.parentName).toBe('Test Parent');
+    expect(p.parentEmail).toBe('parent@example.com');
+    expect(p.parentPhone).toBe('+31612345678');
   });
 
-  test('submit-form handles third-party requests', async () => {
-    const fs = require('fs');
-    const path = require('path');
-    const routeContent = fs.readFileSync(
-      path.join(process.cwd(), 'app/api/submit-form/route.ts'),
-      'utf-8'
-    );
-
-    expect(routeContent).toContain('requesterName');
-    expect(routeContent).toContain('requesterEmail');
-    expect(routeContent).toContain('requestType');
+  test('the lead payload carries third-party requester info', () => {
+    const p = intakePayload({
+      ...formData,
+      requestType: 'other',
+      requesterName: 'Test Requester',
+      requesterEmail: 'requester@example.com',
+      relationship: 'docent',
+    });
+    expect(p.requestType).toBe('other');
+    expect(p.requesterName).toBe('Test Requester');
+    expect(p.requesterEmail).toBe('requester@example.com');
+    // relationship has no column of its own, so it lands in notes.
+    expect(p.notes).toContain('docent');
   });
 
-  test('submit-form sends to Platform API, not Google Script', async () => {
+  test('the contact route records to the portaal, not the retired Platform API', () => {
     const fs = require('fs');
     const path = require('path');
     const routeContent = fs.readFileSync(
-      path.join(process.cwd(), 'app/api/submit-form/route.ts'),
+      path.join(process.cwd(), 'app/api/contact/route.ts'),
       'utf-8'
     );
 
-    expect(routeContent).toContain('PLATFORM_API_URL');
-    expect(routeContent).toContain('/api/intake');
+    expect(routeContent).toContain('PORTAAL_INTERNAL_URL');
+    expect(routeContent).toContain('/api/intake/submit-internal');
+    expect(routeContent).not.toContain('PLATFORM_API_URL');
     expect(routeContent).not.toContain('GOOGLE_SCRIPT_URL');
   });
 });
