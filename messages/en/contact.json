@@ -222,6 +222,7 @@
     "selectLevel": "Select level",
     "university": "University",
     "schedulePreferences": "Schedule Preferences",
+    "teachingWindow": "Lessons run Monday to Thursday, 17:00-21:00.",
     "preferredDays": "Preferred Days",
     "pleaseSelectAtLeastOnePreferredDay": "Please select at least one preferred day",
     "preferredTimes": "Preferred Times",
