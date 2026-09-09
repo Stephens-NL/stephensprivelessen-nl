@@ -21,6 +21,7 @@ export function intakePayload(formData: FormData): Record<string, unknown> {
     return {
         studentName: formData.name,
         email: formData.email,
+        phone: formData.phone,
         age: formData.age,
         educationLevel: formData.level,
         subject: formData.subject,

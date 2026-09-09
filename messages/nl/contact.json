@@ -201,6 +201,8 @@
     "submit": "Versturen",
     "next": "Volgende",
     "phoneNumber": "Telefoonnummer",
+    "whatsappNumber": "WhatsApp-nummer",
+    "whatsappNumberHint": "Hierop antwoordt Stephen — lesafspraken en korte vragen gaan via WhatsApp.",
     "sinceYouAreUnder18ThisFormNeedsToBeFilledOutByAPar": "Omdat je jonger bent dan 18, moet dit formulier door een ouder of voogd worden ingevuld.",
     "parentguardianInformation": "Ouder/Voogd Gegevens",
     "parentguardianName": "Naam Ouder/Voogd",

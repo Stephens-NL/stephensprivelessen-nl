@@ -41,17 +41,25 @@ export function PhoneInput({
   value,
   onChange,
   error,
+  label,
+  hint,
+  required = true,
 }: {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error: string | null;
+  /** Defaults to form.phoneNumber — the student's field overrides it to say WhatsApp. */
+  label?: string;
+  /** Small line under the field, e.g. why the number is wanted. */
+  hint?: string;
+  required?: boolean;
 }) {
   const language = useLanguage();
     const t = useTranslations('contact');
   return (
     <div>
       <label className="block text-[var(--amber)] mb-2">
-        {t('form.phoneNumber')} *
+        {label ?? t('form.phoneNumber')} {required ? '*' : ''}
       </label>
       <input
         type="tel"
@@ -61,8 +69,9 @@ export function PhoneInput({
         className={`w-full p-3 rounded-lg bg-[var(--ink-light)] text-white border ${
           error ? 'border-destructive' : 'border-[var(--ink-light)]'
         } focus:border-[var(--amber)] focus:outline-none`}
-        required
+        required={required}
       />
+      {hint && <p className="mt-1.5 text-white/70 text-sm">{hint}</p>}
       {error && (
         <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 text-destructive text-sm">
           {error}
