@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { FormData } from '@/components/contact/Contact';
+import { intakePayload } from '@/lib/intake-payload';
 import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
@@ -75,14 +76,46 @@ export async function POST(request: NextRequest) {
         console.error('Contact form email notification failed (non-fatal):', error);
     }
 
-    // Best-effort Telegram notification — the primary lead alert (email is off in
-    // prod). Reuses the vps-bot's TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID (set on the
-    // container). Plain text, no parse_mode, so user-supplied fields can't break
-    // the message; 5s timeout so a slow Telegram never stalls the student's success.
+    // Record the lead where something durable can act on it. The portaal owns the
+    // write (ADR-0007 scoped write-policy) behind the same x-internal-key gate
+    // vps-bot already uses for onboarding links; once the row exists, vps-bot's
+    // crm_web_intake_review job picks it up within 5 minutes and sends a review
+    // card whose Accept button mints the onboarding magic-link.
+    //
+    // This is what was missing: for ~2 years a submission produced an email that
+    // never sent and a chat message with no buttons, and no row anywhere —
+    // intake_submissions had zero rows the day this was wired. Best-effort like
+    // the rest: a portaal outage must never turn the form into a dead end.
+    let recorded = false;
+    const portaalUrl = process.env.PORTAAL_INTERNAL_URL;
+    const internalKey = process.env.INTERNAL_API_KEY;
+    if (portaalUrl && internalKey) {
+        try {
+            const res = await fetch(`${portaalUrl}/api/intake/submit-internal`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'x-internal-key': internalKey },
+                body: JSON.stringify(intakePayload(formData)),
+                signal: AbortSignal.timeout(5000),
+            });
+            recorded = res.ok;
+            if (!res.ok) {
+                console.error('Contact form intake record failed (non-fatal):', res.status, await res.text());
+            }
+        } catch (error) {
+            console.error('Contact form intake record error (non-fatal):', error);
+        }
+    }
+
+    // Fallback lead alert, only when the lead did NOT get recorded. On the happy
+    // path the review card from vps-bot is the notification — sending this too
+    // would ping twice for one lead. This fires when the portaal is unreachable,
+    // so a failed record is still never a silent one.
+    // Plain text, no parse_mode, so user-supplied fields can't break the message;
+    // 5s timeout so a slow Telegram never stalls the student's success.
     let notified = false;
     const tgToken = process.env.TELEGRAM_BOT_TOKEN;
     const tgChat = process.env.TELEGRAM_CHAT_ID;
-    if (tgToken && tgChat) {
+    if (!recorded && tgToken && tgChat) {
         try {
             const prefs = [...(formData.preferredDays || []), ...(formData.preferredTimes || [])].join(', ');
             const text = [
@@ -112,7 +145,7 @@ export async function POST(request: NextRequest) {
         }
     }
 
-    return NextResponse.json({ ok: true, delivered, notified }, { status: 200 });
+    return NextResponse.json({ ok: true, delivered, notified, recorded }, { status: 200 });
 }
 
 // Handle unsupported methods

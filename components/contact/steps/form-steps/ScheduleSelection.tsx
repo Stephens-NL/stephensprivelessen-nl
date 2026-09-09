@@ -13,29 +13,19 @@ interface ScheduleSelectionProps {
     onUpdate: (updates: Partial<FormData>) => void;
 }
 
+// Teaching window: Monday-Thursday, 17:00-21:00. Offering anything outside it
+// produces a lead whose stated preference can never be met — a request for 12:00
+// on 2026-09-08 is what surfaced this. Keep these two lists and the
+// `form.teachingWindow` string in messages/{nl,en}/contact.json in step.
 const weekDays = [
     { value: 'monday', labelEN: 'Monday', labelNL: 'Maandag' },
     { value: 'tuesday', labelEN: 'Tuesday', labelNL: 'Dinsdag' },
     { value: 'wednesday', labelEN: 'Wednesday', labelNL: 'Woensdag' },
     { value: 'thursday', labelEN: 'Thursday', labelNL: 'Donderdag' },
-    { value: 'friday', labelEN: 'Friday', labelNL: 'Vrijdag' },
 ];
 
-const timeSlots = [
-    { value: '12:00', label: '12:00' },
-    { value: '12:30', label: '12:30' },
-    { value: '13:00', label: '13:00' },
-    { value: '13:30', label: '13:30' },
-    { value: '14:00', label: '14:00' },
-    { value: '14:30', label: '14:30' },
-    { value: '15:00', label: '15:00' },
-    { value: '15:30', label: '15:30' },
-    { value: '16:00', label: '16:00' },
-    { value: '16:30', label: '16:30' },
-    { value: '17:00', label: '17:00' },
-    { value: '17:30', label: '17:30' },
-    { value: '18:00', label: '18:00' },
-];
+// START times, so the last is 20:00 — an hour beginning then still ends at 21:00.
+const timeSlots = ['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
 
 const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
     const language = useLanguage();
@@ -70,9 +60,13 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
             exit={{ opacity: 0 }}
             className="space-y-8"
         >
-            <h2 className="text-2xl font-semibold text-[var(--amber)] mb-4">
+            <h2 className="text-2xl font-semibold text-[var(--amber)] mb-2">
                 {t('form.schedulePreferences')}
             </h2>
+            {/* Stated, not just enforced by the options: someone who needs a
+                daytime slot should be able to see that before filling the form
+                in, rather than asking for one and being turned down later. */}
+            <p className="text-on-dark/80 text-sm mb-4">{t('form.teachingWindow')}</p>
 
             <div className="space-y-6">
                 <div>
@@ -112,17 +106,17 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
                         {timeSlots.map((time) => (
                             <m.button
-                                key={time.value}
+                                key={time}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 className={`p-3 rounded-lg border-2 transition-colors ${
-                                    formData.preferredTimes.includes(time.value)
+                                    formData.preferredTimes.includes(time)
                                         ? 'bg-[var(--amber)] text-[var(--ink)] border-[var(--amber)]'
                                         : 'bg-[var(--ink-light)] text-on-dark border-[var(--ink-light)] hover:border-[var(--amber)]'
                                 }`}
-                                onClick={() => toggleTime(time.value)}
+                                onClick={() => toggleTime(time)}
                             >
-                                {time.label}
+                                {time}
                             </m.button>
                         ))}
                     </div>
