@@ -201,6 +201,8 @@
     "submit": "Submit",
     "next": "Next",
     "phoneNumber": "Phone Number",
+    "whatsappNumber": "WhatsApp number",
+    "whatsappNumberHint": "This is how Stephen replies — lesson arrangements and quick questions run over WhatsApp.",
     "sinceYouAreUnder18ThisFormNeedsToBeFilledOutByAPar": "Since you are under 18, this form needs to be filled out by a parent or guardian.",
     "parentguardianInformation": "Parent/Guardian Information",
     "parentguardianName": "Parent/Guardian Name",

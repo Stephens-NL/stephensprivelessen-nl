@@ -30,6 +30,8 @@ export interface FormData {
     isOnline: boolean;
     unavailableDays: string[];
     email: string;
+    /** Student's own number — asked for as a WhatsApp number, see StudentForm. */
+    phone?: string;
     age: number;
     contactPreference: 'student' | 'parent' | 'both' | null;
     parentName?: string;
@@ -58,6 +60,7 @@ const initialFormData: FormData = {
     contactPreference: null,
     parentName: '',
     parentEmail: '',
+    phone: '',
     parentPhone: '',
     submitted: false,
     error: undefined,
