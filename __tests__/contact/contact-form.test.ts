@@ -159,6 +159,7 @@ describe('Contact Form - API Integration', () => {
   const formData: FormData = {
     name: 'Test Student',
     email: 'test@example.com',
+    phone: '+31612345678',
     age: 20,
     level: 'university',
     subject: 'wiskunde',
@@ -183,9 +184,12 @@ describe('Contact Form - API Integration', () => {
     expect(p.preferredDays).toEqual(['monday', 'wednesday']);
     expect(p.preferredTimes).toEqual(['17:00']);
     expect(p.location).toBe('online');
-    // Known gaps, both intentional: the form collects no student phone, and no
-    // locale, so intake_submissions keeps null / the portaal's 'nl' default.
-    expect(p.phone).toBeUndefined();
+    // The form now asks for the student's own number, as a WhatsApp number —
+    // WhatsApp is the reply channel, and leaving it uncollected meant having a
+    // number depended on the student tapping the voluntary button on the
+    // thank-you screen. Locale is still not collected, so the portaal defaults
+    // it to 'nl'.
+    expect(p.phone).toBe('+31612345678');
     expect(p.locale).toBeUndefined();
   });
 
