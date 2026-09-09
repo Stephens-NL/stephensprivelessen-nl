@@ -3,19 +3,23 @@
 import { m } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
-import { EmailInput } from './ContactInputs';
+import { EmailInput, PhoneInput } from './ContactInputs';
 
 export function StudentForm({
   formData,
   onUpdate,
   emailError,
   onEmailChange,
+  phoneError,
+  onPhoneChange,
   isFieldComplete,
 }: {
-  formData: { name: string; email?: string; level?: string };
-  onUpdate: (updates: Partial<{ name?: string; email?: string; level?: string }>) => void;
+  formData: { name: string; email?: string; phone?: string; level?: string };
+  onUpdate: (updates: Partial<{ name?: string; email?: string; phone?: string; level?: string }>) => void;
   emailError: string | null;
   onEmailChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  phoneError: string | null;
+  onPhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isFieldComplete: (v: unknown) => boolean;
 }) {
   const language = useLanguage();
@@ -51,6 +55,17 @@ export function StudentForm({
           </m.div>
         )}
         {isFieldComplete(formData.email) && (
+          <m.div {...fadeInUp}>
+            <PhoneInput
+              value={formData.phone || ''}
+              onChange={onPhoneChange}
+              error={phoneError}
+              label={t('form.whatsappNumber')}
+              hint={t('form.whatsappNumberHint')}
+            />
+          </m.div>
+        )}
+        {isFieldComplete(formData.phone) && (
           <m.div {...fadeInUp}>
             <label className="block text-[var(--amber)] mb-2">
               {t('form.level')} *

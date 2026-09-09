@@ -23,6 +23,7 @@ type DetailsState = {
   emailError: string | null;
   parentEmailError: string | null;
   phoneError: string | null;
+  studentPhoneError: string | null;
 };
 
 function detailsReducer(state: DetailsState, action: { type: string; payload?: unknown }): DetailsState {
@@ -32,6 +33,7 @@ function detailsReducer(state: DetailsState, action: { type: string; payload?: u
     case 'EMAIL_ERROR': return { ...state, emailError: (action.payload as string | null) ?? null };
     case 'PARENT_EMAIL_ERROR': return { ...state, parentEmailError: (action.payload as string | null) ?? null };
     case 'PHONE_ERROR': return { ...state, phoneError: (action.payload as string | null) ?? null };
+    case 'STUDENT_PHONE_ERROR': return { ...state, studentPhoneError: (action.payload as string | null) ?? null };
     default: return state;
   }
 }
@@ -50,8 +52,9 @@ const PersonalDetails = ({ formData, onUpdate }: PersonalDetailsProps) => {
     emailError: null,
     parentEmailError: null,
     phoneError: null,
+    studentPhoneError: null,
   });
-  const { age, showRequestType, emailError, parentEmailError, phoneError } = state;
+  const { age, showRequestType, emailError, parentEmailError, phoneError, studentPhoneError } = state;
   const isMinor = age < 18;
 
   const handleAgeSubmit = (e?: React.FormEvent) => {
@@ -78,12 +81,17 @@ const PersonalDetails = ({ formData, onUpdate }: PersonalDetailsProps) => {
     }
   };
 
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>, isParent = true) => {
     const phone = e.target.value;
     const error = getPhoneNumberError(phone, t);
     const formattedPhone = formatPhoneNumber(phone);
-    dispatch({ type: 'PHONE_ERROR', payload: error });
-    onUpdate({ parentPhone: formattedPhone });
+    if (isParent) {
+      dispatch({ type: 'PHONE_ERROR', payload: error });
+      onUpdate({ parentPhone: formattedPhone });
+    } else {
+      dispatch({ type: 'STUDENT_PHONE_ERROR', payload: error });
+      onUpdate({ phone: formattedPhone });
+    }
   };
 
   const showStudentForm =
@@ -139,6 +147,8 @@ const PersonalDetails = ({ formData, onUpdate }: PersonalDetailsProps) => {
             onUpdate={onUpdate}
             emailError={emailError}
             onEmailChange={(e) => handleEmailChange(e, false)}
+            phoneError={studentPhoneError}
+            onPhoneChange={(e) => handlePhoneChange(e, false)}
             isFieldComplete={isFieldComplete}
           />
         )}
