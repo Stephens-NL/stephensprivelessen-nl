@@ -5,6 +5,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import React from 'react';
 import { m } from 'framer-motion';
 import { FormData } from '../../Contact';
+import { teachingWindow } from '@/data/business-config.generated';
 
 import { FaClock, FaCalendarAlt, FaBan } from 'react-icons/fa';
 
@@ -13,19 +14,28 @@ interface ScheduleSelectionProps {
     onUpdate: (updates: Partial<FormData>) => void;
 }
 
-// Teaching window: Monday-Thursday, 17:00-21:00. Offering anything outside it
-// produces a lead whose stated preference can never be met — a request for 12:00
-// on 2026-09-08 is what surfaced this. Keep these two lists and the
-// `form.teachingWindow` string in messages/{nl,en}/contact.json in step.
-const weekDays = [
-    { value: 'monday', labelEN: 'Monday', labelNL: 'Maandag' },
-    { value: 'tuesday', labelEN: 'Tuesday', labelNL: 'Dinsdag' },
-    { value: 'wednesday', labelEN: 'Wednesday', labelNL: 'Woensdag' },
-    { value: 'thursday', labelEN: 'Thursday', labelNL: 'Donderdag' },
-];
+// Days and slots come from the canonical business-config (rates.json →
+// policy.teaching_window), vendored into data/ by scripts/sync-business-config.mjs.
+// They used to be typed here, which is how the form ended up offering 12:00 and
+// then 17:00 — both outside the hours Stephen actually teaches.
+const DAY_LABELS: Record<string, { EN: string; NL: string }> = {
+    monday: { EN: 'Monday', NL: 'Maandag' },
+    tuesday: { EN: 'Tuesday', NL: 'Dinsdag' },
+    wednesday: { EN: 'Wednesday', NL: 'Woensdag' },
+    thursday: { EN: 'Thursday', NL: 'Donderdag' },
+    friday: { EN: 'Friday', NL: 'Vrijdag' },
+    saturday: { EN: 'Saturday', NL: 'Zaterdag' },
+    sunday: { EN: 'Sunday', NL: 'Zondag' },
+};
 
-// START times, so the last is 20:00 — an hour beginning then still ends at 21:00.
-const timeSlots = ['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'];
+const weekDays = teachingWindow.days.map((value) => ({
+    value,
+    labelEN: DAY_LABELS[value]?.EN ?? value,
+    labelNL: DAY_LABELS[value]?.NL ?? value,
+}));
+
+// START times — the config's last_start already accounts for lesson length.
+const timeSlots: readonly string[] = teachingWindow.start_times;
 
 const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
     const language = useLanguage();
@@ -66,7 +76,11 @@ const ScheduleSelection = ({ formData, onUpdate }: ScheduleSelectionProps) => {
             {/* Stated, not just enforced by the options: someone who needs a
                 daytime slot should be able to see that before filling the form
                 in, rather than asking for one and being turned down later. */}
-            <p className="text-on-dark/80 text-sm mb-4">{t('form.teachingWindow')}</p>
+            <p className="text-on-dark/80 text-sm mb-4">
+                {t('form.teachingWindow', {
+                    window: isNl ? teachingWindow.display.nl : teachingWindow.display.en,
+                })}
+            </p>
 
             <div className="space-y-6">
                 <div>
