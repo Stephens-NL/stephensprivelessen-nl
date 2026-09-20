@@ -9,19 +9,37 @@ interface OGImageParams {
   featureImageUrl?: string;
 }
 
+function normaliseLabel(value: string | undefined, fallback: string): string {
+  if (!value) return fallback;
+  return value
+    .replace(/https?:\/\//gi, '')
+    .replace(/^www\./i, '')
+    .replace(/stephensprivelessen\.nl/gi, "Stephen's Privélessen")
+    .trim();
+}
+
 export async function generateOGImage(params: OGImageParams) {
   try {
     const {
-      title = "Expert Wiskunde & Statistiek Bijles | Amsterdam", // Default Title
+      title = "Math & Statistics Tutoring Amsterdam",
       brandText = "stephensprivelessen.nl",
-      buttonText = "Lees Meer",
-      footerText = "Persoonlijke Begeleiding op Elk Niveau",
-      // featureImageUrl should be an absolute URL passed from the API route
-      // The API route /api/og/route.tsx is responsible for constructing the absolute URL
-      featureImageUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/images/og-default-banner.jpg`, // Default fallback
+      buttonText = "Bijles",
+      footerText = "Wiskunde · Statistiek · Coaching",
     } = params;
 
-    const fontStack = `Inter, Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif`;
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://stephensprivelessen.nl';
+    const silhouetteUrl = `${siteUrl}/images/brand/silhouette-green.svg`;
+    const displayBrand = normaliseLabel(brandText, "Stephen's Privélessen");
+    const displayFooter = normaliseLabel(footerText, "Lessen · Lenzen · Meer");
+    const displayTag = normaliseLabel(buttonText, "Bijles");
+
+    const displayTitle = title
+      .replace(/\s*\|\s*Stephen's Private Tutoring/gi, '')
+      .replace(/\s*\|\s*Stephen's Privélessen/gi, '')
+      .trim();
+
+    const sans = `Space Grotesk, Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif`;
+    const mono = `IBM Plex Mono, 'SFMono-Regular', Consolas, monospace`;
 
     return new ImageResponse(
       (
@@ -30,97 +48,190 @@ export async function generateOGImage(params: OGImageParams) {
             height: "100%",
             width: "100%",
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#1a202c",
+            backgroundColor: "#f4f0e7",
             position: 'relative',
-            fontFamily: fontStack,
+            fontFamily: sans,
+            color: '#294328',
+            overflow: 'hidden',
           }}
         >
-          <img
-            src={featureImageUrl} 
-            alt="Background Banner"
-            width={1200}
-            height={630}
+          <div
             style={{
               position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%', 
-              height: '100%', 
-              objectFit: 'cover', 
-              zIndex: 0, // Unitless
-              filter: 'brightness(0.6) blur(1px)',
+              inset: 36,
+              border: '2px solid rgba(41, 67, 40, 0.08)',
+              display: 'flex',
             }}
           />
-          <div 
+          <div
             style={{
-              zIndex: 1, // Unitless
-              position: 'relative',
-              display: 'flex', 
-              flexDirection: 'column', 
-              justifyContent: 'center', 
+              position: 'absolute',
+              top: 54,
+              left: 70,
+              right: 70,
+              display: 'flex',
+              justifyContent: 'space-between',
               alignItems: 'center',
-              width: '90%',
-              maxWidth: '1000px',
-              padding: '40px',
-              textAlign: 'center',
-              color: '#ffffff',
+              fontFamily: mono,
+              fontSize: 18,
+              letterSpacing: 8,
+              textTransform: 'uppercase',
+              color: 'rgba(41, 67, 40, 0.48)',
             }}
           >
-            {brandText && (
-              <p style={{ fontSize: '28px', color: '#cbd5e0', margin: '0 0 12px 0', textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
-                {brandText}
-              </p>
-            )}
-            <h1 style={{ 
-              fontSize: '60px', 
-              fontWeight: 800, 
-              margin: '0 0 24px 0', 
-              lineHeight: 1.2,
-              letterSpacing: '-2px',
-              textShadow: '0 3px 6px rgba(0,0,0,0.7)',
-            }}>
-              {title}
-            </h1>
-            {buttonText && (
-              <div // This div acts as the button
-                style={{
-                  display: 'flex', // Use flex to center content if needed, or 'block'
-                  backgroundColor: "#3182ce",
-                  color: "white",
-                  padding: "14px 32px",
-                  borderRadius: "8px",
-                  fontSize: "26px",
-                  fontWeight: 600,
-                  marginTop: '20px',
-                  boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-                  textShadow: '0 1px 2px rgba(0,0,0,0.4)',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                {buttonText}
-              </div>
-            )}
+            <div>{displayBrand}</div>
+            <div>{displayTag}</div>
           </div>
-          {footerText && (
-            <div 
+
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingTop: 18,
+            }}
+          >
+            <img
+              src={silhouetteUrl}
+              alt=""
+              width={224}
+              height={228}
               style={{
-                zIndex: 1, // Unitless
-                position: 'absolute', 
-                bottom: '30px', 
-                width: '100%', 
-                textAlign: 'center', 
-                fontSize: '24px',
-                color: '#a0aec0',
-                textShadow: '0 1px 3px rgba(0,0,0,0.6)',
+                objectFit: 'contain',
+                marginBottom: 28,
+              }}
+            />
+            <div
+              style={{
+                fontSize: 102,
+                fontWeight: 800,
+                lineHeight: 0.92,
+                letterSpacing: 3,
+                textAlign: 'center',
+                color: '#294328',
+                textTransform: 'uppercase',
               }}
             >
-              {footerText}
+              STEPHEN'S
             </div>
-          )}
+            <div
+              style={{
+                marginTop: 16,
+                fontFamily: mono,
+                fontSize: 29,
+                letterSpacing: 18,
+                color: 'rgba(41, 67, 40, 0.64)',
+                textTransform: 'uppercase',
+                textAlign: 'center',
+              }}
+            >
+              PRIVÉLESSEN
+            </div>
+            <div
+              style={{
+                width: 660,
+                height: 1,
+                backgroundColor: 'rgba(41, 67, 40, 0.16)',
+                marginTop: 30,
+                marginBottom: 24,
+              }}
+            />
+            <div
+              style={{
+                maxWidth: 860,
+                fontSize: 34,
+                lineHeight: 1.18,
+                textAlign: 'center',
+                color: '#3f5a32',
+              }}
+            >
+              {displayTitle}
+            </div>
+          </div>
+
+          <div
+            style={{
+              position: 'absolute',
+              left: 70,
+              right: 70,
+              bottom: 54,
+              display: 'flex',
+              justifyContent: 'center',
+              fontFamily: mono,
+              fontSize: 22,
+              letterSpacing: 12,
+              textTransform: 'uppercase',
+              color: 'rgba(41, 67, 40, 0.52)',
+            }}
+          >
+            {displayFooter}
+          </div>
+
+          <div
+            style={{
+              position: 'absolute',
+              right: 58,
+              bottom: 48,
+              width: 14,
+              height: 14,
+              borderRadius: 999,
+              backgroundColor: '#ff8a3d',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              left: 58,
+              top: 48,
+              width: 14,
+              height: 14,
+              borderRadius: 999,
+              backgroundColor: '#ff8a3d',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              left: 58,
+              bottom: 48,
+              width: 66,
+              height: 2,
+              backgroundColor: 'rgba(41, 67, 40, 0.35)',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              right: 58,
+              top: 48,
+              width: 66,
+              height: 2,
+              backgroundColor: 'rgba(41, 67, 40, 0.35)',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              left: 58,
+              bottom: 48,
+              width: 2,
+              height: 66,
+              backgroundColor: 'rgba(41, 67, 40, 0.35)',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              right: 58,
+              top: 48,
+              width: 2,
+              height: 66,
+              backgroundColor: 'rgba(41, 67, 40, 0.35)',
+            }}
+          />
         </div>
       ),
       {
