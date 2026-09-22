@@ -9,6 +9,12 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# NEXT_PUBLIC_* is inlined into the client bundle at build time, so it has to be
+# present HERE, not only in the runtime environment. Passing it only to the
+# container fixed SSR and still threw on hydration, because the browser chunk had
+# `undefined` baked into it.
+ARG NEXT_PUBLIC_AANTEKENINGEN_APP_URL
+ENV NEXT_PUBLIC_AANTEKENINGEN_APP_URL=$NEXT_PUBLIC_AANTEKENINGEN_APP_URL
 RUN npm run build
 
 FROM base AS runner
