@@ -18,6 +18,7 @@ export default function Voorwaarden() {
           <li>• {t("agreement.cancellation")}</li>
           <li>• {t("agreement.surcharge24h")}</li>
           <li>• {t("agreement.surcharge12h")}</li>
+          <li>• {t("agreement.noPartialRefund")}</li>
           <li>• {t("agreement.payment")}</li>
           <li>• {t("agreement.invoice")}</li>
           <li>• {t("agreement.maxHours")}</li>

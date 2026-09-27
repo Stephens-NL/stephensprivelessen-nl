@@ -206,8 +206,9 @@ export const availabilityPolicy = {
 
 export const cancellationPolicy = {
   reschedule: { NL: 'Verzetten kan alleen in overleg en op basis van beschikbaarheid', EN: 'Rescheduling is only possible by arrangement and subject to availability' },
-  notice: { NL: 'Minimaal 24 uur van tevoren doorgeven', EN: 'At least 24 hours notice required' },
-  lateCancel: { NL: 'Bij afmelding binnen 24 uur vervalt de les', EN: 'Cancellation within 24 hours means the lesson is forfeited' },
+  free: { NL: 'Verzetten of annuleren is kosteloos tot 21:00 de avond vóór de les', EN: 'Rescheduling or cancelling is free until 21:00 the evening before the lesson' },
+  sameDayMorning: { NL: 'Op de lesdag zelf vóór 12:00: 50% van het lesbedrag', EN: 'On the lesson day before 12:00: 50% of the lesson fee' },
+  lateOrNoShow: { NL: 'Op de lesdag na 12:00, of niet komen opdagen (no-show): 100% van het lesbedrag', EN: 'On the lesson day after 12:00, or a no-show: 100% of the lesson fee' },
 };
 
 export const paymentPolicy = {
