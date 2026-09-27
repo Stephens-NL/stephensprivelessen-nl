@@ -1,10 +1,10 @@
 // AUTO-GENERATED — do not edit by hand.
-// Source: packages/business-config/rates.json (v2.1.0)
+// Source: packages/business-config/rates.json (v3.0.0)
 // Regenerate: npm run generate:ts  (drift-guarded in CI via src/codegen.test.ts)
 
 export const businessConfig = {
-  "version": "2.1.0",
-  "updated_at": "2026-06-18T06:14:00Z",
+  "version": "3.0.0",
+  "updated_at": "2026-09-27T00:00:00Z",
   "currency": "EUR",
   "policy": {
     "packages_only": true,
@@ -36,6 +36,18 @@ export const businessConfig = {
         "nl": "maandag t/m donderdag, 18:00–21:00",
         "en": "Monday to Thursday, 18:00–21:00"
       }
+    },
+    "group_rates": {
+      "self_formed_only": true,
+      "note": "Groepsprijzen gelden alleen als leerlingen zelf een groepje vormen."
+    },
+    "hbo_wo_group_mode": {
+      "online_requires_device": true,
+      "note": "HBO/WO-groepslessen zijn in-person, tenzij iedereen een iPad of laptop heeft."
+    },
+    "hbo_wo_package_carryover": {
+      "returning_client_only": true,
+      "note": "Een terugkerende HBO/WO-klant mag een pakket van 4 uur kopen en de resterende uren later gebruiken."
     }
   },
   "thresholds": {
@@ -44,26 +56,33 @@ export const businessConfig = {
     "saldo_floor_hours": -2
   },
   "cancellation": {
-    "free_before_hours": 24,
-    "late_before_hours": 4,
-    "window_months": 6,
-    "strikes": [
-      {
-        "level": 1,
-        "action": "coulance",
-        "label": "Coulance — geen gevolg"
-      },
-      {
-        "level": 2,
-        "action": "saldo-aftrek",
-        "label": "Saldo-aftrek"
-      },
-      {
-        "level": 3,
-        "action": "pauze+gesprek",
-        "label": "Pauze + gesprek"
-      }
-    ]
+    "published_terms": {
+      "note": "Het enige annuleringsbeleid dat de klant ziet (alle segmenten, besluit 2026-09-27, ADR-0015). fee_pct is een percentage van het lesbedrag, afgeschreven als lesuren van het pakketsaldo.",
+      "timezone": "Europe/Amsterdam",
+      "reschedule_free_until": "day_before_21:00",
+      "fee_tiers": [
+        {
+          "id": "free",
+          "until": "day_before_21:00",
+          "fee_pct": 0,
+          "label_nl": "Verzetten of annuleren is kosteloos tot 21:00 de avond vóór de les"
+        },
+        {
+          "id": "same_day_before_noon",
+          "until": "lesson_day_12:00",
+          "fee_pct": 50,
+          "label_nl": "Op de lesdag zelf vóór 12:00: 50% van het lesbedrag"
+        },
+        {
+          "id": "same_day_after_noon_or_no_show",
+          "until": null,
+          "fee_pct": 100,
+          "label_nl": "Op de lesdag na 12:00, of niet komen opdagen (no-show): 100% van het lesbedrag"
+        }
+      ],
+      "package_refunds": "none",
+      "lesson_confirmed_after_payment": true
+    }
   },
   "leerling_status": {
     "priority": [

@@ -4,9 +4,10 @@
   "intro": "Hieronder vind je de belangrijkste voorwaarden voor bijlessen bij Stephen's Privélessen. Dit is een samenvatting — het volledige contract ontvang je na de proefles.",
   "agreement": {
     "title": "Lesovereenkomst",
-    "cancellation": "Gratis annuleren tot 24 uur voor de les",
-    "surcharge24h": "Annulering binnen 24 uur: 20% toeslag",
-    "surcharge12h": "Annulering binnen 12 uur: 50% toeslag",
+    "cancellation": "Verzetten of annuleren is kosteloos tot 21:00 de avond vóór de les",
+    "surcharge24h": "Op de lesdag zelf vóór 12:00: 50% van het lesbedrag",
+    "surcharge12h": "Op de lesdag na 12:00, of niet komen opdagen (no-show): 100% van het lesbedrag",
+    "noPartialRefund": "Een pakket wordt nooit gedeeltelijk terugbetaald",
     "payment": "Betaling vooraf via Tikkie",
     "invoice": "Factuur op verzoek beschikbaar",
     "maxHours": "Maximaal 2 uur per week"

@@ -4,9 +4,10 @@
   "intro": "Below you'll find the key terms for tutoring with Stephen's Private Lessons. This is a summary — you'll receive the full contract after your trial lesson.",
   "agreement": {
     "title": "Tutoring Agreement",
-    "cancellation": "Free cancellation up to 24 hours before the lesson",
-    "surcharge24h": "Cancellation within 24 hours: 20% surcharge",
-    "surcharge12h": "Cancellation within 12 hours: 50% surcharge",
+    "cancellation": "Rescheduling or cancelling is free until 21:00 the evening before the lesson",
+    "surcharge24h": "On the lesson day before 12:00: 50% of the lesson fee",
+    "surcharge12h": "On the lesson day after 12:00, or a no-show: 100% of the lesson fee",
+    "noPartialRefund": "A package is never partially refunded",
     "payment": "Payment upfront via Tikkie",
     "invoice": "Invoice available on request",
     "maxHours": "Maximum 2 hours per week"
