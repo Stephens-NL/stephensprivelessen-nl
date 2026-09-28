@@ -1,12 +1,12 @@
 # CLAUDE.md
 
-**Laatst geverifieerd:** 2026-08-17
+**Laatst geverifieerd:** 2026-09-28
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## What This Is
 
-Stephen's Privélessen — the public-facing tutoring website at `stephensprivelessen.nl`. A bilingual (NL/EN) Next.js 15 marketing site for math, statistics, and programming tutoring in Amsterdam. Dutch is the default locale. Part of the monorepo npm workspaces.
+Stephen's Privélessen — the public-facing tutoring website at `stephensprivelessen.nl`. A bilingual (NL/EN) Next.js 16 marketing site for math, statistics, and programming tutoring in Amsterdam. Dutch is the default locale. Part of the monorepo npm workspaces.
 
 ## Commands
 
@@ -15,6 +15,7 @@ npm run dev          # Dev server on :3000
 npm run build        # Production build (standalone output)
 npm run lint         # ESLint
 npm run test         # Jest (all tests)
+npm run sync:business-config   # scripts/sync-business-config.mjs, pulls tenant config
 
 # Single test file:
 npx jest __tests__/components/About.test.ts
@@ -23,6 +24,11 @@ npx jest --testPathPattern="sitemap"
 # Docker (production):
 docker compose up -d --build   # Runs on :4302
 ```
+
+`seed`, `test:form`, `test:drive`, `test:aantekeningen` and `quick-test` in `package.json`
+point to files that no longer exist (`prisma/seed.ts`, `scripts/test-form-submission.ts`,
+`scripts/test-google-drive.ts`, `scripts/test-aantekeningen.ts`, `scripts/quick-test.js`) —
+dead scripts, do not run them.
 
 ## Architecture
 
@@ -70,7 +76,7 @@ Components may still use either pattern. When modifying text, check which system
 
 ### Styling
 
-- TailwindCSS 3 with custom color scheme: primary yellow-300→yellow-500, background amber-950
+- TailwindCSS 4 (via `@tailwindcss/postcss`) with custom color scheme: primary yellow-300→yellow-500, background amber-950
 - Fonts: Cormorant Garamond (headings, `--font-cormorant`) + Outfit (body, `--font-outfit`)
 - Framer Motion for all animations
 
@@ -78,7 +84,8 @@ Components may still use either pattern. When modifying text, check which system
 
 - **`hooks/`** — Custom React hooks (`useOutsideClick`, `useFooter`, `useScrollPosition`)
 - **`stores/`** — State stores (currently empty, reserved for Zustand or similar)
-- **`scripts/`** — Build-time scripts (`generateSitemap.ts`)
+- **`scripts/`** — `sync-business-config.mjs` only; sitemap generation now lives in
+  `app/sitemap.ts` (Next.js native route), not a script
 - **`private/`** — Non-public assets (`favicon/` — source favicon files and manifest)
 - **`docs/`** — Superpowers plans (`docs/superpowers/plans/`)
 
