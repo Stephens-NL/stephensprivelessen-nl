@@ -8,6 +8,7 @@ import { ProcessSection } from './ProcessSection';
 import { PricingSection } from './PricingSection';
 import { FAQSection } from './FAQSection';
 import { LocationsSection } from './LocationsSection';
+import RushNote from '@/components/RushNote';
 
 interface LocationSpecific {
   area: string;
@@ -33,6 +34,7 @@ export function TutoringPage({ locationSpecific }: TutoringPageProps) {
           <PricingSection />
           <FAQSection />
           <LocationsSection />
+          <RushNote />
         </div>
       </div>
     </main>

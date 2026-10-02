@@ -38,5 +38,9 @@
   },
   "scheduleTrialSession": "Plan een Gratis Proefles",
   "learnMore": "Meer Informatie",
-  "whatsappLabel": "Contact via WhatsApp"
+  "whatsappLabel": "Contact via WhatsApp",
+  "rush": {
+    "title": "Spoed of last-minute?",
+    "body": "Ik neem weinig spoedaanvragen meer aan. Kan het echt niet anders, dan kost een spoedsessie (max. 2 uur) <b>€180</b> voor middelbare school en <b>€250</b> voor hoger onderwijs (hbo/wo). Reguliere lessen: tarief op aanvraag."
+  }
 }

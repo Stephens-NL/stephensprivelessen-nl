@@ -1,0 +1,20 @@
+# Stephen's Privélessen
+
+> Private tutoring in mathematics, statistics and programming by Stephen, based in Amsterdam and available online. Site: https://stephensprivelessen.nl (Dutch default, English at /en).
+
+## Subjects and levels
+- Primary school: arithmetic, language
+- Secondary school: mathematics A/B/C/D, physics, chemistry, English, Dutch, biology, economics, business economics
+- MBO: mathematics (rekenen)
+- Higher education (HBO/university): mathematics, statistics (e.g. SPSS), programming (Python, R)
+
+## Booking
+- Contact page: https://stephensprivelessen.nl/contact
+- The first trial lesson (30 minutes) is free.
+
+## Availability
+Monday-Thursday in person in Amsterdam 18:00-21:00, weekends online only.
+
+## Rates
+Regular lessons: rate on request.
+Urgent or last-minute? I rarely take rush requests anymore. If it really can't wait, a rush session (max. 2 hours) costs EUR 180 for secondary school and EUR 250 for higher education (university/HBO).
