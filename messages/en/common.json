@@ -38,5 +38,9 @@
   },
   "scheduleTrialSession": "Schedule a Free Trial Session",
   "learnMore": "Learn More",
-  "whatsappLabel": "Contact via WhatsApp"
+  "whatsappLabel": "Contact via WhatsApp",
+  "rush": {
+    "title": "Urgent or last-minute?",
+    "body": "I rarely take rush requests anymore. If it really can't wait, a rush session (max. 2 hours) costs <b>€180</b> for secondary school and <b>€250</b> for higher education (university/HBO). Regular lessons: rate on request."
+  }
 }
