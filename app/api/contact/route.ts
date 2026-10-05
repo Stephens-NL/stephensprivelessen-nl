@@ -104,6 +104,9 @@ export async function POST(request: NextRequest) {
         } catch (error) {
             console.error('Contact form intake record error (non-fatal):', error);
         }
+    } else {
+        // Unset env used to be silent: the lead then only reached the fallback alert.
+        console.error('Contact form intake NOT recorded: PORTAAL_INTERNAL_URL / INTERNAL_API_KEY unset');
     }
 
     // Fallback lead alert, only when the lead did NOT get recorded. On the happy
