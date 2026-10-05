@@ -22,6 +22,7 @@ const infoLinks = [
 
 const Footer = () => {
   const t = useTranslations('common');
+  const legal = config.business.legal;
   const currentYear = new Date().getFullYear();
 
   return (
@@ -90,8 +91,23 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Business details (legal) */}
+        <div className="mt-8 border-t border-[var(--ink-light)] pt-6 text-sm text-[var(--cream-dark)]">
+          <h3 className="font-semibold mb-2">{t('footer.legalLabel')}</h3>
+          <p>
+            {legal.name} · {t('footer.kvk')} {legal.kvk} · {t('footer.vat')} {legal.vatId}
+          </p>
+          <p>
+            {legal.address}, {legal.postalCode} {legal.city} · {config.contact.email}
+          </p>
+          <p className="mt-2 space-x-4">
+            <Link href="/privacy" className="underline hover:text-[var(--amber)] transition">{t('footer.privacy')}</Link>
+            <Link href="/voorwaarden" className="underline hover:text-[var(--amber)] transition">{t('footer.terms')}</Link>
+          </p>
+        </div>
+
         {/* Footer Bottom Section */}
-        <div className="mt-8 border-t border-[var(--ink-light)] pt-8 text-center">
+        <div className="mt-6 border-t border-[var(--ink-light)] pt-6 text-center">
           <p className="text-[var(--cream-dark)]">
             &copy; {currentYear} {t('footer.title')}. {t('footer.copyright')}
           </p>

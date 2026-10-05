@@ -1,6 +1,6 @@
 // Contact Information
 const PHONE_NUMBER = '+31647357426';
-const EMAIL = 'info@stephenadei.nl';
+const EMAIL = 'info@stephensprivelessen.nl';
 const BUSINESS_NAME = "Stephen's Privélessen";
 const SITE_URL = 'https://stephensprivelessen.nl';
 
@@ -35,6 +35,14 @@ export const config = {
         nameNl: "Stephen's Privélessen",
         nameEn: "Stephen's Private Tutoring",
         owner: 'Stephen Adei',
+        legal: {
+            name: "Stephen Adei h.o.d.n. Stephen's Privélessen",
+            kvk: '88195910',
+            vatId: 'NL004558497B41',
+            address: 'Hendrik Hosstraat 20',
+            postalCode: '1106 ZN',
+            city: 'Amsterdam'
+        },
         siteUrl: SITE_URL,
         dashboardUrl: 'https://dash.stephensprivelessen.nl',
         mainOffice: {

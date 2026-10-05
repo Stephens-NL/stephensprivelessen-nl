@@ -1,31 +1,134 @@
 {
-  "title": "Terms",
-  "subtitle": "Transparency about how we work",
-  "intro": "Below you'll find the key terms for tutoring with Stephen's Private Lessons. This is a summary — you'll receive the full contract after your trial lesson.",
-  "agreement": {
-    "title": "Tutoring Agreement",
-    "cancellation": "Rescheduling or cancelling is free until 21:00 the evening before the lesson",
-    "surcharge24h": "On the lesson day before 12:00: 50% of the lesson fee",
-    "surcharge12h": "On the lesson day after 12:00, or a no-show: 100% of the lesson fee",
-    "noPartialRefund": "A package is never partially refunded",
-    "payment": "Payment upfront via Tikkie",
-    "invoice": "Invoice available on request",
-    "maxHours": "Maximum 2 hours per week"
-  },
-  "hours": {
-    "title": "Availability",
-    "weekdays": "Monday to Friday: 18:00 – 21:00",
-    "sunday": "Sunday: 14:00 – 18:00 (online only, makeup lessons)"
-  },
-  "privacy": {
-    "title": "Privacy",
-    "description": "We only process data necessary for tutoring: name, contact details, subject and level. For minors, we also store a parent/guardian's details.",
-    "rights": "You have the right to access, correct, and delete your data.",
-    "contact": "Contact us via the contact form for privacy requests."
-  },
-  "pricing": {
-    "title": "Pricing",
-    "description": "Rates depend on level, group size, and location. View current rates on our website or request a quote after your trial lesson."
-  },
+  "title": "General terms and conditions",
+  "intro": [
+    "**Draft, to be reviewed legally** (withdrawal, complaints and applicable law are new). Dutch original: \"Algemene voorwaarden\". The Dutch version prevails.",
+    "Stephen Adei, trading as Stephen's Privélessen (sole proprietorship) · KvK 88195910 · VAT NL004558497B41 · Hendrik Hosstraat 20, 1106 ZN Amsterdam · info@stephensprivelessen.nl",
+    "These terms apply to all tutoring by Stephen's Privélessen. They are also published at stephensprivelessen.nl/voorwaarden."
+  ],
+  "sections": [
+    {
+      "title": "1. Payment",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "Payment is made in advance via Tikkie.",
+            "An invoice is available on request.",
+            "A lesson or place is only confirmed after confirmation and payment."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. Cancellation and rescheduling",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "Rescheduling or cancelling is free until 21:00 on the evening before the lesson. A new time depends on availability; arrange it with your tutor.",
+            "On the day of the lesson before 12:00: 50% of the lesson fee.",
+            "On the day of the lesson after 12:00, or not showing up (no-show): 100% of the lesson fee.",
+            "With a package, the full lesson hour is deducted from your balance when a fee applies. At 50% you get half the value of that hour (package price divided by the number of hours) back as credit. This credit can only be used for future lessons and is not paid out.",
+            "If the tutor cannot give a lesson, your lesson hours are kept and we arrange a replacement tutor or a new appointment.",
+            "If Stephen's Privélessen ends the arrangement, or we cannot provide a tutor, unused lesson hours are refunded.",
+            "After the withdrawal period (see 3), a package is not partially refunded, except in the situation above. Make-up lessons are only possible on Sundays between 14:00 and 18:00, online."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. Right of withdrawal (consumers only)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "If you are a private individual, you may withdraw within 14 days without giving a reason (Dutch Civil Code 6:230o). The period starts on the day the agreement is concluded. To withdraw, email a clear statement to info@stephensprivelessen.nl; you may use the model form below. You will receive confirmation of receipt."
+        },
+        {
+          "type": "p",
+          "text": "If you want the lessons to start within the 14 days, we ask you to confirm this explicitly when signing the tutoring agreement. If you then withdraw, you pay an amount proportionate to the lesson hours already given up to the moment of withdrawal (Dutch Civil Code 6:230s). You get the rest of the amount paid back within 14 days of your withdrawal, by the same means as your payment."
+        },
+        {
+          "type": "p",
+          "text": "After the withdrawal period, the cancellation policy in 2 applies."
+        }
+      ]
+    },
+    {
+      "title": "4. Scope and availability",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "Lessons are given by Stephen Adei or by a student tutor engaged by Stephen's Privélessen. Stephen's Privélessen chooses the tutor and remains your contracting party.",
+            "A maximum of 2 hours of lessons per week.",
+            "Lessons with Stephen: [[hours]].",
+            "Lessons with a student tutor: also possible during the day, depending on their availability.",
+            "Sunday: 14:00 – 18:00 (online only, make-up lessons)."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. Rates",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Rates depend on level, group size and location. Current rates are published at stephensprivelessen.nl; after the trial lesson you receive a quote."
+        }
+      ]
+    },
+    {
+      "title": "6. Privacy",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Stephen's Privélessen only processes the data needed for the tutoring. How is described in the Privacy statement."
+        }
+      ]
+    },
+    {
+      "title": "7. Complaints",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "If you are unhappy about something, email info@stephensprivelessen.nl within 14 days of noticing the problem. You will receive a substantive response within 14 days. If we cannot resolve it together, you can submit it to the competent court."
+        }
+      ]
+    },
+    {
+      "title": "8. Applicable law",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Dutch law applies to these terms and to all agreements with Stephen's Privélessen."
+        }
+      ]
+    },
+    {
+      "title": "Annex: model withdrawal form",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Complete and return this form only if you want to withdraw from the agreement."
+        },
+        {
+          "type": "ul",
+          "items": [
+            "To: Stephen Adei, trading as Stephen's Privélessen, Hendrik Hosstraat 20, 1106 ZN Amsterdam, info@stephensprivelessen.nl",
+            "I/We (*) hereby give notice that I/we (*) withdraw from our contract for the sale of the following service (*): ______________________________",
+            "Ordered on (*) / received on (*): ______________________________",
+            "Name of consumer(s): ______________________________",
+            "Address of consumer(s): ______________________________",
+            "Signature of consumer(s) (only if this form is notified on paper): ______________________________",
+            "Date: ______________________________"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "(*) Delete as appropriate."
+        }
+      ]
+    }
+  ],
   "cta": "Have questions? Get in touch."
 }

@@ -15,6 +15,7 @@
     "contact": "Contact"
   },
   "languageSwitcher": "EN",
+  "privacyNotice": "Door te versturen ga je akkoord dat we je gegevens gebruiken om je aanvraag te behandelen, zie onze <link>privacyverklaring</link>.",
   "footer": {
     "title": "Stephen's Privélessen",
     "description": "Professionele begeleiding in wiskunde en programmeren voor alle niveaus.",
@@ -34,6 +35,12 @@
       "contact": "Contact"
     },
     "contactLabel": "Contact",
+    "legalLabel": "Bedrijfsgegevens",
+    "legalName": "Stephen Adei h.o.d.n. Stephen's Privélessen",
+    "kvk": "KvK",
+    "vat": "btw",
+    "privacy": "Privacyverklaring",
+    "terms": "Voorwaarden",
     "copyright": "Alle rechten voorbehouden."
   },
   "scheduleTrialSession": "Plan een Gratis Proefles",
@@ -41,6 +48,6 @@
   "whatsappLabel": "Contact via WhatsApp",
   "rush": {
     "title": "Spoed of last-minute?",
-    "body": "Ik neem weinig spoedaanvragen meer aan. Kan het echt niet anders, dan kost een spoedsessie (max. 2 uur) <b>€180</b> voor middelbare school en <b>€250</b> voor hoger onderwijs (hbo/wo). Reguliere lessen: tarief op aanvraag."
+    "body": "Ik neem weinig spoedaanvragen meer aan. Kan het echt niet anders, dan kost een spoedsessie (max. 2 uur) <b>[[spoedVoOnline]]</b> online of <b>[[spoedVoPhysical]]</b> op locatie voor middelbare school, en <b>[[spoedHboOnline]]</b> online of <b>[[spoedHboPhysical]]</b> op locatie voor hoger onderwijs (hbo/wo). Reguliere lessen: tarief op aanvraag."
   }
 }

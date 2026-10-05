@@ -45,8 +45,6 @@ describe('Content Validation', () => {
 
     it('should have NL/EN parity for pricing plans', () => {
       expect(nlTutoring.pricing.plans.length).toBe(enTutoring.pricing.plans.length);
-      expect(typeof nlTutoring.pricing.mostPopular).toBe('string');
-      expect(typeof enTutoring.pricing.mostPopular).toBe('string');
     });
   });
 

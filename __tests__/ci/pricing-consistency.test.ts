@@ -132,3 +132,104 @@ describe('pricing consistency (rates.json)', () => {
     }
   });
 });
+
+/**
+ * Website-side checks against the vendored business-config (no external rates.json needed):
+ * MBO is folded into VO, so its prices must be the VO 4-hour packages, derived and never hardcoded.
+ */
+import {
+  voOnlinePackages,
+  voPhysicalPackages,
+  studentTutorVoPrices,
+  spoedPrices,
+  fromPerHour,
+  fillPrices,
+  formatEuro,
+} from '@/data/pricingData';
+import { businessConfig } from '@/data/business-config.generated';
+
+const ROOT = path.resolve(__dirname, '../..');
+const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf-8');
+const rate = (id: string) => businessConfig.rates.find((r) => r.rate_id === id)! as { amount_cents: number; per_person_cents?: number };
+
+describe('MBO pricing = VO packages from business-config', () => {
+  it('individual MBO packages are the VO online/physical 1-student rates', () => {
+    expect(voOnlinePackages[0].packagePrice).toBe(rate('vo_online_1').amount_cents / 100);
+    expect(voPhysicalPackages[0].packagePrice).toBe(rate('vo_physical_1').amount_cents / 100);
+    expect(studentTutorVoPrices).toEqual({
+      online: rate('student_tutor_vo_online_1').amount_cents / 100,
+      physical: rate('student_tutor_vo_physical_1').amount_cents / 100,
+    });
+  });
+
+  it('no student_tutor rate appears in the online/physical tables', () => {
+    const tutorPrices = businessConfig.rates.filter((r) => 'tier' in r).map((r) => r.amount_cents / 100);
+    expect(tutorPrices.length).toBe(4);
+    const all = [...voOnlinePackages, ...voPhysicalPackages];
+    expect(all.length).toBe(8);
+    for (const p of all) expect(p.students === 1 && tutorPrices.includes(p.packagePrice)).toBe(false);
+  });
+
+  it('group MBO packages are the VO group rates (2-4 students)', () => {
+    for (const n of [2, 3, 4]) {
+      expect(voOnlinePackages[n - 1].packagePrice).toBe(rate(`vo_online_${n}`).amount_cents / 100);
+      expect(voPhysicalPackages[n - 1].packagePrice).toBe(rate(`vo_physical_${n}`).amount_cents / 100);
+    }
+  });
+
+  it('MBO components hold no hardcoded euro amounts', () => {
+    const dir = path.join(ROOT, 'components/mbo-rekenen');
+    for (const f of fs.readdirSync(dir)) {
+      expect(`${f}: ${(read(`components/mbo-rekenen/${f}`).match(/€\s?\d/g) ?? []).length}`).toBe(`${f}: 0`);
+    }
+  });
+
+  it('MBO messages and pricingData carry no special courses, instalments or internal economics', () => {
+    const shipped = [read('data/pricingData.ts'), read('messages/nl/mbo.json'), read('messages/en/mbo.json')].join('\n');
+    for (const bad of ['totalRevenue', 'workTime', 'hourlyRate', 'spoedpakket', 'korte-cursus', 'volledig-commit', 'volledig-flex', 'AANBEVOLEN']) {
+      expect(shipped).not.toContain(bad);
+    }
+  });
+});
+
+describe('derived price copy', () => {
+  it('"vanaf" per-hour prices are the lowest per-hour of the 4-hour packages', () => {
+    expect(fromPerHour.individual).toBe(rate('student_tutor_vo_online_1').amount_cents / 4 / 100);
+    expect(fromPerHour.group).toBe(rate('vo_online_4').per_person_cents! / 4 / 100);
+  });
+
+  it('fillPrices fills spoed tokens from the config, in both locales', () => {
+    expect(fillPrices('[[spoedVoOnline]] [[spoedHboPhysical]]', 'nl')).toBe(
+      `${formatEuro(rate('vo_spoed_online').amount_cents / 100, 'nl')} ${formatEuro(rate('hbo_wo_spoed_physical').amount_cents / 100, 'nl')}`,
+    );
+    expect(fillPrices('[[fromHourGroup]]', 'nl')).toBe('€32,50');
+    expect(fillPrices('[[fromHourGroup]]', 'en')).toBe('€32.50');
+  });
+
+  it('public/llms.txt rush prices match the config', () => {
+    const txt = read('public/llms.txt');
+    for (const v of [spoedPrices.voOnline, spoedPrices.voPhysical, spoedPrices.hboWoOnline, spoedPrices.hboWoPhysical]) {
+      expect(txt).toContain(`EUR ${v}`);
+    }
+  });
+
+  it('published terms: EN fee percentages and teaching window match the config', () => {
+    const tiers = businessConfig.cancellation.published_terms.fee_tiers;
+    const en = read('messages/en/voorwaarden.json');
+    for (const t of tiers.filter((t) => t.fee_pct > 0)) expect(en).toContain(`${t.fee_pct}%`);
+    expect(businessConfig.policy.teaching_window.days).toEqual(['monday', 'tuesday', 'wednesday', 'thursday']);
+    expect(read('messages/nl/voorwaarden.json')).not.toMatch(/vrijdag/i);
+    expect(en).not.toMatch(/friday/i);
+  });
+
+  it('no stale contact address or "€75 per uur" anywhere in shipped copy', () => {
+    for (const rel of ['messages/nl', 'messages/en']) {
+      for (const f of fs.readdirSync(path.join(ROOT, rel))) {
+        const txt = read(`${rel}/${f}`);
+        expect(txt).not.toContain('info@stephenadei.nl');
+        expect(txt).not.toContain('€75 per');
+      }
+    }
+    expect(read('data/config.ts')).not.toContain('stephenadei.nl');
+  });
+});

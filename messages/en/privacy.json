@@ -1,0 +1,123 @@
+{
+  "title": "Privacy statement",
+  "intro": [
+    "Stephen's Privélessen · Version 1.3 · 5 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
+    "**Draft, to be reviewed legally**"
+  ],
+  "sections": [
+    {
+      "title": "1. Who",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Stephen Adei, trading as Stephen's Privélessen (sole proprietorship), KvK 88195910, VAT NL004558497B41, Hendrik Hosstraat 20, 1106 ZN Amsterdam, is the controller for the processing of personal data via the website, the contact and sign-up forms, WhatsApp, the portal and the app. Questions: info@stephensprivelessen.nl."
+        }
+      ]
+    },
+    {
+      "title": "2. Which data",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "**Name** of the student and any parent(s): for identification and correspondence.",
+            "**Data from the contact and sign-up forms and WhatsApp**: age, subject and level, learning goals, preferred days and the contact details of the student and parent/guardian. Do not put medical data in free text.",
+            "**Phone number and email** (optional): for lesson notifications and cancellation confirmations.",
+            "**PIN code**: stored encrypted (bcrypt); the original is never kept.",
+            "**Lesson history** (date, status, any cancellation): for package administration and the cancellation terms.",
+            "**Package hours and balance**: administratively necessary.",
+            "**Cancellation history**: only to apply the agreed cancellation terms.",
+            "**Push tokens** (only if you have enabled notifications in the app): to send notifications.",
+            "**Device info** (only the userAgent string): for debugging."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. Why",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Processing is based on the **performance of the tutoring agreement** (GDPR art. 6(1)(b)) between Stephen's Privélessen and the student (or their parent/guardian). Specific notification preferences are based on **consent**, which you can withdraw at any time by emailing us."
+        }
+      ]
+    },
+    {
+      "title": "4. Who we share with",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Only with the processors and recipients listed below, as far as necessary:"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "**The tutor who teaches your lessons** (Stephen Adei or a student tutor engaged by Stephen's Privélessen): only first name, level, learning goals and lesson notes. A student tutor does not see parents' contact details or payment details.",
+            "**Hosting provider** (own VPS in an EU data centre): to run the portal.",
+            "**Google Workspace** (email, EU/US): our mailbox and the emails sent when signing the agreement digitally.",
+            "**Google Calendar and Meet**: appointments and online lessons.",
+            "**Cloudflare** (DNS and proxy for our websites, and email sending; EU/US): email address and message.",
+            "**WhatsApp** (Meta): if you contact us via WhatsApp or we reply to you there.",
+            "**Telegram and Matrix**: internal notifications to Stephen about sign-ups and lessons, including name, contact details and learning goals.",
+            "**Documenso** (self-hosted): signing the agreement digitally.",
+            "**Tikkie / ABN AMRO**: payments.",
+            "**Apple/Google** (push notification infrastructure): only an anonymous device token, no personal data."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "There are **no advertising partners**, **no tracking** and **no analytics** embedded."
+        }
+      ]
+    },
+    {
+      "title": "5. How long",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Data covered by the statutory tax retention duty (lessons, packages, payments, invoices) is kept for **7 years**. Other personal data, such as learning goals, notes and push tokens, is deleted when the tutoring agreement has ended and there is no outstanding administration. Sign-ups that never become a student are deleted after **12 months**."
+        }
+      ]
+    },
+    {
+      "title": "6. Your rights (GDPR)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "You have the right of access, rectification, erasure, restriction, data portability and objection. Email info@stephensprivelessen.nl with your request. We respond within one month. To prevent data from reaching the wrong person, we first ask you to confirm your identity; for a minor student the parent/guardian can make the request. For an erasure request we delete everything except the data we must keep for 7 years (see 5); that data is kept and deleted afterwards."
+        },
+        {
+          "type": "p",
+          "text": "Complaint? You have the right to lodge a complaint with the Dutch Data Protection Authority (autoriteitpersoonsgegevens.nl)."
+        }
+      ]
+    },
+    {
+      "title": "7. Minors",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "For a student under 18, a parent/guardian signs the agreement and also receives this statement. For a student under 16, the parent/guardian also gives consent for processing that is not necessary for the agreement, such as push notifications. The parent is registered as *account owner*; the student can optionally get their own read-only PIN after the parent's explicit consent."
+        }
+      ]
+    },
+    {
+      "title": "8. Cookies",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Functional cookies only: `NEXT_LOCALE` (your language preference) and `portaal_session` (logging in to the portal, 7 days). No tracking or analytics, no third-party cookies. That is why we do not ask for cookie consent."
+        }
+      ]
+    },
+    {
+      "title": "9. Changes",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Changes are published on the portal. Material changes are also communicated via the known notification channels (email and/or in-app)."
+        }
+      ]
+    }
+  ]
+}

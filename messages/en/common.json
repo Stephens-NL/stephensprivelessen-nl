@@ -15,6 +15,7 @@
     "contact": "Contact"
   },
   "languageSwitcher": "NL",
+  "privacyNotice": "By submitting you agree that we use your details to handle your request, see our <link>privacy statement</link>.",
   "footer": {
     "title": "Stephen's Private Lessons",
     "description": "Professional guidance in mathematics and programming for all levels.",
@@ -34,6 +35,12 @@
       "contact": "Contact"
     },
     "contactLabel": "Contact",
+    "legalLabel": "Company details",
+    "legalName": "Stephen Adei h.o.d.n. Stephen's Privélessen",
+    "kvk": "KvK",
+    "vat": "VAT",
+    "privacy": "Privacy statement",
+    "terms": "Terms",
     "copyright": "All rights reserved."
   },
   "scheduleTrialSession": "Schedule a Free Trial Session",
@@ -41,6 +48,6 @@
   "whatsappLabel": "Contact via WhatsApp",
   "rush": {
     "title": "Urgent or last-minute?",
-    "body": "I rarely take rush requests anymore. If it really can't wait, a rush session (max. 2 hours) costs <b>€180</b> for secondary school and <b>€250</b> for higher education (university/HBO). Regular lessons: rate on request."
+    "body": "I rarely take rush requests anymore. If it really can't wait, a rush session (max. 2 hours) costs <b>[[spoedVoOnline]]</b> online or <b>[[spoedVoPhysical]]</b> on location for secondary school, and <b>[[spoedHboOnline]]</b> online or <b>[[spoedHboPhysical]]</b> on location for higher education (university/HBO). Regular lessons: rate on request."
   }
 }

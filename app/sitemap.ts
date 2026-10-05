@@ -6,7 +6,7 @@ const SITE = config.business.siteUrl;
 
 // nlPath (starts with '/') -> priority. Home 1.0, money/content pages 0.8, rest 0.5.
 // Excludes query-param/private pages (aantekeningen) and low-value pages
-// (feedback, aanmelden, voorwaarden). Dynamic [id] routes are appended below.
+// (feedback, aanmelden). Legal pages are listed at low priority. Dynamic [id] routes are appended below.
 const ROUTES: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/privelessen', priority: 0.8, changeFrequency: 'weekly' },
@@ -24,6 +24,8 @@ const ROUTES: Array<{ path: string; priority: number; changeFrequency: MetadataR
   { path: '/faq', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.5, changeFrequency: 'monthly' },
   { path: '/blog', priority: 0.5, changeFrequency: 'weekly' },
+  { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' },
+  { path: '/voorwaarden', priority: 0.3, changeFrequency: 'yearly' },
 ];
 
 function urls(nlPath: string) {

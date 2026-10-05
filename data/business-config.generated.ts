@@ -412,11 +412,26 @@ export const businessConfig = {
       "status": "definitive"
     },
     {
-      "rate_id": "student_tutor_vo_1",
+      "rate_id": "student_tutor_vo_online_1",
       "segment": "vo",
-      "mode": "any",
+      "mode": "online",
       "tier": "student_tutor",
-      "label": "Middelbare school – 1 leerling, student-docent (4u pakket, online of op locatie)",
+      "label": "Middelbare school – 1 leerling, student-docent (4u pakket, online)",
+      "amount_cents": 15000,
+      "per_unit": "package",
+      "package_hours": 4,
+      "student_count": 1,
+      "valid_from": "2026-10-05",
+      "valid_to": null,
+      "status": "definitive",
+      "notes": "Student-docent tarief (multi-tutor model). Alleen individueel; online goedkoper dan op locatie. Geen groepstarieven."
+    },
+    {
+      "rate_id": "student_tutor_vo_physical_1",
+      "segment": "vo",
+      "mode": "physical",
+      "tier": "student_tutor",
+      "label": "Middelbare school – 1 leerling, student-docent (4u pakket, op locatie)",
       "amount_cents": 17500,
       "per_unit": "package",
       "package_hours": 4,
@@ -424,14 +439,29 @@ export const businessConfig = {
       "valid_from": "2026-10-05",
       "valid_to": null,
       "status": "definitive",
-      "notes": "Student-docent tarief (multi-tutor model). Alleen individueel; zelfde prijs online en op locatie. Geen groepstarieven."
+      "notes": "Student-docent tarief (multi-tutor model). Alleen individueel; online goedkoper dan op locatie. Geen groepstarieven."
     },
     {
-      "rate_id": "student_tutor_hbo_wo_1",
+      "rate_id": "student_tutor_hbo_wo_online_1",
       "segment": "hbo_wo",
-      "mode": "any",
+      "mode": "online",
       "tier": "student_tutor",
-      "label": "HBO/WO – 1 student, student-docent (4u pakket, online of op locatie)",
+      "label": "HBO/WO – 1 student, student-docent (4u pakket, online)",
+      "amount_cents": 20000,
+      "per_unit": "package",
+      "package_hours": 4,
+      "student_count": 1,
+      "valid_from": "2026-10-05",
+      "valid_to": null,
+      "status": "definitive",
+      "notes": "Student-docent tarief (multi-tutor model). Alleen individueel; online goedkoper dan op locatie. Geen groepstarieven."
+    },
+    {
+      "rate_id": "student_tutor_hbo_wo_physical_1",
+      "segment": "hbo_wo",
+      "mode": "physical",
+      "tier": "student_tutor",
+      "label": "HBO/WO – 1 student, student-docent (4u pakket, op locatie)",
       "amount_cents": 25000,
       "per_unit": "package",
       "package_hours": 4,
@@ -439,7 +469,7 @@ export const businessConfig = {
       "valid_from": "2026-10-05",
       "valid_to": null,
       "status": "definitive",
-      "notes": "Student-docent tarief (multi-tutor model). Alleen individueel; zelfde prijs online en op locatie. Geen groepstarieven."
+      "notes": "Student-docent tarief (multi-tutor model). Alleen individueel; online goedkoper dan op locatie. Geen groepstarieven."
     },
     {
       "rate_id": "weekend_hva_online_1",

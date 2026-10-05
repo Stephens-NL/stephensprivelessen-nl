@@ -2,129 +2,6 @@
 
 import { businessConfig } from './business-config.generated';
 
-// Rekentrajecten comparison data
-export const rekentrajectenComparison = {
-  title: {
-    NL: "Totaaloverzicht – Rekentrajecten",
-    EN: "Complete Overview – Math Programs"
-  },
-  subtitle: {
-    NL: "Groepslessen, max. 4 leerlingen",
-    EN: "Group lessons, max. 4 students"
-  },
-  courses: [
-    {
-      id: "spoedpakket",
-      name: { NL: "Spoedpakket", EN: "Rush Package" },
-      duration: { NL: "1 week", EN: "1 week" },
-      lessons: { NL: "4 u (2–3 sessies)", EN: "4 hrs (2–3 sessions)" },
-      personalSupport: { NL: "—", EN: "—" },
-      contactHours: { NL: "4 u", EN: "4 hrs" },
-      pricePerPerson: "€275",
-      pricePerLessonHour: "€68,75",
-      totalRevenue: "€1.100",
-      workTime: { NL: "5 u", EN: "5 hrs" },
-      hourlyRate: "€220",
-      refundPolicy: { NL: "n.v.t.", EN: "n/a" },
-      highlight: { NL: "Hoogste leerling-uurprijs", EN: "Highest student hourly rate" },
-      description: { NL: "Intensief weekprogramma voor acute hulp", EN: "Intensive week program for urgent help" },
-      color: "from-[var(--terracotta)] to-[var(--amber)]",
-      featured: false
-    },
-    {
-      id: "korte-cursus",
-      name: { NL: "Korte cursus", EN: "Short Course" },
-      duration: { NL: "4 weken", EN: "4 weeks" },
-      lessons: { NL: "4 u (1 u/wk)", EN: "4 hrs (1 hr/week)" },
-      personalSupport: { NL: "—", EN: "—" },
-      contactHours: { NL: "4 u", EN: "4 hrs" },
-      pricePerPerson: "€225",
-      pricePerLessonHour: "€56,25",
-      totalRevenue: "€900",
-      workTime: { NL: "5 u", EN: "5 hrs" },
-      hourlyRate: "€180",
-      refundPolicy: { NL: "n.v.t.", EN: "n/a" },
-      highlight: { NL: "Laagste instapprijs", EN: "Lowest entry price" },
-      description: { NL: "Rustige opbouw binnen één periode", EN: "Gradual build-up within one period" },
-      color: "from-[var(--ink)] to-[var(--ink-light)]",
-      featured: false
-    },
-    {
-      id: "volledig-commit",
-      name: { NL: "Volledig – Commit", EN: "Complete – Commit" },
-      duration: { NL: "12 weken", EN: "12 weeks" },
-      lessons: { NL: "10–11 u les", EN: "10–11 hrs lessons" },
-      personalSupport: { NL: "15 min p.p./wk (3 u)", EN: "15 min per person/week (3 hrs)" },
-      contactHours: { NL: "13–14 u", EN: "13–14 hrs" },
-      pricePerPerson: "€550",
-      pricePerLessonHour: "€39–€42",
-      totalRevenue: "€2.200",
-      workTime: { NL: "24 u", EN: "24 hrs" },
-      hourlyRate: "≈€92",
-      refundPolicy: { NL: "Géén restitutie; overdraagbaar", EN: "No refund; transferable" },
-      highlight: { NL: "25% goedkoper dan Flex", EN: "25% cheaper than Flex" },
-      description: { NL: "Volledige commitment, vooraf betaald", EN: "Full commitment, paid upfront" },
-      color: "from-[var(--amber)] to-[var(--amber-hover)]",
-      featured: true
-    },
-    {
-      id: "volledig-flex",
-      name: { NL: "Volledig – Flex", EN: "Complete – Flex" },
-      duration: { NL: "12 weken", EN: "12 weeks" },
-      lessons: { NL: "10–11 u les", EN: "10–11 hrs lessons" },
-      personalSupport: { NL: "15 min p.p./wk (3 u)", EN: "15 min per person/week (3 hrs)" },
-      contactHours: { NL: "13–14 u", EN: "13–14 hrs" },
-      pricePerPerson: "€690 (3×€230)",
-      pricePerLessonHour: "€49–€53",
-      totalRevenue: "€2.760",
-      workTime: { NL: "25 u", EN: "25 hrs" },
-      hourlyRate: "≈€110",
-      refundPolicy: { NL: "Na elke 4 wk opzegbaar", EN: "Cancellable every 4 weeks" },
-      highlight: { NL: "Flexibiliteit tegen meerprijs", EN: "Flexibility for premium price" },
-      description: { NL: "Maximum flexibiliteit voor studenten", EN: "Maximum flexibility for students" },
-      color: "from-[var(--sage)] to-[var(--sage-light)]",
-      featured: false
-    }
-  ],
-  features: [
-    { 
-      id: "duration", 
-      label: { NL: "Duur", EN: "Duration" },
-      short: { NL: "Duur", EN: "Duration" }
-    },
-    { 
-      id: "lessons", 
-      label: { NL: "Lesmomenten", EN: "Lesson sessions" },
-      short: { NL: "Lessen", EN: "Lessons" }
-    },
-    { 
-      id: "personalSupport", 
-      label: { NL: "Persoonlijk spreekuur", EN: "Personal office hours" },
-      short: { NL: "Spreekuur", EN: "Office hrs" }
-    },
-    { 
-      id: "contactHours", 
-      label: { NL: "Contact-uren leerling", EN: "Student contact hours" },
-      short: { NL: "Contact", EN: "Contact" }
-    },
-    { 
-      id: "pricePerPerson", 
-      label: { NL: "Prijs p.p.", EN: "Price per person" },
-      short: { NL: "Prijs", EN: "Price" }
-    },
-    { 
-      id: "pricePerLessonHour", 
-      label: { NL: "€ / leeruur leerling", EN: "€ / lesson hour student" },
-      short: { NL: "€/uur", EN: "€/hr" }
-    },
-    { 
-      id: "refundPolicy", 
-      label: { NL: "Refund-beleid", EN: "Refund policy" },
-      short: { NL: "Refund", EN: "Refund" }
-    }
-  ]
-};
-
 // Package-based pricing (4-uurs pakketten — enige aangeboden vorm)
 // VO = Voortgezet Onderwijs (middelbare school)
 // HBO/WO = Hoger onderwijs
@@ -143,7 +20,9 @@ type GenRate = {
   per_person_cents?: number;
 };
 
-const generatedRates: readonly GenRate[] = businessConfig.rates;
+// Eigen tarieven hebben geen `tier`-veld; student-docent-kaarten (tier 'student_tutor') staan er apart.
+const generatedRates: readonly GenRate[] = businessConfig.rates.filter((r) => !('tier' in r));
+const studentTutorRates: readonly GenRate[] = businessConfig.rates.filter((r) => 'tier' in r);
 
 function pkgArray(segment: string, mode: string) {
   return generatedRates
@@ -162,6 +41,17 @@ function spoedEuro(rateId: string): number {
   if (!r) throw new Error(`pricingData: ontbrekend spoed-tarief '${rateId}' in business-config`);
   return r.amount_cents / 100;
 }
+
+function studentTutorEuro(rateId: string): number {
+  const r = studentTutorRates.find((x) => x.rate_id === rateId);
+  if (!r) throw new Error(`pricingData: ontbrekend tarief '${rateId}' in business-config`);
+  return r.amount_cents / 100;
+}
+
+export const studentTutorVoPrices = {
+  online: studentTutorEuro('student_tutor_vo_online_1'),
+  physical: studentTutorEuro('student_tutor_vo_physical_1'),
+};
 
 export const voOnlinePackages = pkgArray('vo', 'online');
 export const voPhysicalPackages = pkgArray('vo', 'physical');
@@ -190,6 +80,51 @@ export const spoedPrices = {
   hboWoOnline: spoedEuro('hbo_wo_spoed_online'),
   hboWoPhysical: spoedEuro('hbo_wo_spoed_physical'),
 };
+
+// "Vanaf"-prijzen per uur: laagste uurprijs van de 4-uurs pakketten (VO + HBO/WO, incl. student-docent).
+// Individueel = 1 leerling; groep = per persoon bij 2-4 leerlingen.
+const fourHourRates = [...generatedRates, ...studentTutorRates].filter(
+  (r) => (r.segment === 'vo' || r.segment === 'hbo_wo') && r.package_hours === 4,
+);
+const lowestPerHour = (rates: readonly GenRate[]) =>
+  Math.min(...rates.map((r) => (r.per_person_cents ?? r.amount_cents) / r.package_hours / 100));
+export const fromPerHour = {
+  individual: lowestPerHour(fourHourRates.filter((r) => r.student_count === 1)),
+  group: lowestPerHour(fourHourRates.filter((r) => r.student_count > 1)),
+};
+
+/** Euro-bedrag: hele euro's zonder decimalen, anders twee (NL komma, EN punt). */
+export function formatEuro(amount: number, locale: string): string {
+  const whole = Number.isInteger(amount);
+  const txt = amount.toLocaleString(locale === 'nl' ? 'nl-NL' : 'en-GB', {
+    minimumFractionDigits: whole ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+  return `€${txt}`;
+}
+
+export const fromHourLabel = (locale: string) => formatEuro(fromPerHour.individual, locale);
+export const fromHourGroupLabel = (locale: string) => formatEuro(fromPerHour.group, locale);
+
+/** Vult [[tokens]] in message-strings met prijzen uit de business-config (spoed + vanaf-uurprijzen). */
+export function fillPrices<T>(value: T, locale: string): T {
+  const tokens: Record<string, string> = {
+    fromHour: fromHourLabel(locale),
+    fromHourGroup: fromHourGroupLabel(locale),
+    spoedVoOnline: formatEuro(spoedPrices.voOnline, locale),
+    spoedVoPhysical: formatEuro(spoedPrices.voPhysical, locale),
+    spoedHboOnline: formatEuro(spoedPrices.hboWoOnline, locale),
+    spoedHboPhysical: formatEuro(spoedPrices.hboWoPhysical, locale),
+  };
+  if (typeof value === 'string') {
+    return value.replace(/\[\[(\w+)\]\]/g, (m, k) => tokens[k] ?? m) as T;
+  }
+  if (Array.isArray(value)) return value.map((v) => fillPrices(v, locale)) as T;
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, fillPrices(v, locale)])) as T;
+  }
+  return value;
+}
 
 // Scriptiebegeleiding (uurtarief — apart product) — afgeleid uit business-config
 export const scriptieRates = businessConfig.scriptie.rates.map((r) => ({

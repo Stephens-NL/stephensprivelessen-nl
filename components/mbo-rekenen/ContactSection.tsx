@@ -36,7 +36,7 @@ export function ContactSection() {
   ];
 
   const availability = [
-    { NL: 'Maandag - Vrijdag: 18:00 - 21:00', EN: 'Monday - Friday: 18:00 - 21:00' },
+    { NL: 'Maandag - Donderdag: 18:00 - 21:00', EN: 'Monday - Thursday: 18:00 - 21:00' },
     { NL: 'Zondag: 14:00 - 18:00 (alleen online, inhaalles)', EN: 'Sunday: 14:00 - 18:00 (online only, makeup lessons)' }
   ];
 

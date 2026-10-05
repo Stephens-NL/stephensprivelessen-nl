@@ -5,7 +5,7 @@
     "titleItalic": "rekentoets",
     "titleLine2": "met succes",
     "titleBold": "meesterlijk halen",
-    "subtitle": "Sinds rekenen verplicht werd voor het MBO-diploma, help ik studenten met gerichte begeleiding en bewezen methoden om succesvol te slagen.",
+    "subtitle": "Sinds rekenen verplicht werd voor het MBO-diploma, help ik studenten met gerichte begeleiding om succesvol te slagen.",
     "ctaPrimary": "Start vandaag",
     "ctaSecondary": "Bekijk trajecten",
     "stats": {
@@ -23,16 +23,16 @@
         "description": "Persoonlijke begeleiding afgestemd op jouw niveau en doelen"
       },
       {
-        "title": "Bewezen methoden",
-        "description": "Effectieve lesmaterialen en technieken voor optimaal leerresultaat"
+        "title": "Duidelijke methode",
+        "description": "Lesmateriaal en oefeningen die aansluiten op het MBO-rekenexamen"
       },
       {
         "title": "Ervaren docent",
-        "description": "Gespecialiseerd in MBO-rekenen met jarenlange ervaring"
+        "description": "Gespecialiseerd in MBO-rekenen"
       }
     ],
     "ctaTitle": "Klaar voor jouw rekentoets?",
-    "ctaSubtitle": "Sluit je aan bij studenten die met mijn begeleiding hun MBO-rekentoets hebben gehaald.",
+    "ctaSubtitle": "Plan een gratis kennismaking en kijk of mijn aanpak bij je past.",
     "smallGroups": "Kleine groepen",
     "flexibleTimes": "Flexibele tijden",
     "onlineOffline": "Online & offline"
@@ -114,7 +114,7 @@
   },
   "pricing": {
     "flexibleGuidance": "Flexibele begeleiding",
-    "flexibleSubtitle": "Naast mijn groepstrajecten bied ik ook individuele lessen aan voor persoonlijke begeleiding.",
+    "flexibleSubtitle": "Je werkt met pakketten van 4 uur, individueel of met een groepje. Dezelfde pakketten als voor het voortgezet onderwijs.",
     "perHour": "per uur",
     "individualLessons": "Individuele lessen",
     "groupLessons": "Groepslessen (2-4 personen)",
@@ -157,7 +157,7 @@
     },
     "availability": "Beschikbaarheid",
     "availabilityTimes": [
-      "Maandag - Vrijdag: 18:00 - 21:00",
+      "Maandag - Donderdag: 18:00 - 21:00",
       "Zondag: 14:00 - 18:00 (alleen online, inhaalles)"
     ],
     "locations": "Locaties",
@@ -169,21 +169,11 @@
     "freeIntroDesc": "Geen verplichtingen, gewoon kennismaken en kijken of we bij elkaar passen.",
     "scheduleIntro": "Plan kennismaking"
   },
-  "rekentrajecten": {
-    "recommended": "AANBEVOLEN",
-    "select": "SELECTEER",
-    "perHour": "per uur",
-    "fullComparison": "VOLLEDIGE VERGELIJKING",
-    "allDetailsAtAGlance": "Alle details op een rij",
-    "feature": "KENMERK",
-    "showDetails": "TOON DETAILS",
-    "hideDetails": "VERBERG DETAILS"
-  },
   "form": {
     "whyChooseUs": "Waarom kiezen voor mij?",
     "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "Ik begrijp de uitdagingen van MBO-rekenen en bied de ondersteuning die je nodig hebt om succesvol te zijn.",
     "readyForYourMathTest": "Klaar voor jouw rekentoets?",
-    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Sluit je aan bij studenten die met mijn begeleiding hun MBO-rekentoets hebben gehaald.",
+    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Plan een gratis kennismaking en kijk of mijn aanpak bij je past.",
     "smallGroups": "Kleine groepen",
     "flexibleTimes": "Flexibele tijden",
     "onlineOffline": "Online & offline",
@@ -200,11 +190,11 @@
     "noObligationsJustGettingToKnowEachOtherAndSeeIfWe": "Geen verplichtingen, gewoon kennismaken en kijken of we bij elkaar passen.",
     "scheduleIntroduction": "Plan kennismaking",
     "mboMathSupport": "MBO Rekenondersteuning",
-    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Sinds rekenen verplicht werd voor het MBO-diploma, help ik studenten met gerichte begeleiding en bewezen methoden om succesvol te slagen.",
+    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Sinds rekenen verplicht werd voor het MBO-diploma, help ik studenten met gerichte begeleiding om succesvol te slagen.",
     "startToday": "Start vandaag",
     "viewPrograms": "Bekijk trajecten",
     "flexibleGuidance": "Flexibele begeleiding",
-    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "Naast mijn groepstrajecten bied ik ook individuele lessen aan voor persoonlijke begeleiding.",
+    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "Je werkt met pakketten van 4 uur, individueel of met een groepje. Dezelfde pakketten als voor het voortgezet onderwijs.",
     "perHour": "per uur",
     "individualLessons": "Individuele lessen",
     "groupLessons24People": "Groepslessen (2-4 personen)",
