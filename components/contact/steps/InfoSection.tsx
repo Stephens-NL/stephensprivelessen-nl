@@ -7,6 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { FaGraduationCap, FaClock, FaEuroSign, FaArrowRight, FaWhatsapp, FaChevronDown, FaChevronUp, FaEye, FaEnvelope } from 'react-icons/fa';
 import NotesPreviewModal from '../components/NotesPreviewModal';
 import { contactLinks } from '@/data/config';
+import { consultancyRates, formatEuro } from '@/data/pricingData';
 import { ContactPricingTable } from './ContactPricingTable';
 import { ContactGroupPricingTable } from './ContactGroupPricingTable';
 import { InfoSectionCoursesBlock } from './InfoSectionCoursesBlock';
@@ -50,6 +51,7 @@ function infoReducer(state: InfoState, action: InfoAction): InfoState {
 const InfoSection = ({ onBack }: InfoSectionProps) => {
     const language = useLanguage();
     const t = useTranslations('contact');
+    const consultancyPrice = (id: string) => formatEuro(consultancyRates.find((r) => r.id === id)!.price, language === 'NL' ? 'nl' : 'en');
     const [state, dispatch] = useReducer(infoReducer, {
         showPricing: false,
         showGroupPricing: false,
@@ -228,21 +230,21 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                                     <thead>
                                         <tr className="border-b border-[var(--ink-light)]/50">
                                             <th className="text-left py-2 text-[var(--cream)] font-medium">Type</th>
-                                            <th className="text-right py-2 text-[var(--cream)] font-medium">{language === 'NL' ? 'Tarief' : 'Rate'}</th>
+                                            <th className="text-right py-2 text-[var(--cream)] font-medium">{language === 'NL' ? 'Tarief (excl. btw)' : 'Rate (excl. VAT)'}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr className="border-b border-[var(--ink-light)]/50">
                                             <td className="py-2 text-[var(--cream)]">{language === 'NL' ? 'Eenmalig consult' : 'Single consultation'}</td>
-                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">€100</td>
+                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">{consultancyPrice('consultancy_single')}</td>
                                         </tr>
                                         <tr className="border-b border-[var(--ink-light)]/50">
                                             <td className="py-2 text-[var(--cream)]">{language === 'NL' ? '4 sessies' : '4 sessions'}</td>
-                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">€250</td>
+                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">{consultancyPrice('consultancy_4')}</td>
                                         </tr>
                                         <tr>
                                             <td className="py-2 text-[var(--cream)]">{language === 'NL' ? '10 sessies' : '10 sessions'}</td>
-                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">€550</td>
+                                            <td className="py-2 text-[var(--amber)] font-semibold text-right">{consultancyPrice('consultancy_10')}</td>
                                         </tr>
                                     </tbody>
                                 </table>

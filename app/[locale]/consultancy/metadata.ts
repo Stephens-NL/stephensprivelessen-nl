@@ -1,14 +1,16 @@
 import type { Metadata } from 'next';
 import { buildAlternates } from '@/lib/seo';
+import { consultancyFromHour, formatEuro } from '@/data/pricingData';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const isNl = locale === 'nl';
+  const fromHour = formatEuro(consultancyFromHour, locale);
   return {
     title: isNl ? 'Consultancy | Data & Statistiek Expert Amsterdam' : 'Consultancy | Data & Statistics Expert Amsterdam',
     description: isNl
-      ? 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur. Science Park, Roeterseiland of online.'
-      : 'Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From €100/hr. Science Park, Roeterseiland or online.',
+      ? `Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van ${fromHour}/uur excl. btw. Science Park, Roeterseiland of online.`
+      : `Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From ${fromHour}/hr excl. VAT. Science Park, Roeterseiland or online.`,
     keywords: [
       'statistiek consultant',
       'data analyse consultant',
@@ -34,8 +36,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: isNl ? 'Consultancy | Data & Statistiek Expert Amsterdam' : 'Consultancy | Data & Statistics Expert Amsterdam',
       description: isNl
-        ? 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur.'
-        : 'Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From €100/hr.',
+        ? `Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van ${fromHour}/uur excl. btw.`
+        : `Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From ${fromHour}/hr excl. VAT.`,
       url: 'https://stephensprivelessen.nl/consultancy',
       type: 'website',
       locale: 'nl_NL',

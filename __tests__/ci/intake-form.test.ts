@@ -100,7 +100,7 @@ describe('Intake form configuration', () => {
     expect(content).not.toMatch(/>\s*Tarief\s*</);
     expect(content).not.toMatch(/>\s*Eenmalig consult\s*</);
     // Should use language variable
-    expect(content).toContain("'Tarief' : 'Rate'");
+    expect(content).toContain("'Tarief (excl. btw)' : 'Rate (excl. VAT)'");
     expect(content).toContain("'Eenmalig consult' : 'Single consultation'");
   });
 });

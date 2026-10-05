@@ -31,7 +31,7 @@
     },
     {
       "question": "What are the costs of the tutoring sessions?",
-      "answer": "I work with 4-hour packages. For secondary education: online from €240 per package (€60/hr), in person at Science Park or Roeterseiland from €300 (€75/hr). For higher education (HBO/WO): online from €300 per package (€75/hr), in person from €400 (€100/hr). Group discounts are available for up to 4 students. For urgent help, a 2-hour emergency package is available."
+      "answer": "I work with 4-hour packages. For secondary education: online from [[voOnline1]] per package ([[voOnline1Hr]]/hr), in person at Science Park or Roeterseiland from [[voPhysical1]] ([[voPhysical1Hr]]/hr). For higher education (HBO/WO): online from [[hboOnline1]] per package ([[hboOnline1Hr]]/hr), in person from [[hboPhysical1]] ([[hboPhysical1Hr]]/hr). Group discounts are available for up to 4 students. For urgent help, a 2-hour emergency package is available."
     },
     {
       "question": "How can I sign up for tutoring?",

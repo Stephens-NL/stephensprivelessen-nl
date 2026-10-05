@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import { buildAlternates } from '@/lib/seo'
+import { formatEuro, scriptieFromHour } from '@/data/pricingData'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const isNl = locale === 'nl';
+  const fromHour = formatEuro(scriptieFromHour, locale);
   return {
     title: isNl ? 'Scriptiebegeleiding Amsterdam | Thesis Begeleiding & Methodologie' : 'Thesis Supervision Amsterdam | Research Methods & Methodology',
     description: isNl
-      ? 'Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van €90/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding op Science Park, Roeterseiland of online.'
-      : 'Thesis supervision Amsterdam: Expert in statistics, SPSS, R & methodology. From €90/hr. Bachelor & master thesis support. Personal guidance at Science Park, Roeterseiland or online.',
+      ? `Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van ${fromHour}/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding op Science Park, Roeterseiland of online.`
+      : `Thesis supervision Amsterdam: Expert in statistics, SPSS, R & methodology. From ${fromHour}/hr. Bachelor & master thesis support. Personal guidance at Science Park, Roeterseiland or online.`,
     keywords: [
       'scriptiebegeleiding amsterdam',
       'thesis begeleiding',
@@ -30,8 +32,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: isNl ? 'Scriptiebegeleiding Amsterdam | Expert Thesis Begeleiding' : 'Thesis Supervision Amsterdam | Expert Research Guidance',
       description: isNl
-        ? 'Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van €90/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding.'
-        : 'Thesis supervision Amsterdam: Expert in statistics, SPSS, R & methodology. From €90/hr. Bachelor & master thesis support. Personal guidance.',
+        ? `Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van ${fromHour}/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding.`
+        : `Thesis supervision Amsterdam: Expert in statistics, SPSS, R & methodology. From ${fromHour}/hr. Bachelor & master thesis support. Personal guidance.`,
       url: 'https://stephensprivelessen.nl/scriptiebegeleiding',
       type: 'website',
       locale: 'nl_NL',
