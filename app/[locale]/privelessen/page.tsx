@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: isNl ? 'Privelessen Amsterdam | Wiskunde, Statistiek & Programmeren' : 'Private Tutoring Amsterdam | Maths, Statistics & Programming',
     description: isNl
-      ? 'Privelessen Amsterdam: Wiskunde, statistiek & programmeren. Online of Science Park. Van €75/uur. 1-op-1 begeleiding. UvA & VU studenten.'
-      : 'Private tutoring Amsterdam: Mathematics, statistics & programming. Online or Science Park. From €75/hr. 1-on-1 guidance. UvA & VU students.',
+      ? 'Privelessen Amsterdam: Wiskunde, statistiek & programmeren. Online, Science Park of Roeterseiland. Van €75/uur. 1-op-1 begeleiding. UvA & VU studenten.'
+      : 'Private tutoring Amsterdam: Mathematics, statistics & programming. Online, Science Park or Roeterseiland. From €75/hr. 1-on-1 guidance. UvA & VU students.',
     keywords: [
       'privelessen amsterdam',
       'wiskunde privelessen',
@@ -29,8 +29,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: isNl ? 'Privelessen Amsterdam | Wiskunde, Statistiek & Programmeren' : 'Private Tutoring Amsterdam | Maths, Statistics & Programming',
       description: isNl
-        ? 'Privelessen Amsterdam: Wiskunde, statistiek & programmeren. Online of Science Park. Van €75/uur. 1-op-1 begeleiding.'
-        : 'Private tutoring Amsterdam: Mathematics, statistics & programming. Online or Science Park. From €75/hr. 1-on-1 guidance.',
+        ? 'Privelessen Amsterdam: Wiskunde, statistiek & programmeren. Online, Science Park of Roeterseiland. Van €75/uur. 1-op-1 begeleiding.'
+        : 'Private tutoring Amsterdam: Mathematics, statistics & programming. Online, Science Park or Roeterseiland. From €75/hr. 1-on-1 guidance.',
       url: 'https://stephensprivelessen.nl/privelessen',
       type: 'website',
       locale: 'nl_NL',

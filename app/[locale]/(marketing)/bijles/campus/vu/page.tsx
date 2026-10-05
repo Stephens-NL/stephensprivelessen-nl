@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const structuredData = generateStructuredData({
       title: "Bijles voor VU Studenten | Online & Science Park",
-  description: "Bijles voor VU studenten. Statistiek, calculus en programmeren online of op Science Park.",
+  description: "Bijles voor VU studenten. Statistiek, calculus en programmeren online of op Science Park of Roeterseiland.",
   provider: {
     name: "Stephen's Privélessen",
     type: "Person",
@@ -83,8 +83,8 @@ export default async function VUBijlesPage() {
 
           <p className="text-xl mb-8">
             {isNl
-              ? "Speciaal voor VU studenten: online bijles of op Science Park. Van statistiek tot programmeren, ik help je door je studie."
-              : "Specifically for VU students: online tutoring or at Science Park. From statistics to programming, I'll help you through your degree."}
+              ? "Speciaal voor VU studenten: online bijles of op Science Park of Roeterseiland. Van statistiek tot programmeren, ik help je door je studie."
+              : "Specifically for VU students: online tutoring or at Science Park or Roeterseiland. From statistics to programming, I'll help you through your degree."}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">

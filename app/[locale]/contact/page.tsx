@@ -9,8 +9,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: isNl ? "Contact | Stephen's Privélessen Amsterdam" : "Contact | Stephen's Private Tutoring Amsterdam",
     description: isNl
-      ? "Contact Stephen's Privélessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur. Snelle reactie."
-      : "Contact Stephen's Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online or Science Park. From €75/hr. Quick response.",
+      ? "Contact Stephen's Privélessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online, Science Park of Roeterseiland. Van €75/uur. Snelle reactie."
+      : "Contact Stephen's Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online, Science Park or Roeterseiland. From €75/hr. Quick response.",
     keywords: [
       'contact stephens privelessen',
       'bijles afspraak amsterdam',
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: isNl ? "Contact | Stephen's Privélessen Amsterdam" : "Contact | Stephen's Private Tutoring Amsterdam",
       description: isNl
-        ? "Contact Stephen's Privélessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online of Science Park. Van €75/uur."
-        : "Contact Stephen's Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online or Science Park. From €75/hr.",
+        ? "Contact Stephen's Privélessen Amsterdam. Boek direct bijles in wiskunde, statistiek of scriptiebegeleiding. Online, Science Park of Roeterseiland. Van €75/uur."
+        : "Contact Stephen's Private Tutoring Amsterdam. Book tutoring in mathematics, statistics or thesis supervision. Online, Science Park or Roeterseiland. From €75/hr.",
       url: "https://stephensprivelessen.nl/contact",
       type: 'website',
       locale: 'nl_NL',

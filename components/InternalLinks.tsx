@@ -13,8 +13,8 @@ const InternalLinks: React.FC = () => {
   ];
 
   const campusLinks = [
-    { href: '/bijles/campus/uva', title: 'UvA Studenten', description: 'Online of op Science Park' },
-    { href: '/bijles/campus/vu', title: 'VU Studenten', description: 'Online of op Science Park' },
+    { href: '/bijles/campus/uva', title: 'UvA Studenten', description: 'Online of op Science Park of Roeterseiland' },
+    { href: '/bijles/campus/vu', title: 'VU Studenten', description: 'Online of op Science Park of Roeterseiland' },
   ];
 
   return (
@@ -30,7 +30,7 @@ const InternalLinks: React.FC = () => {
             Bijles in Amsterdam
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-[var(--ink)] leading-tight">
-            Online & Science Park
+            Online, Science Park & Roeterseiland
           </h2>
         </m.div>
 

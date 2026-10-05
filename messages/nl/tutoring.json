@@ -82,7 +82,7 @@
   "pricing": {
     "scheduleTrialLesson": "Plan Gratis Proefles",
     "title": "Bijlespakketten",
-    "subtitle": "Kwaliteitsbijles vanaf €75 per uur - Online of op Science Park",
+    "subtitle": "Kwaliteitsbijles vanaf €75 per uur - Online of op Science Park of Roeterseiland",
     "plans": [
       {
         "name": "Individuele Bijles",
@@ -92,7 +92,7 @@
           "Persoonlijke aandacht",
           "Alle vakken beschikbaar",
           "Flexibele planning",
-          "Online of op Science Park"
+          "Online of op Science Park of Roeterseiland"
         ],
         "cta": "Plan Proefles"
       },
@@ -104,7 +104,7 @@
           "Gedeelde leerervaring",
           "Lagere kosten per persoon",
           "Interactieve groepsdynamiek",
-          "Online of op Science Park"
+          "Online of op Science Park of Roeterseiland"
         ],
         "cta": "Begin Nu"
       },
@@ -160,7 +160,7 @@
   "form": {},
   "locations": {
     "title": "Waar ik lesgeef",
-    "subtitle": "Lessen op Science Park of online. Beschikbaar voor studenten in heel Amsterdam.",
+    "subtitle": "Lessen op Science Park, Roeterseiland of online. Beschikbaar voor studenten in heel Amsterdam.",
     "sciencePark": "Science Park 904, Amsterdam",
     "online": "Online via Google Meet",
     "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"

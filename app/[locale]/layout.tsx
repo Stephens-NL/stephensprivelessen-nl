@@ -54,8 +54,8 @@ export async function generateMetadata({params}: {params: Promise<{locale: strin
         : "%s | Stephen's Private Tutoring Amsterdam",
     },
     description: isNl
-      ? 'Expert bijles in wiskunde, statistiek en programmeren in Amsterdam. Online of op Science Park. Van €75/uur. Scriptiebegeleiding, SPSS, R, Python. UvA & VU studenten.'
-      : 'Expert tutoring in mathematics, statistics and programming in Amsterdam. Online or at Science Park. From €75/hr. Thesis supervision, SPSS, R, Python. UvA & VU students.',
+      ? 'Expert bijles in wiskunde, statistiek en programmeren in Amsterdam. Online of op Science Park of Roeterseiland. Van €75/uur. Scriptiebegeleiding, SPSS, R, Python. UvA & VU studenten.'
+      : 'Expert tutoring in mathematics, statistics and programming in Amsterdam. Online or at Science Park or Roeterseiland. From €75/hr. Thesis supervision, SPSS, R, Python. UvA & VU students.',
     authors: [{name: 'Stephen Adei'}],
     creator: 'Stephen Adei',
     publisher: isNl ? "Stephen's Privélessen" : "Stephen's Private Tutoring",

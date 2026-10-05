@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ? "Aanmelden | Stephens Privélessen Amsterdam"
     : "Register | Stephens Private Tutoring Amsterdam";
   const description = isNl
-    ? "Schrijf je in voor bijles — wiskunde, statistiek, scriptie. Online of Science Park. Snelle reactie."
-    : "Register for tutoring — mathematics, statistics, thesis. Online or Science Park. Quick response.";
+    ? "Schrijf je in voor bijles — wiskunde, statistiek, scriptie. Online, Science Park of Roeterseiland. Snelle reactie."
+    : "Register for tutoring — mathematics, statistics, thesis. Online, Science Park or Roeterseiland. Quick response.";
   const ogImage = `/api/og?title=${encodeURIComponent(isNl ? "Aanmelden" : "Register")}&brandText=${encodeURIComponent("Stephensprivelessen.nl")}&buttonText=${encodeURIComponent(isNl ? "Schrijf je in" : "Sign up")}&footerText=${encodeURIComponent(isNl ? "Wiskunde, Statistiek & Meer" : "Maths, Statistics & More")}&featureImageUrl=/images/contact-banner.jpg`;
 
   return {

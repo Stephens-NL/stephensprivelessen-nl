@@ -7,8 +7,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: isNl ? 'Consultancy | Data & Statistiek Expert Amsterdam' : 'Consultancy | Data & Statistics Expert Amsterdam',
     description: isNl
-      ? 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur. Science Park of online.'
-      : 'Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From €100/hr. Science Park or online.',
+      ? 'Consultancy Amsterdam: Data-analyse, statistiek & onderzoeksmethodologie. Expert advies voor bedrijven. Van €100/uur. Science Park, Roeterseiland of online.'
+      : 'Consultancy Amsterdam: Data analysis, statistics & research methodology. Expert advice for businesses. From €100/hr. Science Park, Roeterseiland or online.',
     keywords: [
       'statistiek consultant',
       'data analyse consultant',

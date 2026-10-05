@@ -17,8 +17,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ? "Bijles Amsterdam voor UvA & VU | Statistiek, Calculus & Programmeren"
       : "Tutoring Amsterdam for UvA & VU | Statistics, Calculus & Programming",
     description: isNl
-      ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. 4-uurs pakketten v.a. €240. UvA & VU studenten. 1-op-1 begeleiding."
-      : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online or Science Park. 4-hour packages from €240. UvA & VU students. 1-on-1 guidance.",
+      ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online, Science Park of Roeterseiland. 4-uurs pakketten v.a. €240. UvA & VU studenten. 1-op-1 begeleiding."
+      : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online, Science Park or Roeterseiland. 4-hour packages from €240. UvA & VU students. 1-on-1 guidance.",
     keywords: [
       'bijles amsterdam',
       'statistiek bijles amsterdam',
@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         ? "Bijles Amsterdam | Statistiek, Calculus & Programmeren"
         : "Tutoring Amsterdam | Statistics, Calculus & Programming",
       description: isNl
-        ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online of Science Park. 4-uurs pakketten v.a. €240. UvA & VU studenten."
-        : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online or Science Park. 4-hour packages from €240. UvA & VU students.",
+        ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online, Science Park of Roeterseiland. 4-uurs pakketten v.a. €240. UvA & VU studenten."
+        : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online, Science Park or Roeterseiland. 4-hour packages from €240. UvA & VU students.",
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(isNl ? "Bijles Amsterdam" : "Tutoring Amsterdam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "Boek les" : "Book lesson")}&footerText=${encodeURIComponent(isNl ? "Statistiek \u2022 Calculus \u2022 Programmeren" : "Statistics \u2022 Calculus \u2022 Programming")}&featureImageUrl=/images/og-default-feature.jpg`,
