@@ -1,3 +1,4 @@
+import PrivacyNotice from '@/components/shared/PrivacyNotice';
 import React from 'react';
 import { m } from 'framer-motion';
 import { useTranslations } from 'next-intl';
@@ -75,6 +76,7 @@ const FeedbackSummary = ({ formData, onSubmit, onEdit }: FeedbackSummaryProps) =
           <Send className="ml-2" size={20} />
         </m.button>
       </div>
+      <PrivacyNotice className="text-white" />
     </m.div>
   );
 };

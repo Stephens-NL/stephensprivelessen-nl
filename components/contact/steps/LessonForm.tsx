@@ -10,6 +10,7 @@ import ScheduleSelection from './form-steps/ScheduleSelection';
 import LocationChoice from './form-steps/LocationChoice';
 import Confirmation from './form-steps/Confirmation';
 import NavigationButtons from './form-steps/NavigationButtons';
+import PrivacyNotice from '@/components/shared/PrivacyNotice';
 import InfoSection from './InfoSection';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -172,6 +173,9 @@ const LessonForm = ({
                         isLast={step === 'confirmation'}
                         disabled={!canProceed()}
                     />
+                )}
+                {step === 'confirmation' && (
+                    <PrivacyNotice className="text-[var(--cream)]" />
                 )}
             </m.div>
 

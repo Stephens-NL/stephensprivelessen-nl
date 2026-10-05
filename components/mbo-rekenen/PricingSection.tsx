@@ -1,15 +1,16 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
-import { RekentrajectenComparison } from './RekentrajectenComparison';
+import { formatEuro, studentTutorVoPrices, voOnlinePackages, voPhysicalPackages } from '@/data/pricingData';
 import { MessageCircle, Phone, Calendar } from 'lucide-react';
 import { inViewFadeUp } from '@/lib/animations';
 import { scrollToElement } from '@/lib/scroll';
 
 export function PricingSection() {
   const language = useLanguage();
+  const locale = useLocale();
   const t = useTranslations('mbo');
 
   const contactMethods = [
@@ -50,35 +51,46 @@ export function PricingSection() {
             </p>
 
             <div className="bg-[var(--cream-dark)] rounded-2xl p-8 max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div className="text-center">
-                  <div className="text-3xl font-light text-[var(--ink)] mb-2">€75</div>
-                  <div className="text-[var(--muted-text)]">
-                    {t('form.perHour')}
-                  </div>
-                  <div className="text-sm text-[var(--muted-text)] mt-1">
-                    {t('form.individualLessons')}
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-light text-[var(--ink)] mb-2">€35</div>
-                  <div className="text-[var(--muted-text)]">
-                    {t('form.perHour')}
-                  </div>
-                  <div className="text-sm text-[var(--muted-text)] mt-1">
-                    {t('form.groupLessons24People')}
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-light text-[var(--ink)] mb-2">Online</div>
-                  <div className="text-[var(--muted-text)]">
-                    {t('form.available')}
-                  </div>
-                  <div className="text-sm text-[var(--muted-text)] mt-1">
-                    {t('form.allOptions')}
-                  </div>
-                </div>
+              <h3 className="text-2xl font-display text-[var(--ink)] mb-2">
+                {language === 'NL' ? 'Pakketten van 4 uur' : '4-hour packages'}
+              </h3>
+              <p className="text-[var(--muted-text)] mb-6">
+                {language === 'NL'
+                  ? 'Voor MBO gelden dezelfde pakketten als voor het voortgezet onderwijs. Er zijn geen losse lessen.'
+                  : 'MBO uses the same packages as secondary education. There are no single lessons.'}
+              </p>
+              <div className="overflow-x-auto mb-8">
+                <table className="w-full text-left">
+                  <thead>
+                    <tr className="border-b border-[var(--border-warm)] text-[var(--ink)]">
+                      <th className="py-2 pr-4 font-medium">{language === 'NL' ? 'Leerlingen' : 'Students'}</th>
+                      <th className="py-2 pr-4 font-medium">{language === 'NL' ? 'Online, per pakket' : 'Online, per package'}</th>
+                      <th className="py-2 font-medium">{language === 'NL' ? 'Op locatie, per pakket' : 'On location, per package'}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-[var(--muted-text)]">
+                    {voOnlinePackages.map((online, i) => {
+                      const physical = voPhysicalPackages[i];
+                      const cell = (p: typeof online) =>
+                        p.students === 1
+                          ? formatEuro(p.packagePrice, locale)
+                          : `${formatEuro(p.packagePrice, locale)} (${formatEuro(p.pricePerPerson, locale)} ${language === 'NL' ? 'p.p.' : 'each'})`;
+                      return (
+                        <tr key={online.students} className="border-b border-[var(--border-warm)] last:border-0">
+                          <td className="py-2 pr-4">{online.students}</td>
+                          <td className="py-2 pr-4">{cell(online)}</td>
+                          <td className="py-2">{physical ? cell(physical) : '—'}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
+              <p className="text-[var(--muted-text)] mb-8">
+                {language === 'NL'
+                  ? `Individueel les van een student-docent: vanaf ${formatEuro(studentTutorVoPrices.online, locale)} online / ${formatEuro(studentTutorVoPrices.physical, locale)} op locatie per pakket.`
+                  : `One-to-one with a student tutor: from ${formatEuro(studentTutorVoPrices.online, locale)} online / ${formatEuro(studentTutorVoPrices.physical, locale)} on location per package.`}
+              </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {contactMethods.map((method, index) => (
@@ -110,9 +122,6 @@ export function PricingSection() {
           </m.div>
         </div>
       </section>
-
-      {/* Group Programs Comparison */}
-      <RekentrajectenComparison />
     </div>
   );
 } 

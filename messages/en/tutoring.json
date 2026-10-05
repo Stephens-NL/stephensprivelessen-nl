@@ -13,7 +13,7 @@
     },
     {
       "title": "Expert Support",
-      "description": "Learn from an experienced tutor with proven results."
+      "description": "Learn from an experienced tutor."
     },
     {
       "title": "Flexible Scheduling",
@@ -82,11 +82,11 @@
   "pricing": {
     "scheduleTrialLesson": "Schedule Trial Lesson",
     "title": "Tutoring Packages",
-    "subtitle": "Quality tutoring starting from €75 per hour - Online or at Science Park or Roeterseiland",
+    "subtitle": "Quality tutoring starting from [[fromHour]] per hour - Online or at Science Park or Roeterseiland",
     "plans": [
       {
         "name": "Individual Tutoring",
-        "price": "From €75",
+        "price": "From [[fromHour]]",
         "interval": "per hour",
         "features": [
           "Personalized attention",
@@ -98,7 +98,7 @@
       },
       {
         "name": "Group Lessons (2 persons)",
-        "price": "From €55",
+        "price": "From [[fromHourGroup]]",
         "interval": "per hour per person",
         "features": [
           "Shared learning experience",
@@ -120,8 +120,7 @@
         ],
         "cta": "Contact Us"
       }
-    ],
-    "mostPopular": "Most Popular"
+    ]
   },
   "faq": {
     "title": "Frequently Asked Questions",

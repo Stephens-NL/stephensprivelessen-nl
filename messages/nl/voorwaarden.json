@@ -1,31 +1,134 @@
 {
-  "title": "Voorwaarden",
-  "subtitle": "Transparantie over onze werkwijze",
-  "intro": "Hieronder vind je de belangrijkste voorwaarden voor bijlessen bij Stephen's Privélessen. Dit is een samenvatting — het volledige contract ontvang je na de proefles.",
-  "agreement": {
-    "title": "Lesovereenkomst",
-    "cancellation": "Verzetten of annuleren is kosteloos tot 21:00 de avond vóór de les",
-    "surcharge24h": "Op de lesdag zelf vóór 12:00: 50% van het lesbedrag",
-    "surcharge12h": "Op de lesdag na 12:00, of niet komen opdagen (no-show): 100% van het lesbedrag",
-    "noPartialRefund": "Een pakket wordt nooit gedeeltelijk terugbetaald",
-    "payment": "Betaling vooraf via Tikkie",
-    "invoice": "Factuur op verzoek beschikbaar",
-    "maxHours": "Maximaal 2 uur per week"
-  },
-  "hours": {
-    "title": "Beschikbaarheid",
-    "weekdays": "Maandag t/m vrijdag: 18:00 – 21:00",
-    "sunday": "Zondag: 14:00 – 18:00 (alleen online, inhaalles)"
-  },
-  "privacy": {
-    "title": "Privacy",
-    "description": "Wij verwerken alleen de gegevens die nodig zijn voor de bijles: naam, contactgegevens, vak en niveau. Bij minderjarigen bewaren we ook de gegevens van een ouder/verzorger.",
-    "rights": "Je hebt recht op inzage, correctie en verwijdering van je gegevens.",
-    "contact": "Neem contact op via het contactformulier voor privacy-verzoeken."
-  },
-  "pricing": {
-    "title": "Tarieven",
-    "description": "Tarieven zijn afhankelijk van niveau, groepsgrootte en locatie. Bekijk de actuele tarieven op onze website of vraag een offerte aan na de proefles."
-  },
+  "title": "Algemene voorwaarden",
+  "intro": [
+    "**Concept, laat juridisch nakijken** (herroeping, klachten en toepasselijk recht zijn nieuw).",
+    "Stephen Adei, handelend onder de naam Stephen's Privélessen (eenmanszaak) · KvK 88195910 · btw NL004558497B41 · Hendrik Hosstraat 20, 1106 ZN Amsterdam · info@stephensprivelessen.nl",
+    "Deze voorwaarden gelden voor alle bijlessen van Stephen's Privélessen. Deze voorwaarden staan ook op stephensprivelessen.nl/voorwaarden."
+  ],
+  "sections": [
+    {
+      "title": "1. Betaling",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "Betaling gaat vooraf per Tikkie.",
+            "Een factuur is mogelijk op verzoek.",
+            "Een les of plek staat pas definitief vast na bevestiging en betaling."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. Annulering en verplaatsing",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "[[feeFree]]. Een nieuwe tijd hangt af van beschikbaarheid; stem die af met je docent.",
+            "[[feeNoon]].",
+            "[[feeLate]].",
+            "Met een pakket gaat bij kosten het hele lesuur van je saldo af. Bij 50% krijg je de helft van de waarde van dat uur (pakketprijs gedeeld door het aantal uren) terug als tegoed. Dit tegoed is alleen te gebruiken voor toekomstige lessen en wordt niet uitbetaald.",
+            "Kan de docent een les niet geven, dan blijven je lesuren behouden en zorgen wij voor een vervangende docent of een nieuwe afspraak.",
+            "Beëindigt Stephen's Privélessen de afspraak, of kunnen wij geen docent leveren, dan krijg je de niet gebruikte lesuren terugbetaald.",
+            "Na afloop van de herroepingstermijn (zie 3) wordt een pakket niet gedeeltelijk terugbetaald, behalve in de situatie hierboven. Inhalen kan alleen op zondag tussen 14:00 en 18:00, online."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. Herroepingsrecht (alleen voor consumenten)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Ben je een particulier, dan mag je binnen 14 dagen zonder opgave van reden herroepen (BW 6:230o). De termijn gaat in op de dag dat de overeenkomst tot stand komt. Wil je herroepen, mail dan een duidelijke verklaring aan info@stephensprivelessen.nl; je mag het modelformulier hieronder gebruiken. Je krijgt een bevestiging van ontvangst."
+        },
+        {
+          "type": "p",
+          "text": "Wil je dat de lessen binnen de 14 dagen beginnen, dan vragen wij je dat uitdrukkelijk te bevestigen bij het ondertekenen van de bijlesovereenkomst. Herroep je daarna, dan betaal je een bedrag naar rato van de lesuren die al zijn gegeven tot het moment van herroeping (BW 6:230s). Het overige deel van het betaalde bedrag krijg je binnen 14 dagen na je herroeping terug, via dezelfde weg als je betaling."
+        },
+        {
+          "type": "p",
+          "text": "Na de herroepingstermijn geldt het annuleringsbeleid in 2."
+        }
+      ]
+    },
+    {
+      "title": "4. Omvang en beschikbaarheid",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "Lessen worden gegeven door Stephen Adei of door een student-docent die Stephen's Privélessen inzet. Stephen's Privélessen kiest de docent en blijft je contractpartij.",
+            "Maximaal 2 uur les per week.",
+            "Lessen bij Stephen: [[hours]].",
+            "Lessen bij een student-docent: ook overdag mogelijk, afhankelijk van diens beschikbaarheid.",
+            "Zondag: 14:00 – 18:00 (alleen online, inhaalles)."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. Tarieven",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Tarieven zijn afhankelijk van niveau, groepsgrootte en locatie. De actuele tarieven staan op stephensprivelessen.nl; na de proefles ontvang je een offerte."
+        }
+      ]
+    },
+    {
+      "title": "6. Privacy",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Stephen's Privélessen verwerkt alleen de gegevens die nodig zijn voor de bijles. Hoe, staat in de Privacyverklaring."
+        }
+      ]
+    },
+    {
+      "title": "7. Klachten",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Ben je ergens niet tevreden over, mail dan binnen 14 dagen nadat je het probleem hebt gemerkt naar info@stephensprivelessen.nl. Je krijgt binnen 14 dagen een inhoudelijke reactie. Komen we er samen niet uit, dan kun je het voorleggen aan de bevoegde rechter."
+        }
+      ]
+    },
+    {
+      "title": "8. Toepasselijk recht",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Op deze voorwaarden en alle overeenkomsten met Stephen's Privélessen is Nederlands recht van toepassing."
+        }
+      ]
+    },
+    {
+      "title": "Bijlage: modelformulier voor herroeping",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Vul dit formulier alleen in en stuur het terug als je de overeenkomst wilt herroepen."
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Aan: Stephen Adei, handelend onder de naam Stephen's Privélessen, Hendrik Hosstraat 20, 1106 ZN Amsterdam, info@stephensprivelessen.nl",
+            "Ik/Wij (*) deel/delen u hierbij mede, dat ik/wij (*) onze overeenkomst betreffende de verkoop van de volgende dienst herroep/herroepen (*): ______________________________",
+            "Besteld op (*) / ontvangen op (*): ______________________________",
+            "Naam consument(en): ______________________________",
+            "Adres consument(en): ______________________________",
+            "Handtekening consument(en) (alleen wanneer dit formulier op papier wordt ingediend): ______________________________",
+            "Datum: ______________________________"
+          ]
+        },
+        {
+          "type": "p",
+          "text": "(*) Doorhalen wat niet van toepassing is."
+        }
+      ]
+    }
+  ],
   "cta": "Heb je vragen? Neem contact op."
 }

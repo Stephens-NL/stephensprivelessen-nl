@@ -62,6 +62,9 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "Stephen's Privélessen",
+  "legalName": config.business.legal.name,
+  "vatID": config.business.legal.vatId,
+  "email": config.contact.email,
   "url": "https://stephensprivelessen.nl",
   "logo": "https://stephensprivelessen.nl/favicon/android-chrome-512x512.png",
   "contactPoint": {
@@ -71,9 +74,9 @@ export const organizationSchema = {
   },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Science Park 904",
-    "addressLocality": "Amsterdam",
-    "postalCode": "1098 XH",
+    "streetAddress": config.business.legal.address,
+    "addressLocality": config.business.legal.city,
+    "postalCode": config.business.legal.postalCode,
     "addressCountry": "NL"
   },
   "sameAs": [

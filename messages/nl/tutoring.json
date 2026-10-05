@@ -13,7 +13,7 @@
     },
     {
       "title": "Expert Ondersteuning",
-      "description": "Leer van een ervaren docent met bewezen resultaten."
+      "description": "Leer van een ervaren docent."
     },
     {
       "title": "Flexibele Planning",
@@ -82,11 +82,11 @@
   "pricing": {
     "scheduleTrialLesson": "Plan Gratis Proefles",
     "title": "Bijlespakketten",
-    "subtitle": "Kwaliteitsbijles vanaf €75 per uur - Online of op Science Park of Roeterseiland",
+    "subtitle": "Kwaliteitsbijles vanaf [[fromHour]] per uur - Online of op Science Park of Roeterseiland",
     "plans": [
       {
         "name": "Individuele Bijles",
-        "price": "Vanaf €75",
+        "price": "Vanaf [[fromHour]]",
         "interval": "per uur",
         "features": [
           "Persoonlijke aandacht",
@@ -98,7 +98,7 @@
       },
       {
         "name": "Groepslessen (2 personen)",
-        "price": "Vanaf €55",
+        "price": "Vanaf [[fromHourGroup]]",
         "interval": "per uur per persoon",
         "features": [
           "Gedeelde leerervaring",
@@ -120,8 +120,7 @@
         ],
         "cta": "Neem Contact Op"
       }
-    ],
-    "mostPopular": "Meest Populair"
+    ]
   },
   "faq": {
     "title": "Veelgestelde Vragen",

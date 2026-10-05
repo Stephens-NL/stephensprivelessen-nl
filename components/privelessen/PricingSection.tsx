@@ -17,8 +17,7 @@ interface PlanMessage {
   cta: string;
 }
 
-// Presentational constants — popular flag and full-width driven by plan index, not translated name
-const POPULAR_INDEX = 1;
+// Presentational constant — full-width driven by plan index, not translated name
 const FULL_WIDTH_INDEX = 2;
 
 export const PricingSection = () => {
@@ -48,7 +47,6 @@ export const PricingSection = () => {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => {
-            const isPopular = index === POPULAR_INDEX;
             const isFullWidth = index === FULL_WIDTH_INDEX;
 
             return (
@@ -58,21 +56,7 @@ export const PricingSection = () => {
                 transition={{ delay: index * 0.1 }}
                 className={`flex ${isFullWidth ? 'md:col-span-2 lg:col-span-3' : ''}`}
               >
-                <Card
-                  className={`p-8 flex flex-col flex-grow ${
-                    isPopular
-                      ? 'border-[var(--amber)] shadow-sm scale-105'
-                      : ''
-                  }`}
-                >
-                  {/* Popular Badge */}
-                  {isPopular && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <span className="bg-[var(--amber)] text-[var(--ink)] px-4 py-1 rounded-full text-sm font-medium">
-                        {t('pricing.mostPopular')}
-                      </span>
-                    </div>
-                  )}
+                <Card className="p-8 flex flex-col flex-grow">
 
                   {/* Plan Header */}
                   <div className="text-center mb-8">
@@ -95,12 +79,7 @@ export const PricingSection = () => {
 
                   {/* CTA Button */}
                   <Link href="/contact" className="mt-auto">
-                    <Button
-                      className={`w-full ${
-                        isPopular ? 'bg-[var(--ink)] text-[var(--cream)] hover:bg-[var(--ink-light)]' : ''
-                      }`}
-                      variant={isPopular ? 'default' : 'outline'}
-                    >
+                    <Button className="w-full" variant="outline">
                       {t('pricing.scheduleTrialLesson')}
                     </Button>
                   </Link>

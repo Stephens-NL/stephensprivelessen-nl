@@ -18,13 +18,13 @@ export function AboutSection() {
     },
     {
       icon: BookOpen,
-      title: { NL: 'Bewezen methoden', EN: 'Proven methods' },
-      description: { NL: 'Effectieve lesmaterialen en technieken voor optimaal leerresultaat', EN: 'Effective teaching materials and techniques for optimal learning results' }
+      title: { NL: 'Duidelijke methode', EN: 'Clear method' },
+      description: { NL: 'Lesmateriaal en oefeningen die aansluiten op het MBO-rekenexamen', EN: 'Effective teaching materials and techniques for optimal learning results' }
     },
     {
       icon: Users,
       title: { NL: 'Ervaren docent', EN: 'Experienced tutor' },
-      description: { NL: 'Gespecialiseerd in MBO-rekenen met jarenlange ervaring', EN: 'Specialized in MBO math with years of experience' }
+      description: { NL: 'Gespecialiseerd in MBO-rekenen', EN: 'Specialized in MBO math' }
     }
   ];
 

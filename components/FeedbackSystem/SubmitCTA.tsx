@@ -2,6 +2,8 @@ import { m } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import React from 'react'
 import { Send } from 'lucide-react';
+import PrivacyNotice from '@/components/shared/PrivacyNotice';
+
 
 const SubmitCTA: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
     const t = useTranslations('feedback');
@@ -24,6 +26,7 @@ const SubmitCTA: React.FC<{ onSubmit: () => void }> = ({ onSubmit }) => {
                 {t('formData.submitCTA.buttonText')}
                 <Send className="ml-2" size={24} />
             </m.button>
+            <PrivacyNotice className="text-white" />
         </m.div>
     );
 };

@@ -1,4 +1,5 @@
 import { buildAlternates } from '@/lib/seo';
+import { fromHourLabel } from '@/data/pricingData';
 import Hero from '@/components/Hero';
 import ServicesShort from '@/components/ServicesShort';
 import InternalLinks from '@/components/InternalLinks';
@@ -11,8 +12,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: { absolute: isNl ? "Stephen's Privélessen | Bijles & Privelessen Wiskunde, Statistiek Amsterdam" : "Stephen's Private Tutoring | Math & Statistics Tutoring Amsterdam" },
     description: isNl
-      ? "Professionele bijles in Amsterdam. Wiskunde, statistiek, programmeren. Online of op locatie. Van €75/uur."
-      : "Professional tutoring in Amsterdam. Mathematics, statistics, programming. Online or on-site. From €75/hr.",
+      ? `Professionele bijles in Amsterdam. Wiskunde, statistiek, programmeren. Online of op locatie. Van ${fromHourLabel(locale)}/uur.`
+      : `Professional tutoring in Amsterdam. Mathematics, statistics, programming. Online or on-site. From ${fromHourLabel(locale)}/hr.`,
     alternates: buildAlternates(locale, '/'),
   };
 }

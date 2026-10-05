@@ -5,7 +5,7 @@
     "titleItalic": "math test",
     "titleLine2": "with",
     "titleBold": "confidence",
-    "subtitle": "Since math became mandatory for the MBO diploma, I help students with targeted guidance and proven methods to succeed.",
+    "subtitle": "Since math became mandatory for the MBO diploma, I help students with targeted guidance to succeed.",
     "ctaPrimary": "Start today",
     "ctaSecondary": "View programs",
     "stats": {
@@ -28,11 +28,11 @@
       },
       {
         "title": "Experienced teacher",
-        "description": "Specialized in MBO math with years of experience"
+        "description": "Specialized in MBO math"
       }
     ],
     "ctaTitle": "Ready for your math test?",
-    "ctaSubtitle": "Join students who passed their MBO math test with my guidance.",
+    "ctaSubtitle": "Book a free intro meeting and see if my approach suits you.",
     "smallGroups": "Small groups",
     "flexibleTimes": "Flexible times",
     "onlineOffline": "Online & offline"
@@ -114,7 +114,7 @@
   },
   "pricing": {
     "flexibleGuidance": "Flexible guidance",
-    "flexibleSubtitle": "In addition to my group programs, I also offer individual lessons for personal guidance.",
+    "flexibleSubtitle": "You work with 4-hour packages, individually or in a small group. The same packages as for secondary education.",
     "perHour": "per hour",
     "individualLessons": "Individual lessons",
     "groupLessons": "Group lessons (2-4 people)",
@@ -157,7 +157,7 @@
     },
     "availability": "Availability",
     "availabilityTimes": [
-      "Monday - Friday: 18:00 - 21:00",
+      "Monday - Thursday: 18:00 - 21:00",
       "Sunday: 14:00 - 18:00 (online only, makeup lessons)"
     ],
     "locations": "Locations",
@@ -169,21 +169,11 @@
     "freeIntroDesc": "No obligations, just getting to know each other and see if we're a good match.",
     "scheduleIntro": "Schedule introduction"
   },
-  "rekentrajecten": {
-    "recommended": "RECOMMENDED",
-    "select": "SELECT",
-    "perHour": "per hour",
-    "fullComparison": "FULL COMPARISON",
-    "allDetailsAtAGlance": "All details at a glance",
-    "feature": "FEATURE",
-    "showDetails": "SHOW DETAILS",
-    "hideDetails": "HIDE DETAILS"
-  },
   "form": {
     "whyChooseUs": "Why choose me?",
     "weUnderstandTheChallengesOfMboMathAndProvideTheSup": "I understand the challenges of MBO math and provide the support you need to succeed.",
     "readyForYourMathTest": "Ready for your math test?",
-    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Join students who passed their MBO math test with my guidance.",
+    "joinHundredsOfStudentsWhoHaveSuccessfullyPassedThe": "Book a free intro meeting and see if my approach suits you.",
     "smallGroups": "Small groups",
     "flexibleTimes": "Flexible times",
     "onlineOffline": "Online & offline",
@@ -200,11 +190,11 @@
     "noObligationsJustGettingToKnowEachOtherAndSeeIfWe": "No obligations, just getting to know each other and see if we're a good match.",
     "scheduleIntroduction": "Schedule introduction",
     "mboMathSupport": "MBO Math Support",
-    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Since math became mandatory for the MBO diploma, I help students with targeted guidance and proven methods to succeed.",
+    "sinceMathBecameMandatoryForTheMboDiplomaWeHelpStud": "Since math became mandatory for the MBO diploma, I help students with targeted guidance to succeed.",
     "startToday": "Start today",
     "viewPrograms": "View programs",
     "flexibleGuidance": "Flexible guidance",
-    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "In addition to my group programs, I also offer individual lessons for personal guidance.",
+    "inAdditionToOurGroupProgramsWeAlsoOfferIndividualL": "You work with 4-hour packages, individually or in a small group. The same packages as for secondary education.",
     "perHour": "per hour",
     "individualLessons": "Individual lessons",
     "groupLessons24People": "Group lessons (2-4 people)",

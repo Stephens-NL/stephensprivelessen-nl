@@ -1,0 +1,123 @@
+{
+  "title": "Privacyverklaring",
+  "intro": [
+    "Stephen's Privélessen · Versie 1.3 · 5 oktober 2026",
+    "**Concept, laat juridisch nakijken**"
+  ],
+  "sections": [
+    {
+      "title": "1. Wie",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Stephen Adei, handelend onder de naam Stephen's Privélessen (eenmanszaak), KvK 88195910, btw NL004558497B41, Hendrik Hosstraat 20, 1106 ZN Amsterdam, is verantwoordelijke voor de verwerking van persoonsgegevens via de website, de contact- en aanmeldformulieren, WhatsApp, het portaal en de app. Voor vragen: info@stephensprivelessen.nl."
+        }
+      ]
+    },
+    {
+      "title": "2. Welke gegevens",
+      "blocks": [
+        {
+          "type": "ul",
+          "items": [
+            "**Naam** van leerling en eventuele ouder(s): voor identificatie en correspondentie.",
+            "**Gegevens uit contact- en aanmeldformulieren en WhatsApp**: leeftijd, vak en niveau, leerdoelen, voorkeursdagen en de contactgegevens van leerling en ouder/verzorger. Zet in vrije tekst geen medische gegevens.",
+            "**Telefoonnummer en e-mail** (optioneel): voor lesnotificaties en cancel-bevestigingen.",
+            "**PIN-code**: versleuteld opgeslagen (bcrypt); het origineel wordt nooit bewaard.",
+            "**Les-historie** (datum, status, eventuele annulering): voor pakketadministratie en de annuleringsvoorwaarden.",
+            "**Pakket-uren en saldo**: administratief noodzakelijk.",
+            "**Annuleringshistorie**: uitsluitend voor toepassing van de afgesproken annuleringsvoorwaarden.",
+            "**Push-tokens** (alleen als je notificaties hebt ingeschakeld in de app): voor het versturen van notificaties.",
+            "**Apparaat-info** (alleen de userAgent-string): voor debugging."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. Waarom",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "De verwerking is gebaseerd op de **uitvoering van de leerovereenkomst** (AVG art. 6 lid 1 sub b) tussen Stephen's Privélessen en de leerling (of diens ouder/voogd). Specifieke notificatie-voorkeuren zijn gebaseerd op **toestemming**, die je op elk moment kunt intrekken met een verzoek per e-mail."
+        }
+      ]
+    },
+    {
+      "title": "4. Met wie delen we",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Alleen met de verwerkers en ontvangers die hieronder staan, voor zover nodig:"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "**De docent die je lessen geeft** (Stephen Adei of een student-docent die Stephen's Privélessen inzet): alleen voornaam, niveau, leerdoelen en lesnotities. Een student-docent ziet geen contactgegevens van ouders en geen betaalgegevens.",
+            "**Hostingprovider** (eigen VPS in een EU-datacenter): voor het draaien van het portaal.",
+            "**Google Workspace** (e-mail, EU/VS): onze mailbox en de e-mails bij digitaal ondertekenen van de overeenkomst.",
+            "**Google Calendar en Meet**: afspraken en online lessen.",
+            "**Cloudflare** (DNS en proxy van onze websites, en e-mailverzending; EU/VS): e-mailadres en bericht.",
+            "**WhatsApp** (Meta): als je ons via WhatsApp benadert of wij jou daar antwoorden.",
+            "**Telegram en Matrix**: interne meldingen aan Stephen over aanmeldingen en lessen, met onder meer naam, contactgegevens en leerdoelen.",
+            "**Documenso** (zelf gehost): digitaal ondertekenen van de overeenkomst.",
+            "**Tikkie / ABN AMRO**: betalingen.",
+            "**Apple/Google** (push-notificatie-infrastructuur): alleen een anoniem device-token, geen persoonsgegevens."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Er zijn **geen advertentie-partners**, **geen tracking** en **geen analytics** ingebed."
+        }
+      ]
+    },
+    {
+      "title": "5. Hoe lang",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Gegevens die onder de fiscale bewaarplicht vallen (lessen, pakketten, betalingen, facturen) bewaren we **7 jaar**. Overige persoonsgegevens, zoals leerdoelen, notities en push-tokens, verwijderen we wanneer de leerovereenkomst is beëindigd én er geen openstaande administratie meer is. Aanmeldingen die nooit leerling worden, verwijderen we na **12 maanden**."
+        }
+      ]
+    },
+    {
+      "title": "6. Jouw rechten (AVG)",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Je hebt het recht op inzage, rectificatie, verwijdering, beperking, dataportabiliteit en bezwaar. Stuur een mail naar info@stephensprivelessen.nl met je verzoek. We reageren binnen één maand. Om te voorkomen dat gegevens bij de verkeerde persoon terechtkomen, vragen we eerst om je identiteit te bevestigen; bij een minderjarige leerling kan de ouder/verzorger het verzoek doen. Bij een verwijderverzoek verwijderen we alles, behalve de gegevens die we 7 jaar moeten bewaren (zie 5); die blijven bewaard en worden daarna verwijderd."
+        },
+        {
+          "type": "p",
+          "text": "Klacht? Je hebt het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl)."
+        }
+      ]
+    },
+    {
+      "title": "7. Minderjarigen",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Bij een leerling onder de 18 jaar tekent een ouder/verzorger de overeenkomst en ontvangt die ook deze verklaring. Bij een leerling onder de 16 jaar geeft de ouder/verzorger bovendien toestemming voor verwerking die niet nodig is voor de overeenkomst, zoals pushnotificaties. De ouder wordt als *account owner* geregistreerd; de leerling kan optioneel een eigen leesrechten-PIN krijgen na uitdrukkelijke instemming van de ouder."
+        }
+      ]
+    },
+    {
+      "title": "8. Cookies",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Alleen functionele cookies: `NEXT_LOCALE` (je taalvoorkeur) en `portaal_session` (inloggen op het portaal, 7 dagen). Geen tracking of analytics, geen third-party cookies. Daarom vragen we geen cookietoestemming."
+        }
+      ]
+    },
+    {
+      "title": "9. Wijzigingen",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Wijzigingen worden op het portaal gepubliceerd. Materiële wijzigingen worden bovendien gecommuniceerd via de bekende notificatie-kanalen (e-mail en/of in-app)."
+        }
+      ]
+    }
+  ]
+}

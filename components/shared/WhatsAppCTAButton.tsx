@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from 'next-intl';
 import { Textarea } from "@/components/ui/textarea";
 import { config } from '@/data/config';
+import PrivacyNotice from '@/components/shared/PrivacyNotice';
 
 interface WhatsAppCTAButtonProps {
   phoneNumber?: string;
@@ -251,6 +252,7 @@ export default function WhatsAppCTAButton({
               Ga door naar WhatsApp
             </Button>
           </div>
+          <PrivacyNotice className="text-on-dark" />
         </DialogContent>
       </Dialog>
     </>
