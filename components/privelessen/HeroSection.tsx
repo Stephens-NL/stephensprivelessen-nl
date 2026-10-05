@@ -39,7 +39,7 @@ export const HeroSection = ({ locationSpecific }: HeroSectionProps) => {
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--ink)]/90 to-[var(--ink)]/80 backdrop-blur-sm z-10" />
         <BlurImage
           src="/images/tutoring-hero.jpg"
-          alt="Students learning"
+          alt=""
           fill
           sizes="100vw"
           className="object-cover opacity-30"

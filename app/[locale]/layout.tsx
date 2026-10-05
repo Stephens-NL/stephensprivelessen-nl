@@ -1,5 +1,5 @@
 import {NextIntlClientProvider} from 'next-intl';
-import {setRequestLocale} from 'next-intl/server';
+import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {hasLocale} from 'next-intl';
 import {notFound} from 'next/navigation';
 import {Cormorant_Garamond, Outfit} from 'next/font/google';
@@ -124,6 +124,7 @@ export default async function LocaleLayout({children, params}: Props) {
   }
 
   setRequestLocale(locale);
+  const tCommon = await getTranslations({locale, namespace: 'common'});
 
   return (
     <html lang={locale} className={`${cormorant.variable} ${outfit.variable} font-body`} suppressHydrationWarning>
@@ -137,11 +138,12 @@ export default async function LocaleLayout({children, params}: Props) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify(websiteSchema)}}
         />
+        <a href="#main-content" className="skip-link">{tCommon('skipToContent')}</a>
         <NextIntlClientProvider>
           <MotionProvider>
             <Header />
             <WhatsAppButton />
-            <main className="pt-14 lg:pt-[72px] bg-[var(--ink)]">{children}</main>
+            <main id="main-content" tabIndex={-1} className="pt-14 lg:pt-[72px] bg-[var(--ink)]">{children}</main>
             <Footer />
           </MotionProvider>
         </NextIntlClientProvider>

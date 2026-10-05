@@ -12,6 +12,7 @@
   --cream-dark: #F0EBE3;
   --amber: #C9963B;
   --amber-hover: #DBA844;
+  --amber-text: #8A6420;            /* amber for text/icons on cream, cream-dark, white: 5.0:1 / 4.5:1 / 5.4:1 (brand --amber is 2.5:1) */
   --sage: #4A6741;
   --sage-light: #6B8F5E;
   --terracotta: #C75B39;
@@ -157,4 +158,29 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Accessibility: unlayered, so it beats Tailwind's layered outline-none/focus:outline-none.
+   Two-tone ring (cream halo + amber-text) stays visible on both cream and ink backgrounds. */
+:focus-visible {
+  outline: 2px solid var(--amber-text);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--cream);
+}
+#main-content:focus {
+  outline: none;
+}
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background: var(--ink);
+  color: var(--cream);
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
 }

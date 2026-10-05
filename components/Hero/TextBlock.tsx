@@ -9,7 +9,7 @@ const TextBlock = () => {
 
   return (
     <>
-      <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber)]">
+      <p className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber-text)]">
         {t('hero.title')}
       </p>
       <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[var(--ink)] leading-[1.05] tracking-tight">

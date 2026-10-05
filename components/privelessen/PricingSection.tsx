@@ -61,7 +61,7 @@ export const PricingSection = () => {
                   {/* Plan Header */}
                   <div className="text-center mb-8">
                     <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                    <div className="text-4xl font-bold text-[var(--amber)] mb-2">
+                    <div className="text-4xl font-bold text-[var(--amber-text)] mb-2">
                       {plan.price}
                     </div>
                     <div className="text-[var(--muted-text)]">{plan.interval}</div>

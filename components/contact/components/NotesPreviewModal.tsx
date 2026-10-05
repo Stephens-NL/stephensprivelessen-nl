@@ -5,6 +5,7 @@ import { m, AnimatePresence } from 'framer-motion';
 import { FaTimes, FaCalendarAlt } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useDialog } from '@/hooks/useDialog';
 
 interface NotesPreviewModalProps {
     isOpen: boolean;
@@ -17,6 +18,8 @@ interface NotesPreviewModalProps {
 const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial }: NotesPreviewModalProps) => {
     const language = useLanguage();
     const t = useTranslations('contact');
+
+    const dialogRef = useDialog(isOpen, onClose);
 
     if (!isOpen) return null;
 
@@ -33,6 +36,10 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
+                    ref={dialogRef}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={language === 'NL' ? `Voorbeeldnotities: ${subject}` : `Example Notes: ${subject}`}
                     className="bg-[var(--ink)] rounded-lg w-full max-w-5xl flex flex-col h-[90vh]"
                     onClick={e => e.stopPropagation()}
                 >
@@ -48,6 +55,7 @@ const NotesPreviewModal = ({ isOpen, onClose, subject, noteUrl, onScheduleTrial 
                         <button
                             onClick={onClose}
                             className="p-2 hover:bg-[var(--ink-light)]/50 text-[var(--amber)] hover:text-[var(--amber)] rounded-lg transition-all duration-200 ml-4"
+                            aria-label={t('form.close')}
                             title={t('form.close')}
                         >
                             <FaTimes className="w-5 h-5" />
