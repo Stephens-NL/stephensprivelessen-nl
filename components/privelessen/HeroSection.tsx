@@ -29,7 +29,7 @@ export const HeroSection = ({ locationSpecific }: HeroSectionProps) => {
     : t('hero.title');
 
   const subtitle = locationSpecific
-    ? 'Wiskunde, statistiek en programmeren. Online of op Science Park.'
+    ? 'Wiskunde, statistiek en programmeren. Online of op Science Park of Roeterseiland.'
     : t('hero.subtitle');
 
   return (

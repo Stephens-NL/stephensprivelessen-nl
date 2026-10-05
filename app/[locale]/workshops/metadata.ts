@@ -7,8 +7,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: isNl ? 'Workshops | Wiskunde, Statistiek & Creatieve Vaardigheden' : 'Workshops | Mathematics, Statistics & Creative Skills',
     description: isNl
-      ? 'Workshops Amsterdam: Wiskunde, statistiek & creatieve vaardigheden. Kleine groepen, flexibele planning. Expert begeleiding op Science Park of online.'
-      : 'Workshops Amsterdam: Mathematics, statistics & creative skills. Small groups, flexible scheduling. Expert guidance at Science Park or online.',
+      ? 'Workshops Amsterdam: Wiskunde, statistiek & creatieve vaardigheden. Kleine groepen, flexibele planning. Expert begeleiding op Science Park, Roeterseiland of online.'
+      : 'Workshops Amsterdam: Mathematics, statistics & creative skills. Small groups, flexible scheduling. Expert guidance at Science Park, Roeterseiland or online.',
     keywords: [
       'workshops amsterdam',
       'wiskunde workshops',
@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: isNl ? 'Workshops | Wiskunde, Statistiek & Creatieve Vaardigheden' : 'Workshops | Mathematics, Statistics & Creative Skills',
       description: isNl
-        ? 'Workshops Amsterdam: Wiskunde, statistiek & creatieve vaardigheden. Kleine groepen, flexibele planning. Expert begeleiding op Science Park of online.'
-        : 'Workshops Amsterdam: Mathematics, statistics & creative skills. Small groups, flexible scheduling. Expert guidance at Science Park or online.',
+        ? 'Workshops Amsterdam: Wiskunde, statistiek & creatieve vaardigheden. Kleine groepen, flexibele planning. Expert begeleiding op Science Park, Roeterseiland of online.'
+        : 'Workshops Amsterdam: Mathematics, statistics & creative skills. Small groups, flexible scheduling. Expert guidance at Science Park, Roeterseiland or online.',
       url: 'https://stephensprivelessen.nl/workshops',
       type: 'website',
       locale: 'nl_NL',

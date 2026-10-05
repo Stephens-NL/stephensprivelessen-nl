@@ -82,7 +82,7 @@
   "pricing": {
     "scheduleTrialLesson": "Schedule Trial Lesson",
     "title": "Tutoring Packages",
-    "subtitle": "Quality tutoring starting from €75 per hour - Online or at Science Park",
+    "subtitle": "Quality tutoring starting from €75 per hour - Online or at Science Park or Roeterseiland",
     "plans": [
       {
         "name": "Individual Tutoring",
@@ -92,7 +92,7 @@
           "Personalized attention",
           "All subjects available",
           "Flexible scheduling",
-          "Online or Science Park"
+          "Online, Science Park or Roeterseiland"
         ],
         "cta": "Schedule Trial"
       },
@@ -104,7 +104,7 @@
           "Shared learning experience",
           "Reduced cost per person",
           "Interactive group dynamics",
-          "Online or Science Park"
+          "Online, Science Park or Roeterseiland"
         ],
         "cta": "Get Started"
       },
@@ -160,7 +160,7 @@
   "form": {},
   "locations": {
     "title": "Where I Teach",
-    "subtitle": "Lessons at Science Park or online. Available for students across Amsterdam.",
+    "subtitle": "Lessons at Science Park, Roeterseiland or online. Available for students across Amsterdam.",
     "sciencePark": "Science Park 904, Amsterdam",
     "online": "Online via Google Meet",
     "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"

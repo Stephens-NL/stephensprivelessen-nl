@@ -7,8 +7,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: isNl ? 'Scriptiebegeleiding Amsterdam | Thesis Begeleiding & Methodologie' : 'Thesis Supervision Amsterdam | Research Methods & Methodology',
     description: isNl
-      ? 'Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van €90/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding op Science Park of online.'
-      : 'Thesis supervision Amsterdam: Expert in statistics, SPSS, R & methodology. From €90/hr. Bachelor & master thesis support. Personal guidance at Science Park or online.',
+      ? 'Scriptiebegeleiding Amsterdam: Expert in statistiek, SPSS, R & methodologie. Van €90/uur. Bachelor & master thesis hulp. Persoonlijke begeleiding op Science Park, Roeterseiland of online.'
+      : 'Thesis supervision Amsterdam: Expert in statistics, SPSS, R & methodology. From €90/hr. Bachelor & master thesis support. Personal guidance at Science Park, Roeterseiland or online.',
     keywords: [
       'scriptiebegeleiding amsterdam',
       'thesis begeleiding',

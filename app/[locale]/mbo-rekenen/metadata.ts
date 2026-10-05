@@ -7,8 +7,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: isNl ? 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding' : 'MBO Numeracy Tutoring Amsterdam | Expert Guidance',
     description: isNl
-      ? 'MBO Rekenen Amsterdam: Expert begeleiding voor MBO-rekentoets. Voor studenten & volwassenen. Online of Science Park. Persoonlijke aanpak.'
-      : 'MBO Numeracy Amsterdam: Expert guidance for the MBO numeracy test. For students & adults. Online or Science Park. Personal approach.',
+      ? 'MBO Rekenen Amsterdam: Expert begeleiding voor MBO-rekentoets. Voor studenten & volwassenen. Online, Science Park of Roeterseiland. Persoonlijke aanpak.'
+      : 'MBO Numeracy Amsterdam: Expert guidance for the MBO numeracy test. For students & adults. Online, Science Park or Roeterseiland. Personal approach.',
     keywords: [
       'mbo rekenen',
       'rekenbijles amsterdam',
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: isNl ? 'MBO Rekenen Bijles Amsterdam | Expert Begeleiding' : 'MBO Numeracy Tutoring Amsterdam | Expert Guidance',
       description: isNl
-        ? 'MBO Rekenen Amsterdam: Expert begeleiding voor MBO-rekentoets. Voor studenten & volwassenen. Online of Science Park.'
-        : 'MBO Numeracy Amsterdam: Expert guidance for the MBO numeracy test. For students & adults. Online or Science Park.',
+        ? 'MBO Rekenen Amsterdam: Expert begeleiding voor MBO-rekentoets. Voor studenten & volwassenen. Online, Science Park of Roeterseiland.'
+        : 'MBO Numeracy Amsterdam: Expert guidance for the MBO numeracy test. For students & adults. Online, Science Park or Roeterseiland.',
       url: 'https://stephensprivelessen.nl/mbo-rekenen',
       type: 'website',
       locale: 'nl_NL',

@@ -8,8 +8,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: isNl ? "Over Mij | Stephen's Privélessen Amsterdam" : "About Me | Stephen's Private Tutoring Amsterdam",
     description: isNl
-      ? "Over Stephen's Privélessen Amsterdam: Expert in wiskunde, statistiek & scriptiebegeleiding. Persoonlijke aanpak, ervaren docent. Online of Science Park."
-      : "About Stephen's Private Tutoring Amsterdam: Expert in mathematics, statistics & thesis supervision. Personal approach, experienced tutor. Online or Science Park.",
+      ? "Over Stephen's Privélessen Amsterdam: Expert in wiskunde, statistiek & scriptiebegeleiding. Persoonlijke aanpak, ervaren docent. Online, Science Park of Roeterseiland."
+      : "About Stephen's Private Tutoring Amsterdam: Expert in mathematics, statistics & thesis supervision. Personal approach, experienced tutor. Online, Science Park or Roeterseiland.",
     keywords: [
       'bijles amsterdam',
       'wiskunde docent amsterdam',
