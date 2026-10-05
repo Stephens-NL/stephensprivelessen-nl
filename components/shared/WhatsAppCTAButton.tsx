@@ -8,11 +8,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from 'next-intl';
 import { Textarea } from "@/components/ui/textarea";
-import { config } from '@/data/config';
 import PrivacyNotice from '@/components/shared/PrivacyNotice';
 
 interface WhatsAppCTAButtonProps {
-  phoneNumber?: string;
   prefilledMessage?: string;
   buttonText?: string;
   buttonClassName?: string;
@@ -30,7 +28,6 @@ interface WhatsAppCTAButtonProps {
 }
 
 export default function WhatsAppCTAButton({
-  phoneNumber = config.contact.whatsapp,
   prefilledMessage = '',
   buttonText,
   buttonClassName = "bg-[var(--sage)] hover:bg-[var(--sage-light)] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2",
@@ -49,11 +46,6 @@ export default function WhatsAppCTAButton({
     message: '',
     preferredTimes: [] as string[]
   });
-
-  // Process phone number if it starts with https://wa.me/
-  if (phoneNumber.startsWith('https://wa.me/')) {
-    phoneNumber = phoneNumber.replace('https://wa.me/', '');
-  }
 
   const handleTimeSelect = (time: string) => {
     setFormData(prev => {
@@ -82,7 +74,7 @@ export default function WhatsAppCTAButton({
     : ''
 }${formData.message ? `\n\nAdditional Message:\n${formData.message}` : ''}`;
 
-      window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+      window.open(`/go/whatsapp?text=${encodeURIComponent(message)}`, '_blank');
     }
     setIsModalOpen(false);
     setFormData({

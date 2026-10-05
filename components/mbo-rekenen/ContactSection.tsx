@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
 import { m } from 'framer-motion';
 import { Mail, MessageCircle, Phone, MapPin, Clock } from 'lucide-react';
-import { config } from '@/data/config';
+import { config, contactLinks } from '@/data/config';
 import { inViewFadeUp } from '@/lib/animations';
 
 export function ContactSection() {
@@ -16,7 +16,7 @@ export function ContactSection() {
       icon: MessageCircle,
       label: { NL: 'WhatsApp', EN: 'WhatsApp' },
       value: config.contact.display.phone,
-      href: config.contact.whatsapp,
+      href: contactLinks.whatsapp,
       description: { NL: 'Snelste manier voor contact', EN: 'Fastest way to contact' }
     },
     {
@@ -72,6 +72,7 @@ export function ContactSection() {
                 <m.a
                   key={info.label?.[language] ?? info.value ?? index}
                   href={info.href}
+                  rel={info.href.startsWith('/go/') ? 'nofollow' : undefined}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
@@ -161,7 +162,8 @@ export function ContactSection() {
                 {t('form.noObligationsGoodMatch')}
               </p>
               <a
-                href={config.contact.whatsapp}
+                href={contactLinks.whatsapp}
+                rel="nofollow"
                 className="inline-block bg-[var(--cream)] text-[var(--ink)] px-6 py-3 rounded-xl font-medium hover:bg-[var(--cream-dark)] transition-colors duration-300"
               >
                 {t('form.scheduleIntroduction')}
