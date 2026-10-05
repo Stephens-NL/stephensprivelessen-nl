@@ -109,6 +109,34 @@ export const businessConfig = {
       }
     ]
   },
+  "consultancy": {
+    "per_unit": "session",
+    "vat": "excl",
+    "note": "Zakelijke consultancy: tarieven excl. btw (tutoring is btw-vrij, CRKBO). Geen onderdeel van rates[]; buiten alle tutoring-filters.",
+    "rates": [
+      {
+        "rate_id": "consultancy_single",
+        "label": "Eenmalig consult",
+        "amount_cents": 10000,
+        "sessions": 1,
+        "status": "definitive"
+      },
+      {
+        "rate_id": "consultancy_4",
+        "label": "4 sessies",
+        "amount_cents": 25000,
+        "sessions": 4,
+        "status": "definitive"
+      },
+      {
+        "rate_id": "consultancy_10",
+        "label": "10 sessies",
+        "amount_cents": 55000,
+        "sessions": 10,
+        "status": "definitive"
+      }
+    ]
+  },
   "surcharges": {
     "meeneem_leerling_cents": 5000
   },

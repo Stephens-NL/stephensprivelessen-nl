@@ -110,7 +110,7 @@
       },
       {
         "name": "Scriptie & Onderzoek",
-        "price": "Vanaf €90",
+        "price": "Vanaf [[scriptieFromHour]]",
         "interval": "per uur",
         "features": [
           "Statistiek & Onderzoek",

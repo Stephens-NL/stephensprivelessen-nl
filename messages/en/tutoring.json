@@ -110,7 +110,7 @@
       },
       {
         "name": "Thesis & Research",
-        "price": "From €90",
+        "price": "From [[scriptieFromHour]]",
         "interval": "per hour",
         "features": [
           "Statistics & Research",

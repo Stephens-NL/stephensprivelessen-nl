@@ -115,7 +115,20 @@ export function fillPrices<T>(value: T, locale: string): T {
     spoedVoPhysical: formatEuro(spoedPrices.voPhysical, locale),
     spoedHboOnline: formatEuro(spoedPrices.hboWoOnline, locale),
     spoedHboPhysical: formatEuro(spoedPrices.hboWoPhysical, locale),
+    consultancyFromHour: formatEuro(consultancyFromHour, locale),
+    scriptieFromHour: formatEuro(scriptieFromHour, locale),
   };
+  // 1-leerling pakketprijs en uurprijs per niveau/modus: [[voOnline1]], [[voOnline1Hr]], ...
+  const single = {
+    voOnline: voOnlinePackages[0],
+    voPhysical: voPhysicalPackages[0],
+    hboOnline: hboWoOnlinePackages[0],
+    hboPhysical: hboWoPhysicalPackages[0],
+  };
+  for (const [k, pkg] of Object.entries(single)) {
+    tokens[`${k}1`] = formatEuro(pkg.packagePrice, locale);
+    tokens[`${k}1Hr`] = formatEuro(pkg.packagePrice / 4, locale);
+  }
   if (typeof value === 'string') {
     return value.replace(/\[\[(\w+)\]\]/g, (m, k) => tokens[k] ?? m) as T;
   }
@@ -131,6 +144,17 @@ export const scriptieRates = businessConfig.scriptie.rates.map((r) => ({
   duration: r.label,
   price: `€${r.amount_cents / 100}/uur`,
 }));
+
+// Consultancy (zakelijk, excl. btw) — afgeleid uit business-config
+export const consultancyRates = businessConfig.consultancy.rates.map((r) => ({
+  id: r.rate_id,
+  sessions: r.sessions,
+  price: r.amount_cents / 100,
+}));
+// "Van €X/uur" = het eenmalige consult (1 sessie).
+export const consultancyFromHour = consultancyRates.find((r) => r.sessions === 1)!.price;
+export const scriptieFromHour = Math.min(...businessConfig.scriptie.rates.map((r) => r.amount_cents / 100));
+export const lowestPackagePrice = voOnlinePackages[0].packagePrice;
 
 // Policies
 export const availabilityPolicy = {

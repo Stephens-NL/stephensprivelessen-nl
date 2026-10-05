@@ -5,20 +5,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateStructuredData } from "@/lib/structured-data";
 import { getLocale } from "next-intl/server";
+import { formatEuro, lowestPackagePrice } from "@/data/pricingData";
 
 export const revalidate = 3600; // Revalidate every hour
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const isNl = locale === 'nl';
+  const fromPackage = formatEuro(lowestPackagePrice, locale);
   return {
     alternates: buildAlternates(locale, '/bijles/amsterdam'),
     title: isNl
       ? "Bijles Amsterdam voor UvA & VU | Statistiek, Calculus & Programmeren"
       : "Tutoring Amsterdam for UvA & VU | Statistics, Calculus & Programming",
     description: isNl
-      ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online, Science Park of Roeterseiland. 4-uurs pakketten v.a. €240. UvA & VU studenten. 1-op-1 begeleiding."
-      : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online, Science Park or Roeterseiland. 4-hour packages from €240. UvA & VU students. 1-on-1 guidance.",
+      ? `Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online, Science Park of Roeterseiland. 4-uurs pakketten v.a. ${fromPackage}. UvA & VU studenten. 1-op-1 begeleiding.`
+      : `Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online, Science Park or Roeterseiland. 4-hour packages from ${fromPackage}. UvA & VU students. 1-on-1 guidance.`,
     keywords: [
       'bijles amsterdam',
       'statistiek bijles amsterdam',
@@ -34,8 +36,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         ? "Bijles Amsterdam | Statistiek, Calculus & Programmeren"
         : "Tutoring Amsterdam | Statistics, Calculus & Programming",
       description: isNl
-        ? "Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online, Science Park of Roeterseiland. 4-uurs pakketten v.a. €240. UvA & VU studenten."
-        : "Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online, Science Park or Roeterseiland. 4-hour packages from €240. UvA & VU students.",
+        ? `Bijles Amsterdam: Statistiek (SPSS, R), calculus & programmeren. Online, Science Park of Roeterseiland. 4-uurs pakketten v.a. ${fromPackage}. UvA & VU studenten.`
+        : `Tutoring Amsterdam: Statistics (SPSS, R), calculus & programming. Online, Science Park or Roeterseiland. 4-hour packages from ${fromPackage}. UvA & VU students.`,
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(isNl ? "Bijles Amsterdam" : "Tutoring Amsterdam")}&brandText=Stephensprivelessen.nl&buttonText=${encodeURIComponent(isNl ? "Boek les" : "Book lesson")}&footerText=${encodeURIComponent(isNl ? "Statistiek \u2022 Calculus \u2022 Programmeren" : "Statistics \u2022 Calculus \u2022 Programming")}&featureImageUrl=/images/og-default-feature.jpg`,

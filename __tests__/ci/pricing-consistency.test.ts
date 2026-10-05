@@ -142,6 +142,10 @@ import {
   voPhysicalPackages,
   studentTutorVoPrices,
   spoedPrices,
+  consultancyRates,
+  consultancyFromHour,
+  scriptieFromHour,
+  lowestPackagePrice,
   fromPerHour,
   fillPrices,
   formatEuro,
@@ -231,5 +235,43 @@ describe('derived price copy', () => {
       }
     }
     expect(read('data/config.ts')).not.toContain('stephenadei.nl');
+  });
+});
+
+describe('consultancy, scriptie and FAQ prices are derived', () => {
+  it('consultancy rates are the config section, excl. btw, outside rates[]', () => {
+    expect(businessConfig.consultancy.vat).toBe('excl');
+    expect(consultancyRates.map((r) => [r.sessions, r.price])).toEqual([[1, 100], [4, 250], [10, 550]]);
+    expect(consultancyFromHour).toBe(100);
+    expect(businessConfig.rates.some((r) => r.rate_id.startsWith('consultancy'))).toBe(false);
+  });
+
+  it('tokens fill consultancy, scriptie and FAQ package prices in both locales', () => {
+    expect(fillPrices('[[consultancyFromHour]] [[scriptieFromHour]]', 'nl')).toBe(
+      `${formatEuro(consultancyFromHour, 'nl')} ${formatEuro(scriptieFromHour, 'nl')}`,
+    );
+    expect(scriptieFromHour).toBe(Math.min(...businessConfig.scriptie.rates.map((r) => r.amount_cents / 100)));
+    expect(fillPrices('[[voOnline1]] [[voOnline1Hr]]', 'nl')).toBe('€240 €60');
+    expect(fillPrices('[[hboPhysical1]] [[hboPhysical1Hr]]', 'en')).toBe('€400 €100');
+    expect(lowestPackagePrice).toBe(rate('vo_online_1').amount_cents / 100);
+  });
+
+  it('no hardcoded euro amount remains in the derived files', () => {
+    const files = [
+      'components/contact/steps/InfoSection.tsx',
+      'app/[locale]/consultancy/metadata.ts',
+      'app/[locale]/scriptiebegeleiding/metadata.ts',
+      'app/[locale]/(marketing)/bijles/amsterdam/page.tsx',
+      'app/[locale]/(marketing)/bijles/onderwerp/calculus/page.tsx',
+      'app/[locale]/(marketing)/bijles/onderwerp/programmeren/page.tsx',
+      'app/[locale]/(marketing)/bijles/onderwerp/statistiek/psychologie/page.tsx',
+      'messages/nl/faq.json',
+      'messages/en/faq.json',
+      'messages/nl/tutoring.json',
+      'messages/en/tutoring.json',
+    ];
+    for (const f of files) {
+      expect(`${f}: ${(read(f).match(/€\s?\d|\bprice: \d/g) ?? []).length}`).toBe(`${f}: 0`);
+    }
   });
 });

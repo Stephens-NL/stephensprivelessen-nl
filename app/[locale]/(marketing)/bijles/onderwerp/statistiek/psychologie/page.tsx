@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { generateStructuredData } from "@/lib/structured-data";
 import { getLocale } from "next-intl/server";
+import { lowestPackagePrice } from "@/data/pricingData";
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const structuredData = generateStructuredData({
   title: "Statistiek Bijles voor Psychologie Studenten | SPSS & Data Analyse",
   description: "Professionele statistiek bijles voor psychologie studenten. SPSS begeleiding, statistische analyses en scriptie ondersteuning.",
-  price: 240, // Vanaf €240 (VO online 4 uur, 1 leerling) — laagste standaardtarief
+  price: lowestPackagePrice, // laagste standaardtarief (VO online 4 uur, 1 leerling)
   priceCurrency: "EUR",
   provider: {
     name: "Stephen's Privélessen",
