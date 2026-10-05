@@ -8,7 +8,7 @@ export const isValidEmail = (email: string): boolean => {
 
 export const isValidPhoneNumber = (phoneNumber: string): boolean => {
     // Regex for international phone numbers with country code
-    // Accepts formats: +31647357426, +31 6 47357426, +31-6-47357426
+    // Accepts formats: +31623743956, +31 6 23743956, +31-6-23743956
     const phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
     return phoneRegex.test(phoneNumber);
 };

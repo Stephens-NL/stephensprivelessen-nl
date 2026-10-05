@@ -69,7 +69,7 @@ export const organizationSchema = {
   "logo": "https://stephensprivelessen.nl/favicon/android-chrome-512x512.png",
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+31 6 47 35 74 26",
+    "telephone": "+31 6 23 74 39 56",
     "contactType": "Customer Service"
   },
   "address": {

@@ -623,8 +623,8 @@ export type BusinessConfig = typeof businessConfig;
 export const contact = {
   "phone": {
     "primary": {
-      "number": "+31647357426",
-      "display": "+31 6 47 35 74 26",
+      "number": "+31623743956",
+      "display": "+31 6 23 74 39 56",
       "whatsappOnly": true
     },
     "secondary": {
