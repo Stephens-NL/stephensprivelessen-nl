@@ -143,7 +143,7 @@ export default function ConsultancyContent() {
           <div className="absolute inset-0 z-0">
             <Image
               src="/images/consultancy-hero.jpg"
-              alt="Data Consultancy Background"
+              alt=""
               fill
               sizes="100vw"
               className="object-cover"
@@ -199,7 +199,7 @@ export default function ConsultancyContent() {
                   <ul className="space-y-3">
                     {service.items.map((item) => (
                       <li key={item} className="flex items-start">
-                        <span className="mr-2 text-[var(--amber)]">•</span>
+                        <span className="mr-2 text-[var(--amber-text)]">•</span>
                         <span>{item}</span>
                       </li>
                     ))}

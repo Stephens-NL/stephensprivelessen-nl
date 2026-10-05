@@ -82,7 +82,7 @@ export function AantekeningenContent({ student: initialStudent }: AantekeningenC
             <span>📱 Mobiel vriendelijk</span>
           </div>
           <div className="mt-3">
-            <Link href="/" className="text-[var(--amber)] hover:text-[var(--amber-hover)] text-sm font-medium">
+            <Link href="/" className="text-[var(--amber-text)] hover:text-[var(--ink)] text-sm font-medium">
               ← Terug naar hoofdsite
             </Link>
           </div>

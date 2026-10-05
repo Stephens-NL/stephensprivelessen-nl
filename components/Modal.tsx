@@ -1,13 +1,16 @@
 import React from 'react'
 import { m, AnimatePresence } from 'framer-motion';
+import { useDialog } from '@/hooks/useDialog';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  label?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, label }) => {
+  const dialogRef = useDialog(isOpen, onClose);
   return (
     <AnimatePresence
       onExitComplete={() => onClose()}
@@ -26,6 +29,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={label}
             className="bg-transparent w-full max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >

@@ -4,6 +4,7 @@ import React from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useDialog } from '@/hooks/useDialog';
 import { FaExclamationTriangle } from 'react-icons/fa';
 
 interface BackConfirmationDialogProps {
@@ -15,6 +16,8 @@ interface BackConfirmationDialogProps {
 const BackConfirmationDialog = ({ isOpen, onClose, onConfirm }: BackConfirmationDialogProps) => {
     const language = useLanguage();
     const t = useTranslations('contact');
+
+    const dialogRef = useDialog(isOpen, onClose);
 
     if (!isOpen) return null;
 
@@ -30,6 +33,10 @@ const BackConfirmationDialog = ({ isOpen, onClose, onConfirm }: BackConfirmation
                     initial={{ scale: 0.95, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     exit={{ scale: 0.95, opacity: 0 }}
+                    ref={dialogRef}
+                    role="alertdialog"
+                    aria-modal="true"
+                    aria-label={t('form.areYouSureYouWantToLeave')}
                     className="bg-[var(--ink)] rounded-lg p-6 max-w-md w-full shadow-xl"
                 >
                     <div className="text-center mb-6">

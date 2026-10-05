@@ -5,6 +5,7 @@ import { m, AnimatePresence } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { viewportOnce } from '@/lib/animations';
 import Image from 'next/image';
+import { useDialog } from '@/hooks/useDialog';
 
 // Service icon imports
 import mathIcon from '@/public/images/svg/math-icon.svg';
@@ -16,6 +17,7 @@ const serviceIcons = [mathIcon, programmingIcon, creativeIcon];
 const ServicesShort: React.FC = () => {
   const t = useTranslations('services');
   const [modalIndex, setModalIndex] = useState<number | null>(null);
+  const dialogRef = useDialog(modalIndex !== null, () => setModalIndex(null));
 
   return (
     <section className="py-16 sm:py-20 lg:py-28 bg-[var(--cream-dark)] relative">
@@ -23,7 +25,7 @@ const ServicesShort: React.FC = () => {
         {/* Section header */}
         <div className="max-w-2xl mx-auto text-center mb-12 lg:mb-16">
           <m.p
-            className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber)] mb-4"
+            className="text-sm font-semibold tracking-[0.2em] uppercase text-[var(--amber-text)] mb-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={viewportOnce}
@@ -51,12 +53,20 @@ const ServicesShort: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              role="button"
+              tabIndex={0}
               onClick={() => setModalIndex(index)}
+              onKeyDown={(e: React.KeyboardEvent) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setModalIndex(index);
+                }
+              }}
             >
               <div className="mb-6 p-3 bg-[var(--ink)]/5 rounded-lg w-fit">
                 <Image
                   src={serviceIcons[index]}
-                  alt={t(`items.${index}.title`)}
+                  alt=""
                   width={32}
                   height={32}
                   className="h-8 w-8"
@@ -68,7 +78,7 @@ const ServicesShort: React.FC = () => {
               <p className="text-[var(--muted-text)] text-sm leading-relaxed mb-6">
                 {t(`items.${index}.shortDescription`)}
               </p>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--amber)] group-hover:gap-3 transition-all duration-300">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--amber-text)] group-hover:gap-3 transition-all duration-300">
                 {t('learnMore')}
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -92,13 +102,17 @@ const ServicesShort: React.FC = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              ref={dialogRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label={t(`items.${modalIndex}.title`)}
               className="bg-[var(--cream)] p-8 sm:p-10 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-[var(--border-warm)]"
               onClick={(e: React.MouseEvent) => e.stopPropagation()}
             >
               <div className="flex items-start gap-4 mb-6">
                 <Image
                   src={serviceIcons[modalIndex]}
-                  alt={t(`items.${modalIndex}.title`)}
+                  alt=""
                   width={48}
                   height={48}
                   className="h-12 w-12 mt-1"

@@ -44,7 +44,7 @@ export function WorkshopsFilterPanel({
         {hasActiveFilters && (
           <button
             onClick={onReset}
-            className="flex items-center gap-2 text-[var(--amber)] hover:text-[var(--amber-hover)] text-sm font-medium"
+            className="flex items-center gap-2 text-[var(--amber-text)] hover:text-[var(--ink)] text-sm font-medium"
           >
             <FiRotateCcw className="w-4 h-4" />
             {t('form.resetFilters')}
