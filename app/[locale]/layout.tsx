@@ -5,6 +5,7 @@ import {notFound} from 'next/navigation';
 import {Cormorant_Garamond, Outfit} from 'next/font/google';
 import {routing} from '@/i18n/routing';
 import {Viewport} from 'next';
+import Script from 'next/script';
 import {MotionProvider} from '@/components/MotionProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -147,6 +148,13 @@ export default async function LocaleLayout({children, params}: Props) {
             <Footer />
           </MotionProvider>
         </NextIntlClientProvider>
+        {/* Cloudflare Web Analytics: cookieless, aggregated (privacy statement v1.5). Auto-injection does not
+            reach these dynamic pages, so the beacon is loaded explicitly. 4-week cross-check, review 2026-11-02. */}
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "f2055d99987f49a0a309a845a01d3d13"}'
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
