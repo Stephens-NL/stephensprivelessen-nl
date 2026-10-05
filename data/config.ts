@@ -1,5 +1,5 @@
 // Contact Information
-const PHONE_NUMBER = '+31647357426';
+const PHONE_NUMBER = '+31623743956';
 const EMAIL = 'info@stephensprivelessen.nl';
 const BUSINESS_NAME = "Stephen's Privélessen";
 const SITE_URL = 'https://stephensprivelessen.nl';

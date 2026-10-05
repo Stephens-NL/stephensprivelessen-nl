@@ -1,7 +1,7 @@
 {
   "title": "Privacy statement",
   "intro": [
-    "Stephen's Privélessen · Version 1.3 · 5 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
+    "Stephen's Privélessen · Version 1.4 · 5 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
     "**Draft, to be reviewed legally**"
   ],
   "sections": [
@@ -57,7 +57,8 @@
             "**Google Workspace** (email, EU/US): our mailbox and the emails sent when signing the agreement digitally.",
             "**Google Calendar and Meet**: appointments and online lessons.",
             "**Cloudflare** (DNS and proxy for our websites, and email sending; EU/US): email address and message.",
-            "**WhatsApp** (Meta): if you contact us via WhatsApp or we reply to you there.",
+            "**Meta (WhatsApp Business Platform)**: messages you send us on WhatsApp, and our replies, go through Meta.",
+            "**Anthropic** (tool for preparing replies, US): the text of your WhatsApp message and the last few messages, with names replaced. Every reply is checked and sent by a person; no automated decision-making takes place.",
             "**Telegram and Matrix**: internal notifications to Stephen about sign-ups and lessons, including name, contact details and learning goals.",
             "**Documenso** (self-hosted): signing the agreement digitally.",
             "**Tikkie / ABN AMRO**: payments.",
