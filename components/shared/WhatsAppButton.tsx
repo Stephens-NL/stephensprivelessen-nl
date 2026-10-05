@@ -10,7 +10,7 @@ import { config } from '@/data/config';
 import { useDialog } from '@/hooks/useDialog';
 
 const WHATSAPP_MESSAGE = 'Hallo, ik heb een vraag over je diensten';
-const WHATSAPP_URL = `${config.contact.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+const WHATSAPP_URL = `/go/whatsapp?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 type UIState = { isModalOpen: boolean; isMobile: boolean; isHovered: boolean };
 
@@ -110,7 +110,7 @@ export default function WhatsAppButton() {
 
               <div className="flex flex-col items-center gap-6">
                 <div className="p-4 bg-[var(--cream)] rounded-lg border border-[var(--border-warm)]">
-                  <QRCode value={WHATSAPP_URL} size={180} bgColor="#ffffff" fgColor="#0D2818" />
+                  <QRCode value={`${config.business.siteUrl}${WHATSAPP_URL}`} size={180} bgColor="#ffffff" fgColor="#0D2818" />
                 </div>
 
                 <div className="text-center">
@@ -120,7 +120,7 @@ export default function WhatsAppButton() {
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="w-full flex items-center justify-center gap-2 bg-[var(--ink)] text-[var(--cream)] px-6 py-3 rounded-lg hover:bg-[var(--ink-light)] transition-colors text-sm font-semibold"
                 >
                   <FaWhatsapp className="text-lg text-[#25D366]" />

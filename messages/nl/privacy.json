@@ -1,7 +1,7 @@
 {
   "title": "Privacyverklaring",
   "intro": [
-    "Stephen's Privélessen · Versie 1.4 · 5 oktober 2026",
+    "Stephen's Privélessen · Versie 1.5 · 5 oktober 2026",
     "**Concept, laat juridisch nakijken**"
   ],
   "sections": [
@@ -67,7 +67,7 @@
         },
         {
           "type": "p",
-          "text": "Er zijn **geen advertentie-partners**, **geen tracking** en **geen analytics** ingebed."
+          "text": "Er zijn geen advertentie-partners en er is geen tracking-software ingebed. Onze webserver houdt een technisch logbestand bij (opgevraagde pagina, tijdstip, verwijzende website en browsertype, zonder IP-adres). Dat bewaren we maximaal 7 dagen en gebruiken we alleen om geanonimiseerde, totale bezoekersaantallen per week te tellen (gerechtvaardigd belang). We gebruiken daarnaast Cloudflare Web Analytics: cookieloze, geaggregeerde bezoekersstatistieken zonder profielen of cookies. Er worden geen gegevens op je apparaat opgeslagen of uitgelezen, behalve de functionele taalcookie."
         }
       ]
     },
@@ -107,7 +107,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Alleen functionele cookies: `NEXT_LOCALE` (je taalvoorkeur) en `portaal_session` (inloggen op het portaal, 7 dagen). Geen tracking of analytics, geen third-party cookies. Daarom vragen we geen cookietoestemming."
+          "text": "Alleen functionele cookies: `NEXT_LOCALE` (je taalvoorkeur) en `portaal_session` (inloggen op het portaal, 7 dagen). Geen tracking- of analytics-cookies, geen third-party cookies. Daarom vragen we geen cookietoestemming."
         }
       ]
     },

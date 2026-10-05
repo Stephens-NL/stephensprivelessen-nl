@@ -58,7 +58,7 @@ export const config = {
 
 /** Structural contact link shortcuts derived from config. */
 export const contactLinks = {
-    whatsapp: config.contact.whatsapp,
+    whatsapp: '/go/whatsapp',
     email: `mailto:${config.contact.email}`,
 };
 

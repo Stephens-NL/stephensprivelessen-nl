@@ -1,7 +1,7 @@
 {
   "title": "Privacy statement",
   "intro": [
-    "Stephen's Privélessen · Version 1.4 · 5 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
+    "Stephen's Privélessen · Version 1.5 · 5 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
     "**Draft, to be reviewed legally**"
   ],
   "sections": [
@@ -67,7 +67,7 @@
         },
         {
           "type": "p",
-          "text": "There are **no advertising partners**, **no tracking** and **no analytics** embedded."
+          "text": "There are no advertising partners and no tracking software is embedded. Our web server keeps a technical log file (requested page, time, referring website and browser type, without IP address). We keep it for at most 7 days and use it only to count anonymised, total visitor numbers per week (legitimate interest). We also use Cloudflare Web Analytics: cookieless, aggregated visitor statistics without profiles or cookies. No data is stored on or read from your device, except the functional language cookie."
         }
       ]
     },
@@ -107,7 +107,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Functional cookies only: `NEXT_LOCALE` (your language preference) and `portaal_session` (logging in to the portal, 7 days). No tracking or analytics, no third-party cookies. That is why we do not ask for cookie consent."
+          "text": "Functional cookies only: `NEXT_LOCALE` (your language preference) and `portaal_session` (logging in to the portal, 7 days). No tracking or analytics cookies, no third-party cookies. That is why we do not ask for cookie consent."
         }
       ]
     },

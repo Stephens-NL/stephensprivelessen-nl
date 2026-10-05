@@ -272,7 +272,7 @@ const InfoSection = ({ onBack }: InfoSectionProps) => {
                     <m.a
                         href={contactLinks.whatsapp}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer nofollow"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="flex items-center justify-center px-6 py-3 bg-[var(--sage)] text-white rounded-lg hover:bg-[var(--sage)] w-full sm:w-auto min-w-[200px]"
