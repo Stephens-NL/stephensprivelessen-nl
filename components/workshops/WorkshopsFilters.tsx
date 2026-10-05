@@ -157,7 +157,7 @@ export const Tab: React.FC<TabProps> = ({ isActive, onClick, children, count }) 
     <span>{children}</span>
     <span
       className={`text-sm px-2 py-0.5 rounded-full ${
-        isActive ? 'bg-[var(--amber)]/20 text-[var(--amber)]' : 'bg-[var(--cream-dark)] text-[var(--muted-text)]'
+        isActive ? 'bg-[var(--amber)]/20 text-[var(--amber-text)]' : 'bg-[var(--cream-dark)] text-[var(--muted-text)]'
       }`}
     >
       {count}

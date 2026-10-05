@@ -14,7 +14,7 @@ const SignInHere = () => {
                 href={config.business.dashboardUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--ink)] font-medium hover:text-[var(--amber)] transition-colors ml-1 underline underline-offset-2 decoration-[var(--border-warm)] hover:decoration-[var(--amber)]"
+                className="text-[var(--ink)] font-medium hover:text-[var(--amber-text)] transition-colors ml-1 underline underline-offset-2 decoration-[var(--border-warm)] hover:decoration-[var(--amber)]"
             >
                 {t('hero.signInHere')}
             </a>

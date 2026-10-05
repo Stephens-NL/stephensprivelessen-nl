@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import ButtonTrial from './ButtonTrial';
 import { X } from 'lucide-react';
+import { useDialog } from '@/hooks/useDialog';
 
 // Service icon imports - these are non-translatable config
 import mathIcon from '@/public/images/svg/math-icon.svg';
@@ -38,6 +39,7 @@ const serviceLinkMap: Record<string, string> = {
 const Services = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const t = useTranslations('services');
+  const dialogRef = useDialog(selectedIndex !== null, () => setSelectedIndex(null));
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -107,7 +109,7 @@ const Services = () => {
               <div className="flex justify-center mb-4 sm:mb-6">
                 <Image
                   src={serviceIcons[index]}
-                  alt={t(`items.${index}.title`)}
+                  alt=""
                   width={60}
                   height={60}
                   className="text-[var(--amber)] w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
@@ -153,6 +155,10 @@ const Services = () => {
             exit={{ opacity: 0 }}
           >
             <m.div
+              ref={dialogRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label={t(`items.${selectedIndex}.title`)}
               className="bg-[var(--cream)] rounded-lg p-6 sm:p-8 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto shadow-sm border border-[var(--border-warm)] relative"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -161,6 +167,7 @@ const Services = () => {
             >
               <button
                 onClick={() => setSelectedIndex(null)}
+                aria-label={t('close')}
                 className="absolute top-2 right-2 sm:top-4 sm:right-4 text-[var(--muted-text)] hover:text-[var(--warm-text)]"
               >
                 <X size={24} />
@@ -168,7 +175,7 @@ const Services = () => {
               <div className="text-center">
                 <Image
                   src={serviceIcons[selectedIndex]}
-                  alt={t(`items.${selectedIndex}.title`)}
+                  alt=""
                   width={80}
                   height={80}
                   className="mx-auto mb-4 sm:mb-6 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24"

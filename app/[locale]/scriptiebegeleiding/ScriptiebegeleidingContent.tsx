@@ -103,7 +103,7 @@ export default function ScriptiebegeleidingContent() {
         <div className="relative h-screen">
           <BlurImage
             src="/images/thesis-hero.jpg"
-            alt="Scriptiebegeleiding Hero"
+            alt=""
             fill
             sizes="100vw"
             className="object-cover"

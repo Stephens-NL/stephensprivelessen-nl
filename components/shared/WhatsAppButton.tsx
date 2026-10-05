@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from '@/i18n/navigation';
 import QRCode from 'react-qr-code';
 import { config } from '@/data/config';
+import { useDialog } from '@/hooks/useDialog';
 
 const WHATSAPP_MESSAGE = 'Hallo, ik heb een vraag over je diensten';
 const WHATSAPP_URL = `${config.contact.whatsapp}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
@@ -31,6 +32,7 @@ export default function WhatsAppButton() {
   });
   const { isModalOpen, isMobile, isHovered } = ui;
   const pathname = usePathname();
+  const dialogRef = useDialog(isModalOpen, () => dispatchUI({ type: 'MODAL', payload: false }));
 
   useEffect(() => {
     dispatchUI({ type: 'MOBILE', payload: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) });
@@ -87,11 +89,16 @@ export default function WhatsAppButton() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 10 }}
               transition={{ duration: 0.25 }}
+              ref={dialogRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label={t('whatsappLabel')}
               className="bg-[var(--cream)] rounded-xl p-8 max-w-sm w-full relative border border-[var(--border-warm)]"
               onClick={e => e.stopPropagation()}
             >
               <button
                 onClick={() => dispatchUI({ type: 'MODAL', payload: false })}
+                aria-label={t('close')}
                 className="absolute top-4 right-4 text-[var(--muted-text)] hover:text-[var(--ink)] transition-colors"
               >
                 <FaTimes className="text-lg" />
