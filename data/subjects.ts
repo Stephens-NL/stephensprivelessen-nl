@@ -57,7 +57,7 @@ export const VO: SubjectCard[] = [
     chips: ['Wiskunde A', 'Wiskunde B', 'Wiskunde C', 'Wiskunde D', 'Rekenen'],
   },
   {
-    accent: 'var(--sage-light)',
+    accent: 'var(--sage)',
     icon: '⚗',
     title: 'Natuurwetenschappen',
     who: 'onderbouw t/m eindexamen',
@@ -88,7 +88,7 @@ export interface Discipline {
 
 export const HO: Discipline[] = [
   {
-    accent: 'var(--sage-light)',
+    accent: 'var(--sage)',
     laneTitle: 'Bèta & technische wiskunde',
     laneWhich: 'wiskunde · econometrie · KI · informatica · natuurkunde · 38 vakken',
     subsections: [

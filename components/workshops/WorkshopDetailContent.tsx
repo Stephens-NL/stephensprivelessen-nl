@@ -103,7 +103,7 @@ export default function WorkshopDetailContent({ workshop }: WorkshopDetailConten
                             <ul className="space-y-2">
                                 {workshop.details[language as Language].map((detail: string) => (
                                     <li key={detail} className="flex items-start">
-                                        <span className="mr-2 text-[var(--amber)]">&bull;</span>
+                                        <span className="mr-2 text-[var(--amber-text)]">&bull;</span>
                                         {detail}
                                     </li>
                                 ))}

@@ -15,7 +15,7 @@ const ServiceCard = ({ icon, titleKey, descriptionKey }: ServiceCardProps) => {
     <div className="bg-[var(--cream)] p-6 rounded-lg shadow-md transition duration-300 hover:shadow-xl">
       <Image
         src={icon}
-        alt={`${t(titleKey)} icon`}
+        alt=""
         width={80}
         height={80}
         className="mb-4 mx-auto"

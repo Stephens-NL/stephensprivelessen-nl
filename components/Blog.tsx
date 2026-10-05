@@ -18,13 +18,13 @@ const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ ind
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
     >
-      <h2 className="text-2xl font-bold font-display text-[var(--ink)] mb-4 hover:text-[var(--amber)] transition-colors duration-300">
+      <h2 className="text-2xl font-bold font-display text-[var(--ink)] mb-4 hover:text-[var(--amber-text)] transition-colors duration-300">
         {t(`items.${index}.title`)}
       </h2>
       <div className="text-balance text-[var(--warm-text)] mb-4">
         {t(`items.${index}.content`).substring(0, 150)}...
       </div>
-      <span className="text-[var(--amber)] hover:text-[var(--amber-hover)] transition-colors duration-300">{language === 'NL' ? 'Lees meer' : 'Read more'}</span>
+      <span className="text-[var(--amber-text)] hover:text-[var(--ink)] transition-colors duration-300">{language === 'NL' ? 'Lees meer' : 'Read more'}</span>
     </m.div>
   );
 };
@@ -85,7 +85,7 @@ export const BlogList: React.FC = () => {
       )}
       <AnimatePresence>
         {selectedIndex !== null && (
-          <Modal isOpen={true} onClose={handleClose}>
+          <Modal isOpen={true} onClose={handleClose} label={t(`items.${selectedIndex}.title`)}>
             <FullBlogPostModal index={selectedIndex} onClose={handleClose} />
           </Modal>
         )}
