@@ -4,7 +4,8 @@ import Hero from '@/components/Hero';
 import ServicesShort from '@/components/ServicesShort';
 import InternalLinks from '@/components/InternalLinks';
 import RushNote from '@/components/RushNote';
-import { websiteSchema } from '@/lib/structured-data';
+import { JsonLd } from '@/components/JsonLd';
+import { localBusinessSchema, websiteSchema } from '@/lib/structured-data';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -18,13 +19,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   return (
     <div className="bg-[var(--cream)]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(websiteSchema)}}
       />
+      <JsonLd data={localBusinessSchema(locale)} />
       <Hero />
       <ServicesShort />
       <InternalLinks />

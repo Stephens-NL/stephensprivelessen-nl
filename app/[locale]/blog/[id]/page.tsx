@@ -1,7 +1,7 @@
 // app/blog/[id]/page.tsx
 import { buildAlternates } from '@/lib/seo';
 import { Metadata } from 'next';
-import BlogPostComponent from '@/components/BlogPostComponent';
+import { FullPageBlogPost } from '@/components/Blog';
 import { blogPosts } from '@/data/blog';
 import { notFound } from 'next/navigation';
 import { config } from '@/data/config'; // Import config for siteUrl
@@ -11,6 +11,10 @@ type Props = {
   params: Promise<{ id: string; locale: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
+
+export function generateStaticParams() {
+  return ['nl', 'en'].flatMap((locale) => blogPosts.map((p) => ({ locale, id: String(p.id) })));
+}
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
@@ -84,11 +88,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function BlogPostPage(props: Props) {
   const params = await props.params;
   const postId = Number(params.id);
-  const postExists = blogPosts.some(p => p.id === postId);
+  const post = blogPosts.find(p => p.id === postId);
 
-  if (!postExists) {
+  if (!post) {
     notFound();
   }
 
-  return <BlogPostComponent id={params.id} />;
+  return <FullPageBlogPost post={post} locale={params.locale} />;
 }
