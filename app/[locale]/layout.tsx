@@ -10,6 +10,7 @@ import {MotionProvider} from '@/components/MotionProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/shared/WhatsAppButton';
+import ChatLauncher from '@/components/shared/ChatLauncher';
 import {organizationSchema, websiteSchema} from '@/lib/structured-data';
 import {config} from '@/data/config';
 import { fromHourLabel } from '@/data/pricingData';
@@ -144,6 +145,7 @@ export default async function LocaleLayout({children, params}: Props) {
           <MotionProvider>
             <Header />
             <WhatsAppButton />
+            <ChatLauncher />
             <main id="main-content" tabIndex={-1} className="pt-14 lg:pt-[72px] bg-[var(--ink)]">{children}</main>
             <Footer />
           </MotionProvider>

@@ -1,7 +1,7 @@
 {
   "title": "Privacyverklaring",
   "intro": [
-    "Stephen's Privélessen · Versie 1.5 · 5 oktober 2026",
+    "Stephen's Privélessen · Versie 1.6 · 6 oktober 2026",
     "**Concept, laat juridisch nakijken**"
   ],
   "sections": [
@@ -10,7 +10,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Stephen Adei, handelend onder de naam Stephen's Privélessen (eenmanszaak), KvK 88195910, btw NL004558497B41, Hendrik Hosstraat 20, 1106 ZN Amsterdam, is verantwoordelijke voor de verwerking van persoonsgegevens via de website, de contact- en aanmeldformulieren, WhatsApp, het portaal en de app. Voor vragen: info@stephensprivelessen.nl."
+          "text": "Stephen Adei, handelend onder de naam Stephen's Privélessen (eenmanszaak), KvK 88195910, btw NL004558497B41, Hendrik Hosstraat 20, 1106 ZN Amsterdam, is verantwoordelijke voor de verwerking van persoonsgegevens via de website (inclusief de chat op de website), de contact- en aanmeldformulieren, WhatsApp, het portaal en de app. Voor vragen: info@stephensprivelessen.nl."
         }
       ]
     },
@@ -21,7 +21,8 @@
           "type": "ul",
           "items": [
             "**Naam** van leerling en eventuele ouder(s): voor identificatie en correspondentie.",
-            "**Gegevens uit contact- en aanmeldformulieren en WhatsApp**: leeftijd, vak en niveau, leerdoelen, voorkeursdagen en de contactgegevens van leerling en ouder/verzorger. Zet in vrije tekst geen medische gegevens.",
+            "**Gegevens uit contact- en aanmeldformulieren, WhatsApp en de chat op de website**: leeftijd, vak en niveau, leerdoelen, voorkeursdagen en de contactgegevens van leerling en ouder/verzorger. Zet in vrije tekst geen medische gegevens.",
+            "**Chat op de website** (alleen als je de chat zelf opent): je berichten en wat de chatsoftware technisch vastlegt: browser, besturingssysteem, de pagina waar je vandaan kwam, je IP-adres en een daarvan afgeleide globale locatie. Naam, e-mail of telefoonnummer hoef je niet op te geven.",
             "**Telefoonnummer en e-mail** (optioneel): voor lesnotificaties en cancel-bevestigingen.",
             "**PIN-code**: versleuteld opgeslagen (bcrypt); het origineel wordt nooit bewaard.",
             "**Les-historie** (datum, status, eventuele annulering): voor pakketadministratie en de annuleringsvoorwaarden.",
@@ -53,12 +54,13 @@
           "type": "ul",
           "items": [
             "**De docent die je lessen geeft** (Stephen Adei of een student-docent die Stephen's Privélessen inzet): alleen voornaam, niveau, leerdoelen en lesnotities. Een student-docent ziet geen contactgegevens van ouders en geen betaalgegevens.",
-            "**Hostingprovider** (eigen VPS in een EU-datacenter): voor het draaien van het portaal.",
+            "**Hostingprovider** (eigen VPS in een EU-datacenter): voor het draaien van de website en het portaal.",
+            "**Hetzner** (Duitsland): eigen server waarop onze eigen installatie van de chatsoftware Chatwoot draait. Berichten uit de chat op de website en uit WhatsApp worden daar bewaard. Chatwoot is software die we zelf beheren, geen externe dienst.",
             "**Google Workspace** (e-mail, EU/VS): onze mailbox en de e-mails bij digitaal ondertekenen van de overeenkomst.",
             "**Google Calendar en Meet**: afspraken en online lessen.",
             "**Cloudflare** (DNS en proxy van onze websites, en e-mailverzending; EU/VS): e-mailadres en bericht.",
             "**Meta (WhatsApp Business Platform)**: berichten die je ons via WhatsApp stuurt, en onze antwoorden, lopen via Meta.",
-            "**Anthropic** (hulpmiddel bij het voorbereiden van antwoorden, VS): de tekst van je WhatsApp-bericht en de laatste paar berichten, met namen vervangen. Elk antwoord wordt door een persoon gecontroleerd en verstuurd; er vindt geen geautomatiseerde besluitvorming plaats.",
+            "**Anthropic** (hulpmiddel bij het voorbereiden van antwoorden, VS): de tekst van je WhatsApp- of chatbericht en de laatste paar berichten, met namen vervangen. Elk antwoord wordt door een persoon gecontroleerd en verstuurd; er vindt geen geautomatiseerde besluitvorming plaats. Eén uitzondering: heb je in de chat op de website na 6 uur nog geen antwoord, dan krijg je één keer automatisch een vaste, vooraf geschreven melding dat we zo snel mogelijk reageren.",
             "**Telegram en Matrix**: interne meldingen aan Stephen over aanmeldingen en lessen, met onder meer naam, contactgegevens en leerdoelen.",
             "**Documenso** (zelf gehost): digitaal ondertekenen van de overeenkomst.",
             "**Tikkie / ABN AMRO**: betalingen.",
@@ -67,7 +69,7 @@
         },
         {
           "type": "p",
-          "text": "Er zijn geen advertentie-partners en er is geen tracking-software ingebed. Onze webserver houdt een technisch logbestand bij (opgevraagde pagina, tijdstip, verwijzende website en browsertype, zonder IP-adres). Dat bewaren we maximaal 7 dagen en gebruiken we alleen om geanonimiseerde, totale bezoekersaantallen per week te tellen (gerechtvaardigd belang). We gebruiken daarnaast Cloudflare Web Analytics: cookieloze, geaggregeerde bezoekersstatistieken zonder profielen of cookies. Er worden geen gegevens op je apparaat opgeslagen of uitgelezen, behalve de functionele taalcookie."
+          "text": "Er zijn geen advertentie-partners en er is geen tracking-software ingebed. Onze webserver houdt een technisch logbestand bij (opgevraagde pagina, tijdstip, verwijzende website en browsertype, zonder IP-adres). Dat bewaren we maximaal 7 dagen en gebruiken we alleen om geanonimiseerde, totale bezoekersaantallen per week te tellen (gerechtvaardigd belang). We gebruiken daarnaast Cloudflare Web Analytics: cookieloze, geaggregeerde bezoekersstatistieken zonder profielen of cookies. Er worden geen gegevens op je apparaat opgeslagen of uitgelezen, behalve de functionele taalcookie en, als je zelf de chat opent, de chatcookie (zie 8)."
         }
       ]
     },
@@ -76,7 +78,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Gegevens die onder de fiscale bewaarplicht vallen (lessen, pakketten, betalingen, facturen) bewaren we **7 jaar**. Overige persoonsgegevens, zoals leerdoelen, notities en push-tokens, verwijderen we wanneer de leerovereenkomst is beëindigd én er geen openstaande administratie meer is. Aanmeldingen die nooit leerling worden, verwijderen we na **12 maanden**."
+          "text": "Gegevens die onder de fiscale bewaarplicht vallen (lessen, pakketten, betalingen, facturen) bewaren we **7 jaar**. Overige persoonsgegevens, zoals leerdoelen, notities en push-tokens, verwijderen we wanneer de leerovereenkomst is beëindigd én er geen openstaande administratie meer is. Aanmeldingen die nooit leerling worden, verwijderen we na **12 maanden**. Chatgesprekken op de website die niet tot een aanmelding leiden, verwijderen we na **12 maanden**."
         }
       ]
     },
@@ -107,7 +109,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Alleen functionele cookies: `NEXT_LOCALE` (je taalvoorkeur) en `portaal_session` (inloggen op het portaal, 7 dagen). Geen tracking- of analytics-cookies, geen third-party cookies. Daarom vragen we geen cookietoestemming."
+          "text": "Alleen functionele cookies: `NEXT_LOCALE` (je taalvoorkeur) en `portaal_session` (inloggen op het portaal, 7 dagen). Open je zelf de chat op de website, dan komen daar bij: de cookie `cw_conversation` (onthoudt je gesprek, 1 jaar) en de opslag van het chatvenster van crm.sadei.nl in je browser. Die worden pas gezet na je klik, omdat je zelf om de chat vraagt. Geen tracking- of analytics-cookies, en zonder klik op de chat geen third-party cookies. Daarom vragen we geen cookietoestemming."
         }
       ]
     },
