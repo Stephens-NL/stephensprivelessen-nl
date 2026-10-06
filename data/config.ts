@@ -30,7 +30,7 @@ export const config = {
     // Chatwoot website inbox "Stephens Privelessen" on crm.sadei.nl. The token is public (it ships in the page).
     // Empty = no chat launcher.
     chat: {
-        websiteToken: '',
+        websiteToken: 'kua1snMCZgiDj7QhSYPQiyEN', // Chatwoot inbox 2 "Stephens Privelessen" (public widget token)
     },
     social: {
         instagram: 'https://www.instagram.com/stephensprivelessen',
