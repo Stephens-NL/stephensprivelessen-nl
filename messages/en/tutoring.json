@@ -163,5 +163,11 @@
     "sciencePark": "Science Park 904, Amsterdam",
     "online": "Online via Google Meet",
     "areas": "Amsterdam Zuid, Centrum, Noord, West & Oost"
+  },
+  "team": {
+    "title": "Our team",
+    "intro": "Stephen plans your lessons and is your point of contact.",
+    "programme": "Programme",
+    "subjects": "Subjects"
   }
 }

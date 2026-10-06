@@ -44,6 +44,7 @@ export interface FormData {
     requesterEmail?: string;
     relationship?: string;
     programmingLanguage?: string;
+    tierPreference?: 'stephen' | 'student' | 'none';
 }
 
 const initialFormData: FormData = {

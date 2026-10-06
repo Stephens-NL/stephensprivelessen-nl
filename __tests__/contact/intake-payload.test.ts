@@ -113,3 +113,10 @@ describe('intakePayload — a barely-filled form', () => {
     expect(p.email).toBe('x@y.nl');
   });
 });
+
+describe('intakePayload — tier preference', () => {
+  it('adds the tutor preference to notes, and omits it when unset', () => {
+    expect(intakePayload({ ...FILLED, tierPreference: 'student' }).notes).toContain('Voorkeur docent: student');
+    expect(String(intakePayload(FILLED).notes ?? '')).not.toContain('Voorkeur docent');
+  });
+});

@@ -16,6 +16,7 @@ export function intakePayload(formData: FormData): Record<string, unknown> {
     const notes = [
         formData.contactPreference ? `Contact via: ${formData.contactPreference}` : '',
         formData.relationship ? `Relatie tot student: ${formData.relationship}` : '',
+        formData.tierPreference ? `Voorkeur docent: ${formData.tierPreference}` : '',
     ].filter(Boolean).join('\n');
 
     return {

@@ -246,6 +246,12 @@
     "greatIveReceivedYourRequest": "Great! I've Received Your Request",
     "illContact": "I'll contact",
     "invalidEmail": "Please enter a valid email address",
-    "invalidPhone": "Please enter a valid phone number with country code (e.g., +31623743956)"
+    "invalidPhone": "Please enter a valid phone number with country code (e.g., +31623743956)",
+    "tierPreference": {
+      "label": "Tutor preference (optional)",
+      "stephen": "Stephen",
+      "student": "Student tutor",
+      "none": "No preference"
+    }
   }
 }
