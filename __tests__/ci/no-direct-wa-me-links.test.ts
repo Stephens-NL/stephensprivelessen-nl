@@ -34,12 +34,14 @@ describe('first-party /go redirects', () => {
   });
 });
 
-describe('privacy statement v1.6 (website chat)', () => {
+describe('privacy statement v1.7 (website chat, two draft processors)', () => {
   const nl = fs.readFileSync(path.join(ROOT, 'messages/nl/privacy.json'), 'utf8');
   const en = fs.readFileSync(path.join(ROOT, 'messages/en/privacy.json'), 'utf8');
 
-  it('NL: v1.6, IP-less server log, CF analytics, chat cookie only after a click, Chatwoot, 6h holding message', () => {
-    expect(nl).toContain('Versie 1.6');
+  it('NL: v1.7, IP-less server log, CF analytics, chat cookie only after a click, Chatwoot, 6h holding message', () => {
+    expect(nl).toContain('Versie 1.7');
+    expect(nl).toContain('OpenAI');
+    expect(nl).toContain('Anthropic');
     expect(nl).toContain('zonder IP-adres');
     expect(nl).toContain('Cloudflare Web Analytics');
     expect(nl).toContain('`cw_conversation`');
@@ -49,7 +51,9 @@ describe('privacy statement v1.6 (website chat)', () => {
   });
 
   it('EN: the same facts', () => {
-    expect(en).toContain('Version 1.6');
+    expect(en).toContain('Version 1.7');
+    expect(en).toContain('OpenAI');
+    expect(en).toContain('Anthropic');
     expect(en).toContain('without IP address');
     expect(en).toContain('Cloudflare Web Analytics');
     expect(en).toContain('`cw_conversation`');
