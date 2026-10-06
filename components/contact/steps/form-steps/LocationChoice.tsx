@@ -49,6 +49,20 @@ const LocationChoice = ({ formData, onUpdate }: LocationChoiceProps) => {
                     {t('form.inpersonLessons')}
                 </m.button>
             </div>
+            <fieldset className="text-center text-white">
+                <legend className="mb-2">{t('form.tierPreference.label')}</legend>
+                {(['stephen', 'student', 'none'] as const).map((v) => (
+                    <label key={v} className="mx-3 inline-flex items-center gap-2">
+                        <input
+                            type="radio"
+                            name="tierPreference"
+                            checked={formData.tierPreference === v}
+                            onChange={() => onUpdate({ tierPreference: v })}
+                        />
+                        {t(`form.tierPreference.${v}`)}
+                    </label>
+                ))}
+            </fieldset>
         </div>
     );
 };
