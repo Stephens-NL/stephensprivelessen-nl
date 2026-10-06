@@ -1,7 +1,7 @@
 {
   "title": "Privacy statement",
   "intro": [
-    "Stephen's Privélessen · Version 1.6 · 6 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
+    "Stephen's Privélessen · Version 1.7 · 6 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
     "**Draft, to be reviewed legally**"
   ],
   "sections": [
@@ -60,7 +60,7 @@
             "**Google Calendar and Meet**: appointments and online lessons.",
             "**Cloudflare** (DNS and proxy for our websites, and email sending; EU/US): email address and message.",
             "**Meta (WhatsApp Business Platform)**: messages you send us on WhatsApp, and our replies, go through Meta.",
-            "**Anthropic** (tool for preparing replies, US): the text of your WhatsApp or chat message and the last few messages, with names replaced. Every reply is checked and sent by a person; no automated decision-making takes place. One exception: if you have had no reply in the website chat after 6 hours, you automatically get one fixed, pre-written message saying we will reply as soon as possible.",
+            "**OpenAI** (Codex, US) and **Anthropic** (Claude, US) (tools for preparing replies, via Stephen's own subscriptions): the text of your WhatsApp or chat message and the last few messages, with names replaced. Every reply is checked and sent by Stephen himself; no automated decision-making takes place. One exception: if you have had no reply in the website chat after 6 hours, you automatically get one fixed, pre-written message saying we will reply as soon as possible.",
             "**Telegram and Matrix**: internal notifications to Stephen about sign-ups and lessons, including name, contact details and learning goals.",
             "**Documenso** (self-hosted): signing the agreement digitally.",
             "**Tikkie / ABN AMRO**: payments.",

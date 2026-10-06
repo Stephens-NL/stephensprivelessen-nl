@@ -1,7 +1,7 @@
 {
   "title": "Privacyverklaring",
   "intro": [
-    "Stephen's Privélessen · Versie 1.6 · 6 oktober 2026",
+    "Stephen's Privélessen · Versie 1.7 · 6 oktober 2026",
     "**Concept, laat juridisch nakijken**"
   ],
   "sections": [
@@ -60,7 +60,7 @@
             "**Google Calendar en Meet**: afspraken en online lessen.",
             "**Cloudflare** (DNS en proxy van onze websites, en e-mailverzending; EU/VS): e-mailadres en bericht.",
             "**Meta (WhatsApp Business Platform)**: berichten die je ons via WhatsApp stuurt, en onze antwoorden, lopen via Meta.",
-            "**Anthropic** (hulpmiddel bij het voorbereiden van antwoorden, VS): de tekst van je WhatsApp- of chatbericht en de laatste paar berichten, met namen vervangen. Elk antwoord wordt door een persoon gecontroleerd en verstuurd; er vindt geen geautomatiseerde besluitvorming plaats. Eén uitzondering: heb je in de chat op de website na 6 uur nog geen antwoord, dan krijg je één keer automatisch een vaste, vooraf geschreven melding dat we zo snel mogelijk reageren.",
+            "**OpenAI** (Codex, VS) en **Anthropic** (Claude, VS) (hulpmiddelen bij het voorbereiden van antwoorden, via Stephens eigen abonnementen): de tekst van je WhatsApp- of chatbericht en de laatste paar berichten, met namen vervangen. Elk antwoord wordt door Stephen zelf gecontroleerd en verstuurd; er vindt geen geautomatiseerde besluitvorming plaats. Eén uitzondering: heb je in de chat op de website na 6 uur nog geen antwoord, dan krijg je één keer automatisch een vaste, vooraf geschreven melding dat we zo snel mogelijk reageren.",
             "**Telegram en Matrix**: interne meldingen aan Stephen over aanmeldingen en lessen, met onder meer naam, contactgegevens en leerdoelen.",
             "**Documenso** (zelf gehost): digitaal ondertekenen van de overeenkomst.",
             "**Tikkie / ABN AMRO**: betalingen.",
