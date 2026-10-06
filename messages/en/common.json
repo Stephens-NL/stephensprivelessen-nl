@@ -48,6 +48,8 @@
   "scheduleTrialSession": "Schedule a Free Trial Session",
   "learnMore": "Learn More",
   "whatsappLabel": "Contact via WhatsApp",
+  "chatLabel": "Chat with Stephen",
+  "chatUnavailable": "Chat is unavailable right now. Send a message via",
   "rush": {
     "title": "Urgent or last-minute?",
     "body": "I rarely take rush requests anymore. If it really can't wait, a rush session (max. 2 hours) costs <b>[[spoedVoOnline]]</b> online or <b>[[spoedVoPhysical]]</b> on location for secondary school, and <b>[[spoedHboOnline]]</b> online or <b>[[spoedHboPhysical]]</b> on location for higher education (university/HBO). Regular lessons: rate on request."

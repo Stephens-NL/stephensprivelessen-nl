@@ -48,6 +48,8 @@
   "scheduleTrialSession": "Plan een Gratis Proefles",
   "learnMore": "Meer Informatie",
   "whatsappLabel": "Contact via WhatsApp",
+  "chatLabel": "Chat met Stephen",
+  "chatUnavailable": "Chat is even niet bereikbaar. Stuur een bericht via",
   "rush": {
     "title": "Spoed of last-minute?",
     "body": "Ik neem weinig spoedaanvragen meer aan. Kan het echt niet anders, dan kost een spoedsessie (max. 2 uur) <b>[[spoedVoOnline]]</b> online of <b>[[spoedVoPhysical]]</b> op locatie voor middelbare school, en <b>[[spoedHboOnline]]</b> online of <b>[[spoedHboPhysical]]</b> op locatie voor hoger onderwijs (hbo/wo). Reguliere lessen: tarief op aanvraag."

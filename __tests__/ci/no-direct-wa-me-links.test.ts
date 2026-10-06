@@ -34,20 +34,30 @@ describe('first-party /go redirects', () => {
   });
 });
 
-describe('privacy statement v1.5', () => {
+describe('privacy statement v1.6 (website chat)', () => {
   const nl = fs.readFileSync(path.join(ROOT, 'messages/nl/privacy.json'), 'utf8');
   const en = fs.readFileSync(path.join(ROOT, 'messages/en/privacy.json'), 'utf8');
 
-  it('NL: v1.5, IP-less server log, Cloudflare Web Analytics', () => {
-    expect(nl).toContain('Versie 1.5');
+  it('NL: v1.6, IP-less server log, CF analytics, chat cookie only after a click, Chatwoot, 6h holding message', () => {
+    expect(nl).toContain('Versie 1.6');
     expect(nl).toContain('zonder IP-adres');
     expect(nl).toContain('Cloudflare Web Analytics');
+    expect(nl).toContain('`cw_conversation`');
+    expect(nl).toContain('Chatwoot');
+    expect(nl).toContain('na 6 uur');
     expect(nl).not.toContain('**geen analytics** ingebed');
   });
 
-  it('EN: v1.5, IP-less server log, Cloudflare Web Analytics', () => {
-    expect(en).toContain('Version 1.5');
+  it('EN: the same facts', () => {
+    expect(en).toContain('Version 1.6');
     expect(en).toContain('without IP address');
     expect(en).toContain('Cloudflare Web Analytics');
+    expect(en).toContain('`cw_conversation`');
+    expect(en).toContain('Chatwoot');
+    expect(en).toContain('after 6 hours');
+  });
+
+  it('no internal jargon reaches visitors', () => {
+    for (const x of [nl, en]) expect(x).not.toMatch(/Matrix-kamer|vps-bot|HITL|Opus|Sonnet|Haiku/);
   });
 });
