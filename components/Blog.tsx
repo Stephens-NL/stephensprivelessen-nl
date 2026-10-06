@@ -1,206 +1,57 @@
-'use client';
+import { Link } from '@/i18n/navigation';
+import { getLanguageFromLocale } from '@/hooks/useLanguage';
+import { blogPosts } from '@/data/blog';
+import type { BlogPost } from '../data';
 
-import React, { useState } from 'react';
-import { useTranslations, useMessages } from 'next-intl';
-import { m, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '@/hooks/useLanguage';
-import Modal from './Modal';
-import { BlogPost } from '../data';
+const box = 'min-h-screen bg-[var(--cream)] text-[var(--warm-text)]';
 
+const excerpt = (text: string) => text.replace(/\s+/g, ' ').trim().slice(0, 150);
 
-const BlogPostSummary: React.FC<{ index: number; onClick: () => void }> = ({ index, onClick }) => {
-  const t = useTranslations('blog');
-  const language = useLanguage();
-  return (
-    <m.div
-      className="bg-[var(--cream)] shadow-md rounded-lg p-6 mb-6 border border-[var(--border-warm)] hover:border-[var(--amber)] cursor-pointer"
-      whileHover={{ scale: 1.03, boxShadow: "0 10px 20px rgba(0,0,0,0.2)" }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-    >
-      <h2 className="text-2xl font-bold font-display text-[var(--ink)] mb-4 hover:text-[var(--amber-text)] transition-colors duration-300">
-        {t(`items.${index}.title`)}
-      </h2>
-      <div className="text-balance text-[var(--warm-text)] mb-4">
-        {t(`items.${index}.content`).substring(0, 150)}...
-      </div>
-      <span className="text-[var(--amber-text)] hover:text-[var(--ink)] transition-colors duration-300">{language === 'NL' ? 'Lees meer' : 'Read more'}</span>
-    </m.div>
-  );
-};
-
-export const BlogList: React.FC = () => {
-  const t = useTranslations('blog');
-  const language = useLanguage();
-  const messages = useMessages();
-  const count = (messages?.blog as { items?: unknown[] } | undefined)?.items?.length ?? 0;
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
-  const handleClose = () => {
-    setSelectedIndex(null);
-  };
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
+export function BlogList({ locale, title }: { locale: string; title: string }) {
+  const language = getLanguageFromLocale(locale);
+  const isNl = language === 'NL';
 
   return (
     <div className="mx-auto px-4 py-8 bg-[var(--cream)]">
-      <m.h1
-        className="text-4xl font-bold text-center font-display text-[var(--ink)] mb-8"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      >
-        {t('title')}
-      </m.h1>
-      {count === 0 ? (
-        <div className="flex justify-center items-center py-16 text-[var(--warm-text)] text-lg">
-          {language === 'NL' ? 'Er zijn momenteel geen blogartikelen.' : 'There are currently no blog articles.'}
-        </div>
+      <h1 className="text-4xl font-bold text-center font-display text-[var(--ink)] mb-8">{title}</h1>
+      {blogPosts.length === 0 ? (
+        <p className="text-center py-16 text-[var(--warm-text)] text-lg">
+          {isNl ? 'Er zijn momenteel geen blogartikelen.' : 'There are currently no blog articles.'}
+        </p>
       ) : (
-        <m.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          {Array.from({ length: count }, (_, index) => (
-            <m.div key={index} variants={item}>
-              <BlogPostSummary index={index} onClick={() => setSelectedIndex(index)} />
-            </m.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogPosts.map((post) => (
+            <article key={post.id} className="bg-[var(--cream)] shadow-md rounded-lg p-6 border border-[var(--border-warm)] hover:border-[var(--amber)]">
+              <h2 className="text-2xl font-bold font-display text-[var(--ink)] mb-4">
+                <Link href={`/blog/${post.id}`}>{post.title[language]}</Link>
+              </h2>
+              <p className="text-[var(--warm-text)] mb-4">{excerpt(post.content[language])}...</p>
+              <Link href={`/blog/${post.id}`} className="text-[var(--amber-text)] hover:text-[var(--ink)]">
+                {isNl ? 'Lees meer' : 'Read more'}
+              </Link>
+            </article>
           ))}
-        </m.div>
+        </div>
       )}
-      <AnimatePresence>
-        {selectedIndex !== null && (
-          <Modal isOpen={true} onClose={handleClose} label={t(`items.${selectedIndex}.title`)}>
-            <FullBlogPostModal index={selectedIndex} onClose={handleClose} />
-          </Modal>
-        )}
-      </AnimatePresence>
     </div>
   );
-};
-
-const FullBlogPostModal: React.FC<{ index: number; onClose?: () => void }> = ({ index, onClose }) => {
-  const t = useTranslations('blog');
-  const language = useLanguage();
-
-  return (
-    <m.div
-      className="bg-[var(--cream)] rounded-lg shadow-xl overflow-hidden border border-[var(--border-warm)] max-h-[90vh] overflow-y-auto w-full max-w-3xl mx-auto"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 20 }}
-      transition={{ duration: 0.3 }}
-    >
-      <div className="p-8">
-        <m.h1
-          className="text-4xl font-bold font-display text-[var(--ink)] mb-4"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.1, duration: 0.3 }}
-        >
-          {t(`items.${index}.title`)}
-        </m.h1>
-        <m.div
-          className="prose prose-neutral max-w-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.3 }}
-        >
-          {t(`items.${index}.content`).split('\n').map((paragraph, pIndex) => (
-            <p key={paragraph ? `${paragraph.slice(0, 30)}-${pIndex}` : `para-${pIndex}`} className="mb-4 text-[var(--warm-text)]">{paragraph}</p>
-          ))}
-        </m.div>
-      </div>
-      {onClose && (
-        <m.div
-          className="mt-8 text-center pb-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.3 }}
-        >
-          <button
-            onClick={onClose}
-            className="inline-block bg-[var(--ink)] text-[var(--cream)] px-6 py-3 rounded-lg hover:bg-[var(--ink-light)] transition-colors duration-300"
-          >
-            {language === 'NL' ? 'Terug naar alle blogs' : 'Back to all blogs'}
-          </button>
-        </m.div>
-      )}
-    </m.div>
-  );
-};
-
-interface LoadingErrorState {
-  isLoading: boolean;
-  error: string | null;
 }
 
-export const FullPageBlogPost: React.FC<{ post: BlogPost | null; loadingErrorState: LoadingErrorState }> = ({ post, loadingErrorState }) => {
-  const { isLoading, error } = loadingErrorState;
-  const language = useLanguage();
-
-  if (isLoading) {
-    return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">Laden...</div>;
-  }
-
-  if (error) {
-    return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">{error}</div>;
-  }
-
-  if (!post) {
-    return <div className="min-h-screen bg-[var(--cream)] flex items-center justify-center text-[var(--warm-text)]">Blog post niet gevonden.</div>;
-  }
-
+export function FullPageBlogPost({ post, locale }: { post: BlogPost; locale: string }) {
+  const language = getLanguageFromLocale(locale);
   return (
-    <div className="min-h-screen bg-[var(--cream)] text-[var(--warm-text)] py-12 px-4 sm:px-6 lg:px-8">
-      <m.article
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-3xl mx-auto"
-      >
+    <div className={`${box} py-12 px-4 sm:px-6 lg:px-8`}>
+      <article className="max-w-3xl mx-auto">
         <header className="mb-8">
-          <m.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-4xl sm:text-5xl font-bold font-display text-[var(--ink)] mb-4"
-          >
-            {post.title[language]}
-          </m.h1>
-          {post.date && (
-            <p className="text-sm text-on-light-subtle">{post.date}</p>
-          )}
+          <h1 className="text-4xl sm:text-5xl font-bold font-display text-[var(--ink)] mb-4">{post.title[language]}</h1>
+          {post.date && <p className="text-sm text-on-light-subtle">{post.date}</p>}
         </header>
-
-        <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          className="prose prose-lg prose-neutral max-w-none"
-        >
-          {post.content[language].split('\n').map((paragraph, pIndex) => (
-            paragraph.trim() ? (
-              <p key={`para-${pIndex}`} className="mb-6">{paragraph.trim()}</p>
-            ) : null
-          ))}
-        </m.div>
-      </m.article>
+        <div className="prose prose-lg prose-neutral max-w-none">
+          {post.content[language].split('\n').map((p, i) =>
+            p.trim() ? <p key={i} className="mb-6">{p.trim()}</p> : null,
+          )}
+        </div>
+      </article>
     </div>
   );
-};
+}

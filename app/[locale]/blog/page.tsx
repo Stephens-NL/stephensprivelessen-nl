@@ -1,7 +1,7 @@
 // app/blog/page.tsx
 import { buildAlternates } from '@/lib/seo';
 import { BlogList } from '@/components/Blog';
-import React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -56,8 +56,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const BlogPage = () => {
-  return <BlogList />;
+const BlogPage = async ({ params }: { params: Promise<{ locale: string }> }) => {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'blog' });
+  return <BlogList locale={locale} title={t('title')} />;
 };
 
 export default BlogPage;

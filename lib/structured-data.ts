@@ -1,4 +1,5 @@
 import { config } from '@/data/config';
+import { fromHourLabel } from '@/data/pricingData';
 
 export interface StructuredDataProps {
   title: string;
@@ -89,3 +90,23 @@ export const websiteSchema = {
   "@type": "WebSite",
   "url": "https://stephensprivelessen.nl"
 };
+
+/** Home-page local business entity. No street address: tutoring is online or at the client's chosen spot, so only the city is published. */
+export const localBusinessSchema = (locale: string) => ({
+  "@context": "https://schema.org",
+  "@type": ["EducationalOrganization", "LocalBusiness"],
+  "@id": "https://stephensprivelessen.nl/#localbusiness",
+  "name": "Stephen's Privélessen",
+  "url": "https://stephensprivelessen.nl",
+  "email": config.contact.email,
+  "telephone": config.contact.phone,
+  "image": "https://stephensprivelessen.nl/favicon/android-chrome-512x512.png",
+  "priceRange": `${locale === 'nl' ? 'Vanaf' : 'From'} ${fromHourLabel(locale)}${locale === 'nl' ? '/uur' : '/hr'}`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": config.business.legal.city,
+    "addressCountry": "NL"
+  },
+  "areaServed": [{ "@type": "City", "name": "Amsterdam" }],
+  "sameAs": [config.social.instagram]
+});
