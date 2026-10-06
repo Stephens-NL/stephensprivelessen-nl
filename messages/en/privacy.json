@@ -1,7 +1,7 @@
 {
   "title": "Privacy statement",
   "intro": [
-    "Stephen's Privélessen · Version 1.5 · 5 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
+    "Stephen's Privélessen · Version 1.6 · 6 October 2026 · Dutch original: \"Privacyverklaring\". The Dutch version prevails.",
     "**Draft, to be reviewed legally**"
   ],
   "sections": [
@@ -10,7 +10,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Stephen Adei, trading as Stephen's Privélessen (sole proprietorship), KvK 88195910, VAT NL004558497B41, Hendrik Hosstraat 20, 1106 ZN Amsterdam, is the controller for the processing of personal data via the website, the contact and sign-up forms, WhatsApp, the portal and the app. Questions: info@stephensprivelessen.nl."
+          "text": "Stephen Adei, trading as Stephen's Privélessen (sole proprietorship), KvK 88195910, VAT NL004558497B41, Hendrik Hosstraat 20, 1106 ZN Amsterdam, is the controller for the processing of personal data via the website (including the chat on the website), the contact and sign-up forms, WhatsApp, the portal and the app. Questions: info@stephensprivelessen.nl."
         }
       ]
     },
@@ -21,7 +21,8 @@
           "type": "ul",
           "items": [
             "**Name** of the student and any parent(s): for identification and correspondence.",
-            "**Data from the contact and sign-up forms and WhatsApp**: age, subject and level, learning goals, preferred days and the contact details of the student and parent/guardian. Do not put medical data in free text.",
+            "**Data from the contact and sign-up forms, WhatsApp and the chat on the website**: age, subject and level, learning goals, preferred days and the contact details of the student and parent/guardian. Do not put medical data in free text.",
+            "**Chat on the website** (only if you open the chat yourself): your messages and what the chat software records technically: browser, operating system, the page you came from, your IP address and a rough location derived from it. You do not have to give a name, email or phone number.",
             "**Phone number and email** (optional): for lesson notifications and cancellation confirmations.",
             "**PIN code**: stored encrypted (bcrypt); the original is never kept.",
             "**Lesson history** (date, status, any cancellation): for package administration and the cancellation terms.",
@@ -53,12 +54,13 @@
           "type": "ul",
           "items": [
             "**The tutor who teaches your lessons** (Stephen Adei or a student tutor engaged by Stephen's Privélessen): only first name, level, learning goals and lesson notes. A student tutor does not see parents' contact details or payment details.",
-            "**Hosting provider** (own VPS in an EU data centre): to run the portal.",
+            "**Hosting provider** (own VPS in an EU data centre): to run the website and the portal.",
+            "**Hetzner** (Germany): our own server running our own installation of the chat software Chatwoot. Messages from the website chat and from WhatsApp are stored there. Chatwoot is software we run ourselves, not an external service.",
             "**Google Workspace** (email, EU/US): our mailbox and the emails sent when signing the agreement digitally.",
             "**Google Calendar and Meet**: appointments and online lessons.",
             "**Cloudflare** (DNS and proxy for our websites, and email sending; EU/US): email address and message.",
             "**Meta (WhatsApp Business Platform)**: messages you send us on WhatsApp, and our replies, go through Meta.",
-            "**Anthropic** (tool for preparing replies, US): the text of your WhatsApp message and the last few messages, with names replaced. Every reply is checked and sent by a person; no automated decision-making takes place.",
+            "**Anthropic** (tool for preparing replies, US): the text of your WhatsApp or chat message and the last few messages, with names replaced. Every reply is checked and sent by a person; no automated decision-making takes place. One exception: if you have had no reply in the website chat after 6 hours, you automatically get one fixed, pre-written message saying we will reply as soon as possible.",
             "**Telegram and Matrix**: internal notifications to Stephen about sign-ups and lessons, including name, contact details and learning goals.",
             "**Documenso** (self-hosted): signing the agreement digitally.",
             "**Tikkie / ABN AMRO**: payments.",
@@ -67,7 +69,7 @@
         },
         {
           "type": "p",
-          "text": "There are no advertising partners and no tracking software is embedded. Our web server keeps a technical log file (requested page, time, referring website and browser type, without IP address). We keep it for at most 7 days and use it only to count anonymised, total visitor numbers per week (legitimate interest). We also use Cloudflare Web Analytics: cookieless, aggregated visitor statistics without profiles or cookies. No data is stored on or read from your device, except the functional language cookie."
+          "text": "There are no advertising partners and no tracking software is embedded. Our web server keeps a technical log file (requested page, time, referring website and browser type, without IP address). We keep it for at most 7 days and use it only to count anonymised, total visitor numbers per week (legitimate interest). We also use Cloudflare Web Analytics: cookieless, aggregated visitor statistics without profiles or cookies. No data is stored on or read from your device, except the functional language cookie and, if you open the chat yourself, the chat cookie (see 8)."
         }
       ]
     },
@@ -76,7 +78,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Data covered by the statutory tax retention duty (lessons, packages, payments, invoices) is kept for **7 years**. Other personal data, such as learning goals, notes and push tokens, is deleted when the tutoring agreement has ended and there is no outstanding administration. Sign-ups that never become a student are deleted after **12 months**."
+          "text": "Data covered by the statutory tax retention duty (lessons, packages, payments, invoices) is kept for **7 years**. Other personal data, such as learning goals, notes and push tokens, is deleted when the tutoring agreement has ended and there is no outstanding administration. Sign-ups that never become a student are deleted after **12 months**. Website chat conversations that do not lead to a sign-up are deleted after **12 months**."
         }
       ]
     },
@@ -107,7 +109,7 @@
       "blocks": [
         {
           "type": "p",
-          "text": "Functional cookies only: `NEXT_LOCALE` (your language preference) and `portaal_session` (logging in to the portal, 7 days). No tracking or analytics cookies, no third-party cookies. That is why we do not ask for cookie consent."
+          "text": "Functional cookies only: `NEXT_LOCALE` (your language preference) and `portaal_session` (logging in to the portal, 7 days). If you open the chat on the website yourself, these are added: the cookie `cw_conversation` (remembers your conversation, 1 year) and the chat window's storage from crm.sadei.nl in your browser. They are only set after your click, because you asked for the chat. No tracking or analytics cookies, and without a click on the chat no third-party cookies. That is why we do not ask for cookie consent."
         }
       ]
     },

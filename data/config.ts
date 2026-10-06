@@ -27,6 +27,11 @@ export const config = {
             href: `tel:${PHONE_NUMBER}`
         }
     },
+    // Chatwoot website inbox "Stephens Privelessen" on crm.sadei.nl. The token is public (it ships in the page).
+    // Empty = no chat launcher.
+    chat: {
+        websiteToken: '',
+    },
     social: {
         instagram: 'https://www.instagram.com/stephensprivelessen',
     },
